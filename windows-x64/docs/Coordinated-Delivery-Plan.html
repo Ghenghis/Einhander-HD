@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codex + Claude Delivery Plan · Einhander HD</title>
+<style>
+:root{color-scheme:dark;--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#a5aeb8;--accent:#79c0ff;--warn:#e3b341}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.65 -apple-system,"Segoe UI",Arial,sans-serif}.wrap{max-width:1120px;margin:auto;padding:32px 24px 72px}h1{font-size:26px;line-height:1.3;margin:8px 0}h2{font-size:20px;margin:34px 0 12px;border-bottom:1px solid var(--border);padding-bottom:7px}h3{font-size:16px;margin:18px 0 6px}p{margin:9px 0}a{color:var(--accent);text-underline-offset:3px}a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}.sub{color:var(--dim)}.notice{border-left:3px solid var(--warn);padding:10px 16px;background:var(--panel);margin:18px 0}.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:26px}.metric{font-size:28px;font-weight:650;line-height:1.2}.caption{font-size:13px;color:var(--dim)}nav{display:flex;flex-wrap:wrap;gap:8px 20px;margin:20px 0}code{font:13px Consolas,monospace;overflow-wrap:anywhere}pre{overflow:auto;padding:14px;background:var(--panel);border:1px solid var(--border)}ul,ol{padding-left:23px}li{margin:6px 0}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}th,td{padding:10px 12px;text-align:left;vertical-align:top;border:1px solid var(--border)}th{background:var(--panel)}caption{text-align:left;color:var(--dim);padding:5px 0 10px}.state{font-size:12px;font-weight:600;color:var(--warn);white-space:nowrap}details{border-top:1px solid var(--border);padding:13px 0}summary{cursor:pointer;font-weight:600}footer{margin-top:32px;padding-top:12px;border-top:1px solid var(--border)}@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:22px 16px 52px}h1{font-size:23px}th,td{min-width:155px}}@media print{body{background:white;color:#111}a{color:#124e78}.notice,pre,th{background:#eee}details{break-inside:avoid}.wrap{max-width:none;padding:0}.sub,.caption{color:#444}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<p class="sub"><a href="index.html">Documentation</a> / Current delivery plan · Updated November 12, 2026 · America/Phoenix</p>
+<h1>Finish Einhander HD with Codex and Claude</h1>
+<p>Connect both agents to this project, complete its remaining art and native features, and deliver one build that passes visual, input and end-to-end acceptance. The project is <code>C:\github\Einhander</code>; the Windows runtime is <code>windows-x64</code>.</p>
+<div class="notice"><strong>Current result: work remains.</strong> Full remaster coverage and full-game E2E are incomplete. Existing texture counts, source checks, historical screenshots and a prepared candidate each prove a different stage. This plan defines the next work and its evidence; it does not mark that work passed.</div>
+<nav aria-label="Plan sections"><a href="#baseline">Evidence baseline</a><a href="#coordination">Agent coordination</a><a href="#work">Action plan</a><a href="#quality">Art and motion</a><a href="#e2e">E2E gates</a><a href="#delivery">Build and delivery</a><a href="#sources">Sources</a></nav>
+
+<section id="baseline">
+<h2>What exists and what remains</h2>
+<div class="grid">
+<div><div class="metric">78 seed records</div><p>Five player hulls, five built-in weapons, 12 Gunpods, 40 enemy groups and 16 UI components appear in the current semantic register. Its full-game total is unknown. These identities require complete source binding, all meaningful states and live acceptance.</p><p class="caption">Source: <a href="../../remaster-audit/component-register.json">component-register.json</a>, November 12 seed snapshot; 73 unmapped, one mapped, four integrated, no release-ready claim.</p></div>
+<div><div class="metric">22 recorded journeys</div><p>The seed register carries historical observations into 22 acceptance journeys, each pending the final combined candidate. Native private PILOT creation/restart/load was established in prior runs. Changed UI, all controller families, unlocks and full-game routes still need their own proof.</p><p class="caption">Source: <a href="../../remaster-audit/hud-restoration/e2e-coverage.json">UI E2E ledger</a> and component register; prior acceptance does not automatically transfer to new files.</p></div>
+</div>
+<ul>
+<li><strong>World:</strong> the earlier audit checked 324 source/palette identities across ten mixed page families. The old 1,011-key UI candidate lacked 140 known world variants. Later preparation added those variants; authored semantic ownership, buildings/sign totals, complete ordered lighting loops and full live motion acceptance remain open.</li>
+<li><strong>Candidate:</strong> <a href="../../remaster-audit/RESUME_STATE.json">RESUME_STATE.json</a> records a v12 preview with 1,194 PNG decode/hash checks, 42 exact regions and 102 repairs, with final live replay pending. Its saved PID is historical metadata; verify the live process and executable before control or shutdown.</li>
+<li><strong>Art:</strong> three photoreal poster designs and five Latin sign designs are recorded as bounded candidates. Their existence does not establish every sign or building as finished. Protected source lettering and neural enlargements remain separately classified.</li>
+<li><strong>Fleet:</strong> source catalog identities and bounded material experiments do not establish every hull, part, pose, Gunpod, enemy and boss phase as skinned. Gallery/unlock/end states require a documented progressed fixture.</li>
+<li><strong>Runtime:</strong> renderer/source checks and short playback samples are useful historical evidence. A prior measured 4× route had 55.48 FPS and p95 23 ms; it did not prove a locked 60 FPS release. Final performance must use the actual assembled build, pack and intended settings.</li>
+</ul>
+<p>Track <code>unmapped → mapped → rebuilt → integrated → live-verified</code> per component and state. Record a defect or unknown explicitly. A file, CLUT variant, atlas region or concept image is not automatically one finished game object.</p>
+</section>
+
+<section id="coordination">
+<h2>Connect the agents and keep their work reviewable</h2>
+<p><strong>HP-01 / Codex:</strong> verify the local HermesProof installation, identify this exact project, detach only this agent's prior active-project session if present, and bind Codex and Claude to the same project identity. Preserve other project data and running work. The current turn is verifying the transport; a live Claude acknowledgement must be recorded separately from a local test message.</p>
+<ol>
+<li>Register identities and scope: project root, role, session identifier and repository/workspace. A configured server is not yet a usable mailbox.</li>
+<li>Send a unique project-tagged test message, list it and read it back. Record transport success. Claude must reply under its actual identity to establish that it is connected and receiving assignments.</li>
+<li>Claim a task ID with exact files before editing. Acknowledge owner, deliverable and acceptance gate. Claim one GPU generation slot or build slot before using it.</li>
+<li>Report progress or a concrete blocker, then hand off changed paths, source/output hashes, commands and exits, evidence, defects and next action. The reviewer checks both images and runtime receipts.</li>
+</ol>
+<p>Codex owns runtime/input integration, exact UI assets, candidate composition and native E2E. Claude owns assigned art plus reproducible workflow/packing code and independent visual review. Both produce code and assets. One integrator writes shared atlases, settings, live packs and executables at a time. Generated work goes into task-specific candidate directories; it does not overwrite approved assets before acceptance.</p>
+<p>The <a href="../../remaster-audit/coordinated-delivery-plan.json">machine-readable task board</a> contains stable IDs, dependencies and acceptance requirements. Claude tasks remain unclaimed until an acknowledgement is observed. Never treat messages from another project as Einhander instructions.</p>
+</section>
+
+<section id="work">
+<h2>Action plan and ownership</h2>
+<p>Start with connection, a bounded controller improvement and one representative world-art candidate. Use their results to size the next batches. Continue the existing final-candidate review while missing content is mapped; do not wait for every asset to generate before finding integration defects.</p>
+<div class="table-wrap"><table>
+<caption>Assignments as of November 12, 2026. “Planned” denotes required work, not a completed implementation.</caption>
+<thead><tr><th scope="col">Order / ID</th><th scope="col">Owner and concrete result</th><th scope="col">Acceptance</th></tr></thead>
+<tbody>
+<tr><td>P0 · HP-01<br><span class="state">Verification in progress</span></td><td>Codex: project binding and Claude mailbox.</td><td>Correct scope; send/list/read receipt; real Claude acknowledgement; task claim and handoff round trip.</td></tr>
+<tr><td>P0 · CODEX-CTRL-01<br><span class="state">Implementation in progress</span></td><td>Codex: selectable Auto, PSX/PlayStation, Xbox, Switch and universal controller identity in the native system.</td><td>Keep prompt identity separate from physical bindings; persist/reload; invalid-value fallback; keyboard, hotplug and reconnect checks. Physical USB devices remain a separate acceptance step.</td></tr>
+<tr><td>P0 · CLAUDE-WORLD-01<br><span class="state">Planned; claim required</span></td><td>Claude: code a reproducible ComfyUI/QA path and author a facade/window/beacon/sign pilot.</td><td>Verified UV/CLUT source; layered multicolor detail; exact lettering; reproducible graph/model/seed/hashes; palette/alpha tests; bright/dark still and motion evidence.</td></tr>
+<tr><td>P1 · CLAUDE-MENU-01<br><span class="state">Planned; claim required</span></td><td>Claude: menu/ship/Gunpod illustration and source-bound packing code.</td><td>Keep illustration, lettering and interaction separate; source-faithful composition; all highlights/locked states; no strip seams in Results art.</td></tr>
+<tr><td>P1 · CODEX-RESULTS-01<br><span class="state">Planned</span></td><td>Codex: verify Results arrows, Field/Fight graphs and native grades.</td><td>Observe what the arrow actually changes; test each metric/available craft; establish E-grade meaning from game evidence before writing help; respect unlock state.</td></tr>
+<tr><td>P1 · CODEX-OPTIONS-01<br><span class="state">Planned</span></td><td>Codex: enhancement settings and precise vector UI assets.</td><td>Inventory current features; expose only implemented options; remapping/deadzone/reset; tested display/quality presets; UI readability and supported accessibility settings; audio and save/reset persistence.</td></tr>
+<tr><td>P0 · QA-UI-01<br><span class="state">Final replay pending</span></td><td>Codex native journeys; Claude independent visual review.</td><td>Boot through every menu, fighter/ARM, combat HUD, pause/death/continue, Results/graphs, ranking and private-card flows on final hashes.</td></tr>
+<tr><td>P0 · QA-MOTION-01<br><span class="state">Planned</span></td><td>Codex measurements; Claude motion/detail review.</td><td>2160-line output; actual layer velocity; complete loops; no seams/shimmer/clipping; frame-time/audio evidence on intended release settings.</td></tr>
+<tr><td>P1 · QA-FLEET-01<br><span class="state">Planned</span></td><td>Claude mapping/art; Codex journey integration.</td><td>All stages/routes, craft/parts/weapons/enemies/boss phases/effects and progressed fixtures; two complete repeated omission sweeps.</td></tr>
+<tr><td>P2 · REL-01<br><span class="state">Blocked by acceptance gates</span></td><td>Codex final composition/build; Claude independent acceptance.</td><td>One versioned manifest/build/pack; required regressions and final replay; launch/rollback check; complete evidence and remaining-defect ledger.</td></tr>
+</tbody></table></div>
+<p>Useful menu additions are selected by function and verified implementation: controller identity and remapping, deadzone/calibration, tested quality/performance presets, aspect and display scaling, readable UI size/contrast, reduced flash/motion where supported, audio controls, reset confirmation, and an art/ship/Gunpod viewer backed by actual availability. A disconnected option or unimplemented feature must not appear as an enabled control.</p>
+</section>
+
+<section id="quality">
+<h2>Detailed artwork that survives gameplay motion</h2>
+<h3>Use the RTX 3090 Ti as a measured production resource</h3>
+<p>Inspect actual GPU memory, drivers, active workers, ComfyUI endpoint/queue, installed models and custom nodes. Reuse validated local models first. Benchmark one representative mapped facade and one mixed sign/lettering region. Retain each API graph, model filename/hash, seed, sampler/steps, guidance, denoise, source/crop dimensions, authoring/output dimensions and elapsed/peak-memory measurements. Choose batch size and tile overlap from observed memory rather than a card-name assumption.</p>
+<p>Author structure, materials, warm/cool window lighting, facade relief, rooftop beacons and restrained glow in separate controlled regions. Generate illustrative content; rebuild exact lettering with source-grounded vectors or glyphs. Work in linear source bounds and preserve protected neighbors, UV layout, black STP texels, categorical transparency and palette animation. A generated concept becomes a texture only after mapped packing and real replacement draw proof.</p>
+<h3>Measure movement before deciding the detail scale</h3>
+<p>For each foreground, middle and distant layer, measure screen displacement between actual rendered frames. At presentation rate <code>F</code> frames/s and layer speed <code>v</code> pixels/s, displacement is <code>d = v / F</code> pixels/frame. At 600 pixels/s and 60 Hz, the layer moves 10 pixels/frame; this is an illustrative calculation, not a measured game speed.</p>
+<p>A feature with on-screen width <code>w</code> pixels remains beneath a fixed screen point for about <code>w / v</code> seconds. Texture resolution cannot eliminate the display's persistence or make a tiny fast glyph readable. Preserve larger coherent material forms, enough edge contrast, stable outlines and valid filtering/mip behavior; reduce high-frequency shimmer and excessive sharpening. Review the actual scrolling sign at intended display scale and refresh rate.</p>
+<ul>
+<li>Record actual output and viewport dimensions. Preserve 4:3: a 2160-line gameplay viewport is 2880×2160, which may sit within a 3840×2160 output.</li>
+<li>Review stock and candidate at matched routes/poses, bright and dark exposure, native display size and 2160-line export. A resized small master must retain its true authoring resolution in provenance.</li>
+<li>Capture complete palette/blink/window/beacon sequences; a CLUT count is not an ordered animation. Check frame-to-frame seams, STP blending, flicker and layer order.</li>
+<li>Keep GPU authoring separate from performance runs. Record frame-time p50/p95/p99/max, presentation FPS, audio underruns, render settings, capture overhead and sample duration.</li>
+<li>Set a 60 Hz target of 16.67 ms/frame, then report whether the final tested route meets it. A successful short menu sample cannot establish full-game 60 FPS.</li>
+</ul>
+</section>
+
+<section id="e2e">
+<h2>Final-build E2E and visual gates</h2>
+<details open><summary>Native UI, controllers and persistence</summary><p>Cold boot → title choices → private PILOT create/name edit/cancel/save → restart/load → all settings and reset/cancel → fighter and ARM selection → HUD pickup/equip/fire/ammo transitions → pause/resume/quit → death/continue/Game Over → Results and every graph/metric → rankings/File Option/load/discard cancel. Repeat controller identity choices and remapping through save/reload, keyboard fallback, unplug/replug and invalid configuration. A label test is not a physical-controller gameplay test.</p></details>
+<details open><summary>World, fleet and all content</summary><p>Cover every registered stage/route, ship part/pose, built-in weapon, Gunpod, enemy, boss phase, effect, sign placement, building, window/light loop and foreground/parallax layer. Use a documented progressed private fixture for secrets/Gallery/endings/credits. Separate natural progression from RAM-assisted art fixtures. Newly encountered content expands the register. Two repeated complete sweeps must leave no unclassified component.</p></details>
+<details open><summary>Evidence required for each visual pass</summary><p>Keep source/CLUT/UV proof; authoring and final hashes; protected-region and alpha/STP checks; actual final replacement submission; a fresh composed frame after asynchronous texture readiness; direct visual review; ordered motion/animation sample; defect status. Filenames, elapsed delays and successful pad commands are insufficient. Do not transfer an older candidate's acceptance to changed files.</p></details>
+<details><summary>Existing verification entry points</summary><p>These are existing commands to select according to changed code and assets. Running the documentation link checker proves documentation integrity only.</p><pre><code># From C:\github\Einhander
+python -m unittest discover -s remaster-audit -p test_component_register.py
+python -m unittest discover -s remaster-audit -p test_ui_native_journey.py
+python remaster-audit/run_vram_coherence.py
+python remaster-audit/run_vram_coherence.py --hd-cache
+python remaster-audit/verify_world_source_backlog.py
+python remaster-audit/verify_latin_world_sign_regions.py
+python remaster-audit/verify_delivery_docs.py
+
+# From C:\github\Einhander\windows-x64
+.\Play-HD.cmd --check
+cmake --build build-release --target psx-runtime</code></pre><p>Real-GL tests and builds may use a shared GPU/build slot. Confirm source/runtime compatibility and select isolated fixtures before execution. Read <a href="../../remaster-audit/ui_native_journey.py">ui_native_journey.py</a> and the candidate launch receipt for observed-state navigation; the helper file itself is not a full-game E2E runner.</p></details>
+</section>
+
+<section id="delivery">
+<h2>Build, review and delivery</h2>
+<ol>
+<li>Freeze exact candidate inputs and retain their manifests. Reconcile installed, expanded, UI and material-profile conflicts explicitly; do not silently take the last write.</li>
+<li>Build once the integrator owns the build slot. Record compiler/build result, executable hash and matching source identities. Never replace a running approved executable opportunistically.</li>
+<li>Launch an isolated candidate with private settings/cards and an available debug port. Identify an existing process from its path and receipt before reusing or closing it.</li>
+<li>Run the required changed-runtime tests, final native journeys, visual/motion gates and measured pacing. Separate passed, failed, blocked, fixture-assisted and untested states.</li>
+<li>Deliver the versioned build/pack, launch command, before/after stills and motion, source/composition manifest, evidence ledger, open defects and tested rollback. Full completion requires every required registered state accepted and no known in-scope omission.</li>
+</ol>
+<p><strong>Timing:</strong> first measure pilot generation and integration throughput, then estimate remaining batches using actual inventory, review and repair costs. The full-game semantic total and live Claude availability are not yet established, so a defensible completion date is not available from the current evidence.</p>
+</section>
+
+<section id="sources">
+<h2>Evidence and maintenance</h2>
+<p>This page is the coordinated work plan. Keep the source registers and task receipts authoritative for observations. Update status only from evidence; the old <a href="Project-Roadmap.html">project roadmap</a> remains historical technical context.</p>
+<ul>
+<li><a href="../../remaster-audit/coordinated-delivery-plan.json">Task board and coordination contract</a></li>
+<li><a href="../../remaster-audit/RESUME_STATE.json">Latest saved resume state</a> · <a href="../../remaster-audit/REMASTER_COMPLETION_PLAN.md">Full-scope completion plan</a></li>
+<li><a href="../../remaster-audit/component-register.json">Semantic component register</a> · <a href="../../remaster-audit/overall-remaster-coverage.json">Overall provenance/coverage</a></li>
+<li><a href="../../remaster-audit/hud-restoration/e2e-coverage.json">UI E2E observations</a> · <a href="../../remaster-audit/background-audit-20261112/stage1-background-gap-inventory.json">World source/gap audit</a></li>
+<li><a href="../../remaster-audit/pack-reconciliation.json">Candidate/pack conflict accounting</a> · <a href="REMASTER_ACTION_PLAN.md">Earlier Stage 1 action plan</a></li>
+<li><a href="HD_TEXTURE_COVERAGE.md">Historical measured HD texture coverage</a> · <a href="Architecture-E2E.html">Runtime architecture and verification boundary</a></li>
+</ul>
+<p class="caption">Source snapshots above date from November 12. A saved “running” state is not current process proof; a seed register can lag newer candidate preparation. Read the latest receipt and compare hashes before any claim or mutation.</p>
+</section>
+<footer class="sub">Einhander HD · Codex + Claude · Current request governs; the attached transcript supplies background. <a href="index.html">Back to documentation</a></footer>
+</main>
+</body>
+</html>

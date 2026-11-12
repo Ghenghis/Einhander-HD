@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FMV HD Upscaling — SOTA 2026 Action Plan · Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--purple:#bc8cff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:1020px;margin:0 auto;padding:40px 24px 90px}
+  h1{font-size:23px;margin:0 0 4px}
+  h2{font-size:17px;margin:32px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:18px 0 6px;color:var(--accent)}
+  h4{font-size:13.5px;margin:14px 0 4px;color:var(--purple)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .sota{background:rgba(188,140,255,.15);color:var(--purple);border:1px solid rgba(188,140,255,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  .tier{border-left:3px solid var(--accent);padding-left:14px}
+  a{color:var(--accent)}
+  .kpi{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin:4px 6px 4px 0;text-align:center}
+  .kpi .v{font-size:19px;font-weight:700;color:var(--accent)}
+  .kpi .l{font-size:11px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>FMV HD Upscaling — SOTA 2026 Action Plan</h1>
+<p class="sub">From 320×192 STR/MDEC to real 1080p/1440p presentation · <a href="index.html">← index</a> · Status: <span class="badge warn">PLANNED — TIER 1 READY TO IMPLEMENT</span></p>
+
+<h2>Executive Summary</h2>
+<div class="card">
+<p>Einhänder's full-motion video is stored on the disc as PlayStation STR (MDEC) streams at ~320×192,
+15 fps, ~15:1 chroma-subsampled B-VLC compression — the visual state the screenshots show:
+block grain, color banding, blurred edges, aliasing.</p>
+<p>There are <strong>three distinct tiers</strong> of enhancement, ordered by cost-vs-realism:</p>
+<table>
+<tr><th>Tier</th><th>What</th><th>Quality ceiling</th><th>Effort</th><th>Status</th></tr>
+<tr><td><strong>1 — Reconstruction shader</strong></td><td>Better single-pass filter inside the existing present shader</td><td>"Sharper SD" — removes staircase, tightens edges</td><td>Hours</td><td><span class="badge warn">DESIGN DONE — IMPLEMENTING</span></td></tr>
+<tr><td><strong>2 — Deband + denoise</strong></td><td>Luminance-gradient dither + temporal/edge-aware smoothing pass</td><td>Kills STR banding in sky/wall gradients</td><td>Add-on to Tier 1</td><td><span class="badge warn">DESIGN DONE</span></td></tr>
+<tr><td><strong>3 — True HD</strong></td><td>Offline AI upscale of extracted STR files → in-game substituted playback at 1080p/1440p</td><td><strong>Real 1080p/1440p</strong> — the SOTA goal</td><td>Multi-phase project</td><td><span class="badge sota">PLANNED</span></td></tr>
+</table>
+<p><strong>Key fact:</strong> no amount of real-time shader filtering creates detail absent from the
+320×192 source. SOTA 2026 output — genuine HD, film-grade — requires an AI model (Real-ESRGAN /
+Video2X / Topaz-class) running offline on the extracted videos, then a new playback path that swaps
+in the HD file in sync with the game.</p>
+</div>
+
+<h2>Tier 1 — In-Shader Reconstruction (today)</h2>
+<div class="card tier">
+<h3>Mechanism</h3>
+<p>The CPU-present path renders FMV frames as a 320×192-class RGB texture through a single
+full-screen pass (<code>PRESENT_FS</code>, <code>gpu_gl_renderer.c:886</code>). Four modes exist
+(<code>nearest</code>, <code>bilinear</code>, <code>sharp</code>, <code>bicubic</code>); the
+active one is <code>bicubic</code> (Catmull-Rom, 9 bilinear taps).</p>
+<p>The upgrade adds a fifth mode <code>"hd"</code> that combines:</p>
+<ul>
+<li><strong>Lanczos-3 kernel resampling</strong> — 6×6-tap windowed-sinc reconstruction; measurably
+sharper than Catmull-Rom at the same smoothness, with no aliasing when scaling ≥4×.</li>
+<li><strong>RCAS-style adaptive sharpening</strong> — a light unsharp mask applied only where local
+contrast is low (protects smooth gradients from noise amplification).</li>
+<li><strong>De-banding dither</strong> — ordered blue-noise/ordered-matrix dither in the output
+write to break up the 8×8-block banding STR leaves in gradients.</li>
+</ul>
+<h3>Files touched</h3>
+<table>
+<tr><th>File</th><th>Change</th></tr>
+<tr><td><code>psxrecomp\runtime\src\gpu_gl_renderer.c</code></td><td>New <code>u_sharp==3</code> branch in <code>PRESENT_FS</code>: Lanczos-3 sample + adaptive sharpen + dither. New <code>fmv_filter_mode()</code> mapping.</td></tr>
+<tr><td><code>psxrecomp\recompiler\src\config_loader.h</code></td><td><code>VIDEO_FMV_FILTER_HD = 4</code>, <code>COUNT = 5</code>, name <code>"hd"</code>, parse case.</td></tr>
+<tr><td><code>psxrecomp\recompiler\src\config_loader.cpp</code></td><td>Error-string enumeration update ("… or \"hd\"").</td></tr>
+<tr><td><code>psxrecomp\runtime\src\main.cpp</code></td><td>Launcher mapping <code>ls_value</code> ↔ cfg — extends automatically if bounded by <code>VIDEO_FMV_FILTER_COUNT</code>.</td></tr>
+<tr><td><code>build-release\settings.toml</code></td><td><code>fmv_filter = "hd"</code></td></tr>
+<tr><td><code>recomp-ui\src\common\launcher_model.c</code></td><td>Option-cycle length (auto if it reads <code>COUNT</code>; else +1)</td></tr>
+</table>
+<h3>Expected improvement</h3>
+<p>Sharper text/title cards, harder edges on the craft geometry, retained film grain rather
+than smearing it, ~no banding in sky gradients. Still bounded by the source resolution —
+this is the best achievable <em>without</em> AI.</p>
+</div>
+
+<h2>Tier 2 — De-band &amp; Denoise add-on</h2>
+<div class="card tier">
+<p>Ships inside the same <code>u_sharp==3</code> shader as a second small branch or uniform flag.
+The dither step is 8 lines of GLSL (Bayer 8×8 or interleaved-gradient noise); a luma-adaptive
+smoothing pass is a second small draw or a folding loop.</p>
+</div>
+
+<h2>Tier 3 — True HD: AI-Reconstructed FMV (the 1080p/1440p path)</h2>
+<div class="card tier">
+<p><span class="badge sota">SOTA GOAL</span> The only route to genuine HD. Three phases,
+each separately verifiable.</p>
+
+<h3>Phase A — STR extraction &amp; inventory</h3>
+<ul>
+<li>Locate every <code>.STR</code> video stream on the Einhänder disc image
+(<code>D:\Games\Einhander\ROM\Einhander (USA).bin</code>). Use <code>jpsxdec</code> (the standard
+PSX-STR extractor) or the project's own <code>psx_libchdr</code>-based tools to dump each movie
+sector-perfectly as uncompressed frames + XA audio.</li>
+<li>Build an inventory table: <code>STR id → sector range → frame count → fps → resolution →
+duration</code>. Einhänder has ~7–9 FMV sequences (intro, chapter transitions, ending, staff roll).</li>
+<li>Deliverable: <code>fmv_inventory.json</code> + lossless frame dumps per video.</li>
+</ul>
+
+<h3>Phase B — AI upscale pipeline (offline)</h3>
+<table>
+<tr><th>Candidate</th><th>Quality</th><th>Cost</th><th>Notes</th></tr>
+<tr><td><code>Video2X + Real-ESRGAN / Real-CUGAN</code></td><td>Excellent, free</td><td>GPU-hours</td><td>SOTA open path; CUGAN especially good on animated content</td></tr>
+<tr><td><code>Topaz Video AI</code></td><td>Best-in-class</td><td>Paid</td><td>Highest single-model quality; has a CLI</td></tr>
+<tr><td><code>vs-mlrt / RIFE + ESRGAN</code> (VapourSynth)</td><td>Excellent</td><td>Free, scripted</td><td>Frame-rate boost + super-res in one pipeline</td></tr>
+<tr><td><code>FFmpeg + swscale/GLSL lanczos</code></td><td>Baseline</td><td>Minutes</td><td>Reference only — no AI detail</td></tr>
+</table>
+<p>Pipeline per video: frames → denoise (mild, preserves grain) → 4× Real-ESRGAN/Real-CUGAN →
+optional RIFE frame-rate double (15→30) → encode H.265 CRF ~18 at 1920×1080 (or 2560×1440)
+→ mux original XA-derived audio untouched.</p>
+<p><strong>Output:</strong> one HD file per STR, e.g.
+<code>hd_fmv\INTRO_1080p.mp4</code>, plus a mapping file <code>hd_fmv_map.json</code>.</p>
+
+<h3>Phase C — Playback substitution</h3>
+<p>The emulator currently decodes each STR sector-by-sector through the MDEC block. To play the HD
+file instead, add a substitution layer:</p>
+<ol>
+<li><strong>Detect STR start.</strong> When the game issues a <code>CdlReadS</code>/<code>CdInt2</code>
+streaming read into an STR sector range (from the Phase-A inventory), flag "FMV n starting".</li>
+<li><strong>Attach.</strong> Launch the corresponding pre-encoded HD file on a media
+pipeline (<code>FFmpeg</code> decode → GL texture, or <code>libmpv</code>/SDL_render). Keep the
+guest audio path: either let the emulator keep the XA audio (most robust — A/V sync is the game's
+own timing) or mux the XA track into the HD file and mute SPU during FMV.</li>
+<li><strong>Sync.</strong> Match the file's play rate to the STR's nominal fps; on the game's
+"FMV end" sector read or timeout, cut back to normal scanout. A fade in/out hides seams.</li>
+<li><strong>Fallback.</strong> If the HD file is missing/unloadable, fall back to the existing
+MDEC+shader path — the substitution is strictly additive.</li>
+</ol>
+<h3>Sync approaches compared</h3>
+<table>
+<tr><th>Approach</th><th>Complexity</th><th>Robustness</th></tr>
+<tr><td>Sector-range trigger + external player (overlay)</td><td>Low</td><td>Best — simplest</td></tr>
+<tr><td>Replace MDEC frame output with decoded HD frames at same cadence</td><td>Medium</td><td>Good — keeps game timing but needs frame-accurate mapping</td></tr>
+<tr><td>Full disc-replacement (repack .STR with re-encoded high-res MDEC)</td><td>High</td><td>Fragile — MDEC itself can't do HD; only useful to swap in higher-bitrate SD</td></tr>
+</table>
+</div>
+
+<h2>What "SOTA 2026" Actually Looks Like</h2>
+<div class="card">
+<p>The genuinely-current ceiling for low-res game cutscenes is:</p>
+<ul>
+<li><strong>Upscaler:</strong> Real-CUGAN pro / Real-ESRGAN AnimeVideo or Topaz's Aion/Proteus
+models — all produce convincing 1080p/1440p from 240p-class sources.</li>
+<li><strong>Frame-rate:</strong> RIFE v4.x (optical-flow interpolation) → the 15 fps STR becomes
+30 fps with real motion, not motion blur.</li>
+<li><strong>Grain:</strong> keep a light film-grain overlay post-upscale (prevents the "AI smooth"
+look).</li>
+<li><strong>Presentation:</strong> 4:3 pillarboxed at integer scale, or a mild 16:9 reframe if
+there's a widescreen-safe variant of the video.</li>
+</ul>
+<p>That combination — extracted STR → AI upscale → interpolated → HD-substituted playback —
+is the same approach the DuckStation/PCSX communities use for "HD FMV mods". It is the
+realistic ceiling; nothing closer to "re-rendered" exists short of a studio remake.</p>
+</div>
+
+<h2>Effort &amp; Sequencing</h2>
+<table>
+<tr><th>Item</th><th>Est.</th><th>Blocks on</th><th>Order</th></tr>
+<tr><td>Tier 1 + 2 shader mode (<code>"hd"</code>)</td><td>1 session</td><td>—</td><td><span class="badge ok">NOW</span></td></tr>
+<tr><td>Verify + screenshot A/B</td><td>1 session</td><td>Tier 1</td><td><span class="badge ok">NOW</span></td></tr>
+<tr><td>Phase A: STR extraction + inventory</td><td>1 session</td><td>jpsxdec or chdr tooling</td><td>Next</td></tr>
+<tr><td>Phase B: AI upscale (one video first)</td><td>GPU-hours</td><td>Phase A; local GPU + free tool</td><td>After A</td></tr>
+<tr><td>Phase C: playback substitution</td><td>Multi-session</td><td>Phase B assets + sector hooks</td><td>After B</td></tr>
+</table>
+
+<h2>Risks</h2>
+<ul>
+<li><strong>A/V drift</strong> — mitigated by keeping the emulator's XA audio authoritative; the HD
+video only replaces pixels.</li>
+<li><strong>STR not cleanly extractable</strong> — some games interleave FMV audio/video in custom
+container; jpsxdec + a hex sanity check answers this in Phase A.</li>
+<li><strong>Perf during substitution</strong> — FFmpeg decode of a 1080p H.265 is cheap; but the
+GL texture upload must not stall the main loop — decode on a side thread.</li>
+<li><strong>License / tooling</strong> — Topaz is paid; the free path (Video2X/RIFE/Real-ESRGAN) is
+sufficient.</li>
+</ul>
+
+<h2>Decision</h2>
+<div class="card">
+<p><strong>Implement Tier 1+2 now</strong> (measurable improvement today, in-code, reversible).
+<strong>Proceed to Tier 3</strong> as a tracked project with Phase A as the immediate next step —
+it produces the inventory that makes every later choice concrete.</p>
+</div>
+<p class="sub" style="margin-top:30px">Sources: Einhänder disc STR layout (CD-ROM sector data), PSX MDEC block format,
+project present-shader code (<code>gpu_gl_renderer.c</code>), Video2X / Real-ESRGAN / RIFE / Topaz public docs,
+PCSX/DuckStation HD-FMV mods practice.</p>
+</div>
+</body>
+</html>

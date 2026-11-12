@@ -1,0 +1,203 @@
+"""Observed native title -> MkII fighter -> optional ARM -> city/HUD gates.
+
+Import enter_city(report) after launching an owned candidate. No process is
+launched here, no RAM/state is written, and each verified prompt gets at most
+one finite confirm. Every attempt owns a new evidence directory.
+"""
+from __future__ import annotations
+
+from collections import deque
+from datetime import datetime, timezone
+import hashlib
+import json
+from pathlib import Path
+import time
+
+import numpy as np
+from PIL import Image
+
+import launch_ui_candidate as ui
+
+ROOT = Path(__file__).resolve().parent
+REFERENCES = {
+    "title": ("dev-center-evidence/facade-ab-20261112/architecture/scene-native-03.png", "c744d01261785bd633c24287de3c488de32780c1950c274a1bda5763c8e020c6"),
+    "fighter": ("dev-center-evidence/facade-ab-20261112/dark-optics/approach-state-01.png", "a0978a3bfa85e10e8e601062ccf9634dc8fc9934d176513ed480288a203717f7"),
+    "arm": ("dev-center-evidence/typography-repair-20261112-v11/arm-native-gate.png", "cbd5aa5f25118d3ff9ac5a2c83811cfddb817dd772f0ed9447adaa9c88fb74e6"),
+    "city": ("dev-center-evidence/facade-ab-20261112/dark-optics/after-fighter-confirm.png", "44b4c9b05583426fce7f9e99d638aba017d07b6e74a06703458f48a269c5f06d"),
+}
+
+
+def digest(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def native_pixels(image):
+    if image.size != (320, 240):
+        raise ValueError("Native gate requires an actual 320x240 screenshot")
+    return np.asarray(image.convert("RGB"))
+
+
+def load_references():
+    pixels, receipts = {}, {}
+    for name, (relative, expected) in REFERENCES.items():
+        path = ROOT / relative
+        actual = digest(path)
+        if actual != expected:
+            raise ValueError("Native reference changed: " + name)
+        with Image.open(path) as image:
+            pixels[name] = native_pixels(image)
+        receipts[name] = dict(path=str(path), sha256=actual, dimensions=[320, 240])
+    return pixels, receipts
+
+
+def crop(a, rect):
+    x0, y0, x1, y1 = rect
+    return a[y0:y1, x0:x1].astype(np.int16)
+
+
+def blue(a):
+    return (a[:, :, 1] > 45) & (a[:, :, 2] > 70) & (a[:, :, 0] < 100) & (a[:, :, 2] > a[:, :, 0]+25)
+
+
+def white(a):
+    return (a.min(2) > 130) & ((a.max(2)-a.min(2)) < 90)
+
+
+def dice(a, b):
+    total = int(a.sum()+b.sum())
+    return float(2*(a & b).sum()/total) if total else 0.0
+
+
+def classify_native(pixels, references):
+    """Localized header/label/HUD masks; a 3D-looking scene is insufficient."""
+    if pixels.shape != (240, 320, 3):
+        raise ValueError("Native gate requires 320x240 RGB pixels")
+    header = (0, 0, 300, 30)
+    fighter = dice(blue(crop(pixels, header)), blue(crop(references["fighter"], header)))
+    arm = dice(blue(crop(pixels, header)), blue(crop(references["arm"], header)))
+    label = (5, 50, 135, 68)
+    mk2 = dice(white(crop(pixels, label)), white(crop(references["fighter"], label)))
+    start_rect = (110, 165, 208, 184)
+    start = dice(white(crop(pixels, start_rect)), white(crop(references["title"], start_rect)))
+    cyan_title = int(blue(crop(pixels, (20, 70, 300, 160))).sum())
+    hud_rect = (224, 210, 232, 216)  # fixed multiplier x glyph, not changing digits
+    hud = dice(white(crop(pixels, hud_rect)), white(crop(references["city"], hud_rect)))
+    body = crop(pixels, (0, 30, 320, 195))
+    scene_detail = float(np.abs(np.diff(body.astype(float), axis=1)).mean())
+    state = "unknown"
+    if fighter >= .80:
+        state = "fighter" if mk2 >= .80 else "fighter_other_or_label_unverified"
+    elif arm >= .80:
+        state = "arm"
+    elif start >= .78 and cyan_title > 300:
+        state = "title"
+    elif hud >= .85 and scene_detail > 3.0 and float((body.max(2)>30).mean()) > .2:
+        state = "city"
+    return dict(state=state, fighter_header=fighter, arm_header=arm, mk2_label=mk2,
+                game_start=start, title_cyan=cyan_title, city_hud_x=hud, scene_detail=scene_detail)
+
+
+def enter_city(report, *, timeout_per_state=60, poll_seconds=.25,
+               _debug=None, _clock=time.monotonic, _sleep=time.sleep):
+    """Return serializable route proof, or raise after saving failed evidence."""
+    if not 0 < timeout_per_state <= 60 or not .05 <= poll_seconds <= 1:
+        raise ValueError("State deadlines must be <=60 seconds; polling 0.05..1 second")
+    refs, receipts = load_references()
+    root = Path(report["evidence"])
+    directory = root / ("native-facade-route-" + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f"))
+    directory.mkdir()
+    proof = dict(ok=False, debug_port=int(report["debug_port"]), evidence=str(directory),
+                 helper=dict(path=str(Path(__file__).resolve()), sha256=digest(__file__)),
+                 references=receipts, observations=[], gates=[], inputs=[], ram_writes=False,
+                 state_loads=False, turbo_changed=False)
+    old_port = ui.PORT
+    ui.PORT = int(report["debug_port"])
+    def bound_debug(command, **fields):
+        reply = ui.command(report, json.dumps(dict(cmd=command, **fields)))
+        if reply.get("ok") is not True and not (command == "screenshot" and reply.get("error") == "display disabled"):
+            raise RuntimeError(command+": "+str(reply))
+        return reply
+    debug = _debug or bound_debug
+    latest = deque(maxlen=3)
+    sequence = 0
+
+    def persist():
+        (directory / "route-proof.json").write_text(json.dumps(proof, indent=2)+"\n", encoding="utf-8")
+
+    def gate(allowed, stage):
+        nonlocal sequence
+        deadline, streak, previous = _clock()+timeout_per_state, [], None
+        while _clock() < deadline:
+            target = directory / "current-native.png"
+            reply = debug("screenshot", path=target.as_posix())
+            if not reply.get("ok", True):
+                if reply.get("error") == "display disabled":
+                    streak, previous = [], None
+                    _sleep(poll_seconds)
+                    continue
+                raise RuntimeError("Native screenshot failed: " + str(reply))
+            with Image.open(target) as image:
+                pixels = native_pixels(image)
+            sequence += 1
+            observation = dict(sequence=sequence, stage=stage, frame=debug("get_registers").get("frame"),
+                               elapsed=_clock(), **classify_native(pixels, refs))
+            proof["observations"].append(observation)
+            latest.append((pixels.copy(), observation))
+            current = observation["state"]
+            if current in allowed:
+                if current != previous:
+                    streak = [(pixels.copy(), observation)]
+                elif not streak or observation["frame"] > streak[-1][1]["frame"]:
+                    streak.append((pixels.copy(), observation))
+                previous = current
+                if len(streak) >= 3:
+                    captures = []
+                    for index, (array, item) in enumerate(streak[-3:], 1):
+                        path = directory / (stage+"-"+str(index)+".png")
+                        Image.fromarray(array).save(path)
+                        captures.append(dict(path=str(path), sha256=digest(path), frame=item["frame"]))
+                    proof["gates"].append(dict(stage=stage, observed=current, consecutive=3, captures=captures))
+                    persist()
+                    return current
+            else:
+                streak, previous = [], None
+            _sleep(poll_seconds)
+        raise RuntimeError("Native route gate timed out: "+stage+"; last="+(previous or (latest[-1][1]["state"] if latest else "no frame")))
+
+    def confirm(state):
+        if any(entry["after_state"] == state for entry in proof["inputs"]):
+            raise RuntimeError("Duplicate prompt confirmation refused: " + state)
+        entry = dict(after_state=state, button="confirm", duration_seconds=.15)
+        proof["inputs"].append(entry)
+        try:
+            entry["press"] = debug("set_input", buttons="0xBFFF")
+            _sleep(.15)
+        finally:
+            entry["release"] = debug("clear_input")
+            persist()
+
+    try:
+        debug("clear_input")
+        gate({"title"}, "title-game-start")
+        confirm("title")
+        gate({"fighter"}, "fighter-mk2")
+        confirm("fighter")
+        next_state = gate({"arm", "city"}, "after-fighter")
+        if next_state == "arm":
+            confirm("arm")
+            gate({"city"}, "city-hud")
+        proof["ok"], proof["final_state"] = True, "city"
+        return proof
+    except Exception as exc:
+        proof["error"] = str(exc)
+        for index, (pixels, observation) in enumerate(latest, 1):
+            path = directory / ("failed-last-"+str(index)+".png")
+            Image.fromarray(pixels).save(path)
+            observation["failure_capture"] = dict(path=str(path), sha256=digest(path))
+        raise RuntimeError(str(exc)+"; evidence="+str(directory/"route-proof.json")) from exc
+    finally:
+        try:
+            proof["final_input_release"] = debug("clear_input")
+        finally:
+            persist()
+            ui.PORT = old_port

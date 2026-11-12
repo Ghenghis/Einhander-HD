@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Troubleshooting — Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--warn:#d29922;--bad:#f85149;--ok:#3fb950;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:16px 0 6px;color:var(--accent)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Troubleshooting</h1>
+<p class="sub">Diagnostics artifacts, symptoms seen, and pitfalls · <a href="index.html">← index</a></p>
+
+<h2>Diagnostic Artifacts the Runtime Writes</h2>
+<table>
+<tr><th>File (in build-release\)</th><th>Meaning</th></tr>
+<tr><td><code>psx_freeze_heartbeat.json</code></td><td>Written while running: per-tick frame/cycle counters, current function, CPU registers, RAM peeks. If the game wedges, the last heartbeat shows the loop it's stuck in (e.g. <code>cur_fn 0x29CC</code> polling inside <code>0x80013xxx</code>).</td></tr>
+<tr><td><code>psx_freeze_dump_psx-runtime_*.json</code></td><td>Full CPU-state dumps on freeze events. Safe to delete after triage.</td></tr>
+<tr><td><code>psx_last_run_report.json</code></td><td>Per-run summary; regenerated each launch.</td></tr>
+<tr><td><code>overlay_captures.json(.d)</code></td><td>Additive overlay capture store — keep this one.</td></tr>
+</table>
+<p class="sub">All <code>psx_freeze_*</code> / <code>psx_last_run_report.json</code> files are regenerable — deleting them is safe cleanup.</p>
+
+<h2>Reading the Startup Log</h2>
+<p>Launch with stderr redirected:</p>
+<pre><code>cd build-release
+.\Einhander_Recompiled.exe --no-launcher 2&gt; err.log</code></pre>
+<p>Key lines and what they prove:</p>
+<table>
+<tr><th>Line</th><th>Proves</th></tr>
+<tr><td><code>renderer = opengl (opengl)</code></td><td>GL backend selected</td></tr>
+<tr><td><code>supersampling Nx</code></td><td>settings value <em>actually applied</em> — not just present in the file</td></tr>
+<tr><td><code>GL GPU pipeline ready (internal scale Nx)</code></td><td>FBO scale engaged — the definitive scale check</td></tr>
+<tr><td><code>sync-to-host-refresh: pacing to 60.0 Hz</code></td><td>frame pacing armed</td></tr>
+</table>
+
+<h2>Symptoms → Causes (Seen So Far)</h2>
+<table>
+<tr><th>Symptom</th><th>Actual cause</th></tr>
+<tr><td>"8× looks identical to native"</td><td>Settings parser dropped <code>supersampling&gt;4</code> → ran 1×. Fixed in <code>config_loader.cpp</code>.</td></tr>
+<tr><td>Severe lag / machine crawl at 8×</td><td>64× fill cost — exceeds this GPU. Use ≤4×.</td></tr>
+<tr><td>"Can't close the test window"</td><td>Fullscreen test instances. Rule: test runs use <code>fullscreen = 0</code>.</td></tr>
+<tr><td>Leftover lag after a test</td><td>Orphaned instance still running — kill via <code>Stop-Process -Name Einhander_Recompiled</code>.</td></tr>
+<tr><td>Build fails <code>LNK1181: m.lib</code></td><td>Wrong toolchain (MSVC). Use the clang pack — see Handoff §7.</td></tr>
+</table>
+
+<h2>Pitfalls to Not Repeat</h2>
+<ul>
+<li><strong>Never claim scale from settings.toml alone</strong> — check the <code>internal scale Nx</code> log line.</li>
+<li><strong>Never claim visual improvement without a frame capture</strong> (<code>present_shot</code>).</li>
+<li><strong>Never fullscreen a test instance</strong> — they are hard to close.</li>
+<li><strong>Kill all Einhander processes after tests</strong> — orphans keep burning GPU.</li>
+<li><strong>Don't assume the stderr redirect flushes everything</strong> — some runs only flushed the first lines; the heartbeat file showed the game was actually running.</li>
+<li><strong>Batch helpers with LF endings break under cmd</strong> — PowerShell env vars are the reliable path for the clang build.</li>
+</ul>
+
+<h2>Kill Command (copy-paste)</h2>
+<pre><code>Get-Process | Where-Object { $_.Name -match "Einhander" } | Stop-Process -Force</code></pre>
+</div>
+</body>
+</html>

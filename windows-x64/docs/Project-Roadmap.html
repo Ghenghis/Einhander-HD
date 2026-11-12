@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Roadmap — E2E State &amp; Remaining Work · Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--purple:#bc8cff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:1020px;margin:0 auto;padding:40px 24px 90px}
+  h1{font-size:23px;margin:0 0 4px}
+  h2{font-size:17px;margin:32px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:18px 0 6px;color:var(--accent)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .sota{background:rgba(188,140,255,.15);color:var(--purple);border:1px solid rgba(188,140,255,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+  .kpi{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin:4px 6px 4px 0;text-align:center}
+  .kpi .v{font-size:19px;font-weight:700;color:var(--accent)}
+  .kpi .l{font-size:11px;color:var(--dim)}
+  .phase{border-left:3px solid var(--border);padding-left:14px;margin:14px 0}
+  .phase.active{border-left-color:var(--accent)}
+  .phase.done{border-left-color:var(--ok)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Project Roadmap — E2E State &amp; Remaining Work</h1>
+<p class="sub">Everything done, everything remaining, ordered · <a href="index.html">← index</a> · Updated 2026-11-11</p>
+
+<h2>Project Snapshot</h2>
+<div class="card">
+<div class="kpi"><div class="v">SCUS-94243</div><div class="l">Game (Einhänder US)</div></div>
+<div class="kpi"><div class="v">x64</div><div class="l">Host target</div></div>
+<div class="kpi"><div class="v">41/42</div><div class="l">Kernel shards built</div></div>
+<div class="kpi"><div class="v">62</div><div class="l">frames/sec latest</div></div>
+<div class="kpi"><div class="v">SMOOTHER</div><div class="l">User playback report</div></div>
+<p style="margin-top:12px">Recompiled-PSX-to-native pipeline: static <code>.exe</code> text compiled to
+DLL shards, runtime overlays + dirty-RAM text dispatched through
+<code>overlay_loader</code>/<code>dirty_ram_interp</code>, GL renderer with supersample,
+SDL window, debug TCP server on <code>127.0.0.1:4370</code>.</p>
+</div>
+
+<h2>Execution Phases</h2>
+
+<div class="phase done">
+<h3>Phase 1 — Recompilation Bring-Up <span class="badge ok">DONE</span></h3>
+<ul>
+<li>Static function shards for main-EXE text compiled and loading</li>
+<li>Dispatcher path (<code>psx_dispatch_impl</code>) wired through static table</li>
+<li>BIOS boot, CD reads, GPU pipeline, SPU, input all functional</li>
+<li>Launcher present with theme assets and dev-menu hooks</li>
+</ul>
+</div>
+
+<div class="phase done">
+<h3>Phase 2 — Boot Correctness <span class="badge ok">DONE</span></h3>
+<ul>
+<li><strong>Frame-67 boot wedge</strong> — root-caused to the dispatch-miss fallback passing a
+non-normalized address to <code>dirty_ram_dispatch</code>; fixed in
+<code>full_function_emitter.cpp</code> by masking to the RAM-side address for main-RAM targets.
+Verified by reaching past frame 67.</li>
+<li>Speculative seed <code>0xBFC13F98</code> removed — BIOS profile already covers it.</li>
+<li><code>skip_launcher = true</code> for a direct boot into gameplay.</li>
+</ul>
+</div>
+
+<div class="phase done">
+<h3>Phase 3 — Performance &amp; Stutter <span class="badge ok">SUBSTANTIALLY IMPROVED</span></h3>
+<ul>
+<li><strong>Kernel RAM shard package</strong> (cap_kernlo2, 204 seeds, 0x80–0x7003): 41 native
+DLLs installed — kernel interior PCs previously in the dirty-RAM interpreter now dispatch native
+on probe paths.</li>
+<li><strong>Knob-off performance test</strong>: <code>rewind=0, spu_hq=false, hd_textures=false</code> —
+insns/sec dropped ~5.33M → 1.28M (non-controlled phases), user reports playback smooth.</li>
+<li>Supersampling 4× → 2× (fill-rate cost ÷4).</li>
+<li>Dirty-RAM per-PC counters + overlay_loader status + CPS probes instrumented for ongoing attribution.</li>
+</ul>
+<p><em>Open verification:</em> frame-time histogram, audio-underrun counter, per-knob isolation —
+see <a href="Performance-Engineering.html">Performance Engineering</a>.</p>
+</div>
+
+<div class="phase active">
+<h3>Phase 4 — Visual &amp; FMV Quality <span class="badge warn">IN PROGRESS</span></h3>
+<ul>
+<li><span class="badge warn">ACTIVE</span> FMV shader upgrade: new <code>"hd"</code>
+<code>fmv_filter</code> mode — Lanczos-3 + adaptive sharpen + de-band dither in
+<code>PRESENT_FS</code>.</li>
+<li><span class="badge sota">PLANNED</span> True-HD FMV (1080p/1440p): STR extraction → AI upscale
+(Video2X/Real-ESRGAN/RIFE) → sector-synced playback substitution. See
+<a href="FMV-Upscaling-SOTA-2026.html">FMV SOTA plan</a>.</li>
+<li><span class="badge warn">BLOCKED</span> Phase-2 launcher art — MiniMax image-gen balance.</li>
+<li><span class="badge warn">PENDING</span> Launcher modernization plan (doc exists:
+<code>recomp-ui\docs\LAUNCHER_MODERNIZATION_PLAN.md</code>).</li>
+</ul>
+</div>
+
+<div class="phase">
+<h3>Phase 5 — Coverage Closure <span class="badge warn">IN PROGRESS</span></h3>
+<ul>
+<li>Game-text hot spots: <code>ram_full.bin</code> captured; extraction → capture JSON → shard build
+still to run for <code>0x173C8</code>, <code>0x13400</code>, <code>0x26714</code>, <code>0x3A998</code>,
+<code>0xD8094</code>, <code>0x92088</code>, <code>0x9098x</code>.</li>
+<li>1 failed kernel-shard compile — identify function and compiler error.</li>
+<li>Quarantined <code>ad91f28e</code> DLLs — delete once replacement shards are verified stable.</li>
+</ul>
+</div>
+
+<div class="phase">
+<h3>Phase 6 — Verification &amp; Release <span class="badge warn">PENDING</span></h3>
+<ul>
+<li>Controlled A/B frame-time measurements across boot → menu → gameplay → FMV.</li>
+<li>Audio underrun counter + SPU buffer-depth telemetry.</li>
+<li>Knob-isolation runs for rewind / spu_hq / hd_textures.</li>
+<li>Full-game soak run (start-to-ending) to catch late overlays, endings, continue/save paths.</li>
+<li>Final settings.toml defaults for the release profile.</li>
+</ul>
+</div>
+
+<h2>Workstream Matrix</h2>
+<table>
+<tr><th>Workstream</th><th>Done</th><th>In flight</th><th>Remaining</th></tr>
+<tr><td><strong>Correctness</strong></td><td>Frame-67 wedge, seed hygiene, export attrs</td><td>—</td><td>Kernel interior-walk residual audit; 1 failed shard</td></tr>
+<tr><td><strong>Performance</strong></td><td>Kernel shards; rewind/SPU/HD knobs off; 2× scale</td><td>Frame-time + audio counters</td><td>Knob isolation; game-text shards</td></tr>
+<tr><td><strong>Visual / FMV</strong></td><td>bicubic filter; scale caps to 8×</td><td><code>"hd"</code> shader mode</td><td>Tier-3 AI FMV (STR → upscale → substitute); launcher art</td></tr>
+<tr><td><strong>Docs</strong></td><td>HTML doc set; launcher plan; debug findings</td><td>This roadmap; FMV SOTA plan; perf record</td><td>Update on each phase close</td></tr>
+<tr><td><strong>Release</strong></td><td>—</td><td>—</td><td>Soak run; A/B frame-time; defaults; quarantine cleanup</td></tr>
+</table>
+
+<h2>Immediate Next Actions (ordered)</h2>
+<ol>
+<li><strong>Finish Tier-1+2 FMV shader</strong> — add <code>u_sharp==3</code> branch, enum wiring,
+rebuild, screenshot A/B vs bicubic.</li>
+<li><strong>Phase A of Tier-3</strong> — STR inventory from the disc image; determines exact
+videos + sector ranges for the substitution map.</li>
+<li><strong>Knob isolation</strong> — one-at-a-time re-enable; produces the true cost-per-feature table.</li>
+<li><strong>Frame-time + audio telemetry</strong> — required before claiming "stutter fixed".</li>
+<li><strong>Game-text shard pass</strong> — mine <code>ram_full.bin</code> for the listed hot PCs.</li>
+</ol>
+
+<h2>Definition of Done (release)</h2>
+<div class="card">
+<ul>
+<li>60 fps stable with p99 frame-time &lt; frame budget through boot, menu, gameplay, FMV, pause, continue.</li>
+<li>No interpreter hot spot contributing &gt;5% of a frame budget unaccounted.</li>
+<li>No audio underrun in a 10-minute gameplay soak.</li>
+<li>FMV presents at the chosen quality tier (HD shader, or substituted HD file) with no A/V drift.</li>
+<li>Every "fixed" claim backed by a counter, log, or capture.</li>
+</ul>
+</div>
+<p class="sub" style="margin-top:30px">This roadmap is the single source of truth for project state. Detail lives in the
+linked per-topic pages; this file tracks phases and remaining work only.</p>
+</div>
+</body>
+</html>

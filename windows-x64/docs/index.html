@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Einhander Project — Documentation Index</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:900px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:24px;margin:0 0 4px}
+  h2{font-size:17px;margin:28px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:14px 18px;margin:10px 0;display:block;text-decoration:none;color:var(--text)}
+  .card:hover{border-color:var(--accent)}
+  .card .t{font-weight:600;color:var(--accent);font-size:15px}
+  .card .d{color:var(--dim);font-size:13px;margin-top:4px}
+  .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600;margin-left:8px}
+  .new{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .md{background:rgba(210,153,34,.12);color:var(--warn);border:1px solid rgba(210,153,34,.35)}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  ul{padding-left:20px}li{margin:3px 0;font-size:13.5px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Einhander Project — Documentation</h1>
+<p class="sub">Workspace: <code>D:\Games\Einhander\windows-x64</code> · Updated 2026-11-09</p>
+
+<h2>HTML Docs (this set)</h2>
+<a class="card" href="../Handoff.html"><span class="t">Handoff</span><span class="tag new">HTML</span><div class="d">Full project handoff — verified status, what was done, remaining gaps, next actions, rebuild/run instructions.</div></a>
+<a class="card" href="Graphics-Pipeline.html"><span class="t">Graphics Pipeline</span><span class="tag new">HTML</span><div class="d">Renderer architecture, supersampling path, the config-parser root cause, verified vs unverified visual state.</div></a>
+<a class="card" href="Decompilation-Coverage.html"><span class="t">Decompilation Coverage</span><span class="tag new">HTML</span><div class="d">Static analysis state, the 255,504-byte (40.1%) coverage gap, what "complete" requires.</div></a>
+<a class="card" href="Overlay-Pipeline.html"><span class="t">Overlay Pipeline</span><span class="tag new">HTML</span><div class="d">RAM-streamed overlay capture format, current capture state, path to native shards.</div></a>
+<a class="card" href="Troubleshooting.html"><span class="t">Troubleshooting</span><span class="tag new">HTML</span><div class="d">Diagnostics artifacts (freeze dumps, heartbeat, logs) and pitfalls hit so far.</div></a>
+<a class="card" href="Settings-Reference.html"><span class="t">Settings Reference</span><span class="tag new">HTML</span><div class="d">settings.toml fields, accepted ranges, precedence, and the 1..8 supersampling bound.</div></a>
+
+<h2>SOTA 2026 Docs (current session)</h2>
+<a class="card" href="FMV-Upscaling-SOTA-2026.html"><span class="t">FMV HD Upscaling — SOTA 2026 Plan</span><span class="tag new">HTML</span><div class="d">Three-tier FMV enhancement: shader reconstruction (today), deband/denoise, and the true-HD path — STR extraction → AI upscale → sector-synced playback substitution for real 1080p/1440p.</div></a>
+<a class="card" href="Performance-Engineering.html"><span class="t">Performance Engineering — Stutter Record</span><span class="tag new">HTML</span><div class="d">Complete stutter diagnosis saga: verified metrics, root causes fixed, interpreter/off-critical-path mechanics, open items (frame-time, audio underruns, knob isolation).</div></a>
+<a class="card" href="Project-Roadmap.html"><span class="t">Project Roadmap — E2E State</span><span class="tag new">HTML</span><div class="d">Everything done and everything remaining: six execution phases, workstream matrix, ordered next actions, and the release definition-of-done.</div></a>
+<a class="card" href="Architecture-E2E.html"><span class="t">Architecture — End to End</span><span class="tag new">HTML</span><div class="d">Full pipeline map: offline recompiler → shards → dispatch gates → dirty-RAM interpreter → GL renderer → debug server. Includes the memory model and the perf-stall map.</div></a>
+
+<h2>Existing Markdown Docs (unchanged source of truth)</h2>
+<p>These remain in the tree as <code>.md</code> — not converted by request. Key entry points:</p>
+<ul>
+<li><code>psxrecomp\README.md</code> — psxrecomp toolchain overview (43 KB)</li>
+<li><code>psxrecomp\ENHANCEMENTS.md</code> — enhancement feature list (54 KB)</li>
+<li><code>psxrecomp\ISSUES.md</code> — known issues tracker (34 KB)</li>
+<li><code>psxrecomp\DEBUG.md</code>, <code>psxrecomp\CONTRIBUTING.md</code>, <code>psxrecomp\CLAUDE.md</code></li>
+<li><code>psxrecomp\docs\FUNCTION_DISCOVERY.md</code> — analyzer usage + coverage-gap statement</li>
+<li><code>psxrecomp\docs\overlay-discovery.md</code> — overlay discovery notes</li>
+<li><code>recomp-ui\README.md</code>, <code>recomp-ui\docs\HANDOFF.md</code>, <code>recomp-ui\docs\ARCHITECTURE.md</code></li>
+<li><code>README.md</code>, <code>README-SETUP.txt</code> (workspace root)</li>
+</ul>
+<p class="sub" style="margin-top:28px">HTML docs record <em>new</em> findings and project state; the .md corpus documents the toolchain itself. Where they disagree on project status, the HTML set is newer.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Graphics Pipeline — Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:16px 0 6px;color:var(--accent)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{	padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Graphics Pipeline</h1>
+<p class="sub">Renderer architecture, supersampling flow, verified state · <a href="index.html">← index</a></p>
+
+<h2>Pipeline Overview</h2>
+<pre><code>game config / settings.toml
+        │  supersampling (1..8)
+        ▼
+g_video_scale ──► gr_set_scale(scale)
+        │                ┌────────────────────────────┐
+        │                │ GL renderer (s_scale)      │
+        │                │ FBO @ VRAM_W×s × VRAM_H×s  │
+        │                └────────────────────────────┘
+        ▼
+active_scale = (g_video_scale&gt;1 &amp;&amp; !di.depth24) ? g_video_scale : 1
+        │
+        ├─ active_scale &gt; 1 ──► gr_render_display_hires()  (scaled readback)
+        └─ active_scale = 1 ──► native-res display path
+        ▼
+gl_renderer_present(buf, src_w, src_h, linear, force_4_3, 0)
+        ▼  fullscreen textured quad → window</code></pre>
+
+<h2>The Root Cause That Blocked Everything</h2>
+<div class="card">
+<p><span class="badge bad">BUG — FIXED</span> <code>psxrecomp\recompiler\src\config_loader.cpp</code></p>
+<p>The user-settings parser silently rejected <code>supersampling &gt; 4</code>:</p>
+<pre><code>// line ~2251 (was):
+if (n &gt;= 1 &amp;&amp; n &lt;= 4) { s.supersampling = (int)n; s.has_supersampling = true; }
+// now:
+if (n &gt;= 1 &amp;&amp; n &lt;= 8) { s.supersampling = (int)n; s.has_supersampling = true; }</code></pre>
+<p>With <code>supersampling = 8</code> in settings.toml, <code>has_supersampling</code> stayed false → <code>g_video_scale</code> stayed 1 → log showed <code>internal scale 1x</code>. Every 8× test ran at native resolution. The game-config parser had a matching <code>1..4</code> throw-range, also raised to <code>1..8</code>.</p>
+</div>
+
+<h2>Scale-Cap Changes Already In</h2>
+<table>
+<tr><th>File</th><th>Change</th></tr>
+<tr><td><code>runtime\src\gpu_gl_renderer.c</code></td><td><code>GL_MAX_INTERNAL_SCALE</code> 4 → 8</td></tr>
+<tr><td><code>runtime\include\gpu_sw_renderer.h</code></td><td><code>SW_MAX_INTERNAL_SCALE</code> 4 → 8</td></tr>
+<tr><td><code>runtime\src\gpu_vk_renderer.c</code></td><td><code>vkb_set_scale</code> accepts 1–8</td></tr>
+<tr><td><code>recomp-ui\src\common\launcher_model.c</code></td><td>clamp, cycle wrap, label all 1–8</td></tr>
+<tr><td><code>runtime\src\main.cpp</code></td><td>FMV pad buffer <code>640×8</code></td></tr>
+<tr><td><code>recompiler\src\config_loader.cpp</code></td><td>both parser bounds → 8 (<strong>the actual fix</strong>)</td></tr>
+</table>
+
+<h2>Cost Model</h2>
+<div class="card">
+<p>Supersampling is fill-rate-bound: cost ≈ <strong>scale²</strong> × native fill.</p>
+<table>
+<tr><th>Scale</th><th>Internal res (240p)</th><th>Fill cost</th><th>Result here</th></tr>
+<tr><td>1×</td><td>320×240</td><td>1×</td><td>baseline</td></tr>
+<tr><td>2×</td><td>640×480</td><td>4×</td><td>untested — light, worth trying</td></tr>
+<tr><td>4×</td><td>1280×960</td><td>16×</td><td><span class="badge ok">VERIFIED</span> 60 fps playable</td></tr>
+<tr><td>8×</td><td>2560×1920</td><td>64×</td><td><span class="badge bad">TOO HEAVY</span> severe lag</td></tr>
+</table>
+</div>
+
+<h2>Verification State</h2>
+<table>
+<tr><th>Claim</th><th>State</th><th>Evidence</th></tr>
+<tr><td>GL pipeline runs</td><td><span class="badge ok">VERIFIED</span></td><td>log: <code>GL GPU pipeline ready</code></td></tr>
+<tr><td>4× internal scale</td><td><span class="badge ok">VERIFIED</span></td><td>log: <code>internal scale 4x</code></td></tr>
+<tr><td>8× accepted by settings</td><td><span class="badge ok">VERIFIED (code)</span></td><td>parser bounds fixed + rebuilt</td></tr>
+<tr><td>Hi-res present branch taken</td><td><span class="badge warn">UNVERIFIED</span></td><td><code>active_scale&gt;1 → gr_render_display_hires</code> exists in source; not logged at runtime</td></tr>
+<tr><td>Image visibly sharper</td><td><span class="badge warn">UNVERIFIED</span></td><td>needs <code>present_shot</code> capture comparison</td></tr>
+</table>
+
+<h2>Next</h2>
+<ul>
+<li>Pick scale target (2× or 4×) — 8× ruled out on this hardware.</li>
+<li>Trigger <code>present_shot</code> in <code>main.cpp</code> to capture actual presented pixels.</li>
+<li>Confirm <code>active_scale</code> branch with a runtime log line if needed.</li>
+</ul>
+</div>
+</body>
+</html>

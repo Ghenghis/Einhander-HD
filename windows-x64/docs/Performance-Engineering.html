@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Performance Engineering — Stutter Diagnosis Record · Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--purple:#bc8cff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:1020px;margin:0 auto;padding:40px 24px 90px}
+  h1{font-size:23px;margin:0 0 4px}
+  h2{font-size:17px;margin:32px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:18px 0 6px;color:var(--accent)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .sota{background:rgba(188,140,255,.15);color:var(--purple);border:1px solid rgba(188,140,255,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+  .kpi{display:inline-block;background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:8px 14px;margin:4px 6px 4px 0;text-align:center}
+  .kpi .v{font-size:19px;font-weight:700;color:var(--accent)}
+  .kpi .l{font-size:11px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Performance Engineering — Stutter Diagnosis Record</h1>
+<p class="sub">End-to-end record of the playback-stutter work · <a href="index.html">← index</a> · Status: <span class="badge ok">SMOOTHER — PARTIALLY VERIFIED</span></p>
+
+<h2>Symptom History</h2>
+<div class="card">
+<p>User reports across the effort:</p>
+<ul>
+<li><span class="badge bad">SEVERE</span> "stuttering alot, video and sound, very bad"</li>
+<li><span class="badge warn">IMPROVING</span> "getting better, but still stutters and jitters"</li>
+<li><span class="badge ok">SMOOTHER</span> "getting smoother … stuttering is being fixed … seems your improving"</li>
+</ul>
+<p><strong>Interpretation:</strong> the combination of fixes moved playback from badly stuttering to
+reported-smooth. Which single change (or which pair) produced the gain is <em>not yet isolated</em>
+— see Knob Isolation below.</p>
+</div>
+
+<h2>Verified Metrics</h2>
+<div class="card">
+<div class="kpi"><div class="v">1.28M</div><div class="l">insns/sec (after knobs)</div></div>
+<div class="kpi"><div class="v">~5.33M</div><div class="l">insns/sec (earlier sample)</div></div>
+<div class="kpi"><div class="v">62</div><div class="l">frames/sec (after knobs)</div></div>
+<div class="kpi"><div class="v">71k</div><div class="l">blocks/sec</div></div>
+<p style="margin-top:10px"><em>Caveat — not a controlled A/B:</em> the 5.33M and 1.28M samples were
+taken in different game/boot phases, so the ~4× drop is consistent with — but not proof of —
+the settings changes reducing interpreter load.</p>
+</div>
+
+<h2>Root Causes Identified &amp; Fixed</h2>
+<table>
+<tr><th>Issue</th><th>Where</th><th>Fix</th><th>State</th></tr>
+<tr><td>Boot wedge at frame 67</td><td><code>full_function_emitter.cpp</code> dispatch-miss path</td><td>Normalize guest → RAM address before <code>dirty_ram_dispatch</code></td><td><span class="badge ok">FIXED + VERIFIED</span></td></tr>
+<tr><td>Interpreter over-residency (kernel interior PCs)</td><td>0x4554–0x48E0, 0x13400, 0x173C8</td><td>Kernel RAM shard package 0x80–0x7003 compiled to native DLLs</td><td><span class="badge ok">SHARDS BUILT</span> — interior-walk residual under audit</td></tr>
+<tr><td>Overspecified 4× supersampling</td><td><code>settings.toml</code></td><td>Reduced to 2×</td><td><span class="badge ok">APPLIED</span></td></tr>
+<tr><td>Rewind buffer cost</td><td><code>rewind_depth = 50</code></td><td>Set <code>rewind_depth = 0</code></td><td><span class="badge ok">APPLIED</span></td></tr>
+<tr><td>SPU-HQ cost</td><td><code>spu_hq = true</code></td><td>Set <code>false</code></td><td><span class="badge ok">APPLIED</span></td></tr>
+<tr><td>HD-texture path cost</td><td><code>hd_textures = true</code></td><td>Set <code>false</code></td><td><span class="badge ok">APPLIED</span></td></tr>
+<tr><td>Overlay-only declarations lacking export attribute</td><td><code>cpu_state.h</code>, <code>psx_cycles.h</code></td><td>Platform-conditional export attribute</td><td><span class="badge ok">APPLIED</span></td></tr>
+<tr><td>Launcher skipped but still in boot path</td><td><code>skip_launcher</code></td><td><code>skip_launcher = true</code></td><td><span class="badge ok">APPLIED</span></td></tr>
+</table>
+
+<h2>How the Interpreter Gets Off the Critical Path</h2>
+<div class="card">
+<p>The dirty-RAM interpreter exists to run code that a static shard can't cover (overlays,
+self-modifying code, runtime-generated dispatch paths). Two mechanisms decide whether a PC runs
+native or interpreted:</p>
+<pre><code>// overlay_loader.c — dispatch gates, in order:
+//   exact-entry candidate  →  CPS continuation range  →  live-code validity
+//   →  device-touch gate   →  shadow-diff gate        →  native-exec gate
+// Any gate failure falls back to dirty_ram_interp (the stutter source).</code></pre>
+<p>Hot interpreter PCs are reported by the <code>dirty_ram</code> per-PC counters. Highest
+historical contributors: <code>0x173C8</code> (~6.8M insns/8s window), <code>0x13400</code>
+(~726k), kernel interior <code>0x4554–0x48E0</code>.</p>
+<p>The kernel RAM shard package (<code>cap_kernlo2.json</code>, 204 seeds across
+0x80000080–0x80007003) compiled to 41 successful native DLL shards + 1 failed. After install,
+dispatch through those regions reported native on probe paths — but this does not prove
+<em>every</em> interior-walk dispatch is native; a residual interpreter share remains under audit.</p>
+</div>
+
+<h2>Cache-Window Semantics</h2>
+<div class="card">
+<p><code>overlay_cache_window_contains(phys)</code> decides what is even <em>eligible</em> for
+overlay-candidate dispatch:</p>
+<pre><code>return phys &lt; DIRTY_RAM_KERNEL_WINDOW_END   // unconditional: low kernel
+    || phys &gt;= OVERLAY_REGION_FLOOR          // unconditional: overlay region
+    || dirty_ram_is_dirty(phys);             // main-EXE text only if page dirty</code></pre>
+<p><strong>Implication:</strong> clean boot text never enters the window — it always runs
+compiled (static-first design). Main-EXE text between the kernel window and the overlay
+floor becomes eligible only after a gameplay overlay dirties the page — i.e. once an
+overlay has written over the boot text, the bytes there are runtime overlay code.</p>
+</div>
+
+<h2>Still Open</h2>
+<table>
+<tr><th>Unknown</th><th>Why it matters</th></tr>
+<tr><td>Frame-time variance (not just fps)</td><td>60/62 fps average can hide 100 ms spikes that read as stutter. Need frame-time histogram, not mean.</td></tr>
+<tr><td>Audio underruns</td><td>"sound stuttering" report has no audio-buffer underrun counter yet. Need SPU buffer-depth telemetry.</td></tr>
+<tr><td>Which knob produced the gain</td><td>rewind=0 / spu_hq=0 / hd_textures=0 changed together. Re-enable one at a time to isolate.</td></tr>
+<tr><td>Game-text hot-spot shards</td><td><code>ram_full.bin</code> captured (2 MiB) but game-text capture → shard pipeline deferred.</td></tr>
+<tr><td>1 failed kernel shard</td><td>cap_kernlo2 compiled 41/42 — the failing function and its compiler error still unidentified.</td></tr>
+</table>
+
+<h2>Knob-Isolation Plan</h2>
+<div class="card">
+<p>To attribute the smoothness improvement and confirm each knob's cost honestly:</p>
+<ol>
+<li>Restart with <code>rewind_depth=50, spu_hq=true, hd_textures=true</code> (baseline stutter config).</li>
+<li>Re-enable <code>rewind</code> only → sample insns/sec + frame-time.</li>
+<li>Re-enable <code>spu_hq</code> only → same sample.</li>
+<li>Re-enable <code>hd_textures</code> only → same sample.</li>
+<li>Report the delta each knob produces in the same game phase.</li>
+</ol>
+<p>This produces the real cost-per-feature table instead of "all three off = smooth".</p>
+</div>
+
+<h2>Tooling Used</h2>
+<ul>
+<li><code>debug_server</code> TCP endpoint <code>127.0.0.1:4370</code> — <code>read_ram</code>,
+heartbeat, per-PC interpreter counters, overlay loader status, CPS probes.</li>
+<li><code>psxrecomp\tools\compile_overlays.py</code> — capture JSON → native DLL shards.</li>
+<li><code>build-release\cap_kern*.json</code> — synthetic captures covering the kernel window.</li>
+<li><code>build-release\ram_full.hex/.bin</code> — full 2 MiB RAM dump for game-text capture mining.</li>
+<li><code>docs\DEBUG_FINDINGS.md</code> — running diagnostic notes.</li>
+</ul>
+
+<p class="sub" style="margin-top:30px">Measurement methodology: all "verified" claims are backed by either runtime counters
+(debug-server reads), log lines, or the user's own gameplay report. Unverified items are explicitly
+marked; nothing in this record claims a fix without corresponding evidence.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Architecture E2E — Einhander Recompiled Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--ok:#3fb950;--warn:#d29922;--bad:#f85149;--purple:#bc8cff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:1020px;margin:0 auto;padding:40px 24px 90px}
+  h1{font-size:23px;margin:0 0 4px}
+  h2{font-size:17px;margin:32px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  h3{font-size:14.5px;margin:18px 0 6px;color:var(--accent)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Architecture — End to End</h1>
+<p class="sub">How PSX code becomes native x64 execution · <a href="index.html">← index</a></p>
+
+<h2>System Diagram</h2>
+<pre><code>                 ┌────────────────────────── OFFLINE ──────────────────────────┐
+                 │                                                              │
+  Einhander EXE ──► psxrecomp recompiler ──► function shards (.c) ──► gcc ──► .dll
+  + seeds/*.json        (MIPS→C emitter)        build-release\cache\…\gcc\win-x64
+                 │                                                              │
+                 └──────────────────────────────────────────────────────────────┘
+                                          │
+                                          ▼  shard cache (lazy manifests)
+┌───────────────────────── RUNTIME: Einhander_Recompiled.exe ────────────────────┐
+│                                                                              │
+│  main loop (main.cpp)                                                        │
+│    ├─ settings.toml / game.toml → config_loader → g_video_* , audio, rewind  │
+│    ├─ per-frame: run CPU until frame boundary                                │
+│    │      │                                                                  │
+│    │      ▼                                                                  │
+│    │  psx_dispatch_impl (generated)                                          │
+│    │      │  static hit → native shard function                              │
+│    │      │  miss        → dirty_ram_dispatch                                │
+│    │      ▼                                                                  │
+│    │  dirty_ram_dispatch_inner                                               │
+│    │      │  mask to phys → static table → overlay_loader_dispatch           │
+│    │      ▼                                                                  │
+│    │  overlay_loader_dispatch                                                │
+│    │      │  cache-window? → candidate (gen-sum / CRC / CPS range)           │
+│    │      │  device-touch? → shadow-diff? → native-exec? → rank              │
+│    │      │  pass → native DLL   fail → dirty_ram_interp (hot-PC counters)   │
+│    │                                                                         │
+│    ├─ MDEC/STR decode → 24-bit frame → CPU present path                      │
+│    ├─ GPU raster → VRAM FBO (supersampled ×N) → present                      │
+│    ├─ SPU → SDL audio                                                        │
+│    ├─ CD emulator → disc image sector reads                                  │
+│    └─ debug_server :4370 — read_ram, counters, probes, freeze dumps          │
+└──────────────────────────────────────────────────────────────────────────────┘</code></pre>
+
+<h2>Layers</h2>
+<table>
+<tr><th>Layer</th><th>Key files</th><th>Job</th></tr>
+<tr><td><strong>Offline recompiler</strong></td><td><code>psxrecomp\recompiler\</code>, <code>tools\compile_overlays.py</code></td><td>MIPS→C emit → gcc → per-function DLL shards; offline, no runtime cost</td></tr>
+<tr><td><strong>Dispatch</strong></td><td><code>generated\*dispatch*</code>, <code>full_function_emitter.cpp</code> (miss fallback)</td><td>Static shard hit; miss → dirty-RAM path with RAM-normalized address</td></tr>
+<tr><td><strong>Overlay loader</strong></td><td><code>runtime\src\overlay_loader.c</code></td><td>Candidate match → gates → native call or interpreter fallback; all telemetry</td></tr>
+<tr><td><strong>Dirty-RAM interpreter</strong></td><td><code>runtime\include\dirty_ram_interp.h</code>, <code>src\dirty_ram_interp.c</code></td><td>Correctness net for anything shards can't cover; per-PC hot counters</td></tr>
+<tr><td><strong>GL renderer</strong></td><td><code>runtime\src\gpu_gl_renderer.c</code></td><td>VRAM raster→FBO at 1–8×, present shader (<code>PRESENT_FS</code>) w/ fmv_filter modes</td></tr>
+<tr><td><strong>Config</strong></td><td><code>recompiler\src\config_loader.{h,cpp}</code>, <code>settings.toml</code>, <code>game.toml</code></td><td>Package + user settings; precedence; per-game overlay declarations</td></tr>
+<tr><td><strong>Debug server</strong></td><td><code>runtime\src\debug_server.c</code></td><td>TCP 4370: RAM reads, counters, CPS probes, loader status, freeze dumps</td></tr>
+<tr><td><strong>Launcher</strong></td><td><code>recomp-ui\</code></td><td>Game select, settings UI, theme; skippable via <code>skip_launcher</code></td></tr>
+</table>
+
+<h2>Dispatch Gates (the performance-critical path)</h2>
+<div class="card">
+<p>A PC reaching <code>overlay_loader_dispatch</code> is checked in order — every gate failure
+means interpreter time (the stutter source):</p>
+<ol>
+<li><code>overlay_cache_window_contains(phys)</code> — is this address even candidate-eligible?</li>
+<li>Exact-entry candidate: generation-sum or CRC validates live RAM bytes.</li>
+<li>CPS continuation range: function entered mid-body still recognized.</li>
+<li><code>device_touch</code> — function wrote MMIO; must interpret for accuracy.</li>
+<li>Shadow-diff — optional byte-diff validation; kernel &lt;0x10000 excluded from <code>want_diff</code>.</li>
+<li>Native-exec gate + ranking — <code>s_native_exec</code>, <code>overlay_native_blocked</code>.</li>
+<li>Pass → call the DLL; any fail → <code>dirty_ram_interp</code> (counters accumulate).</li>
+</ol>
+</div>
+
+<h2>Memory Model</h2>
+<div class="card">
+<pre><code>0x00000000 – 0x00007FFF   kernel window      — unconditional candidate-eligible
+0x00010000 – FLOOR        main-EXE text      — eligible only when dirty (overlay overwrote boot text)
+FLOOR+      – 0x001FFFFF  overlay region     — unconditional candidate-eligible
+0x1F000000+               MMIO / I-cache     — never code for dispatch purposes</code></pre>
+<p><code>OVERLAY_REGION_FLOOR</code> and <code>DIRTY_RAM_KERNEL_WINDOW_END</code> in
+<code>dirty_ram_interp.h</code>. Clean boot text is deliberately excluded — it runs compiled;
+capturing it would violate the static-first design.</p>
+</div>
+
+<h2>FMV Path</h2>
+<div class="card">
+<pre><code>CdRead STR sectors → MDEC hw decode → 24-bit RGB frame (~320×192)
+  → gl_renderer_present CPU path → upload_present_tex → PRESENT_FS quad
+  → [fmv_filter mode: nearest|bilinear|sharp|bicubic|hd*] → window</code></pre>
+<p>*<code>hd</code> mode is the in-progress Tier-1 upgrade — see
+<a href="FMV-Upscaling-SOTA-2026.html">FMV SOTA plan</a>. The true 1080p path replaces pixels
+upstream of present via the playback-substitution design in that doc.</p>
+</div>
+
+<h2>Where Things Can Stall (perf map)</h2>
+<table>
+<tr><th>Cost</th><th>Where</th><th>Mitigated by</th></tr>
+<tr><td>Interpreter instructions</td><td><code>dirty_ram_interp</code></td><td>More native shards; correct addresses; fewer gate failures</td></tr>
+<tr><td>Rewind snapshots</td><td><code>rewind_depth × state size × interval</code></td><td><code>rewind_depth=0</code> (done)</td></tr>
+<tr><td>SPU resample</td><td><code>spu_hq</code></td><td><code>spu_hq=false</code> (done)</td></tr>
+<tr><td>HD-texture path</td><td><code>hd_textures</code> cache/upload</td><td><code>hd_textures=false</code> (done)</td></tr>
+<tr><td>Fill rate</td><td>supersampling²</td><td>4× → 2× (done); 8× ruled out on this hardware</td></tr>
+<tr><td>Present shader</td><td><code>PRESENT_FS</code> tap count</td><td>Lanczos-3 36-tap is fine at FMV cadence (~15 fps); not a per-frame-fullscreen cost</td></tr>
+</table>
+
+<p class="sub" style="margin-top:30px">Companion pages: <a href="Project-Roadmap.html">Roadmap</a> ·
+<a href="Performance-Engineering.html">Performance record</a> ·
+<a href="FMV-Upscaling-SOTA-2026.html">FMV SOTA plan</a></p>
+</div>
+</body>
+</html>

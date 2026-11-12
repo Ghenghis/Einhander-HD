@@ -1,0 +1,449 @@
+{
+  "format": 1,
+  "created_at_utc": "2026-11-12T14:14:56.230950+00:00",
+  "title": "Stage 1 family finish plan",
+  "status": "reviewable_design_plan_only",
+  "source_catalog": {
+    "path": "C:/github/Einhander/windows-x64/tools/enemy_catalog.json",
+    "sha256": "b20e61259b3bca42ca10220ea8c398c0bf7312408201596c34138d44e43f0bf5"
+  },
+  "summary": {
+    "named_roster_targets": 7,
+    "stage_roster_evidence": "reported_secondary",
+    "original_gallery_identity_references": 7,
+    "family_specific_concepts_available": 3,
+    "observed_draw_correlated_families": 1,
+    "verified_per_model_bindings": 0,
+    "verified_boss_bindings": 0,
+    "verified_finished_gameplay_results": 0,
+    "full_stage1_variety_verified": false,
+    "apply_controls_in_this_plan": false
+  },
+  "families": [
+    {
+      "entity_id": "pw104b_schabe",
+      "name": "PW-104b Schabe",
+      "variety_category": "Gold police elite",
+      "kind": "combat_unit",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_044",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-044-pw104b_schabe.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-044-pw104b_schabe.png",
+        "relative_path": "enemy-references/gallery-044-pw104b_schabe.png",
+        "gallery_number": 44,
+        "source_ref": "enemy_gallery_044"
+      },
+      "planned_finish": {
+        "id": "gold-obsidian",
+        "name": "Obsidian Sovereign",
+        "swatches": [
+          "#F3BD4A",
+          "#FFE7A0",
+          "#12151B"
+        ],
+        "description": "Gold trim over obsidian police armor; retain twin red beacons, searchlights and police markings.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "gold-obsidian",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "probable_visual_gallery_association_to_one_observed_family",
+        "observed_runtime_family_id": "stage1_green_orange_fighter",
+        "observed_family_source_keys": [
+          "3594C110-527B28B9",
+          "3FE0776D-527B28B9",
+          "6BB2A2A3-527B28B9",
+          "784BFD39-527B28B9",
+          "DEA9D15C-527B28B9",
+          "05C32A1E-527B28B9"
+        ]
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": true,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review.",
+      "concept_art": {
+        "entity_id": "schabe",
+        "image": "/files/tools/skin_collection/equipment/schabe-gold.png",
+        "preview": "/files/tools/skin_collection/equipment/schabe-gold.png",
+        "width": 1672,
+        "height": 941,
+        "sha256": "2f69a507f9b33cb9d7a91529aa5162bdb2e6532c3e04fe48de9418fd478c15dd",
+        "status": "reference_grounded_concept_not_runtime_texture"
+      }
+    },
+    {
+      "entity_id": "pt08_uhu",
+      "name": "PT-08 Uhu",
+      "variety_category": "Neon cyan patrol",
+      "kind": "combat_unit",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_042",
+        "enemy_gallery_095",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-042-pt08_uhu.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-042-pt08_uhu.png",
+        "relative_path": "enemy-references/gallery-042-pt08_uhu.png",
+        "gallery_number": 42,
+        "source_ref": "enemy_gallery_042"
+      },
+      "planned_finish": {
+        "id": "neon-cyan-planned",
+        "name": "Neon cyan circuit patrol",
+        "swatches": [
+          "#15E8FF",
+          "#2644B7",
+          "#101827"
+        ],
+        "description": "Cyan circuit-style panel markings on the compact unarmored Uhu hull, with readable dark mechanical recesses.",
+        "status": "design_direction_only",
+        "runtime_profile_id": null,
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": false,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review."
+    },
+    {
+      "entity_id": "pt08s_uhu",
+      "name": "PT-08s Uhu",
+      "variety_category": "Crimson armored patrol",
+      "kind": "combat_unit",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_040",
+        "enemy_gallery_043",
+        "enemy_gallery_085",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-040-pt08s_uhu.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-040-pt08s_uhu.png",
+        "relative_path": "enemy-references/gallery-040-pt08s_uhu.png",
+        "gallery_number": 40,
+        "source_ref": "enemy_gallery_040"
+      },
+      "planned_finish": {
+        "id": "crimson-regalia",
+        "name": "Crimson Regalia",
+        "swatches": [
+          "#E51A37",
+          "#FFD16A",
+          "#16151B"
+        ],
+        "description": "Crimson front armor with restrained gold trim; preserve the distinct armored nose and mounted pickup hardware.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "crimson-regalia",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": false,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review."
+    },
+    {
+      "entity_id": "pt08rs_fledermaus",
+      "name": "PT-08rs Fledermaus",
+      "variety_category": "Ultraviolet radar unit",
+      "kind": "combat_unit",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_096",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-096-pt08rs_fledermaus.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-096-pt08rs_fledermaus.png",
+        "relative_path": "enemy-references/gallery-096-pt08rs_fledermaus.png",
+        "gallery_number": 96,
+        "source_ref": "enemy_gallery_096"
+      },
+      "planned_finish": {
+        "id": "ultraviolet-violet",
+        "name": "Ultraviolet radar patrol",
+        "swatches": [
+          "#9B43FF",
+          "#EF50FF",
+          "#121624"
+        ],
+        "description": "Violet armor and magenta circuit accents; preserve its radar saucer and recognizable PT-08rs form.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "ultraviolet-violet",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": false,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review."
+    },
+    {
+      "entity_id": "pa09_angler",
+      "name": "PA-09 Angler",
+      "variety_category": "Solar weapon carrier",
+      "kind": "combat_unit",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_045",
+        "enemy_gallery_086",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-045-pa09_angler.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-045-pa09_angler.png",
+        "relative_path": "enemy-references/gallery-045-pa09_angler.png",
+        "gallery_number": 45,
+        "source_ref": "enemy_gallery_045"
+      },
+      "planned_finish": {
+        "id": "solar-orange",
+        "name": "Solar Angler",
+        "swatches": [
+          "#FF6A13",
+          "#FFBE37",
+          "#261912"
+        ],
+        "description": "Bright orange/yellow carrier panels with dark steel manipulator; retain its narrow body, wings and hanging pickup grip.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "solar-orange",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": false,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review."
+    },
+    {
+      "entity_id": "spj15_greif",
+      "name": "SPJ-15 Greif",
+      "variety_category": "Gold transforming midboss",
+      "kind": "boss_or_midboss",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_012",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-012-spj15_greif.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-012-spj15_greif.png",
+        "relative_path": "enemy-references/gallery-012-spj15_greif.png",
+        "gallery_number": 12,
+        "source_ref": "enemy_gallery_012"
+      },
+      "planned_finish": {
+        "id": "gold-obsidian",
+        "name": "Greif gold elite",
+        "swatches": [
+          "#F3BD4A",
+          "#FFE7A0",
+          "#12151B"
+        ],
+        "description": "Gold shoulder housings and police hover base, visible steel joints and original red claws; raised combat-pose concept available.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "gold-obsidian",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding."
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": true,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review.",
+      "concept_art": {
+        "entity_id": "spj15_greif",
+        "image": "/files/tools/skin_collection/bosses/spj15-greif-gold-obsidian.png",
+        "preview": "/files/tools/skin_collection/bosses/spj15-greif-gold-obsidian.png",
+        "width": 1672,
+        "height": 941,
+        "sha256": "800b8bfeb8d46891b08c28f24123dd54fe3b415d964f03dc273771e64537c116",
+        "status": "reference_grounded_concept_not_runtime_texture"
+      }
+    },
+    {
+      "entity_id": "spkb03_drache",
+      "name": "SPKB-03 Drache",
+      "variety_category": "Engraved gold siege boss",
+      "kind": "boss_or_midboss",
+      "stage_association": "reported_secondary_stage1_roster",
+      "identity_evidence": "primary_original_gallery_name_and_shape",
+      "source_refs": [
+        "enemy_gallery_013",
+        "keene_enemy_roster"
+      ],
+      "art_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/enemy-references/gallery-013-spkb03_drache.png",
+        "url": "/dev/evidence/files/enemy-references/gallery-013-spkb03_drache.png",
+        "relative_path": "enemy-references/gallery-013-spkb03_drache.png",
+        "gallery_number": 13,
+        "source_ref": "enemy_gallery_013"
+      },
+      "planned_finish": {
+        "id": "gold-obsidian",
+        "name": "Drache engraved gold",
+        "swatches": [
+          "#F3BD4A",
+          "#FFE7A0",
+          "#12151B"
+        ],
+        "description": "Gold engraved armor with obsidian plates; preserve its articulated claw, walking legs and roof attack hardware. Walking-pose concept available; assault form remains a separate target.",
+        "status": "design_direction_only",
+        "runtime_profile_id": "gold-obsidian",
+        "profile_note": "Existing reusable palette identifier where shown; does not establish a model binding.",
+        "authored_detail_reference": {
+          "image": "/files/tools/skin_collection/materials/gold-obsidian-engraved.png",
+          "status": "reusable_detail_art_only_no_boss_binding"
+        }
+      },
+      "mapping": {
+        "per_model_binding": "unvalidated",
+        "runtime_entity_id_verified": false,
+        "apply_control_available": false,
+        "gameplay_finish_verified": false,
+        "association": "no_verified_binding",
+        "observed_runtime_family_id": null,
+        "observed_family_source_keys": []
+      },
+      "production_state": {
+        "original_identity_reference": true,
+        "family_specific_concept_art_available": true,
+        "authored_model_uv_texture_available": false,
+        "mesh_or_physics_change": false,
+        "bright_and_dark_gameplay_validation": false
+      },
+      "next_gate": "Correlate this model and its parts to original UV/source keys, preserve alpha/STP, then capture matched bright and dark gameplay for review.",
+      "concept_art": {
+        "entity_id": "spkb03_drache",
+        "image": "/files/tools/skin_collection/bosses/spkb03-drache-gold-obsidian.png",
+        "preview": "/files/tools/skin_collection/bosses/spkb03-drache-gold-obsidian.png",
+        "width": 1672,
+        "height": 941,
+        "sha256": "9ff5d6304005790ed290cc648efaff03a16a61dd1d74bc89505f326e61591793",
+        "status": "reference_grounded_concept_not_runtime_texture"
+      },
+      "form_coverage": {
+        "walking_pose_concept": true,
+        "assault_pose_concept": false,
+        "runtime_forms_validated": false
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "stage1_roster",
+      "title": "Zach Keene FAQ, Stage 1 enemy roster",
+      "url": "https://arcanelore.net/einhander/",
+      "type": "secondary_player_faq"
+    },
+    {
+      "id": "enemy_catalog",
+      "title": "Primary-labeled gallery enemy inventory",
+      "path": "C:/github/Einhander/windows-x64/tools/enemy_catalog.json",
+      "type": "primary_local_gallery_audit"
+    },
+    {
+      "id": "skin_mapping",
+      "title": "Saved draw/source-byte ownership correlation",
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/skin-mapping.json",
+      "type": "local_observed_material_evidence"
+    },
+    {
+      "id": "boss_mapping",
+      "title": "Saved-data boss mapping search and mode references",
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/boss-texture-mapping.json",
+      "type": "local_mapping_limitation"
+    }
+  ],
+  "limitations": [
+    "Seven named Stage 1 targets are taken from a clearly labeled secondary roster; this is not an exhaustive executable spawn census.",
+    "All model-specific runtime bindings remain unvalidated. One observed texture family has a probable Schabe gallery association, not a decoded authoritative model ID.",
+    "A palette identifier, reusable circuit tile or concept image is not an applied per-model skin.",
+    "The cyan Uhu direction is a planned palette concept, not a newly registered runtime profile in this plan.",
+    "Neon styling describes artwork direction; no new emission, lighting or effect implementation is claimed.",
+    "No application controls, game-memory changes, mesh edits, physics changes or game launch are performed by this catalog.",
+    "Boss parts, transformations, projectiles, hazards and unnamed actors require their own ownership and coverage validation."
+  ]
+}

@@ -1,0 +1,778 @@
+{
+  "format": 1,
+  "generated_at_utc": "2026-11-12T13:45:53.514341+00:00",
+  "region": "NTSC-U / SCUS-94243",
+  "ships": [
+    {
+      "id": "endymion_mk2",
+      "name": "Endymion FRS Mk.II",
+      "availability": "starter",
+      "evidence": "primary_manual_capacity_and_original_gallery_identity",
+      "description": "One working Gunpod and two reserves; L1/R1 change the working pod.",
+      "carried_gunpods": 3,
+      "active_gunpods": 1,
+      "reserve_gunpods": 2,
+      "built_in_weapon": {
+        "name": "Single Dafoe Mark IV 20mm gun",
+        "kind": "machine_gun",
+        "count": 1,
+        "caliber_mm": 20,
+        "model": "Dafoe Mark IV",
+        "evidence": "primary_individual_specification",
+        "source_refs": [
+          "manual_us_p17"
+        ]
+      },
+      "source_refs": [
+        "manual_us_p8",
+        "manual_us_p9",
+        "gallery_009"
+      ],
+      "unlock": {
+        "status": "starter_no_unlock_required"
+      },
+      "art_reference": {
+        "id": "gallery_009",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-009-endymion_mk2.png"
+      },
+      "mapping": {
+        "hull": "unvalidated_for_this_craft",
+        "built_in_weapon": "unpartitioned",
+        "gunpods": "unpartitioned"
+      }
+    },
+    {
+      "id": "endymion_mk3",
+      "name": "Endymion FRS Mk.III",
+      "availability": "starter",
+      "evidence": "primary_manual_capacity_and_original_gallery_identity",
+      "description": "One Gunpod, with a control that fires its built-in weapon and Gunpod together.",
+      "carried_gunpods": 1,
+      "active_gunpods": 1,
+      "reserve_gunpods": 0,
+      "built_in_weapon": {
+        "name": "Built-in machine gun; individual specification not confirmed",
+        "kind": "machine_gun",
+        "count": null,
+        "caliber_mm": null,
+        "model": null,
+        "evidence": "primary_general_weapon_class_only",
+        "source_refs": [
+          "manual_us_p7",
+          "manual_us_p8"
+        ],
+        "reported_secondary": {
+          "count": 2,
+          "source_refs": [
+            "keene_faq"
+          ],
+          "status": "reported_secondary_not_individually_primary_verified"
+        }
+      },
+      "source_refs": [
+        "manual_us_p8",
+        "manual_us_p9",
+        "gallery_010"
+      ],
+      "unlock": {
+        "status": "starter_no_unlock_required"
+      },
+      "art_reference": {
+        "id": "gallery_010",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-010-endymion_mk3.png"
+      },
+      "mapping": {
+        "hull": "unvalidated_for_this_craft",
+        "built_in_weapon": "unpartitioned",
+        "gunpods": "unpartitioned"
+      }
+    },
+    {
+      "id": "astraea_mk1",
+      "name": "Astraea FGA Mk.I",
+      "availability": "starter",
+      "evidence": "primary_manual_capacity_and_original_gallery_identity",
+      "description": "Two Gunpods, usable separately or together; no reserve slots.",
+      "carried_gunpods": 2,
+      "active_gunpods": 2,
+      "reserve_gunpods": 0,
+      "built_in_weapon": {
+        "name": "Built-in machine gun; individual specification not confirmed",
+        "kind": "machine_gun",
+        "count": null,
+        "caliber_mm": null,
+        "model": null,
+        "evidence": "primary_general_weapon_class_only",
+        "source_refs": [
+          "manual_us_p7",
+          "manual_us_p8"
+        ],
+        "reported_secondary": {
+          "count": 1,
+          "restricted_when_two_gunpods_equipped": true,
+          "source_refs": [
+            "keene_faq",
+            "community_hangar"
+          ],
+          "status": "reported_secondary_not_individually_primary_verified"
+        }
+      },
+      "source_refs": [
+        "manual_us_p8",
+        "manual_us_p9",
+        "gallery_011"
+      ],
+      "unlock": {
+        "status": "starter_no_unlock_required"
+      },
+      "art_reference": {
+        "id": "gallery_011",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-011-astraea_mk1.png"
+      },
+      "mapping": {
+        "hull": "unvalidated_for_this_craft",
+        "built_in_weapon": "unpartitioned",
+        "gunpods": "unpartitioned"
+      }
+    },
+    {
+      "id": "schabe",
+      "name": "PW-104b Schabe / Unknown Fighter Type I",
+      "availability": "secret_reported_secondary",
+      "evidence": "primary_gallery_name_secondary_playability_and_mechanics",
+      "description": "Reported unlockable police craft. Gunpod pickups enhance its own weapon rather than mounting detachable pods.",
+      "carried_gunpods": 0,
+      "active_gunpods": 0,
+      "reserve_gunpods": 0,
+      "capacity_evidence": "reported_secondary",
+      "built_in_weapon": {
+        "name": "Upgradeable machine gun (reported; primary specification unavailable)",
+        "kind": "machine_gun",
+        "count": null,
+        "caliber_mm": null,
+        "evidence": "reported_secondary",
+        "source_refs": [
+          "keene_faq"
+        ]
+      },
+      "source_refs": [
+        "gallery_044",
+        "keene_faq"
+      ],
+      "unlock": {
+        "status": "reported_secondary_not_runtime_verified",
+        "requirement": "Reported: earn 15 secret bonuses in a run. Exact completion/save conditions are not primary-verified.",
+        "source_refs": [
+          "keene_faq"
+        ],
+        "write_supported": false
+      },
+      "art_reference": {
+        "id": "gallery_044",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-044-schabe.png"
+      },
+      "mapping": {
+        "hull": "unvalidated_for_playable_variant",
+        "built_in_weapon": "unpartitioned",
+        "gunpods": "not_detachably_equipped_reported"
+      }
+    },
+    {
+      "id": "unknown_fighter_2",
+      "name": "Unknown Fighter Type II",
+      "availability": "secret_reported_secondary",
+      "evidence": "reported_secondary_playability_identity_association_and_mechanics",
+      "description": "Reported second secret craft, with two working Gunpods and 9,999 rounds on pickup. Its gallery-model association is not independently decoded.",
+      "carried_gunpods": 2,
+      "active_gunpods": 2,
+      "reserve_gunpods": 0,
+      "capacity_evidence": "reported_secondary",
+      "built_in_weapon": {
+        "name": "Individual built-in weapon not primary-verified",
+        "kind": null,
+        "count": null,
+        "caliber_mm": null,
+        "evidence": "unverified"
+      },
+      "source_refs": [
+        "keene_faq",
+        "community_hangar",
+        "gallery_098"
+      ],
+      "reported_aliases": [
+        "Selene",
+        "EOS UFG Mk.IX",
+        "Astraea FGA Mk.II"
+      ],
+      "unlock": {
+        "status": "reported_secondary_conflicting_continue_threshold",
+        "requirement": "Reported: clear Hard under a continue restriction. Published thresholds disagree; exact rule is unverified.",
+        "source_refs": [
+          "keene_faq",
+          "community_hangar",
+          "gamefaqs_cheats"
+        ],
+        "write_supported": false
+      },
+      "art_reference": {
+        "id": "gallery_098",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-098-eos_ufg_mk9.png",
+        "association_status": "reported_secondary_not_independently_decoded"
+      },
+      "mapping": {
+        "hull": "unvalidated",
+        "built_in_weapon": "unpartitioned",
+        "gunpods": "unpartitioned"
+      }
+    }
+  ],
+  "gunpods": [
+    {
+      "id": "vulcan",
+      "name": "Vulcan",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Rapid-fire rotary gun.",
+      "source_refs": [
+        "gallery_024",
+        "manual_us_p11"
+      ],
+      "art_reference": {
+        "id": "gallery_024",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-024-vulcan.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "cannon",
+      "name": "Cannon",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Heavy cannon.",
+      "source_refs": [
+        "gallery_025",
+        "manual_us_p11"
+      ],
+      "art_reference": {
+        "id": "gallery_025",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-025-cannon.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "wasp",
+      "name": "Wasp",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Rocket and homing-missile launcher.",
+      "source_refs": [
+        "gallery_026",
+        "manual_us_p11"
+      ],
+      "art_reference": {
+        "id": "gallery_026",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-026-wasp.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "spreader",
+      "name": "Spreader",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Fan-pattern shot weapon.",
+      "source_refs": [
+        "gallery_027",
+        "manual_us_p11"
+      ],
+      "art_reference": {
+        "id": "gallery_027",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-027-spreader.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "grenade",
+      "name": "Grenade",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Explosive grenade launcher.",
+      "source_refs": [
+        "gallery_028",
+        "manual_us_p12"
+      ],
+      "art_reference": {
+        "id": "gallery_028",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-028-grenade.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "hedgehog",
+      "name": "Hedgehog",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Close-range bomb dispenser.",
+      "source_refs": [
+        "gallery_029",
+        "manual_us_p12"
+      ],
+      "art_reference": {
+        "id": "gallery_029",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-029-hedgehog.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "blade",
+      "name": "Blade",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Energy-blade emitter.",
+      "source_refs": [
+        "gallery_031",
+        "manual_us_p12"
+      ],
+      "art_reference": {
+        "id": "gallery_031",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-031-blade.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "riot",
+      "name": "Riot",
+      "category": "detachable_gunpod",
+      "availability": "common",
+      "evidence": "primary_manual_and_original_gallery",
+      "description": "Chargeable electrical weapon.",
+      "source_refs": [
+        "gallery_032",
+        "manual_us_p12"
+      ],
+      "art_reference": {
+        "id": "gallery_032",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-032-riot.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "juno",
+      "name": "Juno",
+      "category": "detachable_gunpod",
+      "availability": "secret_reported_secondary",
+      "evidence": "primary_gallery_identity_secondary_secret_classification",
+      "description": "Original gallery confirms this Gunpod identity; secret acquisition mechanics are secondary-source reported.",
+      "source_refs": [
+        "gallery_030",
+        "keene_faq"
+      ],
+      "art_reference": {
+        "id": "gallery_030",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-030-juno.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "flash",
+      "name": "Flash",
+      "category": "detachable_gunpod",
+      "availability": "secret_reported_secondary",
+      "evidence": "primary_gallery_identity_secondary_secret_classification",
+      "description": "Original gallery confirms this Gunpod identity; secret acquisition mechanics are secondary-source reported.",
+      "source_refs": [
+        "gallery_033",
+        "keene_faq"
+      ],
+      "art_reference": {
+        "id": "gallery_033",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-033-flash.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "mosquito",
+      "name": "Mosquito",
+      "category": "detachable_gunpod",
+      "availability": "secret_reported_secondary",
+      "evidence": "primary_gallery_identity_secondary_secret_classification",
+      "description": "Original gallery confirms this Gunpod identity; secret acquisition mechanics are secondary-source reported.",
+      "source_refs": [
+        "gallery_034",
+        "keene_faq"
+      ],
+      "art_reference": {
+        "id": "gallery_034",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-034-mosquito.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "category": "detachable_gunpod",
+      "availability": "secret_reported_secondary",
+      "evidence": "primary_gallery_identity_secondary_secret_classification",
+      "description": "Original gallery confirms this Gunpod identity; secret acquisition mechanics are secondary-source reported.",
+      "source_refs": [
+        "gallery_035",
+        "keene_faq"
+      ],
+      "art_reference": {
+        "id": "gallery_035",
+        "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-035-python.png"
+      },
+      "mapping": {
+        "independent_uv_binding": "unvalidated",
+        "runtime_type_selector": "unvalidated"
+      }
+    }
+  ],
+  "references": [
+    {
+      "id": "manual_us",
+      "title": "Original North American Einhander instruction manual (SCUS-94243)",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        17
+      ],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/manual-references/einhander-ntsc-u-manual.pdf",
+      "sha256": "58c7f2073e0d4b22e750f3eab5f17ca5947be06bae37f1a4ca87a313987af020"
+    },
+    {
+      "id": "keene_faq",
+      "title": "Zach Keene, Einhander FAQ Version Zehn (1999)",
+      "url": "https://arcanelore.net/einhander/",
+      "mirror_url": "https://gamefaqs.gamespot.com/ps/197217-einhander/faqs/3840",
+      "type": "secondary_player_faq",
+      "pages": []
+    },
+    {
+      "id": "community_hangar",
+      "title": "Einhander Wiki: Hangar",
+      "url": "https://einhander.fandom.com/wiki/Hangar",
+      "type": "secondary_community_wiki",
+      "pages": []
+    },
+    {
+      "id": "gamefaqs_cheats",
+      "title": "GameFAQs: Einhander unlock conditions (community submissions)",
+      "url": "https://gamefaqs.gamespot.com/ps/197217-einhander/cheats",
+      "type": "secondary_community_claims",
+      "pages": []
+    },
+    {
+      "id": "original_gallery",
+      "title": "Original North American game gallery, BINPACK5 entries",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_manifest": "C:/github/REMASTER_STAGING/disc_stock/archives/manifest.json",
+      "source_archive_sha256": "fb152390b0f83c58c241939507598c03ae85f1edeb9d37310c351bcd694cceed"
+    },
+    {
+      "id": "manual_us_p7",
+      "title": "Original instruction manual, printed p7",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        7
+      ],
+      "pdf_spread_1_based": 5
+    },
+    {
+      "id": "manual_us_p8",
+      "title": "Original instruction manual, printed p8",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        8
+      ],
+      "pdf_spread_1_based": 6
+    },
+    {
+      "id": "manual_us_p9",
+      "title": "Original instruction manual, printed p9",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        9
+      ],
+      "pdf_spread_1_based": 6
+    },
+    {
+      "id": "manual_us_p11",
+      "title": "Original instruction manual, printed p11",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        11
+      ],
+      "pdf_spread_1_based": 7
+    },
+    {
+      "id": "manual_us_p12",
+      "title": "Original instruction manual, printed p12",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        12
+      ],
+      "pdf_spread_1_based": 8
+    },
+    {
+      "id": "manual_us_p17",
+      "title": "Original instruction manual, printed p17",
+      "url": "https://impzone.club/pdf/einhander.pdf",
+      "type": "primary_original_manual_scan",
+      "pages": [
+        17
+      ],
+      "pdf_spread_1_based": 10
+    },
+    {
+      "id": "gallery_009",
+      "title": "Original gallery No.09: ENDYMION FRS MK.II",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-009-endymion_mk2.png",
+      "sha256": "8a4139acb937bfd3cfbddf02a4c72ccb41a46ce539bc5cc731a2c0afd02892c0",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_010",
+      "title": "Original gallery No.10: ENDYMION FRS MK.III",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-010-endymion_mk3.png",
+      "sha256": "5ecd1dd1f463afe06726e8f9e3d25358545629362512339bc7cc21d60ecdcac8",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_011",
+      "title": "Original gallery No.11: ASTRAEA FGA MK.I",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-011-astraea_mk1.png",
+      "sha256": "7be134a0b41ac6146b3813c88341a7178bfc47dc58b4e5be0bd7d7df8ad43980",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_044",
+      "title": "Original gallery No.44: PW-104b Schabe",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-044-schabe.png",
+      "sha256": "4f44c9ec4db27db85ce625174057a33c5ffa32f57520582b1eb5a7a82a4c3f21",
+      "relation": "primary_named_art_secondary_playable_association"
+    },
+    {
+      "id": "gallery_098",
+      "title": "Original gallery No.98: EOS UFG Mk.IX",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-098-eos_ufg_mk9.png",
+      "sha256": "4e42130f4bb1ffddb3033e522987a3c8b4f98240261b8e06c9110e23afc6bd36",
+      "relation": "primary_named_art_secondary_unknown_fighter_2_association"
+    },
+    {
+      "id": "gallery_024",
+      "title": "Original gallery No.24: Gunpod-Vulcan",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-024-vulcan.png",
+      "sha256": "5ff34d744285d4aa2bff97b25ea37486bf7f21919abd8a636828246ef32265b9",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_025",
+      "title": "Original gallery No.25: Gunpod-Cannon",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-025-cannon.png",
+      "sha256": "d14fdba8187a2466e1062c4dee2dd9c28fb7fbc523c2c5bb583c214daae515f4",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_026",
+      "title": "Original gallery No.26: Gunpod-Wasp",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-026-wasp.png",
+      "sha256": "a862ed856b50d4b199d8aeafe17e9cf69cf034ecdb5a816eccd98d433ff666f6",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_027",
+      "title": "Original gallery No.27: Gunpod-Spreader",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-027-spreader.png",
+      "sha256": "3ffca0a7489d266a3cd22ba988f576088b25ee31ef8c202865d96a5a69abcbb9",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_028",
+      "title": "Original gallery No.28: Gunpod-Grenade",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-028-grenade.png",
+      "sha256": "a2ad08e851115432ad7b9769beec7941d38b374f80fd7e8b972d71d1bc707ccc",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_029",
+      "title": "Original gallery No.29: Gunpod-Hedgehog",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-029-hedgehog.png",
+      "sha256": "7c2e1e588cb64e9163c37d377890a2d944efaa96f8be1ae40cc18fac6b11ae1d",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_031",
+      "title": "Original gallery No.31: Gunpod-Blade",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-031-blade.png",
+      "sha256": "9c5f9fbc2dd1404a373136d4f44e3a63a999e63c7701f3f07adaee3a4bca5399",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_032",
+      "title": "Original gallery No.32: Gunpod-Riot",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-032-riot.png",
+      "sha256": "06f48596349e0fec9407ef10478bbef63f9d047f57de584cb26867e752928ad9",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_030",
+      "title": "Original gallery No.30: Gunpod-Juno",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-030-juno.png",
+      "sha256": "ad333ebedae6e8b9e051b03c9e5d8f89d69fecc9698028a9a59baff24af90a5e",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_033",
+      "title": "Original gallery No.33: Gunpod-Flash",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-033-flash.png",
+      "sha256": "615a0989109d1a4441817de5ec1068c1c9d54b935ce6f969e04c01e699bdb7d8",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_034",
+      "title": "Original gallery No.34: Gunpod-Mosquito",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-034-mosquito.png",
+      "sha256": "62878556a28e06aafaa5e9f47dd6d5bef816bdebeae32e0a8d1df847a1b914b8",
+      "relation": "primary_named_art"
+    },
+    {
+      "id": "gallery_035",
+      "title": "Original gallery No.35: Gunpod-Python",
+      "url": null,
+      "type": "primary_local_game_asset",
+      "pages": [],
+      "local_path": "C:/github/Einhander/remaster-audit/dev-center-evidence/identity-references/gallery-035-python.png",
+      "sha256": "c3aa58b0d0359819cb0acde8bfbba7ef4a770556ab3ef7a4407b2348ce1b78a9",
+      "relation": "primary_named_art"
+    }
+  ],
+  "palette_coverage_plan": {
+    "reusable_finish_palettes": 8,
+    "starter_hull_identities": 3,
+    "reported_secret_hull_identities": 2,
+    "gunpod_identities": 12,
+    "starter_hull_palette_assignments": 24,
+    "complete_reported_hull_palette_assignments": 40,
+    "gunpod_palette_assignments": 96,
+    "built_in_weapon_layer": "Separate identity and mapping for each craft; not a generic Gunpod and not yet isolated.",
+    "current_equipment_study_scope": {
+      "hulls": 3,
+      "common_gunpods": 8,
+      "identity_masters": 11
+    },
+    "concept_art_status": "Design references, not in-game mapped textures or demonstrated runtime changes.",
+    "completion_gate": "Verify each model UV ownership, preserve shape and PS1 alpha classes, inspect bright/dark scenes, then compare actual gameplay captures."
+  },
+  "limitations": [
+    "No runtime unlock, craft selection, Gunpod-type write, or save-memory address is established by this catalog.",
+    "The three starter capacities are primary-confirmed. The two secret playable craft and their mechanics remain reported secondary evidence.",
+    "The manual gives a generic initial 20mm machine-gun description. Only MkII has an individual specification here; MkIII and Astraea counts/calibers are not promoted to primary-confirmed facts.",
+    "Original gallery pictures often show mounted Gunpods; their presence does not identify the built-in weapon.",
+    "EOS UFG Mk.IX is a primary gallery label. Its association with playable Unknown FighterII, and alternative community names, are not independently decoded.",
+    "One captured starter hull family has correlated blue texture keys. Those observations do not establish all three starter hull mappings, built-in gun isolation, or any of the twelve independent Gunpod mappings.",
+    "A palette can be reused, but every model still needs its own verified UV/material ownership and in-game validation.",
+    "Secret craft pickup ammo of 9,999 is a reported finite quantity; this catalog does not call it infinite."
+  ]
+}

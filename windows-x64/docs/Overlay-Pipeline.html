@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Overlay Pipeline — Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--warn:#d29922;--bad:#f85149;--ok:#3fb950;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .ok{background:rgba(63,185,80,.15);color:var(--ok);border:1px solid rgba(63,185,80,.4)}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .bad{background:rgba(248,81,73,.15);color:var(--bad);border:1px solid rgba(248,81,73,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Overlay Pipeline</h1>
+<p class="sub">RAM-streamed code capture and native shards · <a href="index.html">← index</a></p>
+
+<h2>Why Overlays Matter Here</h2>
+<p>Einhänder streams code into RAM at runtime — modules the static analyzer cannot see in the boot EXE. Until those regions are captured during play and compiled as native shards, E2E coverage is impossible by definition.</p>
+
+<h2>Capture Store</h2>
+<div class="card">
+<p><code>build-release\overlay_captures.json</code> — <strong>additive</strong> store, appended across sessions.</p>
+<p><code>build-release\overlay_captures.json.d\</code> — per-capture history dir (~3 MB).</p>
+<p>Boot log confirms wiring: <code>additive overlay capture store = ...overlay_captures.json (+ .d history)</code></p>
+<p>Current contents: <strong>one record</strong> — <code>load_addr 0x8001D000</code>, size <strong>4,100 bytes</strong>, small executed-PC set, empty <code>function_entry_pcs</code>. This is a seed, not coverage.</p>
+</div>
+
+<h2>Record Shape</h2>
+<pre><code>{
+  "load_addr": "0x8001D000",
+  "size": 4100,
+  "executed_pcs": [...],       // PCs actually run inside the region
+  "function_entry_pcs": [...]  // proven function entries (empty so far)
+}</code></pre>
+
+<h2>Runtime Guard Relevant to Overlays</h2>
+<p>The runtime logs <code>overlay_region_floor = 0x32000 (game text end), text_image_lo = 0x10000</code> and arms a <em>text image guard</em> (<code>0x80010000..0x80032000</code>) — the resident image is protected; anything loaded above the floor is capture-eligible.</p>
+
+<h2>Path to Native Shards</h2>
+<ol>
+<li><strong>Capture growth</strong> — real play-through sessions. Each session appends overlay records; coverage is measured by distinct <code>load_addr</code> regions and executed-PC density inside them.</li>
+<li><strong>Shard compilation</strong> — captured regions become native shards alongside <code>generated\</code> output (see <code>psxrecomp\tools\aot_overlay_spike\README.md</code> for the spike design).</li>
+<li><strong>Loop</strong> — as shards compile, more code executes natively, which surfaces further overlay loads.</li>
+</ol>
+
+<h2>Status</h2>
+<table>
+<tr><th>Item</th><th>State</th></tr>
+<tr><td>Capture plumbing (additive store)</td><td><span class="badge ok">VERIFIED</span> in boot log</td></tr>
+<tr><td>Capture volume</td><td><span class="badge bad">MINIMAL</span> — 1 record, 4.1 KB</td></tr>
+<tr><td>Native shard compilation</td><td><span class="badge warn">NOT STARTED</span></td></tr>
+<tr><td>Play-through coverage</td><td><span class="badge bad">NOT DONE</span> — needs real gameplay sessions</td></tr>
+</table>
+<p class="sub">Blocking note: this work needs actual play time in the runtime — it cannot be shortcut by static analysis.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings Reference — Einhander Project</title>
+<style>
+  :root{--bg:#0d1117;--panel:#161b22;--border:#30363d;--text:#e6edf3;--dim:#8b949e;--accent:#58a6ff;--warn:#d29922;--bad:#f85149;--ok:#3fb950;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font:15px/1.6 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:960px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:22px;margin:0 0 4px}
+  h2{font-size:17px;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .sub{color:var(--dim);margin:0 0 24px}
+  p{margin:7px 0}
+  code{background:#0d1117;border:1px solid var(--border);border-radius:5px;padding:1px 5px;font:12.5px Consolas,monospace;color:#79c0ff}
+  pre{background:#0d1117;border:1px solid var(--border);border-radius:6px;padding:11px 13px;overflow-x:auto;margin:9px 0}
+  pre code{background:none;border:none;padding:0;color:var(--text)}
+  table{border-collapse:collapse;width:100%;margin:10px 0}
+  th,td{border:1px solid var(--border);padding:6px 9px;text-align:left;font-size:13.5px;vertical-align:top}
+  th{background:var(--panel)}
+  ul{padding-left:20px}li{margin:3px 0}
+  .badge{display:inline-block;padding:1px 8px;border-radius:11px;font-size:11.5px;font-weight:600}
+  .warn{background:rgba(210,153,34,.15);color:var(--warn);border:1px solid rgba(210,153,34,.4)}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin:12px 0}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Settings Reference</h1>
+<p class="sub"><code>build-release\settings.toml</code> fields, ranges, and precedence · <a href="index.html">← index</a></p>
+
+<h2>Precedence</h2>
+<pre><code>game.toml  &lt;  settings.toml (user overrides)  &lt;  command line</code></pre>
+<p>The launcher writes <code>settings.toml</code>. Hand edits are safe — but values outside the parser's accepted range are <strong>silently dropped</strong> (that was the supersampling bug).</p>
+
+<h2>[video] Fields</h2>
+<table>
+<tr><th>Key</th><th>Type / Range</th><th>Notes</th></tr>
+<tr><td><code>renderer</code></td><td><code>"software" | "opengl" | "vulkan"</code></td><td>Currently <code>opengl</code></td></tr>
+<tr><td><code>supersampling</code></td><td>int, <strong>1..8</strong></td><td>SSAA factor per axis. Was 1..4 — parser bound raised 2026-11-08. Cost ≈ scale² fill: 8× is impractical on this PC; 4× verified playable.</td></tr>
+<tr><td><code>window_width</code></td><td>int, 640..3840</td><td>Window pixel width</td></tr>
+<tr><td><code>antialiasing</code></td><td>bool</td><td>Present-path linear filtering / MSAA count per launcher model</td></tr>
+<tr><td><code>texture_filtering</code></td><td><code>"nearest" | "bilinear"</code></td><td>VRAM texture sampling</td></tr>
+<tr><td><code>fmv_filter</code></td><td><code>"nearest" | "bilinear" | "bicubic"</code></td><td>FMV upscale filter</td></tr>
+<tr><td><code>geometry_correction</code></td><td>bool</td><td>PGXP vertex fix — only observable at <code>supersampling &gt;= 2</code></td></tr>
+<tr><td><code>perspective_texturing</code></td><td>bool</td><td>Perspective-correct texturing — same ≥2 visibility rule</td></tr>
+<tr><td><code>fullscreen</code></td><td>int 0/1</td><td>Set 0 for test runs so windows close cleanly</td></tr>
+<tr><td><code>frame_interpolation</code></td><td>bool</td><td>Off currently; requires the temporal-blend path</td></tr>
+<tr><td><code>aspect_ratio</code></td><td><code>"4:3" | "16:9" | ...</code></td><td>Widescreen support per WIDESCREEN.md</td></tr>
+<tr><td><code>crt_filter</code></td><td>string</td><td>Currently <code>"raw"</code></td></tr>
+<tr><td><code>fast_boot</code></td><td>bool</td><td>Skip boot shell</td></tr>
+<tr><td><code>bios_hle</code></td><td>bool</td><td>HLE kernel-call tier when available (OPENBIOS lacks the anchor — falls back to LLE)</td></tr>
+<tr><td><code>rewind_depth</code></td><td>int</td><td>Rewind ring size (50)</td></tr>
+<tr><td><code>rewind_interval</code></td><td>int</td><td>Frames between rewind snapshots (15)</td></tr>
+</table>
+
+<h2>[audio] Fields</h2>
+<table>
+<tr><th>Key</th><th>Type</th><th>Notes</th></tr>
+<tr><td><code>frequency</code></td><td>int Hz</td><td>48000</td></tr>
+<tr><td><code>spu_hq</code></td><td>bool</td><td>HQ SPU path</td></tr>
+</table>
+
+<h2>Parser Behavior — Why Range Errors Were Silent</h2>
+<div class="card">
+<p><span class="badge warn">GOTCHA</span> User settings parse via <code>try_get</code> wrappers in <code>config_loader.cpp</code> — an out-of-range value is <em>skipped</em>, leaving <code>has_&lt;key&gt;</code> false and the runtime on its default. There is no warning in the log.</p>
+<p>Verify a setting applied by reading the startup log (e.g. <code>supersampling Nx</code>), never by trusting the file.</p>
+</div>
+
+<h2>Current Live Values</h2>
+<pre><code>renderer            = "opengl"
+supersampling       = 4        # verified playable
+antialiasing        = true
+texture_filtering   = "bilinear"
+fmv_filter          = "bicubic"
+geometry_correction = false
+perspective_texturing = false
+fullscreen          = 1
+aspect_ratio        = "4:3"
+frame_interpolation = false</code></pre>
+<p class="sub">The launcher model now cycles 1–8× after the <code>launcher_model.c</code> fix.</p>
+</div>
+</body>
+</html>

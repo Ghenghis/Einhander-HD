@@ -1,0 +1,91 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "einhander/source.png"
+    },
+    "_meta": {
+      "title": "Untouched native RGB and original PS1 class mask"
+    }
+  },
+  "5": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "1",
+        0
+      ],
+      "upscale_method": "nearest-exact",
+      "width": 4096,
+      "height": 4096,
+      "crop": "disabled"
+    },
+    "_meta": {
+      "title": "Set per-asset target dimensions; preserve source aspect ratio"
+    }
+  },
+  "6": {
+    "class_type": "MaskToImage",
+    "inputs": {
+      "mask": [
+        "1",
+        1
+      ]
+    },
+    "_meta": {
+      "title": "Bypass RGB models for transparency/STP authority"
+    }
+  },
+  "7": {
+    "class_type": "ImageScale",
+    "inputs": {
+      "image": [
+        "6",
+        0
+      ],
+      "upscale_method": "nearest-exact",
+      "width": 4096,
+      "height": 4096,
+      "crop": "disabled"
+    }
+  },
+  "8": {
+    "class_type": "ImageToMask",
+    "inputs": {
+      "image": [
+        "7",
+        0
+      ],
+      "channel": "red"
+    }
+  },
+  "9": {
+    "class_type": "JoinImageWithAlpha",
+    "inputs": {
+      "image": [
+        "5",
+        0
+      ],
+      "alpha": [
+        "8",
+        0
+      ]
+    },
+    "_meta": {
+      "title": "Restore original 0/127/255 class map at target size"
+    }
+  },
+  "10": {
+    "class_type": "SaveImage",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "filename_prefix": "Einhander/candidate"
+    },
+    "_meta": {
+      "title": "Candidate only; verify source, spelling, masks, palettes and in-game UVs"
+    }
+  }
+}

@@ -1,0 +1,999 @@
+{
+  "format": 1,
+  "generated_at_utc": "2026-11-12T14:25:17.017469+00:00",
+  "status": "mapping_audit_only_no_apply_controls",
+  "summary": {
+    "documented_light_effect_families": 1,
+    "unassigned_visual_candidate_atlas_families": 2,
+    "palette_key_variants_audited": 160,
+    "source_crc_decode_checks_passed": 160,
+    "installed_variant_keys": 128,
+    "missing_installed_variant_keys": 32,
+    "receipt_logs_scanned": 16,
+    "receipt_records_scanned": 12280,
+    "verified_weapon_specific_effect_bindings": 0,
+    "verified_muzzleflash_bindings": 0,
+    "verified_projectile_or_weapon_beam_bindings": 0,
+    "verified_explosion_animation_bindings": 0,
+    "verified_ordered_animation_sequences": 0,
+    "new_authored_effect_replacements": 0,
+    "full_stage1_effects_verified": false
+  },
+  "families": [
+    {
+      "id": "light_beam_strip",
+      "name": "Protected palette-cycled translucent light strip",
+      "texture_hash": "1FD36785",
+      "status": "documented_light_effect_technical_family",
+      "confidence": {
+        "raw_source_and_alpha": "independently_verified",
+        "palette_variants": "observed_distinct_keys",
+        "event_or_weapon_owner": "unassigned",
+        "ordered_animation_sequence": "unverified"
+      },
+      "interpretation": "Earlier proof labels this a Stage 1 light-beam family. Weapon, muzzle, searchlight and boss-beam ownership are not assigned by this audit.",
+      "representative_key": "1FD36785-03207FE5",
+      "source_dimensions": [
+        256,
+        8
+      ],
+      "source_bounds": [
+        0,
+        0,
+        255,
+        7
+      ],
+      "palette_key_count": 64,
+      "independent_indexed_raw_hashes": 1,
+      "distinct_clut_hashes": 64,
+      "distinct_decoded_rgba_images": 64,
+      "installed_variants": 64,
+      "missing_installed_keys": [],
+      "source_alpha_counts_by_variant_class": [
+        {
+          "255": 2048
+        }
+      ],
+      "alpha_contract": {
+        "0": "raw zero cutout",
+        "127": "STP-clear opaque texel",
+        "255": "STP set; primitive semi mode controls blending"
+      },
+      "recorded_semi_modes": {
+        "0": 1003
+      },
+      "draw_receipt_count": 1003,
+      "distinct_recorded_page_uv_rectangles": 1,
+      "page_uv_rectangle_examples": [
+        [
+          192,
+          248,
+          222,
+          254
+        ]
+      ],
+      "technique": {
+        "source": "Indexed texture uploaded as an atlas/strip and drawn by textured primitives.",
+        "palette": "Same indexed raw words with multiple captured CLUT keys; observed variants are not an animation frame count.",
+        "blend": "Recorded mode0, half source/half destination with STP set, including black STP texels."
+      },
+      "source_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/effects-references/1FD36785-03207FE5.png",
+        "relative_path": "effects-references/1FD36785-03207FE5.png",
+        "url": "/dev/evidence/files/effects-references/1FD36785-03207FE5.png",
+        "sha256": "79570ab0434c89cfa792dcfb589c283f4169802d0121c6844f454a3d455a21fb",
+        "dimensions": [
+          256,
+          8
+        ],
+        "label": "Unmodified original native atlas/strip; no sprite cutting or recoloring."
+      },
+      "variant_keys": [
+        "1FD36785-03207FE5",
+        "1FD36785-05542111",
+        "1FD36785-0C1A4FC0",
+        "1FD36785-160B6E5F",
+        "1FD36785-162643B4",
+        "1FD36785-191C7391",
+        "1FD36785-19315E7A",
+        "1FD36785-19462847",
+        "1FD36785-23D9D87E",
+        "1FD36785-23F4F595",
+        "1FD36785-2CB9B38D",
+        "1FD36785-2CCEC5B0",
+        "1FD36785-2CE3E85B",
+        "1FD36785-30ABBADB",
+        "1FD36785-36DFE42F",
+        "1FD36785-39E5D40A",
+        "1FD36785-45945AA9",
+        "1FD36785-4AAE6A8C",
+        "1FD36785-4CDA3478",
+        "1FD36785-509266F8",
+        "1FD36785-50BF4B13",
+        "1FD36785-50C83D2E",
+        "1FD36785-5F857B36",
+        "1FD36785-5FA856DD",
+        "1FD36785-6537A6E4",
+        "1FD36785-6540D0D9",
+        "1FD36785-656DFD32",
+        "1FD36785-6A57CD17",
+        "1FD36785-6A7AE0FC",
+        "1FD36785-706BC163",
+        "1FD36785-7925AFB2",
+        "1FD36785-7F51F146",
+        "1FD36785-80EBCC62",
+        "1FD36785-869F9296",
+        "1FD36785-8FD1FC47",
+        "1FD36785-95C0DDD8",
+        "1FD36785-95EDF033",
+        "1FD36785-9A8D9BC0",
+        "1FD36785-9AD7C016",
+        "1FD36785-9AFAEDFD",
+        "1FD36785-A0126BF9",
+        "1FD36785-A03F4612",
+        "1FD36785-AF057637",
+        "1FD36785-AF285BDC",
+        "1FD36785-AF72000A",
+        "1FD36785-B360095C",
+        "1FD36785-B51457A8",
+        "1FD36785-BA2E678D",
+        "1FD36785-C65FE92E",
+        "1FD36785-C965D90B",
+        "1FD36785-CF1187FF",
+        "1FD36785-D3038EA9",
+        "1FD36785-D359D57F",
+        "1FD36785-D374F894",
+        "1FD36785-DC4EC8B1",
+        "1FD36785-DC63E55A",
+        "1FD36785-E68B635E",
+        "1FD36785-E6A64EB5",
+        "1FD36785-E6FC1563",
+        "1FD36785-E99C7E90",
+        "1FD36785-E9B1537B",
+        "1FD36785-F3A072E4",
+        "1FD36785-FAEE1C35",
+        "1FD36785-FC9A42C1"
+      ],
+      "mapping": {
+        "weapon_specific_binding_verified": false,
+        "muzzleflash_binding_verified": false,
+        "projectile_binding_verified": false,
+        "explosion_binding_verified": false,
+        "apply_control_available": false
+      },
+      "replacement_readiness": "Preserve existing source RGB/classes and palette variants; event mapping required before new authored effects.",
+      "existing_replacement_note": "Installed enlargements are protected nearest-source material, not newly authored explosion/fire detail.",
+      "representative_receipt_examples": [
+        {
+          "path": "C:/github/REMASTER_STAGING/full-remaster/ui-demo/evidence/draws.jsonl",
+          "line": 172,
+          "key": "1FD36785-03207FE5",
+          "frame": 7750,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            64,
+            8
+          ],
+          "depth": 0,
+          "semi": 0,
+          "source_kind": "upload",
+          "clut_xy": [
+            128,
+            484
+          ],
+          "uv_bounds": [
+            192,
+            248,
+            222,
+            254
+          ],
+          "xy": [
+            [
+              101,
+              362
+            ],
+            [
+              221,
+              362
+            ],
+            [
+              101,
+              512
+            ]
+          ],
+          "event": "source draw query matched"
+        },
+        {
+          "path": "C:/github/REMASTER_STAGING/hd-coverage/gpu-resident/evidence/draws.jsonl",
+          "line": 755,
+          "key": "1FD36785-03207FE5",
+          "frame": 8242,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            64,
+            8
+          ],
+          "depth": 0,
+          "semi": 0,
+          "source_kind": "upload",
+          "clut_xy": [
+            128,
+            484
+          ],
+          "uv_bounds": [
+            192,
+            248,
+            222,
+            254
+          ],
+          "xy": [
+            [
+              101,
+              367
+            ],
+            [
+              221,
+              367
+            ],
+            [
+              101,
+              517
+            ]
+          ],
+          "event": "source draw query matched"
+        },
+        {
+          "path": "C:/github/REMASTER_STAGING/hd-coverage/gpu-resident/evidence/draws.jsonl",
+          "line": 835,
+          "key": "1FD36785-03207FE5",
+          "frame": 8306,
+          "replacement_size": [
+            2048,
+            64
+          ],
+          "native_words": [
+            64,
+            8
+          ],
+          "depth": 0,
+          "semi": 0,
+          "source_kind": "upload",
+          "clut_xy": [
+            128,
+            484
+          ],
+          "uv_bounds": [
+            192,
+            248,
+            222,
+            254
+          ],
+          "xy": [
+            [
+              101,
+              262
+            ],
+            [
+              221,
+              262
+            ],
+            [
+              101,
+              412
+            ]
+          ],
+          "event": "replacement GL draw submitted"
+        }
+      ]
+    },
+    {
+      "id": "mixed_light_atlas_e584",
+      "name": "Mixed streak / glow / cone-like sprite atlas",
+      "texture_hash": "E584DC41",
+      "status": "visual_candidate_unassigned",
+      "confidence": {
+        "raw_source_and_alpha": "independently_verified",
+        "palette_variants": "observed_distinct_keys",
+        "event_or_weapon_owner": "unassigned",
+        "ordered_animation_sequence": "unverified"
+      },
+      "interpretation": "Original atlas visibly contains small colored streaks, a square radial glow and a broad cone-like region. These shapes alone do not identify muzzleflash, projectile, impact or explosion events.",
+      "representative_key": "E584DC41-07AE4CCC",
+      "source_dimensions": [
+        64,
+        64
+      ],
+      "source_bounds": [
+        0,
+        0,
+        63,
+        63
+      ],
+      "palette_key_count": 64,
+      "independent_indexed_raw_hashes": 1,
+      "distinct_clut_hashes": 64,
+      "distinct_decoded_rgba_images": 64,
+      "installed_variants": 32,
+      "missing_installed_keys": [
+        "E584DC41-136BCF30",
+        "E584DC41-17D769B9",
+        "E584DC41-1A128222",
+        "E584DC41-1EAE24AB",
+        "E584DC41-31003F0A",
+        "E584DC41-35BC9983",
+        "E584DC41-38797218",
+        "E584DC41-3CC5D491",
+        "E584DC41-41F213E9",
+        "E584DC41-454EB560",
+        "E584DC41-488B5EFB",
+        "E584DC41-4C37F872",
+        "E584DC41-6399E3D3",
+        "E584DC41-6725455A",
+        "E584DC41-6AE0AEC1",
+        "E584DC41-6E5C0848",
+        "E584DC41-908F2031",
+        "E584DC41-943386B8",
+        "E584DC41-99F66D23",
+        "E584DC41-9D4ACBAA",
+        "E584DC41-B2E4D00B",
+        "E584DC41-B6587682",
+        "E584DC41-BB9D9D19",
+        "E584DC41-BF213B90",
+        "E584DC41-C216FCE8",
+        "E584DC41-C6AA5A61",
+        "E584DC41-CB6FB1FA",
+        "E584DC41-CFD31773",
+        "E584DC41-E07D0CD2",
+        "E584DC41-E4C1AA5B",
+        "E584DC41-E90441C0",
+        "E584DC41-EDB8E749"
+      ],
+      "source_alpha_counts_by_variant_class": [
+        {
+          "0": 3617,
+          "127": 479
+        },
+        {
+          "0": 3648,
+          "127": 448
+        },
+        {
+          "0": 3999,
+          "127": 97
+        },
+        {
+          "0": 4030,
+          "127": 66
+        }
+      ],
+      "alpha_contract": {
+        "0": "raw zero cutout",
+        "127": "STP-clear opaque texel",
+        "255": "STP set; primitive semi mode controls blending"
+      },
+      "recorded_semi_modes": {
+        "-1": 752
+      },
+      "draw_receipt_count": 752,
+      "distinct_recorded_page_uv_rectangles": 7,
+      "page_uv_rectangle_examples": [
+        [
+          193,
+          140,
+          217,
+          148
+        ],
+        [
+          193,
+          160,
+          197,
+          163
+        ],
+        [
+          193,
+          160,
+          197,
+          164
+        ],
+        [
+          193,
+          160,
+          198,
+          163
+        ],
+        [
+          193,
+          160,
+          198,
+          164
+        ],
+        [
+          194,
+          168,
+          220,
+          186
+        ],
+        [
+          217,
+          137,
+          253,
+          144
+        ]
+      ],
+      "technique": {
+        "source": "Indexed texture uploaded as an atlas/strip and drawn by textured primitives.",
+        "palette": "Same indexed raw words with multiple captured CLUT keys; observed variants are not an animation frame count.",
+        "blend": "Recorded primitive semi=-1, cutout/STP-clear source classes; not proven additive fire."
+      },
+      "source_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/effects-references/E584DC41-07AE4CCC.png",
+        "relative_path": "effects-references/E584DC41-07AE4CCC.png",
+        "url": "/dev/evidence/files/effects-references/E584DC41-07AE4CCC.png",
+        "sha256": "6a7b5b05b5746de9fcb59e58350beb21587882ebd8fe72fee8878311646dae27",
+        "dimensions": [
+          64,
+          64
+        ],
+        "label": "Unmodified original native atlas/strip; no sprite cutting or recoloring."
+      },
+      "variant_keys": [
+        "E584DC41-0312EA45",
+        "E584DC41-07AE4CCC",
+        "E584DC41-0A6BA757",
+        "E584DC41-0ED701DE",
+        "E584DC41-136BCF30",
+        "E584DC41-17D769B9",
+        "E584DC41-1A128222",
+        "E584DC41-1EAE24AB",
+        "E584DC41-21791A7F",
+        "E584DC41-25C5BCF6",
+        "E584DC41-2800576D",
+        "E584DC41-2CBCF1E4",
+        "E584DC41-31003F0A",
+        "E584DC41-35BC9983",
+        "E584DC41-38797218",
+        "E584DC41-3CC5D491",
+        "E584DC41-41F213E9",
+        "E584DC41-454EB560",
+        "E584DC41-488B5EFB",
+        "E584DC41-4C37F872",
+        "E584DC41-518B369C",
+        "E584DC41-55379015",
+        "E584DC41-58F27B8E",
+        "E584DC41-5C4EDD07",
+        "E584DC41-6399E3D3",
+        "E584DC41-6725455A",
+        "E584DC41-6AE0AEC1",
+        "E584DC41-6E5C0848",
+        "E584DC41-73E0C6A6",
+        "E584DC41-775C602F",
+        "E584DC41-7A998BB4",
+        "E584DC41-7E252D3D",
+        "E584DC41-80F60544",
+        "E584DC41-844AA3CD",
+        "E584DC41-898F4856",
+        "E584DC41-8D33EEDF",
+        "E584DC41-908F2031",
+        "E584DC41-943386B8",
+        "E584DC41-99F66D23",
+        "E584DC41-9D4ACBAA",
+        "E584DC41-A29DF57E",
+        "E584DC41-A62153F7",
+        "E584DC41-ABE4B86C",
+        "E584DC41-AF581EE5",
+        "E584DC41-B2E4D00B",
+        "E584DC41-B6587682",
+        "E584DC41-BB9D9D19",
+        "E584DC41-BF213B90",
+        "E584DC41-C216FCE8",
+        "E584DC41-C6AA5A61",
+        "E584DC41-CB6FB1FA",
+        "E584DC41-CFD31773",
+        "E584DC41-D26FD99D",
+        "E584DC41-D6D37F14",
+        "E584DC41-DB16948F",
+        "E584DC41-DFAA3206",
+        "E584DC41-E07D0CD2",
+        "E584DC41-E4C1AA5B",
+        "E584DC41-E90441C0",
+        "E584DC41-EDB8E749",
+        "E584DC41-F00429A7",
+        "E584DC41-F4B88F2E",
+        "E584DC41-F97D64B5",
+        "E584DC41-FDC1C23C"
+      ],
+      "mapping": {
+        "weapon_specific_binding_verified": false,
+        "muzzleflash_binding_verified": false,
+        "projectile_binding_verified": false,
+        "explosion_binding_verified": false,
+        "apply_control_available": false
+      },
+      "replacement_readiness": "Preserve existing source RGB/classes and palette variants; event mapping required before new authored effects.",
+      "existing_replacement_note": "Installed enlargements are protected nearest-source material, not newly authored explosion/fire detail.",
+      "representative_receipt_examples": [
+        {
+          "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/sessions/known-hd-1440p/draws.jsonl",
+          "line": 299,
+          "key": "E584DC41-0312EA45",
+          "frame": 5669,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "source_kind": "upload",
+          "clut_xy": [
+            272,
+            488
+          ],
+          "uv_bounds": [
+            193,
+            160,
+            198,
+            163
+          ],
+          "xy": [
+            [
+              99,
+              103
+            ],
+            [
+              102,
+              106
+            ],
+            [
+              98,
+              106
+            ]
+          ],
+          "event": "source draw query matched"
+        },
+        {
+          "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/sessions/known-hd-1440p/draws.jsonl",
+          "line": 330,
+          "key": "E584DC41-0312EA45",
+          "frame": 5731,
+          "replacement_size": [
+            512,
+            512
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "source_kind": "upload",
+          "clut_xy": [
+            272,
+            488
+          ],
+          "uv_bounds": [
+            194,
+            168,
+            220,
+            186
+          ],
+          "xy": [
+            [
+              93,
+              108
+            ],
+            [
+              94,
+              108
+            ],
+            [
+              103,
+              113
+            ]
+          ],
+          "event": "replacement GL draw submitted"
+        },
+        {
+          "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/sessions/known-hd-4k/draws.jsonl",
+          "line": 304,
+          "key": "E584DC41-0312EA45",
+          "frame": 8627,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "source_kind": "upload",
+          "clut_xy": [
+            272,
+            488
+          ],
+          "uv_bounds": [
+            193,
+            160,
+            198,
+            163
+          ],
+          "xy": [
+            [
+              99,
+              343
+            ],
+            [
+              102,
+              346
+            ],
+            [
+              98,
+              346
+            ]
+          ],
+          "event": "source draw query matched"
+        }
+      ]
+    },
+    {
+      "id": "mixed_light_atlas_93f0",
+      "name": "Mixed light / streak sprite atlas variant",
+      "texture_hash": "93F0FC72",
+      "status": "visual_candidate_unassigned",
+      "confidence": {
+        "raw_source_and_alpha": "independently_verified",
+        "palette_variants": "observed_distinct_keys",
+        "event_or_weapon_owner": "unassigned",
+        "ordered_animation_sequence": "unverified"
+      },
+      "interpretation": "Original atlas visibly contains colored streaks and a radial glow. The exact event, weapon owner, stage and relation to the E584 atlas are not established.",
+      "representative_key": "93F0FC72-024FAA77",
+      "source_dimensions": [
+        64,
+        64
+      ],
+      "source_bounds": [
+        0,
+        0,
+        63,
+        63
+      ],
+      "palette_key_count": 32,
+      "independent_indexed_raw_hashes": 1,
+      "distinct_clut_hashes": 32,
+      "distinct_decoded_rgba_images": 32,
+      "installed_variants": 32,
+      "missing_installed_keys": [],
+      "source_alpha_counts_by_variant_class": [
+        {
+          "0": 3607,
+          "127": 489
+        },
+        {
+          "0": 3635,
+          "127": 461
+        }
+      ],
+      "alpha_contract": {
+        "0": "raw zero cutout",
+        "127": "STP-clear opaque texel",
+        "255": "STP set; primitive semi mode controls blending"
+      },
+      "recorded_semi_modes": {
+        "-1": 256
+      },
+      "draw_receipt_count": 256,
+      "distinct_recorded_page_uv_rectangles": 4,
+      "page_uv_rectangle_examples": [
+        [
+          129,
+          96,
+          134,
+          98
+        ],
+        [
+          129,
+          96,
+          134,
+          99
+        ],
+        [
+          130,
+          104,
+          156,
+          122
+        ],
+        [
+          146,
+          66,
+          164,
+          75
+        ]
+      ],
+      "technique": {
+        "source": "Indexed texture uploaded as an atlas/strip and drawn by textured primitives.",
+        "palette": "Same indexed raw words with multiple captured CLUT keys; observed variants are not an animation frame count.",
+        "blend": "Recorded primitive semi=-1, cutout/STP-clear source classes; not proven additive fire."
+      },
+      "source_reference": {
+        "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/effects-references/93F0FC72-024FAA77.png",
+        "relative_path": "effects-references/93F0FC72-024FAA77.png",
+        "url": "/dev/evidence/files/effects-references/93F0FC72-024FAA77.png",
+        "sha256": "d0f5a81fd38f98606b0978a6e6ad29d0ff0b515b238607a4c3ce4ec2f09052a4",
+        "dimensions": [
+          64,
+          64
+        ],
+        "label": "Unmodified original native atlas/strip; no sprite cutting or recoloring."
+      },
+      "variant_keys": [
+        "93F0FC72-024FAA77",
+        "93F0FC72-06F30CFE",
+        "93F0FC72-0B36E765",
+        "93F0FC72-0F8A41EC",
+        "93F0FC72-20245A4D",
+        "93F0FC72-2498FCC4",
+        "93F0FC72-295D175F",
+        "93F0FC72-2DE1B1D6",
+        "93F0FC72-50D676AE",
+        "93F0FC72-546AD027",
+        "93F0FC72-59AF3BBC",
+        "93F0FC72-5D139D35",
+        "93F0FC72-72BD8694",
+        "93F0FC72-7601201D",
+        "93F0FC72-7BC4CB86",
+        "93F0FC72-7F786D0F",
+        "93F0FC72-81AB4576",
+        "93F0FC72-8517E3FF",
+        "93F0FC72-88D20864",
+        "93F0FC72-8C6EAEED",
+        "93F0FC72-A3C0B54C",
+        "93F0FC72-A77C13C5",
+        "93F0FC72-AAB9F85E",
+        "93F0FC72-AE055ED7",
+        "93F0FC72-D33299AF",
+        "93F0FC72-D78E3F26",
+        "93F0FC72-DA4BD4BD",
+        "93F0FC72-DEF77234",
+        "93F0FC72-F1596995",
+        "93F0FC72-F5E5CF1C",
+        "93F0FC72-F8202487",
+        "93F0FC72-FC9C820E"
+      ],
+      "mapping": {
+        "weapon_specific_binding_verified": false,
+        "muzzleflash_binding_verified": false,
+        "projectile_binding_verified": false,
+        "explosion_binding_verified": false,
+        "apply_control_available": false
+      },
+      "replacement_readiness": "Preserve existing source RGB/classes and palette variants; event mapping required before new authored effects.",
+      "existing_replacement_note": "Installed enlargements are protected nearest-source material, not newly authored explosion/fire detail.",
+      "representative_receipt_examples": [
+        {
+          "path": "C:/github/REMASTER_STAGING/full-remaster/ui-demo/evidence/draws.jsonl",
+          "line": 96,
+          "key": "93F0FC72-024FAA77",
+          "frame": 7718,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "source_kind": "upload",
+          "clut_xy": [
+            256,
+            496
+          ],
+          "uv_bounds": [
+            129,
+            96,
+            134,
+            98
+          ],
+          "xy": [
+            [
+              99,
+              343
+            ],
+            [
+              102,
+              346
+            ],
+            [
+              98,
+              346
+            ]
+          ],
+          "event": "source draw query matched"
+        },
+        {
+          "path": "C:/github/REMASTER_STAGING/full-remaster/ui-demo/evidence/draws.jsonl",
+          "line": 106,
+          "key": "93F0FC72-024FAA77",
+          "frame": 7726,
+          "replacement_size": [
+            512,
+            512
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "source_kind": "upload",
+          "clut_xy": [
+            256,
+            496
+          ],
+          "uv_bounds": [
+            129,
+            96,
+            134,
+            98
+          ],
+          "xy": [
+            [
+              99,
+              343
+            ],
+            [
+              102,
+              346
+            ],
+            [
+              98,
+              346
+            ]
+          ],
+          "event": "replacement GL draw submitted"
+        },
+        {
+          "path": "C:/github/REMASTER_STAGING/hd-coverage/upload-only/evidence/draws.jsonl",
+          "line": 67,
+          "key": "93F0FC72-024FAA77",
+          "frame": 6855,
+          "replacement_size": [
+            0,
+            0
+          ],
+          "native_words": [
+            16,
+            64
+          ],
+          "depth": 0,
+          "semi": -1,
+          "clut_xy": [
+            256,
+            496
+          ],
+          "uv_bounds": [
+            129,
+            96,
+            134,
+            98
+          ],
+          "xy": [
+            [
+              99,
+              343
+            ],
+            [
+              102,
+              346
+            ],
+            [
+              98,
+              346
+            ]
+          ],
+          "event": "source draw query matched"
+        }
+      ]
+    }
+  ],
+  "readiness": [
+    {
+      "category": "Muzzle flashes",
+      "status": "event_mapping_required",
+      "verified_bindings": 0
+    },
+    {
+      "category": "Weapon projectiles / beams",
+      "status": "event_and_weapon_owner_mapping_required",
+      "verified_bindings": 0
+    },
+    {
+      "category": "Impacts / explosions / smoke / debris",
+      "status": "ordered_layer_and_animation_mapping_required",
+      "verified_bindings": 0
+    },
+    {
+      "category": "Palette-cycled light strip",
+      "status": "source_and_blend_contract_verified_weapon_owner_unassigned",
+      "technical_families": 1
+    }
+  ],
+  "next_capture_checklist": [
+    {
+      "id": "event_identity",
+      "task": "Record one named ship and one selected weapon firing in a known Stage1 scene, then compare a no-fire interval. Separate built-in weapon, detachable Gunpod and enemy fire."
+    },
+    {
+      "id": "atomic_state",
+      "task": "Capture complete ordered GP0 primitives plus indexed texture/CLUT bytes and the visible frame atomically; retain source key, actor/model relation, UVs, palette, semi mode and draw order."
+    },
+    {
+      "id": "sequence",
+      "task": "Record the whole muzzle/shot/impact/explosion lifetime at original frame cadence, including palette cycles and every atlas region. A distinct palette hash is not an animation frame."
+    },
+    {
+      "id": "layers",
+      "task": "Separate textured sprites, flat/Gouraud primitives, beams, sparks, smoke, debris and light flashes. Effects without texture keys need a separately scoped rendering hook."
+    },
+    {
+      "id": "part_ownership",
+      "task": "Identify pickup ownership, hit effects and enemy/boss destruction parts independently; do not bind a mixed atlas globally to one gun or explosion."
+    },
+    {
+      "id": "contract",
+      "task": "Verify cutout/STP classes, black STP texels, blend modes, mask writes, geometry footprint and occlusion before authoring a replacement sequence."
+    },
+    {
+      "id": "acceptance",
+      "task": "Compare stock and replacement sequences in matched bright/dark gameplay with multiple simultaneous effects, then measure pacing/VRAM. Damage, fire rate, collision and weapon balance stay outside visual-effect scope."
+    }
+  ],
+  "time_estimate_status": "Sequence count and actor bindings are unknown; implementation time must be estimated after isolated event capture rather than from palette/file counts.",
+  "references": [
+    {
+      "id": "three_asset_proof",
+      "path": "C:/github/REMASTER_STAGING/three_asset_proof/pack/manifest.json",
+      "sha256": "3612e3a5753c7418ffe99a506118d58df69c2507e11005fdf726338d0be94e5b",
+      "use": "Earlier light-strip scope and alpha preservation proof."
+    },
+    {
+      "id": "source_verifier",
+      "path": "C:/github/Einhander/remaster-audit/build_three_asset_proof.py",
+      "sha256": "5757fbb8bd2c47406e41f328530d08e5aa82cd178ebd0a28b45394847d28c88b",
+      "use": "Independent raw+CLUT CRC/decode verification."
+    },
+    {
+      "id": "installed_manifest",
+      "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/manifest.json",
+      "sha256": "560fbbb5218f5c80093ddbf0732c261f3bedcd4729b54c6e458619910627ff80"
+    },
+    {
+      "id": "mapping_evidence",
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/effects-mapping.json"
+    }
+  ],
+  "limitations": [
+    "An atlas with a glow or streak is a candidate, not proof of a muzzleflash or explosion. No fire/explosion art is generated or applied here.",
+    "Palette-key counts, UV-rectangle counts and texture hashes do not equal weapon count, effect count or animation length.",
+    "The light-strip label is inherited from the earlier functional proof; a weapon-specific owner is unassigned.",
+    "Saved logs deduplicate queries, include different capture sessions, and are not a complete ordered actor/effect sequence. Frame numbers are local to each session.",
+    "Recorded UV rectangles are page-space receipt coordinates, not semantic sprite crops or a validated export grid.",
+    "Original atlas source dimensions, output texture size, visual detail and gameplay resolution are separate; no 4K fire or explosion acceptance is claimed.",
+    "Part of the E584 palette family is not installed; this is a variant-coverage gap, not evidence that a complete named weapon effect is absent.",
+    "Effects may also use untextured or procedurally colored primitives. Their absence from a texture list does not establish that the visual effect is missing.",
+    "Firepower/damage, fire rate, collision, physics and weapon balance are not changed by this visual mapping audit."
+  ]
+}
