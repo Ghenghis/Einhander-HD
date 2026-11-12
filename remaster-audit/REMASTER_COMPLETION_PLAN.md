@@ -2,7 +2,7 @@
 
 Updated 2026-11-12. Status: **in progress; full remaster and full-game E2E are not complete.**
 
-Current resume pointer: [RESUME_STATE.json](RESUME_STATE.json). It records this resumed session's active PID/candidate, new verified source maps, rejected experiments, runtime review gate, and exact next actions. The prior-session handoff below is historical.
+Public showcase update: the current reviewed UI/title composition has 1,194 keys; isolated facade experiments add one exact region. All 324 known mixed-family palette keys are present in that composition. These are texture-key counts, not accepted buildings or completion percentages. The older session counts below are retained as historical planning evidence. Local process/evidence resume state is kept separately from the public source snapshot. See [the gallery](../docs/GALLERY.md) and [comparison notes](../docs/COMPARISONS.md) for the status of published imagery.
 
 ## Objective and scope
 
@@ -10,7 +10,7 @@ Finish the remaster with a traceable source map and actual in-game acceptance fo
 
 2160p rendering, a large PNG, a neural upscale, an authored restoration, and live verification are different milestones. Preserve the original 4:3 composition; the current isolated 9x gameplay surface is 2880×2160.
 
-## What the evidence establishes now
+## Historical session evidence and remaining scope
 
 - The installed base has 964 files: 311 neural RGB upscale origins and 653 nearest-only origins. These are processing origins, not 964 accepted remastered components.
 - The current UI composition has 1,011 texture keys. Its 130 overlay inputs resolve to 118 unique overlay keys: 71 base replacements and 47 additions; 893 base files remain unchanged. Texture keys are not object counts or completion percentages.
