@@ -1,6 +1,17 @@
 # Stage 1 completion status
 
-November 12, 2026. **The remaster and Stage 1 release are incomplete.**
+November 13, 2026. **The remaster and Stage 1 release are incomplete.**
+
+The latest private Wave 3 composition contains 837 authored entries in 1,669
+keys. All 226 native region checks pass. It combines the new Astraea hulls and
+32 canopy phases, scoped Gunpod cells, approved sign revisions, three canyon
+wall/band bindings and revised HUD/results glyphs. The [live Astraea test](STAGE1-WAVE3-RESULTS.md)
+positively submitted all five new hull bindings and all 32 canopy phases, with
+448 authored entries submitted overall. It closed cleanly after 180 seconds,
+without a stage clear. The canyon windows need a brighter revision under native
+vertex shading, and the new HUD/results font was not exercised. Greif v2 failed an independent transparency check and is
+excluded pending correction. Another 157 historical HUD fade aliases still lack
+captured palette bytes and remain unresolved.
 
 The newer [Wave 2 gameplay test](STAGE1-WAVE2-RESULTS.md) exercised a 723-entry,
 1,559-key private composition. All 219 native region checks passed, and the
@@ -18,7 +29,10 @@ one exact mechanical-cell binding and a strip-cell overlay that preserves nearby
 HUD pixels. The [Mk.III live test](STAGE1-MK3-RESULTS.md) positively submitted all
 six new bindings and closed after 180 seconds with two lives remaining. Pose,
 palette and material acceptance remains open. A longer ordinary-input stage
-attempt is in progress with bounded, visually verified native Continues. A separate v18 run
+attempt ended after 810 seconds and five visually verified native Continues,
+without a stage clear. A following 180-second upper-lane experiment verified
+one Continue but exposed downward movement drift; its replacement uses fresh
+source-matched hull geometry for finite controller pulses. A separate v18 run
 positively recorded the authored SPREADER strip being submitted; missing sampled
 receipts in the earlier run did not establish an admission failure.
 

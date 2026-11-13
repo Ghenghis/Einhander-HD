@@ -41,5 +41,19 @@ int main(void){
     hero_draw_snapshot(&tracker,102,1,&s);CHECK("small staging area excluded",s.frame==101);
     hero_draw_observe(&tracker,5,0x724E77DAu,0x21FDE894u,0,x,next_y,next_area);
     hero_draw_snapshot(&tracker,5,1,&s);CHECK("fresh geometry after reset starts new history",s.valid&&s.frame==5&&s.draws==1);
+    const uint32_t mk3[4]={0x724E77DAu,0xE2F3477Cu,0x8FE8B060u,0xC6E8710Bu};
+    for(unsigned i=0;i<4;++i)CHECK("all verified MkIII hull keys accepted",hero_draw_key_for_craft(mk3[i],0x21FDE894u,0,3));
+    CHECK("MkII unique hull does not enter MkIII geometry",!hero_draw_key_for_craft(0xB16492B1u,0x21FDE894u,0,3));
+    const uint32_t ast[5][2]={{0x6ACFACE4u,0xEF213D7Fu},{0x8CD3F840u,0xEF213D7Fu},{0x0878817Du,0x9414AA42u},{0x8E818661u,0x9414AA42u},{0x0A0CE3A4u,0xDE4ECDD2u}};
+    for(unsigned i=0;i<5;++i){
+        CHECK("verified Astraea hull key accepted",hero_draw_key_for_craft(ast[i][0],ast[i][1],0,4));
+        CHECK("wrong Astraea palette rejected",!hero_draw_key_for_craft(ast[i][0],ast[i][1]^1,0,4));
+        CHECK("different source depth rejected",!hero_draw_key_for_craft(ast[i][0],ast[i][1],1,4));
+    }
+    CHECK("Astraea glint excluded",!hero_draw_key_for_craft(0x57FE8E03u,0x3D6CBEDEu,0,4));
+    CHECK("unqualified canopy excluded",!hero_draw_key_for_craft(0xB9EB2209u,0x9414AA42u,0,4));
+    CHECK("unknown source set rejected",!hero_draw_key_for_craft(0x724E77DAu,0x21FDE894u,0,9));
+    hero_draw_observe_for_craft(&tracker,5,0x8FE8B060u,0x21FDE894u,0,x,next_y,next_area,3);
+    hero_draw_snapshot(&tracker,5,1,&s);CHECK("source-set change starts its own union",s.source_set==3&&s.draws==1);
     printf("RESULT checks=%u failures=%u\n",checks,failures);return failures?1:0;
 }

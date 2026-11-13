@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 57,
-  "total_image_bytes": 121828623,
+  "image_count": 58,
+  "total_image_bytes": 125516331,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1616,6 +1616,21 @@
       "category": "actual_gameplay_capture",
       "status": "MkIII authored-hull qualification, ordinary controller input, survival assistance off",
       "processing": "Byte-for-byte composed screenshot"
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave3-astraea.png",
+      "sha256": "6ab682fc8faefc0e2650860a3daf93c369a5fcfef26010cab60ca545f1b35de2",
+      "bytes": 3687708,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_capture",
+      "status": "W3 Astraea live component test; canyon windows dim; no stage clear",
+      "label": "Astraea W3 actual gameplay",
+      "source_identifier": "stage1-completion-20261112/astraea-w3-hd-v1/captures/robin-0030.png",
+      "unmodified_copy": true,
+      "embedded_metadata_present": false
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1776,9 +1791,20 @@
       "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave3-astraea-gameplay.mp4",
+      "sha256": "982e07044cb7d4807fedf3b5e5a1fa59a237a8bda34d7bbd47fa4db677f50d60",
+      "bytes": 46071434,
+      "category": "actual_gameplay_capture",
+      "status": "Continuous Astraea component test; unassisted survival; no stage-clear claim",
+      "result_manifest": "docs/media/gallery/stage1-wave3-results.json",
+      "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 9,
-  "total_video_bytes": 318698292,
+  "video_count": 10,
+  "total_video_bytes": 364769726,
   "video_frame_extract_count": 8
 }

@@ -38,12 +38,12 @@ void gl_renderer_interpolation_diag(int *enabled, int *suspended,
  * texture-upload ticks, FBO-draw ticks. Active only with PSX_RUNTIME_PERF_DIAG. */
 void gl_renderer_runtime_diag(uint64_t out[6]);
 
-/* Opt-in, read-only completed-frame Mk.II hull draw geometry. Coordinates are relative to the
+/* Opt-in, read-only completed-frame selected starter hull geometry. Coordinates are relative to the
  * active draw area, not RAM or world axes. Requires HD source tracking, but
  * replacements may be disabled. A fresh source-matched draw is not pixel
  * visibility or collision evidence. No GPU synchronization or file I/O. */
 typedef struct {
-    int enabled, valid;
+    int enabled, valid, source_set; /*2=MkII,3=MkIII,4=Astraea;0=unconfigured */
     uint64_t frame, age_frames;
     unsigned draws;
     uint32_t texture_hash, palette_hash;

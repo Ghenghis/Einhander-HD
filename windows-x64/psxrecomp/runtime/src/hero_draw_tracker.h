@@ -4,13 +4,13 @@
 #include <string.h>
 #include "gpu_gl_renderer.h"
 
-/* Proven Mk.II hull uploads and their observed native palette. Engine/Gunpod
+/* Proven starter hull uploads and their observed native palettes. Engine/Gunpod
  * keys are absent: moving parts do not define the hull centre. */
 typedef struct {
     uint64_t frame;
     unsigned draws;
     uint32_t texture_hash,palette_hash;
-    int area[4], bounds[4];
+    int area[4], bounds[4],source_set;
 } HeroDrawTracker;
 
 static int hero_draw_key(uint32_t texture,uint32_t palette,unsigned depth) {
@@ -18,11 +18,22 @@ static int hero_draw_key(uint32_t texture,uint32_t palette,unsigned depth) {
     return texture==0x724E77DAu || texture==0x7E3ADD56u ||
            texture==0xE2F3477Cu || texture==0xB16492B1u;
 }
-static void hero_draw_observe(HeroDrawTracker *s,uint64_t frame,
+static int hero_draw_key_for_craft(uint32_t texture,uint32_t palette,unsigned depth,int craft) {
+    if(craft==2)return hero_draw_key(texture,palette,depth);
+    if(depth!=0)return 0;
+    if(craft==3)return palette==0x21FDE894u &&
+        (texture==0x724E77DAu || texture==0xE2F3477Cu || texture==0x8FE8B060u || texture==0xC6E8710Bu);
+    if(craft==4)return
+        (palette==0xEF213D7Fu && (texture==0x6ACFACE4u || texture==0x8CD3F840u)) ||
+        (palette==0x9414AA42u && (texture==0x0878817Du || texture==0x8E818661u)) ||
+        (palette==0xDE4ECDD2u && texture==0x0A0CE3A4u);
+    return 0;
+}
+static void hero_draw_observe_for_craft(HeroDrawTracker *s,uint64_t frame,
         uint32_t texture,uint32_t palette,unsigned depth,
-        const int xs[3],const int ys[3],const int area[4]) {
+        const int xs[3],const int ys[3],const int area[4],int craft) {
     int b[4]={xs[0],ys[0],xs[0],ys[0]};
-    if(!hero_draw_key(texture,palette,depth))return;
+    if(!hero_draw_key_for_craft(texture,palette,depth,craft))return;
     if(area[0]<0 || area[1]<0 || area[2]>1023 || area[3]>511 ||
        area[2]-area[0]+1<128 || area[3]-area[1]+1<128)return;
     for(int i=1;i<3;++i){
@@ -30,9 +41,10 @@ static void hero_draw_observe(HeroDrawTracker *s,uint64_t frame,
         if(ys[i]<b[1])b[1]=ys[i];if(ys[i]>b[3])b[3]=ys[i];
     }
     if(b[2]<area[0] || b[0]>area[2] || b[3]<area[1] || b[1]>area[3])return;
-    if(!s->draws || frame!=s->frame || memcmp(area,s->area,sizeof(s->area))){
+    if(!s->draws || frame!=s->frame || s->source_set!=craft || memcmp(area,s->area,sizeof(s->area))){
         s->frame=frame;s->draws=0;memcpy(s->area,area,sizeof(s->area));
         memcpy(s->bounds,b,sizeof(b));
+        s->source_set=craft;
     }else{
         if(b[0]<s->bounds[0])s->bounds[0]=b[0];if(b[1]<s->bounds[1])s->bounds[1]=b[1];
         if(b[2]>s->bounds[2])s->bounds[2]=b[2];if(b[3]>s->bounds[3])s->bounds[3]=b[3];
@@ -40,9 +52,14 @@ static void hero_draw_observe(HeroDrawTracker *s,uint64_t frame,
     ++s->draws;
     s->texture_hash=texture;s->palette_hash=palette;
 }
+static void hero_draw_observe(HeroDrawTracker *s,uint64_t frame,
+        uint32_t texture,uint32_t palette,unsigned depth,
+        const int xs[3],const int ys[3],const int area[4]) {
+    hero_draw_observe_for_craft(s,frame,texture,palette,depth,xs,ys,area,2);
+}
 static void hero_draw_snapshot(const HeroDrawTracker *s,uint64_t frame,int enabled,
         GlPlayerDrawState *out) {
-    memset(out,0,sizeof(*out));out->enabled=enabled;
+    memset(out,0,sizeof(*out));out->enabled=enabled;out->source_set=s->source_set;
     if(!s->draws)return;
     out->frame=s->frame;out->age_frames=frame>=s->frame?frame-s->frame:UINT64_MAX;
     out->draws=s->draws;out->width=s->area[2]-s->area[0]+1;out->height=s->area[3]-s->area[1]+1;

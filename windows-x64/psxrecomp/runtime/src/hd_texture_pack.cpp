@@ -1,4 +1,5 @@
 #include "hd_texture_pack.h"
+#include "hd_decode_queue.h"
 
 #ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
 #include "../third_party/stb_image.h" /* declarations only; implementation is shared */
@@ -61,7 +62,6 @@ constexpr size_t kMaxTrackingStateBytes = size_t{8} * 1024 * 1024;
 constexpr uint32_t kMaxTrackingStateUploads = 8192;
 constexpr uint32_t kMaxTrackingStateFragments = 262144;
 #ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
-constexpr size_t kMaxDecodeQueue = 32;
 constexpr size_t kMaxPngFileBytes = size_t{64} * 1024 * 1024;
 #endif
 
@@ -466,7 +466,7 @@ struct DecodeCache {
     std::mutex mutex;
     std::condition_variable wake;
     std::unordered_map<uint64_t, DecodeItem> items;
-    std::deque<uint64_t> queue;
+    HdDecodeQueue queue;
     std::thread worker;
     size_t budget = kDefaultDecodeBudget;
     size_t used = 0;
@@ -515,8 +515,7 @@ void decode_worker(DecodeCache* cache) {
             std::unique_lock<std::mutex> lock(cache->mutex);
             cache->wake.wait(lock, [&] { return cache->stop || !cache->queue.empty(); });
             if (cache->stop) return;
-            key = cache->queue.front();
-            cache->queue.pop_front();
+            if(!cache->queue.take(&key))continue;
             auto it = cache->items.find(key);
             if (it == cache->items.end()) continue;
             it->second.state = DecodeState::Loading;
@@ -1483,8 +1482,14 @@ void hd_texture_pack_set_decode_budget(HdTexturePack* pack,
 int hd_texture_pack_request_decode(HdTexturePack* pack,
                                    uint32_t texture_hash,
                                    uint32_t palette_hash) {
+    return hd_texture_pack_request_decode_priority(pack,texture_hash,palette_hash,0);
+}
+
+int hd_texture_pack_request_decode_priority(HdTexturePack* pack,
+                                   uint32_t texture_hash,
+                                   uint32_t palette_hash,int priority) {
 #ifdef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
-    (void)pack; (void)texture_hash; (void)palette_hash;
+    (void)pack; (void)texture_hash; (void)palette_hash;(void)priority;
     return HD_TEXTURE_LOOKUP_ERROR;
 #else
     if (!pack) return HD_TEXTURE_LOOKUP_ERROR;
@@ -1494,6 +1499,7 @@ int hd_texture_pack_request_decode(HdTexturePack* pack,
         return HD_TEXTURE_LOOKUP_ERROR;
 
     std::lock_guard<std::mutex> lock(pack->decode.mutex);
+    if(priority)pack->decode.queue.enable_priority();
     auto found = pack->decode.items.find(key);
     if (found != pack->decode.items.end()) {
         if (found->second.state == DecodeState::Ready) {
@@ -1504,12 +1510,14 @@ int hd_texture_pack_request_decode(HdTexturePack* pack,
             ? HD_TEXTURE_LOOKUP_ERROR : HD_TEXTURE_LOOKUP_NONE;
     }
     if (pack->decode.budget == 0) return HD_TEXTURE_LOOKUP_ERROR;
-    if (pack->decode.queue.size() >= kMaxDecodeQueue)
+    if (!pack->decode.queue.can_push(priority!=0))
         return HD_TEXTURE_LOOKUP_NONE;
     DecodeItem item;
     item.path = record->second.replacement_path;
     pack->decode.items.emplace(key, std::move(item));
-    pack->decode.queue.push_back(key);
+    if(!pack->decode.queue.push(key,priority!=0)){
+        pack->decode.items.erase(key);return HD_TEXTURE_LOOKUP_NONE;
+    }
     if (!pack->decode.started) {
         pack->decode.started = true;
         pack->decode.worker = std::thread(decode_worker, &pack->decode);

@@ -152,6 +152,34 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
         FM_CHECK("CPU attribution reports real readback wall time",cpu.readbacks==1&&cpu.readback_ticks>0&&!s_gpu_dirty);
     }
     fm_hd_opaque_batch_regression(root);
+    /* Real native uploads for the other two starters exercise the production
+     * observer, not just its pure key predicates. PNG admission stays native. */
+    const uint32_t textures[2]={0x8FE8B060u,0x6ACFACE4u},palettes[2]={0x21FDE894u,0xEF213D7Fu};
+    for(int craft=3;craft<=4;++craft){
+        uint16_t raw[16*64],clut[16];int native_ok=1;char name[2048];
+        snprintf(name,sizeof name,"%s/%08X-%08X.words.bin",root,textures[craft-3],palettes[craft-3]);
+        FILE *f=fopen(name,"rb");if(!f)native_ok=0;else{native_ok=fread(raw,2,16*64,f)==16*64&&fgetc(f)==EOF;fclose(f);}
+        snprintf(name,sizeof name,"%s/%08X-%08X.clut.bin",root,textures[craft-3],palettes[craft-3]);
+        f=fopen(name,"rb");if(!f)native_ok=0;else{native_ok&=fread(clut,2,16,f)==16&&fgetc(f)==EOF;fclose(f);}
+        FM_CHECK("alternate starter source and palette CRC",native_ok&&hd_texture_crc32_words_le(raw,16*64)==textures[craft-3]&&hd_texture_crc32_words_le(clut,16)==palettes[craft-3]);
+        if(!native_ok)continue;
+        const int cx=craft==3?304:272;
+        fm_upload(864,256,16,64,raw);fm_upload(cx,495,16,1,clut);flush_cpu_upload();
+        glb_set_draw_area(0,0,319,239);s_player_draw_enabled=1;s_player_draw_only=1;s_player_draw_source_set=craft;
+        memset(&s_player_draw_tracker,0,sizeof(s_player_draw_tracker));memset(&s_player_draw_completed,0,sizeof(s_player_draw_completed));
+        const int xs[3]={50,80,50},ys[3]={70,70,100},us[3]={128,191,128},vs[3]={0,0,63},lim[4]={128,0,191,63};
+        const float color[9]={1,1,1,1,1,1,1,1,1};
+        uint64_t readbacks=s_hd_cpu_diag.readbacks;s_gpu_dirty=1;s_vram[5]=0xDEAD;
+        int drawn=hd_on_textured_prim(xs,ys,us,vs,color,29,cx,495,1,-1,lim,0);
+        player_draw_present_commit();GlPlayerDrawState state;gl_renderer_player_draw_get(&state);
+        FM_CHECK("alternate starter publishes its own fresh hull",state.enabled&&state.valid&&state.source_set==craft&&state.texture_hash==textures[craft-3]&&state.min_x==50&&state.max_y==100);
+        FM_CHECK("alternate observer keeps native pixels and avoids readback",!drawn&&s_gpu_dirty&&s_vram[5]==0xDEAD&&s_hd_cpu_diag.readbacks==readbacks);
+        s_player_draw_source_set=2;memset(&s_player_draw_tracker,0,sizeof(s_player_draw_tracker));memset(&s_player_draw_completed,0,sizeof(s_player_draw_completed));
+        hd_on_textured_prim(xs,ys,us,vs,color,29,cx,495,1,-1,lim,0);player_draw_present_commit();gl_renderer_player_draw_get(&state);
+        FM_CHECK("MkII source set excludes alternate unique hull",!state.valid&&state.source_set==2);
+        FM_CHECK("alternate native observer has no GL error",glGetError()==GL_NO_ERROR);
+    }
+    s_player_draw_only=0;s_player_draw_source_set=2;
     /* The isolated fixture destroys its GL context immediately on return. */
     printf("WORLD_RESULT checks=%d failures=%d\n",fm_checks,fm_failures);
     return fm_failures?1:0;

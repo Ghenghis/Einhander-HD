@@ -8,6 +8,39 @@ class ImmediateHalt:
     def set(self):pass
 
 class RobinPlayTests(unittest.TestCase):
+    def test_upper_lane_parking_uses_observed_position_without_open_loop_drift(self):
+        bot=bridge.Robin();bot.apply(dict(movement='upper_lane',fire_mode='both'))
+        def moves(x,y):return bot.draw_buttons(dict(ok=True,enabled=True,valid=True,
+            bounds=[x-10,y-10,x+10,y+10],viewport=[320,224],source_set=3))
+        self.assertEqual(['left','up'],moves(109,180))
+        self.assertEqual(['right','up'],moves(20,40))
+        self.assertEqual([],moves(28,14))
+        self.assertEqual(['down'],moves(28,10))
+
+    def test_ordinary_lane_with_hull_guard_uses_the_last_active_craft(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='upper_lane',revive=False,hull_guard=True))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            if obj['cmd']=='read_ram':return dict(ok=True,data='00')
+            if obj['cmd']=='player_draw':return dict(ok=True,enabled=True,valid=True,source_set=3,
+                bounds=[18,4,38,24],viewport=[320,224])
+            if obj['cmd']=='get_registers':return dict(ok=True,frame=100)
+            if obj['cmd']=='press':bot.request_stop()
+            return dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertTrue(any(c['cmd']=='press' for c in calls))
+        self.assertFalse(any(c['cmd']=='write_ram' for c in calls))
+
+    def test_ordinary_lane_without_fresh_hull_stops_at_zero_lives(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='upper_lane',revive=False,hull_guard=True))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            return dict(ok=True,data='00') if obj['cmd']=='read_ram' else dict(ok=True,enabled=True,valid=False)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertFalse(any(c['cmd']=='press' for c in calls))
+
     def test_draw_feedback_corrects_screen_axes_with_hysteresis(self):
         bot=bridge.Robin()
         def moves(x,y,**kw):return bot.draw_buttons(dict(ok=True,enabled=True,valid=True,

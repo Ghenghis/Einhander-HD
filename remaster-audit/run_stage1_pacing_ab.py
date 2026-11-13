@@ -80,6 +80,7 @@ def prepare(label,args):
         PSXRECOMP_HD_WORLD_SAMPLING=str(args.world_sampling),PSXRECOMP_HD_WORLD_ANISOTROPY="8",
         PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),
         PSXRECOMP_HD_OPAQUE_BATCH=str(getattr(args,'opaque_batch',0)),
+        PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY=str(getattr(args,'short_upload_priority',0)),
         PSXRECOMP_PLAYER_DRAW_TRACKING='0',PSXRECOMP_PLAYER_DRAW_ONLY='0',
         PSX_RUNTIME_PERF_DIAG="0",PSX_FPS_TELEMETRY="0",PSX_FRAME_INTERPOLATION="0",
         PSX_OVERLAY_CAPTURES=str(runtime / "overlay_captures.json"))
@@ -91,6 +92,7 @@ def prepare(label,args):
         world_sampling=bool(args.world_sampling),runtime_build=base.ref(args.runtime.resolve()) if args.runtime else None,
         hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),
         hd_opaque_batch=bool(getattr(args,'opaque_batch',0)),
+        short_upload_priority=bool(getattr(args,'short_upload_priority',0)),
         guest_frame_target=args.guest_frames,
         telemetry_interval_seconds=1.0,route_poll_seconds=1.0,supersampling=9))
     base.write(directory / "candidate.json",report)

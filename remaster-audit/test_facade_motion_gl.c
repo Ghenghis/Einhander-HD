@@ -7,8 +7,8 @@
 #include "facade_baseline_shader.h"
 
 static int fm_checks,fm_failures;
-#define FM_CHECK(name,value) do { int ok=!!(value); ++fm_checks; fm_failures+=!ok; \
-    printf("CHECK %s %s\n",name,ok?"PASS":"FAIL"); } while(0)
+#define FM_CHECK(name,value) do { int fm_check_result_=!!(value); ++fm_checks; fm_failures+=!fm_check_result_; \
+    printf("CHECK %s %s\n",name,fm_check_result_?"PASS":"FAIL"); fflush(stdout); } while(0)
 
 static const char *FM_VS=
     "#version 330\n"

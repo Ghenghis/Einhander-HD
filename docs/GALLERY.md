@@ -6,6 +6,10 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+[Wave 3 Astraea gameplay](STAGE1-WAVE3-RESULTS.md) includes a continuous actual
+clip, all five new hull bindings and all 32 canopy phases submitted in game.
+The canyon windows still need brightness correction; stage completion remains open.
+
 [Mk.III authored hull gameplay](STAGE1-MK3-RESULTS.md) adds a continuous actual
 clip and positive draw evidence for six new bindings. It is a component test,
 with survival assistance off, and does not establish stage clear or a release.

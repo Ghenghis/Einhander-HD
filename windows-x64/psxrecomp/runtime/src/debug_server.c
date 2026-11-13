@@ -5163,10 +5163,11 @@ static void handle_player_draw(int id,const char *json) {
              "\"frame\":%llu,\"age_frames\":%llu,\"draws\":%u,"
              "\"bounds\":[%d,%d,%d,%d],\"viewport\":[%d,%d],"
              "\"last_key\":\"%08X-%08X\","
-             "\"basis\":\"MkII hull source-matched draw geometry\","
+             "\"source_set\":%d,\"basis\":\"%s hull source-matched draw geometry\","
              "\"not_visibility_proof\":true}",id,s.enabled?"true":"false",s.valid?"true":"false",
              (unsigned long long)s.frame,(unsigned long long)s.age_frames,s.draws,
-             s.min_x,s.min_y,s.max_x,s.max_y,s.width,s.height,s.texture_hash,s.palette_hash);
+             s.min_x,s.min_y,s.max_x,s.max_y,s.width,s.height,s.texture_hash,s.palette_hash,
+             s.source_set,s.source_set==2?"MkII":s.source_set==3?"MkIII":s.source_set==4?"Astraea":"Unconfigured");
 }
 
 static void handle_hd_cpu_profile(int id,const char *json) {

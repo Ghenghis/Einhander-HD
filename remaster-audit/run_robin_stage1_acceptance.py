@@ -30,19 +30,22 @@ def main():
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--hd',choices=['on','off'],default='on')
     parser.add_argument('--craft',choices=['mk2','mk3','astraea'],default='mk2')
-    parser.add_argument('--seconds',type=int,choices=[180,600,900],default=180)
+    parser.add_argument('--seconds',type=int,choices=[90,180,600,900],default=180)
     parser.add_argument('--sources',action='store_true')
     parser.add_argument('--source-cache-keys',default='',help='Up to32 comma-separated raw-upload CRCs retained from boot; requires --sources')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
-    parser.add_argument('--movement',choices=['weave','left_lane','draw_lane'],default='left_lane',
+    parser.add_argument('--movement',choices=['weave','left_lane','upper_lane','draw_lane'],default='left_lane',
         help='draw_lane uses opt-in, read-only MkII hull geometry; live qualification is required')
     parser.add_argument('--revive',type=int,choices=[0,1],default=1)
+    parser.add_argument('--hull-guard',action='store_true',help='Require the selected starter source set and use fresh hull draws at zero spare lives')
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     parser.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
+    parser.add_argument('--short-upload-priority',type=int,choices=[0,1],default=0)
     parser.add_argument('--native-menus',action='store_true')
     parser.add_argument('--terminal-ui-stills',action='store_true',help='Retain one-Hz native frames at zero lives; never confirms Continue')
     parser.add_argument('--composed-stills',action='store_true')
+    parser.add_argument('--hires-stills',action='store_true',help='Also retain sequential 2160p GL readbacks; requires --composed-stills and is not recorder-off pacing evidence')
     parser.add_argument('--record-video',action='store_true',help='Record the owned window with validated gfxcapture/NVENC; not recorder-off acceptance')
     parser.add_argument('--submission-log',action='store_true',help='Retain unsampled first-occurrence replacement receipts, bounded to4096 identities')
     parser.add_argument('--player-material',choices=['configured','stock'],default='configured')
@@ -50,16 +53,18 @@ def main():
     parser.add_argument('--continues',type=int,choices=range(0,11),default=0,
         help='Experimental bounded Continue confirmations after three increasing native prompt frames; never presses Start')
     args=parser.parse_args()
+    if args.hires_stills and not args.composed_stills:parser.error('--hires-stills requires --composed-stills')
+    if args.movement=='upper_lane' and not args.hull_guard:parser.error('--movement upper_lane requires --hull-guard for selected-craft geometry')
     if args.native_menus and args.hd!='on':parser.error('--native-menus enables replacements only after the stock route, so requires --hd on')
-    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane') or not args.terminal_ui_stills):
-        parser.error('--continues requires --revive 0 --movement draw_lane/left_lane --terminal-ui-stills')
+    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane','upper_lane') or not args.terminal_ui_stills):
+        parser.error('--continues requires --revive 0 --movement draw_lane/left_lane/upper_lane --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
     if args.craft != 'mk2' and (args.movement=='draw_lane' or (args.hd=='on' and not args.native_menus)):
         parser.error('Alternate craft require native menus and no MkII hull controller; HD-on needs --native-menus')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
-    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
-    tracking=args.sources or args.movement=='draw_lane'
+    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,short_upload_priority=args.short_upload_priority,guest_frames=0)
+    tracking=args.sources or args.movement in ('draw_lane','upper_lane') or args.hull_guard
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
     overrides=report['launches']['candidate']['environment_overrides']
@@ -68,7 +73,8 @@ def main():
     if args.player_material=='stock':
         overrides.update(PSXRECOMP_SKIN_PROFILE='stock',PSXRECOMP_SKIN_DETAIL_PATH='')
     if args.submission_log:overrides['PSXRECOMP_HD_PROOF_LOG']=str(directory/'first-submissions.jsonl')
-    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement=='draw_lane' else '0',
+    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement in ('draw_lane','upper_lane') or args.hull_guard else '0',
+        PSXRECOMP_PLAYER_DRAW_CRAFT=args.craft,
         PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')
     if args.sources:
         dump=directory/'source-pages';dump.mkdir()
@@ -83,9 +89,10 @@ def main():
         invincible=False,revive=bool(args.revive),enemy_material='original colors',
         native_menus=args.native_menus,terminal_ui_stills=args.terminal_ui_stills,composed_stills=args.composed_stills,
         video_recording=args.record_video,
+        hires_stills=args.hires_stills,
         verified_continue_limit=args.continues,
         first_submission_log=args.submission_log,player_material=args.player_material,dense_gpu_frames=args.dense_gpu_frames,
-        hull_draw_tracking=args.movement=='draw_lane',native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
+        hull_draw_tracking=args.movement in ('draw_lane','upper_lane') or args.hull_guard,hull_guard=args.hull_guard,native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
     pacing.base.write(directory/'candidate.json',report)
     ui.copy_verified(Path(__file__),directory/'executed-robin.py')
     proof=dict(started_at_utc=ui.stamp(),kind='Robin live bring-up',ram_writes=False,state_loads=False,
@@ -107,6 +114,9 @@ def main():
         proof['turbo_off']=probe.request(report,'turbo',enabled=0)
         proof['turbo_state']=probe.request(report,'turbo_state')
         assert proof['turbo_state']['enabled']==0
+        if args.hull_guard:
+            proof['hull_guard_initial']=probe.request(report,'player_draw')
+            assert proof['hull_guard_initial']['enabled'] and proof['hull_guard_initial'].get('source_set')=={'mk2':2,'mk3':3,'astraea':4}[args.craft], 'Runtime did not enable the selected craft source set'
         sys.path.insert(0,str(pacing.base.ROOT/'windows-x64/tools'))
         assert ui.sha(pacing.base.ROOT/'windows-x64/tools/ein_bridge.py')==proof['bot_source']['sha256'], 'Bot source changed during boot'
         import ein_bridge as bridge
@@ -153,7 +163,7 @@ def main():
             recorder=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
                 creationflags=subprocess.CREATE_NO_WINDOW)
         bot_options=dict(action='start',name='Robin',autofire=True,weave=bool(args.weave),
-            dodge=True,revive=bool(args.revive),invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode)
+            dodge=True,revive=bool(args.revive),invincible=False,hull_guard=args.hull_guard,tick=.15,movement=args.movement,fire_mode=args.fire_mode)
         proof['bot_start']=api(bot_options)
         assert proof['bot_start']['bot']['invincible'] is False
         continue_gate=None;pending_continue=None;resume_frames=[];resume_refs=None
@@ -164,7 +174,7 @@ def main():
             import native_continue_gate
             proof['verified_continues']['helper']=pacing.base.ref(Path(native_continue_gate.__file__))
             ui.copy_verified(Path(native_continue_gate.__file__),directory/'executed-continue-gate.py')
-            if args.movement=='left_lane':
+            if args.movement in ('left_lane','upper_lane') and not args.hull_guard:
                 from native_ui_facade_route import load_references
                 resume_refs,receipts=load_references('native-stock')
                 proof['verified_continues']['resume_gameplay_references']=receipts
@@ -183,7 +193,7 @@ def main():
                 lives=probe.request(report,'read_ram',addr='0x800813C4',len=1),
                 player_object=probe.request(report,'read_ram',addr='0x800856E0',len=160),
                 audio=probe.request(report,'audio_stats'))
-            if args.movement=='draw_lane':row['hull_draw']=probe.request(report,'player_draw')
+            if args.movement=='draw_lane' or args.hull_guard:row['hull_draw']=probe.request(report,'player_draw')
             if args.terminal_ui_stills and (row['lives'].get('hex')=='00' or pending_continue is not None):
                 row['terminal_ui_screenshot']=probe.request(report,'screenshot',path=(captures/f'terminal-{index:04d}.png').as_posix())
             if continue_gate is not None:
@@ -236,7 +246,7 @@ def main():
             if index>=next_shot:
                 target=captures/(f'frame-{index:04d}.png')
                 row['screenshot']=ui.command(report,json.dumps(dict(cmd='screenshot',path=target.as_posix())))
-                if args.composed_stills:row['composed']=probe.capture(report,f'robin-{index:04d}',hires=False)
+                if args.composed_stills:row['composed']=probe.capture(report,f'robin-{index:04d}',hires=args.hires_stills)
                 if args.dense_gpu_frames:
                     frame=row['registers']['frame']-1
                     data=probe.request(report,'gpu_frame_dump',frame=frame,count=65536)

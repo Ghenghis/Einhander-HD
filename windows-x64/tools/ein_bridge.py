@@ -114,6 +114,7 @@ class Robin(threading.Thread):
         self.dodge = True          # occasional vertical dodge
         self.revive = True         # push through continue / confirm dialogs
         self.invincible = False    # keep invincibility timer topped up (cheat)
+        self.hull_guard = False    # preserve the last active craft at zero spare lives
         self.movement = "weave"
         self.fire_mode = "cross"
         self._lane_origin = None
@@ -137,7 +138,7 @@ class Robin(threading.Thread):
                 "autofire": self.autofire, "weave": self.weave,
                 "dodge": self.dodge, "revive": self.revive,
                 "invincible": self.invincible, "tick": self.tick,
-                "movement": self.movement, "fire_mode": self.fire_mode,
+                "movement": self.movement, "fire_mode": self.fire_mode,"hull_guard":self.hull_guard,
                 "position": self.position,
                 "thread_alive": self.is_alive(),
                 "log": list(self.log),
@@ -150,14 +151,14 @@ class Robin(threading.Thread):
             if not 1/30 <= tick <= 2:
                 raise ValueError("Bot decision period must be between 1/30 and 2 seconds")
             updates["tick"] = tick
-        for key in ("autofire", "weave", "dodge", "revive", "invincible"):
+        for key in ("autofire", "weave", "dodge", "revive", "invincible","hull_guard"):
             if key in cfg:
                 if not isinstance(cfg[key], bool):
                     raise ValueError(key + " must be a boolean")
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
-        for key, allowed in (("movement", ("weave", "left_lane", "draw_lane")),
+        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "draw_lane")),
                              ("fire_mode", ("cross", "both"))):
             if key in cfg:
                 if cfg[key] not in allowed:
@@ -216,8 +217,18 @@ class Robin(threading.Thread):
             raise ValueError('Hull geometry is outside the calibrated viewport')
         x,y=(l+r)/2,(t+b)/2
         self.position=dict(x=x,y=y,width=w,height=h,frame=state.get('frame'),
-            age_frames=state.get('age_frames'),fresh=True,space='MkII hull draw geometry')
+            age_frames=state.get('age_frames'),fresh=True,space=state.get('basis','hull draw geometry'))
         moves=[]
+        if self.movement=='upper_lane':
+            # Finite pulses follow actual completed-frame geometry. Open-loop
+            # alternating pulses drifted low in the first live upper-lane run.
+            if self.weave:
+                if x>32:moves.append('left')
+                elif x<24:moves.append('right')
+            if self.dodge:
+                if y>16:moves.append('up')
+                elif y<12:moves.append('down')
+            return moves
         if self.weave:
             if x>w*.29:moves.append('left')
             elif x<w*.19:moves.append('right')
@@ -250,25 +261,27 @@ class Robin(threading.Thread):
                 respawn_grace=max(0,respawn_grace-1)
                 if previous_lives is not None and lives[0]<previous_lives:
                     respawn_grace=20
+                    if self.movement=='upper_lane':self._lane_origin=None
                 if previous_lives is not None and lives[0] > previous_lives:
                     self._lane_origin = None
                 previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
                 draw_moves=None
-                if self.movement=='draw_lane':
+                if self.movement in ('draw_lane','upper_lane') or self.hull_guard:
                     state=cmd({'cmd':'player_draw'},timeout=1.5)
                     if not state.get('ok') or not state.get('enabled'):
                         self.note('Hull draw tracking unavailable; bot stopped.')
                         self.request_stop();break
                     if state.get('valid'):
-                        try:draw_moves=self.draw_buttons(state)
-                        except ValueError as error:
-                            self.note(str(error)+'; bot stopped.');self.request_stop();break
+                        if self.movement in ('draw_lane','upper_lane'):
+                            try:draw_moves=self.draw_buttons(state)
+                            except ValueError as error:
+                                self.note(str(error)+'; bot stopped.');self.request_stop();break
                         # The native lives counter can be zero while the last
                         # craft is still flying. A fresh hull is not Continue.
                         dead_or_menu=False
                         missing_draws=0
-                    elif not dead_or_menu:
+                    elif self.movement in ('draw_lane','upper_lane') and not dead_or_menu:
                         missing_draws+=1
                         if missing_draws>=40:
                             self.note('Hull geometry absent for forty polls; bot stopped.')
@@ -301,7 +314,7 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
-                if self.movement == "draw_lane":
+                if self.movement in ("draw_lane","upper_lane"):
                     moves=draw_moves
                     fire=["x"] if self.autofire else []
                     if self.autofire and self.fire_mode=="both":fire.append("square")

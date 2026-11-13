@@ -60,6 +60,7 @@ def main():
         results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
         results['hero-draw']=run([str(out/'test-hero-draw.exe')],'hero-draw-regressions',env).stdout
         results['source-cache-filter']=run([str(out/'test-source-cache-filter.exe')],'source-cache-filter-regressions',env).stdout
+        results['decode-queue']=run([str(out/'test-decode-queue.exe')],'decode-queue-regressions',env).stdout
         for enabled in (0,1):
             label='real-gl-world-'+str(enabled)
             result=run([report['test_executable'],str(out/'facade-pack'),str(enabled)],label,
@@ -83,6 +84,7 @@ def main():
     sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
     sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
     sources.extend([SOURCE.with_name('hd_source_cache_filter.h'),AUDIT/'test_hd_source_cache_filter.c'])
+    sources.extend([SOURCE.with_name('hd_decode_queue.h'),AUDIT/'test_hd_decode_queue.cpp',ROOT/'windows-x64/psxrecomp/runtime/include/hd_texture_pack.h'])
     hashes={str(p):prior.sha(p) for p in sources}
     out.mkdir()
     shutil.copytree(AUDIT/'facade-motion-experiment/build-v3/facade-pack',out/'facade-pack')
@@ -91,6 +93,9 @@ def main():
     for suffix in ('words.bin','clut.bin'):
         shutil.copy2(green/(green_key+'.'+suffix),out/'facade-pack'/(green_key+'.'+suffix))
         shutil.copy2(green/('724E77DA-21FDE894.'+suffix),out/'facade-pack'/('724E77DA-21FDE894.'+suffix))
+        for batch,key in [('mk3-native-sources-v1','8FE8B060-21FDE894'),('astraea-native-sources-v2','6ACFACE4-EF213D7F')]:
+            source=OUTPUT/batch/'hd-on_rewind-off/source-pages'/(key+'.'+suffix)
+            shutil.copy2(source,out/'facade-pack'/(key+'.'+suffix))
     from PIL import Image
     Image.new('RGBA',(1024,1024),(64,96,128,127)).save(out/'facade-pack'/(green_key+'.png'))
     Image.new('RGBA',(64,64),(0,0,0,0)).save(out/'facade-pack'/'724E77DA-21FDE894.png')
@@ -128,6 +133,8 @@ def main():
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         '-I'+str(SOURCE.parent),str(AUDIT/'test_hd_source_cache_filter.c'),
         '-o',str(out/'test-source-cache-filter.exe')],'compile-source-cache-filter-regressions')
+    run([str(prior.COMPILER),'-std=c++17','-O2','-static',str(AUDIT/'test_hd_decode_queue.cpp'),
+        '-o',str(out/'test-decode-queue.exe')],'compile-decode-queue-regressions')
     pack_object=out/'hd_texture_pack.cpp.obj'
     pack_command=next(row['arguments'] for row in baseline['commands'] if row['label']=='compile-pack').copy()
     pack_command[pack_command.index('-o')+1]=str(pack_object)
@@ -171,6 +178,7 @@ def main():
     write(out/'build.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),
         executable=str(runtime),executable_sha256=prior.sha(runtime),test_executable=str(test_exe),
         test_executable_sha256=prior.sha(test_exe),source_hashes=hashes,
+        fixture_hashes={p.relative_to(out).as_posix():prior.sha(p) for p in (out/'facade-pack').rglob('*') if p.is_file()},
         baseline_build=dict(path=str(prior.BASE/'build.json'),sha256=prior.sha(prior.BASE/'build.json')),
         link_response=str(rsp),link_response_sha256=prior.sha(rsp),commands=commands,
         global_runtime_installed=False,game_launched=False))

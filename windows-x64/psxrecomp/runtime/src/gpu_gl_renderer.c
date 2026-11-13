@@ -513,6 +513,11 @@ static int hd_cpu_diag_enabled(void) {
     }
     return s_hd_cpu_diag_enabled;
 }
+static int hd_short_upload_priority_enabled(void) {
+    static int enabled=-1;
+    if(enabled<0){const char *value=getenv("PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY");enabled=value&&strcmp(value,"1")==0;}
+    return enabled;
+}
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out) {
     if(!out)return;
     *out=s_hd_cpu_diag;out->enabled=hd_cpu_diag_enabled();
@@ -2875,10 +2880,16 @@ static HeroDrawTracker s_player_draw_tracker;
 static HeroDrawTracker s_player_draw_completed;
 static int s_player_draw_enabled=-1;
 static int s_player_draw_only=-1;
+static int s_player_draw_source_set=2;
 static int player_draw_enabled(void) {
     if(s_player_draw_enabled<0){
         const char *value=getenv("PSXRECOMP_PLAYER_DRAW_TRACKING");
         s_player_draw_enabled=value && strcmp(value,"1")==0;
+        const char *craft=getenv("PSXRECOMP_PLAYER_DRAW_CRAFT");
+        if(!craft||strcmp(craft,"mk2")==0)s_player_draw_source_set=2;
+        else if(strcmp(craft,"mk3")==0)s_player_draw_source_set=3;
+        else if(strcmp(craft,"astraea")==0)s_player_draw_source_set=4;
+        else {s_player_draw_source_set=0;s_player_draw_enabled=0;}
     }
     return s_player_draw_enabled;
 }
@@ -2893,12 +2904,12 @@ static void player_draw_on_source(const HdTextureSourceMatch *m,const HdTextureD
                                   const int *xs,const int *ys) {
     if(player_draw_enabled() && m->upload_width_words==16 && m->upload_height==64){
         const int area[4]={s_area_x1,s_area_y1,s_area_x2,s_area_y2};
-        hero_draw_observe(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
-                         q->depth,xs,ys,area);
+        hero_draw_observe_for_craft(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
+                         q->depth,xs,ys,area,s_player_draw_source_set);
     }
 }
 void gl_renderer_player_draw_get(GlPlayerDrawState *out) {
-    if(out)hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);
+    if(out){hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);out->source_set=s_player_draw_source_set;}
 }
 static void player_draw_present_commit(void) {
     if(player_draw_enabled())s_player_draw_completed=s_player_draw_tracker;
@@ -3732,8 +3743,10 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
         s_hd_proof_counts[10]++;
     } else {
         const uint64_t decode_start=cpu_diag?SDL_GetPerformanceCounter():0;
-        const int decode_status = hd_texture_pack_request_decode(s_hd_pack, m.texture_hash,
-                                                                  m.palette_hash);
+        const int priority=hd_short_upload_priority_enabled() && m.upload_serial &&
+            m.upload_height<=8 && m.upload_width_words*(4u>>q.depth)<=256;
+        const int decode_status = hd_texture_pack_request_decode_priority(s_hd_pack, m.texture_hash,
+                                                                  m.palette_hash,priority);
         if(cpu_diag){++s_hd_cpu_diag.decode_requests;s_hd_cpu_diag.decode_ticks+=SDL_GetPerformanceCounter()-decode_start;}
         if (decode_status != HD_TEXTURE_LOOKUP_FOUND) {
             s_hd_proof_counts[decode_status == HD_TEXTURE_LOOKUP_NONE ? 6 : 7]++;

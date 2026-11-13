@@ -245,6 +245,13 @@ void hd_texture_pack_set_decode_budget(HdTexturePack* pack,
 int hd_texture_pack_request_decode(HdTexturePack* pack,
                                    uint32_t texture_hash,
                                    uint32_t palette_hash);
+/* Optional short-upload scheduling. The first nonzero priority request enables
+ * four reserved slots within the unchanged32-job bound. At most four urgent
+ * decodes precede an older normal job. Existing queued/loading jobs retain
+ * their identity; no synchronous decode, cancellation or larger cache. */
+int hd_texture_pack_request_decode_priority(HdTexturePack* pack,
+                                   uint32_t texture_hash,
+                                   uint32_t palette_hash,int priority);
 int hd_texture_pack_acquire_decoded(HdTexturePack* pack,
                                     uint32_t texture_hash,
                                     uint32_t palette_hash,
