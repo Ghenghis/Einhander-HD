@@ -11,6 +11,7 @@ import time
 from types import SimpleNamespace
 import run_stage1_world_flypast as world
 from build_stage1_code_cache import HOT
+from stage1_code_qualification import qualification_errors
 
 
 def main():
@@ -130,7 +131,8 @@ def main():
         for pc,reply in final['hot_candidates'].items():
             if any(c['match'] and c['diff_passes']>=32 and not c['device_touch'] for c in reply['candidates']):
                 notes['hot_entries_with_32_clean_diffs'].append(pc)
-        notes['correctness_accepted']=len(notes['hot_entries_with_32_clean_diffs'])==len(requested) and final['shadow']['shadow']['divergences']==0
+        notes['correctness_rejection_reasons']=qualification_errors(notes,result)
+        notes['correctness_accepted']=not notes['correctness_rejection_reasons']
         notes['pacing_accepted']=False;save()
         if not notes['correctness_accepted']:raise RuntimeError('Native/interpreter validation not accepted; inspect retained candidate and shadow records')
 

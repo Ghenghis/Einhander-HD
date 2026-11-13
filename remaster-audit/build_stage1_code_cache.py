@@ -30,6 +30,9 @@ def stage_qualified_cache(report,qualification):
     assert q['correctness_accepted'] and not q['errors'] and q['owned_process_exit']==0 and q['close']['port_closed']
     source_run=qualification.parent.parent;world=read(source_run/'world-flypast-proof.json')
     assert not world['errors'] and world['owned_process_exit']==0 and world['close']['port_closed']
+    from stage1_code_qualification import qualification_errors
+    problems=qualification_errors(q,world)
+    if problems:raise ValueError('Native qualification rejected: '+'; '.join(problems))
     source_config=read(source_run/'candidate.json')
     assert sha(source_run/'candidate.json')==world['candidate']['sha256']
     spec=report['launches']['candidate'];directory=Path(report['evidence']).resolve()

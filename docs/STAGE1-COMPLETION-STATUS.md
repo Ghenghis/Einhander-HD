@@ -6,7 +6,18 @@ The [index-only experiment](media/gallery/stage1-index48-results.json) removed
 95,019 full rebuilds but did not fix the mini-boss hitch or audio starvation.
 The 350-frame hitch interval still took about 6.9 seconds; most wall time was
 in guest work. Actual instruction sampling identified hot interpreted ranges
-around 0x3A998 and 0xB5Cxx. Guarded native-code qualification is the next target.
+around 0x3A998 and 0xB5Cxx.
+
+[Actual native qualification](media/gallery/stage1-native48-qualification-results.json)
+completed 3,684 and 936 clean same-state comparisons for two resident routines.
+Those focused comparisons stopped after verified City; later native gameplay
+is not full-fight equivalence or pacing acceptance. The collision-loop candidate
+passed 792 early comparisons, then its boss-window shadow stalled at frame 8819.
+It is rejected. The old helper falsely accepted the unfinished comparison; a
+shared validation gate now rejects unfinished shadows, unrestored native execution
+and sustained guest freezes, including when staging an older receipt. Seven tests
+and revalidation of the actual successful/frozen runs passed. The R1/R2 timing
+comparison and complete-unit collision correction remain pending.
 
 The bad segment itself is now recorded: [15-second silent mini-boss video](media/gallery/stage1-miniboss-stutter-20261113.mp4)
 and [separate game-process audio](media/gallery/stage1-miniboss-stutter-20261113.wav).

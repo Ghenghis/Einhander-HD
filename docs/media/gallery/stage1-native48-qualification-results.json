@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-13",
+  "scope": "Private resident native-code qualification and rejected collision shadow",
+  "runtime_sha256": "22635802b9b7d6ad7aaf680ca5387e432c0400ce734359fa31e2cf66d665ca94",
+  "production_installed": false,
+  "stutter_fixed": false,
+  "audio_fixed": false,
+  "performance_comparison": "Pending quiet measured R1/R2 pair",
+  "resident_entries": [
+    {
+      "entry": "0x0003A998",
+      "shadow_calls": 3684,
+      "divergences": 0,
+      "skipped_device": 0,
+      "clean_budget": 32,
+      "correctness_accepted": true,
+      "final_frame": 10050,
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "proof_sha256": "dc9f0f879c9982e3d4f0d54e6d6a2bbddcdc06dfa79cbc8ed8cd192839977ba1"
+    },
+    {
+      "entry": "0x0003A6FC",
+      "shadow_calls": 936,
+      "divergences": 0,
+      "skipped_device": 0,
+      "clean_budget": 32,
+      "correctness_accepted": true,
+      "final_frame": 10117,
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "proof_sha256": "bf38e1ddf0d43b043331d418c9edb708cbeaa03f5a38220365116f288634419e"
+    }
+  ],
+  "resident_scope": "Focused differential was automatically disabled after verified City. Native execution continued through the remainder. This establishes bounded early-game comparison, not full-fight same-state equivalence or smoothness.",
+  "collision": {
+    "entry": "0x000B5C08",
+    "early_completed_shadow_calls": 792,
+    "boss_diff_on_frame": 8817,
+    "stalled_frame": 8819,
+    "final_shadow_calls": 793,
+    "final_divergences": 0,
+    "final_in_shadow": 1,
+    "final_native_exec": 0,
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "legacy_helper_claimed_correctness": true,
+    "correctness_accepted": false,
+    "rejection_reasons": [
+      "Final shadow comparison is unfinished",
+      "Native execution was not restored after comparison",
+      "No guest frame progress for at least 10 seconds (frame 8819)"
+    ],
+    "boss_window_completed": false,
+    "proof_sha256": "43ae638d6bf8e0723e501b2b5a1d194222911b14b57e3887a0916b50e01fea86",
+    "boss_observer_sha256": "8fe3f4ff8209af040a570ec6b87d300f51ce5b9f8a8a6f05f310e3cd1e5f5074",
+    "diagnosis": "Counter ordering proves interpreter record completion. Source review suggests native replay can overrun its intended stop after a nested call restores an outer stack pointer. Exact running host location was not captured; that mechanism remains an inference. This is not evidence of the earlier Windows crash cause."
+  },
+  "handler_call_capture": {
+    "first_frame": 8835,
+    "last_frame": 9663,
+    "retained_distinct_call_events": 3584,
+    "read_replies": 57,
+    "observed_targets": [
+      "0x800B61A4",
+      "0x800B6328",
+      "0x800B6EC8"
+    ],
+    "scope": "Actual watched JALR at 0x800B5CCC, with calls retained in the bad 9250..9606 interval. The 64-entry ring wrapped, so this is not a complete call census.",
+    "instruction_or_guard_writes": false
+  },
+  "code_admission": {
+    "resident_snapshots_equal_disc_each": 4,
+    "selected_collision_artifacts": 5,
+    "each_selected_artifact_exact_singleton_entry": true,
+    "selected_guard_bytes_equal_disc": true,
+    "original_capture_unchanged": true,
+    "collision_function_metadata": "Explicitly derived from actual watched indirect calls and executed direct calls; original dispatch and executed lists preserved.",
+    "native_crc_or_stack_guards_weakened": false
+  },
+  "validation_gate_fix": {
+    "unit_tests_passed": 7,
+    "actual_saved_proofs_revalidated": {
+      "resident_R1": "accept",
+      "resident_R2": "accept",
+      "collision_R4": "reject"
+    },
+    "legacy_rejected_proof_staging_attempt": "Rejected before copying; destination control cache unchanged",
+    "validator_sha256": "132ae8a7195b6720745fb4afff683cd901d1562e4d54b4353fa7761b6e0bb3f0",
+    "actual_revalidation_sha256": "747ca26c86200b1efc67c81972064a087f63e0b7e16a8e12b974d40123b608f0"
+  },
+  "raw_retail_code_published": false,
+  "next": "Measure R1/R2 separately, and correct complete-CPS-unit shadow replay before qualifying collision code."
+}
