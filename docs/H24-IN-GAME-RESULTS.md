@@ -1,6 +1,20 @@
 # Full 24-room facade: actual in-game results
 
-## Fresh entry-to-exit pass — November 12, 2026
+## Matched facade — remaining blue strips replaced
+
+[![Watch the matched facade in the game](media/gallery/h24-matched-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4)
+
+[Play/download the new continuous 46.1-second pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4) · [New results and hashes](media/gallery/h24-matched-results.json)
+
+A fresh private run (`h24-matched-r3`, November 12, 2026) shows the former bright blue-window strips replaced by recessed photographic rooms, dark glass, rust-brown framing and restrained cool/warm lighting matching the original 24-room facade. The matching surfaces are visible on front and angled placements. **Around 14 seconds** is a clear close view; foreground signs and enemies still cross naturally. The excerpt begins before entry and continues after exit. This establishes the matching building surfaces seen in this pass, not whole-level blue-window coverage.
+
+The added exact-region mapping is `74EF95B7-B30D16F0`, native source rectangle `[800,0,16,64]` words with CLUT `[16,480]`. Its distinct layout was rebuilt rather than aliasing the original texture. New RGB artwork was generated with OpenAI ImageGen at 1254 × 1254 and resampled to 4096 × 4096 for runtime; native 4096 artwork is not claimed for this added strip. Native categorical alpha was preserved independently. The original 4096 × 4096 H24 artwork and all 1,194 other parent keys are unchanged; the candidate has 1,196 PNG keys in total, adding only this neighbor key to the previous 1,195-key candidate.
+
+The actual renderer submitted both replacements as 4096 × 4096 exact regions: 22 H24 samples at frames 5734–7455 and 25 neighbor samples at frames 5792–7428. Video review supplies the separate visibility check. The game route, normal-speed settings and no-fire approach match the earlier test method; turbo and rewind were off, with no state loads or camera overrides. The disclosed 180-second timer-only survival aid recorded 680 successful writes and then stopped. The private run had no top-level errors; quit returned `emu busy or frozen`, followed by confirmation that the debug port was closed.
+
+The silent 1280 × 960 footage was requested at 30 Hz. The 46.1-second publication is a single continuous source 18–64-second excerpt, copied without re-encoding, interpolation, speed changes, upscaling or internal cuts. The poster is a lossless extraction at public 14 seconds. The new and earlier runs are different frames/viewpoints, not a synchronized A/B. Repeated room patterns, seam/palette coverage, all-room readability and frame pacing remain review work; static interiors do not establish dynamic reflections or room parallax. This is a verified private integration, not an installed production-pack release.
+
+## Earlier full pass with the blue strips still present — November 12, 2026
 
 [![Watch the full facade fly-past](media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)
 

@@ -6,15 +6,15 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
-### Full 24-room facade: fresh entry-to-exit fly-past
+### Matched 24-room facade and former blue-window strips
 
-The fresh November 12 private run used the frozen 4096 × 4096 H24 v2 master. Firing was off, with the ship parked near the lower-left. The continuous excerpt starts before the facade enters from the right and finishes after it leaves. The main facade view at 12 seconds is unobstructed; natural enemy, building and sign occlusion remains elsewhere. Blue-window sections still use separate mappings.
+Fresh actual game footage shows matching photographic interiors, dark glass and rust-brown framing on both facade mappings. The original 24-room artwork is unchanged. The new strip follows its own native layout; its 1254 × 1254 RGB art is resampled to 4096 × 4096 for runtime with categorical alpha preserved.
 
-[![Play the continuous 46-second H24 fly-past](media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)
+[![Play the matched facade fly-past](media/gallery/h24-matched-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4)
 
-[Play/download the full pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4) · [New results, disclosures and earlier footage](H24-IN-GAME-RESULTS.md)
+[Play/download the 46-second pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4) · [Results, disclosures and earlier footage](H24-IN-GAME-RESULTS.md)
 
-Normal game-speed settings, turbo and rewind off; bounded invulnerability-timer aid disclosed. Silent 1280 × 960 recording, with a lossless video-frame poster. Final visual acceptance, all-room readability and performance acceptance remain open.
+The close view around 14 seconds shows the former blue strips alongside the original facade. Normal speed, no firing, turbo/rewind off; timer assistance disclosed. Natural sign/building/enemy occlusion remains. Silent 1280 × 960 video and a lossless frame poster. This proves the observed matching integration, while all-room, whole-level and performance acceptance remain open.
 
 ### Recompiled stock textures, 4× rendering
 

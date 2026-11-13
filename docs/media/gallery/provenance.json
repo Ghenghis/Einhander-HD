@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 45,
-  "total_image_bytes": 97709369,
+  "image_count": 46,
+  "total_image_bytes": 98997960,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1419,6 +1419,31 @@
         "motion_performance_acceptance": false,
         "live_visual_accepted": false
       }
+    },
+    {
+      "path": "docs/media/gallery/h24-matched-fly-past.png",
+      "source_identifier": "docs/media/gallery/h24-matched-fly-past.mp4",
+      "sha256": "8f6fc2590d619b16be28f95e8b441b73b56f56883aa2e5c73fa003c559eb5bac",
+      "bytes": 1288591,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_capture",
+      "label": "Both realistic facade mappings in game, at public video14seconds",
+      "status": "Actual assisted gameplay video frame; former blue strips now photographic rooms",
+      "unmodified_copy": false,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": false,
+      "encoding": {
+        "method": "Lossless PNG extraction of public video frame at14seconds; no crop, resize or pixel edits"
+      },
+      "qualification": {
+        "assisted_visual_review": true,
+        "source_video_seconds": 14,
+        "target_visibility": true,
+        "motion_performance_acceptance": false
+      }
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1513,9 +1538,33 @@
       "target_visibility": true,
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/h24-matched-fly-past.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/fullpass-original.mp4",
+      "source_sha256": "81fa202a12814776a160e70bf2aebc61a9c143c6d87056963811a2f776c6236d",
+      "sha256": "3ccd99f3deca93ec01408bddc8939b3758c1c36d3df5f292ae62d98e25c8d4c2",
+      "bytes": 57484092,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "duration_seconds": 46.1,
+      "decoded_frame_count": 1371,
+      "requested_capture_rate_hz": 30,
+      "audio_streams": 0,
+      "unmodified_copy": false,
+      "editing": "One continuous excerpt requested at source18–64seconds; H.264 stream copy and MP4 edit list; no re-encoding, retiming, interpolation, scaling or internal cuts",
+      "source_duration_seconds": 115.0,
+      "category": "actual_assisted_gameplay_video",
+      "status": "Matched H24 and former blue-window strips visibly integrated in fresh private game run",
+      "label": "Realistic matched facade entry-to-exit fly-past",
+      "target_visibility": true,
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 4,
-  "total_video_bytes": 68132142,
-  "video_frame_extract_count": 1
+  "video_count": 5,
+  "total_video_bytes": 125616234,
+  "video_frame_extract_count": 2
 }

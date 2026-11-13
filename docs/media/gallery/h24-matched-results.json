@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "run_id": "h24-matched-r3",
+  "test_date_arizona": "2026-11-12",
+  "started_at_utc": "2026-11-13T01:13:09.107123+00:00",
+  "ended_at_utc": "2026-11-13T01:16:35.487945+00:00",
+  "fresh_game_run": true,
+  "change": {
+    "original_h24_rooms": 24,
+    "original_h24_pixels_unchanged": true,
+    "new_exact_neighbor_key": "74EF95B7-B30D16F0",
+    "source_rect_words": [
+      800,
+      0,
+      16,
+      64
+    ],
+    "clut_xy": [
+      16,
+      480
+    ],
+    "neighbor_authored_dimensions": [
+      1254,
+      1254
+    ],
+    "neighbor_runtime_dimensions": [
+      4096,
+      4096
+    ],
+    "neighbor_native_4096_authored": false,
+    "neighbor_art_provider": "OpenAI built-in ImageGen",
+    "neighbor_art_source_identifier": "remaster-audit/assets/h24-neighbor-v1/neighbor-master.png",
+    "neighbor_art_sha256": "2fb08f95bb0d812037d17d235f85f1a7a5c4b58a4af69c31d8db9c35273f6060",
+    "categorical_native_alpha_preserved": true,
+    "total_png_keys": 1196,
+    "unchanged_previous_keys": 1195,
+    "unchanged_parent_keys": 1194,
+    "new_neighbor_keys": 1,
+    "production_installed": false
+  },
+  "preparation_verification": {
+    "ok": true,
+    "checked_png_hashes": 1196,
+    "unchanged_previous_keys": 1195,
+    "unchanged_parent_keys": 1194,
+    "new_neighbor_keys": 1,
+    "categorical_alpha": "PASS",
+    "existing_h24_pixels_unchanged": true,
+    "game_actions": 0,
+    "live_visual_accepted": false,
+    "checked_at_utc": "2026-11-13T01:12:44.306304+00:00"
+  },
+  "source_receipts": [
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/candidate.json",
+      "sha256": "5913d2c093799e8999b77c8d82ad410e7856264ce7db8c0b480529b394dadb58",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/preparation-verification.json",
+      "sha256": "4dea5e8416c6077733412bacb7864162fb91c5a7330047b03f51f9a429f34f33",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/fullpass-proof.json",
+      "sha256": "5fb1e85e824819bbc4d1cc0cb50e246622b467a0bc9050a0f4278cf8c6810f92",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/executed-fullpass.py",
+      "sha256": "f9a078f29a75b0e088d8fccba716d58160e3cb85aade04d5f4aac53ffc06e51a",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/native-fullpass/capture.jsonl",
+      "sha256": "1cd211df3bb281c37bb2e4dbc1c67f710aeab4903daadc5b870ba0178b6e910d",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/build_h24_matched_facade.py",
+      "sha256": "668167d0018248c7d40e1a731524a7967a45082c1545481c197bd371b3500e6d",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/run_h24_matched_flypast.py",
+      "sha256": "907fd122b32fd04d664496cae4f3d1855f07406613a15aec7bc4f32989c68bc6",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/run_h24_facade_review.py",
+      "sha256": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2",
+      "published": false
+    }
+  ],
+  "draw_evidence": {
+    "52F33418-5E9B9AC3": {
+      "sample_count": 22,
+      "first_frame": 5734,
+      "last_frame": 7455,
+      "replacement_dimensions": [
+        4096,
+        4096
+      ],
+      "source_kind": "exact_region",
+      "draw_submission_alone_is_visibility_proof": false
+    },
+    "74EF95B7-B30D16F0": {
+      "sample_count": 25,
+      "first_frame": 5792,
+      "last_frame": 7428,
+      "replacement_dimensions": [
+        4096,
+        4096
+      ],
+      "source_kind": "exact_region",
+      "draw_submission_alone_is_visibility_proof": false
+    }
+  },
+  "execution": {
+    "native_route_passed": true,
+    "ordinary_fire_input": false,
+    "movement": "Finite1.2-second ordinary down-left pulse, then clear input",
+    "turbo_enabled_at_start": false,
+    "turbo_enabled_at_end": false,
+    "rewind_enabled": false,
+    "state_loads": false,
+    "user_cards_mounted": false,
+    "survival_assistance": {
+      "kind": "invincibility countdown only",
+      "address": "0x80085718",
+      "width_bytes": 1,
+      "value": 165,
+      "lease_seconds": 180,
+      "interval_seconds": 0.15,
+      "started_at_utc": "2026-11-13T01:14:15.986004+00:00",
+      "stopped_at_utc": "2026-11-13T01:16:32.953665+00:00",
+      "successful_writes": 680,
+      "last_write_at_utc": "2026-11-13T01:16:32.854569+00:00",
+      "forced_timer_clear": false,
+      "lives_writes": false,
+      "stage_jumps": false,
+      "state_loads": false,
+      "purpose": "Visual reachability aid; not unassisted gameplay or performance evidence"
+    },
+    "quiet_gpu_ack_message": "msg_0977b322a614504a",
+    "gpu_release_message": "msg_dfb27ce510aff603",
+    "errors": [],
+    "close": {
+      "pid": 54756,
+      "clear_input": {
+        "id": 1,
+        "ok": true
+      },
+      "quit_reply": {
+        "ok": false,
+        "err": "emu busy or frozen"
+      },
+      "port_closed": true
+    }
+  },
+  "visual_review": {
+    "full_entry_exit_captured": true,
+    "reviewed_source_video_seconds": [
+      18,
+      23,
+      30,
+      45,
+      63
+    ],
+    "reviewed_public_video_seconds": [
+      14
+    ],
+    "findings": [
+      "Former bright blue rectangular window strips now show recessed photographic rooms and matching rust-brown framing",
+      "Original H24 faces and neighbor strip share dark wall mass and restrained cool/warm lighting",
+      "Front and angled placements visible; foreground signs and enemies still occlude portions naturally"
+    ],
+    "scope": "Matching building surfaces in this pass, not every blue-window building or the entire level",
+    "comparison": "Separate runs at different frames, not a synchronized before/after comparison",
+    "integration_verified": true,
+    "all_rooms_individually_verified": false,
+    "full_game_visual_accepted": false,
+    "performance_accepted": false,
+    "dynamic_reflections_verified": false,
+    "audio_continuity_tested": false
+  },
+  "video_asset": {
+    "path": "docs/media/gallery/h24-matched-fly-past.mp4",
+    "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/fullpass-original.mp4",
+    "source_sha256": "81fa202a12814776a160e70bf2aebc61a9c143c6d87056963811a2f776c6236d",
+    "sha256": "3ccd99f3deca93ec01408bddc8939b3758c1c36d3df5f292ae62d98e25c8d4c2",
+    "bytes": 57484092,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "duration_seconds": 46.1,
+    "decoded_frame_count": 1371,
+    "requested_capture_rate_hz": 30,
+    "audio_streams": 0,
+    "unmodified_copy": false,
+    "editing": "One continuous excerpt requested at source18–64seconds; H.264 stream copy and MP4 edit list; no re-encoding, retiming, interpolation, scaling or internal cuts",
+    "source_duration_seconds": 115.0,
+    "category": "actual_assisted_gameplay_video",
+    "status": "Matched H24 and former blue-window strips visibly integrated in fresh private game run",
+    "label": "Realistic matched facade entry-to-exit fly-past",
+    "target_visibility": true,
+    "retimed": false,
+    "interpolated_frames": false
+  },
+  "poster_asset": {
+    "path": "docs/media/gallery/h24-matched-fly-past.png",
+    "source_identifier": "docs/media/gallery/h24-matched-fly-past.mp4",
+    "sha256": "8f6fc2590d619b16be28f95e8b441b73b56f56883aa2e5c73fa003c559eb5bac",
+    "bytes": 1288591,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "category": "actual_capture",
+    "label": "Both realistic facade mappings in game, at public video14seconds",
+    "status": "Actual assisted gameplay video frame; former blue strips now photographic rooms",
+    "unmodified_copy": false,
+    "pixel_content_preserved": true,
+    "embedded_metadata_present": false,
+    "encoding": {
+      "method": "Lossless PNG extraction of public video frame at14seconds; no crop, resize or pixel edits"
+    },
+    "qualification": {
+      "assisted_visual_review": true,
+      "source_video_seconds": 14,
+      "target_visibility": true,
+      "motion_performance_acceptance": false
+    }
+  },
+  "publication_verification": {
+    "full_decode_passed": true,
+    "contiguous_original_encoded_packets": 1485,
+    "constant_timestamp_offset_seconds": 18.0,
+    "reencoding": false,
+    "retiming": false
+  }
+}
