@@ -63,17 +63,18 @@ int main(int argc,char **argv){
  auto start=[&](const char *name,int records=20,int sources=2,int events=2){auto p=base/name;std::filesystem::create_directories(p);return std::string("{\"cmd\":\"research_capture\",\"op\":\"start\",\"path\":\"")+p.generic_string()+"\",\"max_records\":"+std::to_string(records)+",\"max_sources\":"+std::to_string(sources)+",\"max_events\":"+std::to_string(events)+",\"max_bytes\":16777216}";};
  auto start_request=start("main");test_backend=GR_BACKEND_SOFTWARE;request(start_request);check(strstr(response,"\"ok\":false")&&!s_hd_research.active,"unsupported backend rejects start before files");test_backend=GR_BACKEND_OPENGL;
  request(start_request);check(strstr(response,"\"ok\":true")&&s_hd_research.active,"start captures ready native state");check(s_hd_research.records==1,"start writes bounded metadata");
- HdTextureSourceMatch m{};m.texture_hash=0x11223344;m.palette_hash=0x55667788;m.upload_serial=42;m.upload_width_words=2;m.upload_height=2;HdTextureDrawQuery q{};q.depth=0;q.clut_x=800;q.clut_y=500;q.u_last=7;q.v_last=1;q.vram=s_vram;q.vram_word_count=vram.size();int xs[3]={87,110,130},ys[3]={104,120,128};HdTexturePixels px{};px.width=16;px.height=4;
- hd_research_on_draw(&m,&q,nullptr,0,xs,ys);check(s_hd_research.sources==1&&s_hd_research.records==2&&s_hd_research.files==5,"first source emits four bounded sidecars and receipt");
+ HdTextureSourceMatch m{};m.texture_hash=0x11223344;m.palette_hash=0x55667788;m.upload_serial=42;m.upload_width_words=2;m.upload_height=2;HdTextureDrawQuery q{};q.depth=0;q.clut_x=800;q.clut_y=500;q.u_last=7;q.v_last=1;q.vram=s_vram;q.vram_word_count=vram.size();int xs[3]={87,110,130},ys[3]={104,120,128};int us[3]={192,222,192},vs[3]={248,248,254};HdTexturePixels px{};px.width=16;px.height=4;
+ hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.sources==1&&s_hd_research.records==2&&s_hd_research.files==5,"first source emits four bounded sidecars and receipt");
+ auto draw_bytes=read_file(base/"main/capture.jsonl");std::string draw_text(draw_bytes.begin(),draw_bytes.end());check(draw_text.find("\"uv_vertices\":[[192,248],[222,248],[192,254]]")!=std::string::npos,"receipt preserves oriented per-vertex UVs independently of bounds");
  auto words=read_file(base/"main/11223344-55667788.words.bin");auto valid=read_file(base/"main/11223344-55667788.valid.bin");check(words.size()==8&&valid.size()==4&&valid[0]==1,"raw source uses reconstructed fragments and explicit valid mask");check(words[0]==(uint8_t)vram[256*1024+400]&&words[1]==(uint8_t)(vram[256*1024+400]>>8),"source words are little endian");
- for(int i=0;i<2000;++i)hd_research_on_draw(&m,&q,nullptr,0,xs,ys);check(s_hd_research.records==2&&s_hd_research.sources==1,"repeated draw signatures do not exhaust receipt budget");
- hd_research_on_draw(&m,&q,&px,0,xs,ys);check(s_hd_research.records==3,"actual replacement submission is distinct from source query");s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&m,&q,nullptr,0,xs,ys);check(s_hd_research.records==4,"same draw resamples after sixty guest frames");
+ for(int i=0;i<2000;++i)hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.records==2&&s_hd_research.sources==1,"repeated draw signatures do not exhaust receipt budget");
+ hd_research_on_draw(&m,&q,&px,0,xs,ys,us,vs);check(s_hd_research.records==3,"actual replacement submission is distinct from source query");s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.records==4,"same draw resamples after sixty guest frames");
  s_hd_research.records=s_hd_research.limits.max_records;s_hd_research.sources=s_hd_research.limits.max_sources;
  request("{\"cmd\":\"research_capture\",\"op\":\"mark\",\"label\":\"before_pickup\"}");check(strstr(response,"\"ok\":true")&&strstr(response,"\"event_file\":\"event-0001.bin\"")&&s_hd_research.active,"mark survives independent record/source caps");std::string sample_mark=response;
  auto event=read_file(base/"main/event-0001.bin");check(event.size()==HDR_EVENT_BYTES&&!memcmp(event.data(),"EINRC01\0",8),"fixed event magic and total size");if(event.size()==HDR_EVENT_BYTES){check(le32(event.data()+8)==1&&le32(event.data()+12)==160,"version and header size");check(le32(event.data()+32)==160&&le32(event.data()+40)==2097312,"RAM and CPU-VRAM offsets");check(le32(event.data()+48)==1&&le32(event.data()+52)==2&&le32(event.data()+56)==1&&le32(event.data()+84)==1,"coherence and no-readback flags");check(le32(event.data()+68)==hdr_fnv(ram.data(),ram.size()),"RAM checksum matches exact safe-point bytes");check(!memcmp(event.data()+160,ram.data(),ram.size()),"full RAM captured without mutation");check(le32(event.data()+72)==hdr_fnv(event.data()+2097312,HDR_VRAM_BYTES),"CPU-VRAM checksum validates");check(!memcmp(event.data()+96,"before_pickup",13),"event label association");}
  ram[0x84832]^=1;s_frame_count+=1;test_ms+=17;request("{\"cmd\":\"research_capture\",\"op\":\"mark\",\"label\":\"after_pickup\"}");check(strstr(response,"\"event_index\":2")&&s_hd_research.events==2,"second explicit event is separately indexed");auto before=s_hd_research;request("{\"cmd\":\"research_capture\",\"op\":\"mark\",\"label\":\"overflow\"}");check(strstr(response,"\"ok\":false")&&s_hd_research.active&&s_hd_research.events==2&&s_hd_research.bytes_written==before.bytes_written,"event cap rejects only mark with no evidence writes");
  request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");check(!s_hd_research.active&&strstr(response,"user_stop"),"explicit stop closes sink");
- request(start("reserve",20,2,2));s_hd_research.bytes_written=s_hd_research.limits.max_bytes-2*HDR_EVENT_BYTES-100;unsigned records=s_hd_research.records;hd_research_on_draw(&m,&q,nullptr,0,xs,ys);check(s_hd_research.active&&s_hd_research.records==records&&s_hd_research.sources==0,"source/logging pause preserves event reserve without stopping session");request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");
+ request(start("reserve",20,2,2));s_hd_research.bytes_written=s_hd_research.limits.max_bytes-2*HDR_EVENT_BYTES-100;unsigned records=s_hd_research.records;hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.active&&s_hd_research.records==records&&s_hd_research.sources==0,"source/logging pause preserves event reserve without stopping session");request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");
  {
   // Simulate 246 already completed four-file sources without creating 984
   // irrelevant files. Exercise the actual final source commit and all32 real
@@ -120,16 +121,16 @@ int main(int argc,char **argv){
  {
   request(start("sampler-lru",20000,2,2));
   HdTextureSourceMatch source=m;source.upload_serial=0;
-  for(unsigned i=0;i<512;++i){source.texture_hash=0xA0000000u+i;s_frame_count+=1;test_ms+=10;hd_research_on_draw(&source,&q,nullptr,0,xs,ys);}
+  for(unsigned i=0;i<512;++i){source.texture_hash=0xA0000000u+i;s_frame_count+=1;test_ms+=10;hd_research_on_draw(&source,&q,nullptr,0,xs,ys,us,vs);}
   check(s_hd_research_sampler.count==512&&s_hd_research_sampler.rows==512,"sampler fills bounded512 slots with committed source identities");
   source.texture_hash=0xB0000000u;++s_hd_live_generation;s_frame_count+=1;test_ms+=10;
-  hd_research_on_draw(&source,&q,&px,0,xs,ys);
+  hd_research_on_draw(&source,&q,&px,0,xs,ys,us,vs);
   check(s_hd_research_sampler.count==512&&s_hd_research_sampler.evictions==1&&s_hd_research_sampler.rows==513,"novel actual GL phase after512 identities receives an LRU receipt");
   auto bytes=read_file(base/"sampler-lru/capture.jsonl");std::string text(bytes.begin(),bytes.end());
   check(text.find("replacement_gl_draw_submitted")!=std::string::npos&&text.find("B0000000-55667788")!=std::string::npos,"postcapacity GL receipt is present in committed evidence");
-  unsigned previous=q.u_first;q.u_first=6;auto emitted=s_hd_research_sampler.rows;hd_research_on_draw(&source,&q,&px,0,xs,ys);
+  unsigned previous=q.u_first;q.u_first=6;auto emitted=s_hd_research_sampler.rows;hd_research_on_draw(&source,&q,&px,0,xs,ys,us,vs);
   check(s_hd_research_sampler.rows==emitted&&s_hd_research_sampler.repeat_skips>0,"same coarse UV quadrant suppresses pertriangle repetition");
-  s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&source,&q,&px,0,xs,ys);
+  s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&source,&q,&px,0,xs,ys,us,vs);
   bytes=read_file(base/"sampler-lru/capture.jsonl");text.assign(bytes.begin(),bytes.end());
   check(s_hd_research_sampler.rows==emitted+1&&text.find("\"uv_bounds\":[6,0,7,1]")!=std::string::npos,"later coarse sample retains exact chosen UV coordinates in row");q.u_first=(uint8_t)previous;
   request("{\"cmd\":\"research_capture\",\"op\":\"status\"}");check(strstr(response,"lru_identity_phase_uv_quadrant_lease_rate")&&strstr(response,"\"evictions\":1"),"wire status discloses bounded LRU policy and eviction counts");
@@ -160,16 +161,16 @@ int main(int argc,char **argv){
   sample_filter=response;
   check(strstr(response,"\"source_filter_supported\":true")&&strstr(response,"\"policy\":\"include\"")&&s_hd_research.active,"wire starts exact include filter and acknowledges capability");
   HdTextureSourceMatch candidate=m;candidate.palette_hash^=1;
-  auto before=s_hd_research;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys);
+  auto before=s_hd_research;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys,us,vs);
   check(s_hd_research.sources==0&&s_hd_research.files==before.files&&s_hd_research.records>before.records,"excluded palette preserves raw quota and independent query receipts");
-  candidate=m;candidate.texture_hash^=1;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys);
+  candidate=m;candidate.texture_hash^=1;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys,us,vs);
   check(s_hd_research.sources==0&&s_hd_research_source_filter_skips==2,"filter compares full exact texture and palette pair");
-  hd_research_on_draw(&m,&q,nullptr,0,xs,ys);hd_research_on_draw(&m,&q,&px,0,xs,ys);
+  hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);hd_research_on_draw(&m,&q,&px,0,xs,ys,us,vs);
   check(s_hd_research.sources==1&&std::filesystem::exists(base/"filter-include/11223344-55667788.source.json"),"included source survives earlier unrelated keys and consumes its quota");
   request("{\"cmd\":\"research_capture\",\"op\":\"mark\",\"label\":\"filter_context\"}");check(strstr(response,"\"ok\":true")&&s_hd_research.events==1,"full event channel remains usable under raw include filter");
   request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");
   request(filter_start("filter-exclude","\"source_policy\":\"exclude\",\"source_keys\":[\"11223344-55667788\"]"));
-  hd_research_on_draw(&m,&q,nullptr,0,xs,ys);candidate=m;candidate.palette_hash^=1;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys);
+  hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);candidate=m;candidate.palette_hash^=1;hd_research_on_draw(&candidate,&q,nullptr,0,xs,ys,us,vs);
   check(s_hd_research.sources==1&&!std::filesystem::exists(base/"filter-exclude/11223344-55667788.source.json")&&std::filesystem::exists(base/"filter-exclude/11223344-55667789.source.json"),"exclude mode skips exact known pair and retains another palette");
   request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");
   std::string keys="\"source_policy\":\"include\",\"source_keys\":[";
@@ -178,11 +179,11 @@ int main(int argc,char **argv){
   check(strstr(response,"\"ok\":true")&&strstr(response,"\"key_count\":256"),"maximum bounded filter accepted without truncation");
   request("{\"cmd\":\"research_capture\",\"op\":\"stop\"}");
   keys.pop_back();keys+=",\"FFFF0000-55667788\"]";request(filter_start("filter-overflow",keys));check(strstr(response,"\"ok\":false")&&!s_hd_research.active,"257th exact key rejected rather than truncated");
-  request(start("filter-default",20000,2,2));hd_research_on_draw(&m,&q,nullptr,0,xs,ys);
+  request(start("filter-default",20000,2,2));hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);
   check(s_hd_research.sources==1&&s_hd_research_source_filter.source_policy==GL_RESEARCH_SOURCE_ALL&&s_hd_research_source_filter_skips==0,"legacy start clears prior filter and retains all-source behavior");
   s_hd_skin={};s_hd_skin.profile=hd_skin_find_profile("gold-obsidian");s_hd_skin.enabled=1;s_hd_skin.valid=1;s_hd_skin.strength=.65f;s_hd_skin.keys[0]={m.texture_hash,m.palette_hash};s_hd_skin.key_count=1;
   s_hd_skin.diagnostic_scope=1;s_hd_skin.diagnostic_keys[0]={m.texture_hash,m.palette_hash};s_hd_skin.diagnostic_key_count=1;s_hd_skin.preserve_accents=1;
-  ++s_hd_live_generation;s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&m,&q,&px,0,xs,ys);
+  ++s_hd_live_generation;s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&m,&q,&px,0,xs,ys,us,vs);
   auto receipts=read_file(base/"filter-default/capture.jsonl");std::string text(receipts.begin(),receipts.end());
   check(text.find("\"material_channel\":\"player\"")!=std::string::npos&&text.find("\"material_profile\":\"gold-obsidian\"")!=std::string::npos&&text.find("\"material_applied\":true")!=std::string::npos,"draw rows serialize actual selected material channel/profile and submission application");
   check(text.find("\"material_diagnostic_scope\":true")!=std::string::npos&&text.find("\"material_preserve_accents\":true")!=std::string::npos,"draw rows distinguish temporary key probes and accent preservation");

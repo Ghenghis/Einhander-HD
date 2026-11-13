@@ -1,0 +1,153 @@
+"""Build a private sampling probe from pinned objects, then test it separately.
+
+Compilation does not use the GPU. --test runs hidden real-GL fixtures and must
+be scheduled while the shared GPU is quiet. Neither mode installs a runtime.
+"""
+from __future__ import annotations
+import argparse
+from datetime import datetime, timezone
+import json
+import os
+from pathlib import Path
+import shutil
+import struct
+import subprocess
+import zlib
+
+import build_facade_motion_experiment as prior
+from run_hd_skin_material_test import extract_shader
+
+ROOT=prior.ROOT
+AUDIT=prior.AUDIT
+OUTPUT=AUDIT/'dev-center-evidence/stage1-completion-20261112'
+SOURCE=prior.SOURCE
+
+def write(path,value):
+    path.write_text(json.dumps(value,indent=2)+'\n',encoding='utf-8')
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--output',type=Path,required=True)
+    parser.add_argument('--test',action='store_true')
+    args=parser.parse_args();out=args.output.resolve()
+    if out.parent!=OUTPUT.resolve():raise ValueError('Output must be directly inside private completion evidence')
+    commands=[]
+    def run(command,label,env=None):
+        result=subprocess.run(command,cwd=prior.BUILD,env=env,capture_output=True,text=True,
+            timeout=180,creationflags=subprocess.CREATE_NO_WINDOW)
+        (out/(label+'.log')).write_text(result.stdout+result.stderr,encoding='utf-8')
+        commands.append(dict(label=label,arguments=command,exit=result.returncode))
+        write(out/('test-commands.json' if args.test else 'commands.json'),commands)
+        print(label,'exit',result.returncode,flush=True)
+        if result.returncode:
+            print((result.stdout+result.stderr)[-12000:]);raise SystemExit(result.returncode)
+        return result
+    if args.test:
+        report=json.loads((out/'build.json').read_bytes())
+        if (out/'tests.json').exists():raise ValueError('Tests already recorded; use a fresh build')
+        for name in ('executable','test_executable'):
+            if prior.sha(report[name])!=report[name+'_sha256']:raise ValueError('Executable changed')
+        env=os.environ.copy()
+        for key in list(env):
+            if key.startswith(('PSXRECOMP_HD_','PSXRECOMP_SKIN_')) or key=='PSX_LOAD_SLOT':env.pop(key)
+        env.update(PSXRECOMP_HD_PAGE_FALLBACK='1',PSXRECOMP_HD_CPU_AUTHORITY='0',
+            PSXRECOMP_HD_FACADE_MOTION='0')
+        results={}
+        results['native-regions']=run([str(out/'test-regions.exe'),str(out/'region-fixtures'),str(out/'capacity-fixtures')],'native-region-regressions',env).stdout
+        results['watchdog-time']=run([str(out/'test-watchdog-time.exe')],'watchdog-time-regressions',env).stdout
+        results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
+        for enabled in (0,1):
+            label='real-gl-world-'+str(enabled)
+            result=run([report['test_executable'],str(out/'facade-pack'),str(enabled)],label,
+                dict(env,PSXRECOMP_HD_WORLD_SAMPLING=str(enabled),PSXRECOMP_HD_WORLD_ANISOTROPY='8'))
+            results[label]=result.stdout
+        write(out/'tests.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),results=results,
+            build_sha256=prior.sha(out/'build.json'),commands=commands))
+        return
+    if out.exists():raise ValueError('Use a fresh immutable build directory')
+    baseline=json.loads((prior.BASE/'build.json').read_bytes())
+    for row in baseline['objects']:
+        if prior.sha(row['path'])!=row['sha256']:raise ValueError('Pinned object changed')
+    pack=ROOT/'windows-x64/psxrecomp/runtime/src/hd_texture_pack.cpp'
+    saved=OUTPUT/'source-baseline/gpu_gl_renderer.c'
+    if prior.sha(saved)!='bea6700fbc17ea0063af0830ff320381c11119251fa7a9a398976834bdb63b01':
+        raise ValueError('Pre-experiment source changed')
+    watchdog=SOURCE.with_name('starvation_ring.c')
+    freeze=SOURCE.with_name('freeze_heartbeat.c')
+    sources=[SOURCE,pack,watchdog,freeze,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c']
+    hashes={str(p):prior.sha(p) for p in sources}
+    out.mkdir()
+    shutil.copytree(AUDIT/'facade-motion-experiment/build-v3/facade-pack',out/'facade-pack')
+    green=Path('C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements')
+    green_key='95A3BCF8-723E222C'
+    for suffix in ('words.bin','clut.bin'):
+        shutil.copy2(green/(green_key+'.'+suffix),out/'facade-pack'/(green_key+'.'+suffix))
+    from PIL import Image
+    Image.new('RGBA',(1024,1024),(64,96,128,127)).save(out/'facade-pack'/(green_key+'.png'))
+    (out/'facade_baseline_shader.h').write_text('static const char *facade_baseline_hd_fs='+json.dumps(extract_shader(saved))+';\n')
+    shutil.copytree(prior.BASE/'fixtures',out/'region-fixtures')
+    for count,label in [(256,'valid256'),(257,'invalid257')]:
+        directory=out/'capacity-fixtures'/label;directory.mkdir(parents=True)
+        rows=[];raw=struct.pack('<H',0x1111);th=zlib.crc32(raw)
+        for phase in range(count):
+            clut=struct.pack('<16H',0,phase+1,*([0]*14));key=f'{th:08X}-{zlib.crc32(clut):08X}'
+            for suffix,data in [('words.bin',raw),('valid.bin',b'\1'),('clut.bin',clut)]:
+                (directory/(key+'.'+suffix)).write_bytes(data)
+            Image.new('RGBA',(4,1),(8,16,24,127)).save(directory/(key+'.png'))
+            rows.append(f'{key}\t800\t0\t1\t1\t0\t800\t500')
+        (directory/'ExactRegions.tsv').write_text('EIN_EXACT_REGIONS_V1\n'+'\n'.join(rows)+'\n')
+    run([str(prior.COMPILER),'-std=c++17','-O2','-static','-DHD_TEXTURE_PACK_DISABLE_PNG_DECODE',
+        '-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),str(AUDIT/'test_exact_regions.cpp'),str(pack),
+        '-o',str(out/'test-regions.exe')],'compile-region-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        str(AUDIT/'test_starvation_watchdog_time.c'),'-o',str(out/'test-watchdog-time.exe')],'compile-watchdog-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        str(AUDIT/'test_freeze_stack_capture.c'),'-o',str(out/'test-freeze-stack.exe')],'compile-freeze-stack-regressions')
+    pack_object=out/'hd_texture_pack.cpp.obj'
+    pack_command=next(row['arguments'] for row in baseline['commands'] if row['label']=='compile-pack').copy()
+    pack_command[pack_command.index('-o')+1]=str(pack_object)
+    if '-MF' in pack_command:pack_command[pack_command.index('-MF')+1]=str(pack_object)+'.d'
+    run(pack_command,'compile-current-pack')
+    template=next(row['arguments'] for row in baseline['commands'] if row['label']=='compile-experimental-renderer')
+    def compile_renderer(destination,source=SOURCE):
+        command=template.copy()
+        command[command.index('-o')+1]=str(destination)
+        command[command.index('-MF')+1]=str(destination)+'.d'
+        command[-1]=str(source)
+        command.insert(-2,'-I'+str(out))
+        run(command,'compile-'+destination.stem)
+    watchdog_object=out/'starvation_ring.c.obj';compile_renderer(watchdog_object,watchdog)
+    freeze_object=out/'freeze_heartbeat.c.obj';compile_renderer(freeze_object,freeze)
+    response=(prior.BASE/'exact-region-link.rsp').read_text().splitlines()
+    def link(renderer,destination,main=None):
+        values=response.copy()
+        for suffix,replacement in [('/gpu_gl_renderer.c.obj',renderer),('/hd_texture_pack.cpp.obj',pack_object),('/starvation_ring.c.obj',watchdog_object),('/freeze_heartbeat.c.obj',freeze_object)]+([('/main.cpp.obj',main)] if main else []):
+            matches=[i for i,value in enumerate(values) if value.strip('"').replace('\\','/').endswith(suffix)]
+            if len(matches)!=1:raise ValueError('Ambiguous pinned link object '+suffix)
+            values[matches[0]]='"'+replacement.as_posix()+'"'
+        rsp=out/(destination.stem+'.rsp');rsp.write_text('\n'.join(values)+'\n')
+        run([str(prior.COMPILER),'-O3','-static','-Wl,--stack,67108864','@'+str(rsp),'-o',str(destination)],'link-'+destination.stem)
+        return rsp
+    wrapper=out/'sampling-test.c'
+    wrapper.write_text('#define HD_RENDERER_SOURCE "'+SOURCE.as_posix()+'"\n#include "'+(AUDIT/'test_stage1_sampling_gl.c').as_posix()+'"\n')
+    test_object=out/'sampling-test.obj';compile_renderer(test_object,wrapper)
+    ninja=(prior.BUILD/'build.ninja').read_text().splitlines()
+    index=next(i for i,line in enumerate(ninja) if line.startswith('build CMakeFiles/psx-runtime.dir/psxrecomp/runtime/src/main.cpp.obj:'))
+    fields={line.strip().split(' = ',1)[0]:line.split(' = ',1)[1] for line in ninja[index+1:index+15] if ' = ' in line}
+    flags=[v.replace('D:/Games/Einhander/windows-x64/',(ROOT/'windows-x64').as_posix()+'/')
+        for v in prior.windows_args('unused '+fields['DEFINES']+' '+fields['FLAGS']+' '+fields['INCLUDES'])[1:]]
+    main_object=out/'sampling-main.obj'
+    run([str(prior.COMPILER),*flags,'-c',str(AUDIT/'test_facade_motion_gl.cpp'),'-o',str(main_object)],'compile-test-main')
+    test_exe=out/'test-stage1-sampling.exe';link(test_object,test_exe,main_object)
+    renderer=out/'gpu_gl_renderer.c.obj';compile_renderer(renderer)
+    runtime=out/'Einhander_Recompiled.exe';rsp=link(renderer,runtime)
+    if any(prior.sha(p)!=digest for p,digest in hashes.items()):raise ValueError('Source changed while compiling')
+    write(out/'build.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),
+        executable=str(runtime),executable_sha256=prior.sha(runtime),test_executable=str(test_exe),
+        test_executable_sha256=prior.sha(test_exe),source_hashes=hashes,
+        baseline_build=dict(path=str(prior.BASE/'build.json'),sha256=prior.sha(prior.BASE/'build.json')),
+        link_response=str(rsp),link_response_sha256=prior.sha(rsp),commands=commands,
+        global_runtime_installed=False,game_launched=False))
+    print(json.dumps(dict(output=str(out),runtime_sha256=prior.sha(runtime))))
+
+if __name__=='__main__':main()

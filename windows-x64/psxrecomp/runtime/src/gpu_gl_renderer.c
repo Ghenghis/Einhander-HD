@@ -2839,8 +2839,9 @@ static void hd_dump_source_sidecars(const HdTextureDrawQuery *q,
 static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
                                   const HdTextureDrawQuery *q,
                                   const HdTexturePixels *px, int semi,
-                                  const int *xs, const int *ys) {
-    hd_research_on_draw(m,q,px,semi,xs,ys);
+                                  const int *xs, const int *ys,
+                                  const int *us, const int *vs) {
+    hd_research_on_draw(m,q,px,semi,xs,ys,us,vs);
     static int initialized = 0;
     static FILE *log = NULL;
     static struct { uint32_t th, ph; int semi, replacement; } seen[4096];
@@ -2865,6 +2866,7 @@ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
             "\"replacement_size\":[%u,%u],\"native_words\":[%u,%u],"
             "\"depth\":%u,\"semi\":%d,\"source_kind\":\"%s\",\"clut_xy\":[%u,%u],"
             "\"uv_bounds\":[%u,%u,%u,%u],\"xy\":[[%d,%d],[%d,%d],[%d,%d]],"
+            "\"uv_vertices\":[[%d,%d],[%d,%d],[%d,%d]],"
             "\"event\":\"%s\",\"material_contract\":\"" HD_SKIN_MATERIAL_CONTRACT "\","
             "\"material_profile\":\"%s\",\"material_channel\":\"%s\","
             "\"material_applied\":%s,\"material_strength\":%.4f,"
@@ -2873,6 +2875,7 @@ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
             px ? px->width : 0,px ? px->height : 0,m->upload_width_words,m->upload_height,q->depth,
             semi,m->exact_region ? "exact_region" : m->upload_serial ? "upload" : "native_page",q->clut_x,q->clut_y,q->u_first,q->v_first,q->u_last,q->v_last,
             xs[0],ys[0],xs[1],ys[1],xs[2],ys[2],
+            us[0],vs[0],us[1],vs[1],us[2],vs[2],
             px ? "replacement GL draw submitted" : "source draw query matched",
             material && material->enabled && material->profile ? material->profile->id : "stock",
             material==&s_hd_skin ? "player" : material==&s_hd_skin_enemy ? "enemy" : "stock",
@@ -3114,6 +3117,9 @@ typedef struct {
     unsigned generated, failed;
 } HdFacadeMotion;
 static HdFacadeMotion s_hd_facade_motion;
+/* Separate, startup-only Stage 1 experiment. It changes sampling of already
+ * admitted replacements, never source matching or UI/font admission. */
+static int s_hd_world_sampling = 0;
 static GLuint s_hd_prog = 0;
 static GLint s_hd_uHd = -1, s_hd_uOff = -1, s_hd_uDim = -1,
              s_hd_uMaskset = -1, s_hd_uSemipass = -1, s_hd_uSemimode = -1,
@@ -3150,9 +3156,11 @@ static void hd_facade_motion_parse(const char *enabled, const char *anisotropy) 
 }
 
 static void hd_facade_motion_init(void) {
+    const char *world=getenv("PSXRECOMP_HD_WORLD_SAMPLING");
+    s_hd_world_sampling=world && !strcmp(world,"1");
     hd_facade_motion_parse(getenv("PSXRECOMP_HD_FACADE_MOTION"),
-                          getenv("PSXRECOMP_HD_FACADE_ANISOTROPY"));
-    if(!s_hd_facade_motion.enabled)return;
+                          getenv(s_hd_world_sampling?"PSXRECOMP_HD_WORLD_ANISOTROPY":"PSXRECOMP_HD_FACADE_ANISOTROPY"));
+    if(!s_hd_facade_motion.enabled && !s_hd_world_sampling)return;
     if(SDL_GL_ExtensionSupported("GL_EXT_texture_filter_anisotropic") ||
        SDL_GL_ExtensionSupported("GL_ARB_texture_filter_anisotropic")) {
         GLfloat maximum=1.0f;
@@ -3162,12 +3170,24 @@ static void hd_facade_motion_init(void) {
             s_hd_facade_motion.maximum_anisotropy=maximum;
         }
     }
-    fprintf(stderr,"[facade_motion] opt-in exact 52F33418-5E9B9AC3; anisotropy requested %.1f supported %d maximum %.1f; no live acceptance\n",
+    fprintf(stderr,"[hd_sampling] facade experiment %d; Stage1 world experiment %d; anisotropy requested %.1f supported %d maximum %.1f; no live acceptance\n",
+        s_hd_facade_motion.enabled,s_hd_world_sampling,
         (double)s_hd_facade_motion.requested_anisotropy,s_hd_facade_motion.anisotropy_supported,
         (double)s_hd_facade_motion.maximum_anisotropy);
 }
 
+static int hd_stage1_world_sampling_match(const HdTextureSourceMatch *m,const HdTextureDrawQuery *q) {
+    if(!s_hd_world_sampling || !s_tex_filter || !m || !q || q->depth!=0)return 0;
+    /* The dominant green environment atlas, across its existing admitted
+     * palettes. Other pages (including fonts, ships and effects) stay unchanged. */
+    if(m->texture_hash==0x95A3BCF8u && m->upload_width_words==64 && m->upload_height==256)return 1;
+    if(!m->exact_region || m->upload_serial || m->upload_width_words!=16 || m->upload_height!=64 || m->region_y)return 0;
+    if(m->texture_hash==0x52F33418u && m->palette_hash==0x5E9B9AC3u && m->region_x==768 && q->clut_x==0 && q->clut_y==480)return 1;
+    return m->texture_hash==0x74EF95B7u && m->palette_hash==0xB30D16F0u && m->region_x==800 && q->clut_x==16 && q->clut_y==480;
+}
+
 static int hd_facade_motion_match(const HdTextureSourceMatch *m,const HdTextureDrawQuery *q) {
+    if(hd_stage1_world_sampling_match(m,q))return 1;
     return s_hd_facade_motion.enabled && s_tex_filter && m && q &&
         m->exact_region && !m->upload_serial && m->texture_hash==0x52F33418u &&
         m->palette_hash==0x5E9B9AC3u && m->region_x==768 && m->region_y==0 &&
@@ -3203,8 +3223,8 @@ static int hd_facade_motion_sampling(HdTexSlot *slot,int requested) {
             slot->facade_mips_ready=1;slot->facade_mip_levels=levels;
             slot->facade_mip_bytes=extra;s_hd_facade_motion.resident_mip_bytes+=extra;
             ++s_hd_facade_motion.generated;
-            fprintf(stderr,"[facade_motion] 52F33418-5E9B9AC3 %ux%u mip levels %u extra bytes %llu; categorical classes remain level zero\n",
-                slot->w,slot->h,levels,(unsigned long long)extra);
+            fprintf(stderr,"[hd_sampling] %08X-%08X %ux%u mip levels %u extra bytes %llu; categorical classes remain level zero\n",
+                slot->th,slot->ph,slot->w,slot->h,levels,(unsigned long long)extra);
         } else {slot->facade_mips_failed=1;++s_hd_facade_motion.failed;}
     }
     active=active && slot->facade_mips_ready;
@@ -3552,7 +3572,7 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
      * actually drawn. Previously this returned 0 here, which made dump mode
      * permanently draw the native texture. */
     if (s_hd_dump) hd_dump_upload(&q, &m);
-    hd_proof_draw_receipt(&m, &q, NULL, semi, xs, ys);
+    hd_proof_draw_receipt(&m, &q, NULL, semi, xs, ys, us, vs);
     if (!hd_proof_replacements_enabled()) return 0;
 
     /* Texture window remaps sampled uvs arbitrarily within the page; the
@@ -3673,7 +3693,7 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
         p_glActiveTexture(PSXGL_TEXTURE0);
         tex = resident_tex ? resident_tex : hd_tex_object(m.texture_hash, m.palette_hash, &px);
         glBindTexture(GL_TEXTURE_2D, tex);
-        if(s_hd_facade_motion.enabled) {
+        if(s_hd_facade_motion.enabled || s_hd_world_sampling) {
             HdTexSlot *sampling_slot=resident?resident:hd_tex_find(m.texture_hash,m.palette_hash);
             int facade_motion=hd_facade_motion_sampling(sampling_slot,hd_facade_motion_match(&m,&q));
             p_glUniform1i(s_hd_uFacadeMotion,facade_motion);
@@ -3737,7 +3757,7 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
                        (ptrdiff_t)(3 * TEXV * sizeof(float)),
                        verts, PSXGL_STREAM_DRAW);
         hd_draw_passes(semi, s_mask_set);
-        hd_proof_draw_receipt(&m, &q, &px, semi, xs, ys);
+        hd_proof_draw_receipt(&m, &q, &px, semi, xs, ys, us, vs);
         s_hd_proof_counts[4]++;
         s_hd_proof_counts[m.upload_serial ? 9 : 8]++;
         hr_end();
