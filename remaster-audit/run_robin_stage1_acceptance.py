@@ -21,6 +21,7 @@ import launch_ui_candidate as ui
 import ui_candidate_probe as probe
 from native_ui_facade_route import enter_city
 from run_facade_ab_probe import close
+from run_stage1_world_flypast import recorder_command
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -38,13 +39,23 @@ def main():
     parser.add_argument('--revive',type=int,choices=[0,1],default=1)
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
+    parser.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
+    parser.add_argument('--native-menus',action='store_true')
+    parser.add_argument('--terminal-ui-stills',action='store_true',help='Retain one-Hz native frames at zero lives; never confirms Continue')
+    parser.add_argument('--composed-stills',action='store_true')
+    parser.add_argument('--record-video',action='store_true',help='Record the owned window with validated gfxcapture/NVENC; not recorder-off acceptance')
+    parser.add_argument('--continues',type=int,choices=range(0,11),default=0,
+        help='Experimental bounded Continue confirmations after three increasing native prompt frames; never presses Start')
     args=parser.parse_args()
+    if args.native_menus and args.hd!='on':parser.error('--native-menus enables replacements only after the stock route, so requires --hd on')
+    if args.continues and (args.revive or args.movement!='draw_lane' or not args.terminal_ui_stills):
+        parser.error('--continues requires --revive 0 --movement draw_lane --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
     if args.craft != 'mk2' and (args.hd != 'off' or args.movement == 'draw_lane'):
         parser.error('Alternate-craft source acquisition requires native HD-off play and no MkII hull controller')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
-    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,guest_frames=0)
+    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
     tracking=args.sources or args.movement=='draw_lane'
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
@@ -58,12 +69,15 @@ def main():
         overrides.update(PSXRECOMP_HD_DUMP=dump.as_posix(),PSXRECOMP_HD_SOURCE_SIDECARS='1')
         report['pacing_profile'].update(source_sidecars=True,recorder=True,
             native_page_dump=True,source_tracker_pack_enabled=True)
-    if tracking and args.hd=='off':
+    if (tracking and args.hd=='off') or args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         overrides['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
         report['route_reference_profile']='native-stock'
     report['robin_profile']=dict(hd_replacements=args.hd=='on',sources=args.sources,craft=args.craft,
         invincible=False,revive=bool(args.revive),enemy_material='original colors',
+        native_menus=args.native_menus,terminal_ui_stills=args.terminal_ui_stills,composed_stills=args.composed_stills,
+        video_recording=args.record_video,
+        verified_continue_limit=args.continues,
         hull_draw_tracking=args.movement=='draw_lane',native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
     pacing.base.write(directory/'candidate.json',report)
     ui.copy_verified(Path(__file__),directory/'executed-robin.py')
@@ -71,11 +85,18 @@ def main():
         timer_assistance=False,stage_clear_verified=False,gameplay_observations=[],errors=[])
     proof['bot_source']=pacing.base.ref(pacing.base.ROOT/'windows-x64/tools/ein_bridge.py')
     ui.copy_verified(pacing.base.ROOT/'windows-x64/tools/ein_bridge.py',directory/'executed-robin-bridge.py')
-    bridge=None;server=None;source_started=False;process=None;segment=0
+    if args.record_video:report['pacing_profile'].update(recorder=True,video_capture=True)
+    pacing.base.write(directory/'candidate.json',report)
+    bridge=None;server=None;source_started=False;process=None;segment=0;recorder=None
     lock=threading.Lock()
     try:
         process=pacing.launch(report)
         proof['route']=enter_city(report,poll_seconds=1,craft=args.craft)
+        if args.native_menus:
+            control=directory/'replacement-control.txt'
+            if control.read_text()!='0\n':raise RuntimeError('Native menu replacement control changed')
+            control.write_text('1\n')
+            proof['replacement_enabled_after_native_menus']=dict(at_utc=ui.stamp(),control=pacing.base.ref(control),new_menu_art_accepted=False)
         proof['turbo_off']=probe.request(report,'turbo',enabled=0)
         proof['turbo_state']=probe.request(report,'turbo_state')
         assert proof['turbo_state']['enabled']==0
@@ -118,9 +139,21 @@ def main():
             proof.setdefault('research_segments',[]).append(dict(segment=segment,start=row))
             segment+=1;source_started=True
         if args.sources:start_sources()
-        proof['bot_start']=api(dict(action='start',name='Robin',autofire=True,weave=bool(args.weave),
-            dodge=True,revive=bool(args.revive),invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode))
+        if args.record_video:
+            output=directory/'robin-original.mp4';command=recorder_command(report,output,'gfxcapture',args.seconds)
+            proof['video']=dict(path=str(output),arguments=command,started_at_utc=ui.stamp(),
+                scope='Actual owned game window; silent; no retiming/interpolation; capture load affects cadence')
+            recorder=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
+                creationflags=subprocess.CREATE_NO_WINDOW)
+        bot_options=dict(action='start',name='Robin',autofire=True,weave=bool(args.weave),
+            dodge=True,revive=bool(args.revive),invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode)
+        proof['bot_start']=api(bot_options)
         assert proof['bot_start']['bot']['invincible'] is False
+        continue_gate=None;pending_continue=None
+        if args.continues:
+            from native_continue_gate import ContinueGate,REFERENCE,REFERENCE_SHA
+            continue_gate=ContinueGate()
+            proof['verified_continues']=dict(limit=args.continues,reference=dict(path=str(REFERENCE),sha256=REFERENCE_SHA),attempts=[])
         start=time.monotonic();next_shot=0
         captures=directory/'observations';captures.mkdir()
         for index in range(args.seconds+1):
@@ -137,9 +170,48 @@ def main():
                 player_object=probe.request(report,'read_ram',addr='0x800856E0',len=160),
                 audio=probe.request(report,'audio_stats'))
             if args.movement=='draw_lane':row['hull_draw']=probe.request(report,'player_draw')
+            if args.terminal_ui_stills and (row['lives'].get('hex')=='00' or pending_continue is not None):
+                row['terminal_ui_screenshot']=probe.request(report,'screenshot',path=(captures/f'terminal-{index:04d}.png').as_posix())
+            if continue_gate is not None:
+                from PIL import Image
+                from native_ui_facade_route import native_pixels
+                hull_valid=row['hull_draw'].get('valid') is True
+                lives=int(row['lives']['hex'],16)
+                if pending_continue is not None:
+                    if lives>0 and hull_valid:
+                        continue_gate.resumed(lives=lives,hull_valid=hull_valid)
+                        pending_continue['resumed']=dict(elapsed_seconds=row['elapsed_seconds'],frame=row['registers']['frame'],lives=lives,hull=row['hull_draw'])
+                        pending_continue['bot_restart']=api(bot_options)
+                        assert pending_continue['bot_restart']['bot']['invincible'] is False
+                        pending_continue=None
+                    elif row['elapsed_seconds']-pending_continue['elapsed_seconds']>20:
+                        pending_continue['resume_not_verified']=True
+                        pending_continue['last_capture']=probe.capture(report,f'continue-unverified-{index:04d}',hires=False)
+                        proof['continue_route_stopped']='No positive lives and fresh hull within20seconds; no further menu input'
+                        break
+                elif 'terminal_ui_screenshot' in row:
+                    capture=captures/f'terminal-{index:04d}.png'
+                    with Image.open(capture) as image:
+                        row['continue_gate']=continue_gate.observe(native_pixels(image),row['registers'].get('frame'),hull_valid=hull_valid)
+                    if row['continue_gate']['ready']:
+                        if len(proof['verified_continues']['attempts'])>=args.continues:
+                            proof['continue_route_stopped']='Bounded Continue limit reached at verified prompt'
+                            proof['continue_limit_capture']=probe.capture(report,f'continue-limit-{index:04d}',hires=False)
+                            break
+                        pending_continue=dict(elapsed_seconds=row['elapsed_seconds'],frame=row['registers']['frame'],
+                            consecutive_frames=list(continue_gate.streak),last_capture=ui.sha(capture))
+                        proof['verified_continues']['attempts'].append(pending_continue)
+                        pending_continue['bot_stop']=api(dict(action='stop'))
+                        continue_gate.mark_issued()
+                        pending_continue['clear']=probe.request(report,'clear_input')
+                        pending_continue['finite_confirm']=probe.request(report,'press',buttons=0xBFFF,frames=6)
+                        assert pending_continue['finite_confirm'].get('ok') is True
+                else:
+                    continue_gate.streak.clear();continue_gate.ready=False
             if index>=next_shot:
                 target=captures/(f'frame-{index:04d}.png')
                 row['screenshot']=ui.command(report,json.dumps(dict(cmd='screenshot',path=target.as_posix())))
+                if args.composed_stills:row['composed']=probe.capture(report,f'robin-{index:04d}',hires=False)
                 row['bot']=api()['bot'];assert row['bot']['invincible'] is False
                 print(json.dumps(dict(elapsed=index,frame=row['registers'].get('frame'),
                     lives=row['lives'],bot_running=row['bot']['running'],screenshot=str(target))),flush=True)
@@ -156,6 +228,16 @@ def main():
         if source_started:
             try:proof['research_stop']=probe.request(report,'research_capture',op='stop')
             except Exception as error:proof['errors'].append('Capture stop: '+str(error))
+        if recorder is not None:
+            try:
+                _,error=recorder.communicate(input=b'q\n' if recorder.poll() is None else None,timeout=25)
+                (directory/'video-stderr.log').write_bytes(error)
+                proof['video'].update(exit_code=recorder.returncode,bytes=Path(proof['video']['path']).stat().st_size,
+                    sha256=ui.sha(proof['video']['path']))
+                if recorder.returncode or not proof['video']['bytes']:raise RuntimeError('Owned video recorder did not produce a valid file')
+            except Exception as error:
+                if recorder.poll() is None:recorder.kill();recorder.wait(timeout=5)
+                proof['errors'].append('Video: '+str(error))
         if process is not None:
             try:proof['close']=close(report)
             except Exception as error:proof['errors'].append('Close: '+str(error))

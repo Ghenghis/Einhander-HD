@@ -103,7 +103,7 @@ def main():
             parent=dict(path=row['composed_path'],sha256=row['sha256']))
     exact_file=pack/'ExactRegions.tsv'
     exact_lines=exact_file.read_text().splitlines() if exact_file.exists() else ['EIN_EXACT_REGIONS_V1']
-    chosen=set()
+    chosen=set();pixel_equal_reused=0
     for row in plan['entries']:
         image_path=pinned(row['image']);key=row['key'];exact=row.get('exact')
         source_proof=verified_native_source(row['native_source'],key) if row.get('native_source') else None
@@ -131,6 +131,7 @@ def main():
                 clut_sha256=hashlib.sha256(clut).hexdigest(),source_words=row['exact']['source_words'])
         if key in chosen:raise ValueError('Conflicting plan entries for '+key)
         chosen.add(key)
+        name=key+'.png';target=replacements/name;previous=ledger.get(name);encoded=None;reuse=False
         with Image.open(image_path) as opened:
             image=opened.convert('RGBA')
             if row.get('image_uv'):
@@ -156,19 +157,27 @@ def main():
             classes=np.unique(np.asarray(image.getchannel('A')))
             if not set(classes).issubset({0,127,255}):raise ValueError('Noncategorical alpha: '+str(image_path))
             if not (1<=width<=4096 and 1<=height<=4096):raise ValueError('Image exceeds renderer dimensions')
-            buffer=io.BytesIO();image.save(buffer,format='PNG')
-        name=key+'.png';target=replacements/name;previous=ledger.get(name)
-        atomic(target,buffer.getvalue())
+            # Validate and transform every input first. Reuse the parent's
+            # already-pinned encoded PNG only after comparing all final RGBA
+            # pixels; changed builders or inputs cannot bypass validation.
+            if previous:
+                with Image.open(target) as old:
+                    reuse=old.size==image.size and np.array_equal(np.asarray(old.convert('RGBA')),np.asarray(image))
+            if not reuse:
+                buffer=io.BytesIO();image.save(buffer,format='PNG');encoded=buffer.getvalue()
+        if reuse:pixel_equal_reused+=1
+        else:atomic(target,encoded)
         ledger[name]=dict(name=name,composed_path=str(target),sha256=sha(target),dimensions=[width,height],
             bytes=target.stat().st_size,origin='frozen artwork candidate',input=row,
             previous_sha256=previous['sha256'] if previous else None,source_proof=source_proof,
-            alpha_classes=classes.tolist(),live_verified=False)
+            alpha_classes=classes.tolist(),pixel_equal_parent_png_reused=reuse,live_verified=False)
     atomic(exact_file,('\n'.join(exact_lines)+'\n').encode())
     report=copy.deepcopy(parent)
     report.update(evidence=str(out),variant=out.name,files=sorted(ledger.values(),key=lambda row:row['name']),
         final_count=len(ledger),composition_plan=dict(path=str(plan_path),sha256=sha(plan_path)),
         frozen_manifests=manifest_refs,parent_candidate=dict(path=str(parent_path),sha256=sha(parent_path)),
         authored_entries=len(plan['entries']),live_visual_accepted=False,production_installed=False,
+        pixel_equal_parent_pngs_reused=pixel_equal_reused,
         composed_at_utc=datetime.now(timezone.utc).isoformat())
     report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT']=str(pack)
     report['launches']['candidate']['environment_overrides'].update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')

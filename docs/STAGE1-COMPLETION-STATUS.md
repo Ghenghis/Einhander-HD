@@ -2,6 +2,15 @@
 
 November 12, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The newer [Wave 2 gameplay test](STAGE1-WAVE2-RESULTS.md) exercised a 723-entry,
+1,559-key private composition. All 219 native region checks passed, and the
+sampled log submitted 216 authored entries. The revised HUD, fire/smoke, Continue
+and evaluation screens have actual captures. With survival assistance off, the
+controller lost all remaining lives; no stage clear was established. The whole
+276-second observation averaged 55.55 guest frames/s and still accumulated
+output-starved sample frames. A bounded, visually verified Continue route is
+being qualified; the legacy blind revival inputs are not used for acceptance.
+
 The latest [assembled facade footage](H24-IN-GAME-RESULTS.md) uses the 559-entry,
 1,492-key candidate. Its disclosed timer-assisted private run submitted 368
 authored entries, including all ten delivered building tiles, the wall/tunnel
@@ -19,7 +28,7 @@ recorded bot restart after a startup read timeout. Later native play reached the
 night skyline and facade section using ordinary controller input. Stage clear
 has not been established.
 
-A newer private composition now contains 559 delivered artwork entries in a
+A preceding private composition contains 559 delivered artwork entries in a
 1,492-key pack, adding the latest sky, native-style menu set, Mk.II hulls, three
 Gunpod families and five enemy page groups. The 311 added actor source pairs
 passed native word/CLUT CRC checks. Predicted strip uploads retain their
@@ -46,8 +55,8 @@ process identity check ran; that check now precedes boot observation.
 Both RAM position candidates failed live qualification and were removed from
 the controller. A read-only Mk.II source-matched hull observer now publishes
 completed-frame bounds. Its native live attempt ended at Continue without
-confirming it; bounded respawn handling has since been revised and still needs
-full-stage qualification. Native fighter references for Mk.III and Astraea have
+confirming it. Revised respawn handling was exercised in the Wave 2 run but
+also ended at Continue; full-stage qualification remains open. Native fighter references for Mk.III and Astraea have
 also been captured. Alternate selection requires a distinct label match after
 each finite down input; a failed match cannot confirm the craft. A closed Mk.III
 run supplied 890 verified native source pairs; two incomplete validity maps were

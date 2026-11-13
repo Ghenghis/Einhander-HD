@@ -2,6 +2,13 @@
 
 November 12, 2026. The performance and audio release gates remain open.
 
+The later [723-entry Wave 2 observation](STAGE1-WAVE2-RESULTS.md) used v17 with
+batching on, CPU/GPU attribution off, rewind off, source capture and NVENC video.
+Its complete 276-second interval averaged 55.55 guest frames/s and accumulated
+962,902 output-starved sample frames. That interval includes Continue and results
+after the unassisted controller lost all lives; it does not measure a complete
+stage or qualify recorder-off pacing/audio.
+
 CPU attribution in an early City scene measured 18,284 ms in replacement draw
 submission out of 21,316 ms total HD processing over a 60-second run. Source
 matching used 1,930 ms and decode queue/acquire calls 16 ms; there were no

@@ -6,6 +6,10 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+[Latest Wave 2 gameplay results](STAGE1-WAVE2-RESULTS.md) include a continuous
+combat excerpt, updated HUD/effects, Continue and evaluation stills. Survival
+assistance was off; that attempt lost all lives and did not clear Stage 1.
+
 ### Latest full facade and assembled actors
 
 [![Play the current facade fly-past](media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)

@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 53,
-  "total_image_bytes": 107077791,
+  "image_count": 56,
+  "total_image_bytes": 118140915,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1568,6 +1568,42 @@
       "unmodified_copy": false,
       "pixel_content_preserved": true,
       "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave2-effects.png",
+      "sha256": "4110b0aef4be5ab1d7835d9886114d6b6b951d5551a79a1fdc70fab683c265ec",
+      "bytes": 3687708,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_gameplay_capture",
+      "status": "W2 unassisted ordinary-controller-input gameplay; not stage clear",
+      "processing": "Byte-for-byte composed screenshot; no scaling or pixel changes"
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave2-continue.png",
+      "sha256": "b66e7d952ead3458c46500a2c558a34a290a58f133bb742063cc25779f38c7d8",
+      "bytes": 3687708,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_gameplay_capture",
+      "status": "W2 unassisted ordinary-controller-input gameplay; not stage clear",
+      "processing": "Byte-for-byte composed screenshot; no scaling or pixel changes"
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave2-evaluation.png",
+      "sha256": "45c8e7e2b760abdae45b24248325443e667fced478a043928dc521d75a401beb",
+      "bytes": 3687708,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_gameplay_capture",
+      "status": "W2 unassisted ordinary-controller-input gameplay; not stage clear",
+      "processing": "Byte-for-byte composed screenshot; no scaling or pixel changes"
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1706,9 +1742,20 @@
       "processing": "Single continuous stream-copy excerpt. No retiming, interpolation, upscaling, re-encoding or internal cuts.",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-wave2-gameplay.mp4",
+      "sha256": "db40dbe613c9c93e49d65da698ed5d8e478f9ddcaa1bc7a1fb39780b05aa9bcf",
+      "bytes": 39828080,
+      "category": "actual_gameplay_capture",
+      "status": "Unassisted survival; ordinary automated controller input; silent; stage attempt failed",
+      "result_manifest": "docs/media/gallery/stage1-wave2-results.json",
+      "processing": "Single contiguous stream-copy excerpt; no re-encoding, interpolation, retiming, scaling or internal cuts",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 7,
-  "total_video_bytes": 253406837,
+  "video_count": 8,
+  "total_video_bytes": 293234917,
   "video_frame_extract_count": 8
 }

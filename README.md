@@ -12,9 +12,9 @@ Source-aware textures · photographic material studies · 2160p game captures
 ![Windows integration](https://img.shields.io/badge/active_platform-Windows_x64-548bb9?style=flat-square)
 ![Original composition](https://img.shields.io/badge/composition-4%3A3-657b86?style=flat-square)
 
-<a href="docs/media/gallery/einhander-hd-dark-city.png"><img src="docs/media/gallery/einhander-hd-dark-city.png" alt="Dark facade restoration rendered in the game, with photographic window interiors and rust-colored structural bands." width="1100"></a>
+<a href="https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4"><img src="docs/media/gallery/stage1-assembled-facade-poster.png" alt="Watch the actual full facade fly-past with photographic rooms on the matched building surfaces." width="1100"></a>
 
-<sub>Actual 2880 × 2160 internal game capture. The mapped facade is a verified pilot; neighboring surfaces are still being restored.</sub>
+<sub>Actual 1280 × 960 game video. Continuous entry to exit; no firing; timer-only assistance disclosed. The facade telemetry bracket measured 59.93 guest frames/s; full-stage performance and release acceptance remain open. <a href="docs/H24-IN-GAME-RESULTS.md">Results and limits →</a></sub>
 
 </div>
 
@@ -31,12 +31,12 @@ This repository contains the modified recompilation sources, authoring tools and
 <tr>
 <td><a href="docs/media/gallery/stock-native-city.png"><img src="docs/media/gallery/stock-native-city.png" alt="City scene with HD textures disabled in the recompiled runtime."></a></td>
 <td><a href="https://www.youtube.com/watch?v=vpgemmHly3Q"><img src="https://i.ytimg.com/vi/vpgemmHly3Q/hqdefault.jpg" alt="Watch NoBigDeal La's DuckStation reference using IceBullet's HD textures."></a></td>
-<td><a href="docs/media/gallery/einhander-hd-dark-city.png"><img src="docs/media/gallery/einhander-hd-dark-city.png" alt="Our dark photographic facade reference rendered in the game."></a></td>
+<td><a href="docs/H24-IN-GAME-RESULTS.md"><img src="docs/media/gallery/stage1-assembled-facade-poster.png" alt="The matched photographic facade in actual recorded gameplay."></a></td>
 </tr>
 <tr>
 <td><strong>Original texture appearance</strong><br>HD replacement disabled; 4× rendering in the recompiled runtime.</td>
 <td><strong>Independent reference</strong><br>NoBigDeal La's video; textures credited to IceBullet. Click to watch.</td>
-<td><strong>Mapped material replacement</strong><br>Dark walls, glass, room interiors and worn steel; 2160p internal capture.</td>
+<td><strong>Observed private integration</strong><br>Dark walls, room interiors and worn steel; actual assisted 1280 × 960 video.</td>
 </tr>
 </table>
 
@@ -50,13 +50,13 @@ The new facade master contains **24 photographic rooms**: 13 offices, three stor
 
 <sub>Artwork review sheet. Asset preparation and in-game acceptance are tracked separately.</sub>
 
-**Matched building, November 12, 2026:** the remaining blue-window strips now use photographic rooms, dark glass and rust-brown framing alongside the original 24-room facade. The fresh normal-speed game recording shows both mappings on front and angled faces. The original H24 artwork is unchanged.
+**Latest game recording, November 12, 2026:** the matching facade mappings use photographic rooms, dark glass and rust-brown framing alongside the original 24-room artwork. The 559-entry assembled pack also submitted all ten delivered building tiles. The video shows entry, front/angled faces and exit. The original H24 artwork is unchanged.
 
-[![Watch the realistic matched facade fly-past](docs/media/gallery/h24-matched-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4)
+[![Watch the current full facade fly-past](docs/media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)
 
-[Watch the new 46-second fly-past](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4) · [Actual results, evidence and earlier footage](docs/H24-IN-GAME-RESULTS.md)
+[Watch the continuous 49.6-second fly-past](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4) · [Actual results, coverage and earlier footage](docs/H24-IN-GAME-RESULTS.md)
 
-<sub>Assisted private visual test: no firing; normal speed with turbo and rewind off; bounded timer aid disclosed. Silent 1280 × 960 video, clear close view around 14 seconds. Natural occlusion remains. New neighbor artwork is 1254 × 1254, packed at 4096 × 4096. Performance and whole-level acceptance remain open.</sub>
+<sub>Assisted private visual test: no firing; turbo/rewind off; bounded timer aid. The bracket containing both facade mappings measured 59.93 guest frames/s with no audio-starvation increment; the full run averaged 59.21 and still recorded starvation. Silent variable-rate video, without retiming or interpolation. All 2,725 compressed packets match a continuous source sequence. Natural occlusion, full-stage checks, known art defects and production installation remain open.</sub>
 
 The tile is bound to verified native source words, palette and UV coordinates. The formerly blue neighbor strip uses a distinct tile and now has a separately registered matching layout. The current inventory contains 324 palette keys across ten mixed atlas families; these do not count buildings or establish complete environment coverage.
 
