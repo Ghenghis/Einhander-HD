@@ -5204,6 +5204,11 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"base_filter_updates\":%llu,\"base_filter_skips\":%llu,"
              "\"hr_bracket_keeps\":%llu,\"hr_bracket_skips\":%llu,"
              "\"hd_split_flushes\":%llu,\"hd_split_retains\":%llu,\"hr_kept_leaks\":%llu,"
+             "\"pack_invalidate_calls\":%llu,\"pack_region_calls\":%llu,\"pack_region_ms\":%.6f,"
+             "\"pack_region_tests\":%llu,\"pack_region_hits\":%llu,"
+             "\"pack_upload_calls\":%llu,\"pack_upload_ms\":%.6f,\"pack_upload_candidates\":%llu,"
+             "\"pack_track_calls\":%llu,\"pack_track_ms\":%.6f,"
+             "\"pack_index_rebuilds\":%llu,\"pack_index_rebuild_ms\":%.6f,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5216,7 +5221,12 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips,
              (unsigned long long)s.hr_bracket_keeps,(unsigned long long)s.hr_bracket_skips,
              (unsigned long long)s.hd_split_flushes,(unsigned long long)s.hd_split_retains,
-             (unsigned long long)s.hr_kept_leaks);
+             (unsigned long long)s.hr_kept_leaks,
+             (unsigned long long)s.pack_invalidate_calls,(unsigned long long)s.pack_region_calls,
+             (double)s.pack_region_ns/1e6,(unsigned long long)s.pack_region_tests,(unsigned long long)s.pack_region_hits,
+             (unsigned long long)s.pack_upload_calls,(double)s.pack_upload_ns/1e6,(unsigned long long)s.pack_upload_candidates,
+             (unsigned long long)s.pack_track_calls,(double)s.pack_track_ns/1e6,
+             (unsigned long long)s.pack_index_rebuilds,(double)s.pack_index_rebuild_ns/1e6);
 }
 
 static void handle_dirty_pc_profile(int id,const char *json){

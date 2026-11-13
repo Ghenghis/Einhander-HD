@@ -518,10 +518,12 @@ static int hd_short_upload_priority_enabled(void) {
     if(enabled<0){const char *value=getenv("PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY");enabled=value&&strcmp(value,"1")==0;}
     return enabled;
 }
+static void hd_cpu_diag_pack_cost(GlHdCpuDiag *out); /* defined after s_hd_pack */
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out) {
     if(!out)return;
     *out=s_hd_cpu_diag;out->enabled=hd_cpu_diag_enabled();
     out->frequency=out->enabled?SDL_GetPerformanceFrequency():0;
+    if(out->enabled)hd_cpu_diag_pack_cost(out);
 }
 
 static int runtime_upload_diag_enabled(void) {
@@ -2520,6 +2522,14 @@ static void gpu_fill(int x,int y,int w,int h,uint16_t c) {
  *                              so dumps are instantly usable as replacements. */
 static HdTexturePack *s_hd_pack = NULL;
 static int s_hd_state = 0;          /* 0 = not probed, 1 = active, -1 = off */
+static void hd_cpu_diag_pack_cost(GlHdCpuDiag *out) {
+    HdTexturePackCostStats c;hd_texture_pack_get_cost_stats(s_hd_pack,&c);
+    out->pack_invalidate_calls=c.invalidate_calls;out->pack_region_calls=c.region_calls;
+    out->pack_region_ns=c.region_ns;out->pack_region_tests=c.region_tests;out->pack_region_hits=c.region_hits;
+    out->pack_upload_calls=c.upload_calls;out->pack_upload_ns=c.upload_ns;out->pack_upload_candidates=c.upload_candidates;
+    out->pack_track_calls=c.track_calls;out->pack_track_ns=c.track_ns;
+    out->pack_index_rebuilds=c.index_rebuilds;out->pack_index_rebuild_ns=c.index_rebuild_ns;
+}
 static int s_hd_dump = 0;
 static char s_hd_dump_dir[1024];
 static HdSkinConfig s_hd_skin;
@@ -2682,6 +2692,7 @@ static void hd_ensure_pack(void) {
                 s_hd_decode_budget = (size_t)mb * 1024 * 1024;
         }
         hd_texture_pack_set_decode_budget(s_hd_pack, s_hd_decode_budget);
+        hd_texture_pack_set_cost_profile(s_hd_pack, hd_cpu_diag_enabled());
         s_hd_state = 1;
         fprintf(stderr, "[hd_tex] pack active: %s%s\n", pack_root,
                 s_hd_dump ? " (dumping)" : "");

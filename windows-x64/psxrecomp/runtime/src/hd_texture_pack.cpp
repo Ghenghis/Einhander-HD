@@ -7,6 +7,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <condition_variable>
 #include <cctype>
 #include <cstdio>
@@ -64,6 +65,12 @@ constexpr uint32_t kMaxTrackingStateFragments = 262144;
 #ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
 constexpr size_t kMaxPngFileBytes = size_t{64} * 1024 * 1024;
 #endif
+
+/* Diagnostic cost clock (only read when a pack's cost profile is enabled). */
+inline uint64_t cost_now_ns() {
+    return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+        std::chrono::steady_clock::now().time_since_epoch()).count());
+}
 
 uint64_t make_key(uint32_t texture_hash, uint32_t palette_hash) {
     return (uint64_t{texture_hash} << 32) | palette_hash;
@@ -701,6 +708,8 @@ struct HdTexturePack {
     Rect upload_bounds{};
     std::vector<ExactRegion> regions;
     uint64_t region_validations = 0;
+    bool cost_enabled = false;          /* diagnostic counters only */
+    HdTexturePackCostStats cost{};
     DecodeCache decode;
 };
 
@@ -777,6 +786,11 @@ static bool region_covers(const ExactRegion& region,const HdTextureDrawQuery& q)
 
 size_t hd_texture_pack_region_count(const HdTexturePack* pack){return pack?pack->regions.size():0;}
 uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack){return pack?pack->region_validations:0;}
+void hd_texture_pack_set_cost_profile(HdTexturePack* pack,int enabled){if(pack)pack->cost_enabled=enabled!=0;}
+void hd_texture_pack_get_cost_stats(const HdTexturePack* pack,HdTexturePackCostStats* out){
+    if(out)std::memset(out,0,sizeof(*out));
+    if(pack&&out)*out=pack->cost;
+}
 
 int hd_texture_pack_probe_region(const HdTexturePack* pack,const HdTextureDrawQuery* query,
                                 HdTextureRegionCandidate* out){
@@ -874,6 +888,10 @@ void upload_index_refresh(HdTexturePack* pack, Upload& upload) {
 
 void upload_index_rebuild(HdTexturePack* pack) {
     if (!pack) return;
+    struct RebuildCost {
+        HdTexturePack* p; uint64_t t0;
+        ~RebuildCost() { if (p) { ++p->cost.index_rebuilds; p->cost.index_rebuild_ns += cost_now_ns() - t0; } }
+    } rebuild_cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
     for (auto& bucket : pack->upload_index) bucket.clear();
     pack->upload_by_serial.clear();
     pack->upload_bounds = Rect{};
@@ -1109,13 +1127,21 @@ void hd_texture_pack_invalidate(HdTexturePack* pack,
     if (!pack || width_words == 0 || height == 0 ||
         width_words > kVramWidth || height > kVramHeight)
         return;
+    const bool cost = pack->cost_enabled;
+    if (cost) ++pack->cost.invalidate_calls;
     if (!pack->regions.empty()) {
+        const uint64_t t0 = cost ? cost_now_ns() : 0;
         const auto region_cuts=physical_rects(x,y,width_words,height);
         for(auto& region:pack->regions) for(const auto& cut:region_cuts) {
             const Rect source{region.x,region.y,region.width,region.height};
             const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
-            if(intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut)))region.cache_valid=false;
+            if (cost) ++pack->cost.region_tests;
+            if(intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))){
+                if (cost) ++pack->cost.region_hits;
+                region.cache_valid=false;
+            }
         }
+        if (cost) { ++pack->cost.region_calls; pack->cost.region_ns += cost_now_ns() - t0; }
     }
     bool erased_upload = false;
     if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0)
@@ -1125,9 +1151,14 @@ void hd_texture_pack_invalidate(HdTexturePack* pack,
         const Rect cut{unsigned{x}, unsigned{y}, width_words, height};
         if (!intersects(pack->upload_bounds, cut)) return;
     }
+    struct UploadCost {
+        HdTexturePack* p; uint64_t t0;
+        ~UploadCost() { if (p) { ++p->cost.upload_calls; p->cost.upload_ns += cost_now_ns() - t0; } }
+    } upload_cost{cost ? pack : nullptr, cost ? cost_now_ns() : 0};
     const std::vector<Rect> cuts = physical_rects(x, y, width_words, height);
     std::vector<uint64_t> candidate_serials;
     upload_index_collect(pack, cuts, &candidate_serials);
+    if (cost) pack->cost.upload_candidates += candidate_serials.size();
     for (const uint64_t serial : candidate_serials) {
         auto indexed = pack->upload_by_serial.find(serial);
         if (indexed == pack->upload_by_serial.end() || !indexed->second)
@@ -1182,6 +1213,10 @@ int hd_texture_pack_track_upload(HdTexturePack* pack,
     if (!pack || !words || width_words == 0 || height == 0 ||
         width_words > kVramWidth || height > kVramHeight || word_count < required)
         return 0;
+    struct TrackCost {
+        HdTexturePack* p; uint64_t t0;
+        ~TrackCost() { if (p) { ++p->cost.track_calls; p->cost.track_ns += cost_now_ns() - t0; } }
+    } track_cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
     const uint32_t hash = hd_texture_crc32_words_le(words, required);
     hd_texture_pack_invalidate(pack, x, y, width_words, height);
     Upload upload;

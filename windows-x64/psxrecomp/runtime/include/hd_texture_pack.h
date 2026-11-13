@@ -106,6 +106,24 @@ int hd_texture_pack_match_region(HdTexturePack* pack,
                                 HdTextureSourceMatch* out_match);
 uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack);
 
+/* Diagnostic-only cost counters for the emu-thread pack maintenance paths.
+ * Off by default; enabled by the renderer only under PSXRECOMP_HD_CPU_PROFILE.
+ * region_*: the exact-region cache invalidation component of
+ * hd_texture_pack_invalidate (every GPU primitive / fill / copy / upload).
+ * upload_*: the coarse tracked-upload fragment component of the same call,
+ * counted only when it passes the upload_bounds broad phase.
+ * track_*: hd_texture_pack_track_upload (CRC + invalidate + index rebuild).
+ * index_*: upload_index_rebuild calls (from track_upload and erasures). */
+typedef struct {
+    uint64_t invalidate_calls;
+    uint64_t region_calls, region_ns, region_tests, region_hits;
+    uint64_t upload_calls, upload_ns, upload_candidates;
+    uint64_t track_calls, track_ns;
+    uint64_t index_rebuilds, index_rebuild_ns;
+} HdTexturePackCostStats;
+void hd_texture_pack_set_cost_profile(HdTexturePack* pack, int enabled);
+void hd_texture_pack_get_cost_stats(const HdTexturePack* pack, HdTexturePackCostStats* out);
+
 /* One surviving physical fragment of a tracked upload: VRAM rect plus its
  * origin within the logical upload. Enough to re-decode the upload from VRAM. */
 typedef struct HdTextureUploadFragment {

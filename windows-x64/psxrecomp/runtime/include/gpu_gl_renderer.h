@@ -67,6 +67,10 @@ typedef struct {
     uint64_t base_filter_updates,base_filter_skips;
     uint64_t hr_bracket_keeps,hr_bracket_skips;
     uint64_t hd_split_flushes,hd_split_retains,hr_kept_leaks;
+    /* Pack maintenance cost (hd_texture_pack cost profile; ns, not ticks). */
+    uint64_t pack_invalidate_calls,pack_region_calls,pack_region_ns,pack_region_tests,pack_region_hits;
+    uint64_t pack_upload_calls,pack_upload_ns,pack_upload_candidates;
+    uint64_t pack_track_calls,pack_track_ns,pack_index_rebuilds,pack_index_rebuild_ns;
 } GlHdCpuDiag;
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out);
 
