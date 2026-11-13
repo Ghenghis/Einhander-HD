@@ -6,6 +6,10 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+[Latest audio diagnostics](STAGE1-AUDIO-RESULTS.md) include the focused batching
+comparison and [actual game process output](media/gallery/stage1-batching-process-output.wav).
+Capture integrity passed; gameplay/audio smoothness remains unaccepted.
+
 [Wave 3 Astraea gameplay](STAGE1-WAVE3-RESULTS.md) includes a continuous actual
 clip, all five new hull bindings and all 32 canopy phases submitted in game.
 The later mask test below supplies a canyon brightness correction; stage completion remains open.

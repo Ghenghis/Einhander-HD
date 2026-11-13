@@ -148,3 +148,27 @@ with a private native-texture control, observe host graphics state, and then
 repeat batching off/on with the same runtime and explicit foreground conditions.
 Ordinary combat, boss fire, FMV and
 process/device-output continuity remain open.
+
+The [focused same-v40 batching pair](media/gallery/stage1-batching-audio-results.json)
+kept the owned game in front from boot, with no agent UI changes during timing.
+Batching off averaged **49.4346fps / 960,215 starved sample frames**; batching on
+averaged **55.8619fps / 351,434**. The enabled path batched 2,083,186 primitives.
+Both runs closed with exit0, errors[] and closed debug ports. This is one ordered
+pair, with different initial fill and guest-frame routes; both still fail.
+
+A separate native-texture v40 control averaged **60.0083fps with zero new
+starvation**. Its timing completed, but the old process-audio observer then
+refused the game's console child before activating capture. The revised strict
+helper permits only a verified Windows system console host directly owned by
+the game and captured ten seconds after the batching-on measurement. Its WAV
+contains exactly 480,000 stereo sample frames, with no capture gap filling,
+discontinuities or timestamp-error flags. The analyzer passed capture integrity
+and identified eight short PCM-silence candidates; their cause is not established.
+The virtual device's constant device position and 999 overlap flags are disclosed;
+QPC packet timing was continuous. This is process output, not physical-DAC proof.
+
+[Actual process output](media/gallery/stage1-batching-process-output.wav) and
+exact callback excerpts for [off](media/gallery/stage1-batching-off-audio.wav)
+and [on](media/gallery/stage1-batching-on-audio.wav) are retained. Next: test the
+combined, separately checked rendering options and qualified code, then verify
+ordinary combat, boss fire and FMV. **No production runtime is installed.**

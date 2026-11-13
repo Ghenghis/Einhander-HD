@@ -79,6 +79,12 @@ def prepare(args):
     report['visual_profile'].update(retain_host_audio=bool(args.retain_host_audio),dirty_profile=bool(args.dirty_profile))
     report['visual_profile'].update(media_profile=bool(args.media_profile),rewind_capture=bool(args.rewind))
     report['visual_profile']['interp_pc_profile']=bool(args.interp_pc_profile)
+    report['visual_profile']['process_loopback_seconds']=args.process_loopback_seconds
+    if args.process_loopback_seconds:
+        helper=Path(__file__).parent/'audio-evidence/process-loopback/build/process_loopback_capture.exe'
+        frozen_helper=directory/'process_loopback_capture.exe'
+        ui.copy_verified(helper,frozen_helper)
+        report['process_loopback_helper']=pacing.base.ref(frozen_helper)
     report['launches']['candidate']['environment_overrides'].update(PSX_OVERLAY_DIFF='0',PSX_OVERLAY_DIFF_ADDR='0')
     if args.qualified_code_proof:
         from build_stage1_code_cache import stage_qualified_cache
@@ -91,7 +97,7 @@ def prepare(args):
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 
 def run(args):
-    label=('hd-on' if args.hd_pack_enabled else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off')
+    label=('hd-on' if getattr(args,'hd_pack_enabled',1) else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off')
     directory=pacing.ROOT/args.batch/label
     report=pacing.base.read(directory/'candidate.json')
     if (directory/'world-flypast-proof.json').exists() or (directory/'launch-candidate.json').exists():
@@ -141,6 +147,10 @@ def run(args):
                 stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         proof['measurement_load']=dict(video=recorder is not None,source_capture=recording,
             composed_stills=report['visual_profile'].get('composed_stills',True),timer_assistance=True)
+        qualified_entries=report.get('qualified_code_cache',{}).get('entries',[])
+        if qualified_entries:
+            proof['qualified_code_before']={entry:probe.request(report,'overlay_candidates',pc=entry)
+                for entry in qualified_entries}
         if report['visual_profile'].get('interp_pc_profile'):
             proof['interp_pc_profile_start']=probe.request(report,'dirty_pc_profile',enabled=1,reset=1)
             proof['measurement_load']['actual_instruction_sampler']=True
@@ -186,6 +196,10 @@ def run(args):
             if recorder is not None and recorder.poll() is not None:break
         if report['visual_profile'].get('interp_pc_profile'):
             proof['interp_pc_profile_end']=probe.request(report,'dirty_pc_profile',enabled=0)
+        if qualified_entries:
+            proof['qualified_code_after']={entry:probe.request(report,'overlay_candidates',pc=entry)
+                for entry in qualified_entries}
+            proof['native_ring_after']=probe.request(report,'overlay_native_ring')
         if report['visual_profile'].get('retain_host_audio'):
             # Copy historical callback PCM only AFTER the final measured sample.
             # Explicit absolute sample indices avoid the native start=-1/oldest
@@ -204,6 +218,27 @@ def run(args):
                 start_sample_frame=a['frames'],frames=response['frames'],seconds=response['frames']/b['rate'],
                 observation_elapsed_bracket=[first['elapsed_seconds'],last['elapsed_seconds']],response=response,
                 scope='Exact device-rate PCM from this owned game callback; no system loopback, resampling, retiming or added audio; copied after measurement',audible_acceptance=False)
+        loopback_seconds=report['visual_profile'].get('process_loopback_seconds',0)
+        if loopback_seconds:
+            owned_identity(None)
+            helper=report['process_loopback_helper']
+            if ui.sha(helper['path'])!=helper['sha256']:
+                raise RuntimeError('Pinned process loopback helper changed')
+            audio_path=directory/'process-output-after-measurement.wav'
+            arguments=[helper['path'],'--pid',str(process.pid),'--seconds',str(loopback_seconds),
+                '--expect-image',Path(report['launches']['candidate']['arguments'][0]).name,
+                '--strict','--out',str(audio_path)]
+            result=subprocess.run(arguments,capture_output=True,text=True,
+                timeout=loopback_seconds+30,creationflags=subprocess.CREATE_NO_WINDOW)
+            (directory/'process-loopback.log').write_text(result.stdout+result.stderr,encoding='utf-8')
+            proof['process_loopback']=dict(arguments=arguments,exit=result.returncode,
+                helper=helper,after_measurement=True,pid=process.pid,
+                scope='Owned game process tree; strict child-process checks and a verified Windows console-host exception; no microphone or system-wide audio; capture gap fills require sidecar review',
+                audible_acceptance=False)
+            if result.returncode:
+                raise RuntimeError('Process loopback smoke failed: '+result.stderr[-1000:])
+            proof['process_loopback'].update(audio=pacing.base.ref(audio_path),
+                timing=pacing.base.ref(audio_path.with_suffix('.timing.jsonl')))
     except Exception as error:proof['errors'].append(str(error))
     finally:
         if recorder is not None:
@@ -254,6 +289,8 @@ if __name__=='__main__':
     p.add_argument('--runtime',type=Path)
     p.add_argument('--hd-pack-enabled',type=int,choices=[0,1],default=1,
         help='Private same-runtime native-texture control; default keeps HD enabled')
+    p.add_argument('--process-loopback-seconds',type=int,choices=[0,10,30],default=0,
+        help='Optional owned-process audio smoke after timing measurement')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     p.add_argument('--emissive',type=int,choices=[0,1],default=0)

@@ -2074,8 +2074,44 @@
       "retimed": false,
       "resampled": false,
       "processing": "Exact contiguous PCM copy"
+    },
+    {
+      "path": "docs/media/gallery/stage1-batching-off-audio.wav",
+      "sha256": "57aee196f5fad733a66e64afb3aeea0ab8990ec9cc02cb3b699f1496a66eb916",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Diagnostic audio; whole-run smoothness still failing",
+      "result_manifest": "docs/media/gallery/stage1-batching-audio-results.json",
+      "processing": "Exact PCM excerpt"
+    },
+    {
+      "path": "docs/media/gallery/stage1-batching-on-audio.wav",
+      "sha256": "4a7253c2f775ce675e9b6c97f90e3d4676e04c84fcbceb902ba30c67c8e5330c",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Diagnostic audio; whole-run smoothness still failing",
+      "result_manifest": "docs/media/gallery/stage1-batching-audio-results.json",
+      "processing": "Exact PCM excerpt"
+    },
+    {
+      "path": "docs/media/gallery/stage1-batching-process-output.wav",
+      "sha256": "43929c8e74901a1f7ba65196f219e94ac4445bd0e13d2aa024155e3aa8fbd22d",
+      "bytes": 1920496,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 10,
+      "category": "owned_game_process_loopback",
+      "status": "Diagnostic audio; whole-run smoothness still failing",
+      "result_manifest": "docs/media/gallery/stage1-batching-audio-results.json",
+      "processing": "Unmodified capture WAV"
     }
   ],
-  "audio_count": 7,
-  "total_audio_bytes": 16128308
+  "audio_count": 10,
+  "total_audio_bytes": 22656892
 }

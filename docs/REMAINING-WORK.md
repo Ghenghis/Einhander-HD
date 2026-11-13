@@ -11,8 +11,13 @@ a completed deliverable. The detailed brief is
   Normal preference2 controls still starve audio, including with rewind off.
   A deferred-clock timestamp defect now passes its regression; one measured
   hot routine passes native/interpreter correctness under the corrected build.
-  Other cached entries and actual audio remain unaccepted. Next gates: isolate the
-  expensive work, verify each change against a control, preserve
+  Other cached entries and actual audio remain unaccepted. A native-texture v40
+  control sustained about60fps without new starvation; foreground batching
+  controls improved from49.43 to55.86fps but both still starved. The normal
+  launcher leaves experimental batching off. The process-audio observer now
+  captures the owned game tree with its verified Windows console child.
+  Next gates: combine verified options, isolate expensive work, verify each
+  change against a control, preserve
   actual host audio, then demonstrate sustained normal gameplay and FMV output.
 - **Robin and progression — Codex, with enemy/weak-point review from Claude.**
   Actual targeting, firing, weapon pickup and evasion are observed. Lives are
