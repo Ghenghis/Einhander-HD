@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "scope": "Curated public imagery with preserved pixel content. Concepts and references are copied byte-for-byte; two game captures are losslessly re-encoded for PNG compression. Status distinguishes actual captures, concepts and material references. Sanitized source identifiers are not public download paths.",
+  "scope": "Curated public imagery and actual assisted gameplay clips with preserved pixels/timing. Concepts and references are copied byte-for-byte; internal game stills are losslessly PNG-compressed. Status distinguishes captures, concepts and material references. Sanitized source identifiers are not public download paths.",
   "capture_comparison": "Stock and remaster captures are not frame-aligned. Render resolution is not original asset resolution or an FPS guarantee.",
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 40,
-  "total_image_bytes": 86848618,
+  "image_count": 44,
+  "total_image_bytes": 96790600,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1241,8 +1241,230 @@
       "pixel_content_preserved": true,
       "public_sha256": "088c4620e378970139c3848db82850e388d604fd509e867dcd1102e1575d2d9e",
       "public_bytes": 2950230
+    },
+    {
+      "path": "docs/media/gallery/h24-entry.png",
+      "sha256": "467ff63dbbb9817476f103db2a7693250679c29f0006801341199e4997f7ac1d",
+      "bytes": 2592195,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "assisted H24 private run; target visible",
+      "label": "H24 target entering at right",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/observed-facade-0.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": true,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 5800,
+        "frame_after": 5802,
+        "at_utc": "2026-11-13T00:24:28.675463+00:00"
+      },
+      "source_sha256": "f8bc1fa143e6e18a938e7ed2ebcacc8f197769f303b7de5cae6bb0c429a6b10a",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "8518d7f05f6876b3b35762ae851fb7dccf7b18916157e50df6dc8d82f495130d"
+      },
+      "public_sha256": "467ff63dbbb9817476f103db2a7693250679c29f0006801341199e4997f7ac1d",
+      "public_bytes": 2592195
+    },
+    {
+      "path": "docs/media/gallery/h24-front-angle.png",
+      "sha256": "5a242b1d8dd96f54211b4d9a8bdef6dc80c219fb387f34aafddb34e4e63b9fd7",
+      "bytes": 2928939,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "assisted H24 private run; target visible",
+      "label": "H24 front and angled faces beside other blue-window mappings",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/observed-facade-1.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": true,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 6080,
+        "frame_after": 6084,
+        "at_utc": "2026-11-13T00:24:35.470277+00:00"
+      },
+      "source_sha256": "ff853e4ec2c351e4c0a302a377c510b0565f8e19a2e8369ba6aa2de7da2f28c5",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "7fefbfc35c55ce096041a2d73b5771c48b16fe7e56a068f5cddd14bb6a46ddb3"
+      },
+      "public_sha256": "5a242b1d8dd96f54211b4d9a8bdef6dc80c219fb387f34aafddb34e4e63b9fd7",
+      "public_bytes": 2928939
+    },
+    {
+      "path": "docs/media/gallery/h24-middle.png",
+      "sha256": "41c1ccfe568197a10a8b2d49749566ed46c15b26e86eb07f59deccfe82c166ac",
+      "bytes": 1925123,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "same-run city context; additional H24 visibility unverified",
+      "label": "Downstream city context; additional H24 visibility unverified",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/follow-facade-30.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": false,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 7692,
+        "frame_after": 7694,
+        "at_utc": "2026-11-13T00:25:05.709569+00:00"
+      },
+      "source_sha256": "04c0eeea9b50667363473c1bd8fdf0171a9e81961efdc15426c6d678de5774a7",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "5d8a73ed22d6a6951318d6da096fc64d3e7d4b5ee611d07848de07df21fbaf36"
+      },
+      "public_sha256": "41c1ccfe568197a10a8b2d49749566ed46c15b26e86eb07f59deccfe82c166ac",
+      "public_bytes": 1925123
+    },
+    {
+      "path": "docs/media/gallery/h24-later.png",
+      "sha256": "d6b47d70f2f33d033c319a9856d0c7fafcc0aa5f3e69aa47b70f4183fa74b36d",
+      "bytes": 2495725,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "same-run city context; additional H24 visibility unverified",
+      "label": "Later city context; additional H24 visibility unverified",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/follow-facade-60.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": false,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 8890,
+        "frame_after": 8893,
+        "at_utc": "2026-11-13T00:25:35.694033+00:00"
+      },
+      "source_sha256": "331389b7ad6c4bbfe7175d96c26d23ff79d3d5ecb2ceb8fc212c58cfa0fa00bf",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "9f4f51206d0d20f8bb48ac2821ef9f399d91f0408aa999ebe6033e81442f44d6"
+      },
+      "public_sha256": "d6b47d70f2f33d033c319a9856d0c7fafcc0aa5f3e69aa47b70f4183fa74b36d",
+      "public_bytes": 2495725
     }
   ],
-  "losslessly_reencoded_capture_count": 2,
-  "byte_identical_copy_count": 38
+  "losslessly_reencoded_capture_count": 6,
+  "byte_identical_copy_count": 38,
+  "video_assets": [
+    {
+      "path": "docs/media/gallery/h24-fly-past-entry.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-window-motion.mp4",
+      "sha256": "67d2a800bbd1f20d4de9338480e2fb3e81599abb3b2efd4ad5082c4a2ac4a223",
+      "bytes": 4206534,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "target entry; H24 visible",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 6.0,
+      "frame_count": 270,
+      "average_encoded_frame_rate": "45/1",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": true
+    },
+    {
+      "path": "docs/media/gallery/h24-fly-past-middle.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-middle-window-motion.mp4",
+      "sha256": "e42e9abdc836d4bd412cce3e745d8a9cd2cc4122e64943f30f625d4344ae8946",
+      "bytes": 6532780,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "downstream city context; additional H24 visibility unverified",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 6.0,
+      "frame_count": 256,
+      "average_encoded_frame_rate": "128/3",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": false
+    },
+    {
+      "path": "docs/media/gallery/h24-fly-past-later.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-later-window-motion.mp4",
+      "sha256": "48b854404dfdf76bc35f6daf35d960413addd64830e8da97d977b4940e8e3cb0",
+      "bytes": 4022719,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "downstream city context; additional H24 visibility unverified",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 5.95,
+      "frame_count": 268,
+      "average_encoded_frame_rate": "5360/119",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": false
+    }
+  ],
+  "video_count": 3,
+  "total_video_bytes": 14762033
 }

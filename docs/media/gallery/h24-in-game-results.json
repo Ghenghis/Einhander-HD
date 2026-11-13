@@ -1,0 +1,403 @@
+{
+  "schema_version": 1,
+  "run_id": "h24-v2-4096-r1",
+  "test_date_arizona": "2026-11-12",
+  "test_started_at_utc": "2026-11-13T00:22:29.233572+00:00",
+  "test_ended_at_utc": "2026-11-13T00:25:56.285045+00:00",
+  "publication_verified_at_utc": "2026-11-13T00:34:57.333606+00:00",
+  "scope": "Verification and publication of an existing assisted visual run; no new game run executed for publication",
+  "source_receipts": [
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/candidate.json",
+      "sha256": "ead36baaef1aaeead8dccfc2e9d6f9447bf8d3b2510327b3da462d3c8edb02e4",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/preparation-verification.json",
+      "sha256": "78ad66cf7ae428aa002ebe57af8be51301f620a659b824306e746f00a216fb37",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/live-facade-proof.json",
+      "sha256": "9e5336fef4e7ed486884e6dac46a4dd972c45c0fc52d371eb556f2057849cddd",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/executed-probe.py",
+      "sha256": "90836cdd644c0ef62aed629bc644a970a76d51465873067d404cc20b8c5552df",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/executed-survival-helper.py",
+      "sha256": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/native-facade-fly-past/capture.jsonl",
+      "sha256": "a4a69bec979adc5fcff7976a779f86a420322c01413c670ddde6cf6562fc467c",
+      "published": false
+    }
+  ],
+  "candidate": {
+    "authored_rooms": 24,
+    "authoring_dimensions": [
+      4096,
+      4096
+    ],
+    "authoring_sha256": "b18daa9019de48e59068689e0b0cfaedb46bb0cdbf429172610379e3404724ce",
+    "replacement_dimensions": [
+      4096,
+      4096
+    ],
+    "target_key": "52F33418-5E9B9AC3",
+    "categorical_alpha_exact": true,
+    "checked_png_hashes": 1195,
+    "unchanged_parent_keys": 1194,
+    "changed_png_keys": 1,
+    "production_installed": false
+  },
+  "execution": {
+    "platform": "Windows x64",
+    "renderer": "OpenGL",
+    "native_route_passed": true,
+    "user_cards_mounted": false,
+    "approach_fast_forward": false,
+    "evidence_turbo_enabled": false,
+    "rewind_enabled": false,
+    "facade_motion_sampling_enabled": false,
+    "state_loads": false,
+    "ordinary_fire_input": true,
+    "survival_assistance": {
+      "kind": "invincibility countdown only",
+      "address": "0x80085718",
+      "width_bytes": 1,
+      "value": 165,
+      "lease_seconds": 180,
+      "interval_seconds": 0.15,
+      "started_at_utc": "2026-11-13T00:23:38.249485+00:00",
+      "stopped_at_utc": "2026-11-13T00:25:41.925650+00:00",
+      "successful_writes": 614,
+      "last_write_at_utc": "2026-11-13T00:25:41.889974+00:00",
+      "forced_timer_clear": false,
+      "lives_writes": false,
+      "stage_jumps": false,
+      "state_loads": false,
+      "purpose": "Visual reachability aid; not unassisted gameplay or performance evidence"
+    },
+    "ram_write_commands": 614,
+    "errors": [],
+    "shutdown": {
+      "clear_input_ok": true,
+      "quit_reply": {
+        "ok": false,
+        "err": "emu busy or frozen"
+      },
+      "debug_port_closed": true
+    }
+  },
+  "draw_evidence": {
+    "target_draw_observed": true,
+    "sample_count": 21,
+    "first_frame": 5742,
+    "last_frame": 7482,
+    "receipt_scope": "GL submission; not visibility proof; entry video and observed stills provide separate visual corroboration",
+    "first_submission": {
+      "event": "replacement_gl_draw_submitted",
+      "key": "52F33418-5E9B9AC3",
+      "frame": 5742,
+      "host_mono_ms": 179448104,
+      "upload_serial": 0,
+      "native_words": [
+        16,
+        64
+      ],
+      "source_kind": "exact_region",
+      "depth": 0,
+      "semi": -1,
+      "page_xy": [
+        768,
+        0
+      ],
+      "source_word_xy": [
+        0,
+        0
+      ],
+      "clut_xy": [
+        0,
+        480
+      ],
+      "uv_bounds": [
+        1,
+        0,
+        63,
+        63
+      ],
+      "xy": [
+        [
+          300,
+          166
+        ],
+        [
+          347,
+          171
+        ],
+        [
+          300,
+          189
+        ]
+      ],
+      "replacement_size": [
+        4096,
+        4096
+      ],
+      "gpu_dirty": 1,
+      "pending_cpu_upload_rects": 0,
+      "pack_dirty": 1,
+      "cpu_authority_dual": 0,
+      "cpu_vram_may_be_stale": true,
+      "not_visibility_proof": true,
+      "material_generation": 0,
+      "material_channel": "stock",
+      "material_profile": "stock",
+      "material_strength": 0.0,
+      "material_applied": false,
+      "material_diagnostic_scope": false,
+      "material_preserve_accents": false
+    }
+  },
+  "results": {
+    "target_visibility": "Entry clip and observed-facade-0/1 stills show photographic room panels on front and angled faces",
+    "remaining_other_mappings": "Bright blue-window sections remain separate mappings",
+    "downstream_clip_attribution": "Middle/later clips and follow stills are city context; additional target visibility unverified",
+    "all_24_rooms_individually_verified": false,
+    "complete_facade_traversal_captured": false,
+    "live_visual_accepted": false,
+    "matched_state_comparison": false,
+    "performance_accepted": false,
+    "dynamic_reflections_verified": false,
+    "audio_continuity_tested": false,
+    "capture_rate_limit": "Encoded video frame counts do not measure renderer cadence; capture overhead affects pacing"
+  },
+  "video_assets": [
+    {
+      "path": "docs/media/gallery/h24-fly-past-entry.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-window-motion.mp4",
+      "sha256": "67d2a800bbd1f20d4de9338480e2fb3e81599abb3b2efd4ad5082c4a2ac4a223",
+      "bytes": 4206534,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "target entry; H24 visible",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 6.0,
+      "frame_count": 270,
+      "average_encoded_frame_rate": "45/1",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": true
+    },
+    {
+      "path": "docs/media/gallery/h24-fly-past-middle.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-middle-window-motion.mp4",
+      "sha256": "e42e9abdc836d4bd412cce3e745d8a9cd2cc4122e64943f30f625d4344ae8946",
+      "bytes": 6532780,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "downstream city context; additional H24 visibility unverified",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 6.0,
+      "frame_count": 256,
+      "average_encoded_frame_rate": "128/3",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": false
+    },
+    {
+      "path": "docs/media/gallery/h24-fly-past-later.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/facade-later-window-motion.mp4",
+      "sha256": "48b854404dfdf76bc35f6daf35d960413addd64830e8da97d977b4940e8e3cb0",
+      "bytes": 4022719,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_assisted_gameplay_video",
+      "label": "downstream city context; additional H24 visibility unverified",
+      "status": "published actual capture; final visual and performance acceptance open",
+      "unmodified_copy": true,
+      "duration_seconds": 5.95,
+      "frame_count": 268,
+      "average_encoded_frame_rate": "5360/119",
+      "requested_capture_rate_hz": 60,
+      "audio_streams": 0,
+      "retimed": false,
+      "interpolated_frames": false,
+      "target_visibility": false
+    }
+  ],
+  "image_assets": [
+    {
+      "path": "docs/media/gallery/h24-entry.png",
+      "sha256": "467ff63dbbb9817476f103db2a7693250679c29f0006801341199e4997f7ac1d",
+      "bytes": 2592195,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "assisted H24 private run; target visible",
+      "label": "H24 target entering at right",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/observed-facade-0.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": true,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 5800,
+        "frame_after": 5802,
+        "at_utc": "2026-11-13T00:24:28.675463+00:00"
+      },
+      "source_sha256": "f8bc1fa143e6e18a938e7ed2ebcacc8f197769f303b7de5cae6bb0c429a6b10a",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "8518d7f05f6876b3b35762ae851fb7dccf7b18916157e50df6dc8d82f495130d"
+      },
+      "public_sha256": "467ff63dbbb9817476f103db2a7693250679c29f0006801341199e4997f7ac1d",
+      "public_bytes": 2592195
+    },
+    {
+      "path": "docs/media/gallery/h24-front-angle.png",
+      "sha256": "5a242b1d8dd96f54211b4d9a8bdef6dc80c219fb387f34aafddb34e4e63b9fd7",
+      "bytes": 2928939,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "assisted H24 private run; target visible",
+      "label": "H24 front and angled faces beside other blue-window mappings",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/observed-facade-1.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": true,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 6080,
+        "frame_after": 6084,
+        "at_utc": "2026-11-13T00:24:35.470277+00:00"
+      },
+      "source_sha256": "ff853e4ec2c351e4c0a302a377c510b0565f8e19a2e8369ba6aa2de7da2f28c5",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "7fefbfc35c55ce096041a2d73b5771c48b16fe7e56a068f5cddd14bb6a46ddb3"
+      },
+      "public_sha256": "5a242b1d8dd96f54211b4d9a8bdef6dc80c219fb387f34aafddb34e4e63b9fd7",
+      "public_bytes": 2928939
+    },
+    {
+      "path": "docs/media/gallery/h24-middle.png",
+      "sha256": "41c1ccfe568197a10a8b2d49749566ed46c15b26e86eb07f59deccfe82c166ac",
+      "bytes": 1925123,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "same-run city context; additional H24 visibility unverified",
+      "label": "Downstream city context; additional H24 visibility unverified",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/follow-facade-30.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": false,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 7692,
+        "frame_after": 7694,
+        "at_utc": "2026-11-13T00:25:05.709569+00:00"
+      },
+      "source_sha256": "04c0eeea9b50667363473c1bd8fdf0171a9e81961efdc15426c6d678de5774a7",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "5d8a73ed22d6a6951318d6da096fc64d3e7d4b5ee611d07848de07df21fbaf36"
+      },
+      "public_sha256": "41c1ccfe568197a10a8b2d49749566ed46c15b26e86eb07f59deccfe82c166ac",
+      "public_bytes": 1925123
+    },
+    {
+      "path": "docs/media/gallery/h24-later.png",
+      "sha256": "d6b47d70f2f33d033c319a9856d0c7fafcc0aa5f3e69aa47b70f4183fa74b36d",
+      "bytes": 2495725,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "same-run city context; additional H24 visibility unverified",
+      "label": "Later city context; additional H24 visibility unverified",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-v2-4096-r1/captures/follow-facade-60.png",
+      "public_refs": [],
+      "unmodified_copy": false,
+      "embedded_metadata_present": false,
+      "qualification": {
+        "assisted_visual_review": true,
+        "target_visibility": false,
+        "matched_frame_comparison": false,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false,
+        "frame_before": 8890,
+        "frame_after": 8893,
+        "at_utc": "2026-11-13T00:25:35.694033+00:00"
+      },
+      "source_sha256": "331389b7ad6c4bbfe7175d96c26d23ff79d3d5ecb2ceb8fc212c58cfa0fa00bf",
+      "source_bytes": 18666048,
+      "pixel_content_preserved": true,
+      "encoding": {
+        "method": "Lossless PNG encoding with Pillow PNG codec; optimize=True, compress_level=9; no resize, quantization, recoloring or pixel edits",
+        "codec_version": "12.3.0",
+        "source_mode": "RGB",
+        "public_mode": "RGB",
+        "decoded_rgba8_sha256": "9f4f51206d0d20f8bb48ac2821ef9f399d91f0408aa999ebe6033e81442f44d6"
+      },
+      "public_sha256": "d6b47d70f2f33d033c319a9856d0c7fafcc0aa5f3e69aa47b70f4183fa74b36d",
+      "public_bytes": 2495725
+    }
+  ]
+}

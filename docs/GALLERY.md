@@ -1,10 +1,20 @@
 # Einhander visual gallery
 
-A look at the recompiled game, the facade and title experiments, and the complete equipment and finish concept collections. **Gameplay captures, reference artwork, and concepts are labelled separately.** Click an image to inspect its full-size PNG. Pixel content is preserved throughout; the two large game captures use lossless PNG compression for faster loading.
+A look at the recompiled game, the facade and title experiments, and the complete equipment and finish concept collections. **Gameplay captures, reference artwork, and concepts are labelled separately.** Click an image to inspect its full-size PNG. Pixel content is preserved throughout; large internal game captures use lossless PNG compression for faster loading.
 
 [City captures](#city-captures) · [Facade artwork](#facade-artwork) · [Title screen](#title-screen) · [Starter hulls](#starter-hulls) · [Enemy craft](#enemy-craft) · [Gunpods](#gunpods) · [Finishes](#finish-concepts) · [Materials](#material-inputs) · [Billboards](#billboard-artwork)
 
 ## City captures
+
+### Full 24-room facade: actual assisted fly-past
+
+The November 12, 2026 private run used the full 4096 × 4096 H24 v2 master. The entry recording shows the photographic interiors on the building entering from the right. The blue-window sections remain separate mappings. This is a normal-speed assisted visual test with a bounded invulnerability-timer aid; turbo and rewind were disabled.
+
+[![Play the original six-second H24 entry recording](media/gallery/h24-front-angle.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4)
+
+[Play/download the original entry clip](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4) · [All clips, 2160p stills, evidence and limits](H24-IN-GAME-RESULTS.md)
+
+The silent recording is 1280 × 960; the linked still is a separate 2880 × 2160 internal capture. The result establishes a visible in-game integration of the full master. It does not establish all-room readability, final visual acceptance or 60 fps performance.
 
 ### Recompiled stock textures, 4× rendering
 

@@ -28,7 +28,7 @@ Source matching and GL submission receipts establish admission. The image establ
 
 ## Artwork and runtime status
 
-- **24-window sheet:** a prepared artwork master with room variation and glass composition; not a gameplay capture.
+- **24-window sheet:** an artwork review sheet, distinct from the [actual H24 in-game test](H24-IN-GAME-RESULTS.md). The full 4096 × 4096 master was used in that assisted run, and the entry footage and stills show the mapped interiors; final visual acceptance remains open.
 - **Ships and Gunpods:** generated reference-grounded finish concepts; not installed UV textures, geometry or weapon behavior.
 - **Material sheets:** RGB detail inputs, without a PBR, HDR or dynamic reflection claim.
 - **Title E:** an actual internal title capture with scoped layout review; further UI states and cosmetic issues remain open.
@@ -36,6 +36,8 @@ Source matching and GL submission receipts establish admission. The image establ
 Static reflection/interior artwork can give windows depth and material character. View-dependent reflection and perspective-correct room interiors require additional renderer work and verified camera/geometry data.
 
 ## Motion and performance
+
+The [H24 results](H24-IN-GAME-RESULTS.md) publish three original silent window recordings and four full-resolution stills from the November 12, 2026 private run. The entry clip shows the target facade. The middle and later clips document subsequent city gameplay; they do not establish additional H24 placements or palette coverage. The run used normal game speed, disabled turbo and rewind, and disclosed a bounded player-invulnerability timer aid. Encoded recording averages range from about 42.7 to 45.0 frames per second; these measure the video files, not renderer cadence. Final visual acceptance remains false in the saved run proof.
 
 Review full-resolution stills and normal-speed fly-pasts at distant, middle and close placements. Check window readability, dark-wall contrast, highlights, seams, repeat patterns, oblique views and palette changes.
 
