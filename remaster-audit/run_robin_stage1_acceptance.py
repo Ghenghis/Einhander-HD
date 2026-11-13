@@ -38,15 +38,17 @@ def main():
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--hd',choices=['on','off'],default='on')
     parser.add_argument('--craft',choices=['mk2','mk3','astraea'],default='mk2')
+    parser.add_argument('--observer-craft',choices=['selected','auto'],default='selected',help='Auto uses only the union of verified starter hull sources')
     parser.add_argument('--seconds',type=int,choices=[90,180,600,900],default=180)
     parser.add_argument('--sources',action='store_true')
     parser.add_argument('--source-cache-keys',default='',help='Up to32 comma-separated raw-upload CRCs retained from boot; requires --sources')
     parser.add_argument('--source-keys-json',type=Path,help='Bound raw archives to1..256 exact CRC pairs; draw receipts remain sampled and unfiltered')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
-    parser.add_argument('--movement',choices=['weave','left_lane','upper_lane','greif_lane','stage_lane','draw_lane'],default='left_lane',
+    parser.add_argument('--movement',choices=['weave','left_lane','upper_lane','greif_lane','stage_lane','combat_lane','draw_lane'],default='left_lane',
         help='draw_lane uses opt-in, read-only MkII hull geometry; live qualification is required')
     parser.add_argument('--revive',type=int,choices=[0,1],default=1)
     parser.add_argument('--hull-guard',action='store_true',help='Require the selected starter source set and use fresh hull draws at zero spare lives')
+    parser.add_argument('--threat-draw',action='store_true',help='Experimental partial source-query cluster avoidance; requires stage_lane and hull guard')
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     parser.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
@@ -68,9 +70,11 @@ def main():
     except (ValueError,OSError) as error:parser.error(str(error))
     filter_pin=pacing.base.ref(args.source_keys_json.resolve()) if source_keys else None
     if args.hires_stills and not args.composed_stills:parser.error('--hires-stills requires --composed-stills')
-    if args.movement in ('upper_lane','greif_lane','stage_lane') and not args.hull_guard:parser.error('Upper/Greif/stage movement requires --hull-guard for selected-craft geometry')
+    if args.movement in ('upper_lane','greif_lane','stage_lane','combat_lane') and not args.hull_guard:parser.error('Feedback movement requires --hull-guard for selected-craft geometry')
+    if args.threat_draw and args.movement not in ('stage_lane','combat_lane'):parser.error('--threat-draw requires stage_lane or combat_lane')
+    if args.movement=='combat_lane' and not args.threat_draw:parser.error('combat_lane requires --threat-draw')
     if args.native_menus and args.hd!='on':parser.error('--native-menus enables replacements only after the stock route, so requires --hd on')
-    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane','upper_lane','greif_lane','stage_lane') or not args.terminal_ui_stills):
+    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane','upper_lane','greif_lane','stage_lane','combat_lane') or not args.terminal_ui_stills):
         parser.error('--continues requires --revive 0, a lane movement policy and --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
@@ -78,17 +82,18 @@ def main():
         parser.error('Alternate craft require native menus and no MkII hull controller; HD-on needs --native-menus')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,short_upload_priority=args.short_upload_priority,emissive=args.emissive,guest_frames=0)
-    tracking=args.sources or args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') or args.hull_guard
+    tracking=args.sources or args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') or args.hull_guard
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
     overrides=report['launches']['candidate']['environment_overrides']
     overrides['PSXRECOMP_HD_SOURCE_CACHE_KEYS']=args.source_cache_keys.upper()
+    overrides['PSXRECOMP_THREAT_DRAW_TRACKING']='1' if args.threat_draw else '0'
     overrides.update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
     if args.player_material=='stock':
         overrides.update(PSXRECOMP_SKIN_PROFILE='stock',PSXRECOMP_SKIN_DETAIL_PATH='')
     if args.submission_log:overrides['PSXRECOMP_HD_PROOF_LOG']=str(directory/'first-submissions.jsonl')
-    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') or args.hull_guard else '0',
-        PSXRECOMP_PLAYER_DRAW_CRAFT=args.craft,
+    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') or args.hull_guard else '0',
+        PSXRECOMP_PLAYER_DRAW_CRAFT='auto' if args.observer_craft=='auto' else args.craft,
         PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')
     if args.sources:
         dump=directory/'source-pages';dump.mkdir()
@@ -100,13 +105,15 @@ def main():
         overrides['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
         report['route_reference_profile']='native-stock'
     report['robin_profile']=dict(hd_replacements=args.hd=='on',sources=args.sources,craft=args.craft,
+        observer_craft=args.observer_craft,
         invincible=False,revive=bool(args.revive),enemy_material='original colors',
         native_menus=args.native_menus,terminal_ui_stills=args.terminal_ui_stills,composed_stills=args.composed_stills,
         video_recording=args.record_video,
         hires_stills=args.hires_stills,
         verified_continue_limit=args.continues,
         first_submission_log=args.submission_log,player_material=args.player_material,dense_gpu_frames=args.dense_gpu_frames,
-        hull_draw_tracking=args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') or args.hull_guard,hull_guard=args.hull_guard,native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
+        hull_draw_tracking=args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') or args.hull_guard,hull_guard=args.hull_guard,native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
+    report['robin_profile']['threat_draw']=args.threat_draw
     if source_keys:
         assert ui.sha(args.source_keys_json.resolve())==filter_pin['sha256'],'Source filter changed during preparation'
         report['source_capture_filter']=dict(**filter_pin,source_key_count=len(source_keys),scope='Raw archives only; not exhaustive draw coverage')
@@ -120,6 +127,12 @@ def main():
     policy=pacing.base.ROOT/'windows-x64/tools/robin_stage_policy.py'
     proof['stage_policy_source']=pacing.base.ref(policy)
     ui.copy_verified(policy,directory/'executed-robin-stage-policy.py')
+    threat_policy=pacing.base.ROOT/'windows-x64/tools/robin_threat_policy.py'
+    proof['threat_policy_source']=pacing.base.ref(threat_policy)
+    ui.copy_verified(threat_policy,directory/'executed-robin-threat-policy.py')
+    combat_policy=pacing.base.ROOT/'windows-x64/tools/robin_combat_policy.py'
+    proof['combat_policy_source']=pacing.base.ref(combat_policy)
+    ui.copy_verified(combat_policy,directory/'executed-robin-combat-policy.py')
     if args.record_video:report['pacing_profile'].update(recorder=True,video_capture=True)
     pacing.base.write(directory/'candidate.json',report)
     bridge=None;server=None;source_started=False;process=None;segment=0;recorder=None
@@ -141,10 +154,13 @@ def main():
         sys.path.insert(0,str(pacing.base.ROOT/'windows-x64/tools'))
         assert ui.sha(pacing.base.ROOT/'windows-x64/tools/ein_bridge.py')==proof['bot_source']['sha256'], 'Bot source changed during boot'
         assert ui.sha(policy)==proof['stage_policy_source']['sha256'], 'Stage policy changed during boot'
+        assert ui.sha(threat_policy)==proof['threat_policy_source']['sha256'], 'Threat policy changed during boot'
+        assert ui.sha(combat_policy)==proof['combat_policy_source']['sha256'], 'Combat policy changed during boot'
         import ein_bridge as bridge
         bridge.DEBUG_PORT=report['debug_port']
         original=bridge.cmd
         allowed={'read_ram','press','clear_input','get_registers','player_draw'}
+        if args.threat_draw:allowed.add('threat_draw')
         def audited(command,timeout=8):
             if command.get('cmd') not in allowed:
                 raise RuntimeError('Pad-only acceptance boundary rejected '+str(command))
@@ -186,7 +202,8 @@ def main():
             recorder=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.PIPE,
                 creationflags=subprocess.CREATE_NO_WINDOW)
         bot_options=dict(action='start',name='Robin',autofire=True,weave=bool(args.weave),
-            dodge=True,revive=bool(args.revive),invincible=False,hull_guard=args.hull_guard,tick=.15,movement=args.movement,fire_mode=args.fire_mode)
+            dodge=True,revive=bool(args.revive),invincible=False,hull_guard=args.hull_guard,tick=.05 if args.movement=='combat_lane' else .15,movement=args.movement,fire_mode=args.fire_mode)
+        bot_options['threat_draw']=args.threat_draw
         proof['bot_start']=api(bot_options)
         assert proof['bot_start']['bot']['invincible'] is False
         continue_gate=None;pending_continue=None;resume_frames=[];resume_refs=None

@@ -2,6 +2,15 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The user's current priority is extreme stutter/jitter and broken audio. The
+fresh [0.5% versus1% live audio comparison](STAGE1-AUDIO-RESULTS.md) did not
+resolve starvation at either limit. Quiet interval-level runtime attribution is
+in progress. The [enemy-aware Robin prototype](STAGE1-CONTROLLER-RESULTS.md)
+now has actual targeting/firing/evasion footage, but lost lives and did not clear
+the stage. Normal launcher/runtime promotion remains pending. Claude now has
+twelve durable workstreams and a queue-aware continuity guard; this coordination
+improvement is not project completion.
+
 The latest private Wave 3 composition contains 837 authored entries in 1,669
 keys. All 226 native region checks pass. The [updated full facade and lighting test](STAGE1-EMISSIVE-RESULTS.md)
 adds the brighter canyon pair, two optional emissive masks and class-correct

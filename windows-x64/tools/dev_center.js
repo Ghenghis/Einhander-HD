@@ -311,11 +311,10 @@ $("views").innerHTML = [
   ),
   page(
     "automation",
-    `<div class="grid"><article class="card"><div class="section-head"><h2>Native attract mode</h2><span class="tag blue">GAME-RECORDED INPUT</span></div><p>At the title screen, release input and wait for the game's own demonstration.</p><div class="row"><button class="primary small" data-demo="watch" data-live disabled>Watch native demo</button><button class="small" data-demo="exit" data-live disabled>Exit demo · Start</button><button class="small" data-demo="release">Release input</button></div><div class="status-line" id="demoStatus">Native attract control is idle.</div></article><article class="card"><h2>Savestate diagnostics</h2><p>Restore has a known VRAM texture-corruption risk. Verify captures after loading.</p><div class="row"><label>Slot<input id="stateSlot" type="number" min="0" max="9" value="0"></label><button class="small" id="saveState" data-live disabled>Save snapshot</button>${button("Status", "savestate_status")}</div><label class="check mt"><input id="allowRestore" type="checkbox">Enable known-risk restore for this test</label><button class="danger small mt" id="loadState" disabled>Restore snapshot</button></article><article class="card"><h2>Virtual controller</h2><p>Presses expire after the selected number of game frames.</p><div class="pad" id="pad"></div><label class="mt">Hold duration in frames<input id="padFrames" type="number" min="1" max="120" value="12"></label></article><article class="card"><div class="section-head"><h2>Robin · autoplay</h2><span class="tag dim" id="botBadge">IDLE</span></div><p>Simple input patterns for repeatable observation.</p><div class="form-grid"><label>Name<input id="botName" value="Robin" maxlength="24"></label><label>Decisions / second<input id="botHz" type="number" min="1" max="20" value="7"></label></div><div class="form-grid mt">${[
-      ["botFire", "Autofire"],
-      ["botWeave", "Horizontal weave"],
-      ["botDodge", "Vertical movement"],
-      ["botRevive", "Auto-continue"],
+    `<div class="grid"><article class="card"><div class="section-head"><h2>Native attract mode</h2><span class="tag blue">GAME-RECORDED INPUT</span></div><p>At the title screen, release input and wait for the game's own demonstration.</p><div class="row"><button class="primary small" data-demo="watch" data-live disabled>Watch native demo</button><button class="small" data-demo="exit" data-live disabled>Exit demo · Start</button><button class="small" data-demo="release">Release input</button></div><div class="status-line" id="demoStatus">Native attract control is idle.</div></article><article class="card"><h2>Savestate diagnostics</h2><p>Restore has a known VRAM texture-corruption risk. Verify captures after loading.</p><div class="row"><label>Slot<input id="stateSlot" type="number" min="0" max="9" value="0"></label><button class="small" id="saveState" data-live disabled>Save snapshot</button>${button("Status", "savestate_status")}</div><label class="check mt"><input id="allowRestore" type="checkbox">Enable known-risk restore for this test</label><button class="danger small mt" id="loadState" disabled>Restore snapshot</button></article><article class="card"><h2>Virtual controller</h2><p>Presses expire after the selected number of game frames.</p><div class="pad" id="pad"></div><label class="mt">Hold duration in frames<input id="padFrames" type="number" min="1" max="120" value="12"></label></article><article class="card"><div class="section-head"><h2>Robin · autoplay</h2><span class="tag dim" id="botBadge">IDLE</span></div><p>Enemy-aware play: Robin finds enemies in the game's own draw data, lines up with the locked target, and evades incoming fire. Pad input only: no invincibility, no memory writes, and no automatic Continue.</p><div class="form-grid"><label>Name<input id="botName" value="Robin" maxlength="24"></label><label>Decisions / second<input id="botHz" type="number" min="1" max="20" value="20"></label></div><div class="form-grid mt">${[
+      ["botFire", "Fire (main gun; pod when aligned)"],
+      ["botWeave", "Positioning"],
+      ["botDodge", "Aim and evade"],
     ]
       .map(
         ([id, label]) =>
@@ -323,7 +322,7 @@ $("views").innerHTML = [
       )
       .join(
         "",
-      )}</div><div class="row mt"><button id="botStart" class="primary small" data-live disabled>Start Robin</button><button id="botStop" class="small danger">Stop Robin</button></div><pre class="log mt" id="botLog">No bot log loaded.</pre></article></div>`,
+      )}</div><div class="row mt"><button id="botStart" class="primary small" data-live disabled>Start Robin</button><button id="botStop" class="small danger">Stop Robin</button></div><div class="status-line mt" id="botStatus">Robin is idle.</div><pre class="log mt" id="botLog">No bot log loaded.</pre></article></div>`,
   ),
   page(
     "console",
@@ -921,13 +920,20 @@ $("pad").onclick = (e) => {
 };
 $("botStart").onclick = async () => {
   if (!$("botHz").reportValidity()) return;
+  // Enemy-aware controller uses read-only source geometry and finite pad input.
+  // Its live prototype has not established a stage clear.
   const r = await action("Start Robin", "/bot", {
     action: "start",
     name: $("botName").value,
+    movement: "combat_lane",
+    threat_draw: true,
+    hull_guard: true,
+    fire_mode: "both",
     autofire: $("botFire").checked,
     weave: $("botWeave").checked,
     dodge: $("botDodge").checked,
-    revive: $("botRevive").checked,
+    revive: false,
+    invincible: false,
     tick: 1 / Number($("botHz").value),
   });
   if (r?.bot) renderBot(r.bot);
@@ -936,8 +942,32 @@ $("botStop").onclick = async () => {
   const r = await action("Stop Robin", "/bot", { action: "stop" });
   if (r?.bot) renderBot(r.bot);
 };
+const BOT_MODES = {
+  observe: "Waiting for the player ship",
+  "await fresh enemy observation": "Waiting for fresh enemy data",
+  search: "Searching for a target",
+  aim: "Lining up with the target",
+  engage: "On target, firing",
+  evade: "Evading incoming fire",
+};
+function botStatusText(bot) {
+  if (!bot.running) return "Robin is idle.";
+  if (bot.movement !== "combat_lane")
+    return `Running an older movement mode (${bot.movement}); restart Robin to use enemy-aware play.`;
+  const p = bot.position;
+  if (!p) return "Running · waiting for the player ship to be drawn.";
+  const c = p.combat || {};
+  const parts = [BOT_MODES[c.mode] || c.mode || "Running"];
+  if (c.target?.family) parts.push(`target: ${c.target.family}`);
+  if (typeof c.target?.aim_error === "number")
+    parts.push(`aim offset ${Math.abs(c.target.aim_error).toFixed(0)} px ${c.target.aim_error > 0 ? "below" : "above"}`);
+  if (typeof c.visible_enemy_clusters === "number") parts.push(`${c.visible_enemy_clusters} enemies tracked`);
+  parts.push(`ship at ${Math.round(p.x)}, ${Math.round(p.y)}`);
+  return parts.join(" · ");
+}
 function renderBot(bot) {
   $("botBadge").textContent = bot.running ? "RUNNING" : "IDLE";
+  $("botStatus").textContent = botStatusText(bot);
   $("botLog").textContent =
     (bot.log || []).map((l) => `${l.t} ${l.msg}`).join("\n") ||
     "No bot activity.";

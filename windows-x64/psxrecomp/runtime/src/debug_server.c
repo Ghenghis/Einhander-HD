@@ -5157,6 +5157,22 @@ static void handle_read_ram(int id, const char *json)
     free(out);
 }
 
+#include "threat_draw_tracker.h"
+static void handle_threat_draw(int id,const char *json){
+    ThreatDrawState s;(void)json;gl_renderer_threat_draw_get(&s);
+    char out[16384];size_t pos=0;
+    pos+=snprintf(out+pos,sizeof(out)-pos,"{\"id\":%d,\"ok\":true,\"enabled\":%s,\"valid\":%s,\"frame\":%llu,\"age_frames\":%llu,\"viewport\":[%d,%d],\"dropped\":%u,\"objects\":[",
+        id,s.enabled?"true":"false",s.valid?"true":"false",(unsigned long long)s.frame,
+        (unsigned long long)s.age_frames,s.width,s.height,s.dropped);
+    for(unsigned i=0;i<s.count&&i<THREAT_DRAW_MAX;++i){
+        const ThreatDrawBox *b=s.boxes+i;
+        pos+=snprintf(out+pos,sizeof(out)-pos,"%s{\"family\":\"%s\",\"key\":\"%08X-%08X\",\"bounds\":[%d,%d,%d,%d]}",
+            i?",":"",b->family==1?"fighter":b->family==2?"uhu":b->family==4?"greif":"tracer",b->texture,b->palette,
+            b->bounds[0],b->bounds[1],b->bounds[2],b->bounds[3]);
+    }
+    snprintf(out+pos,sizeof(out)-pos,"],\"scope\":\"partial source-query clusters; not object identity, pixel visibility or collision proof\"}");
+    debug_server_send_line(out);
+}
 static void handle_player_draw(int id,const char *json) {
     GlPlayerDrawState s;(void)json;gl_renderer_player_draw_get(&s);
     send_fmt("{\"id\":%d,\"ok\":true,\"enabled\":%s,\"valid\":%s,"
@@ -5168,7 +5184,7 @@ static void handle_player_draw(int id,const char *json) {
              "\"not_visibility_proof\":true}",id,s.enabled?"true":"false",s.valid?"true":"false",
              (unsigned long long)s.frame,(unsigned long long)s.age_frames,s.draws,
              s.min_x,s.min_y,s.max_x,s.max_y,s.width,s.height,s.texture_hash,s.palette_hash,
-             s.source_set,s.source_set==2?"MkII":s.source_set==3?"MkIII":s.source_set==4?"Astraea":"Unconfigured",
+             s.source_set,s.source_set==2?"MkII":s.source_set==3?"MkIII":s.source_set==4?"Astraea":s.source_set==5?"MkII/MkIII shared":"Unconfigured",
              s.greif_valid?"true":"false",(unsigned long long)s.greif_first_frame,
              (unsigned long long)s.greif_last_frame,(unsigned long long)s.greif_age_frames);
 }
@@ -5183,6 +5199,7 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"readbacks\":%llu,\"readback_ms\":%.6f,"
              "\"batch_flushes\":%llu,\"batched_primitives\":%llu,\"max_batch_primitives\":%llu,"
              "\"batch_state_skips\":%llu,"
+             "\"base_filter_updates\":%llu,\"base_filter_skips\":%llu,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5191,7 +5208,8 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (unsigned long long)s.resident_hits,(unsigned long long)s.new_texture_draws,
              (double)s.draw_ticks*ms,(unsigned long long)s.readbacks,(double)s.readback_ticks*ms,
              (unsigned long long)s.batch_flushes,(unsigned long long)s.batched_primitives,
-             (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips);
+             (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips,
+             (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips);
 }
 
 /* "dump_ram" is an alias of "read_ram".  The old implementation answered a
@@ -13557,6 +13575,7 @@ static const CmdEntry s_commands[] = {
     { "record_reads_dump", handle_record_reads_dump },
     { "get_registers",     handle_get_registers },
     { "player_draw",       handle_player_draw },
+    { "threat_draw",       handle_threat_draw },
     { "hd_cpu_profile",    handle_hd_cpu_profile },
     { "read_ram",          handle_read_ram },
     { "dump_ram",          handle_read_ram },   /* alias: one request, one response */

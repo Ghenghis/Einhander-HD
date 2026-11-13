@@ -63,7 +63,7 @@ def prepare(args):
         if ui.sha(row['composed_path'])!=row['sha256']:raise ValueError('Frozen emissive mask changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,
-        cpu_profile=args.cpu_profile,guest_frames=0)
+        cpu_profile=args.cpu_profile,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,guest_frames=0)
     report=pacing.prepare('hd-on_rewind-off',config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
@@ -74,7 +74,8 @@ def prepare(args):
     report['visual_profile']['native_menus']=bool(args.native_menus)
     report['visual_profile'].update(emissive=bool(args.emissive),hires_stills=args.hires_stills)
     report['visual_profile'].update(record_video=not args.telemetry_only,source_capture=not args.telemetry_only,
-        composed_stills=not args.telemetry_only,telemetry_only=args.telemetry_only,cpu_profile=bool(args.cpu_profile))
+        composed_stills=not args.telemetry_only,telemetry_only=args.telemetry_only,cpu_profile=bool(args.cpu_profile),runtime_perf=bool(args.runtime_perf))
+    report['visual_profile'].update(retain_host_audio=bool(args.retain_host_audio),dirty_profile=bool(args.dirty_profile))
     if args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
@@ -154,6 +155,8 @@ def run(args):
                 audio=probe.request(report,'audio_stats'))
             if report['visual_profile'].get('cpu_profile'):
                 row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
+            if report['visual_profile'].get('dirty_profile') and second in (0,65,75,85,95,120,150,169):
+                row['dirty_ram_stats']=probe.request(report,'dirty_ram_stats')
             if second%15==0:
                 if report['visual_profile'].get('composed_stills',True):
                     row['screenshot']=probe.request(report,'screenshot',path=(shots/f'native-{second:03}.png').as_posix())
@@ -163,6 +166,24 @@ def run(args):
             proof['observations'].append(row)
             with (directory/'visual-observations.jsonl').open('a') as stream:stream.write(json.dumps(row)+'\n')
             if recorder is not None and recorder.poll() is not None:break
+        if report['visual_profile'].get('retain_host_audio'):
+            # Copy historical callback PCM only AFTER the final measured sample.
+            # Explicit absolute sample indices avoid the native start=-1/oldest
+            # convention. The last60 seconds fit in the87-second host ring.
+            import wave
+            rows=proof['observations'];last=rows[-1]
+            first=next(r for r in rows if r['elapsed_seconds']>=max(0,last['elapsed_seconds']-60))
+            host=lambda row:next(t for t in row['audio']['taps'] if t['name']=='host')
+            a,b=host(first),host(last);assert a['rate']==b['rate'] and b['frames']>a['frames']
+            audio_path=directory/'actual-host-output.wav'
+            response=probe.request(report,'audio_wav',tap=2,path=audio_path.as_posix(),start=str(a['frames']),count=str(b['frames']-a['frames']))
+            assert response.get('ok') is True and response['frames']==b['frames']-a['frames']
+            with wave.open(str(audio_path),'rb') as wav:
+                assert wav.getframerate()==b['rate'] and wav.getnchannels()==2 and wav.getsampwidth()==2 and wav.getnframes()==response['frames']
+            proof['host_audio']=dict(**pacing.base.ref(audio_path),tap=2,rate=b['rate'],channels=2,sample_width_bytes=2,
+                start_sample_frame=a['frames'],frames=response['frames'],seconds=response['frames']/b['rate'],
+                observation_elapsed_bracket=[first['elapsed_seconds'],last['elapsed_seconds']],response=response,
+                scope='Exact device-rate PCM from this owned game callback; no system loopback, resampling, retiming or added audio; copied after measurement',audible_acceptance=False)
     except Exception as error:proof['errors'].append(str(error))
     finally:
         if recorder is not None:
@@ -215,6 +236,10 @@ if __name__=='__main__':
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     p.add_argument('--emissive',type=int,choices=[0,1],default=0)
     p.add_argument('--cpu-profile',type=int,choices=[0,1],default=0,help='Cumulative HD CPU attribution; includes CPU timing overhead and is not baseline pacing acceptance')
+    p.add_argument('--runtime-perf',type=int,choices=[0,1],default=0,help='One-second opt-in guest/pacer/overlay/provider attribution in stdout; not baseline acceptance')
+    p.add_argument('--filter-state-cache',type=int,choices=[0,1],default=0,help='Opt-in owned HD texture nearest/linear state cache; private experiment')
+    p.add_argument('--dirty-profile',action='store_true',help='Read interpreter PC counters at bounded transition/Greif checkpoints; diagnostic overhead disclosed')
+    p.add_argument('--retain-host-audio',action='store_true',help='After measurement, preserve up to60seconds of actual game callback PCM for audible review')
     p.add_argument('--hires-stills',action='store_true')
     p.add_argument('--telemetry-only',action='store_true',help='Same disclosed timer-assisted route without video, source collection or measurement screenshots')
     p.add_argument('--route-profile',choices=['hd','assembled-v1'],default=None)

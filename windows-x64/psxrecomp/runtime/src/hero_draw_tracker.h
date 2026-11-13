@@ -44,6 +44,8 @@ static int hero_draw_key(uint32_t texture,uint32_t palette,unsigned depth) {
            texture==0xE2F3477Cu || texture==0xB16492B1u;
 }
 static int hero_draw_key_for_craft(uint32_t texture,uint32_t palette,unsigned depth,int craft) {
+    if(craft==1)return hero_draw_key_for_craft(texture,palette,depth,2)||
+        hero_draw_key_for_craft(texture,palette,depth,3)||hero_draw_key_for_craft(texture,palette,depth,4);
     if(craft==2)return hero_draw_key(texture,palette,depth);
     if(depth!=0)return 0;
     if(craft==3)return palette==0x21FDE894u &&
@@ -59,6 +61,16 @@ static void hero_draw_observe_for_craft(HeroDrawTracker *s,uint64_t frame,
         const int xs[3],const int ys[3],const int area[4],int craft) {
     int b[4]={xs[0],ys[0],xs[0],ys[0]};
     if(!hero_draw_key_for_craft(texture,palette,depth,craft))return;
+    const int automatic=craft==1;
+    if(automatic){
+        if(hero_draw_key_for_craft(texture,palette,depth,4))craft=4;
+        else if(texture==0x7E3ADD56u || texture==0xB16492B1u)craft=2;
+        else if(texture==0x8FE8B060u || texture==0xC6E8710Bu)craft=3;
+        else craft=frame>=s->frame && frame-s->frame<=12 &&
+            (s->source_set==2 || s->source_set==3)?s->source_set:5;
+        /* Set 5 means a proven shared MkII/MkIII hull, without inventing a
+         * unique craft identity. Unique parts refine the same-frame union. */
+    }
     if(area[0]<0 || area[1]<0 || area[2]>1023 || area[3]>511 ||
        area[2]-area[0]+1<128 || area[3]-area[1]+1<128)return;
     for(int i=1;i<3;++i){
@@ -66,11 +78,14 @@ static void hero_draw_observe_for_craft(HeroDrawTracker *s,uint64_t frame,
         if(ys[i]<b[1])b[1]=ys[i];if(ys[i]>b[3])b[3]=ys[i];
     }
     if(b[2]<area[0] || b[0]>area[2] || b[3]<area[1] || b[1]>area[3])return;
-    if(!s->draws || frame!=s->frame || s->source_set!=craft || memcmp(area,s->area,sizeof(s->area))){
+    if(!s->draws || frame!=s->frame ||
+       (s->source_set!=craft && !(automatic && (s->source_set==5 || craft==5))) ||
+       memcmp(area,s->area,sizeof(s->area))){
         s->frame=frame;s->draws=0;memcpy(s->area,area,sizeof(s->area));
         memcpy(s->bounds,b,sizeof(b));
         s->source_set=craft;
     }else{
+        if(automatic && s->source_set==5)s->source_set=craft;
         if(b[0]<s->bounds[0])s->bounds[0]=b[0];if(b[1]<s->bounds[1])s->bounds[1]=b[1];
         if(b[2]>s->bounds[2])s->bounds[2]=b[2];if(b[3]>s->bounds[3])s->bounds[3]=b[3];
     }

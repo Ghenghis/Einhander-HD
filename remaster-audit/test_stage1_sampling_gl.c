@@ -12,7 +12,54 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
     int prior=legacy_facade_motion_gl_regression(root,0);
     s_hd_world_sampling=world;
     if(prior)return prior;
+    {
+        const int old_filter=s_tex_filter,old_cache=s_hd_filter_state_cache,old_diag=s_hd_cpu_diag_enabled;
+        GlHdCpuDiag saved=s_hd_cpu_diag;HdTexSlot slot={0};GLint binding,min_filter,mag_filter;
+        p_glActiveTexture(PSXGL_TEXTURE0);glGetIntegerv(GL_TEXTURE_BINDING_2D,&binding);
+        glGenTextures(1,&slot.tex);glBindTexture(GL_TEXTURE_2D,slot.tex);
+        s_hd_filter_state_cache=1;s_hd_cpu_diag_enabled=1;s_tex_filter=1;
+        hd_base_sampling(&slot);glGetTexParameteriv(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,&min_filter);
+        glGetTexParameteriv(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,&mag_filter);
+        FM_CHECK("fresh cached texture receives real linear sampler state",min_filter==GL_LINEAR&&mag_filter==GL_LINEAR&&slot.base_filter_valid);
+        uint64_t updates=s_hd_cpu_diag.base_filter_updates,skips=s_hd_cpu_diag.base_filter_skips;
+        hd_base_sampling(&slot);
+        FM_CHECK("unchanged owned texture skips redundant sampler commands",s_hd_cpu_diag.base_filter_updates==updates&&s_hd_cpu_diag.base_filter_skips==skips+1);
+        s_tex_filter=0;hd_base_sampling(&slot);
+        glGetTexParameteriv(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,&min_filter);glGetTexParameteriv(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,&mag_filter);
+        FM_CHECK("live nearest toggle updates both real GL parameters",min_filter==GL_NEAREST&&mag_filter==GL_NEAREST&&s_hd_cpu_diag.base_filter_updates==updates+2);
+        s_tex_filter=1;hd_base_sampling(&slot);glGetTexParameteriv(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,&min_filter);
+        FM_CHECK("live linear toggle restores real GL sampler",min_filter==GL_LINEAR&&s_hd_cpu_diag.base_filter_updates==updates+4);
+        s_hd_filter_state_cache=0;hd_base_sampling(&slot);hd_base_sampling(&slot);
+        FM_CHECK("startup-disabled control retains both commands per call",s_hd_cpu_diag.base_filter_updates==updates+8);
+        glDeleteTextures(1,&slot.tex);glBindTexture(GL_TEXTURE_2D,(GLuint)binding);
+        s_tex_filter=old_filter;s_hd_filter_state_cache=old_cache;s_hd_cpu_diag_enabled=old_diag;s_hd_cpu_diag=saved;
+        FM_CHECK("filter state experiment has no GL error",glGetError()==GL_NO_ERROR);
+    }
     FM_CHECK("world startup opt-in is explicit",world==expected_world);
+    {
+        int old_player=s_player_draw_enabled,old_threat=s_threat_draw_enabled;
+        uint64_t old_frame=s_frame_count;
+        HeroDrawTracker old_work=s_player_draw_tracker,old_done=s_player_draw_completed;
+        GreifDrawClock old_clock=s_greif_draw_clock,old_clock_done=s_greif_draw_completed;
+        ThreatDrawState old_work_threat=s_threat_draw_tracker,old_done_threat=s_threat_draw_completed;
+        HdTextureSourceMatch enemy={0};HdTextureDrawQuery query={0};
+        int xs[3]={200,220,200},ys[3]={80,80,100};
+        s_player_draw_enabled=1;s_threat_draw_enabled=1;s_frame_count=100;
+        memset(&s_threat_draw_tracker,0,sizeof s_threat_draw_tracker);
+        glb_set_draw_area(0,0,319,223);
+        enemy.texture_hash=0x6BB2A2A3u;enemy.palette_hash=0x527B28B9u;
+        enemy.upload_width_words=64;enemy.upload_height=8;
+        player_draw_on_source(&enemy,&query,xs,ys);
+        s_frame_count=101;player_draw_present_commit();ThreatDrawState seen;
+        gl_renderer_threat_draw_get(&seen);
+        FM_CHECK("production observer publishes enemies across VBlank frame increment",seen.enabled&&seen.valid&&seen.count==1&&seen.frame==100&&seen.age_frames==1);
+        player_draw_present_commit();gl_renderer_threat_draw_get(&seen);
+        FM_CHECK("production observer clears consumed geometry on an empty present",seen.enabled&&!seen.count);
+        s_player_draw_enabled=old_player;s_threat_draw_enabled=old_threat;s_frame_count=old_frame;
+        s_player_draw_tracker=old_work;s_player_draw_completed=old_done;
+        s_greif_draw_clock=old_clock;s_greif_draw_completed=old_clock_done;
+        s_threat_draw_tracker=old_work_threat;s_threat_draw_completed=old_done_threat;
+    }
     HdTextureSourceMatch m={0};HdTextureDrawQuery q={0};
     m.texture_hash=0x95A3BCF8u;m.palette_hash=0x723E222Cu;
     m.upload_width_words=64;m.upload_height=256;s_tex_filter=1;
@@ -178,6 +225,10 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
         s_player_draw_source_set=2;memset(&s_player_draw_tracker,0,sizeof(s_player_draw_tracker));memset(&s_player_draw_completed,0,sizeof(s_player_draw_completed));
         hd_on_textured_prim(xs,ys,us,vs,color,29,cx,495,1,-1,lim,0);player_draw_present_commit();gl_renderer_player_draw_get(&state);
         FM_CHECK("MkII source set excludes alternate unique hull",!state.valid&&state.source_set==2);
+        s_player_draw_source_set=1;
+        hd_on_textured_prim(xs,ys,us,vs,color,29,cx,495,1,-1,lim,0);
+        player_draw_present_commit();gl_renderer_player_draw_get(&state);
+        FM_CHECK("automatic observer publishes actual alternate craft",state.valid&&state.source_set==craft&&state.texture_hash==textures[craft-3]);
         FM_CHECK("alternate native observer has no GL error",glGetError()==GL_NO_ERROR);
     }
     s_player_draw_only=0;s_player_draw_source_set=2;

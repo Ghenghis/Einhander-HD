@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "kind": "Actual closed enemy-aware Robin prototype observation",
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-mk3-v2/hd-on_rewind-off/robin-proof.json",
+    "sha256": "3f38ce5d25fa047862c51899d1c29ed12d2d700575add20c338fc55970e0e946",
+    "bytes": 749692
+  },
+  "candidate": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-mk3-v2/hd-on_rewind-off/candidate.json",
+    "sha256": "a278a82cd49ef240915a7c52fc2b858ae4302819e8277eb9ce61120259f93efb",
+    "bytes": 6360570
+  },
+  "runtime_build_sha256": "51d9e4a7deb80712af520531cf5cf7e3798adfb5b1ecdd488ffd283d402d71e0",
+  "executed_policy": "43cf9fb045161fd4f244965fed7789d263af77a52b615678918ab3adf9526de8",
+  "policy_version": "v32: main gun and pod fire when aligned; newer continuous-main refinement is not this footage",
+  "duration_seconds": 180.0006083000044,
+  "threat_queries": 1121,
+  "nonempty_threat_queries": 950,
+  "sampled_modes": {
+    "engage": 4,
+    "aim": 3,
+    "evade": 4,
+    "search": 2
+  },
+  "sample_interval_seconds": 15,
+  "observed": [
+    "Target acquisition and vertical alignment",
+    "Main gun and pod firing",
+    "Evasive movement",
+    "ASP pod equipped; native score 18,980 in the 90-second still"
+  ],
+  "initial_life_counter": "03",
+  "final_life_counter": "01",
+  "timer_assistance": false,
+  "ram_writes": false,
+  "state_loads": false,
+  "verified_continues_used": 0,
+  "stage_clear_verified": false,
+  "production_installed": false,
+  "video": {
+    "path": "docs/media/gallery/stage1-robin-targeting.mp4",
+    "sha256": "7dd470a35800dbe3ae7382bad07119df4bad87569e257747ee62bb1b2560e7fd",
+    "bytes": 43021585,
+    "duration_seconds": 32.05,
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-mk3-v2/hd-on_rewind-off/robin-original.mp4",
+      "sha256": "62e92feddaa88fe5703f964affc9c8ce239c18a9c92b635eb47ce1168c3ddda1",
+      "bytes": 212997301
+    },
+    "packet_verification": {
+      "source_sha256": "62e92feddaa88fe5703f964affc9c8ce239c18a9c92b635eb47ce1168c3ddda1",
+      "clip_sha256": "7dd470a35800dbe3ae7382bad07119df4bad87569e257747ee62bb1b2560e7fd",
+      "packets": 1741,
+      "source_start_packet": 0,
+      "relative_pts_max_error_seconds": 3.552713678800501e-15,
+      "retimed": false,
+      "reencoded": false,
+      "interpolated": false,
+      "internal_cuts": false,
+      "source_run_assisted": false
+    },
+    "silent": true,
+    "processing": "Contiguous stream-copy preview including nearest-keyframe preroll; no re-encoding, internal cuts, retiming or interpolation"
+  },
+  "still": {
+    "path": "docs/media/gallery/stage1-robin-asp-score.png",
+    "sha256": "0cca96bf2bb4ac8a3422ca3e3fae141d98ef6b9fea86acc1022769814a9bde29",
+    "bytes": 474258,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-mk3-v2/hd-on_rewind-off/captures/robin-0090.png",
+      "sha256": "46a4e59229ba49250edcfac1b765247072e4f789bf840b87907909ddb290b75b",
+      "bytes": 3687708
+    },
+    "pixel_identical": true,
+    "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved"
+  },
+  "limitations": [
+    "Read-only source-matched draw clusters cover selected enemies and tracers, not every threat or collision hitbox.",
+    "Target tracks are approximate screen-space associations, not native object IDs.",
+    "The run lost lives and did not establish a stage clear, perfect evasion or successful boss targeting.",
+    "Recording and source capture load affect cadence; the silent video does not qualify audible audio.",
+    "Normal launcher/runtime integration remains pending."
+  ],
+  "subsequent_refinement": {
+    "proof": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-auto-mk3-v2/hd-on_rewind-off/robin-proof.json",
+      "sha256": "9db259cd4df48850de2e1c3534a3f75f9165828361a14c0e796b02d0217a822e",
+      "bytes": 745536
+    },
+    "policy": "Continuous main gun; pod when aligned; automatic proven starter hull recognition",
+    "guest_fps": 48.49997507640012,
+    "starved_sample_frames_delta": 1589453,
+    "observed_hull_source_sets": [
+      3
+    ],
+    "final_life_counter": "01",
+    "stage_clear_verified": false,
+    "video_recording": true,
+    "performance_accepted": false,
+    "production_installed": false,
+    "limitation": "Recorded run with different scene/combat/load conditions; not an isolated causal comparison of policy or audio changes"
+  }
+}

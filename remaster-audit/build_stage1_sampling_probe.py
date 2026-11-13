@@ -29,6 +29,8 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--test',action='store_true')
+    parser.add_argument('--audio-max-correction',type=float,choices=[.005,.01],default=None,
+        help='Explicit private same-source audio control; default uses the production header')
     args=parser.parse_args();out=args.output.resolve()
     if out.parent!=OUTPUT.resolve():raise ValueError('Output must be directly inside private completion evidence')
     commands=[]
@@ -59,6 +61,7 @@ def main():
         results['watchdog-time']=run([str(out/'test-watchdog-time.exe')],'watchdog-time-regressions',env).stdout
         results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
         results['hero-draw']=run([str(out/'test-hero-draw.exe')],'hero-draw-regressions',env).stdout
+        results['threat-draw']=run([str(out/'test-threat-draw.exe')],'threat-draw-regressions',env).stdout
         results['source-cache-filter']=run([str(out/'test-source-cache-filter.exe')],'source-cache-filter-regressions',env).stdout
         results['decode-queue']=run([str(out/'test-decode-queue.exe')],'decode-queue-regressions',env).stdout
         for enabled in (0,1):
@@ -66,6 +69,9 @@ def main():
             result=run([report['test_executable'],str(out/'facade-pack'),str(enabled)],label,
                 dict(env,PSXRECOMP_HD_WORLD_SAMPLING=str(enabled),PSXRECOMP_HD_WORLD_ANISOTROPY='8'))
             results[label]=result.stdout
+        label='real-gl-world-0-filter-cache-1'
+        results[label]=run([report['test_executable'],str(out/'facade-pack'),'0'],label,
+            dict(env,PSXRECOMP_HD_WORLD_SAMPLING='0',PSXRECOMP_HD_FILTER_STATE_CACHE='1')).stdout
         write(out/'tests.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),gpu_preflight=quiet,results=results,
             build_sha256=prior.sha(out/'build.json'),commands=commands))
         return
@@ -83,6 +89,8 @@ def main():
     sources=[SOURCE,pack,watchdog,freeze,debug,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),SOURCE.with_name('hero_draw_tracker.h'),ROOT/'windows-x64/psxrecomp/runtime/include/gpu_gl_renderer.h',Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c',AUDIT/'test_hero_draw_tracker.c']
     sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
     sources.append(AUDIT/'test_hd_emissive_gl.h')
+    sources.extend([SOURCE.with_name('threat_draw_tracker.h'),AUDIT/'test_threat_draw_tracker.c'])
+    sources.extend([SOURCE.with_name('main.cpp'),SOURCE.with_name('recomp_audio_drc.h')])
     sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
     sources.extend([SOURCE.with_name('hd_source_cache_filter.h'),AUDIT/'test_hd_source_cache_filter.c'])
     sources.extend([SOURCE.with_name('hd_decode_queue.h'),AUDIT/'test_hd_decode_queue.cpp',ROOT/'windows-x64/psxrecomp/runtime/include/hd_texture_pack.h'])
@@ -150,6 +158,8 @@ def main():
         '-I'+str(SOURCE.parent),'-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),
         str(AUDIT/'test_hero_draw_tracker.c'),'-o',str(out/'test-hero-draw.exe')],'compile-hero-draw-regressions')
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        '-I'+str(SOURCE.parent),str(AUDIT/'test_threat_draw_tracker.c'),'-o',str(out/'test-threat-draw.exe')],'compile-threat-draw-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         '-I'+str(SOURCE.parent),str(AUDIT/'test_hd_source_cache_filter.c'),
         '-o',str(out/'test-source-cache-filter.exe')],'compile-source-cache-filter-regressions')
     run([str(prior.COMPILER),'-std=c++17','-O2','-static',str(AUDIT/'test_hd_decode_queue.cpp'),
@@ -192,7 +202,10 @@ def main():
     run([str(prior.COMPILER),*flags,'-c',str(AUDIT/'test_facade_motion_gl.cpp'),'-o',str(main_object)],'compile-test-main')
     test_exe=out/'test-stage1-sampling.exe';link(test_object,test_exe,main_object)
     renderer=out/'gpu_gl_renderer.c.obj';compile_renderer(renderer)
-    runtime=out/'Einhander_Recompiled.exe';rsp=link(renderer,runtime)
+    runtime_main=out/'runtime-main.cpp.obj'
+    audio_flags=[] if args.audio_max_correction is None else ['-DRECOMP_AUDIO_DRC_MAX_CORRECTION='+str(args.audio_max_correction)]
+    run([str(prior.COMPILER),*flags,*audio_flags,'-c',str(SOURCE.with_name('main.cpp')),'-o',str(runtime_main)],'compile-runtime-main')
+    runtime=out/'Einhander_Recompiled.exe';rsp=link(renderer,runtime,runtime_main)
     if any(prior.sha(p)!=digest for p,digest in hashes.items()):raise ValueError('Source changed while compiling')
     write(out/'build.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),
         executable=str(runtime),executable_sha256=prior.sha(runtime),test_executable=str(test_exe),
@@ -200,6 +213,7 @@ def main():
         fixture_hashes={p.relative_to(out).as_posix():prior.sha(p) for p in (out/'facade-pack').rglob('*') if p.is_file()},
         baseline_build=dict(path=str(prior.BASE/'build.json'),sha256=prior.sha(prior.BASE/'build.json')),
         link_response=str(rsp),link_response_sha256=prior.sha(rsp),commands=commands,
+        runtime_main_object_sha256=prior.sha(runtime_main),audio_max_correction_override=args.audio_max_correction,
         global_runtime_installed=False,game_launched=False))
     print(json.dumps(dict(output=str(out),runtime_sha256=prior.sha(runtime))))
 

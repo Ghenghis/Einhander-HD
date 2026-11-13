@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 64,
-  "total_image_bytes": 137430143,
+  "image_count": 65,
+  "total_image_bytes": 137904401,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1736,6 +1736,23 @@
       "pixel_identical_to_source": true,
       "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
       "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-robin-asp-score.png",
+      "sha256": "0cca96bf2bb4ac8a3422ca3e3fae141d98ef6b9fea86acc1022769814a9bde29",
+      "bytes": 474258,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_gameplay_capture",
+      "status": "Unassisted Robin prototype; ASP pod and score visible; no stage clear",
+      "source_path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/combat-aware-mk3-v2/hd-on_rewind-off/captures/robin-0090.png",
+      "source_sha256": "46a4e59229ba49250edcfac1b765247072e4f789bf840b87907909ddb290b75b",
+      "unmodified_copy": false,
+      "pixel_identical_to_source": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "embedded_metadata_present": false
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1918,9 +1935,20 @@
       "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-robin-targeting.mp4",
+      "sha256": "7dd470a35800dbe3ae7382bad07119df4bad87569e257747ee62bb1b2560e7fd",
+      "bytes": 43021585,
+      "category": "actual_gameplay_capture",
+      "status": "Enemy-aware unassisted prototype; continuous32-second preview; no stage-clear claim",
+      "result_manifest": "docs/media/gallery/stage1-robin-targeting-results.json",
+      "processing": "Contiguous stream-copy preview including nearest-keyframe preroll; no re-encoding, internal cuts, retiming or interpolation",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 11,
-  "total_video_bytes": 439971525,
+  "video_count": 12,
+  "total_video_bytes": 482993110,
   "video_frame_extract_count": 8
 }

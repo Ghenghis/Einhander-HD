@@ -1,5 +1,27 @@
 # Stage-relative controller qualification
 
+The later enemy-aware prototype replaces timed movement with read-only native
+draw-source clusters, target tracking, vertical aiming and incoming-threat
+response. Its closed 180-second MkIII run acquired targets, fired, equipped an
+ASP pod and made evasive moves. The 90-second still shows a native score of
+18,980. It lost lives (counter 03 to 01), used no Continue, and did not clear the
+stage. [Actual results and continuous 32-second preview](media/gallery/stage1-robin-targeting-results.json)
+are retained with packet-content and timestamp verification.
+
+![Unassisted Robin targeting prototype](media/gallery/stage1-robin-targeting.mp4)
+
+This footage uses v32's aligned firing policy. The subsequent continuous-main
+gun and automatic-craft refinements are separate experiments. Forty controller
+tests pass, but neither those tests nor this footage qualify normal installation,
+complete threat coverage or a stage clear. The following failed timing-policy
+trials remain part of the evidence history.
+
+The subsequent automatic-craft/continuous-main test recognized MkIII and closed
+cleanly after 180 seconds, with life counter 01. Its recorded gameplay averaged
+48.50 guest frames/s and accumulated 1,589,453 output-starved sample frames.
+Performance failed; the candidate remains uninstalled. That run differs in
+combat and host conditions and does not isolate the cause of its slower pacing.
+
 November 13, 2026. **The latest bounded ordinary-input attempt did not clear
 Stage 1.** It used two visually verified Continues and stopped at the third
 verified prompt, after about 481 seconds. No invincibility, RAM writes, state

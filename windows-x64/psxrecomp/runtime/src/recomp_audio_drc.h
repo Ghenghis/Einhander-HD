@@ -10,7 +10,7 @@
  * and the historical "fix" was to discard samples (drop/flush/decimate or a
  * nearest-neighbor servo) -- every discard is a click, and continuous micro
  * discard/dup is a sustained crackle. This bridge replaces all of that: the
- * controller nudges the *resample ratio* by <= +/-0.5% to hold the ring near a
+ * controller nudges the *resample ratio* by <= +/-1% to hold the ring near a
  * target fill, and the band-limited resampler keeps the waveform continuous.
  *
  * Single-file. Define RECOMP_AUDIO_DRC_IMPL in exactly ONE translation unit.
@@ -45,7 +45,7 @@ typedef struct {
     double ki_per_s;        /* optional integral gain per second (default 0):
                                P-only is bounded and cannot wind up across
                                bursty frame/stage transitions                  */
-    double max_correction;  /* clamp on ratio correction (default 0.005)       */
+    double max_correction;  /* clamp on ratio correction (default 0.010)       */
     double err_lp_ms;       /* error low-pass time constant ms (default 75)    */
     double slew_pp_per_s;   /* correction slew, percent-points/sec (default 0.75) */
     double deadband_ms;     /* +/- band around target with no correction (1.0)  */
@@ -157,7 +157,10 @@ void rab_config_defaults(rab_config *c) {
      * producer. At the measured ~0.1% source skew, kp=0.02 settles only ~4 ms
      * off target and cannot accumulate that destructive history. */
     c->ki_per_s       = 0.0;
-    c->max_correction = 0.005;
+#ifndef RECOMP_AUDIO_DRC_MAX_CORRECTION
+#define RECOMP_AUDIO_DRC_MAX_CORRECTION 0.010
+#endif
+    c->max_correction = RECOMP_AUDIO_DRC_MAX_CORRECTION;
     c->err_lp_ms      = 75.0;
     c->slew_pp_per_s  = 0.75;
     c->deadband_ms    = 1.0;

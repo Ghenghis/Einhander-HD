@@ -31,6 +31,8 @@ from pathlib import Path
 from devtools_service import DevTools, scoped_path
 from research_service import ResearchService
 import robin_stage_policy
+from robin_threat_policy import ThreatPolicy
+from robin_combat_policy import CombatPolicy
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS = os.path.join(ROOT, "tools")
@@ -124,6 +126,10 @@ class Robin(threading.Thread):
         self._greif_anchor = None
         self._greif_hull_frame = None
         self._stage = None
+        self.threat_draw=False
+        self._threats=None
+        self._threat_policy=ThreatPolicy()
+        self._combat=CombatPolicy()
         self.position = None
         self.tick = 0.15           # decision period (seconds)
         self.log = []
@@ -143,6 +149,7 @@ class Robin(threading.Thread):
                 "dodge": self.dodge, "revive": self.revive,
                 "invincible": self.invincible, "tick": self.tick,
                 "movement": self.movement, "fire_mode": self.fire_mode,"hull_guard":self.hull_guard,
+                "threat_draw":self.threat_draw,
                 "position": self.position,
                 "thread_alive": self.is_alive(),
                 "log": list(self.log),
@@ -155,19 +162,22 @@ class Robin(threading.Thread):
             if not 1/30 <= tick <= 2:
                 raise ValueError("Bot decision period must be between 1/30 and 2 seconds")
             updates["tick"] = tick
-        for key in ("autofire", "weave", "dodge", "revive", "invincible","hull_guard"):
+        for key in ("autofire", "weave", "dodge", "revive", "invincible","hull_guard","threat_draw"):
             if key in cfg:
                 if not isinstance(cfg[key], bool):
                     raise ValueError(key + " must be a boolean")
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
-        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "greif_lane", "stage_lane", "draw_lane")),
+        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "greif_lane", "stage_lane", "combat_lane", "draw_lane")),
                              ("fire_mode", ("cross", "both"))):
             if key in cfg:
                 if cfg[key] not in allowed:
                     raise ValueError(key + " must be one of " + ", ".join(allowed))
                 updates[key] = cfg[key]
+        movement=updates.get('movement',self.movement);threats=updates.get('threat_draw',self.threat_draw)
+        if threats and movement not in ('stage_lane','combat_lane'):raise ValueError('Threat response requires stage_lane or combat_lane')
+        if movement=='combat_lane' and not threats:raise ValueError('Enemy-aware combat requires threat_draw')
         for key, value in updates.items():
             setattr(self, key, value)
         if self.movement=='stage_lane':self._stage=robin_stage_policy.session()
@@ -265,9 +275,27 @@ class Robin(threading.Thread):
         self.position=dict(x=x,y=y,width=w,height=h,frame=state.get('frame'),
             age_frames=state.get('age_frames'),fresh=True,space=state.get('basis','hull draw geometry'))
         moves=[]
+        if self.movement=='combat_lane':
+            if (w,h)!=(320,224):raise ValueError('Enemy-aware controller viewport is uncalibrated')
+            if type(state.get('frame')) is not int or type(state.get('age_frames')) is not int or not 0<=state['age_frames']<=12:
+                raise ValueError('Fresh guest clock unavailable')
+            decision=self._combat.decide(state,self._threats)
+            self.position['combat']=dict(decision)
+            moves=list(decision['moves'])
+            if not self.weave:moves=[m for m in moves if m not in ('left','right')]
+            if not self.dodge:moves=[m for m in moves if m not in ('up','down')]
+            return moves
         if self.movement=='stage_lane':
             self.greif_target(state)  # Validate the actual source clock before using it.
             moves=self._stage.moves(state,x,y)
+            if self.threat_draw and self.dodge:
+                target=self._threat_policy.target_y(self._threats,bounds,state['frame']+state['age_frames'],
+                    preferred=self._stage.last['direction'])
+                self.position['threat_policy']=dict(self._threat_policy.last)
+                if target is not None:
+                    moves=[m for m in moves if m not in ('up','down')]
+                    if y>target+8:moves.append('up')
+                    elif y<target-8:moves.append('down')
             if not self.weave:moves=[m for m in moves if m not in ('left','right')]
             if not self.dodge:moves=[m for m in moves if m not in ('up','down')]
             self.position['stage_policy']=dict(self._stage.last)
@@ -323,13 +351,18 @@ class Robin(threading.Thread):
                 previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
                 draw_moves=None
-                if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') or self.hull_guard:
+                if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') or self.hull_guard:
+                    if self.threat_draw:
+                        self._threats=cmd({'cmd':'threat_draw'},timeout=1.5)
+                        if not self._threats.get('ok') or not self._threats.get('enabled'):
+                            self.note('Threat source tracking unavailable; bot stopped.')
+                            self.request_stop();break
                     state=cmd({'cmd':'player_draw'},timeout=1.5)
                     if not state.get('ok') or not state.get('enabled'):
                         self.note('Hull draw tracking unavailable; bot stopped.')
                         self.request_stop();break
                     if state.get('valid'):
-                        if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane'):
+                        if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane'):
                             try:draw_moves=self.draw_buttons(state)
                             except ValueError as error:
                                 self.note(str(error)+'; bot stopped.');self.request_stop();break
@@ -338,7 +371,7 @@ class Robin(threading.Thread):
                         dead_or_menu=False
                         missing_draws=0
                         missing_since=None
-                    elif self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') and not dead_or_menu:
+                    elif self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') and not dead_or_menu:
                         if self._stage is not None and type(state.get('frame')) is int and type(state.get('age_frames')) is int:
                             self._stage.absent(state['frame']+state['age_frames'])
                         missing_draws+=1
@@ -379,12 +412,15 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
-                if self.movement in ("draw_lane","upper_lane","greif_lane","stage_lane"):
+                if self.movement in ("draw_lane","upper_lane","greif_lane","stage_lane","combat_lane"):
                     moves=draw_moves
-                    fire=["x"] if self.autofire else []
-                    if self.autofire and self.fire_mode=="both":fire.append("square")
-                    self._press(*(moves+fire),frames=6)
-                    self._halt.wait(.10)
+                    combat=(self.position or {}).get('combat',{}) if self.movement=='combat_lane' else None
+                    can_fire=self.autofire and (combat is None or ((self.position or {}).get('fresh') and combat.get('fire')))
+                    fire=["x"] if can_fire else []
+                    if can_fire and self.fire_mode=="both" and (combat is None or combat.get('pod_fire')):fire.append("square")
+                    pulse=combat.get('movement_frames',6) if combat else 6
+                    self._press(*(moves+fire),frames=pulse)
+                    self._halt.wait(pulse/60 if combat is not None else .10)
                     if fire:self._press(*fire,frames=max(12,int(self.tick*60)+12))
                     self._halt.wait(self.tick)
                     continue

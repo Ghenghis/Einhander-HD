@@ -2886,18 +2886,27 @@ static void hd_dump_source_sidecars(const HdTextureDrawQuery *q,
  * and bounded. Loading a PNG alone does not constitute an in-game proof. */
 #include "hd_research_renderer.h"
 #include "hero_draw_tracker.h"
+#include "threat_draw_tracker.h"
 static HeroDrawTracker s_player_draw_tracker;
 static HeroDrawTracker s_player_draw_completed;
 static GreifDrawClock s_greif_draw_clock,s_greif_draw_completed;
 static int s_player_draw_enabled=-1;
 static int s_player_draw_only=-1;
 static int s_player_draw_source_set=2;
+static ThreatDrawState s_threat_draw_tracker,s_threat_draw_completed;
+static int s_threat_draw_enabled=-1;
+static int threat_draw_enabled(void){
+    if(s_threat_draw_enabled<0){const char *value=getenv("PSXRECOMP_THREAT_DRAW_TRACKING");
+        s_threat_draw_enabled=value&&!strcmp(value,"1");}
+    return s_threat_draw_enabled;
+}
 static int player_draw_enabled(void) {
     if(s_player_draw_enabled<0){
         const char *value=getenv("PSXRECOMP_PLAYER_DRAW_TRACKING");
         s_player_draw_enabled=value && strcmp(value,"1")==0;
         const char *craft=getenv("PSXRECOMP_PLAYER_DRAW_CRAFT");
-        if(!craft||strcmp(craft,"mk2")==0)s_player_draw_source_set=2;
+        if(craft&&strcmp(craft,"auto")==0)s_player_draw_source_set=1;
+        else if(!craft||strcmp(craft,"mk2")==0)s_player_draw_source_set=2;
         else if(strcmp(craft,"mk3")==0)s_player_draw_source_set=3;
         else if(strcmp(craft,"astraea")==0)s_player_draw_source_set=4;
         else {s_player_draw_source_set=0;s_player_draw_enabled=0;}
@@ -2917,17 +2926,29 @@ static void player_draw_on_source(const HdTextureSourceMatch *m,const HdTextureD
         const int area[4]={s_area_x1,s_area_y1,s_area_x2,s_area_y2};
         greif_draw_observe(&s_greif_draw_clock,s_frame_count,m->texture_hash,q->depth,
                           m->upload_width_words,m->upload_height,xs,ys,area);
+        if(threat_draw_enabled())threat_draw_observe(&s_threat_draw_tracker,s_frame_count,
+            m->texture_hash,m->palette_hash,q->depth,xs,ys,area);
         if(m->upload_width_words==16 && m->upload_height==64)
             hero_draw_observe_for_craft(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
                              q->depth,xs,ys,area,s_player_draw_source_set);
     }
 }
 void gl_renderer_player_draw_get(GlPlayerDrawState *out) {
-    if(out){hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);out->source_set=s_player_draw_source_set;
+    if(out){hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);
+        if(s_player_draw_source_set!=1)out->source_set=s_player_draw_source_set;
         greif_draw_snapshot(&s_greif_draw_completed,s_frame_count,player_draw_enabled(),out);}
 }
 static void player_draw_present_commit(void) {
     if(player_draw_enabled()){s_player_draw_completed=s_player_draw_tracker;s_greif_draw_completed=s_greif_draw_clock;}
+    if(player_draw_enabled()&&threat_draw_enabled())
+        threat_draw_commit(&s_threat_draw_tracker,s_frame_count,1,&s_threat_draw_completed);
+}
+void gl_renderer_threat_draw_get(ThreatDrawState *out){
+    memset(out,0,sizeof(*out));out->enabled=player_draw_enabled()&&threat_draw_enabled();
+    if(!out->enabled)return;
+    *out=s_threat_draw_completed;out->enabled=1;
+    out->age_frames=s_frame_count>=out->frame?s_frame_count-out->frame:UINT64_MAX;
+    if(out->age_frames>12){out->valid=0;out->count=0;}
 }
 static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
                                   const HdTextureDrawQuery *q,
@@ -3196,6 +3217,7 @@ typedef struct {
     GLuint emissive_tex;
     size_t emissive_bytes;
     int emissive_filter;
+    int base_filter,base_filter_valid;
     uint32_t th, ph;
     const uint8_t *pixels;
     uint32_t w, h;
@@ -3244,6 +3266,26 @@ static HdTexSlot *hd_tex_find(uint32_t th, uint32_t ph) {
         if (s_hd_tex[i].tex && s_hd_tex[i].th == th && s_hd_tex[i].ph == ph)
             return &s_hd_tex[i];
     return NULL;
+}
+
+/* Startup-only cost experiment. The replacement slot owns this GL texture;
+ * its unchanged nearest/linear sampler need not be set again for every batch.
+ * Mipmap experiments take their separate original path. No pixel/UV changes. */
+static int s_hd_filter_state_cache=-1;
+static int hd_filter_state_cache_enabled(void){
+    if(s_hd_filter_state_cache<0){const char *value=getenv("PSXRECOMP_HD_FILTER_STATE_CACHE");
+        s_hd_filter_state_cache=value&&!strcmp(value,"1");}
+    return s_hd_filter_state_cache;
+}
+static void hd_base_sampling(HdTexSlot *slot){
+    if(hd_filter_state_cache_enabled() && slot && slot->base_filter_valid && slot->base_filter==s_tex_filter){
+        if(hd_cpu_diag_enabled())++s_hd_cpu_diag.base_filter_skips;
+        return;
+    }
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
+    if(slot){slot->base_filter=s_tex_filter;slot->base_filter_valid=1;}
+    if(hd_cpu_diag_enabled())s_hd_cpu_diag.base_filter_updates+=2;
 }
 
 /* Startup-only experiment. Its policy includes source geometry and CLUT,
@@ -3928,10 +3970,9 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
             int facade_motion=hd_facade_motion_sampling(sampling_slot,hd_facade_motion_match(&m,&q));
             p_glUniform1i(s_hd_uFacadeMotion,facade_motion);
         } else {
-            /* The startup-disabled path keeps its original filters and does
-             * not perform another cache scan. Its uniform is initialized zero. */
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
-            glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
+            HdTexSlot *sampling_slot=resident;
+            if(hd_filter_state_cache_enabled() && !sampling_slot)sampling_slot=hd_tex_find(m.texture_hash,m.palette_hash);
+            hd_base_sampling(sampling_slot);
         }
         p_glUniform1i(s_hd_uHd, 0);
         if(hd_emissive_enabled()){

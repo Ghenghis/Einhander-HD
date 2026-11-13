@@ -8,6 +8,39 @@ class ImmediateHalt:
     def set(self):pass
 
 class RobinPlayTests(unittest.TestCase):
+    def test_combat_aims_with_main_fire_and_reserves_pod_fire_for_alignment(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();polls=0;presses=[]
+        bot.apply(dict(movement='combat_lane',threat_draw=True,revive=False,fire_mode='both'))
+        def command(obj,timeout=8):
+            nonlocal polls
+            if obj['cmd']=='read_ram':return dict(ok=True,data='03')
+            if obj['cmd']=='threat_draw':return dict(ok=True,enabled=True,valid=True,frame=100+polls*10,age_frames=0,
+                viewport=[320,224],objects=[dict(family='uhu',key='46D3938E-11111111',bounds=[170,115,210,145])])
+            if obj['cmd']=='player_draw':
+                y=80 if polls==0 else 130;frame=100+polls*10;polls+=1
+                return dict(ok=True,enabled=True,valid=True,source_set=3,frame=frame,age_frames=0,
+                    bounds=[28,y-10,52,y+10],viewport=[320,224])
+            if obj['cmd']=='press':
+                presses.append(obj)
+                if polls==2:bot.request_stop()
+            return dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertEqual(bridge.btn_word('down','x'),presses[0]['buttons'])
+        self.assertEqual(bridge.btn_word('x','square'),presses[-1]['buttons'])
+        self.assertEqual('engage',bot.position['combat']['mode'])
+
+    def test_requested_threat_tracking_stops_if_native_observer_is_disabled(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='stage_lane',threat_draw=True,revive=False))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            if obj['cmd']=='read_ram':return dict(ok=True,data='03')
+            return dict(ok=True,enabled=False)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertFalse(bot.running)
+        self.assertFalse(any(c['cmd'] in ('press','write_ram') for c in calls))
+        self.assertEqual('clear_input',calls[-1]['cmd'])
+
     def test_greif_policy_uses_actual_encounter_and_keeps_each_sweep_one_way(self):
         bot=bridge.Robin();bot.apply(dict(movement='greif_lane'))
         def moves(g,y=100,first=1000):
