@@ -51,6 +51,14 @@ class NativeRouteTests(unittest.TestCase):
         for pixels in [np.zeros((240, 320, 3), np.uint8), refs["title"], refs["fighter"], refs["arm"]]:
             self.assertNotEqual("city", route.classify_native(pixels, refs, "native-stock")["state"])
 
+    def test_actual_scale2_city_uses_separate_pinned_hud_without_lowering_gate(self):
+        refs,_=route.load_references('native-stock-scale2')
+        self.assertEqual('city',route.classify_native(refs['city'],refs,'native-stock-scale2')['state'])
+        original,_=route.load_references('native-stock')
+        self.assertNotEqual('city',route.classify_native(refs['city'],original,'native-stock')['state'])
+        for pixels in [np.zeros((240,320,3),np.uint8),refs['title'],refs['fighter'],refs['arm']]:
+            self.assertNotEqual('city',route.classify_native(pixels,refs,'native-stock-scale2')['state'])
+
     def test_unknown_reference_profile_is_rejected(self):
         with self.assertRaisesRegex(ValueError, "Unknown"):
             route.load_references("unregistered")

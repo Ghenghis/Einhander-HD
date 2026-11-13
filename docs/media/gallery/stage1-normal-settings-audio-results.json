@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "kind": "Three sequential actual-game normal-settings diagnostic controls",
+  "runs": [
+    {
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-on-v2/hd-on_rewind-on/world-flypast-proof.json",
+        "sha256": "65baf187fe960ab6139d18dd15032c84189e563b847781fd4e08691b2257d493",
+        "bytes": 956793
+      },
+      "runtime_build_sha256": "3fa07415144cc4e60583d3cacd17fa125e5875b1ec2a80ae335f93629d2343a7",
+      "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+      "measurement_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "guest_frames": 7174,
+      "seconds": 119.98663319999469,
+      "guest_fps": 59.7899933406942,
+      "starved_sample_frames_delta": 10640,
+      "initial_fill_ms": 177.7,
+      "final_fill_ms": 120.0,
+      "timer_only_assistance": true,
+      "ordinary_fire": false,
+      "state_loads": false,
+      "starved_intervals": [
+        {
+          "ending_seconds": 107.00062749997596,
+          "delta": 2146
+        },
+        {
+          "ending_seconds": 108.00041479998617,
+          "delta": 5928
+        },
+        {
+          "ending_seconds": 110.00027599997702,
+          "delta": 2566
+        }
+      ],
+      "label": "rewind4",
+      "render_preference": 2,
+      "rewind_enabled": true,
+      "rewind_depth": 50,
+      "normal_interval": 15,
+      "fmv_interval": 4,
+      "executable_sha256": "ecf61f95c94e58de93c107a782bd42f27e3dcb86ea5e041c1ea86117f9867879",
+      "readback_delta": 1,
+      "hd_cpu_ms_delta": {
+        "total_ms": 23403.1769,
+        "draw_ms": 14030.233,
+        "source_ms": 4305.2743,
+        "readback_ms": 0.6680999999999813
+      },
+      "media": {
+        "xa_active_observations": 112,
+        "observations": 121,
+        "depth24_observations": 0,
+        "mdec_decode_count_delta": 0
+      },
+      "audio": {
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-on-v2/hd-on_rewind-on/actual-host-output.wav",
+          "sha256": "cf71a4299a4bb5bbf4bbd164d859d456986ea472b90d58a9f61a2d635ac09cef",
+          "bytes": 11326124
+        },
+        "source_start_sample_frame": 5407200,
+        "clip_source_offset_frames": 2063040,
+        "clip_start_sample_frame": 7470240,
+        "frames": 576000,
+        "seconds": 12,
+        "anchor_elapsed_seconds": 104.00041169999167,
+        "rate": 48000,
+        "channels": 2,
+        "sample_width_bytes": 2,
+        "pcm_sha256": "1256d63b3a8bcae9a28d022ee259b3f8c3214b5f05d62a2df6f4ee1b83afaef7",
+        "retimed": false,
+        "resampled": false,
+        "path": "docs/media/gallery/stage1-normal-rewind4-audio.wav",
+        "sha256": "70140acf69f6fbc32a3c425aea80b8e05165b0b5baa043f8e90c409985f0a53b",
+        "bytes": 2304044
+      }
+    },
+    {
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-cadence15-v2/hd-on_rewind-on/world-flypast-proof.json",
+        "sha256": "f0f19a279574cc9ab17576212c7c0296529453f3c6ca687388b0cc16da231e5c",
+        "bytes": 956358
+      },
+      "runtime_build_sha256": "3fa07415144cc4e60583d3cacd17fa125e5875b1ec2a80ae335f93629d2343a7",
+      "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+      "measurement_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "guest_frames": 7190,
+      "seconds": 119.99787069999729,
+      "guest_fps": 59.91772985685289,
+      "starved_sample_frames_delta": 2892,
+      "initial_fill_ms": 50.5,
+      "final_fill_ms": 145.1,
+      "timer_only_assistance": true,
+      "ordinary_fire": false,
+      "state_loads": false,
+      "starved_intervals": [
+        {
+          "ending_seconds": 110.00020609999774,
+          "delta": 1274
+        },
+        {
+          "ending_seconds": 111.00057289999677,
+          "delta": 834
+        },
+        {
+          "ending_seconds": 112.00041619999683,
+          "delta": 784
+        }
+      ],
+      "label": "rewind15",
+      "render_preference": 2,
+      "rewind_enabled": true,
+      "rewind_depth": 50,
+      "normal_interval": 15,
+      "fmv_interval": 15,
+      "executable_sha256": "ecf61f95c94e58de93c107a782bd42f27e3dcb86ea5e041c1ea86117f9867879",
+      "readback_delta": 0,
+      "hd_cpu_ms_delta": {
+        "total_ms": 18275.6492,
+        "draw_ms": 9610.8607,
+        "source_ms": 4062.8839,
+        "readback_ms": 0.0
+      },
+      "media": {
+        "xa_active_observations": 112,
+        "observations": 121,
+        "depth24_observations": 0,
+        "mdec_decode_count_delta": 0
+      },
+      "audio": {
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-cadence15-v2/hd-on_rewind-on/actual-host-output.wav",
+          "sha256": "f4d47adb1120bfd400ea00de4b699ec96cd653523cf16c278a1385f29eb76665",
+          "bytes": 11523884
+        },
+        "source_start_sample_frame": 5351040,
+        "clip_source_offset_frames": 2112000,
+        "clip_start_sample_frame": 7463040,
+        "frames": 576000,
+        "seconds": 12,
+        "anchor_elapsed_seconds": 104.00067049998324,
+        "rate": 48000,
+        "channels": 2,
+        "sample_width_bytes": 2,
+        "pcm_sha256": "93316aed4fcd6bdb774a50d42f563d885409cada3aae29e2802d1aa9e8730538",
+        "retimed": false,
+        "resampled": false,
+        "path": "docs/media/gallery/stage1-normal-rewind15-audio.wav",
+        "sha256": "4fa8fb0730b605321cac0470b01379b5b7d800ead7601ec1ace0eac3b0fa127b",
+        "bytes": 2304044
+      }
+    },
+    {
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-off-v2/hd-on_rewind-off/world-flypast-proof.json",
+        "sha256": "22f65ab56e30a487014614c69401bd3355e18de9039064a142b88575a7b4dc7f",
+        "bytes": 956885
+      },
+      "runtime_build_sha256": "3fa07415144cc4e60583d3cacd17fa125e5875b1ec2a80ae335f93629d2343a7",
+      "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+      "measurement_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "guest_frames": 7046,
+      "seconds": 120.57811589998892,
+      "guest_fps": 58.43514760044984,
+      "starved_sample_frames_delta": 121451,
+      "initial_fill_ms": 182.7,
+      "final_fill_ms": 152.4,
+      "timer_only_assistance": true,
+      "ordinary_fire": false,
+      "state_loads": false,
+      "starved_intervals": [
+        {
+          "ending_seconds": 9.000294099998428,
+          "delta": 1050
+        },
+        {
+          "ending_seconds": 10.000332399999024,
+          "delta": 10069
+        },
+        {
+          "ending_seconds": 11.000318100006552,
+          "delta": 1781
+        },
+        {
+          "ending_seconds": 32.00041790000978,
+          "delta": 3541
+        },
+        {
+          "ending_seconds": 37.00039410000318,
+          "delta": 2656
+        },
+        {
+          "ending_seconds": 68.00042649998795,
+          "delta": 5100
+        },
+        {
+          "ending_seconds": 73.00048089999473,
+          "delta": 7074
+        },
+        {
+          "ending_seconds": 74.00028599999496,
+          "delta": 1318
+        },
+        {
+          "ending_seconds": 78.0009071000095,
+          "delta": 8358
+        },
+        {
+          "ending_seconds": 79.00041259999853,
+          "delta": 12773
+        },
+        {
+          "ending_seconds": 80.00044840000919,
+          "delta": 4740
+        },
+        {
+          "ending_seconds": 81.00061129999813,
+          "delta": 5932
+        },
+        {
+          "ending_seconds": 82.00059819998569,
+          "delta": 9060
+        },
+        {
+          "ending_seconds": 83.00030939999851,
+          "delta": 9364
+        },
+        {
+          "ending_seconds": 84.00066369998967,
+          "delta": 16485
+        },
+        {
+          "ending_seconds": 85.00038700000732,
+          "delta": 1556
+        },
+        {
+          "ending_seconds": 96.00055769999744,
+          "delta": 1316
+        },
+        {
+          "ending_seconds": 97.00045610000961,
+          "delta": 1380
+        },
+        {
+          "ending_seconds": 102.000532200007,
+          "delta": 3833
+        },
+        {
+          "ending_seconds": 103.0001454000012,
+          "delta": 6436
+        },
+        {
+          "ending_seconds": 104.00061149999965,
+          "delta": 158
+        },
+        {
+          "ending_seconds": 105.00048960000277,
+          "delta": 610
+        },
+        {
+          "ending_seconds": 113.00024289998692,
+          "delta": 3294
+        },
+        {
+          "ending_seconds": 114.00045990000945,
+          "delta": 3567
+        }
+      ],
+      "label": "rewind-off",
+      "render_preference": 2,
+      "rewind_enabled": false,
+      "rewind_depth": 0,
+      "normal_interval": 15,
+      "fmv_interval": 4,
+      "executable_sha256": "ecf61f95c94e58de93c107a782bd42f27e3dcb86ea5e041c1ea86117f9867879",
+      "readback_delta": 0,
+      "hd_cpu_ms_delta": {
+        "total_ms": 25693.787099999998,
+        "draw_ms": 15510.5997,
+        "source_ms": 4650.2718,
+        "readback_ms": 0.0
+      },
+      "media": {
+        "xa_active_observations": 112,
+        "observations": 121,
+        "depth24_observations": 0,
+        "mdec_decode_count_delta": 0
+      },
+      "audio": {
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-off-v2/hd-on_rewind-off/actual-host-output.wav",
+          "sha256": "35d9312d514bb653cf20da44eb076d68de715671a045dde1152318d87c49add6",
+          "bytes": 11433644
+        },
+        "source_start_sample_frame": 5438400,
+        "clip_source_offset_frames": 2062080,
+        "clip_start_sample_frame": 7500480,
+        "frames": 576000,
+        "seconds": 12,
+        "anchor_elapsed_seconds": 104.00061149999965,
+        "rate": 48000,
+        "channels": 2,
+        "sample_width_bytes": 2,
+        "pcm_sha256": "40e020a86f64fa720d9be21cb10bad9e3a62410500073271691f340d33d06596",
+        "retimed": false,
+        "resampled": false,
+        "path": "docs/media/gallery/stage1-normal-rewind-off-audio.wav",
+        "sha256": "94979f406a201c7a895aef2a6a45c0a9b9cd8e96a4b09e8f924a249f45b47743",
+        "bytes": 2304044
+      }
+    }
+  ],
+  "audio_resolved": false,
+  "audible_acceptance": false,
+  "production_installed": false,
+  "conclusions": [
+    "All three runs starved output audio; disabling rewind did not remove the symptom.",
+    "XA remained active during ordinary depth15 gameplay without further MDEC decoding.",
+    "Readback deltas were zero or one; frequent successful snapshot readbacks are not established.",
+    "Near-60fps averages conceal individual slow seconds; no causal fix is accepted."
+  ],
+  "limitations": [
+    "One ordered three-leg series; different initial buffer fill and route timing, no repeat/randomization.",
+    "No-fire, timer-only private visual route; not ordinary combat, progression or FMV acceptance.",
+    "Exact game callback PCM, copied after measurement. No system loopback, effects, resampling or retiming.",
+    "Callback PCM and starvation counters do not prove device-driver continuity or audible acceptance."
+  ]
+}

@@ -80,7 +80,7 @@ def prepare(args):
     if args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
-        report['route_reference_profile']='native-stock'
+        report['route_reference_profile']='native-stock-scale2' if args.supersampling==2 else 'native-stock'
     pacing.base.write(directory/'candidate.json',report)
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 

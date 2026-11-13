@@ -8,8 +8,10 @@ a completed deliverable. The detailed brief is
 
 - **Runtime and audio — Codex, with Claude's independent review.** Highest
   priority: pre-Greif travel, arrival and weapon-fire stalls, plus FMV playback.
-  Correction-cap and sampler-state experiments still starve audio. Next gates:
-  isolate the expensive work, verify each change against a control, preserve
+  Normal preference2 controls still starve audio, including with rewind off.
+  Gameplay code replacing boot-text RAM remains interpreted; acquire and
+  compile its actual bytes with strict matching. Next gates: isolate the
+  expensive work, verify each change against a control, preserve
   actual host audio, then demonstrate sustained normal gameplay and FMV output.
 - **Robin and progression — Codex, with enemy/weak-point review from Claude.**
   Actual targeting, firing, weapon pickup and evasion are observed. Lives are
@@ -18,10 +20,14 @@ a completed deliverable. The detailed brief is
   route before ordinary-input stage acceptance.
 - **Environment, signs, players, pods, enemies and effects — Claude; integration
   and in-game acceptance by Codex.** The full facade footage is published.
-  Remaining revisions include beams/lights, metal/road/atlas details, lettering
+  Remaining revisions include lights, metal/road/atlas details, lettering
   and palette phases, player/pod states, enemy parts and effects. The delivered
   electric-arc binding still needs integration. Every asset needs native
   UV/alpha/palette checks and actual visual acceptance.
+  W4 world/menu/player/signs-HUD revisions have been delivered for review;
+  these are not integrated or accepted. The earlier searchlight-beam texture
+  identification was corrected: current evidence points to untextured polygons,
+  so a texture replacement cannot yet be claimed to improve those cones.
 - **HUD and menus — Claude; capture and acceptance by Codex.** 157 historical
   HUD fade aliases still lack native palette evidence. Finish available
   typography, selection, pause/configuration, Continue/Game Over, evaluation,

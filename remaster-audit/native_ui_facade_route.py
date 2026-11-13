@@ -36,6 +36,9 @@ CRAFT_REFERENCES = {
     "mk3": ("dev-center-evidence/stage1-completion-20261112/native-craft-choices-v1/hd-off_rewind-off/choice-1-native-2.png", "ee3a51532ac66b88d6fcccc83a444a8b511a98d3a1d5859f36dc3c529c79ae05"),
     "astraea": ("dev-center-evidence/stage1-completion-20261112/native-craft-choices-v1/hd-off_rewind-off/choice-2-native-2.png", "1ddf6c113c602d3ac4e245806d43f8dade53fe321b9da7e920d9aa5d7ea55337"),
 }
+STOCK_SCALE2_REFERENCES = dict(STOCK_REFERENCES,city=(
+    "../docs/media/gallery/native-city-scale2-reference.png",
+    "456335062c4fc5c505adaf4655660b21ce3b33147b6e5d7d8bee47eb424f3aa3"))
 ASTRAEA_ARM_REFERENCES = {
     "arm2": ("dev-center-evidence/stage1-completion-20261112/astraea-native-sources-v1/hd-on_rewind-off/native-facade-route-20261113-044730-307531/after-fighter-3.png", "5b99fb746cc6c9c4fa753acba04b39c50a14c126aa9cd9663b04361e8f81ccfc"),
     "arm1": ("dev-center-evidence/stage1-completion-20261112/astraea-native-sources-v1/hd-on_rewind-off/native-facade-route-20261113-044730-307531/failed-last-3.png", "e5d63120f087c12bf638c62d74e5fb0d97a98edb7748203a1684047669c3507d"),
@@ -62,10 +65,10 @@ def native_pixels(image):
 
 
 def load_references(profile="hd"):
-    if profile not in ("hd", "native-stock", "assembled-v1"):
+    if profile not in ("hd", "native-stock", "native-stock-scale2", "assembled-v1"):
         raise ValueError("Unknown native route reference profile")
     pixels, receipts = {}, {}
-    registry={"hd":REFERENCES,"native-stock":STOCK_REFERENCES,"assembled-v1":ASSEMBLED_REFERENCES}[profile]
+    registry={"hd":REFERENCES,"native-stock":STOCK_REFERENCES,"native-stock-scale2":STOCK_SCALE2_REFERENCES,"assembled-v1":ASSEMBLED_REFERENCES}[profile]
     for name, (relative, expected) in registry.items():
         path = ROOT / relative
         actual = digest(path)
@@ -140,7 +143,7 @@ def classify_native(pixels, references, profile="hd"):
     start = dice(white(crop(pixels, start_rect)), white(crop(references["title"], start_rect)))
     cyan_title = int(blue(crop(pixels, (20, 70, 300, 160))).sum())
     hud_rect = (224, 210, 232, 216)  # fixed multiplier x glyph, not changing digits
-    if profile == "native-stock":
+    if profile in ("native-stock","native-stock-scale2"):
         # The original fixed multiplier X peaks at 104..112 gray. Its native
         # anti-aliased shape disappears under the HD glyph's >130 white mask.
         # Restrict this profile to neutral gray, keeping the same ROI and Dice gate.

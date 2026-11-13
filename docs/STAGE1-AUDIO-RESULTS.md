@@ -48,5 +48,35 @@ starved output frames in 120 seconds. It used the opt-in framebuffer-bracket
 experiment, private render preference 9 and rewind off. No same-binary bracket
 control or normal-settings acceptance is claimed.
 [Audio provenance and results](media/gallery/stage1-runtime-audio-results.json)
-include sample offsets and PCM hashes. Normal preference 2 and rewind depth50,
-interval15 are the next controls; true FMV playback remains a separate gate.
+include sample offsets and PCM hashes. These earlier tests used private render
+preference 9. They do not represent the user's normal preference 2.
+
+The [normal-settings controls](media/gallery/stage1-normal-settings-audio-results.json)
+now cover the same v37 executable and frozen artwork at preference 2. Each ran
+for 120 seconds after City with no recording, source dumping or measurement
+screenshots, with the disclosed timer-only aid and no firing:
+
+- Rewind on, depth50, interval15 / FMV interval4: **59.7900fps; 10,640 starved sample frames**.
+- Rewind on, depth50, interval15 / FMV interval15: **59.9177fps; 2,892 starved sample frames**.
+- Rewind off: **58.4351fps; 121,451 starved sample frames**.
+
+All closed with exit0, errors[] and closed debug ports. This was one ordered
+series with different initial buffer fill and route timing; it does not prove a
+causal benefit from either cadence. Disabling rewind did not remove the symptom.
+The near-60fps baseline average concealed seconds near 51–52fps around elapsed
+107–110s. Actual successful readback deltas were one, zero and zero. XA stayed
+active during ordinary depth15 gameplay without additional MDEC decoding, so
+XA alone is not proof of a movie or frequent successful rewind snapshots.
+
+Exact contiguous twelve-second callback PCM excerpts are available for
+[normal rewind](media/gallery/stage1-normal-rewind4-audio.wav),
+[cadence15](media/gallery/stage1-normal-rewind15-audio.wav) and
+[rewind off](media/gallery/stage1-normal-rewind-off-audio.wav). Each begins at
+the host sample index observed at/after elapsed104s. They are copied after
+measurement with no effects, retiming or resampling. Callback PCM is not hardware
+loopback and cannot establish device-driver continuity. **Audio remains failing.**
+
+Next: acquire the actual gameplay code that replaces boot-text RAM, check its
+execution evidence and exact-byte cache admission, then compare a compiled
+candidate with the control. Rendering submission remains a separate target.
+Native FMV playback, ordinary combat and sustained audible acceptance are open.

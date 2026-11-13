@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 65,
-  "total_image_bytes": 137904401,
+  "image_count": 66,
+  "total_image_bytes": 137932348,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1753,6 +1753,31 @@
       "pixel_identical_to_source": true,
       "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
       "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/native-city-scale2-reference.png",
+      "sha256": "456335062c4fc5c505adaf4655660b21ce3b33147b6e5d7d8bee47eb424f3aa3",
+      "bytes": 27947,
+      "dimensions": [
+        320,
+        240
+      ],
+      "category": "actual_capture",
+      "status": "Native texture City gate at normal render preference2; diagnostic reference",
+      "label": "Native City scale2 gate reference",
+      "source_identifier": "remaster-audit/dev-center-evidence/stage1-completion-20261112/normal2-rewind-on-v1/hd-on_rewind-on/native-facade-route-20261113-103906-610760/failed-last-3.png",
+      "unmodified_copy": true,
+      "pixel_content_preserved": true,
+      "source_sha256": "456335062c4fc5c505adaf4655660b21ce3b33147b6e5d7d8bee47eb424f3aa3",
+      "source_bytes": 27947,
+      "public_sha256": "456335062c4fc5c505adaf4655660b21ce3b33147b6e5d7d8bee47eb424f3aa3",
+      "public_bytes": 27947,
+      "qualification": {
+        "hd_enabled": false,
+        "supersampling": 2,
+        "original_console_capture": false,
+        "matched_frame_comparison": false
+      }
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1965,8 +1990,50 @@
       "retimed": false,
       "resampled": false,
       "processing": "Exact contiguous PCM copy"
+    },
+    {
+      "path": "docs/media/gallery/stage1-normal-rewind4-audio.wav",
+      "sha256": "70140acf69f6fbc32a3c425aea80b8e05165b0b5baa043f8e90c409985f0a53b",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Normal-settings diagnostic still fails; rewind4",
+      "result_manifest": "docs/media/gallery/stage1-normal-settings-audio-results.json",
+      "retimed": false,
+      "resampled": false,
+      "processing": "Exact contiguous PCM copy"
+    },
+    {
+      "path": "docs/media/gallery/stage1-normal-rewind15-audio.wav",
+      "sha256": "4fa8fb0730b605321cac0470b01379b5b7d800ead7601ec1ace0eac3b0fa127b",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Normal-settings diagnostic still fails; rewind15",
+      "result_manifest": "docs/media/gallery/stage1-normal-settings-audio-results.json",
+      "retimed": false,
+      "resampled": false,
+      "processing": "Exact contiguous PCM copy"
+    },
+    {
+      "path": "docs/media/gallery/stage1-normal-rewind-off-audio.wav",
+      "sha256": "94979f406a201c7a895aef2a6a45c0a9b9cd8e96a4b09e8f924a249f45b47743",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Normal-settings diagnostic still fails; rewind-off",
+      "result_manifest": "docs/media/gallery/stage1-normal-settings-audio-results.json",
+      "retimed": false,
+      "resampled": false,
+      "processing": "Exact contiguous PCM copy"
     }
   ],
-  "audio_count": 1,
-  "total_audio_bytes": 2304044
+  "audio_count": 4,
+  "total_audio_bytes": 9216176
 }
