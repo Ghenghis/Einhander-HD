@@ -6,6 +6,61 @@ shadow comparison. These checks do not establish pacing or whole-game parity.
 import math
 
 
+# Explicit unit boundaries of the collision routines under qualification. These
+# are guest addresses, not copied game bytes. A clean prologue alone cannot
+# establish equivalence of a CPS function that returns through continuations.
+NONLEAF_UNITS = {
+    0xB5C08: [(0x800B5C08, 'call'), (0x800B5C08, 'return'),
+              (0x800B5CD4, 'call'), (0x800B5CD4, 'return')],
+    0xB5EB8: [(0x800B5EB8, 'call'), (0x800B5EB8, 'return'),
+              (0x800B5F34, 'call'), (0x800B5F34, 'return')],
+    0xB61A4: [(0x800B61A4, 'call'), (0x800B61A4, 'return'),
+              (0x800B630C, 'return')],
+}
+
+
+def nonleaf_unit_errors(entry, candidates, shadow):
+    try:
+        required = NONLEAF_UNITS.get(int(entry, 16) & 0x1FFFFFFF)
+    except (TypeError, ValueError):
+        return [str(entry) + ' is not a guest address']
+    if not required:
+        return []
+    units = shadow.get('units')
+    if (not isinstance(units, list) or shadow.get('unit_overflow') != 0
+            or shadow.get('units_total') != len(units)
+            or shadow.get('units_listed') != len(units)):
+        return [entry + ' lacks complete per-unit comparison results']
+    errors = []
+    exact = [c for c in candidates if c.get('match') and c.get('device_touch') == 0]
+    for pc, exit_kind in required:
+        accepted = False
+        for c in exact:
+            # An address can have multiple native variants. Counts must belong
+            # to the exact Candidate and code CRC that matched the live bytes.
+            if not isinstance(c.get('index'), int) or not isinstance(c.get('crc'), str):
+                continue
+            for u in units:
+                try:
+                    same = (u['candidate_index'] == c['index']
+                            and int(u['code_crc'], 16) == int(c['crc'], 16)
+                            and int(u['cand'], 16) == (int(entry, 16) & 0x1FFFFFFF)
+                            and int(u['unit'], 16) == pc and u['exit'] == exit_kind)
+                    clean = (isinstance(u['clean'], int) and u['clean'] >= 32
+                             and u['div'] == 0 and u['skip'] == 0
+                             and u['last_div_kind'] == 0)
+                except (KeyError, TypeError, ValueError):
+                    continue
+                if same and clean:
+                    accepted = True
+                    break
+            if accepted:
+                break
+        if not accepted:
+            errors.append(f'{entry} unit 0x{pc:08X} {exit_kind} lacks 32 clean same-code comparisons')
+    return errors
+
+
 def qualification_errors(proof, world):
     errors = []
     for name, result in [('qualification', proof), ('game run', world)]:
@@ -35,6 +90,7 @@ def qualification_errors(proof, world):
         if not any(c.get('match') and c.get('diff_passes', 0) >= 32
                    and c.get('device_touch') == 0 for c in rows):
             errors.append(entry + ' lacks 32 clean exact-byte comparisons')
+        errors.extend(nonleaf_unit_errors(entry, rows, shadow))
 
     observations = world.get('observations', [])
     if len(observations) < 2:

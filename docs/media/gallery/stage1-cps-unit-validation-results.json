@@ -1,0 +1,249 @@
+{
+  "date": "2026-11-13",
+  "scope": "Uninstalled correctness experiments; no new pacing result or smoothness/audio acceptance",
+  "stutter_fixed": false,
+  "audio_fixed": false,
+  "production_installed": false,
+  "complete_nonleaf_qualification": false,
+  "complete_unit_runtime": {
+    "v49_executable_sha256": "6fd17646f9f0486697b7a9c1d2232fac53b699b090bdc084cc7b663dd82a5d31",
+    "v50_executable_sha256": "88b66bf288d5c076cd472ed10cbf7a43e9c34ae4184c69bfe04a417a2f4a9ba8",
+    "source_branch": "codex/cps-unit-hitch",
+    "branch_base_commit": "f45322218eb75f874a2ee475b0ce7ceebc034460",
+    "native_shard_codegen_changed": false,
+    "crc_stack_trace_comparisons_weakened": false
+  },
+  "r4_v49_entry_only": {
+    "guest_first": 8800,
+    "guest_last": 9668,
+    "completed_boss_comparisons": 3468,
+    "divergences": 0,
+    "final_in_shadow": 0,
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "errors": [],
+    "continuations_qualified": false,
+    "accepted_for_staging": false,
+    "reason": "Entry-only comparisons do not qualify return paths. Updated staging validator rejects this retained receipt.",
+    "original_proof_sha256": "67f5c274e5eeff86385fdc6e7853f42711f04862f2504e1d2fe39d6a82f3bb83",
+    "boss_proof_sha256": "d2158f623969ebf020979595a22730e50490775cbad71d74e8c77e40c2eff9f1"
+  },
+  "replay_abort_regression": {
+    "kind": "CPU-only synthetic self-authored guest sentinel loop compiled into real generated DLLs; real runtime shadow/trace/memory/clock, device/debug stubs",
+    "passed": true,
+    "receipt_sha256": "459ef9890a6a250885f16c23af13981f60e240e71eddb895037e30e1a00cb7af",
+    "cases": [
+      {
+        "runtime": "before",
+        "case": "clean",
+        "timed_out": false,
+        "timeout_seconds": null,
+        "seconds": 0.08253560000002835,
+        "shadow_calls": 3,
+        "divergences": 0,
+        "state_equal_reps": 3,
+        "clock_equal_reps": 3,
+        "cleanup_probe": 0,
+        "trace_kind": null
+      },
+      {
+        "runtime": "after",
+        "case": "clean",
+        "timed_out": false,
+        "timeout_seconds": null,
+        "seconds": 0.06549069999982748,
+        "shadow_calls": 3,
+        "divergences": 0,
+        "state_equal_reps": 3,
+        "clock_equal_reps": 3,
+        "cleanup_probe": 1,
+        "trace_kind": null
+      },
+      {
+        "runtime": "before",
+        "case": "read_fault",
+        "timed_out": true,
+        "timeout_seconds": 3,
+        "seconds": 3.037244699999974,
+        "shadow_calls": null,
+        "divergences": null,
+        "state_equal_reps": null,
+        "clock_equal_reps": null,
+        "cleanup_probe": null,
+        "trace_kind": null
+      },
+      {
+        "runtime": "after",
+        "case": "read_fault",
+        "timed_out": false,
+        "timeout_seconds": null,
+        "seconds": 0.04556649999994988,
+        "shadow_calls": 1,
+        "divergences": 1,
+        "state_equal_reps": 3,
+        "clock_equal_reps": 3,
+        "cleanup_probe": 1,
+        "trace_kind": 1
+      },
+      {
+        "runtime": "before",
+        "case": "exhausted",
+        "timed_out": true,
+        "timeout_seconds": 3,
+        "seconds": 3.018138800000088,
+        "shadow_calls": null,
+        "divergences": null,
+        "state_equal_reps": null,
+        "clock_equal_reps": null,
+        "cleanup_probe": null,
+        "trace_kind": null
+      },
+      {
+        "runtime": "after",
+        "case": "exhausted",
+        "timed_out": false,
+        "timeout_seconds": null,
+        "seconds": 0.04428319999988162,
+        "shadow_calls": 1,
+        "divergences": 1,
+        "state_equal_reps": 3,
+        "clock_equal_reps": 3,
+        "cleanup_probe": 1,
+        "trace_kind": 4
+      },
+      {
+        "runtime": "before",
+        "case": "write_then_exhausted",
+        "timed_out": true,
+        "timeout_seconds": 3,
+        "seconds": 3.0205118000003495,
+        "shadow_calls": null,
+        "divergences": null,
+        "state_equal_reps": null,
+        "clock_equal_reps": null,
+        "cleanup_probe": null,
+        "trace_kind": null
+      },
+      {
+        "runtime": "after",
+        "case": "write_then_exhausted",
+        "timed_out": false,
+        "timeout_seconds": null,
+        "seconds": 0.04550939999990078,
+        "shadow_calls": 1,
+        "divergences": 1,
+        "state_equal_reps": 3,
+        "clock_equal_reps": 3,
+        "cleanup_probe": 1,
+        "trace_kind": 2
+      }
+    ],
+    "interpretation": "Faulty replay now returns and fails closed; authoritative interpreter CPU/RAM/scratchpad/clock retained. This is not a boss performance fix."
+  },
+  "v50_leaf_run": {
+    "accepted": false,
+    "reason": "Comparison scope was global and included seeded older-cache candidates; seven unrelated divergences and device skips reject the entire run.",
+    "proof_sha256": "4c8b0cfd5e0c2ba976e106177cbd3eaaff4d6860a2681899bbbb09eece0d87cf",
+    "last_guest_frame": 11607,
+    "requested_leaf_observations": {
+      "0x000B6328": {
+        "id": 1,
+        "ok": true,
+        "candidates": [
+          {
+            "index": 634,
+            "addr": "0x000B6328",
+            "state": 0,
+            "nranges": 1,
+            "crc": "0x7671E4AD",
+            "live": "0x7671E4AD",
+            "match": 1,
+            "val_gen": 0,
+            "gen": 0,
+            "dll": 64,
+            "diff_passes": 32,
+            "device_touch": 0
+          }
+        ]
+      },
+      "0x000B6EC8": {
+        "id": 1,
+        "ok": true,
+        "candidates": [
+          {
+            "index": 633,
+            "addr": "0x000B6EC8",
+            "state": 0,
+            "nranges": 1,
+            "crc": "0x6CBB6D40",
+            "live": "0x6CBB6D40",
+            "match": 1,
+            "val_gen": 0,
+            "gen": 0,
+            "dll": 63,
+            "diff_passes": 32,
+            "device_touch": 0
+          }
+        ]
+      }
+    },
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "errors": [],
+    "pacing_accepted": false,
+    "command_audit": {
+      "timer_write_requests": 770,
+      "successful_timer_writes": 770,
+      "forbidden_mutations": []
+    }
+  },
+  "qualification_gate": {
+    "tests": 13,
+    "passed": true,
+    "requires": "Known nonleaf entry/call/return and continuation units: at least32 clean, zero divergence/skip, exact candidate index/code CRC, complete untruncated unit results",
+    "revalidation": [
+      {
+        "batch": "native48-r1-qual",
+        "accepted": true,
+        "reasons": [],
+        "original_accepted": true
+      },
+      {
+        "batch": "native48-r2-qual",
+        "accepted": true,
+        "reasons": [],
+        "original_accepted": true
+      },
+      {
+        "batch": "native49-r4-qual",
+        "accepted": false,
+        "reasons": [
+          "0x000B5C08 lacks complete per-unit comparison results"
+        ],
+        "original_accepted": true
+      },
+      {
+        "batch": "native50-leaves-qual",
+        "accepted": false,
+        "reasons": [
+          "Native comparison has divergences or missing results",
+          "Native comparison skipped device work or has missing results"
+        ],
+        "original_accepted": false
+      }
+    ],
+    "actual_entry_only_staging_attempt": {
+      "rejected": true,
+      "reason": "Native qualification rejected: 0x000B5C08 lacks complete per-unit comparison results",
+      "report_unchanged": true,
+      "copied_files": 0,
+      "source_proof_sha256": "67f5c274e5eeff86385fdc6e7853f42711f04862f2504e1d2fe39d6a82f3bb83"
+    }
+  },
+  "remaining": [
+    "Complete and test per-unit runtime accounting and actual continuation reachability.",
+    "Repeat narrow same-state handler and nonleaf qualification in the final exact runtime.",
+    "Check native/interpreter boss-route parity and fingerprints before performance measurement.",
+    "Run another quiet recorder-off same-route timing/audio comparison; publish observed results."
+  ]
+}

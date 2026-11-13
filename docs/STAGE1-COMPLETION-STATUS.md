@@ -15,8 +15,8 @@ is not full-fight equivalence or pacing acceptance. The collision-loop candidate
 passed 792 early comparisons, then its boss-window shadow stalled at frame 8819.
 It is rejected. The old helper falsely accepted the unfinished comparison; a
 shared validation gate now rejects unfinished shadows, unrestored native execution
-and sustained guest freezes, including when staging an older receipt. Seven tests
-and revalidation of the actual successful/frozen runs passed. The R1/R2 timing
+and sustained guest freezes, including when staging an older receipt. The initial
+seven checks and revalidation of the actual successful/frozen runs passed. The R1/R2 timing
 comparison is now [measured](media/gallery/stage1-native48-performance-results.json):
 OFF/ON averaged 58.9406/59.2282 guest frames/s. The exact 350-frame fight window
 improved from 53.5496 to 56.2000, while guest-work time fell from 18.0186 to
@@ -30,7 +30,22 @@ pacing metadata incorrectly said unassisted; the actual command audit is
 recorded, originals preserved, and future preparation now marks assistance.
 Exact measured hitch audio is available for [OFF](media/gallery/stage1-native48-off-hitch.wav)
 and [ON](media/gallery/stage1-native48-on-hitch.wav), with unchanged PCM bytes.
-The complete-unit collision correction remains pending.
+The [complete-unit validation work](media/gallery/stage1-cps-unit-validation-results.json)
+resolved the original shadow overrun: the isolated v49 runtime completed 3,468
+clean R4 comparisons across guest frames 8800–9668 and closed normally. Review
+found those were entry units only; return paths remain unqualified. The updated
+staging gate rejects that entry-only receipt and requires exact-code per-unit
+call/return evidence. All 13 validator tests passed; an actual staging attempt
+was rejected before copying any file. The earlier R1/R2 receipts still pass. A CPU-only self-authored sentinel-loop regression reproduced three
+faulty native replays timing out at 3 seconds. With the bounded replay abort,
+each returns in about 30 milliseconds, fails TRACE, preserves the first fault,
+and retains interpreter CPU/memory/clock state. The clean generated DLL and
+reset probes pass. This safeguards validation; it is not a gameplay speed fix.
+The v50 live handler run reached frame 11607 and closed normally. Both requested
+leaves reached 32 clean comparisons, but the global comparison scope included
+older cached routines with seven unrelated failures and device skips. The whole
+run is rejected. Narrow handler and continuation qualification, boss-route parity,
+and a new quiet timing/audio pair are still pending. Nothing is installed.
 
 The bad segment itself is now recorded: [15-second silent mini-boss video](media/gallery/stage1-miniboss-stutter-20261113.mp4)
 and [separate game-process audio](media/gallery/stage1-miniboss-stutter-20261113.wav).
