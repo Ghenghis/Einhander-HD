@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "kind": "Three sequential actual-game normal-settings diagnostic controls",
+  "kind": "Normal-resolution and rewind controls with experimental opaque batching",
   "runs": [
     {
       "proof": {
@@ -80,7 +80,8 @@
         "path": "docs/media/gallery/stage1-normal-rewind4-audio.wav",
         "sha256": "70140acf69f6fbc32a3c425aea80b8e05165b0b5baa043f8e90c409985f0a53b",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": true
     },
     {
       "proof": {
@@ -160,7 +161,8 @@
         "path": "docs/media/gallery/stage1-normal-rewind15-audio.wav",
         "sha256": "4fa8fb0730b605321cac0470b01379b5b7d800ead7601ec1ace0eac3b0fa127b",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": true
     },
     {
       "proof": {
@@ -324,7 +326,8 @@
         "path": "docs/media/gallery/stage1-normal-rewind-off-audio.wav",
         "sha256": "94979f406a201c7a895aef2a6a45c0a9b9cd8e96a4b09e8f924a249f45b47743",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": true
     }
   ],
   "audio_resolved": false,
@@ -340,6 +343,7 @@
     "One ordered three-leg series; different initial buffer fill and route timing, no repeat/randomization.",
     "No-fire, timer-only private visual route; not ordinary combat, progression or FMV acceptance.",
     "Exact game callback PCM, copied after measurement. No system loopback, effects, resampling or retiming.",
-    "Callback PCM and starvation counters do not prove device-driver continuity or audible acceptance."
+    "Callback PCM and starvation counters do not prove device-driver continuity or audible acceptance.",
+    "Experimental opaque batching was enabled in all three; these are not the default unbatched rendering path."
   ]
 }

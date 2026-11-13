@@ -37,6 +37,7 @@ def main():
             assert wav.getnframes()==host['frames'] and 0<=offset and offset+count<=wav.getnframes()
             wav.setpos(offset);pcm=wav.readframes(count);assert len(pcm)==count*4
         row=cadence(run);row.update(label=label,render_preference=2,
+            opaque_batch_enabled=profile['hd_opaque_batch'],
             rewind_enabled=profile['rewind_enabled'],rewind_depth=profile['rewind_depth'],
             normal_interval=15,fmv_interval=profile['rewind_fmv_interval'],
             executable_sha256=spec['executable_sha256'],
@@ -57,13 +58,14 @@ def main():
             wav.setnchannels(2);wav.setsampwidth(2);wav.setframerate(48000);wav.writeframes(pcm)
         with wave.open(str(destination),'rb') as wav:assert wav.readframes(wav.getnframes())==pcm
         row['audio'].update(reference(destination))
-    report=dict(schema_version=1,kind='Three sequential actual-game normal-settings diagnostic controls',
+    report=dict(schema_version=1,kind='Normal-resolution and rewind controls with experimental opaque batching',
         runs=rows,audio_resolved=False,audible_acceptance=False,production_installed=False,
         conclusions=['All three runs starved output audio; disabling rewind did not remove the symptom.',
             'XA remained active during ordinary depth15 gameplay without further MDEC decoding.',
             'Readback deltas were zero or one; frequent successful snapshot readbacks are not established.',
             'Near-60fps averages conceal individual slow seconds; no causal fix is accepted.'],
         limitations=['One ordered three-leg series; different initial buffer fill and route timing, no repeat/randomization.',
+            'Experimental opaque batching was enabled in all three; these are not the default unbatched rendering path.',
             'No-fire, timer-only private visual route; not ordinary combat, progression or FMV acceptance.',
             'Exact game callback PCM, copied after measurement. No system loopback, effects, resampling or retiming.',
             'Callback PCM and starvation counters do not prove device-driver continuity or audible acceptance.'])

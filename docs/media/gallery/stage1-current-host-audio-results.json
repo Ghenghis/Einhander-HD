@@ -1147,7 +1147,10 @@
         "path": "docs/media/gallery/stage1-v40-code-off-audio.wav",
         "sha256": "7f2fcbdc0a9ecb738043b76dfa1c75615cb0648a865890af71ac6921960eff7e",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": false,
+      "keep_bracket_enabled": false,
+      "filter_state_cache_enabled": false
     },
     {
       "proof": {
@@ -2207,7 +2210,10 @@
         "path": "docs/media/gallery/stage1-v40-code-on-audio.wav",
         "sha256": "4f587a93167618913fad7d8c16bd3623f01a87604dd3427a047756621ed49d05",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": false,
+      "keep_bracket_enabled": false,
+      "filter_state_cache_enabled": false
     },
     {
       "proof": {
@@ -3134,7 +3140,10 @@
         "path": "docs/media/gallery/stage1-v37-current-host-audio.wav",
         "sha256": "f4e2e2c04f2fd92dd514c72a826584a4e7c8e0ff5aea7e1deaa01eb7fdfc0304",
         "bytes": 2304044
-      }
+      },
+      "opaque_batch_enabled": false,
+      "keep_bracket_enabled": false,
+      "filter_state_cache_enabled": false
     }
   ],
   "gpu_observation": {
@@ -3169,7 +3178,7 @@
   "production_installed": false,
   "conclusions": [
     "All three runs starved audio, including the previous v37 build under current host conditions.",
-    "HD draw wall cost increased in all three relative to the earlier v37 normal-settings series.",
+    "Batching was disabled in these runs and enabled in the earlier normal-resolution series; cross-series differences do not isolate a host or core regression.",
     "The v40 pair differs only by staging the separately qualified 3A998 artifact; neither is an audio fix.",
     "GPU clock changes and non-Claude host load were observed; their causal contribution is unproven."
   ],
@@ -3180,5 +3189,6 @@
     "Actual use of the staged routine was not queried in this pacing pair; its earlier correctness qualification is separate.",
     "Exact contiguous callback PCM copied after measurement; no filtering, retiming or resampling.",
     "Callback PCM is not process/device loopback and cannot prove mixer or hardware continuity."
-  ]
+  ],
+  "configuration_correction": "Earlier comparisons missed this experimental batching difference. Measured counts and PCM are unchanged; no causal host/core regression or speed gain is accepted."
 }

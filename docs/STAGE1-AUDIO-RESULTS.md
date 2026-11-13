@@ -54,7 +54,9 @@ preference 9. They do not represent the user's normal preference 2.
 The [normal-settings controls](media/gallery/stage1-normal-settings-audio-results.json)
 now cover the same v37 executable and frozen artwork at preference 2. Each ran
 for 120 seconds after City with no recording, source dumping or measurement
-screenshots, with the disclosed timer-only aid and no firing:
+screenshots, with the disclosed timer-only aid and no firing. **Experimental
+opaque batching was enabled in all three.** These are normal-resolution/rewind
+controls, not the default unbatched rendering path:
 
 - Rewind on, depth50, interval15 / FMV interval4: **59.7900fps; 10,640 starved sample frames**.
 - Rewind on, depth50, interval15 / FMV interval15: **59.9177fps; 2,892 starved sample frames**.
@@ -124,7 +126,11 @@ previous v37 executable averaged 47.6677fps with 1,159,599. All three closed wit
 exit0, no recorded errors and closed debug ports. The v37 control initially ran
 near60fps and then slowed sharply, so attributing the whole slowdown to the new
 clock change is unsupported. HD draw wall cost was much higher in all three than
-in the earlier normal-settings series.
+in the earlier normal-resolution series. A subsequent configuration audit found
+that **all three recent HD runs disabled opaque batching**, whereas the earlier
+series enabled it. That difference was initially missed in the comparison and
+is now explicit in both reports. It invalidates attributing the cross-series
+difference to host load, GPU clocks or the clock-source change alone.
 
 This is one ordered series with different initial buffer fill and diverging
 guest-frame routes. Actual admission of the staged routine was not queried in
@@ -139,5 +145,6 @@ Exact twelve-second callback PCM is available for
 [v37 current-host control](media/gallery/stage1-v37-current-host-audio.wav).
 These remain assisted no-fire gameplay diagnostics. Next: isolate HD rendering
 with a private native-texture control, observe host graphics state, and then
-repeat the bounded rendering changes. Ordinary combat, boss fire, FMV and
+repeat batching off/on with the same runtime and explicit foreground conditions.
+Ordinary combat, boss fire, FMV and
 process/device-output continuity remain open.

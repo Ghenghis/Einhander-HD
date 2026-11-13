@@ -51,6 +51,9 @@ def main():
             assert len(pcm) == count * 4
         row = cadence(run)
         row.update(label=label, executable_sha256=spec['executable_sha256'],
+            opaque_batch_enabled=profile['hd_opaque_batch'],
+            keep_bracket_enabled=profile['keep_bracket'],
+            filter_state_cache_enabled=profile['filter_state_cache'],
             render_preference=2, rewind=dict(depth=50, interval=15, fmv_interval=4),
             qualified_cache=config.get('qualified_code_cache'),
             cache_admission_observed_in_this_run=False,
@@ -96,7 +99,7 @@ def main():
         performance_improvement_accepted=False, production_installed=False,
         conclusions=[
             'All three runs starved audio, including the previous v37 build under current host conditions.',
-            'HD draw wall cost increased in all three relative to the earlier v37 normal-settings series.',
+            'Batching was disabled in these runs and enabled in the earlier normal-resolution series; cross-series differences do not isolate a host or core regression.',
             'The v40 pair differs only by staging the separately qualified 3A998 artifact; neither is an audio fix.',
             'GPU clock changes and non-Claude host load were observed; their causal contribution is unproven.'],
         limitations=[
