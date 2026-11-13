@@ -80,6 +80,11 @@ def prepare(args):
     report['visual_profile'].update(media_profile=bool(args.media_profile),rewind_capture=bool(args.rewind))
     report['visual_profile']['interp_pc_profile']=bool(args.interp_pc_profile)
     report['visual_profile']['process_loopback_seconds']=args.process_loopback_seconds
+    report['visual_profile']['gpu_clock_profile']=args.gpu_clock_profile
+    report['visual_profile']['phase_profile']=args.phase_profile
+    report['visual_profile']['idle_skip_override']=args.idle_skip
+    if args.idle_skip is not None:
+        report['launches']['candidate']['environment_overrides']['PSX_IDLE_SKIP']=str(args.idle_skip)
     if args.process_loopback_seconds:
         helper=Path(__file__).parent/'audio-evidence/process-loopback/build/process_loopback_capture.exe'
         frozen_helper=directory/'process_loopback_capture.exe'
@@ -109,7 +114,7 @@ def run(args):
     proof=dict(started_at_utc=ui.stamp(),candidate=pacing.base.ref(directory/'candidate.json'),
         errors=[],observations=[],target_draws=[],ordinary_fire=False,state_loads=False,
         stage_clear_verified=False,live_visual_accepted=False,production_installed=False)
-    process=None;aid=None;recorder=None;recording=False
+    process=None;aid=None;recorder=None;recording=False;gpu_monitor=None;gpu_log=None
     try:
         process=pacing.launch(report)
         proof['route']=enter_city(report,poll_seconds=.25)
@@ -147,6 +152,19 @@ def run(args):
                 stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         proof['measurement_load']=dict(video=recorder is not None,source_capture=recording,
             composed_stills=report['visual_profile'].get('composed_stills',True),timer_assistance=True)
+        if report['visual_profile'].get('phase_profile'):
+            proof['measurement_load']['backend_counter_snapshots']=True
+        if report['visual_profile'].get('gpu_clock_profile'):
+            executable=shutil.which('nvidia-smi')
+            if not executable:raise RuntimeError('Requested GPU clock profiler is unavailable')
+            gpu_path=directory/'gpu-clock-observation.csv'
+            if gpu_path.exists():raise RuntimeError('Fresh GPU clock log required')
+            arguments=[executable,'--query-gpu=timestamp,pstate,clocks.current.graphics,clocks.current.memory,utilization.gpu,utilization.memory,power.draw','--format=csv','--loop-ms=1000']
+            gpu_log=gpu_path.open('w',encoding='utf-8')
+            gpu_monitor=subprocess.Popen(arguments,stdout=gpu_log,stderr=subprocess.DEVNULL,creationflags=subprocess.CREATE_NO_WINDOW)
+            proof['gpu_clock_profile']=dict(arguments=arguments,pid=gpu_monitor.pid,
+                scope='Read-only 1Hz NVML sampling; no driver setting or clock lock changed')
+            proof['measurement_load']['gpu_clock_profile']=True
         qualified_entries=report.get('qualified_code_cache',{}).get('entries',[])
         if qualified_entries:
             proof['qualified_code_before']={entry:probe.request(report,'overlay_candidates',pc=entry)
@@ -177,8 +195,16 @@ def run(args):
                 audio=probe.request(report,'audio_stats'))
             if report['visual_profile'].get('cpu_profile'):
                 row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
+                if row['hd_cpu_profile'].get('hr_kept_leaks',0):
+                    raise RuntimeError('A retained HD framebuffer escaped its primitive handler')
             if report['visual_profile'].get('dirty_profile') and second in (0,65,75,85,95,120,150,169):
                 row['dirty_ram_stats']=probe.request(report,'dirty_ram_stats')
+            if report['visual_profile'].get('phase_profile') and second%15==0:
+                row['phase_profile']=probe.request(report,'phase_profile',window=10)
+                row['native_phase_hot']=probe.request(report,'phase_hot',top=32,set='native')
+                row['static_phase_hot']=probe.request(report,'phase_hot',top=32,set='static')
+            if report['visual_profile'].get('idle_skip_override') is not None and second%15==0:
+                row['idle_skip']=probe.request(report,'idle_skip')
             if report['visual_profile'].get('interp_pc_profile') and second in (0,65,75,85,95,120,150,169):
                 row['interp_pc_profile']=probe.request(report,'dirty_pc_profile')
             if report['visual_profile'].get('media_profile'):
@@ -221,6 +247,7 @@ def run(args):
         loopback_seconds=report['visual_profile'].get('process_loopback_seconds',0)
         if loopback_seconds:
             owned_identity(None)
+            audio_before=probe.request(report,'audio_stats')
             helper=report['process_loopback_helper']
             if ui.sha(helper['path'])!=helper['sha256']:
                 raise RuntimeError('Pinned process loopback helper changed')
@@ -230,15 +257,26 @@ def run(args):
                 '--strict','--out',str(audio_path)]
             result=subprocess.run(arguments,capture_output=True,text=True,
                 timeout=loopback_seconds+30,creationflags=subprocess.CREATE_NO_WINDOW)
+            audio_after=probe.request(report,'audio_stats')
             (directory/'process-loopback.log').write_text(result.stdout+result.stderr,encoding='utf-8')
             proof['process_loopback']=dict(arguments=arguments,exit=result.returncode,
                 helper=helper,after_measurement=True,pid=process.pid,
+                audio_before=audio_before,audio_after=audio_after,
                 scope='Owned game process tree; strict child-process checks and a verified Windows console-host exception; no microphone or system-wide audio; capture gap fills require sidecar review',
                 audible_acceptance=False)
             if result.returncode:
                 raise RuntimeError('Process loopback smoke failed: '+result.stderr[-1000:])
             proof['process_loopback'].update(audio=pacing.base.ref(audio_path),
                 timing=pacing.base.ref(audio_path.with_suffix('.timing.jsonl')))
+            before_host=next(t for t in audio_before['taps'] if t['name']=='host')
+            after_host=next(t for t in audio_after['taps'] if t['name']=='host')
+            callback_path=directory/'callback-over-process-capture.wav'
+            response=probe.request(report,'audio_wav',tap=2,path=callback_path.as_posix(),
+                start=str(before_host['frames']),count=str(after_host['frames']-before_host['frames']))
+            if not response.get('ok'):raise RuntimeError('Matching callback capture failed')
+            proof['process_loopback']['callback_reference']=dict(**pacing.base.ref(callback_path),
+                start_sample_frame=before_host['frames'],frames=response['frames'],
+                starved_sample_frames_delta=audio_after['out']['underruns']-audio_before['out']['underruns'])
     except Exception as error:proof['errors'].append(str(error))
     finally:
         if recorder is not None:
@@ -266,6 +304,16 @@ def run(args):
             except subprocess.TimeoutExpired:
                 process.terminate();proof['owned_process_forced_cleanup']=True
                 proof['owned_process_exit']=process.wait(timeout=5)
+        try:
+            if gpu_monitor is not None:
+                if gpu_monitor.poll() is None:gpu_monitor.terminate()
+                gpu_monitor.wait(timeout=5)
+        except Exception as error:proof['errors'].append('GPU clock monitor cleanup: '+str(error))
+        finally:
+            if gpu_log is not None:gpu_log.close()
+        if gpu_monitor is not None:
+            proof['gpu_clock_profile'].update(log=pacing.base.ref(gpu_path),exit=gpu_monitor.returncode,
+                stopped_after_measurement=gpu_monitor.poll() is not None)
         writes=[];forbidden=[]
         for receipt in (directory/'commands').glob('*.json'):
             row=pacing.base.read(receipt);request=row['request']
@@ -291,13 +339,17 @@ if __name__=='__main__':
         help='Private same-runtime native-texture control; default keeps HD enabled')
     p.add_argument('--process-loopback-seconds',type=int,choices=[0,10,30],default=0,
         help='Optional owned-process audio smoke after timing measurement')
+    p.add_argument('--gpu-clock-profile',action='store_true',help='Read-only1Hz GPU clock log through owned-process cleanup')
+    p.add_argument('--phase-profile',action='store_true',help='Snapshot existing historical backend sampler every15seconds')
+    p.add_argument('--idle-skip',type=int,choices=[0,1],default=None,
+        help='Explicit private override of the existing guarded idle-loop enhancement')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     p.add_argument('--emissive',type=int,choices=[0,1],default=0)
     p.add_argument('--cpu-profile',type=int,choices=[0,1],default=0,help='Cumulative HD CPU attribution; includes CPU timing overhead and is not baseline pacing acceptance')
     p.add_argument('--runtime-perf',type=int,choices=[0,1],default=0,help='One-second opt-in guest/pacer/overlay/provider attribution in stdout; not baseline acceptance')
     p.add_argument('--filter-state-cache',type=int,choices=[0,1],default=0,help='Opt-in owned HD texture nearest/linear state cache; private experiment')
-    p.add_argument('--keep-bracket',type=int,choices=[0,1],default=0,help='Opt-in immediate native-flush/HD framebuffer bracket retention; private experiment')
+    p.add_argument('--keep-bracket',type=int,choices=[0,1],default=0,help='Opt-in guarded native/HD and HD/HD framebuffer bracket retention; private experiment')
     p.add_argument('--supersampling',type=int,choices=[1,2,3,4,6,8,9,12,16],default=9,help='Private render preference; normal user setting is2, visual baseline9')
     p.add_argument('--rewind',type=int,choices=[0,1],default=0,help='Enable snapshot capture with user depth50/interval15; never loads a state')
     p.add_argument('--rewind-fmv-interval',type=int,choices=[4,15],default=4,help='Private existing-env cadence control; same binary, snapshots remain enabled')

@@ -1526,8 +1526,8 @@ static void apply_psx_blend(int mode) {
 }
 
 /* ---- hr FBO render-state bracket ---------------------------------------- */
-/* Opt-in: retain the owned hr FBO only across native flush -> immediate HD
- * begin, avoiding its redundant unbind/rebind. Other callers close normally. */
+/* Opt-in: retain the owned hr FBO across flushes immediately followed by an HD
+ * begin in the same primitive handler. Other callers close normally. */
 static int s_hr_keep_open,s_hr_fbo_open;
 static int s_hd_keep_bracket=-1;
 static int hd_keep_bracket_enabled(void){
@@ -1572,6 +1572,11 @@ static void hr_close_kept(void){
     p_glBindVertexArray(0);
     p_glUseProgram(0);
     p_glBindFramebuffer(PSXGL_FRAMEBUFFER, 0);
+}
+static void hr_close_leaked_keep(void){
+    if(!s_hr_fbo_open)return;
+    if(hd_cpu_diag_enabled())++s_hd_cpu_diag.hr_kept_leaks;
+    hr_close_kept();
 }
 
 /* ---- coherency: CPU -> GPU upload flush --------------------------------- */
@@ -3698,6 +3703,9 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
                                uint16_t clut_x, uint16_t clut_y,
                                int rawtex, int semi, const int *lim,
                                int depth) {
+    /* s_hr_fbo_open marks a retained gap, not a pending batch's active FBO.
+     * Every such gap must be consumed before its primitive handler returns. */
+    hr_close_leaked_keep();
     HdTextureDrawQuery q;
     HdTextureSourceMatch m;
     HdTexturePixels px;
@@ -3964,12 +3972,18 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
         key.page_x=q.page_x;key.page_y=q.page_y;key.clut_x=q.clut_x;key.clut_y=q.clut_y;
         key.region_x=m.region_x;key.region_y=m.region_y;key.exact_region=m.exact_region;key.has_upload=m.upload_serial!=0;
         }
-        if(s_hd_batch_n && (!batch || memcmp(&key,&s_hd_batch_key,sizeof(key)) || s_hd_batch_n>=HD_OPAQUE_BATCH_MAX))flush_hd_batch();
-        if(!s_hd_batch_n){
-            s_hr_keep_open=hd_keep_bracket_enabled()&&!g_wide_cur;
-            flush_tex_batch();flush_flat_batch();
-            s_hr_keep_open=0;
+        const int split=s_hd_batch_n && (!batch || memcmp(&key,&s_hd_batch_key,sizeof(key)) || s_hd_batch_n>=HD_OPAQUE_BATCH_MAX);
+        const int keep=hd_keep_bracket_enabled()&&!g_wide_cur&&!native_edge_width &&
+            (split || s_hd_batch_n==0) && (!split || (!s_tb_n&&!s_fb_n));
+        s_hr_keep_open=keep;
+        if(split){
+            if(cpu_diag){++s_hd_cpu_diag.hd_split_flushes;if(keep)++s_hd_cpu_diag.hd_split_retains;}
+            flush_hd_batch();
         }
+        if(!s_hd_batch_n){
+            flush_tex_batch();flush_flat_batch();
+        }
+        s_hr_keep_open=0;
         const uint64_t draw_start=cpu_diag?SDL_GetPerformanceCounter():0;
         if(cpu_diag && !resident_tex)++s_hd_cpu_diag.new_texture_draws;
         for (i = 0; i < 3; i++, vp += TEXV) {

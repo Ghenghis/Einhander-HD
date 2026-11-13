@@ -254,6 +254,8 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
     }
     /* The isolated fixture destroys its GL context immediately on return. */
     fm_emissive_regression(root);
+    /* Review add-on: must be the final GL use; it deletes the context. */
+    fm_hd_batch_shutdown_case();
     printf("WORLD_RESULT checks=%d failures=%d\n",fm_checks,fm_failures);
     return fm_failures?1:0;
 }

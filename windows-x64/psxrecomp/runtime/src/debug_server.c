@@ -5202,6 +5202,7 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"batch_state_skips\":%llu,"
              "\"base_filter_updates\":%llu,\"base_filter_skips\":%llu,"
              "\"hr_bracket_keeps\":%llu,\"hr_bracket_skips\":%llu,"
+             "\"hd_split_flushes\":%llu,\"hd_split_retains\":%llu,\"hr_kept_leaks\":%llu,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5212,7 +5213,9 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (unsigned long long)s.batch_flushes,(unsigned long long)s.batched_primitives,
              (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips,
              (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips,
-             (unsigned long long)s.hr_bracket_keeps,(unsigned long long)s.hr_bracket_skips);
+             (unsigned long long)s.hr_bracket_keeps,(unsigned long long)s.hr_bracket_skips,
+             (unsigned long long)s.hd_split_flushes,(unsigned long long)s.hd_split_retains,
+             (unsigned long long)s.hr_kept_leaks);
 }
 
 static void handle_dirty_pc_profile(int id,const char *json){
