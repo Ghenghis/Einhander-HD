@@ -13,20 +13,33 @@ recorded bot restart after a startup read timeout. Later native play reached the
 night skyline and facade section using ordinary controller input. Stage clear
 has not been established.
 
-A private world composition now contains 205 delivered artwork entries alongside
-the existing pack. All 217 exact-region bindings passed the production source
+A private world composition now contains 207 delivered artwork entries alongside
+the existing pack, including the authored wall and tunnel window band. All 219 exact-region bindings passed the production source
 matcher, and nine sky word/CLUT pairs passed CRC and SHA checks. It uses the
 current immutable sign revisions and retains input-manifest snapshots. This is
-registration evidence, not live visual acceptance. The additional wall-atlas and
-tunnel-band integration and frozen artwork's documented defects remain open.
+registration evidence, not live visual acceptance. The frozen artwork's documented
+defects remain open. Lamp/flare sprites that were only baseline upscales were not
+counted as newly authored. A private runtime now accepts overlapping VRAM regions
+at different texture depths, with both interpretations tested; conflicts at the
+same depth remain rejected.
 
 Two runtime diagnostic defects were found during cold boot: concurrent heartbeat
 sampling could underflow the watchdog age, and stack reporting could leave the
 main thread suspended while waiting for its locks. The private fix uses atomic
 timestamp snapshots and resumes the target before stack walking/symbol lookup.
 Nine timestamp checks and a real Windows lock-owning-thread regression pass.
-The four-second watchdog remains enabled. Cold-boot and gameplay verification of
-the combined runtime is still in progress; failed launches remain excluded.
+The four-second watchdog remains enabled. The combined runtime has reached native
+gameplay and closed cleanly. Repeat boot/route and full-stage verification remain
+in progress; failed launches remain excluded. One route missed the title while a
+process identity check ran; that check now precedes boot observation.
+
+The position controller's old render-vector address was transient. Ordinary-input
+calibrations in the opening City and night section agree at a different integer
+coordinate pair, but that pair also failed live qualification. Position mode is
+experimental and is not the default acceptance route. Eight behavior checks pass,
+including refusing Continue input when revival is disabled; full-stage route
+qualification remains pending. A failed bot run reached native results naturally;
+that is end-state evidence, not a stage clear.
 
 Runtime diagnostics show substantial HD/rewind overhead and audio starvation.
 Disabling GPU timer queries did not restore sustained normal cadence. The scoped
