@@ -13,6 +13,31 @@ typedef struct {
     int area[4], bounds[4],source_set;
 } HeroDrawTracker;
 
+/* A draw-clock landmark, not enemy visibility or collision geometry. Source
+ * CRCs identify the two audited Greif pages; colour phases share ownership. */
+typedef struct { uint64_t first,last;int seen; } GreifDrawClock;
+static void greif_draw_observe(GreifDrawClock *s,uint64_t frame,uint32_t texture,
+        unsigned depth,unsigned width,unsigned height,const int xs[3],const int ys[3],const int area[4]) {
+    if(depth || width!=64 || height!=256 ||
+       (texture!=0x1263A036u && texture!=0x38DC02FEu))return;
+    if(area[0]<0 || area[1]<0 || area[2]>1023 || area[3]>511 ||
+       area[2]-area[0]+1<128 || area[3]-area[1]+1<128)return;
+    int l=xs[0],r=xs[0],t=ys[0],b=ys[0];
+    for(int i=0;i<3;++i){
+        if(xs[i]<-4096 || xs[i]>4095 || ys[i]<-4096 || ys[i]>4095)return;
+        if(xs[i]<l)l=xs[i];if(xs[i]>r)r=xs[i];if(ys[i]<t)t=ys[i];if(ys[i]>b)b=ys[i];
+    }
+    if(r<area[0] || l>area[2] || b<area[1] || t>area[3] ||
+       ((int64_t)xs[1]-xs[0])*(ys[2]-ys[0])==((int64_t)xs[2]-xs[0])*(ys[1]-ys[0]))return;
+    if(!s->seen || frame<s->last || frame-s->last>150)s->first=frame;
+    s->last=frame;s->seen=1;
+}
+static void greif_draw_snapshot(const GreifDrawClock *s,uint64_t frame,int enabled,GlPlayerDrawState *out) {
+    out->greif_first_frame=s->first;out->greif_last_frame=s->last;
+    out->greif_age_frames=s->seen&&frame>=s->last?frame-s->last:UINT64_MAX;
+    out->greif_valid=enabled&&s->seen&&out->greif_age_frames<=12;
+}
+
 static int hero_draw_key(uint32_t texture,uint32_t palette,unsigned depth) {
     if(depth!=0 || palette!=0x21FDE894u)return 0;
     return texture==0x724E77DAu || texture==0x7E3ADD56u ||

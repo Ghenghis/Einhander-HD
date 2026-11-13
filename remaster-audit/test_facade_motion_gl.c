@@ -7,6 +7,7 @@
 #include "facade_baseline_shader.h"
 
 static int fm_checks,fm_failures;
+static int fm_filter_mode=1,fm_native_edge=0; /* isolated fixture controls */
 #define FM_CHECK(name,value) do { int fm_check_result_=!!(value); ++fm_checks; fm_failures+=!fm_check_result_; \
     printf("CHECK %s %s\n",name,fm_check_result_?"PASS":"FAIL"); fflush(stdout); } while(0)
 
@@ -40,8 +41,8 @@ static void fm_render(GLuint program,HdTexSlot *slot,int motion,float phase,floa
     glClearColor(19/255.f,37/255.f,61/255.f,51/255.f);glClear(GL_COLOR_BUFFER_BIT);
     p_glUseProgram(program);p_glActiveTexture(PSXGL_TEXTURE0);glBindTexture(GL_TEXTURE_2D,slot->tex);
     int active=hd_facade_motion_sampling(slot,motion);
-    fm_i(program,"u_hd",0);fm_i(program,"u_hd_native_edge",0);
-    fm_i(program,"u_hd_facade_motion",active);fm_i(program,"u_filter",1);
+    fm_i(program,"u_hd",0);fm_i(program,"u_hd_native_edge",fm_native_edge);
+    fm_i(program,"u_hd_facade_motion",active);fm_i(program,"u_filter",fm_filter_mode);
     fm_i(program,"u_skin_enabled",0);fm_i(program,"u_skin_detail_enabled",0);
     fm_i(program,"u_semipass",pass);fm_i(program,"u_semimode",0);fm_i(program,"u_maskset",0);
     fm_f(program,"u_shift",0.5f/9.0f);

@@ -1,0 +1,5283 @@
+{
+  "schema_version": 1,
+  "run_id": "w3-emissive-on-v1",
+  "kind": "Actual private timer-assisted no-fire full facade capture",
+  "source_proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/world-flypast-proof.json",
+    "sha256": "612a4e5406c81e33245e966d5f266860b82a4552bf6082e35da98c6d00077710",
+    "bytes": 576334
+  },
+  "candidate": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-w3-lit-v1/candidate.json",
+    "sha256": "245318cda0ecdfb7cf374e6d8ef9e56dca6455ca51e95337adecc97c026a9a2b",
+    "bytes": 6347725
+  },
+  "authored_entries": 837,
+  "pack_keys": 1669,
+  "native_validation": {
+    "keys": 1669,
+    "region_checks": 226,
+    "failures": 0
+  },
+  "runtime": {
+    "build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+    "executable_sha256": "d39571a593b4242c291aa99ca5ca17c50d7ebec878dc3504a11f884b9c2ea221"
+  },
+  "emissive_masks": [
+    {
+      "name": "01F17029-07D24911-emissive.png",
+      "sha256": "d4bc6c37b64ede47f636581dea9baaf09ec03199e50f7d46b98457b42f3ab5dd",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "bytes": 3060
+    },
+    {
+      "name": "D318FEFA-EA6ACA31-emissive.png",
+      "sha256": "ace3528861d2ca721219036e62c4e4d77242af141d1ff0f7e9c35a0ab0c022f1",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "bytes": 1824
+    }
+  ],
+  "controls": {
+    "ordinary_fire": false,
+    "turbo": false,
+    "rewind": false,
+    "state_loads": false,
+    "new_menu_art_accepted": false,
+    "emissive_masks": true,
+    "hires_stills": true,
+    "timer_only_aid": {
+      "kind": "invincibility countdown only",
+      "address": "0x80085718",
+      "width_bytes": 1,
+      "value": 165,
+      "lease_seconds": 180,
+      "interval_seconds": 0.15,
+      "started_at_utc": "2026-11-13T07:57:32.863792+00:00",
+      "stopped_at_utc": "2026-11-13T08:00:23.199245+00:00",
+      "successful_writes": 879,
+      "last_write_at_utc": "2026-11-13T08:00:23.195296+00:00",
+      "arm": {
+        "ok": true,
+        "lock": {
+          "field": "invincibility",
+          "value": 165,
+          "status": "armed",
+          "expires_in": 180.0
+        },
+        "operation": {
+          "id": "450229b454e3",
+          "field": "invincibility",
+          "label": "Invulnerability countdown",
+          "before": 48,
+          "after": 165,
+          "at": 1794556652.8935726,
+          "verified": false,
+          "undone": false,
+          "readback": 164,
+          "note": "The game may update a live countdown between write and readback; exact equality was not observed."
+        }
+      },
+      "forced_timer_clear": false,
+      "lives_writes": false,
+      "stage_jumps": false,
+      "state_loads": false,
+      "command_receipts": "commands/",
+      "purpose": "Visual reachability aid; not unassisted gameplay or performance evidence"
+    },
+    "command_audit": {
+      "timer_write_requests": 879,
+      "successful_timer_writes": 879,
+      "forbidden_mutations": []
+    }
+  },
+  "targets": {
+    "52F33418-5E9B9AC3": {
+      "submitted_samples": 22,
+      "first_frame": 5653,
+      "last_frame": 7359,
+      "replacement_sizes": [
+        [
+          4096,
+          4096
+        ]
+      ],
+      "png_sha256": "4ae1c1dda0c1780130fd22da935e14d4e4622896e3afd2fe3c92c04f7f8b2444"
+    },
+    "74EF95B7-B30D16F0": {
+      "submitted_samples": 25,
+      "first_frame": 5715,
+      "last_frame": 7351,
+      "replacement_sizes": [
+        [
+          4096,
+          4096
+        ]
+      ],
+      "png_sha256": "0870a333f4cf20bbf14d2ae5b2c0323528a2f96575d549f52575eb1d6a8f550e"
+    }
+  },
+  "building_tiles": [
+    {
+      "key": "66156E3F-340FAA72",
+      "family": "73BF9877-340FAA72-v2",
+      "png_sha256": "c5b1f1e891a4011f643909cbbfbfe2ce4221434e541f52a2af997ce94ca4cb0c",
+      "submitted_samples": 9
+    },
+    {
+      "key": "A1EE280D-69C9A539",
+      "family": "73BF9877-69C9A539-v1",
+      "png_sha256": "641817562cc8b40e9cadd86c89476e5710f0bbdc1f60c98b6b207d4ffb0e6906",
+      "submitted_samples": 14
+    },
+    {
+      "key": "342AD0BF-6DA2ED40",
+      "family": "73BF9877-6DA2ED40-v1",
+      "png_sha256": "80790fd4311d905cc5a0f7095b841d5405aa7445e59adb5c47c3c59fe209e06c",
+      "submitted_samples": 8
+    },
+    {
+      "key": "419EDF10-71A3A874",
+      "family": "73BF9877-71A3A874-v1",
+      "png_sha256": "09d7932d725fecadf7b5487ad970741aa5eefebe6fc33f8b2ccda2a1adef42bc",
+      "submitted_samples": 21
+    },
+    {
+      "key": "525AF9DB-79FE4168",
+      "family": "73BF9877-79FE4168-v2",
+      "png_sha256": "87a7a31e738e34ac0deb444600d0052879a8ba3830610cc4b81516ff12290348",
+      "submitted_samples": 15
+    },
+    {
+      "key": "77E44008-8117EEA2",
+      "family": "73BF9877-8117EEA2-v1",
+      "png_sha256": "30244e3bc57fa8d0ff3e96f548a6924e46c4d964da53a95b1f90eae8856ec8eb",
+      "submitted_samples": 15
+    },
+    {
+      "key": "1641EEA5-A4E0D3C8",
+      "family": "73BF9877-A4E0D3C8-v1",
+      "png_sha256": "b07cca7e884b821fe68a90289fb48ec3f903fa89030958ef9f0152e57436b376",
+      "submitted_samples": 21
+    },
+    {
+      "key": "72A4E23C-BABFCA62",
+      "family": "73BF9877-BABFCA62-v1",
+      "png_sha256": "363eb0b656844da9513616e74bb4f5a814298cd7366b8862119efbc197676a87",
+      "submitted_samples": 27
+    },
+    {
+      "key": "FAF04DEA-BE204159",
+      "family": "73BF9877-BE204159-v3",
+      "png_sha256": "0aab32978f27987388db7a9b9a5fbda36b9422c2753ce2adabbc30bf38e902b5",
+      "submitted_samples": 7
+    },
+    {
+      "key": "B5D66335-E0D47A6A",
+      "family": "73BF9877-E0D47A6A-v2",
+      "png_sha256": "01e0b998fe73e28729b06ef285e86dd6ebdfb7eccd6cec2eccaf75fc4cc744a9",
+      "submitted_samples": 3
+    }
+  ],
+  "coverage": {
+    "positively_submitted": 405,
+    "entries": [
+      {
+        "key": "47685A97-12B34BA9",
+        "family": "fd01-kaplo-v2",
+        "png_sha256": "7a06dd0d957e3457a574212a17ae7c8eb9dc221c06a619f8509acd92aa3a082c",
+        "submitted_samples": 6
+      },
+      {
+        "key": "47685A97-03A87D24",
+        "family": "fd01-kaplo-v2",
+        "png_sha256": "1afc3d08c9abc686485bc6628efd0d736d7bd91b01b3ed77909c98e6e0a1b724",
+        "submitted_samples": 7
+      },
+      {
+        "key": "47685A97-DAD6E40E",
+        "family": "fd01-kaplo-v2",
+        "png_sha256": "59f2334b4d1d2ff02e52d272a2530cd31a47be89c56b70329734a9875b2983f0",
+        "submitted_samples": 1
+      },
+      {
+        "key": "5E59788E-DCA13DF7",
+        "family": "fd02-diamond-seal-v2",
+        "png_sha256": "342f69e6274813b81b302a17207e06032a593ed66bd5d7d2f6b5260801d00e49",
+        "submitted_samples": 8
+      },
+      {
+        "key": "5E59788E-E40734EC",
+        "family": "fd02-diamond-seal-v2",
+        "png_sha256": "179af4c87064ffac33e25ec4215c08d97a1c9ccf5c258b72f580775c16766f56",
+        "submitted_samples": 7
+      },
+      {
+        "key": "5E59788E-C691E570",
+        "family": "fd02-diamond-seal-v2",
+        "png_sha256": "4d56e20119d8bc70c43f39327bb2506873fb58ec39d4e1640861f762e29796aa",
+        "submitted_samples": 0
+      },
+      {
+        "key": "69183DD7-CA34E803",
+        "family": "fd03-green-script-v2",
+        "png_sha256": "e557354c6b438b13a5025750ae5f217b4c876c1e7deaf6ad68a06fd44c3b41ee",
+        "submitted_samples": 9
+      },
+      {
+        "key": "69183DD7-CB1205AA",
+        "family": "fd03-green-script-v2",
+        "png_sha256": "d2e358ad0897a1bcb21e3ec934d81a0486f6a4552763aff161b1ed8e48ae4c5b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "7A652858-600290FE",
+        "family": "fd04-glyph-column-w3-v1",
+        "png_sha256": "1b261251836096113792ad07baf141047e0144d76e14c3ac6f448711e3a81b8b",
+        "submitted_samples": 5
+      },
+      {
+        "key": "FFA56A0D-E7B55CA9",
+        "family": "fd05-tube-symbol-w3-v1",
+        "png_sha256": "98087bb4f14a65cdaa6b6a1954d1da14a9055d3edd931e3cd82916082551c1f8",
+        "submitted_samples": 11
+      },
+      {
+        "key": "A34295C8-CE31D8F4",
+        "family": "fd06-blue-glyph-orbit-w3-v1",
+        "png_sha256": "7840c15c9badaee6314b6757a52be2cb5a803d6a8587c4555ac5422ab8b2913a",
+        "submitted_samples": 16
+      },
+      {
+        "key": "A34295C8-FBCA4A8A",
+        "family": "fd06-blue-glyph-orbit-w3-v1",
+        "png_sha256": "d8b8693bc5709d5ac7995067740ec5d915ed9494055b3c5b1f585b8b2694fc78",
+        "submitted_samples": 0
+      },
+      {
+        "key": "791E0770-E2ED781D",
+        "family": "fd07-yongkkum-w3-v1",
+        "png_sha256": "60ba48012c2a65a1214711aa481af4081802269cd61ffc30867b816cc70398cd",
+        "submitted_samples": 16
+      },
+      {
+        "key": "791E0770-87971C44",
+        "family": "fd07-yongkkum-w3-v1",
+        "png_sha256": "99ca009b97f0a8752429835a7a1dee5daf6aa2b98e70d6576671f3bff4118ace",
+        "submitted_samples": 0
+      },
+      {
+        "key": "84C91FA2-66755655",
+        "family": "fd08-be-hnd-v2",
+        "png_sha256": "96147b98bcd3d1c5753f600f906187d0473cb58e63bc3b1ef90d4dd046702561",
+        "submitted_samples": 6
+      },
+      {
+        "key": "84C91FA2-6B2E28B8",
+        "family": "fd08-be-hnd-v2",
+        "png_sha256": "e0d0f46a979564afc85d087d47d0713079a4a400f731325f3bf3bce0104f26ca",
+        "submitted_samples": 0
+      },
+      {
+        "key": "0FB1EFC5-F6269484",
+        "family": "fd09-green-three-glyph-w3-v1",
+        "png_sha256": "ccee9e7688dabb9cc71057dc3a60e4e7f293e622e321a63f0ff4f241535bd5cd",
+        "submitted_samples": 13
+      },
+      {
+        "key": "0FB1EFC5-8A2A52C4",
+        "family": "fd09-green-three-glyph-w3-v1",
+        "png_sha256": "10761a78956cf0b94fca947dc379255a394454e18a9c3309d34a9e9d350383bb",
+        "submitted_samples": 0
+      },
+      {
+        "key": "67DC56D7-8D0C6ABE",
+        "family": "fd10-red-script-banner-w3-v1",
+        "png_sha256": "12327f47cd113a613245905b6e5b9dd089baabfffcfba47cb10303f09bfaf15a",
+        "submitted_samples": 21
+      },
+      {
+        "key": "67DC56D7-96998A63",
+        "family": "fd10-red-script-banner-w3-v1",
+        "png_sha256": "c9c17e7d3a54c3220220d1805cd82e486b04f97b2c35255f646386c31c235894",
+        "submitted_samples": 0
+      },
+      {
+        "key": "63B35393-0D8BE28C",
+        "family": "fd11-thai-pill-v2",
+        "png_sha256": "bee38651f79ce3d9e4939a40774f49796a85980392c818b34034139540568678",
+        "submitted_samples": 9
+      },
+      {
+        "key": "63B35393-3C49F3D7",
+        "family": "fd11-thai-pill-v2",
+        "png_sha256": "8f1f225deb2012fde8fe29bfdbb4025969ce9dc56e6223bdd3d6a07aafdd989b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "327E6D9E-89C41FFB",
+        "family": "fd12-magenta-oval-w3-v1",
+        "png_sha256": "ef66f4f6d8efb66da968a7c326dcaf55f2fa5d7e2b8eab067ffb4d58ce7b91e1",
+        "submitted_samples": 5
+      },
+      {
+        "key": "327E6D9E-5039A9C5",
+        "family": "fd12-magenta-oval-w3-v1",
+        "png_sha256": "95de7850b7315229fbc27a12b4ca175b82c74a4e2595a757eb64ee539b142cdd",
+        "submitted_samples": 1
+      },
+      {
+        "key": "9D4B9667-A3491537",
+        "family": "fd13-popten-v2",
+        "png_sha256": "80a722deb69291d5fa9eb8f1d400d86a5789d4fb63461899ed09aa674edd73df",
+        "submitted_samples": 5
+      },
+      {
+        "key": "9D4B9667-DBC4B095",
+        "family": "fd13-popten-v2",
+        "png_sha256": "d2261dafe909cf7a3b1d8156614158bc7f95359ba04513129a97f0dcdecc04b0",
+        "submitted_samples": 6
+      },
+      {
+        "key": "9D4B9667-8D63936A",
+        "family": "fd13-popten-v2",
+        "png_sha256": "bc318dd12a0183cfcfeea34950220841932293d1a6114c25181a088456ecb14b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "09E3E268-4980ECC0",
+        "family": "fd15-arabic-hex-v2",
+        "png_sha256": "82c72536dc8c2f9def79eb57e98e8459fd6e0d1efa5bdabea182a76df4586b35",
+        "submitted_samples": 11
+      },
+      {
+        "key": "09E3E268-C6869C0B",
+        "family": "fd15-arabic-hex-v2",
+        "png_sha256": "8a4a7c601eb05a697be06d2ec65d5605bf829b431f1133d4e4935fa01edc4184",
+        "submitted_samples": 0
+      },
+      {
+        "key": "4807A7C2-E4665DC9",
+        "family": "fd16-fuzz-w3-v1",
+        "png_sha256": "ef6f6b6c1119354365216060eb7136d6ab9451bad6fa814a0a4e11a86ce40986",
+        "submitted_samples": 9
+      },
+      {
+        "key": "4807A7C2-EC2700D7",
+        "family": "fd16-fuzz-w3-v1",
+        "png_sha256": "2c1923a1bc2d9ba071cbb37402728881ce844f126bdd6a24692823ec0dd225e1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11CFE2E3-0E09E912",
+        "family": "fd17-compass-band-w3-v1",
+        "png_sha256": "b77cc9c41ec894830fb11beebc9cbce5b139d1016697adb00d2536873ae00f4f",
+        "submitted_samples": 13
+      },
+      {
+        "key": "11CFE2E3-867F089C",
+        "family": "fd17-compass-band-w3-v1",
+        "png_sha256": "7a48b63b65255a89da11762378ba9bf5513b327160e5063af87419e5869e3390",
+        "submitted_samples": 0
+      },
+      {
+        "key": "756B22F2-46633A83",
+        "family": "fd18-sinbal-v4",
+        "png_sha256": "52839b455802a7016bd8fb41c4408e3d404baa1759935a0480a9fdc4b8938a63",
+        "submitted_samples": 11
+      },
+      {
+        "key": "756B22F2-3BDFB504",
+        "family": "fd18-sinbal-v4",
+        "png_sha256": "aead2653bd73adc507295a00032323309f0f01fb3a923c0a6f13386fd66fecac",
+        "submitted_samples": 0
+      },
+      {
+        "key": "CBF6CACF-7BEF165F",
+        "family": "fd26-two-glyph-stripes-w3-v1",
+        "png_sha256": "dbdc83d41d549584e19fd9b3c69b68e2f18b7995b8d87b4e26a55165fd0f4470",
+        "submitted_samples": 11
+      },
+      {
+        "key": "35E6E07A-7199E153",
+        "family": "fd29-dark-collage-v2",
+        "png_sha256": "006e1548810020e4b4be16fd5f58483f6d66137cbe212c0718dd9d7ae9d7855e",
+        "submitted_samples": 15
+      },
+      {
+        "key": "82831823-B364E336",
+        "family": "rise-dim-v1",
+        "png_sha256": "ae97c1c61fce3e080a17f7020fff5a84cf5c6591b22409a240172daf98f81e97",
+        "submitted_samples": 0
+      },
+      {
+        "key": "3A926905-472FAF4D",
+        "family": "static-80-route-v1",
+        "png_sha256": "99961039f5c84409563de0437cf939cdde82acf938fa0b8be44be00add1cab31",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F480E9D7-1093AC6D",
+        "family": "static-great-attractor-v1",
+        "png_sha256": "0b47b06d2ac9fcc66adfddb5ce5502b8829626519204dfd0b2fe13008ffde12b",
+        "submitted_samples": 12
+      },
+      {
+        "key": "0EB2ACFF-78002C99",
+        "family": "static-star-v1",
+        "png_sha256": "36cb224abda027d7630f3e3527efb89a01ffc78a3ec5a4c69abb1a04f7893b88",
+        "submitted_samples": 12
+      },
+      {
+        "key": "B17FCA23-5247F8D1",
+        "family": "opening-haze-B17FCA23-v1",
+        "png_sha256": "a2098c7792756c8dc5777f86533a0c2017d703099dded367b668e60583e821c7",
+        "submitted_samples": 1
+      },
+      {
+        "key": "B4C7A0EB-FBBC76C7",
+        "family": "city-light-band-towers-B4C7A0EB-v1",
+        "png_sha256": "25cd4c33748af1d22d077c6cf079943403214f5dd4c30a004e4b1e24d17db1ed",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B4C7A0EB-0E9B8DA4",
+        "family": "city-light-band-towers-B4C7A0EB-v1",
+        "png_sha256": "5b3936f60d7d90e656c11d976b3d4236f252e127478bfba12ceab15f91c545cb",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-2F05FF2B",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "c223f75e4717406262dc3069b00d20490fa35876c4e71fe099addc62e33b3c07",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-A468FF70",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "3b73438585301c56221da771e627bc034f3ca4b3bc192cbb82b948b774458449",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-7932A1A6",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "d9ce7052ab6bdc22959d06916cd1c6866dc5b20ecd5e742ecf8a1d4dbf57d171",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-0677FB7C",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "a7b04759520da73ca3311e1f80e04ecc41a4a338cc6a7050067c4f94eb1174b5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "65560E82-2F05FF2B",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "90f6efe73b3363b2a09a91f53a31d79d147a0421f4c7f1cd5e209f4a4bbe05a6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "65560E82-0677FB7C",
+        "family": "drache-mountains-sea-C21DE94A-v1",
+        "png_sha256": "9531053828533c5150dab9cffcdf5869a1c71bf1a9a670b94c248b240e16b3e9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "22D9BF19-00A1D33C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "5e1ab56d6783ea3f885f35221f7d0f431b553ec6147835e9e14529113598e6fa",
+        "submitted_samples": 26
+      },
+      {
+        "key": "22D9BF19-01A6C0FE",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "16a2be7d9b0fb696a598955d41ad0d04f38b7158b5c3f17916559638381168a7",
+        "submitted_samples": 31
+      },
+      {
+        "key": "95A3BCF8-0361652D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "e4191f2cfc6451f4018ea344fe4b661c8d88aaf2567ba35042920efc28bceac9",
+        "submitted_samples": 25
+      },
+      {
+        "key": "95A3BCF8-07A9568D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "aa2a6f0cb2013689bff55ea7afec6c3537c0fc24bf9cc039cd686b461796b851",
+        "submitted_samples": 89
+      },
+      {
+        "key": "22D9BF19-08F46A29",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "81334cc8decd1538736b9a02ea6d033406dc84e36509ae0ae6b5e6859c7fe224",
+        "submitted_samples": 31
+      },
+      {
+        "key": "95A3BCF8-0D0D6AE1",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "495119c348e8f552626cf428cec5dc55a1a407f72ec42c3719376af94919d08d",
+        "submitted_samples": 15
+      },
+      {
+        "key": "22D9BF19-0D2B6F22",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "2fc583c991f518831136fd71814f02c690f492138d45c108129faa3747c1888c",
+        "submitted_samples": 32
+      },
+      {
+        "key": "95A3BCF8-0DA946C5",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "b8b676468d6cedd7cfd6864b4d5ad3847ad982590379b77027c301c6f286a6e8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "22D9BF19-0FC4F478",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "342644bf06191a4b2fce3b96dbaded1592b39b0e16ffc4f5d420815fc2702a7e",
+        "submitted_samples": 33
+      },
+      {
+        "key": "22D9BF19-149B5245",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "64423976b40592982f0e9449fcf3ac252ff5a4a0ab8626b4fd5d53f749264f1c",
+        "submitted_samples": 32
+      },
+      {
+        "key": "22D9BF19-167C63E2",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "d9d82c8ea6461877d1ffd7dca6c7b174a0e85c2b77498131a6a4915d2af14f5d",
+        "submitted_samples": 36
+      },
+      {
+        "key": "22D9BF19-182F2C6A",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "cb6f3135aa6bc22d2d7754f8d0d1e351d812df37413bb10ac9c3ce127894f3b8",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-18F3C8B2",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "1a8df8e749f31e24798f42c80627c8d465bee046b5e89e0d00d42384d4b6ee07",
+        "submitted_samples": 31
+      },
+      {
+        "key": "22D9BF19-1EC4B074",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "795e89a1c3860ee8f25dec8c01d31d801fd3258f0918b1c9f50abbeac567f33b",
+        "submitted_samples": 29
+      },
+      {
+        "key": "22D9BF19-228A68D7",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "3c9c2ec89b3605737df32cdae98096e427f214ca1394ca1bbd2c80cd4caccb79",
+        "submitted_samples": 33
+      },
+      {
+        "key": "95A3BCF8-29595B58",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "31cb5ffe497543b7689fbb3b2e7c860d63b8a9768ff237eb7eea043696e6792b",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-29C45DAD",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "b07ff914d61d215f5eb2b927e9f8664fbddf89d6d128ae8365b86d01dab07249",
+        "submitted_samples": 33
+      },
+      {
+        "key": "22D9BF19-2CB94A16",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0c971586f20fde102dd8909c8f517d9acad1578c8f74f75ae8d095054339f863",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-2D7D4006",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "abfeee17c925a9f2a6664888df3dee54c1fdba7bfdd7c07dedf8e0b64799aa57",
+        "submitted_samples": 29
+      },
+      {
+        "key": "22D9BF19-2EC339B9",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "1d6d1123dfa65b54d33aae5fad015c0d58f3adafffd28f7c0865d6a716c0fd77",
+        "submitted_samples": 67
+      },
+      {
+        "key": "95A3BCF8-33BC1036",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "574537925004f7150b6f0a96e1f4960e1a8b71aa4c60140200a8ef5cf0a499cf",
+        "submitted_samples": 45
+      },
+      {
+        "key": "22D9BF19-39015690",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f3c3eae5d3379f0489ab0b7c2f3f7aacd3389c8f8b2973ea3352cadb16332f37",
+        "submitted_samples": 30
+      },
+      {
+        "key": "95A3BCF8-397FBE8A",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "b0c419bbbb48c324ccb0f055c8b83421d52afc1be01df06730d0634e126d2eaa",
+        "submitted_samples": 11
+      },
+      {
+        "key": "22D9BF19-3A1D0A37",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f25fd352176f32105e7dc71d67648e78cd811ebbb3d6315e2d717def0421324c",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-3FB7169C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "5598617dd7bea71fa9176ea79b8a18324f2a58c68b6cd06f569eea2d24ffa344",
+        "submitted_samples": 36
+      },
+      {
+        "key": "22D9BF19-439CB3F2",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "9a8fd0be45bd0a49ec8bf1abccf37f04fc4711d2db3c7557973f138611df4767",
+        "submitted_samples": 28
+      },
+      {
+        "key": "95A3BCF8-520515BB",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "03630b39dcada34e37675ee92e34ccc3ec03ff6d2f49638a7f07746c4679ee64",
+        "submitted_samples": 38
+      },
+      {
+        "key": "95A3BCF8-540CAA98",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "6c28468468675aac1270084b016da6e046994187449ead77e4f9d38267938926",
+        "submitted_samples": 21
+      },
+      {
+        "key": "22D9BF19-552CF801",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "ee08e2ab3c0e28b960ae08fa33aee6a3f6dd8b166f6da8e70b2efa090bbffe4d",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-584BE1A8",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "161287879e04fd129540f1eb9399682a5c2aea0dcf040dde1f5415292ccdb227",
+        "submitted_samples": 29
+      },
+      {
+        "key": "22D9BF19-59CB5D9C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "8cdb380062018ded5f0697fa092c5e3c9f08f1091e2141ea41fa87f769f881da",
+        "submitted_samples": 28
+      },
+      {
+        "key": "22D9BF19-5A2AD2B9",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "d724ade213b99c22e9df4539826585f4e3252a52422262f371dbdf4860edbb64",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-5B4B43FC",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f76e87a63cf7ab5fd35d7ccd71af01348db1162b06a235240fcc791484f8c4fe",
+        "submitted_samples": 21
+      },
+      {
+        "key": "22D9BF19-5E41500C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0358ed478193f709faa2e2d4bc2f6f8aca86aed5f4e08034489e14f626945861",
+        "submitted_samples": 34
+      },
+      {
+        "key": "95A3BCF8-60245B3A",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "1f7436c2878452cf161d798c944b5802327e4f9ac351ec17418e9b59afb04391",
+        "submitted_samples": 96
+      },
+      {
+        "key": "22D9BF19-6100DED6",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "29738c134ad0fa30479665550ee126b413fc09fc036d23935d3c2f95ddbcd759",
+        "submitted_samples": 34
+      },
+      {
+        "key": "95A3BCF8-615C942A",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "c99a8eb4565958ec2e4295f27a67a2ad479dc487a69a6e8531411d690874fbc0",
+        "submitted_samples": 28
+      },
+      {
+        "key": "22D9BF19-6A8864F8",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "9e971260a27e2ad519ea2e1ee5f8ef1694e7439d3e5932221770344761346497",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-6DC116AE",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "cd1950547ae42bc94fc0b2e97840fc0f36966e46a53f3895a325337328dbf9ac",
+        "submitted_samples": 31
+      },
+      {
+        "key": "22D9BF19-6E0202B7",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f85fcacc0a49d7acba495393078489983cc0227de00dbe711da4a6a5b2657517",
+        "submitted_samples": 30
+      },
+      {
+        "key": "95A3BCF8-723E222C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "4f7989eb063d460d8599e7206543b3539b98c6ed67ce306dfbfc972610582cc4",
+        "submitted_samples": 12
+      },
+      {
+        "key": "22D9BF19-7553AF7D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0bcc3e3399a328271aec8f9647f189609a92bbc47b724369c6f5e9454cd7a95b",
+        "submitted_samples": 31
+      },
+      {
+        "key": "22D9BF19-75D61F12",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "e4726f4334e769824c9bb94f6146fa84a8219bab5a9d9bd869745ecbdbe90a16",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-7955C235",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "c23931943f65d2f688bf0071771f958d00d30e27b8d400783961edf2a0cf0783",
+        "submitted_samples": 31
+      },
+      {
+        "key": "95A3BCF8-79B18A47",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "5fd5854755570ff310f80ecd0962869d5e8bcb66a72c2d5628afa6679d1c046c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "22D9BF19-7D4A2D7B",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "2a9b151ab7ed43e7f882283b2c8f921151c5cd2b5111604c6077ffb0c13e1019",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-7FF3254E",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "68236a7b2dcb432d0fe2f3a08ff748510ce912dcc557de6743b053968183392e",
+        "submitted_samples": 28
+      },
+      {
+        "key": "95A3BCF8-857DB48E",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "59e799b40a9c6beb37284a8597847f5110ea2e26310f47672804c2520462ed63",
+        "submitted_samples": 23
+      },
+      {
+        "key": "22D9BF19-88F74300",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "92dccbd2126caed9630a1b5d1d61e979a93b4b185898bd626b69a7ac05fa79df",
+        "submitted_samples": 26
+      },
+      {
+        "key": "95A3BCF8-8A79B9D5",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "98aad5b30a09ddf1debdf1cb53000598d3294fae74447c7035e8c8b5369378c9",
+        "submitted_samples": 6
+      },
+      {
+        "key": "95A3BCF8-8C6DBF6D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "dd0d5d29ff2efedea21f03dbf0aa9c9867917f696415da2c3628038bd8b90ac8",
+        "submitted_samples": 12
+      },
+      {
+        "key": "22D9BF19-8FB43C07",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "3895ad44201e60455ac92d5029bfbfc347e5f77681de411b25d0c8ee55db753f",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-922FC7B6",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "d378efb16f4cbec1b4a7a849b9f414dfe31f85f29fe8b9c0967ebb88492444d8",
+        "submitted_samples": 32
+      },
+      {
+        "key": "95A3BCF8-97445449",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "87bca44c6a73cd5f1fef3a1aaee707650898bb8605067bc1845047633252ca4a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "95A3BCF8-9C70FEB6",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "15fdaa778dee1dbeca5d8752c79b7542b41a4b9616a8e216d944e7c00654666e",
+        "submitted_samples": 4
+      },
+      {
+        "key": "22D9BF19-ACE41AA6",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "7b5f5d7e2c2b54752f1ba9db75f76b4efb3cd0248b2be6a05f879d8fe04b0276",
+        "submitted_samples": 36
+      },
+      {
+        "key": "22D9BF19-B2917B49",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "1c469e6ba95d522a74a5b0a68107b96dc11b710278e68e84f2cb52452fb81018",
+        "submitted_samples": 33
+      },
+      {
+        "key": "22D9BF19-B92B64D6",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "8b45091535fed0f1244d52e422a4704c3ffdb2c5328fec221cfea4b8e7e89c00",
+        "submitted_samples": 33
+      },
+      {
+        "key": "22D9BF19-B9FBEFA5",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "290aec5917fe0068f70fe128ff914f1f9d12996fdd09036f90314ddce464f036",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-BB794C36",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "6f46a474e74cfb6555200a9c304e02cf3b5867a5633e6f0b5aa1e003dad0b508",
+        "submitted_samples": 26
+      },
+      {
+        "key": "22D9BF19-C02A16C4",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "345da4ce289a2ad932dd84e63f2fb78ef10527e935e85f4e096920570f81629e",
+        "submitted_samples": 32
+      },
+      {
+        "key": "22D9BF19-C050171E",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "2ebe4c166a490ff772a3be1e45f05fce5867d47426663af7c17c444431d3830a",
+        "submitted_samples": 33
+      },
+      {
+        "key": "95A3BCF8-C1CC2C79",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "958e179ccfc1dbe20da545d1b01b2afe04754fe78afcbab9dccbcd6f002a1b67",
+        "submitted_samples": 3
+      },
+      {
+        "key": "22D9BF19-C5D03D91",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "ab6fa0b306e6d59d15c9e3dd972acd0735e50036c20e38c9257223ee3cab8483",
+        "submitted_samples": 29
+      },
+      {
+        "key": "22D9BF19-C755351D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "c4b0eef9c5f2b7da68899a9b976bbc2d93c1e6d1d2869d766b87e47bc31b5cce",
+        "submitted_samples": 34
+      },
+      {
+        "key": "22D9BF19-C9E1E0C8",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "8b709f8fbec06900bcc1b1a5dcf27b8a1974b08341d305aa87cb9ea7a40d7ae7",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-CD20E855",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "c31609f40d2c942afd609d56cac904e6142500d9c933d09fa450368b1cc30a53",
+        "submitted_samples": 23
+      },
+      {
+        "key": "22D9BF19-D1C68C83",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0546f7c0208d93e32de516aea664845389dea66c0cf3ac9c23ea4db969e5eded",
+        "submitted_samples": 30
+      },
+      {
+        "key": "95A3BCF8-D60B38CC",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f9c8ca42890610bf56e40bcf50e199c102184da304c6465b29fb9e59c236238c",
+        "submitted_samples": 57
+      },
+      {
+        "key": "22D9BF19-D77ECBA2",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "d64bfaf9587014ef8058c54c4d0dc46ef93974057c7de96041f606fd5922f7cf",
+        "submitted_samples": 34
+      },
+      {
+        "key": "95A3BCF8-D9527F27",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "19453a25f94b1a51014543fb06ee0f176ae23c1fe2d86fef88edffbe8ced0a2b",
+        "submitted_samples": 15
+      },
+      {
+        "key": "22D9BF19-DAD667F4",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "d4102834cca13dc1250b74a74568c2b16cb6ee256ee29437781fa3315b239ad2",
+        "submitted_samples": 29
+      },
+      {
+        "key": "22D9BF19-DC73F6EF",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "73f3c4d3f7776b17be8159ce8b204ace61d4169c15776cd62083e78930bdfc99",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-DC84ED4D",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "070aa29bd5cd1efed0063716b94d97ccacc8e0fcd333a7b37ba5da7a528e3dcb",
+        "submitted_samples": 32
+      },
+      {
+        "key": "22D9BF19-DCD0A2E5",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "dcf3c24bf4d58b9b701aac669dabb11418b20704f0287193f8e564868ebe78f4",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-DDEEA55C",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0e3cc9ada8fa3cd9db78cf098bee662d43ad0a3ee79da7e417cdb9d63c57c4a0",
+        "submitted_samples": 34
+      },
+      {
+        "key": "95A3BCF8-E005E658",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "23047bb9eae17a8c463356659d28b4d097bc7ec87edd66da0d2b463f851af423",
+        "submitted_samples": 78
+      },
+      {
+        "key": "95A3BCF8-E01F52F8",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "2bd63f7220aa8c6db67d3181568c01011bd4094faf1f264ce414f4642b775879",
+        "submitted_samples": 66
+      },
+      {
+        "key": "22D9BF19-E0568CAE",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "9e7864ff20f5bfe4218b0e3caf35e67871acc79a3393e58ffc56f78f64bf1524",
+        "submitted_samples": 31
+      },
+      {
+        "key": "22D9BF19-F00A7113",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "f1f1d165e4bcb0f54b31b53a392a98a445d51b6475f466744e7731a64c5fa9d1",
+        "submitted_samples": 33
+      },
+      {
+        "key": "22D9BF19-F0A35167",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "e1c8b308c3d3253e92a65ab882205c6085a9da032399591f8ef65142745e7601",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-F1868B22",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "e173bd89d01a3cf7dc101a95df45c65bbc9fe76a41e79503907d46f04cb687a6",
+        "submitted_samples": 30
+      },
+      {
+        "key": "22D9BF19-F2F02538",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "ea728e6f385e0f1925f917a43a4fe9e359d50999709f17f5ae7d44f30688781a",
+        "submitted_samples": 28
+      },
+      {
+        "key": "22D9BF19-F8611D4F",
+        "family": "atlas-95A3BCF8-w2-v2",
+        "png_sha256": "0560566a02dd856b97665e0755c7c107a96b587a19869ca0ea05a5e9edfb790d",
+        "submitted_samples": 28
+      },
+      {
+        "key": "F5BC8ED4-03484800",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "cdd2a990713a9301f183ebc2a793d7a43f3b4f5e286edfaf496f4c6152b77222",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-057A368E",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c0405fb256811dd4f33ba3771cd50b605d6e30c8836530b42e99724bda09ca83",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-06AC8E12",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "3fd7d47a9f30b6e7c77d3ab15c110b62c5fc6e92527bd682afa28fc79f2b9fa2",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-0ADAA698",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "42c7d7a412f704e9468d9ba58292b23e1d659ddb4e839345ad08bb37b44ee2e5",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-103CFE75",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "ff761d19a907226978154dceef4beff952302aa36833e0bd588132b9e61a439b",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-1196D4AB",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "617786f3811cda3d72657ac52e08081f723ef811d3150b86bba95e82519b4bf9",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-15DD9850",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "52fc150dc4724e53d4a6d8dbd027e95caa9a7afde076ec7cde4050587e09ba67",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-1BE0C826",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "3dc5a3e14485e1a4ca092a516f887c5e30118fe6b60ddf4cc5cf2f92dc15193e",
+        "submitted_samples": 9
+      },
+      {
+        "key": "F5BC8ED4-1D473F6F",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "1f975d5df5584ee34b37369b21da59130e83a73b8e18248b356301ee71c9b77d",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-1ED7E290",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2bd46280541b64c23dedf42f3fd15fef8c818a4b741942d7d3e51f278d84f995",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-21E8417C",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9d4d0d1f435ddd1ba8d8d48148ed32d5e748bc73d4366a54be8392fb00a02051",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-2C5210D0",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "0e294b9c8bd0839a62fdf96f25567d38af7676e67c087049649db3c0a19be8e7",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-33F3378D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "d4b2c2902508934e690298edaed2905f7d9259d60808057514ca9986bcfd5227",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-374BB72A",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "033f064f4a34140d2cfafd1c9b4b3179d1a5fb82a541a38e48b85a6767c98615",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-38F424FE",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "50f48f4d4e07e0cb0cafd6199ea70225cd4f96de5760728fbd033a3bccd6a7b7",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-3A97F4FE",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "8b4ba60742b00baba0d003a40bc36e4f672eec02dfb3fb995917515a5dec8c2f",
+        "submitted_samples": 14
+      },
+      {
+        "key": "F5BC8ED4-413B23E5",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2ee639cc2cf8ce7385e41f5e87fd326bea9e816232781093aeace89eaba4af2b",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-427323D3",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "46f0f877f1f15d6d3e2ebf58fdbdc93a317f05350ffe19957138f54dcc89b8ae",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-4422579D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "db49e9be5fdf2dc002b73fdac3106dea9ab9d6fba75a830d3d5d53b372c75f6c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-5233A157",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9b981aacb72574c3452743e96b1f6d6970ad13c227c46dd95e9b5f5dbc252862",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-535854F5",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9e9cbb5c819a1746d4986ed194c6ed817246dc9ee8e55afb23b69202c83904fb",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-53D32334",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "e06a204001659acba70684e8f18b49232c1b8a270e76df8e71401fed9de67578",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-543935D1",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "81528e6c898a5df838668e6495adf0eebb6d7b53bfd467ce8309eda2b6c22b8e",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-5C7CBA23",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c0ccee2cb785610a7f571742e3bef9fd7b2f300e84a5bb8f6ef4bf80ba2eee0d",
+        "submitted_samples": 9
+      },
+      {
+        "key": "F5BC8ED4-64CB5897",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2b5bdc8159b094ca6015879d71f6b6a3dcda6fa9f600c9393d1973d124f13e4c",
+        "submitted_samples": 11
+      },
+      {
+        "key": "F5BC8ED4-6C6BCA79",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "492eeb02c3e6eb56207a2a285969986959038bc7b50b39b20cc433e176efbe0c",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-6F68E8AA",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "86c935453b0c9d6f371913c41e802fc3c3a54d8ed92baaf2cfb90f7abd1b94b8",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-6FC56831",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "0fcb41242a961f468352a1f874644ba98b1a8894cd53864b4f887132e5387cf4",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-73F5BF09",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9f1aa3f274b107f22f98afe47759775734b6e0270bd260f42d90da9137e35eb8",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-78447FB4",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "72ae965576759fc828b2e0d6279ee1422634788c371f36589b38e0cc00b17f48",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-7D01ECBB",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c9f26baaa5da7d71f2e832993f5f183c88e51763d8cda9891f3360bb26c37b42",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-7F21177D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "8db2afd7e9c84969329eae834bddfa5f5280f79a62632d04d807a2e59e669198",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-814A4600",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "22b9f23bb6daa459f19250818dfb5c6cee8ad7986b85e9d3682af36c20c36f58",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-842FF59B",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2e8b91cc950554cefc32ee26055e421bc036f0ac0b9d09e0a136e8cbbeb72ecd",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-8552FE81",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c3b44099ec37f930d1ff3536f809d422d732cf2cbdc8854a5be16dcc5d4fda9b",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-880108DB",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "ec9a2481287ae126256f6e541ae2f066f585261482357bdc6715a0c5c00144b0",
+        "submitted_samples": 15
+      },
+      {
+        "key": "F5BC8ED4-8937095B",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "8e36eb976920743142744324cbe07f8f54db1f8718355ff69fc5f0103b202dfb",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-8BE999CC",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "f1e3d75dee4e7d4956317363fb0f73db76c92f333a294a780337925e089f5fdd",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-92A22672",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "e91dfd94323720be2b17c0587656626e6dc9f0765de4ac696791196091b5ca99",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-939E07C2",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "8a18e29f99a9ac9aadcf551b3ea5adfc4522217df0a2743773596e8778e6c3da",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-9830AE81",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "e910f20af194555e209508961c97fedeff4212e8fdeef120a01b494799b25bad",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-9D6005AD",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "3a5627306d232247c95054ee0ff340b692a1ab01805490773ca0f2edd2c9444f",
+        "submitted_samples": 1
+      },
+      {
+        "key": "F5BC8ED4-9D9A1BC2",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "8391164783a891595376f06e11a7febbea766e5e41e0c3d9f24933b2bb49fbcc",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-A0ED7E97",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "973c8f4f7d154fe555a3edf87b2294c6dfa5760a70f51dbe7871e9001a5fcd3c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-AAF19946",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c1d82126dea4ecfcf5aa585c75dd26fa124f92ec60b81afb6291d9ac8101803d",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-AC4F96DA",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "dbca961308c6fecd60abc0b40b8744e20effc92ebc50c5debd7d3c9cb43dd5d7",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-B290BD70",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "30706af8c2aaf82d14fab54a63e130251595fe7ce676180c0a2d5a81315519ac",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-B6B16831",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "02cb763c2b807a573a4cede70900ec758abf0ba49f1d540d544d2e5996968e15",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-C5C40041",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "55392f80293e17e2b7e0ea040a4108bbb8894400c8609ec01f2eafb16f19deee",
+        "submitted_samples": 9
+      },
+      {
+        "key": "F5BC8ED4-C74E439D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "387a50cc7089fe4413c70b1304b7d8e3a83fc8f139ebfde5d770508b2132b666",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-CFD7BB35",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2f885dbe4e61ad538c743a70c9915ef5c8861fc72eb21983c23c712719c5a83c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-D2A22111",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "ab1b6d6b23f9c5e1d533196d2013e31f47e591d91159ee55a9d00287e6191a01",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-DA006139",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "02c75ca526ab1606a97b8207d9c05b4500f6974dfeb82fd94ead436aebb9126b",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-DCD1A5E6",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "afba4c89cea6d7f00676db1beca80d455247601e443f5b80418be469b26d32ed",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-EAC53E1D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9debf6bfe0a4e2d2615e8f4577a03bfbe210a62a398c7d4cf579c3c79a579a78",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-EB9D1937",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "2015c2411921be35a90deeeded1f65fa274594e4df99c276e638adf09ab4291c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "F5BC8ED4-EC98DD8D",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "90831fa1b3677b2be876a4af929400f1e0d6fe40629cc5d39cd2537a6211c029",
+        "submitted_samples": 9
+      },
+      {
+        "key": "F5BC8ED4-ED771A70",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "4f0e41f66a4bc2830deb15b261da29c86957f02800edb87231f985583229cd9d",
+        "submitted_samples": 7
+      },
+      {
+        "key": "F5BC8ED4-F967D1B2",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "c590acb49fac42aac4063cf8d59fb5290c00804887cbbd9c50a19d8616a1cc50",
+        "submitted_samples": 5
+      },
+      {
+        "key": "F5BC8ED4-FCB35883",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "46e880e0173f961f2e9405c71326383eadc83dcd48731c32c3c371a977e855a7",
+        "submitted_samples": 6
+      },
+      {
+        "key": "F5BC8ED4-FD1BD796",
+        "family": "beacon-41827AD3-glow-v1",
+        "png_sha256": "9fba526d854c9c00e78c1f0a834409a5b40197df9ee0681cb02f3a2233d84311",
+        "submitted_samples": 8
+      },
+      {
+        "key": "66156E3F-340FAA72",
+        "family": "73BF9877-340FAA72-v2",
+        "png_sha256": "c5b1f1e891a4011f643909cbbfbfe2ce4221434e541f52a2af997ce94ca4cb0c",
+        "submitted_samples": 9
+      },
+      {
+        "key": "A1EE280D-69C9A539",
+        "family": "73BF9877-69C9A539-v1",
+        "png_sha256": "641817562cc8b40e9cadd86c89476e5710f0bbdc1f60c98b6b207d4ffb0e6906",
+        "submitted_samples": 14
+      },
+      {
+        "key": "342AD0BF-6DA2ED40",
+        "family": "73BF9877-6DA2ED40-v1",
+        "png_sha256": "80790fd4311d905cc5a0f7095b841d5405aa7445e59adb5c47c3c59fe209e06c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "419EDF10-71A3A874",
+        "family": "73BF9877-71A3A874-v1",
+        "png_sha256": "09d7932d725fecadf7b5487ad970741aa5eefebe6fc33f8b2ccda2a1adef42bc",
+        "submitted_samples": 21
+      },
+      {
+        "key": "525AF9DB-79FE4168",
+        "family": "73BF9877-79FE4168-v2",
+        "png_sha256": "87a7a31e738e34ac0deb444600d0052879a8ba3830610cc4b81516ff12290348",
+        "submitted_samples": 15
+      },
+      {
+        "key": "77E44008-8117EEA2",
+        "family": "73BF9877-8117EEA2-v1",
+        "png_sha256": "30244e3bc57fa8d0ff3e96f548a6924e46c4d964da53a95b1f90eae8856ec8eb",
+        "submitted_samples": 15
+      },
+      {
+        "key": "1641EEA5-A4E0D3C8",
+        "family": "73BF9877-A4E0D3C8-v1",
+        "png_sha256": "b07cca7e884b821fe68a90289fb48ec3f903fa89030958ef9f0152e57436b376",
+        "submitted_samples": 21
+      },
+      {
+        "key": "72A4E23C-BABFCA62",
+        "family": "73BF9877-BABFCA62-v1",
+        "png_sha256": "363eb0b656844da9513616e74bb4f5a814298cd7366b8862119efbc197676a87",
+        "submitted_samples": 27
+      },
+      {
+        "key": "FAF04DEA-BE204159",
+        "family": "73BF9877-BE204159-v3",
+        "png_sha256": "0aab32978f27987388db7a9b9a5fbda36b9422c2753ce2adabbc30bf38e902b5",
+        "submitted_samples": 7
+      },
+      {
+        "key": "B5D66335-E0D47A6A",
+        "family": "73BF9877-E0D47A6A-v2",
+        "png_sha256": "01e0b998fe73e28729b06ef285e86dd6ebdfb7eccd6cec2eccaf75fc4cc744a9",
+        "submitted_samples": 3
+      },
+      {
+        "key": "01F17029-07D24911",
+        "family": "AB2DB563-wall-v4",
+        "png_sha256": "a41a295cb30b56dbab408e1b3976690e9ac638e4dac67b06629844c046ec4de9",
+        "submitted_samples": 51
+      },
+      {
+        "key": "D318FEFA-EA6ACA31",
+        "family": "2294438F-band-v4-proposal",
+        "png_sha256": "ec079f128f83ef62267aee7fde4106c2ae46a0a4ce01f44770e03ac00808ef2e",
+        "submitted_samples": 53
+      },
+      {
+        "key": "B4C7A0EB-F4C335D5",
+        "family": "night-cloud-sky-page640-v4",
+        "png_sha256": "ed4df4555e786f05a0926fab7f9f33535379c3eab61217f630c9cddcf3a0d1c3",
+        "submitted_samples": 131
+      },
+      {
+        "key": "C21DE94A-F4C335D5",
+        "family": "night-cloud-sky-page640-v4",
+        "png_sha256": "cd955bc227804fff73d62a108a78776a353df0793c3c169430424f58f1831c69",
+        "submitted_samples": 0
+      },
+      {
+        "key": "65560E82-F4C335D5",
+        "family": "night-cloud-sky-page640-v4",
+        "png_sha256": "a3601d2cb9e66445d5edd832b04a02f40750bb80f37a5dd470a5a5a27991ffbd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-42F9A36E",
+        "family": "night-cloud-sky-page640-v4",
+        "png_sha256": "6afc72b4a58eb49be1f3f4808ca70da0fba1db990d66a51949fb7a02ed57c78b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C21DE94A-6C9281E2",
+        "family": "night-cloud-sky-page640-v4",
+        "png_sha256": "ec627f3db419da365fb91cf5608fb52742547159292e46ca5792d97dd380812a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "CD7769E8-D22835C2",
+        "family": "skyline-panorama-CD7769E8-8FCDBD4A-v1",
+        "png_sha256": "01acbe7592aeeda51d73234fe2cbd7547650dc3d7754f3ffa4608c1f0664d9e8",
+        "submitted_samples": 36
+      },
+      {
+        "key": "8FCDBD4A-D22835C2",
+        "family": "skyline-panorama-CD7769E8-8FCDBD4A-v1",
+        "png_sha256": "96fcd997b4b72e1c16513e33e04d5e54d081eac329afa1079519056d8a882330",
+        "submitted_samples": 46
+      },
+      {
+        "key": "3DA22883-678CA3BD",
+        "family": "arm-strip-3DA22883-v1",
+        "png_sha256": "c09073d2faaafe68feb855527d83980ebd21acc4c6310db17969f618213c7fc0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "41E75A55-678CA3BD",
+        "family": "arm-strip-41E75A55-v1",
+        "png_sha256": "03b8b432b8fe7947530544c4413b2eed2a0bd5c75e12250cee2257df341d8210",
+        "submitted_samples": 0
+      },
+      {
+        "key": "7D2C7E3C-678CA3BD",
+        "family": "arm-strip-7D2C7E3C-v1",
+        "png_sha256": "5de94fcc9584e355024f0e387e34473fcac51acf561882eb779f6e84d0b8ea46",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AAE3C8F2-678CA3BD",
+        "family": "arm-strip-AAE3C8F2-v1",
+        "png_sha256": "220f3ab33166ac251c67d3475c8d5c50cd2438c3c408ac6e29ef99fc63b9ccab",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "9dfc5de119134ad27253d71e735a4b50d9e9a168936df99e992507d8290ab628",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-4C1DD349",
+        "family": "hud-prompts-BDAE4156-v5",
+        "png_sha256": "ce9bd62fe4b8bf486d0d2d25d757edb2b7ed8021ec626131d85c94d0321ce55d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-DDD3D3CF",
+        "family": "hud-prompts-BDAE4156-v5",
+        "png_sha256": "d64501f67a59c74722a10ddf323a82f2e1e016b52ddd9a6e06864f35cfe5e187",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-E21112A6",
+        "family": "hud-prompts-BDAE4156-v5",
+        "png_sha256": "b8e70312848ec70089bbb7473d517a4f5dbfc01e6838d01647e8e6e9059d6fac",
+        "submitted_samples": 59
+      },
+      {
+        "key": "2C781811-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "52be6ae4e778260061a6539845da87832e92121eee6b25580c26e52ce03e3772",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C781811-E21112A6",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "ca51803bbbb5a6fb0512a7225b7430fd2027e9174cb9c21d2d1e7e53e0fd56a9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "de206476fd59866dc2e404ca130faebec051e27110b271d10fd94a4e817b7e60",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-E0C06BFB",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "6f8d8f45162fa43b9ecbccac5a12b95b6ae1099d6955586d3ac555c945f1d47b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5F101F62-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "750d7fdf9ce1d26b1b7254275690fbd70e7ebcaa0b462eaef825c24cddbcae8d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "786B98BF-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ce555c101f72924acd2d7687e70e7bb1a35f351cba0708278eaabdf42f183884",
+        "submitted_samples": 0
+      },
+      {
+        "key": "786B98BF-E21112A6",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "5b488fb413cee5e5d135608daa0d711a3ffe03dfc58011b0f7df12c7e04b4d78",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "8143e83cf6ea88202e94f749913803b6946c2ab74679cdbececf1ec7ac6936c2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-E0C06BFB",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "9edf3aa44e7006f5a8e36fba3eac0ec03487b7441aba5059a5a9249e43e8f505",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913FE978-E0C06BFB",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "2dba5b302b5f227262b297356f2c8ae8285e93f05dee3c4f9688ae35c77d1d44",
+        "submitted_samples": 0
+      },
+      {
+        "key": "921FC559-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "e460b07139622862457f18b0ef52f16ed612fb768bb61fe9f2d343528088b25f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AAA5C104-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "347de3dd996ffa7a6fe1567d6522e068a39a06fa70ac81a4f8837aad1d3a7d2f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "63095b977bace0ccfbe98e0b3080b8d41388fd7f77e4c82e2a83dafd4ab6315d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "E1F18F98-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "9a59f2c4b657ef67b026f40bcde5436f37c4670f3a0b7253acbaab31fe55c278",
+        "submitted_samples": 0
+      },
+      {
+        "key": "DD0B6963-4C1DD349",
+        "family": "prompts-DD0B6963-v2",
+        "png_sha256": "4003daea96d192996b3f67a2327f806bf7f912a24a7959615a953626fd680456",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-4FE32821",
+        "family": "results-footer-8E1A509D-v5",
+        "png_sha256": "15061757f521a2d99819ea356ceb43131dc8d2e4d8afa0906e2a69240f33ef02",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-8808F70A",
+        "family": "results-footer-8E1A509D-v5",
+        "png_sha256": "40ae81d7f9eb95a1efb386ff1ec3f31993f17a37ce5daa52ed85c6e933651293",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-C7A1F2F0",
+        "family": "results-footer-8E1A509D-v5",
+        "png_sha256": "798b0ab6644d1da7d48115d12b10cbdd0fa172e4a4ab86ec3dbb674ab8c904b9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D0365088-79902A90",
+        "family": "selection-headers-D0365088-v3",
+        "png_sha256": "18eedb5741154de240fd5cc42b793dc0104c91d10c0193068aa73213c97adbe1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D0365088-B5A45715",
+        "family": "selection-headers-D0365088-v3",
+        "png_sha256": "679e714866226c822c6be9f68c54a7a76586a7b6bb34cbac02fe798206c751e9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1AD90FC9-79902A90",
+        "family": "selection-labels-1AD90FC9-v4",
+        "png_sha256": "9d0d5c3be9791aeea1ad88350b618f1b17db5d4affa91fc30b132b4e0381eb2f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1AD90FC9-4315989E",
+        "family": "selection-labels-1AD90FC9-v4",
+        "png_sha256": "5ed89c0d88bc12044dc8d27048e3341a8e882bdb030a144421701d31700526d0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1AD90FC9-02491337",
+        "family": "selection-labels-1AD90FC9-v4",
+        "png_sha256": "bcdbd9cfb5148cb19eea42f97451697a9e583926e04fd2009a066d5e6482423b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "282438F3-00000000",
+        "family": "title-master-E-wristfix-v2",
+        "png_sha256": "b529bace350f04e934a73905f2b92e78c59bc53b652ea8a7089ff08b55ee7a45",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1D953D67-00000000",
+        "family": "title-master-E-wristfix-v2",
+        "png_sha256": "fcba195f6e815a9482f084b196dec42b19aa10efb215c6951fbbed59b34fa112",
+        "submitted_samples": 0
+      },
+      {
+        "key": "323B5FB0-1C7962B3",
+        "family": "title-menu-323B5FB0-v5",
+        "png_sha256": "1ccec7edbf05877b20fa97f00d0845920929478ca50dd9f87c0f56884e47942a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "724E77DA-21FDE894",
+        "family": "t6-mk2-hulls-v1",
+        "png_sha256": "84afe7ce8c35e1133157c51b49f8a559677fcac7ed1d8301a7d5aa8b5968d360",
+        "submitted_samples": 111
+      },
+      {
+        "key": "7E3ADD56-21FDE894",
+        "family": "t6-mk2-hulls-v1",
+        "png_sha256": "22f581804d720baeee902ffe39efc0082c351c27c01f981fdf914f7d3bac3ba0",
+        "submitted_samples": 31
+      },
+      {
+        "key": "E2F3477C-21FDE894",
+        "family": "t6-mk2-hulls-v1",
+        "png_sha256": "482132232aad755734cd4ecb16bc377185c44aa87f8582f7f66e322dc4d171b3",
+        "submitted_samples": 52
+      },
+      {
+        "key": "B16492B1-21FDE894",
+        "family": "t6-mk2-hulls-v1",
+        "png_sha256": "23904ffa2806f282cfcdd805c3ee50d2ed4acaef519c4be4775289375d156a58",
+        "submitted_samples": 26
+      },
+      {
+        "key": "5CC44E5F-053D9A00",
+        "family": "t6-mk2-hulls-v1",
+        "png_sha256": "924d5de525cab6e8dca720657c314b0b83b1a18c590b46a5931727578420768e",
+        "submitted_samples": 29
+      },
+      {
+        "key": "3955512F-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "9ed235e63103ac98725e2fe066b70380fd5d1327496fa5ef23f26f953eb12185",
+        "submitted_samples": 0
+      },
+      {
+        "key": "055889AF-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "4d1ab25d812d6ab05702cec82f790045c13cec6b93aad359d4aac801e933e322",
+        "submitted_samples": 14
+      },
+      {
+        "key": "095FAB66-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "826fff42ca38ae9389b0a19a1ab75df553913c159e36e5e72694ebed475f17ce",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AC237C8C-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "b2fc2fd886f62523e012c9ffd90cb107b0ada94f276cccf2addaf5ec350247f5",
+        "submitted_samples": 5
+      },
+      {
+        "key": "17DBB717-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "2e79fa3874ce397442d5e24aa0fb2c14435f977574da724e5b54c0b1be60d9f3",
+        "submitted_samples": 1
+      },
+      {
+        "key": "F33119C6-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "858ab6796e5383b1daebfbc26896e0d5d27337ae4c74f0a6a697c9535a5a82fc",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D5B575F1-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "1a683e022947eeeb744d00e88f6e32bf0704b5d5009ea1b27a681951b12519d9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "04373BE9-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "9004ef060a269f021c6eb9b9f31e44363c38435df0dca67706acb6c785029eb1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "008FBAF4-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "e4b992315271f258f86868f0888beeedd55b6e1220fb128212285a42931529a9",
+        "submitted_samples": 3
+      },
+      {
+        "key": "3955512F-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "1c2339b590b01b5df591043b0d391cc7640a12343962c07bf4b725db93b41b72",
+        "submitted_samples": 0
+      },
+      {
+        "key": "7FBF1F98-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "a594888950325241b100ee9eb801f2e262247eeadff31ae0d36ebe06a3f85df3",
+        "submitted_samples": 12
+      },
+      {
+        "key": "B815BB50-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "20a86d66aa7939d419ffd8dcea0c254cb3d5d28ecb5bd0bcdd43e6e0b833d8ca",
+        "submitted_samples": 5
+      },
+      {
+        "key": "C508972B-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "d27830d2a8dd788beb7883b827d1dddd4a7638bf2da8062e6e8bb6592eb8f3d6",
+        "submitted_samples": 15
+      },
+      {
+        "key": "EE554C6B-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "d4fcb297b40944bf512abab3c1fb904cb845d72ffd6c44445ab85e87f5a3b282",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1087D8D2-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "db9d6ca5f8dbbe18e5a49f1fa7857923967d5172f40577caa7790aaf32406f83",
+        "submitted_samples": 0
+      },
+      {
+        "key": "E82817C9-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "eece10ddd23096d6924bc0ae8a23f90f3fd7811aa49256f22329cd67bcc2e105",
+        "submitted_samples": 4
+      },
+      {
+        "key": "7B8B2202-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "5e09b52e6d9aaf155cfae5b9b9e27eea7a6ddaa3a97a0129f2f4860f7ae9f108",
+        "submitted_samples": 13
+      },
+      {
+        "key": "B15B0918-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "2c3c7d2166c651fd8dfff8b69fc5a6500c2ea2ccf71c351f8d3b0154dde6189d",
+        "submitted_samples": 16
+      },
+      {
+        "key": "3955512F-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "253f14e695dde778718e8533edbd3036549e0369d825eff62ab5f634693caa71",
+        "submitted_samples": 0
+      },
+      {
+        "key": "0BB2CCD2-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "5e1fb46929bb15e4f02cdc963c8b99e24597a3515d89617f6e31db52b1cb4209",
+        "submitted_samples": 0
+      },
+      {
+        "key": "F1C9C918-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "234b18c2a17a3e36cfbe52c7ebda8f90d22992688d14801e62d8616593c0bfec",
+        "submitted_samples": 0
+      },
+      {
+        "key": "19F7EB88-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "5faf1bfd1b1f4ce8342bae694bd864cc5f34fc2f3253c00b92a96bd6ec7c9f67",
+        "submitted_samples": 0
+      },
+      {
+        "key": "ADE42343-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "34f3755283678cc3a1791414edd211ca4e99e1e409fd9f156f1a4102cab98fe5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9F8555EC-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "f010bb99b34078304fa3894d6e522b9e3d396382162df2941e51126885f05ceb",
+        "submitted_samples": 14
+      },
+      {
+        "key": "5D3DAE2B-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "10fc390d521ad480cc351edb98903217c93ab5e5de6dfe491a3000b6a2e045b1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B004E81F-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "c4378c68251e1a2442cd99f1ce656383857eac840c7045187b82466d2a3b5e20",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C0BD871C-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "f8734a438c7c99530fad09a30164b9eb8280a8c025b4c6b58ca155b0bb4edba5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1263A036-0173A6C3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "a625bcc85604ce3fb6cadaa04635ceb8c7f918745d7250a3aa624f9c86bbb626",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-0296E33A",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4e20ca04539f7cc775f9555718d0bcd8d79d4822edfa0c5f39dfdb70ae68fabb",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-0A24F2A8",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "a153dc7188012eb2da5814d8840e3a33b887ee493994bf8779b3fc61348ee33a",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-0C71AFCE",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "f1fcf1592a1a1a28f0562305308092bc00c3084f25d2feeaddd1b96da496a918",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-0E8A94CF",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "91ef0188ee539278335ed546d1c03fefed61c7a6f3fec60f061326d9b88e786b",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-159B36FC",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "c03c38a1bf237d35fc4ecf8bf862d82401549825461110606e2996a955b2d346",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-16210104",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "539adac534911b21e0a4242ae03ddb6b2314b3a9c1ff5ed04e2a8d9b22223675",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-2042FBA7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4822e131522be12b45743680a74b6635757769d49936093882b973bdc5efc915",
+        "submitted_samples": 66
+      },
+      {
+        "key": "1263A036-295559E9",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "d880b3f0386441ab3b6642f9f577aaae9173af89447871c07d63a46db055a2b8",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-2BEC5982",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "47b2c86a29e219b134263e7fb12bb1a48a21bca16a7ec2015e3ff307597ae0aa",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-34AAED43",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "1dec1b016816b51a0ba6e00741c3827909354dfea9e47145863a539d76fa96fb",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-362BFB59",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "cc9897939eef6a148dc333267790228d41caee917719f19d9824781756821100",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-3D7F5761",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "b825ff2bdb07a6f3527fc517d2c5e220f809302393670d282c3a0b04c17efccb",
+        "submitted_samples": 35
+      },
+      {
+        "key": "1263A036-40E3ECE9",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "aa92ffaf598bede97d83cf5b6f37e3887430415744d3ee393a6de9557a2a7dec",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-565C2DB0",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "74f1115d003a66a295ecf72c5dcb49507567a333fb5cc0fd7ba8ddfa7843ab23",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-57ADCA72",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "db3eb3c2be1564211939b1d3cbd809ae67477097e81c5ed76064f0bb0479ebf5",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-595607DA",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "d2f9033acf5ea776fc493cfbc49f889d40b910a6fc338fc96530abc72a5c9f94",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-5E9B9AC3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "55f101f974bfe5a929f17a9019759d2a31ac9eeb44ee5968d2f0f7e03b795197",
+        "submitted_samples": 36
+      },
+      {
+        "key": "1263A036-63454835",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "753733ff3ca10a5a7bc417eac021bef99a13cf232f625245ffb6011bdac4c9d4",
+        "submitted_samples": 6
+      },
+      {
+        "key": "1263A036-65E5F3E3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "a6374b0eed3e52240e18ef185945dd37ecb93304c016283e1c9076f10375f95e",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-6D57E271",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "b99e06fa4d183b0fc5c0c55997f8e7019250405c96f4b2c2426de57f2b3f762b",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-6D854A81",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "9bb11c4b99fc71a634f6d29dd96b030fe36cccd7dd4736191cbea0d39bbe92e3",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-6E78D825",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "d044d9bbeb184f7727a0e1a73ccb161cbdf8f780b17a8f178c239436a69ece27",
+        "submitted_samples": 103
+      },
+      {
+        "key": "1263A036-724442F7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "652059b26311781364159b4c9e399754cf3e588fe7fe4a71dc0e92b903f419bb",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1263A036-7249AB4A",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "33c85aa46cf3df6479e3ec830cfcdb55f18ae9fed98c94df9470ff7eb2c548b2",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-743D8170",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "661bbff03e553ee1b2a7ba888a1cc72d3147ba14aa35ac49d4606b2899f0c6e4",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-78780AD3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "fe6b5b6d513477871ba1bd0b7504f4f4b0808c0893bc50874d2bad0482b2781f",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-7A5A37B7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "cb464c001694514b7ce95b7b34c4cbdbc9726eb90c0af80eefcbe7bfea403e8d",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-82B00974",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "afadc35c07faa1dc72f02b1fd297dd1269b0b9a7f29877ea5471ca4607cfb92f",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-84FBC737",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "c9273e2c36ebfe516452a40bb4ed199fdee94e3f8379d53b7491175ec551954d",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-8BA911D7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "88cb283f05f7371ec722642b739da1324f074b26004ed44a387d8aaad2390d8d",
+        "submitted_samples": 85
+      },
+      {
+        "key": "1263A036-8C1E5EF8",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "162d4459ffe41f9f5c6688a4b6abb11557f3b171402482d88747782a3a199f87",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-8E9F48E2",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4c4108207267386e9f225adf4764aeb34433574b9481fa27f894c21e8915992f",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-979FE1D6",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "fb842d5c058ec98d775acb98c39f59033ca84bd2d6a540c8e3700749b395d0fd",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-9954EB47",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "b14c50f7019a5ba48bfebd453e1867bda449c75dbd207462396a43ea3c6a6bf2",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-A0BB6F81",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "aabf972f9a4cb5ce45af029ac35b05b224c7d135e2222f03ae433173269982bb",
+        "submitted_samples": 6
+      },
+      {
+        "key": "1263A036-A7C6E7BC",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "958d783052384304b47088d11bdbbb967d82c935b5f7dfb5cff7b3836150065e",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-A86C75E9",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4581a8fb5da671f6c8d1c10be29e516fca35d1328db1e75673baa0d3d31b7580",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-AA98C376",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4c4b3f0c18c04cdba2692eaa74372ea419919a757920ebaab8f772592864ba03",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-AF8E15FA",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "6ab7fdfb8645e308002df62e4f00be0d3072320d59ead7e2ace6106aa06c2f3b",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-B4BF316E",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "e37cc65b46f0e411ced816245bcc885b1a756f840f37d668812d441565fb05af",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-BE9587BB",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "f19078e79608d0871e9f2dd0c400540a838fe19e9f250f63969614c2479ee710",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-C02BD45F",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "3665af28abe57deddcdb32a88c3517a17ead756739e707461835cf51abaa39c3",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-C3F9D488",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "ee2ef7c4cc7f93a608ed04642a9cd81ba21a01e94ff4ef6992dc578df910b922",
+        "submitted_samples": 24
+      },
+      {
+        "key": "1263A036-CBE67889",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "a59916966b7bc99a1fce006942f16b93eb9526e70118ac456eb38390a219e484",
+        "submitted_samples": 50
+      },
+      {
+        "key": "1263A036-CD74B37B",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "394d104e00dd194ba1e84f08a0f39e23d0d362843342651538b4c94da438ade4",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-CE2B05CB",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "d90a6042ae739de75fdf71fe92f73e5b36829e0b02de486bf9cfff9dfd10b654",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-D85B5BD9",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "705b6ffff8841a0b69abcf4f3626b37033a8f001fdd2114d01a593e9ae1eaa79",
+        "submitted_samples": 4
+      },
+      {
+        "key": "1263A036-DD84F82F",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "93ae36b1394ef5cf9d7394a88a336486bda291a036aa2bd868245a6c76867c3b",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-E3509418",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "61fe043974754a256ceb78a2450141d32c5fb1558773360c3501fb6f7e2d4be5",
+        "submitted_samples": 6
+      },
+      {
+        "key": "1263A036-E96FF5E2",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "2f493e7e1c659c5a4ea9e4ddc98658073db4512f385fc306227323b844546444",
+        "submitted_samples": 2
+      },
+      {
+        "key": "1263A036-ED986FD3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "c44b99712bb749ba7f814864eb94b98124e16d1cd2106cd86da961440c9ddeba",
+        "submitted_samples": 3
+      },
+      {
+        "key": "1263A036-FA4594D3",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "3879fb3dd361b73140b78e46d1828d001f89c986e20e0be9225c8ec1a3ccd101",
+        "submitted_samples": 1
+      },
+      {
+        "key": "1263A036-FA503D2C",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "b7cd1d0be243e33032b24dba834e8b6bc61de7c53862a182ff4f9a211bb9eb16",
+        "submitted_samples": 4
+      },
+      {
+        "key": "3B9C8491-3D7F5761",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "5ee51f0452a679391f7ec41d9e71b3a85b0c8c1994782a8189708f039b0698a1",
+        "submitted_samples": 13
+      },
+      {
+        "key": "3B9C8491-6E78D825",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "2696e24186c102362710d3d22ba5c21d66bde0eebb031cf7b88040e41c2862c6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "3B9C8491-CBE67889",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "388b8334055f03f2e291237439ab01d71eb64549eb6c171044fe80d1467e7811",
+        "submitted_samples": 9
+      },
+      {
+        "key": "B4301204-CBE67889",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "b1f7902f2b5d7bed4c17285d24c92e52c0e4392edb15857837f68ce22cf4803e",
+        "submitted_samples": 14
+      },
+      {
+        "key": "D7FA0B34-3D7F5761",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "5d416836522b8bb5579e893d53c9a3ce058aa50bfa26cd7f1ac7ea83ad4aed3f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "156BFBA7-CBE67889",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "8948c34982e28aefbe0cf4f4afe8555479178fcf49bf37143a2ed09a15807ae5",
+        "submitted_samples": 2
+      },
+      {
+        "key": "E27E0D6A-724442F7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "4afe704d9d06ce5f8155833f4837a307ddfe4586f41d235e6d0a797b5a8b92af",
+        "submitted_samples": 0
+      },
+      {
+        "key": "A0FF13AD-724442F7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "7e1328c4270b5d1d4044a83fc6861d21d0dbf890fcd5d383d428c6ba008dae3a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "67F52663-724442F7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "ba2c5f32730d60cc4485b30be051d6b5bd56d7f5b850c9cbbd14c2d663eac1f2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8EB9EAC9-724442F7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "a3901e5199b5e4be8c372a127800494cfea400df348d5cf85343f15390120d5a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C6ABAED3-6E78D825",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "d7e74cb6d521925cd1c396ef811617d597e3bf99ceb438df90e492788061c53c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D07CE248-8BA911D7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "47e89c9339d26c45144776726678bb8d929d9da8afb25f85da59bb43a44c3422",
+        "submitted_samples": 39
+      },
+      {
+        "key": "92ACFD6B-2042FBA7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "cb80dc7054013aa35c4ba62fb37b1c7dd109886dd6677289321bdf6bb6fcf795",
+        "submitted_samples": 42
+      },
+      {
+        "key": "9353A617-2042FBA7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "c0bc62bf1274798cf85c415796cfe4b681ba1760e96dbf174742ea86a6c4538b",
+        "submitted_samples": 30
+      },
+      {
+        "key": "64A5FD57-2042FBA7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "feda90699caeaa0c7b33c1c34087f4a307387f3637bfbdd88875a01aef6b52b8",
+        "submitted_samples": 7
+      },
+      {
+        "key": "02ED4B7F-2042FBA7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "ed486d7cea088bacf35b68f0246beab50d9257448d85b8a45299cce5c3c0f96b",
+        "submitted_samples": 32
+      },
+      {
+        "key": "8331995B-8BA911D7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "354fb7bf19e2abe6372b1984094c297fae6f29b1135a6fe7b79bf547ee05d065",
+        "submitted_samples": 3
+      },
+      {
+        "key": "4D12BE4E-8BA911D7",
+        "family": "greif-1263A036-v3",
+        "png_sha256": "23b387610286f5c08be20aa528dcc634816d59771bc1de01cb6c2b97bdd0a2a4",
+        "submitted_samples": 31
+      },
+      {
+        "key": "38DC02FE-013C343B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "19c5e0edb6fe035dcdd4375e548979c31fb40b5f578a6f9ab4c36c21a8dc76d9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-044AFF8C",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "f14e350dae3b8321bdfd8339856d674d647fcdb13bfe368eac6dc52f81111d4e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-0825B555",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "b52d3e2ed47f8dbd70a2614b0a49c27d20b1b4cd850fa6bfc32e3cbfacf5bba6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-0887FE7F",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "c90713c397769adb5cd44b3e0593e42092d21ba3cd4dca7aeb13f02efa9ff4b8",
+        "submitted_samples": 67
+      },
+      {
+        "key": "38DC02FE-0939B6FB",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "9032005755d86889095e907be0a960775c3362fa5c534df5eb0fdd4a51bd15b2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-0B7C4CEA",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "e629535ffebb0d316262f66216b419f29862dd5af3e25d7753e3499dbc82b152",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-1510EBED",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "7795ef89055e1ed8f5f5a5d520f8d7fbccb9c53f054ef7b2714c5750ae0bdb01",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-1E67153C",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "4e08993dd80a4d13e4bd2caef7de8fd5b87d49038727b73ae15694208b5d73ea",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-2D9286F4",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "aa3c86971b4471087cb91493dc2ba2bbd6e13217bdebfb73f78b96fa4341a500",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-33D37DED",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "e0d24e6f0177427258dead3e926079b5c21baf8f05018cff1ab92a0ae0c30054",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-36E70D31",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "b2236628eb0fcc7abc2c8e14866fa5100d5f49eb6bfd5a915ef569cb4932ab03",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-3E4EB053",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "9c293b6306fd466861b8520f003c54c0fdf18cfadad88045923f25d77c12e47f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-3F675C0D",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "bd1ec31b6b3eb81163329c092124468de0c16c0b11bf26c5686b3e887c4d13f1",
+        "submitted_samples": 46
+      },
+      {
+        "key": "38DC02FE-478602CD",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "5d4be0bccd8887936602065da9178c3b9fa27772750a46f7d9d675463aa6ee6d",
+        "submitted_samples": 15
+      },
+      {
+        "key": "38DC02FE-5450CB95",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "5f6de71887e94620a41db0b190c1211dc9e4fc914b954623a7b047a7bcc6bc51",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-5CDFEBDA",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "6f1ccdbb26fce5c22e27ffb8ea41947c4fe72c921ff761e028257c45b68f66db",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-6FF51B42",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "4094a998e2ad0cbcf1f901ac50fc1df264d1feaac48e53f5ff421d5be350df31",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-7791C43C",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "9b65bb6f11cf6c8363109d49bdf81b2b3d540b6a7337469fee3af2ad6c639530",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-7D879F35",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "0a928ba1afb70b473164225b3dc3447eae325889e68d9b9537d327417b45063c",
+        "submitted_samples": 58
+      },
+      {
+        "key": "38DC02FE-81FA7C12",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "152692ab0ed5ade65d3dd979364d4290a20246e837865e93c6e8699b8e60e5d3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-833D9FD2",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "fddf656fd35e5927cee10a9dbe4df740a374efb5a9ce3947699ebb992c375086",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-8AC44B39",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "1fac626a7b7f7381493ea8ca4d69c035195555f473ec613963da7d5d935fd457",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-8C9DDD11",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "61f1731545d289c55b54349556b86360c189de0658bd2f61ceae479487b8c8d9",
+        "submitted_samples": 107
+      },
+      {
+        "key": "38DC02FE-A17EA1D4",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "7f5542fdabd32d6a0235d1ed9b09837a46ac9965f2df949c6dab144ac4ec9d1d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-B73D4A07",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "220c43a959bc6bb89c246b6c0f5740254e05f703c1f4051d011a59bc4e01fd37",
+        "submitted_samples": 3
+      },
+      {
+        "key": "38DC02FE-C047290B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "1c446edb13843c1cafbb0ad33aa39d2e617f71d600e9dc24921629f741760689",
+        "submitted_samples": 41
+      },
+      {
+        "key": "38DC02FE-C22AD7C7",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "194616dbe2fe3ec8cbdc7c50bd6920ee583e12f1dfdbdc3e656d56eb149ac29a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-CBD7C787",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "801d0d6bcc11e253c0bb6686b132b18709d7195336a28e9e4f135672d0753452",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-CBE67889",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "2cb1d08ac6ae58ca51e6a3c7ab301731582540e2c82e4d8c54ac9915eacfbbe5",
+        "submitted_samples": 29
+      },
+      {
+        "key": "38DC02FE-DE6A645E",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "2d5ba3d22b4371191de257149e296b1b154676166bb4111f708b7931b3f1050c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-E445DF08",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "23f23680d962ba562314f38a6a43394b86bab09d63b10f7480cbafd73cbecd2d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-E9FBE233",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "f7d76cca7b1d34a457e2a77cf6a25b887001078bad3b49b7105d692c5a327536",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-F51EBB28",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "7ca81a2ab251be295d49574b7c7e3f9c1a74d2f8e756a0c547ee6fe9c18d3a12",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-F86E620A",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "a147bd40c56ee221bd9d570110211a75dff78195419a424c08e73514b5fe760c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-F931887A",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "276972b2638176545040f382cd45b2c688c104f01e95ef8b405ba19394417ec8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-FEC1D673",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "a82fad7d7b70ac0e265c9768b661f82b25e94491c255d8163440b0968de16d5c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "38DC02FE-FF105E12",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "a94ef99c3a1486bfddfc04d141670fdb06278d3d8b2ed241a84abf3ffb4bfe92",
+        "submitted_samples": 0
+      },
+      {
+        "key": "67EFC926-C047290B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "9c3f4f3bf9feea23c25ab5695ddcaf9060bc9666b34c77622a535125ad1f98d8",
+        "submitted_samples": 25
+      },
+      {
+        "key": "1C7CC371-C047290B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "b1c794b68acd0a93a5397e9486b0be6bb42d060ad826176a82a7a1c9f4ac5eab",
+        "submitted_samples": 3
+      },
+      {
+        "key": "8E73034C-C047290B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "b1826b5e89e1a286697e8741f283d0c650cfb14c504a85dde8a8f986ff35fcd0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "DFAD4C1C-7D879F35",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "c240099061736665faf5308cd5e2f0f2b1db00d0a6631b121a00c6adc4163e45",
+        "submitted_samples": 0
+      },
+      {
+        "key": "DFAD4C1C-C047290B",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "9643818a61dad663cdda158cfe822bfbeebe40fece558cbdd75fa2a2de9a1aa7",
+        "submitted_samples": 29
+      },
+      {
+        "key": "18BCA7AD-CBE67889",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "d63cceb0e89dd025881f3d97947ce5eca9b999888e0079798cc86f7165d9cfc0",
+        "submitted_samples": 27
+      },
+      {
+        "key": "3BA90940-CBE67889",
+        "family": "greif-38DC02FE-v3",
+        "png_sha256": "bc66b24db5aad01259234aa4cfd33663c7f62272b085e1007dfe41ecd8b6a00c",
+        "submitted_samples": 23
+      },
+      {
+        "key": "46D3938E-007A66EA",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "7952f1b9b56578fa76bf2eff07f83a597557ee97615f89fa0463990287e72a93",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-0173BD7A",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "da5d0387bb0ece893f5a7d3069bb813d6d61b351a4d125fab0df93dd96771311",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-0B054D8C",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "303ca80e779499c194c937ac79daeb0ef7b77a8eb85f340f69d3340532a932e9",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-1F3716FA",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "bfb36304a75a37078a056341de4f56377cbe3fbca83013946719765e8d672263",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-22C57163",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "2471e8e88d42b84ba7521cc882aa2b92bb88563afd4c2310195e34bcdc8b10a0",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-2818F5FF",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "a04d2bd505378949e340032004209926c7556ee7b3051d9e3f12f25a5bc7882a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "46D3938E-2D4FB61D",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "d02eecc2060525c3dc893fcba1cd7eb2a48acc52b9a53142b05801afd45e37e6",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-31A5C7B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "133ec40eb97af46943a17d8f719d5f58b365c10f82fc0d29ce27f60c52b4e6a8",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-32ED0D47",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "f4090079a212f67a6c23273d5fb819edd3ea89d518dc9889e7b6e10776e2045f",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-3498D543",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "a784f8f856622e71d13cba08a14f8770997dc3c0bf66a9cde9bb62e7dc2ea359",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-398248A5",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "2d8910bd7cdbe421f3d3c0c41ac1872a53fa019f89ee8b4137101dce3c4ca3f5",
+        "submitted_samples": 12
+      },
+      {
+        "key": "46D3938E-3A296992",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "242177f36a296d68c43bf82e83299676f6e4b93d43b4d3e8e4d4c4f87ca8fa9b",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-42E2B9DA",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "75d962ca0b9f42b3056dd7b6f00610c083a0304db963c2d60e55d0d48194172c",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-49AA5592",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "080be8fc7876a78fd884c9630fdd1cfed17f2a7200d13f9a54397a290dbc5ffc",
+        "submitted_samples": 0
+      },
+      {
+        "key": "46D3938E-518A61FB",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "1e590186ce85891ebe5b7f93fffac68b19f457d3a4f2f7add89f5d36b9ec2ddd",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-522B1ED6",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "58288a2bfcc86bd2c52b7769949953f3e13fcc31932ce432d977a349ce9eda08",
+        "submitted_samples": 97
+      },
+      {
+        "key": "46D3938E-5260A904",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "679a65dbd170e11fafe7ef1628d66c1d9737c5b68bc77be6f78db67ac84b8f17",
+        "submitted_samples": 11
+      },
+      {
+        "key": "46D3938E-619DC35A",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "65f6ca87c04e3245bfd993d69235d7f459823327c6110b127513fd88ba97cba4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "46D3938E-6224A9B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "eb209c94907160afc6f4467c65c6009d7b3e30a5c40fc818caa2f743b025fa70",
+        "submitted_samples": 5
+      },
+      {
+        "key": "46D3938E-6750DA3B",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "52bf4f5bb893b9e986449eb540e74b70e62ceccfd4a34c7ad9d0cf0a85b8896d",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-7E5DA213",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "5772387aab131adb2fbc0f6b8b42de206806530fc8822c68ab5fb9a4fb51cddb",
+        "submitted_samples": 52
+      },
+      {
+        "key": "46D3938E-85270C89",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "8ae7e8e88bc08cbcb421ec0faf29df33782827f17b122624253ebcd09b3a476c",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-A8FC03AD",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "cd4e2698888ee280c80598833127a7638257470865f2abb9561a12274f5894b6",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-AA013486",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "a68ae0668d98654c34758c21d5fa8a2dcdf00ed0195ae2dfed79dd1754697e5c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-B0177FB6",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "3dfcb49b5c1e6a27af5a748e327d30511d641072c5079534ecf8bb87c5161739",
+        "submitted_samples": 9
+      },
+      {
+        "key": "46D3938E-B43C6CB3",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "174e1f624b26e7b103b38af4c5b3be80f861922dc728232815cd1b0a8d81d1ed",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-B5630C39",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "f7812890497713d1bc414b08c9b7dc858b58c8cc715cde5ece1816c7f83c96f2",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-B8688C73",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "1d1cd00e04837b2beb0bb226fc0c2a67b21aa06398149fae9974565303bc346c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "46D3938E-C35F0BC4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "8f14ceb360fcead318201fe3636d5f0f2f1fca31c8de6e5db15e3ea2574b7eef",
+        "submitted_samples": 12
+      },
+      {
+        "key": "46D3938E-C8D3A5E2",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "9feea34a969ee75a69ba0aa1808700d9c534814d46530c2097bb890523430189",
+        "submitted_samples": 7
+      },
+      {
+        "key": "46D3938E-CB9B6F11",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "892a30b2070ed6fa63704b4ea4413cc700c5acdb8b00ef3809b3407216a43c1e",
+        "submitted_samples": 5
+      },
+      {
+        "key": "46D3938E-CDEEB715",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "87a2bc5f0010a16da3d9c42d603e75b1a1053193af486cde4660317755377eb5",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-D439D44B",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "4706bb656337b64f9c9710d10601760ee1b3341add9e1700f6d08716087e989e",
+        "submitted_samples": 10
+      },
+      {
+        "key": "46D3938E-E3FB02B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "adfaba4b2849bb31ca712e575c0dbb4061e52302f1ae0ee10da2def5c5c85182",
+        "submitted_samples": 110
+      },
+      {
+        "key": "46D3938E-E64174AC",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "926b7eddc2a0dfdf78657c13a008adbc585c9e5078c54fee8c7ba3eaa693a09e",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-F1849A39",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "1e9d8945240cdbce98a04ab27ce9efec121fb72b295dc787f1da98921f8a2baf",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-F459507E",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "0f573db3632cdb34966cfc9dd8bfb7aedfe04128c7c568058a4225c4445ddd4a",
+        "submitted_samples": 8
+      },
+      {
+        "key": "46D3938E-F582D4EE",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "4d25b2492641bd100ec81353d6af3fc909fff5d31cfc2622ac8c885f944497d3",
+        "submitted_samples": 11
+      },
+      {
+        "key": "46D3938E-F805DF2C",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "d030ed54543829ae9ca2eca3e32e9675fe18ea7c6253faf5de638962287c9c5c",
+        "submitted_samples": 11
+      },
+      {
+        "key": "5CDA7FBD-7E5DA213",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "e12bee59e23468fafd5382d446cfd515045c4629a6fba3d6e4d634010315a04f",
+        "submitted_samples": 7
+      },
+      {
+        "key": "7E0891C1-7E5DA213",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "66db3bb948c77bac57c8fff7e1712964ebdd75afb21ba47253219efb0bd2da6c",
+        "submitted_samples": 1
+      },
+      {
+        "key": "7E0891C1-E3FB02B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "af3c6123d86aaf7bded4a47d701fdd863b524215e9854fbb569e4976f595d9b1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C838387A-E3FB02B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "379c8793efc2202804739c810b64ecaf55795208f30937d850facd171d85f109",
+        "submitted_samples": 23
+      },
+      {
+        "key": "2D5E4B8F-E3FB02B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "1d0b667856a9a052def688412b7f9f249f1d590ae94e663ed47863e7bd023648",
+        "submitted_samples": 39
+      },
+      {
+        "key": "028E6F08-E3FB02B4",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "e054e48128787cc7503aa0a51eaffa62a07220869754d8f5658f83173325fade",
+        "submitted_samples": 0
+      },
+      {
+        "key": "A4987F74-522B1ED6",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "06c14015052a2f3b40aa8243acb911524a638181aab77356174149dca2dfcf77",
+        "submitted_samples": 23
+      },
+      {
+        "key": "A691217A-2818F5FF",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "7ca22785fe12246debc90030ee969ae5de9d3124fedfafa462224db475380c15",
+        "submitted_samples": 0
+      },
+      {
+        "key": "A691217A-49AA5592",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "c97b9361e753ea7315c2a81b069c296c92613579c0016267c9e556858f38b704",
+        "submitted_samples": 0
+      },
+      {
+        "key": "379B05B0-2818F5FF",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "e1cdf8587511854957e79b435c30be48a2abead4d43425e8d1a71e9cf951e84f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "A789AE12-2818F5FF",
+        "family": "uhu-46D3938E-v1",
+        "png_sha256": "a58559913432faa344d22d6f624ebea630f4373d655c6c188b84cebccc0dbce1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-01042E96",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "bac21e5a85fc2a5a4e2f96402ff8905e705bef595d1691d2bc0787877b2afce9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-07DA4031",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "6da5178ab9f881492e8c11b882dcb2d103fbcb5f2eb30733c24d9d3aca5cfa61",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-0FFEF3CA",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "f7db8e231ab2e925459e6db10188005b105d8f3eccef75d7ccd36cf5f7f5651c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-120D810B",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "5a643b38aaf7cd0c570ddffd7d3fb190d522dab1bc4db3c6032ef39fc6cdfa5a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-1E4453E7",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "9cf920ee1943a680f5f92a42ee33a3ccba2ec2c386e35a8f93508105043271f6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-20D8C52D",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "f76cd854f6082befcad7893aaf110664678a36e2f581edb422e2b94559c5f69f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-212B4A15",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "dba738027804f14d74efdd8fadbf99bdd304c012ce5522b5516b1ac3b1945803",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-35993E77",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "de79752bb8d4c735fa994e26d87e8eee2ed883c3ffe03521591f260f29ef723f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-479D4106",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "9deb869fc4fd8a4bcb2d69f056a206dac14a72b5b7b974caf5d419b564fae23f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-481C12CE",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "c093f3480e57bcb74f1960313879e4283ec09c4930c9aa7054347d53037da4b3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-4EE96EB3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "bd5a49299bf3b14213b18d07ffcffccd387308a019b9a58c3b8311e615f9ade9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-5C3B2C62",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "132808d72f36573eb064afd63b7f2cc869c4e8fdc65c856afce20539ebf5da56",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-5E10D4C0",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "42ba00f8f737c4c5cf6d4cc4e87d1b1c9e5774de7bffe8a8acd2bba0a1fe416f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-5E3E7685",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "c65c9bab018e8ec3a923277be58c19ec214fa342638d57dd05d32578735f84a8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-6B47F69C",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "efad92911f8143a486a060c27e263846fedb456596042941485903a6c67621a9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-6C07CB7A",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "46fd7d495f4f9e81987a722537e3bbd2ff4c39ed5e146d50e45c782a64fad091",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-70E03864",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1b071dc776783967fd75eeade270aeeb1326887976a3fe5fe4fa18b6dfc2f75e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-747BB61B",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1eb4945f4a4d05564dac045e013ce6f49729bcd0f96c9af6392928d995a04437",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-8017407C",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "813509b73c7dcc9befa49e07d0cab6f5d0c537c7cda0e6362ab5cb4937d8a4c4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-87872F47",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "97c9ca61c34ffeab6ac2971dab4037320150aaed74c48a9b8ee107977537dad8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-895214E3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1bff816891a8c8bcc187e40eb1e26ce093ef27ec95a9d9bc3ff621da763ae61f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-8E0F9C51",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "eb57850bf50e2a4976bf766973ee663067083ea69f7a54c419b99c914fc2fc4d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-9B377707",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "f11f85fbf7357418381810f98a8058b8e87cf43b1dfec2135bde4d6aa9ed558a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-A6104266",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "de9f5273b43bab249f79b985ee1ce6d602a19734853c914328605b06693ce451",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-A7004B6A",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "b7bbf77f817d0e99d1580cf631c14cf44dc972971f667b5bb3882f40084c9e94",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-ACADC04E",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "25a5cb038e7ba010c7ac49cff1e63299a9363ea2c556a6cd185a5715395af2b5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-B5801CB3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "650e20fc8eb4cc0900272830baac65dd1694c70a236569448f2a75fb7de225d5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-B6B94CE1",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "5a3c61e1a339e7c30b777628e52232d981ca52ebdcda58243123f74885098b6d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-B85C25ED",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "a93db7192d8b054275a481459f8ad165178ddcc3a8c86a6f5f2f11ca3ea16db2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-B8688C73",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "0e8c7daa0bbac78915a9f42b8ce3a7f90006bc618529aa27acf778db8872f591",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-BEEDE6FC",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "efed094bf3c61f8967555e9fd3c5913b2bf6ae83a86f49d488c24901d5e6d3e4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-BF909045",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1346744ad148ba1a6073380dd3d7cca14142e0de55507ed0b25e50468f7d82e4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-D21A50FC",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "18d46c8cc4f18768a76b8fe9a95d897b0cecc680010d4c42e3b6cf3037b2dfec",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-E3FB02B4",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "d6d8c9932e067066098f5846e9b8b8839c0a27eb3993850a6bfa21ec34ff527f",
+        "submitted_samples": 54
+      },
+      {
+        "key": "87C52FC0-EA0419D9",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "27a5f819dfcf0db1b7a8bcdc1ebde8d5660d7a37f57fb7af9b5aae53ec7c3426",
+        "submitted_samples": 0
+      },
+      {
+        "key": "87C52FC0-FEB90CB4",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "d62be048660b6af61320509acbdd66a61254fb653732d2ce9541c1121c964eb2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "0379B0B0-E3FB02B4",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "fe024e856239d6913ed3b487e243a0f39e5befad1fc7dce7b79bfc77075d1cfc",
+        "submitted_samples": 15
+      },
+      {
+        "key": "5D37B3D1-E3FB02B4",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "ea43a217696d02fbe6ffb8e44cdad7a2a0210570e7d55be3f6702ed617d03580",
+        "submitted_samples": 50
+      },
+      {
+        "key": "757676E4-87872F47",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "2c6c2cba5410dc5636b30cd9226563cc26e4bdafebe7a6c0232dfe222e002020",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-01042E96",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "85491a1985396c79ca3e1d81e524732c0bdf2ee1ada68c4e2bc6437e0cf4be46",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-07DA4031",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "73532ee2c100ff1e53ba73c8291953f5060709c8e1e06efe574cb6b019da6a4a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-0FFEF3CA",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "b4f453882bed9a898e6dcf4a56c2ba636cdee880637fba81fafdd79cb0ca2b21",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-120D810B",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "5100bb511a943402b545ac962fda6bebcc6f535f95ccc0642b519cdec24a41f7",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-1E4453E7",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "6b5fa4a776c9b9bf1b8fa6c4e21e11e3605f1230c251e4e0602a0e19bbd1a31d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-20D8C52D",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "b0b25d4aaf060351e96529271259352243121aacec55796899c20a32cabebef9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-212B4A15",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "9cb7bdbc98fa2201e1d17b1b10e7cf0ec5e171e19a6b06b43a8faf9541d60fc1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-35993E77",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "3f3832dab221ac673761d2479dd80909781fdf730d3f17dfd55f6b7a544c7727",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-479D4106",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "b54e92a57c146f50cebe8b313a8457c25d915bccbb05176fe13d4ea2b542abec",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-481C12CE",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "10f34d15979345f8b75a1532e63b0c2f78e4866668412a32bb70307b4ed1f2b6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-4EE96EB3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "285e2409782a0b98106e132c31edfb9e0c336cee3286c2e0a42918a44a032292",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-5C3B2C62",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "73c10c6e8523a3d19774d4a7acf634e9b2a13b15c849e39317a30d2df1892667",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-5E10D4C0",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "8ef48c8abc430173d375a548b7a425ad76abba695d0fed7af1cc7b161d179aaf",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-5E3E7685",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "bcafe64722235e3e366f89c9804e17a60251190cf06cede8b46e5e1118b767be",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-6B47F69C",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "58018309ea7e025c546caf182aeaaf83bf9bc5281d40ac3765749b0b9616033d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-6C07CB7A",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "e37954db476f33f7a676a79e06bccbf2b835bc6bcdef41eea2fe52f073111cdd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-70E03864",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "7bf96ae2ac8dbe15da568dd0401f378fed626b3bf4eccc35b3b5ed781b996152",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-747BB61B",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1cc085d562b00c6d1c6bf6a1ebebb1acb1527f01a4ba94716f7916461a93e03e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-8017407C",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "c15360e5b6b7384fdd9314de291de3e980700fc4e357a6636ee4c644c770ea06",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-895214E3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "e60c7954414b2e0c765046d0020034607828b8e78fbf5cea820aa07c1598b250",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-8E0F9C51",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "cf6df052dcf0fd0512a6751530bb13df1e9606f5fc807630b26cc9d357337f00",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-9B377707",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "b69499f2c03a9f1f6c793b6db35027f7fd3575b23ecc5bfd174205f3d340d11b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-A6104266",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "64f20495342374bb9b5229e3368ca2d3b7e0fcdee4018dbc7d32001036ce8c44",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-A7004B6A",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "6a0276ae7b030717adaf0dad2685f5fb7206aecdbb58ae2c83ee52bc83ef63da",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-ACADC04E",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "c07451587fd3770e22909706318288bd7e8f759bea60e3aebd0ccb437699735f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-B5801CB3",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "12848c2f610c5cb5ac04584301eaaf67c2452866ab6669d46398bab83928fcbd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-B85C25ED",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "25f0ef98a032fe17280e954a60a3d1c6cabffda26890c3a56a80c55ec2002a9a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-BF909045",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "42250cc20806928b801a339f025658a8344d6b744a9592dd6e932fa8fe38af85",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-D21A50FC",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "0e86d19540fbb117d957db8cc050fd3e90385bb7c4b32d15f91eeea6245dad64",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-EA0419D9",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "3c56d134d202adad4203f6d786f9866e9a3698b5e7b662c9959dccab41d896d3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "11170ABD-FEB90CB4",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "66bfd53dde1b63d86390dede45c0e140556ae3f709bab83285b37a0836b6604b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "29358D65-BEEDE6FC",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "8a2742911a7f6e6bac4ce3f793e9922d10b9ae20d35e730b819986757f355bad",
+        "submitted_samples": 1
+      },
+      {
+        "key": "77D7D8B9-BEEDE6FC",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "1087dbf721b801391d25a7c242d1e530ef377ccefd3480cf3efdf7957cde0dde",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2D4CCA8F-87872F47",
+        "family": "uhu-87C52FC0-v1",
+        "png_sha256": "70d36e8c838d53bc50909089f6b4a6b71164afc076d0041b3ab3feb7b768629e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2294438F-007A66EA",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "433428ff4c0f6af86dbfbe686c5c599a2f88a1d1dfa44ebc8f1128fc0305bdba",
+        "submitted_samples": 10
+      },
+      {
+        "key": "2294438F-0173BD7A",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "c06754db0cfc8ce5f456de9a5b2c3761fdc1675e78edd38bca7fc0178a00e120",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-0B054D8C",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "7cc9f4001b244c33ee229e6672883de9352b4444b504967374d0a288d7a8c584",
+        "submitted_samples": 5
+      },
+      {
+        "key": "2294438F-1F3716FA",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "f68bd46498cca31fe31620178b0b6a456e041e76b8356306b977f12bfe52895e",
+        "submitted_samples": 4
+      },
+      {
+        "key": "2294438F-22C57163",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "024642880e2b4ae83d3976ddd9c85112959e8ce36e96246736e4e390cc5946d5",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-29BCD5EE",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "aa30265523ddf941e0641aa8547221e3413caf4302dfc4ddc5913cfe91f6c5d5",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-2D4FB61D",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "5fe840d313b0753811d6921f793b3e338d14a04a822361f868114331e4a9763b",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-31A5C7B4",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "a501fe1f1de95bd6a43d96028f3aba2d40211ead5a569558e47641b7a00c99d1",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-32ED0D47",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "ae93d8421b5c74e23f4b010b004d7db63f1aabc4e1fc59da14e7ccaf46c1c8b7",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-3498D543",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "7b10d00e5fb74ecddb829dc3749aa5108f7be08df0c50e7d7ac9d32f385e1a8a",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-398248A5",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "2a1b0a8938e2bf3f78fcaf073005f3a34a24b892f49aa9c404e5951f08840b90",
+        "submitted_samples": 5
+      },
+      {
+        "key": "2294438F-3A296992",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "2fa6092c4c7bf0e294a7d3c9b055e33f9d733cde40b50b6ff075461d5ae49d7b",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-42E2B9DA",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "3fc6a25361fe2438c7012d3ece7109580db31af47298a00c9b98030847e3a0ed",
+        "submitted_samples": 8
+      },
+      {
+        "key": "2294438F-518A61FB",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "fe7a226ddffaec332acf80935b5adb4f8f2c885d3e844628033b71b1c2287ebd",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-5260A904",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "4b5762f45ac55e60f186bf1997979ee43af899eaaec0981455f131a209ae0b9e",
+        "submitted_samples": 9
+      },
+      {
+        "key": "2294438F-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "3c6024de24c3519083419300a74d578ab074b616c74c37b88c8059781429b2a1",
+        "submitted_samples": 71
+      },
+      {
+        "key": "2294438F-6224A9B4",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "e605243575d7b413b551b23b2f4880374825675981b77cbad283d6fb0d2100f8",
+        "submitted_samples": 10
+      },
+      {
+        "key": "2294438F-6750DA3B",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "895cb2b6fad0df14b9cd68750a5e6dc8ccc03d9b3a380a2e01453001447275db",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-85270C89",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "2b8709de257f4e4d460c95c2eeca5fffa5b7c6534215f1cdd5bac0fa1e043176",
+        "submitted_samples": 11
+      },
+      {
+        "key": "2294438F-A8FC03AD",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "4226a3576efde08422103929079a47cd1fe75857f26bf661e5c747841181e4ad",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-AA013486",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "c9e184342e8d31460857b63e31f1fe851d76750fd67b099789f5aff47bc33bb5",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-B0177FB6",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "6cfa4063126c44b3e92673b44430567b9f0462bbe05c765a98c861d25c4e744d",
+        "submitted_samples": 11
+      },
+      {
+        "key": "2294438F-B43C6CB3",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "fc0af3353878957d10d0b982ecae4e6890958fe20a68ad1f88b744d2a3adaa14",
+        "submitted_samples": 5
+      },
+      {
+        "key": "2294438F-B5630C39",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "51f7234c88dda262d0eac728482b279dc756fd2004745d86c55915cc687c02aa",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-C35F0BC4",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "f959bd0d7a5b95e1fd1c5e7020ed72379c1c54b8404931fbf7834267eab524d6",
+        "submitted_samples": 6
+      },
+      {
+        "key": "2294438F-C8D3A5E2",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "d66b7c5183ee57a75850aa103a62e5d420de67d60927b220aa96a91f3d73b26c",
+        "submitted_samples": 8
+      },
+      {
+        "key": "2294438F-CB9B6F11",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "66f1127f4435ea621ca8450d10d537abd9b9a76e3b915598304847d51b992f04",
+        "submitted_samples": 9
+      },
+      {
+        "key": "2294438F-CDEEB715",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "d270657ad075d19ca7c4460b157e74de6e6806a4853434b3277edc4523d615c8",
+        "submitted_samples": 4
+      },
+      {
+        "key": "2294438F-D439D44B",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "8f503bc278df2eed48b28702bec31c6a235bb70affee8855e3defca45b930ade",
+        "submitted_samples": 8
+      },
+      {
+        "key": "2294438F-E64174AC",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "a623335968acae367ef1ea90b63868bbebdcefe7ae4f85fe586b95550d4b8fcf",
+        "submitted_samples": 8
+      },
+      {
+        "key": "2294438F-F1849A39",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "110b394609b3c3ace5b4c22b456d3c9dd6dcae4004b2212bc633fdbbe3d3474a",
+        "submitted_samples": 7
+      },
+      {
+        "key": "2294438F-F459507E",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "95a226c9c683e41c20aef1254d4fc3e955758d77d6e05c102c98b08e48022970",
+        "submitted_samples": 8
+      },
+      {
+        "key": "2294438F-F582D4EE",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "3d28ef23136a4628c9adf5f3450b48b89e5b14d51e5a2b82c29f644c8e52a2d7",
+        "submitted_samples": 4
+      },
+      {
+        "key": "2294438F-F805DF2C",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "822c98eadaab4d96f28f6d88da750ad94821c5de82d5555a707a333cec2b1a95",
+        "submitted_samples": 9
+      },
+      {
+        "key": "6BB2A2A3-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "d52179adc4c072b07aaa369987806856b418e9bfe3ac39c25a1d9a7fe1856794",
+        "submitted_samples": 36
+      },
+      {
+        "key": "3594C110-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "33707a6a97cf5688b92df80086102bb707123248d4cf1fdf68bd4ecfab26c6ce",
+        "submitted_samples": 32
+      },
+      {
+        "key": "3FE0776D-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "03ece283595b322922650367916ca4bbdcfe03b0d65c69961fca623e8b788a22",
+        "submitted_samples": 29
+      },
+      {
+        "key": "784BFD39-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "470ceebff48a7781832089c80b111b7badd2813c94a6e22a8574042918479810",
+        "submitted_samples": 3
+      },
+      {
+        "key": "DEA9D15C-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "d8ae3817c9d2ca3eab2658e6dd520d8bcc1822c8f923c942146666ea5d5fad6c",
+        "submitted_samples": 24
+      },
+      {
+        "key": "05C32A1E-527B28B9",
+        "family": "fighter-2294438F-v1",
+        "png_sha256": "b384573f7a4563b491bc507aead1040c16f946f43145a7d7165edfcbd4aa273e",
+        "submitted_samples": 33
+      },
+      {
+        "key": "9D8DF52A-166E4BE3",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "d7880b2d610abed92e16dc70083f93088406af2a8103cb37a882c3fe2ed59236",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-30A66678",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "3e8893f880870f02c7d23b888403def2b1202e9d386f8df3a3425a46af7ce8d5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-8EAF967E",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "5424f2ca21a506316684e4b2ee51f1c443231962f031b651f18cb2a54cd76b91",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-C04998CA",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "ca75d0453530e4f2af6ab187af379306441fb104b279d076bbc2dd71ec3d2ba3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "08ecaa33d6bb9722e4c078573d5c2a732ea99cf0644013680b28b4e98e15ff7d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-CB9F39AB",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "b2dcfd532e08983cab6b9c02b99e797393aa53d901bdca0ab9b4a88c058faf7d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "9D8DF52A-F3794D54",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "33e9e0bee73c8658097a5c636f02ce5992be1db0209b48b8f05681ce93c59197",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8BE06E98-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "2c0cc63889febf812d571e3b2d7d55e727bff658e54970f4b90e8a7cc115f29d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-166E4BE3",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "68744466dc74db591152b48f841713d6f040cd3ab4d3a0be820b8f20a4d2efac",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-30A66678",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "61dd74f96c23e9b0a002a33a0e6797623ea9db0c205621e4fc18babce5560e09",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-8EAF967E",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "10cb523466462920bfca92c607ef3e5d603f00e6f200bd3248b91bf329b468cc",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-B1A4FC51",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "5d5b7aa7d0117b79e0095baa2c58ae083e3f95c94962e9692d08e2f7c3dd618d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "d14d01b807a6137c6c45ea9c5c74cda91195adf15ae2738a761d64abde664973",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-CB9F39AB",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "cf5333391d14ad9c640d169f8de97a4b7ee1f627ffeeae9c2857262b86f8dd59",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C544AC0D-F3794D54",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "1acc812a7bec2e84e459af331e92313610eec751c372c0b4b7cf6adf41c9209f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-166E4BE3",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "d03196bcb37a6e90e756739645e6bf18ab380c7ff1106a21a0c65d26c1e4a99d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-30A66678",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "0cb576bdb2c877ce574b71f3933eba561ae2d8ead005a07b51a88cf96e15f49b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-8EAF967E",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "a43ecff0d35f47cf01f78cd286e7b651c8a01011f0e1eb5440687defcd4bbad5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-B1A4FC51",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "f446cdf637416a8540f450971ef14a8634c5a866beab8613bd4e450951b105ff",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "217f198a78f117be78cf81efa4462c1d0cda9a7cfbe29d4b92f2d066af7385d5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-CB9F39AB",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "60967aa1c04c7a45b2b3e47f7ad2bdba6ee363ef6e5b1f433f84aed2d98dc955",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C6866AA-F3794D54",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "b42d5fd1055867bef83c8e9759af8be51411df3dbf195814f39a5a49f851fc27",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-166E4BE3",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "6c8d85d933490b36c779a4790064f3584f9e57fe755326eaa286f2c27a32e871",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-30A66678",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "c0778594a9f63108fbf42e1f3abbec7dc8f1b2682d86921e730dfc9e6e9dad0a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-8EAF967E",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "f57851a9c970da815fe5cee0df009beb96da878161adf26152e8578ee7c7ce8a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "1fd54a6f16432fdd5b4ddff8935a98b06bc230257e9391017583927977ff5eec",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-CB9F39AB",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "1327675cb481df7e6f675926ae8e02960ec2088e668f02011f04e7f78546de15",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8D0FCF8A-F3794D54",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "d88650b4ad54508837931e41e6fe732332583d53c1c119242bb5fa096eaf1b82",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AD49126E-C04F65C0",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "8fc4b1f4143f84e761a837fe5a303be5e26bf4f8d74fcee71f9f1e56a74479b9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AD49126E-CB9F39AB",
+        "family": "font-strips-B77B98B9-v1",
+        "png_sha256": "d1b3090bfe892509e450146953a7f7c93a4b27c063cf116fa25b24ecff23d7d0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5125FF82-00000000",
+        "family": "gameover-5125FF82-v1",
+        "png_sha256": "ebe3d78ba482b3d5f0f2707346073079b82722a938e66e8ccfb66f6cecfe76f7",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-39CF2A18",
+        "family": "hud-prompts-BDAE4156-robincluts-v1",
+        "png_sha256": "d5a2c9d91d290cff36813460d691ea3d026bf7a1072992f0a3e9d97297f0729e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-94071623",
+        "family": "hud-prompts-BDAE4156-robincluts-v1",
+        "png_sha256": "c3591646e95c68f3e37e6ab7b537325391f5c0f80e2695805cdc252ca5306e84",
+        "submitted_samples": 0
+      },
+      {
+        "key": "BDAE4156-F9AE1804",
+        "family": "hud-prompts-BDAE4156-robincluts-v1",
+        "png_sha256": "5af5b8c41f49593468532887a9c3299d34381b5c295a03d533336290f23e0afb",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913FE978-B88C038E",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "93806006922f7a83700138d6c2217bd73045eff2bb34350cc5056e6e6ae282c6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913FE978-E21112A6",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "996adbdee4ea3b2bb6b667063b27dc113ef596c93d52eb77681a8774c7f5ccf0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-E0C06BFB",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "93f79089bd2dcc6d9050a1596ed3571bf2c73e67e686e32a93c7939f8c56efe8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "E4774D79-E0C06BFB",
+        "family": "hud-row-strips-BDAE4156-v2",
+        "png_sha256": "317ee28def88dedfb98337094ac15c5760c145ca056b696ab687f8b44d3743d7",
+        "submitted_samples": 0
+      },
+      {
+        "key": "66B529AA-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "c32de6039b273fbaf6ee45c72c7dfe653927e20d872e081109e86dc7ed722ae5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "98FB647F-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "f31190906e8f63088290100b054082352c9354b654fad60aa968c6cd6fb613f4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "EFEBB55F-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "4841e07528d43811b187616403d0a9f8c952bf876bdf1cb12204f3f14e1e4ef2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "E1F18F98-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "1117946860ebe8c51206530ce82db4c80159c991619806b0edbfc13119f4e290",
+        "submitted_samples": 0
+      },
+      {
+        "key": "786B98BF-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "15fea96fe614b96cf37b58cce2ffc2a688b525713dbb60d69ef2eb6d20a3c6ed",
+        "submitted_samples": 0
+      },
+      {
+        "key": "2C781811-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "f67c474e9064e82b8c67caec0831fb2a8a9a66b81a2b291584613ceb09e6c11d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "921FC559-E0C06BFB",
+        "family": "hud-wordmark-strips-predicted-v1",
+        "png_sha256": "a8dd22ffd35b1f4daeee6e571e410ae746fd82291563423627d67281bc5adee5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-166E4BE3",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "c9a023a253f84de08b77118ac91dfd129d66a4c59834a6d60d5dcb83a488ca75",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-30A66678",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "b1c4482114d62ef63a245e3e7ef351705d1dd9c6eb58c0be1fee0b6905d38715",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-8EAF967E",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "e11af9c7e00f69c2c4de7911e8608a0d9ce02ff5149e940a5b6d8fada465dcdf",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-B1A4FC51",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "b8f4ed89e713fd38ca4731f8a1ab6bb372d8c6ee01971a3703e3408d4f622dfd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-C04998CA",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "2ab6cacdd99130b4c80472f17f5a1ecade024c9f5cc7eb81c56bf2b2c5ebe6cd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-C04F65C0",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "4524a9f9de5566f549028afc2e47a6f9937d97b337272ae265f1906b01e5aa23",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B77B98B9-CB9F39AB",
+        "family": "ranking-font-B77B98B9-v1",
+        "png_sha256": "6ee78da3c5a943ade5efca0ce95b01674135f3b6db071a813ba0c61d60911b9d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-096E5345",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "48b377c9ef95979e448d12519cced13c58b9e873c8cf5ea15fe6054441d22d15",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-0A2234A7",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "f192d6e9cac83f1b16ee43fd9f3dd96b9b473c70640919b058f659b961891986",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-11D723C1",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "218975582b4c2ad2cfffb6ad75596c351774af23c109a5f9d2b4cd34a7f6b022",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-1B31232B",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "b2e1737bafb67bf115131f82b2fb1ca1973e60d07b93aa936022d555a5747e9a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-227CEE6D",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "d95de60d999835d4136b34c72a10420d12f96908ebe06ebd422f61f2a454905f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-26FD12A9",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "71310d600d34b2fc7381e2df8e41a1cd87ff8ffcc5e68f40ec3a74c4c140b349",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-2B7356C4",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "7581d94928feb6835bc2bab790d378f1685e2a01258e36543ec1905ce6418a5e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-2E1AB69D",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "92d6d206550c4b844c312369fbeeabf7606b8143497d175aa0897539403af252",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-2F607F24",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "b8f63923275eb8b3fda57f187b560361e3082c49055f200663c0f72da54a23d5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-2F9901A0",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "83c55ae5dfe61f4d2c2543b841599def561d9a1a8cd5ffd6226278e58b127db9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-364B0863",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "b89887773d933f8d86d687c5afbf370a39e2d342c1db7aa8b143567f22378a01",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-3E88EDFC",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "17e9ed46ba62957445a07d4a29416134f4b4760418dbb1dbf7c2256c1c260337",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-3F143575",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "bb397113bc3e9b08c969dd4cd19954c38f08fd56cfdc7d011bc67a3d5b50ed75",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-4E56D53C",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "3aa5e3880abd1a198cb97567068d64e1d45a2cf3ab1d2ca82d0c5ed98261a6d3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-50689AB9",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "711c84203b6c75cb1127bf9f66a4ae6d07b46f077896f9daaa74bf720596dde8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-546169EA",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "2a43a5d34339eba011a1634c02c8f596d7e49ab31b19e637825232cd4d111b09",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-55DB4DFD",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "88a16064d149e95fc7025a038862e68cd4b4de098d299eea0a074e957bde47ab",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-564BF5E3",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "304408c475b875c8a74eb26b580d543d4e00d7478cbc841223732dc852e195ce",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-5726596A",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "8fc53359c5a5518a19e1abfaff523bc6f77b2fb0a11b54fca1025249809a2326",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-5AB6E9F7",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "8e2b4db22b6a70dc5a2f2e5c43dfbe06ea2fbdf102c4ee7550f5259ca0bdacd0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-60670C8E",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "50fccedd5ec3bcd2c58a86198e270af792fecb8c87371ba83f7e31e376715728",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-6113DF52",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "3ad559e3952c6482df46a12c4c93e00abb55f8b2c497fc0144da6dc4fc01230e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-662A9CE7",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "44c6dfee45db932b25055c15ac500a52aad8b44be1ce34a5c3a10ac7be3b2b97",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-6CA464FF",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "12a87c9955c96e12f226f3d41e0ffc1c36916cc1ad2011894bd1234327f55a6e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-752FBFBD",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "76032bd78a47fcb45957ff2e4a3dee3612b342f87e4f4068f091bfd37f4d1acc",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-7DC5450A",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "7d63b5c34a2896cf2955112dae94113b34fa33b0940b3b9c02aa075a8b175bb2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-7F47D855",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "935974a37b1ec425b16333e013c8d9059437091b35b96acfc98ab9cfecd3265e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-815F38B0",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "a139f74baba2d9b59bbf419f30f27eae6f24580aeddee97f33f3d8a965ab1a8c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-83733834",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "89964d3a4b93545a607ee5f2165cfb06c0b8e5cae6a22d4e9799fc243c82671d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-870BF72D",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "2af20e9ce78ec48691c6d9e186618c676a606e89c8f07b79915f006766d9ed2c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-8BBB1D2D",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "c0947f2780483c5a0f4a3dfb8a4671704e5826b56297d1c7ace3812adb0c532e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-8EF93E13",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "d188b78c529b49b8bc5a4e58b423e5be72ee45864d65cf96440baf5db5d03204",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-9D7E6155",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "0c62bac5be096b89feb9d3f684f7ad6971782788f9d52a5ac33d49027bf1bcec",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-9FEA6954",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "daba70aa2c201926a70485a20ff0cadc966d1f68b5214760f11551530e8fe0e4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-A5E4BF53",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "88b28c12062a8a868716cf7996155d157b2588ab59151509a86a503599415fad",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-A82B4A35",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "44e6bdc01e81c569191185fd3351eeffe1063e989174e333896015df54c46748",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-AD1CC4ED",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "f3c8f9f2261bec60337f11b7168c34c62dea8e9b844463f9db95a3d9ed786db6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-AD573834",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "a4411336602318e0479a41dd10cdce559be57363d686201dc16d1536158439e8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-B106FB24",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "2930cb433864c5f7b035aac1dded421c5b5c3f4e0e6f7e73270abba588e06b8e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-C384E5F9",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "4fc23d6c5a412357a8e42e5bdb4c436d5a4d02deb5024e5005ba12a1f4137c47",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-C39C5147",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "645552e2736533e806b1a3a7fa87e87f75314335c78a4905d12d1fe05c74d2f9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-C9264673",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "68f850da85098db6b436292d85af2ec635ee5b947be7a02eeb1af6ecb2a75b64",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-CF09551A",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "222be62e29d0422ca4178b249cc2f0f58ba42b800ee7a44107a3f6ec67e4b480",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-F0819DCF",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "4c7d45ca3b0cbe53db559033f0fdaeee5befcda05402ff88b4f713a6f4039497",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-F3E7F7EF",
+        "family": "results-8E1A509D-drawn-cluts-v1",
+        "png_sha256": "768131a793a25b257d272839f76406429f2f5d9a3604d6a19bf4dd54ed877c7a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-FCCD2514",
+        "family": "results-grades-8E1A509D-v1",
+        "png_sha256": "e08efc5684d4a039b53dbf2350ab2259e444ec9494b38fc5563a4a2033ac7542",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E1A509D-02491337",
+        "family": "results-footer-8E1A509D-v6",
+        "png_sha256": "bb44584f82258d849c78d929f09596de179859c480646e47d2497f2882270045",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-461D4812",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "f144612436b2bd12730d4034e5f544020e3d7346813fa2adc9294a06fcb03a79",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-47FBD679",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "c265093a594366809cfcf3d62e68b713e27dcb3154be17f7356db9953c5c34e4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-4EFA141D",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "a9f8a604ddde92c0000c5e335ffe403bf9cdd66961fdce96680c029a12a32728",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-525A6759",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "f819f45a4e47341abb26ffb83cf1644f0e4f74a529f8a0289ad424fdb6ba075b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-60421AF8",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "faabcfed6c10fa4bc5d28853ae66098f9c67e13e94bce1ed4b516f2797b604ae",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-66EB1B96",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "37f0d2d9971e6e85ceaa7ca83897f6825beebd8fba2aafdaa10674f895e1cb38",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-718199E6",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "7c0bffbb0fea7715f63923d5d96fe6679aeba01bc56f9cbd7098b6fe4e4d80d6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-7B5C8CC2",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "4c37b0c451ab4f6d69e60ee2722b221508d8a1284ae3139b0fb1f46956d84ce4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-80014DA8",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "5f61fb493d1b213d1bc39611414622b563a2106f566637dfba6ac06dede8b591",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-A1A6CF7B",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "9145c8f31b8886e0fa1275b7bdbbfd33e5217eaccea1755f0b4092ebd490835b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-A60FB913",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "68c8e05d3d0e24ff6b1036baee91ce5ea0e7bc51f2c7a1318f2ea4c9a8b47ce3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-B41EE777",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "cb91af02d3a201cd311f79fe123ee71db3076f72fe6db739e575bba9ec500a9d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-BA023C7A",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "c4bafdcc58090b24b3b1370cd572c196decfe65dca3e1ca121ab31c9a0ba4c0c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-BB1845F6",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "f61b9a22746a2ed8f14e6b5d479702fe9164b1eaacb4167b2f25782e0ba14a20",
+        "submitted_samples": 0
+      },
+      {
+        "key": "FB235F0C-E60C7595",
+        "family": "fireball-FB235F0C-v2",
+        "png_sha256": "51d0cc34b04375771b858053f7faf077a70029506724bfb4922e9d798bc61770",
+        "submitted_samples": 0
+      },
+      {
+        "key": "10932164-0386F43A",
+        "family": "large-explosion-10932164-v2",
+        "png_sha256": "b43e3cc67cac8e286fa9054a2e4688a8632eb7c5d7bf97effca67e0f63fb0acc",
+        "submitted_samples": 0
+      },
+      {
+        "key": "10932164-5F4DE3D3",
+        "family": "large-explosion-10932164-v2",
+        "png_sha256": "106631cc685fe0b6a50f8a4a8801f34d05baa0e7ee2464616337f92cfc47aded",
+        "submitted_samples": 0
+      },
+      {
+        "key": "10932164-66175427",
+        "family": "large-explosion-10932164-v2",
+        "png_sha256": "98ce75fdc9710f1d55cc4b65897e4cbd8ba92a4924a9a87b5ba85e6584431c27",
+        "submitted_samples": 0
+      },
+      {
+        "key": "10932164-AF93AEF2",
+        "family": "large-explosion-10932164-v2",
+        "png_sha256": "7451bfd6908013035188091f0f925c01ee40cf7e91eb72e7a8045db8ae98a956",
+        "submitted_samples": 0
+      },
+      {
+        "key": "3068759C-D0F6E018",
+        "family": "muzzle-flash-3068759C-v1",
+        "png_sha256": "a46e766bdb49edcc1081cbd2f787d6ccc41003132dc986449813cc14540d81a5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "E584DC41-0312EA45",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "d79cd870d1f14e9a21b3ae0e70066025c494c7370f04ed5f1f343075cdfb63d5",
+        "submitted_samples": 13
+      },
+      {
+        "key": "E584DC41-07AE4CCC",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "7205eb7fbc653a2a02fd15564f50206b3e1afc9fd9ac2b9bde045a4b0dca1dcf",
+        "submitted_samples": 14
+      },
+      {
+        "key": "E584DC41-0A6BA757",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "c00224c6cf8ab66e918fbdcf898ab5a301b67be2d643312b747207471b09fe95",
+        "submitted_samples": 12
+      },
+      {
+        "key": "E584DC41-0ED701DE",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "21ed2c08f0738f76005f558e7ae0b8f19085d11b42521010229ce14be58163df",
+        "submitted_samples": 9
+      },
+      {
+        "key": "E584DC41-21791A7F",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "32fb568fe1b711116f32c43045fc2bf7b0b4e60728a3611154ec78e3c655f24b",
+        "submitted_samples": 13
+      },
+      {
+        "key": "E584DC41-25C5BCF6",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "61447287afa2ed850b74f5fd999fe1e4cb1b31727313546ec5832c0b64c96376",
+        "submitted_samples": 11
+      },
+      {
+        "key": "E584DC41-2800576D",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "723be6da2afb0ad7cf755e7b52616606d8f713e67be366fdbdbcd31b51312aee",
+        "submitted_samples": 9
+      },
+      {
+        "key": "E584DC41-2CBCF1E4",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "53ca372920596fd33c801b87ca168253fe8c224df2323189e60d29f3b080bf9b",
+        "submitted_samples": 15
+      },
+      {
+        "key": "E584DC41-518B369C",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "e83e0a18fe461da8d96ffcc18cac77b8d7a4e0ee512c5282340dbcdcd162f80e",
+        "submitted_samples": 5
+      },
+      {
+        "key": "E584DC41-55379015",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "632fa3185f0d8ec4f6e8572f25acc7b548553a5f15368579e15bd8fad5865b0a",
+        "submitted_samples": 9
+      },
+      {
+        "key": "E584DC41-58F27B8E",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "94f106af431c373d1c3d20224c4182d4ea62f401520ddd398579bf1c1f1b9c42",
+        "submitted_samples": 10
+      },
+      {
+        "key": "E584DC41-5C4EDD07",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "440f957b8d731fd2af9ca0847ba0a8c3e16b8c1f83553d4d39ba3475ac3e9a99",
+        "submitted_samples": 13
+      },
+      {
+        "key": "E584DC41-73E0C6A6",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "094b82fa3446cc854c2e3e9c8f0fbd0a4eb176a112eabcef3c3473e1fa234c8b",
+        "submitted_samples": 14
+      },
+      {
+        "key": "E584DC41-775C602F",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "3e4b05fa510bde9ed6fd78df707a041766fd6fd7ff1f00c38e7f677868477f6d",
+        "submitted_samples": 12
+      },
+      {
+        "key": "E584DC41-7A998BB4",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "37d6d465068a7890806fb876e9e1c142b19e6a51ac6dbe095e1c5e86c62ae2f4",
+        "submitted_samples": 13
+      },
+      {
+        "key": "E584DC41-7E252D3D",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "b27425abe9c240eb592340520ecd1882285cad816c3d2ee18844c2b5e0f7e884",
+        "submitted_samples": 16
+      },
+      {
+        "key": "E584DC41-80F60544",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "8e6d8b5b556c848f69147d2c4a988328c24f86d70cef25f9b6108274903065f3",
+        "submitted_samples": 17
+      },
+      {
+        "key": "E584DC41-844AA3CD",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "b3b05dfb3f9ef630c6b871c02bc7589d488c80670814f353fbccb5501cd84ef1",
+        "submitted_samples": 8
+      },
+      {
+        "key": "E584DC41-898F4856",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "d0626b8d6e3abacabfc90eca43c4020215cfde36d2f4836db42fcc4122add6b3",
+        "submitted_samples": 16
+      },
+      {
+        "key": "E584DC41-8D33EEDF",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "03c6934a5b7e5fe837c74a40e71dea4b55c5fb7183d75e4a6790a7dd596472b5",
+        "submitted_samples": 19
+      },
+      {
+        "key": "E584DC41-A29DF57E",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "192735ab04b00dc0f2152e83f611056ff3c3e40538cfe962a6da053be787386c",
+        "submitted_samples": 13
+      },
+      {
+        "key": "E584DC41-A62153F7",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "1575e95f32a41a259229653ce4d040ea0dd0525f4a05dc46de8e30a214f44cd4",
+        "submitted_samples": 9
+      },
+      {
+        "key": "E584DC41-ABE4B86C",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "8326736e93692cb9885ac479b7578a045556e2fd31ca171b22301b7f9e33d5da",
+        "submitted_samples": 7
+      },
+      {
+        "key": "E584DC41-AF581EE5",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "27b6d2b71f8d7a2a42ac588ba5699c5e46b9f16801b131d6c00df4b1a8cfbfe3",
+        "submitted_samples": 14
+      },
+      {
+        "key": "E584DC41-D26FD99D",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "17db8aed4355d6007920741af7e0e08739de17880f46a036f396abfc239a05e8",
+        "submitted_samples": 17
+      },
+      {
+        "key": "E584DC41-D6D37F14",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "46867e9c42fe13824637d8658beaa5bf4bf10ed498442fc22817a2f38c2b03cd",
+        "submitted_samples": 15
+      },
+      {
+        "key": "E584DC41-DB16948F",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "ae591bc2a251226c3045afcacd7c4a4d55b2886648f261b7d14e58a4d9df3750",
+        "submitted_samples": 6
+      },
+      {
+        "key": "E584DC41-DFAA3206",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "b6b334e0a99f7e9d2e82e10e35f274c8c3e29e9a43b40e0c9c9f9d419771a150",
+        "submitted_samples": 6
+      },
+      {
+        "key": "E584DC41-F00429A7",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "54de555a5e7a9656e26e361d978c3de8b155a796e807085ab2d073b8b5ff8bcc",
+        "submitted_samples": 12
+      },
+      {
+        "key": "E584DC41-F4B88F2E",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "38ee983b0fc4bf45a760a39f71ff39682ce0909f6058768b147aaf2fe437da9e",
+        "submitted_samples": 8
+      },
+      {
+        "key": "E584DC41-F97D64B5",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "76f3e6892d4cc8bec3b0c69acacb37447e80954cd328167f32cc1a049f649ba2",
+        "submitted_samples": 11
+      },
+      {
+        "key": "E584DC41-FDC1C23C",
+        "family": "player-lights-E584DC41-v1",
+        "png_sha256": "3cda78ae397425cbaa424ba7a381bef172b836ecc9b5b6419f4fde5a8894c22f",
+        "submitted_samples": 10
+      },
+      {
+        "key": "1FDD7FBD-050B3C19",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "0e784db16f65f713b0958693991a3e12793acc4591c08714141298d311d79d71",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-0591F58D",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "4cc1e24eae65382fce866df5ea8eaf1934ffc8c8188d4d5166fdf91f824db710",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-24181BCC",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "087613fd8e9eea8752d403f7765b2141ceedcdcb0061540f27c3f755e9228428",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-27F2B20E",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "dcd943569f31ae17336ff441143b222615af93493936923a32e8dd0563f92da2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-2DAF2E3F",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "24b938b53bb249b8242f9acf7deaa48cfbeffddc1d5360d15edbf0f0ca48fbb5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-461D4812",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "734c3a390bc3b9b2b88eaf61888c852f05850ff63790733eff8588d0ea5bc158",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-6C6A006A",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "42aa33165186b8b816edbcae29db6bea0bf255043d66fbed063f168665f91982",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-908B5818",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "8c1802f11259a0a8a6a6e9ff4b9704f155c3ce0d308982d112fee32fb069bc60",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-9378B73E",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "e2f8a5f657e9dfad9114baed2747243d94c40cfc6ee58dd40e877eff098fd814",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-9A014079",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "dcb2ddd03247bd7223d876c7253c7e81b02dde59f0df91978b6d93bceccdd8e0",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-A8AFFC7A",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "a761721b421b0b8736eeb61454064ceb4e9e3d948e3801f9cef6d69b15f65025",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-AE177268",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "560aa455613dae8da7e5dd30355fbfc2c19bbdb28162b079d918f1773edd0f99",
+        "submitted_samples": 0
+      },
+      {
+        "key": "1FDD7FBD-B41EE777",
+        "family": "smoke-1FDD7FBD-v2",
+        "png_sha256": "a279f906a6b4156dc3d98c2806c0be5247b763f9be7169ab6b951b23081b5081",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8FE8B060-21FDE894",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "175097a8eb0b9c41fe734a4616095c5d696ba175c494998dc7b75d201648ec50",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C6E8710B-21FDE894",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "62a9ac67cc9c3c263907a37e9db28b532dc0d004b30b7d87dc9f32491e9b3369",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B24C6DA2-E0AE221F",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "5621adb6a4f25ef21a58ab7a31baeec0e98e1f36aed10304b04de581f2a9ca8c",
+        "submitted_samples": 1
+      },
+      {
+        "key": "DB715733-E0AE221F",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "ad2d16de3acfb27c0e83a4c097f4631aadea27b6035df9edda4874843092cbd7",
+        "submitted_samples": 0
+      },
+      {
+        "key": "C1B4BAA3-E0AE221F",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "8554ea07e87d7dc149a82b2b772e26448f742f13417b4a63441e4c3f8098438a",
+        "submitted_samples": 31
+      },
+      {
+        "key": "59471BC6-E0AE221F",
+        "family": "w3-mk3-hulls-v1",
+        "png_sha256": "bc907254f9514400676c1ff9d12ed2ea746d4d8a1f7d5937639169f30550daf8",
+        "submitted_samples": 22
+      },
+      {
+        "key": "6ACFACE4-EF213D7F",
+        "family": "w3-astraea-hulls-v1",
+        "png_sha256": "fd5ce8e39d82c54a0e56bad86d2fd0274bd5704ae662c11f2e8b1db356c0d290",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8CD3F840-EF213D7F",
+        "family": "w3-astraea-hulls-v1",
+        "png_sha256": "a72e249495c332d4394883eaaca7e8b4319d7af8c5fd6a8086ef0d02a0f7a654",
+        "submitted_samples": 0
+      },
+      {
+        "key": "0878817D-9414AA42",
+        "family": "w3-astraea-hulls-v1",
+        "png_sha256": "2f7a904079c6f30a79f56ddbf5b6bf32c1337f4a65d9544ec4059affa970068a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "8E818661-9414AA42",
+        "family": "w3-astraea-hulls-v1",
+        "png_sha256": "382504cf4b37ff39fc9d505316a90e7a866d580915cdff3e0f1fbcf447b5fd1a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "0A0CE3A4-DE4ECDD2",
+        "family": "w3-astraea-hulls-v1",
+        "png_sha256": "b2a7c31127fa2069a35e24243b5b04ae248091eaec084e7dc3c93b6356633555",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B638EEC5-5F5F70FD",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "0ad8915af7d9f4ceeaa65e38cede4d4b40fffdbc18a2c059c42c93266d49d671",
+        "submitted_samples": 18
+      },
+      {
+        "key": "523D0FBD-9E86EF96",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "e466993b88e44fc0cb2e88c49b6cef676e09a26a957164937e93bdb13ad2646a",
+        "submitted_samples": 20
+      },
+      {
+        "key": "771C95C2-A2F49D2B",
+        "family": "t6-gunpods-v1",
+        "png_sha256": "a85f6f367780d66257cb51c6c9e09a970f7e00f3746bd432fadc79921ecf0c33",
+        "submitted_samples": 17
+      },
+      {
+        "key": "6AAC1D06-9EAAA5BD",
+        "family": "b20-parts-left-mark-w3-v1",
+        "png_sha256": "84331d57ed8ad682262d377b8c23f3c0e002253f9ed093d3ef8b45999a8e1055",
+        "submitted_samples": 20
+      },
+      {
+        "key": "06EB9FAB-48E2665E",
+        "family": "fd25-three-block-indicator-w3-v1",
+        "png_sha256": "92f3dcdc33185c7d79bee7096624982f54824ee086d1bde8f9ad32baef4dbaa5",
+        "submitted_samples": 8
+      },
+      {
+        "key": "226FA4AC-5E906348",
+        "family": "fd27-dark-backing-panel-w3-v1",
+        "png_sha256": "7dcdd041f06c9451a2d4b65dd695f5287323a541bf4c96d084b98240414279d9",
+        "submitted_samples": 9
+      },
+      {
+        "key": "B9EB2209-2F3E1F73",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "b2441640dc0db40d70344aa70df7ea1a33644a7976933f73b98aafc7e481fb0f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-8374EBD3",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "4ae03acc94cb9e15ee205573630999822826314b580224ca5ab5e5ec59e6a01d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-ACDAF072",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "bd70e76dd188ed04912482c77becb6cf19da5ff01823d67af890938bec7b4fd4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-009004D2",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "890abfe6f52c2a6f43c69979349666e10955e7b23e11022cb31dc2b26a5414b2",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-F386C730",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "a4a5eec0599a7e2a35d4f9b73728f45632b03f3f53be4749e7437f9237539bca",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-5FCC3390",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "259a0189905fceeb303fb5bc3d114439670d568c8b11b88d4d539b94e02622b1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-70622831",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "dc0596fc5f1ad8259c564ee4e09b593febd0c618ce423aea8470ebcf357869fb",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-DC28DC91",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "fc07dd6c2c072a942425a5a9f9a0042742793ce3b39a83a9a59997100a1289a3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-791B6523",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "0b351e62936a39af0f0b788973b4789da89582a6cbf41979662d40be0ef6b95e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-D5519183",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "f0a328d0306e66175a167d0e4a2cb56f5f2f6d2e35e7a0c1d3b1ce1cca66abf8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-FAFF8A22",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "6092fc9eac0f12f46c3816aca6fc690dac1d10e259c9768acf67a7d9b1a37148",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-56B57E82",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "62fc24e33aa092584850c51c625c87d4a8b21f2dbd8bd60e05641cebcc944c79",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-A5A3BD60",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "11c6b6f305a54d883d475fc7cfeacef9bdc94d2bbf9e88e736e1a14bc5e8b1a8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-09E949C0",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "9fb19a6820482452030aaa55b1ae6c1c03f0c264361719cc64b3195862b474c9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-26475261",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "3bcfe1132389e590edf4335614f608b3536a4d9b812e6660e2ac90f938f93f0d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-8A0DA6C1",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "c7dddd726726f99cf02025c939e32eb9f91efd41679d8ecb2a52c7d498efed79",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-D1ED370A",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "3a158a5fd01ead6456daea33d15a36eabda1bade3f14a712187b9d97170c09fa",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-A86656FB",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "8caf51447f1f73a9173c121ccf7e5879b9a8b2c878c5ab480f20ad45525c4495",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-FE432CAB",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "11ac994e695de6c1ef4ecf9098c9edb0d5b27d244f9f09df440ded5582e62d45",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-042CA25B",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "549aefd3d31e4f72c001fe6a2a881964aa5f64d64b70dba0fc2efe0e1c9caba3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-5209D80B",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "c7fa866c20cf1f6f8914137c9faaaf60dae0ee264a534610a167d07fa7884c66",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-87C84D5A",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "d4ff85300c6b74ff3cfe515067c52b64398b676bde44d4acf6a864a3f9cdc26d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-7DA7C3AA",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "c7d1ff1de0c5dba698fbd0e5cd7f25142f5378978643ca82d2c63ffcd3a1ba51",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-2B82B9FA",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "4637a217d4a09aaaf93c279be0046bf05415afdb0bc0a34ec5f35288320063b1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-8EB10048",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "aa09b8d6d09ae02413c9db63dd1db266f187b04536df4fb0316cff98a461c75c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-D8947A18",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "67961e6997abd68ed6299c084890f6211acff8c2b4ac583fca9807ec24f5696f",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-22FBF4E8",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "c97a49f68caa52bdbc41a00957b7d0faf5b5214bea7923df6f98d5db1ead7cd9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-74DE8EB8",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "d06fc2176853838a605fd14ed1683c313bcb23a886c44174ca5c571e43561fe4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-0D55EF49",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "b6c7b61e636f2fc819e43619b4a80a85add0a084362abc6c1134c096fd276a3c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-5B709519",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "597bcc98c1346a5ae79e16e19aa5f24ccbbe2a3270261bbbfd22df0fddc12d50",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-A11F1BE9",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "fd8dbc735151e8e5d9731bce3f0489444e5bb272939830c1e7f31b48b4321b54",
+        "submitted_samples": 0
+      },
+      {
+        "key": "B9EB2209-F73A61B9",
+        "family": "w3-astraea-canopy-B9EB2209-v2",
+        "png_sha256": "df0318ae7d692eaa04b5fe46be4411d732a48f1ea574aab5cee4154eb6866b0b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "3C7A8070-B869F949",
+        "family": "AB2DB563-emblem-v3b",
+        "png_sha256": "fb8abccd68838fc434ae913a708d8d3f8796e09607c4abab507dc7ea6b605749",
+        "submitted_samples": 3
+      },
+      {
+        "key": "D050AD1B-0995EC09",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "9a8a080d17dabe13b9b7f10db21b96310d4dcf0917450ee46e5eb23a12f29c68",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-177F8472",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ae3c292b3509cfb62cb4dc46ae1d2a5fb0497d199aacf0209f2faab09abd86f1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-2D7BA264",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "4ec67055e00ab7f8c56bc179f50693525d995d76183f289542b0092c01059ff1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-4A4CA7D8",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "d909d22565418dab142d02c9f95f061bc3f4b6664f4190dcb923202f90eb2941",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-5F015E99",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "80c35114a58a7c12476570399733b0a285c69f5e7733b03011fc66d867a69cbf",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-61AC9A5C",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "f92add0530395c4c9d0f34bd39924198bfa7e8674a6376c640d5483b2d34aeb7",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-6C92C159",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "abdcd09bff7f29fbb9e5b1e594f0eb62b83ede406ad1f8b7fb7f991cd5bb9947",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-7DD030A7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "8856473fecd5572cb3aeca769a8d6766621ba713e475ba43bdbdc6aa41a327c3",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-8019E2B5",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "6740d2dffa26dcc29fe22d806b12a3bfd7814b0e9794127e4912dae3294bdffe",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-82957BBF",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "e7a2a9e3a36b33ce9bad046912a2d840455522730f1847a62a11e63917b831d4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-841A3FD9",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ecb9c0dc057f7f883d9c87b0fa5d658965183485815afb0c27785ce3e9f2dcf1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-A6801DF0",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "e56a58bc3084255e75bc1484679d974d7c1ca8821410771daa1a7f6e38f0764b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-A8B25ACC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "5e965e7507f7d95c1fa449d2358aeaaa3d3a01742c25642763ca70497fcb1224",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-AAB50765",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "f58ee01035cb7506eef55d34d35cfe49330242e588062b943996ea244afea4f4",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-B130512A",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "5eec1a92f69b3cbd5a4af6173fcad73626808a8b0cdc8ec3b2eb0c324ac06768",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-B6CCFAB7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "66880eef3482e02e3a2105f8e9b3e7c97168239a05ccf2d4eb51317c07a32273",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-C12DB7DC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "c2d1e3c798a3d330a99802c5d4d939821e1526e9df9b027b1e36134d61569008",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-D5AE6161",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "2d509238a99eeecb196c64a3d93ca5f74606d5be79b7ee2524def3287d03b52b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-DBC9B61F",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "435c81d8d4f2ef3a31d76e75deeb919896212d4136bd418d5293dfe1c67e13e1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "D050AD1B-F12D8657",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "2e983a480d4e2d5107b7f147f37df0d01fdf0555e3c1ac44d527bac399fafa9b",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-0995EC09",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "18b3f2ac3696f545161933783d813e433689cfa151551049b2a245794438501a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-177F8472",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "7213fb603bae7159a34bb0ad632c21ae3fb405ac19cb93092e525c4898fb93b1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-190A55AD",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "bb34fa5bc5a890796ea1bc78fd38f1d591de4721ac2101599c83afb33b9864d1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-2D7BA264",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "7caafaa7eda835ceaff941de0be7ca359eb7458164006e8a730e24e63e22729a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-4A4CA7D8",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ddef4560944026156d694ce92a29d2406cb34a8bf1f46050a36f5e27fd070061",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-5F015E99",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "345e5477806e9719b57cb686b0887e2f04ddc2170530be63468f4bd2cd8acf6e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-61AC9A5C",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "a6945383ca779d6e980dac911c8be1e88407bad13dd3877f5294b811227a637e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-6C92C159",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "4452e012e677691316555f2d70f83975a01c43a4be27e846c9ae15ed540d1ff9",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-7DD030A7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "610283c6569c56f1cd312ef345e17b971d228648ece7b2e13d87328dae3f6762",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-8019E2B5",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "c89a8cb3e5d448467eccb531e4974f85b5d83b8ed96044b83c82590c21f8703a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-82957BBF",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "2feed6897140fb9e68f06dd985834f6e0a9d5a9b0c705df703458e4cd40d921d",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-A6801DF0",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "65fc526b9be71c1599a840d8b91674abe5e81604a5e85de32006600a3cf4cba1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-A8B25ACC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "bcf9839a27d826a517763f6ba7576af98048d5c4de6f445e64edb3be5966f528",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-AAB50765",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "982bcac2cfb4de306b7140df28205adadcca04719fc8e7c9dd4a4c0118f3fa7c",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-B130512A",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "c9d56b6690c5fb96df8ee54bcc485e84889156edff13872b3e351ddb881b6a32",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-B34C77CB",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "58f4222c48d3567bb8057c45583607a18a5fba1494eee9d721a3d14c3a361166",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-B6CCFAB7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ef650e003c268c731f7e52596c4b8ff27e2745183ff674962b934f19eea304ff",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-C12DB7DC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "75df85d9e71880839c0f54d37f39a390dcba24c58f5abcd8653b133d60747974",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-D5AE6161",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "474cd0e360ee066a0956b57043181ed558dd1661c3b15e2f314de12c3c4208cd",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5C02D3C1-DBC9B61F",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "ff0dce1f2511e8861ba709c20bb8e770d146fd9476fa4c27a994e7ecb1e66259",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-0995EC09",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "d503587831fe2230dcb68bbf7f2608da1ab531daa01b305332e87dc3b9e31457",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-177F8472",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "82f5324e69927a8e5b0450f90191f5043452e52bf1fb1146555a839a66d0a5bf",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-2D7BA264",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "071521fc11091083b514505ca045728b341c5f08b2d374ad631512e64cc87f03",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-4A4CA7D8",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "3d44a0ec6754f68751c7f7e11d5f45c5b992772667f3177ae136d93d107191e5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-5F015E99",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "5b6ef8dfc955759c98411ed5169fe923a7064299ea07919805f7caea5b6bf194",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-6C92C159",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "9e7fdef4f7dcef75165175cfdee647a588a3e9c4aea181111c70a8b1444fac80",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-7DD030A7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "656b774ab3dbd9b421ba2fa7a178ce3e79bb4a45c09171984e32555a7b8657d8",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-8019E2B5",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "a2b506a92ba4209d7cc71707290a7cc6b980d2f257487fd17447e49924b84d70",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-82957BBF",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "551e7a142efea19bf60fc1dea6d9aaedc1a7c9d4a7cda8ba8e7109cf0c462b6e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-A6801DF0",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "0d32ea45ff4b1d7edcf93c40c14fff033298a96efb5fb13b76d50d7bf0c4cfef",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-A8B25ACC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "dcf1eda39e433c2920c163caac602ffcf70fd5b1f85896db50177a3b0836c1a6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-AAB50765",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "7840ddc585210eb5b5b7aa873bd8c4d5442d8e32615dbcbc5974cd608ee38348",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-B130512A",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "37eee542ff36d69d81cf635115b51d75f3f3736d81845a852aad34e519bc91ba",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-B34C77CB",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "977391a98af4189748798b7c7df3feb36c41952a1872db2afbf07cacaae7f230",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-B6CCFAB7",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "d8a9e1e52b5a9c79c650b4527d7a9e3f40e1d43c59ac3bf1052632a03837656e",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-C12DB7DC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "a036d94009f2c5fe085b37617d07b7dd36b6e3d27584fb3d633fd1b0cf816a05",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-D5AE6161",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "8f7731c1b731d164f9b96580fc15ea95d0ac7bc874a7542a072c1432703d8cb5",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-DBC9B61F",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "5d2c5895d3c3ac298ee1a9bda788548fe5dede554516db58ca488f4b2413ec86",
+        "submitted_samples": 0
+      },
+      {
+        "key": "913A6603-F12D8657",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "d8ab8cd976c50000c060523fc9933274eb484d81f992257d145ad56fb9f7dd4a",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5F101F62-190A55AD",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "bb34fa5bc5a890796ea1bc78fd38f1d591de4721ac2101599c83afb33b9864d1",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5F101F62-8019E2B5",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "4db134948d5e8d127c08453eae7d491dc0afde4bea608757a2a56c894d45c8f6",
+        "submitted_samples": 0
+      },
+      {
+        "key": "5F101F62-841A3FD9",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "33ca28fa2c07db71168451bfa1cc5d5386924eaccb23d4d379acd77373e42a94",
+        "submitted_samples": 0
+      },
+      {
+        "key": "AAA5C104-C12DB7DC",
+        "family": "hud-label-font-BDAE4156-v1",
+        "png_sha256": "a4e2e3598f8eb9969e69852e97dbc901f43073fc2faeac38681c551a3e4c4195",
+        "submitted_samples": 0
+      },
+      {
+        "key": "48F8001A-02491337",
+        "family": "results-score-header-48F8001A-v1",
+        "png_sha256": "02950d9c0d2ab62bb038f2d1babfdb6a38f9462dcea60939141866eabc6dd834",
+        "submitted_samples": 0
+      }
+    ],
+    "limitation": "Sampled submissions establish positive admission only; missing rows do not prove no draw"
+  },
+  "performance": {
+    "full_recording": {
+      "start_elapsed_seconds": 0.036390499997651204,
+      "end_elapsed_seconds": 170.0059043999936,
+      "wall_seconds": 169.96951389999595,
+      "first_guest_frame": 3035,
+      "last_guest_frame": 13137,
+      "guest_fps": 59.43418774465437,
+      "audio_starved_sample_frames_delta": 65521
+    },
+    "facade_submission_bracket": {
+      "start_elapsed_seconds": 43.007468199997675,
+      "end_elapsed_seconds": 73.00730890000705,
+      "wall_seconds": 29.999840700009372,
+      "first_guest_frame": 5600,
+      "last_guest_frame": 7400,
+      "guest_fps": 60.00031860167303,
+      "audio_starved_sample_frames_delta": 0
+    },
+    "sustained_full_stage_60fps_established": false,
+    "audible_audio_accepted": false
+  },
+  "video": {
+    "path": "docs/media/gallery/stage1-lit-facade-fly-past.mp4",
+    "sha256": "32e5438bb74659d0e45317f0d6d06bc61207a50971e16300aa69be33694946fe",
+    "bytes": 75201799,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 960,
+          "avg_frame_rate": "90240/1583",
+          "nb_frames": "3008"
+        }
+      ],
+      "format": {
+        "duration": "52.766667"
+      }
+    },
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/world-flypast-original.mp4",
+      "sha256": "e706e73bb79ed27f9ce9e9e806537d4bfcd4de8502bff89798d321f4f77a6bc0",
+      "bytes": 239108638
+    },
+    "contiguous_source_packets": 3008,
+    "source_first_packet": 2000,
+    "max_relative_timestamp_error_seconds": {
+      "pts_time": 1.00000000458067e-06,
+      "dts_time": 1.00000000458067e-06
+    },
+    "entry_exit_visually_reviewed": true,
+    "silent": true,
+    "retimed": false,
+    "interpolated": false,
+    "reencoded": false
+  },
+  "clean_exit": true,
+  "stage_clear_verified": false,
+  "production_installed": false,
+  "limitations": [
+    "The disclosed timer aid establishes visual reachability, not unassisted survival or stage clear.",
+    "Normal clock settings and preserved video timing do not establish sustained60fps.",
+    "Static room/reflection artwork does not establish dynamic reflections or parallax.",
+    "Art defects, full-stage/audio, remaining UI/actors and installation still require acceptance."
+  ]
+}

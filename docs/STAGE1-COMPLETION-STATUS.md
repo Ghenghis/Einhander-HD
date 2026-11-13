@@ -3,14 +3,24 @@
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
 The latest private Wave 3 composition contains 837 authored entries in 1,669
-keys. All 226 native region checks pass. It combines the new Astraea hulls and
+keys. All 226 native region checks pass. The [updated full facade and lighting test](STAGE1-EMISSIVE-RESULTS.md)
+adds the brighter canyon pair, two optional emissive masks and class-correct
+Greif v3 pages/strips. Its continuous 52.77-second pass includes entry and exit;
+all ten delivered building tiles submitted. The facade bracket measured 60.00
+guest frames/s with no starvation increment; the full recording averaged 59.43
+and still accumulated starvation. Recorder-off opening samples measured 60.07
+with masks off and 60.00 on, with different starting audio-buffer levels.
+The masks remain off by default, and nothing is installed.
+
+The preceding composition combines the new Astraea hulls and
 32 canopy phases, scoped Gunpod cells, approved sign revisions, three canyon
 wall/band bindings and revised HUD/results glyphs. The [live Astraea test](STAGE1-WAVE3-RESULTS.md)
 positively submitted all five new hull bindings and all 32 canopy phases, with
 448 authored entries submitted overall. It closed cleanly after 180 seconds,
-without a stage clear. The canyon windows need a brighter revision under native
-vertex shading, and the new HUD/results font was not exercised. Greif v2 failed an independent transparency check and is
-excluded pending correction. Another 157 historical HUD fade aliases still lack
+without a stage clear. The new HUD/results font was not exercised. Greif v2
+failed an independent transparency check; the corrected v3 is now imported and
+observed in the later fly-past, with pose/material acceptance still open.
+Another 157 historical HUD fade aliases still lack
 captured palette bytes and remain unresolved.
 
 The newer [Wave 2 gameplay test](STAGE1-WAVE2-RESULTS.md) exercised a 723-entry,

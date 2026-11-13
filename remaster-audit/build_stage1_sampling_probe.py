@@ -82,6 +82,7 @@ def main():
     debug=SOURCE.with_name('debug_server.c')
     sources=[SOURCE,pack,watchdog,freeze,debug,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),SOURCE.with_name('hero_draw_tracker.h'),ROOT/'windows-x64/psxrecomp/runtime/include/gpu_gl_renderer.h',Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c',AUDIT/'test_hero_draw_tracker.c']
     sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
+    sources.append(AUDIT/'test_hd_emissive_gl.h')
     sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
     sources.extend([SOURCE.with_name('hd_source_cache_filter.h'),AUDIT/'test_hd_source_cache_filter.c'])
     sources.extend([SOURCE.with_name('hd_decode_queue.h'),AUDIT/'test_hd_decode_queue.cpp',ROOT/'windows-x64/psxrecomp/runtime/include/hd_texture_pack.h'])
@@ -96,7 +97,25 @@ def main():
         for batch,key in [('mk3-native-sources-v1','8FE8B060-21FDE894'),('astraea-native-sources-v2','6ACFACE4-EF213D7F')]:
             source=OUTPUT/batch/'hd-on_rewind-off/source-pages'/(key+'.'+suffix)
             shutil.copy2(source,out/'facade-pack'/(key+'.'+suffix))
+        key='1263A036-6E78D825'
+        shutil.copy2(OUTPUT/'actor-native-proofs-v1'/(key+'.'+suffix),out/'facade-pack'/(key+'.'+suffix))
     from PIL import Image
+    mask_root=out/'emissive-pack';mask_root.mkdir()
+    for index,colour in enumerate([0x1111,0x2222,0x3333]):
+        raw=struct.pack('<H',colour)*1024;key=f'{zlib.crc32(raw):08X}-00000000'
+        image=Image.new('RGBA',(64,64),(100,150,200,127))
+        for y in range(8):
+            for x in range(64):image.putpixel((x,y),(100,150,200,0))
+        for y in range(56,64):
+            for x in range(64):image.putpixel((x,y),(100,150,200,255))
+        image.save(mask_root/(key+'.png'))
+        if index==0:
+            mask=Image.new('L',(64,64),0)
+            for y in range(64):
+                for x in range(20,64):mask.putpixel((x,y),128 if x<40 else 255)
+        elif index==1:mask=Image.new('L',(8,8),255)
+        else:mask=Image.new('RGB',(64,64),(255,255,255))
+        mask.save(mask_root/(key+'-emissive.png'))
     Image.new('RGBA',(1024,1024),(64,96,128,127)).save(out/'facade-pack'/(green_key+'.png'))
     Image.new('RGBA',(64,64),(0,0,0,0)).save(out/'facade-pack'/'724E77DA-21FDE894.png')
     (out/'facade_baseline_shader.h').write_text('static const char *facade_baseline_hd_fs='+json.dumps(extract_shader(saved))+';\n')

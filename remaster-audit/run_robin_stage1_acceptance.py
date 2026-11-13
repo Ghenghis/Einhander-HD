@@ -34,7 +34,7 @@ def main():
     parser.add_argument('--sources',action='store_true')
     parser.add_argument('--source-cache-keys',default='',help='Up to32 comma-separated raw-upload CRCs retained from boot; requires --sources')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
-    parser.add_argument('--movement',choices=['weave','left_lane','upper_lane','draw_lane'],default='left_lane',
+    parser.add_argument('--movement',choices=['weave','left_lane','upper_lane','greif_lane','draw_lane'],default='left_lane',
         help='draw_lane uses opt-in, read-only MkII hull geometry; live qualification is required')
     parser.add_argument('--revive',type=int,choices=[0,1],default=1)
     parser.add_argument('--hull-guard',action='store_true',help='Require the selected starter source set and use fresh hull draws at zero spare lives')
@@ -54,17 +54,17 @@ def main():
         help='Experimental bounded Continue confirmations after three increasing native prompt frames; never presses Start')
     args=parser.parse_args()
     if args.hires_stills and not args.composed_stills:parser.error('--hires-stills requires --composed-stills')
-    if args.movement=='upper_lane' and not args.hull_guard:parser.error('--movement upper_lane requires --hull-guard for selected-craft geometry')
+    if args.movement in ('upper_lane','greif_lane') and not args.hull_guard:parser.error('Upper/Greif movement requires --hull-guard for selected-craft geometry')
     if args.native_menus and args.hd!='on':parser.error('--native-menus enables replacements only after the stock route, so requires --hd on')
-    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane','upper_lane') or not args.terminal_ui_stills):
-        parser.error('--continues requires --revive 0 --movement draw_lane/left_lane/upper_lane --terminal-ui-stills')
+    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane','upper_lane','greif_lane') or not args.terminal_ui_stills):
+        parser.error('--continues requires --revive 0, a lane movement policy and --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
     if args.craft != 'mk2' and (args.movement=='draw_lane' or (args.hd=='on' and not args.native_menus)):
         parser.error('Alternate craft require native menus and no MkII hull controller; HD-on needs --native-menus')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,short_upload_priority=args.short_upload_priority,guest_frames=0)
-    tracking=args.sources or args.movement in ('draw_lane','upper_lane') or args.hull_guard
+    tracking=args.sources or args.movement in ('draw_lane','upper_lane','greif_lane') or args.hull_guard
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
     overrides=report['launches']['candidate']['environment_overrides']
@@ -73,7 +73,7 @@ def main():
     if args.player_material=='stock':
         overrides.update(PSXRECOMP_SKIN_PROFILE='stock',PSXRECOMP_SKIN_DETAIL_PATH='')
     if args.submission_log:overrides['PSXRECOMP_HD_PROOF_LOG']=str(directory/'first-submissions.jsonl')
-    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement in ('draw_lane','upper_lane') or args.hull_guard else '0',
+    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement in ('draw_lane','upper_lane','greif_lane') or args.hull_guard else '0',
         PSXRECOMP_PLAYER_DRAW_CRAFT=args.craft,
         PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')
     if args.sources:
@@ -92,7 +92,7 @@ def main():
         hires_stills=args.hires_stills,
         verified_continue_limit=args.continues,
         first_submission_log=args.submission_log,player_material=args.player_material,dense_gpu_frames=args.dense_gpu_frames,
-        hull_draw_tracking=args.movement in ('draw_lane','upper_lane') or args.hull_guard,hull_guard=args.hull_guard,native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
+        hull_draw_tracking=args.movement in ('draw_lane','upper_lane','greif_lane') or args.hull_guard,hull_guard=args.hull_guard,native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
     pacing.base.write(directory/'candidate.json',report)
     ui.copy_verified(Path(__file__),directory/'executed-robin.py')
     proof=dict(started_at_utc=ui.stamp(),kind='Robin live bring-up',ram_writes=False,state_loads=False,

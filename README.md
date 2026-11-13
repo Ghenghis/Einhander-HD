@@ -12,9 +12,9 @@ Source-aware textures · photographic material studies · 2160p game captures
 ![Windows integration](https://img.shields.io/badge/active_platform-Windows_x64-548bb9?style=flat-square)
 ![Original composition](https://img.shields.io/badge/composition-4%3A3-657b86?style=flat-square)
 
-<a href="https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4"><img src="docs/media/gallery/stage1-assembled-facade-poster.png" alt="Watch the actual full facade fly-past with photographic rooms on the matched building surfaces." width="1100"></a>
+<a href="https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4"><img src="docs/media/gallery/stage1-lit-facade-poster.png" alt="Watch the updated actual entry-to-exit facade fly-past with photographic rooms." width="1100"></a>
 
-<sub>Actual 1280 × 960 game video. Continuous entry to exit; no firing; timer-only assistance disclosed. The facade telemetry bracket measured 59.93 guest frames/s; full-stage performance and release acceptance remain open. <a href="docs/H24-IN-GAME-RESULTS.md">Results and limits →</a></sub>
+<sub>Actual 1280 × 960 game video, 52.77 seconds. Continuous entry to exit; no firing; timer-only assistance disclosed. Facade bracket 60.00 guest frames/s; full recording 59.43 with audio starvation. Full-stage and release acceptance remain open. <a href="docs/STAGE1-EMISSIVE-RESULTS.md">Results and limits →</a></sub>
 
 </div>
 
@@ -24,7 +24,8 @@ Keep Einhänder's dark silhouettes, saturated windows and industrial character. 
 
 This repository contains the modified recompilation sources, authoring tools and verification workflow. The restoration is in active development. Whole-game coverage, frame pacing and audio continuity remain open work.
 
-Latest component evidence: [Wave 2 HUD/effects gameplay](docs/STAGE1-WAVE2-RESULTS.md),
+Latest component evidence: [window lighting and complete facade](docs/STAGE1-EMISSIVE-RESULTS.md),
+[Wave 2 HUD/effects gameplay](docs/STAGE1-WAVE2-RESULTS.md),
 [Mk.III authored hulls](docs/STAGE1-MK3-RESULTS.md),
 [Wave 3 Astraea/canyon gameplay](docs/STAGE1-WAVE3-RESULTS.md), and
 [remaining completion gates](docs/STAGE1-COMPLETION-STATUS.md).

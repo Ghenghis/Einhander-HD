@@ -1330,6 +1330,8 @@ static const char *HD_FS =
     "flat in ivec4 v_limits;\n"
     "flat in int v_semi;\n"
     "uniform sampler2D u_hd;\n"
+    "uniform sampler2D u_hd_emissive;\n"
+    "uniform int u_hd_emissive_enabled;\n"
     "uniform int u_hd_facade_motion; /* opt-in, exact facade RGB only */\n"
     "uniform usampler2D u_hd_native;\n"
     "uniform int u_hd_native_edge; /* physical prefix width;0=ordinary replacement */\n"
@@ -1381,6 +1383,7 @@ static const char *HD_FS =
     "  class_uv = mod(class_uv, vec2(256.0));\n"
     "  class_uv = clamp(class_uv, vec2(v_limits.xy), vec2(v_limits.zw) + vec2(0.99999));\n"
     "  vec2 authority_pos = (u_hd_off + class_uv) / u_hd_dim;\n"
+    "  vec2 rgb_pos=authority_pos;\n"
     "  ivec2 hd_size = textureSize(u_hd, 0);\n"
     "  ivec2 authority_px = clamp(ivec2(floor(authority_pos * vec2(hd_size))),\n"
     "                             ivec2(0), hd_size - ivec2(1));\n"
@@ -1393,7 +1396,8 @@ static const char *HD_FS =
     "    iu.y = int(floor(uv.y)) & 255;\n"
     "    iu.x = clamp(iu.x, v_limits.x, v_limits.z);\n"
     "    iu.y = clamp(iu.y, v_limits.y, v_limits.w);\n"
-    "    c = texture(u_hd, (u_hd_off + vec2(iu) + 0.5) / u_hd_dim);\n"
+    "    rgb_pos=(u_hd_off + vec2(iu) + 0.5) / u_hd_dim;\n"
+    "    c = texture(u_hd,rgb_pos);\n"
     "  } else {\n"
     "    /* Recentered bilinear footprint; hardware taps replace the 4-tap\n"
     "     * software filter (RGBA replacement is already decoded). */\n"
@@ -1402,6 +1406,7 @@ static const char *HD_FS =
     "    suv.y = mod(suv.y, 256.0);\n"
     "    suv = clamp(suv, vec2(v_limits.x, v_limits.y),\n"
     "                vec2(v_limits.z, v_limits.w) + 1.0);\n"
+    "    rgb_pos=(u_hd_off+suv)/u_hd_dim;\n"
     "    if(u_hd_facade_motion!=0) {\n"
     "      /* Derivatives precede wrap/clamp; partial UV bands must not\n"
     "       * select a coarser mip merely because helper lanes cross an edge. */\n"
@@ -1418,7 +1423,12 @@ static const char *HD_FS =
     "  if(!native_edge)rgb = hd_skin_detail_material(rgb,c.rgb,u_hd_off+detail_uv);\n"
     "  if (u_semipass == 1 && stp == 1) discard;\n"
     "  if (u_semipass == 2 && stp == 0) discard;\n"
-    "  if (v_raw == 0) rgb = clamp(rgb * v_col.rgb * 2.0, 0.0, 1.0);\n"
+    "  if (v_raw == 0) {\n"
+    "    vec3 modulation=v_col.rgb*2.0;\n"
+    "    if(u_hd_emissive_enabled!=0 && !native_edge)\n"
+    "      modulation=mix(modulation,vec3(1.0),texture(u_hd_emissive,rgb_pos).r);\n"
+    "    rgb=clamp(rgb*modulation,0.0,1.0);\n"
+    "  }\n"
     "  float dst_factor = 0.0;\n"
     "  if (u_semimode == 4 && v_semi != 0 && stp != 0) {\n"
     "    dst_factor = v_semi == 1 ? 0.5 : 1.0;\n"
@@ -2878,6 +2888,7 @@ static void hd_dump_source_sidecars(const HdTextureDrawQuery *q,
 #include "hero_draw_tracker.h"
 static HeroDrawTracker s_player_draw_tracker;
 static HeroDrawTracker s_player_draw_completed;
+static GreifDrawClock s_greif_draw_clock,s_greif_draw_completed;
 static int s_player_draw_enabled=-1;
 static int s_player_draw_only=-1;
 static int s_player_draw_source_set=2;
@@ -2902,17 +2913,21 @@ static int player_draw_only(void) {
 }
 static void player_draw_on_source(const HdTextureSourceMatch *m,const HdTextureDrawQuery *q,
                                   const int *xs,const int *ys) {
-    if(player_draw_enabled() && m->upload_width_words==16 && m->upload_height==64){
+    if(player_draw_enabled()){
         const int area[4]={s_area_x1,s_area_y1,s_area_x2,s_area_y2};
-        hero_draw_observe_for_craft(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
-                         q->depth,xs,ys,area,s_player_draw_source_set);
+        greif_draw_observe(&s_greif_draw_clock,s_frame_count,m->texture_hash,q->depth,
+                          m->upload_width_words,m->upload_height,xs,ys,area);
+        if(m->upload_width_words==16 && m->upload_height==64)
+            hero_draw_observe_for_craft(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
+                             q->depth,xs,ys,area,s_player_draw_source_set);
     }
 }
 void gl_renderer_player_draw_get(GlPlayerDrawState *out) {
-    if(out){hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);out->source_set=s_player_draw_source_set;}
+    if(out){hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);out->source_set=s_player_draw_source_set;
+        greif_draw_snapshot(&s_greif_draw_completed,s_frame_count,player_draw_enabled(),out);}
 }
 static void player_draw_present_commit(void) {
-    if(player_draw_enabled())s_player_draw_completed=s_player_draw_tracker;
+    if(player_draw_enabled()){s_player_draw_completed=s_player_draw_tracker;s_greif_draw_completed=s_greif_draw_clock;}
 }
 static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
                                   const HdTextureDrawQuery *q,
@@ -3178,6 +3193,9 @@ static void hd_dump_upload(const HdTextureDrawQuery *q,
 #define HD_TEX_CACHE_MAX 256
 typedef struct {
     GLuint tex;
+    GLuint emissive_tex;
+    size_t emissive_bytes;
+    int emissive_filter;
     uint32_t th, ph;
     const uint8_t *pixels;
     uint32_t w, h;
@@ -3204,6 +3222,15 @@ static GLint s_hd_uHd = -1, s_hd_uOff = -1, s_hd_uDim = -1,
              s_hd_uMaskset = -1, s_hd_uSemipass = -1, s_hd_uSemimode = -1,
              s_hd_uFilter = -1;
 static GLint s_hd_uFacadeMotion = -1;
+static GLint s_hd_uEmissive = -1,s_hd_uEmissiveEnabled = -1;
+static int s_hd_emissive_enabled=-1;
+static int s_hd_emissive_gate=-1;
+static size_t s_hd_emissive_bytes;
+#define HD_EMISSIVE_GPU_BYTES_MAX ((size_t)64*1024*1024)
+static int hd_emissive_enabled(void){
+    if(s_hd_emissive_enabled<0){const char *value=getenv("PSXRECOMP_HD_EMISSIVE");s_hd_emissive_enabled=value&&!strcmp(value,"1");}
+    return s_hd_emissive_enabled;
+}
 static GLint s_hd_uNative = -1,s_hd_uNativeEdge = -1;
 static GLint s_hd_uSkinEnabled = -1, s_hd_uSkinPrimary = -1,
              s_hd_uSkinAccent = -1, s_hd_uSkinStrength = -1, s_hd_uSkinPreserveAccents = -1;
@@ -3306,6 +3333,8 @@ static int hd_opaque_batch_enabled(void) {
 static void hd_tex_release_slot(HdTexSlot *slot) {
     flush_hd_batch(); /* a queued batch owns a live reference to its texture */
     if(slot->tex)glDeleteTextures(1,&slot->tex);
+    if(slot->emissive_tex)glDeleteTextures(1,&slot->emissive_tex);
+    if(s_hd_emissive_bytes>=slot->emissive_bytes)s_hd_emissive_bytes-=slot->emissive_bytes;
     if(s_hd_facade_motion.resident_mip_bytes>=slot->facade_mip_bytes)
         s_hd_facade_motion.resident_mip_bytes-=slot->facade_mip_bytes;
     memset(slot,0,sizeof(*slot));
@@ -3481,6 +3510,24 @@ static GLuint hd_tex_object(uint32_t th, uint32_t ph,
             glPixelStorei(PSXGL_UNPACK_ROW_LENGTH, 0);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
             glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+            if(s->emissive_tex){glDeleteTextures(1,&s->emissive_tex);s->emissive_tex=0;}
+            if(s_hd_emissive_bytes>=s->emissive_bytes)s_hd_emissive_bytes-=s->emissive_bytes;s->emissive_bytes=0;
+            const size_t mask_bytes=(size_t)px->width*px->height;
+            if(px->emissive && mask_bytes<=HD_EMISSIVE_GPU_BYTES_MAX-s_hd_emissive_bytes){
+                glGenTextures(1,&s->emissive_tex);p_glActiveTexture(PSXGL_TEXTURE0+3);
+                glBindTexture(GL_TEXTURE_2D,s->emissive_tex);
+                glPixelStorei(GL_UNPACK_ALIGNMENT,1);
+                glPixelStorei(PSXGL_UNPACK_ROW_LENGTH,(GLint)px->emissive_stride);
+                glTexImage2D(GL_TEXTURE_2D,0,0x8229 /*GL_R8*/,px->width,px->height,0,GL_RED,GL_UNSIGNED_BYTE,px->emissive);
+                glPixelStorei(PSXGL_UNPACK_ROW_LENGTH,0);glPixelStorei(GL_UNPACK_ALIGNMENT,4);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+                glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+                s->emissive_filter=1;
+                p_glActiveTexture(PSXGL_TEXTURE0);glBindTexture(GL_TEXTURE_2D,s->tex);
+                s->emissive_bytes=mask_bytes;s_hd_emissive_bytes+=mask_bytes;
+            }
             s->pixels = px->rgba;
             s->w = px->width;
             s->h = px->height;
@@ -3887,6 +3934,22 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
             glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
         }
         p_glUniform1i(s_hd_uHd, 0);
+        if(hd_emissive_enabled()){
+            HdTexSlot *draw_slot=resident?resident:hd_tex_find(m.texture_hash,m.palette_hash);
+            const GLuint emissive=draw_slot?draw_slot->emissive_tex:0;
+            if(s_hd_emissive_gate!=(emissive!=0)){
+                p_glUniform1i(s_hd_uEmissiveEnabled,emissive!=0);s_hd_emissive_gate=emissive!=0;
+            }
+            if(emissive){
+                p_glActiveTexture(PSXGL_TEXTURE0+3);glBindTexture(GL_TEXTURE_2D,emissive);
+                if(draw_slot->emissive_filter!=s_tex_filter){
+                    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
+                    glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,s_tex_filter?GL_LINEAR:GL_NEAREST);
+                    draw_slot->emissive_filter=s_tex_filter;
+                }
+                p_glActiveTexture(PSXGL_TEXTURE0);
+            }
+        }
         p_glUniform1i(s_hd_uFilter, s_tex_filter);
         p_glUniform1i(s_hd_uNativeEdge,native_edge_width);
         p_glActiveTexture(PSXGL_TEXTURE0+2);
@@ -4616,6 +4679,8 @@ static int init_gpu_raster(void) {
     s_uLimits   = p_glGetUniformLocation(s_tex_prog, "u_limits");
     if (s_hd_prog) {
         s_hd_uHd      = p_glGetUniformLocation(s_hd_prog, "u_hd");
+        s_hd_uEmissive = p_glGetUniformLocation(s_hd_prog,"u_hd_emissive");
+        s_hd_uEmissiveEnabled = p_glGetUniformLocation(s_hd_prog,"u_hd_emissive_enabled");
         s_hd_uOff     = p_glGetUniformLocation(s_hd_prog, "u_hd_off");
         s_hd_uDim     = p_glGetUniformLocation(s_hd_prog, "u_hd_dim");
         s_hd_uMaskset = p_glGetUniformLocation(s_hd_prog, "u_maskset");
@@ -4636,6 +4701,8 @@ static int init_gpu_raster(void) {
         s_hd_uDetailScale = p_glGetUniformLocation(s_hd_prog,"u_skin_detail_scale");
         p_glUseProgram(s_hd_prog);
         p_glUniform1i(s_hd_uFacadeMotion,0);
+        p_glUniform1i(s_hd_uEmissive,3);p_glUniform1i(s_hd_uEmissiveEnabled,0);
+        s_hd_emissive_gate=0;
         p_glUniform1i(s_hd_uSkinEnabled,0);
         p_glUniform1f(s_hd_uSkinStrength,0.0f);
         p_glUniform1i(s_hd_uDetail,1);

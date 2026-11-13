@@ -4,6 +4,7 @@
 #include "test_facade_motion_gl.c"
 #undef facade_motion_gl_regression
 #include "test_hd_opaque_batch_gl.h"
+#include "test_hd_emissive_gl.h"
 
 int facade_motion_gl_regression(const char *root,int expected_world) {
     int world=s_hd_world_sampling;
@@ -180,7 +181,28 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
         FM_CHECK("alternate native observer has no GL error",glGetError()==GL_NO_ERROR);
     }
     s_player_draw_only=0;s_player_draw_source_set=2;
+    uint16_t greif[64*256];int greif_ok=1;
+    snprintf(path,sizeof path,"%s/1263A036-6E78D825.words.bin",root);file=fopen(path,"rb");
+    if(!file)greif_ok=0;else{greif_ok=fread(greif,2,64*256,file)==64*256&&fgetc(file)==EOF;fclose(file);}
+    snprintf(path,sizeof path,"%s/1263A036-6E78D825.clut.bin",root);file=fopen(path,"rb");
+    if(!file)greif_ok=0;else{greif_ok&=fread(palette,2,16,file)==16&&fgetc(file)==EOF;fclose(file);}
+    FM_CHECK("audited Greif source and palette CRC",greif_ok&&hd_texture_crc32_words_le(greif,64*256)==0x1263A036u&&hd_texture_crc32_words_le(palette,16)==0x6E78D825u);
+    if(greif_ok){
+        fm_upload(832,0,64,256,greif);fm_upload(320,496,16,1,palette);flush_cpu_upload();
+        const int xs[3]={100,140,100},ys[3]={80,80,120},us[3]={0,63,0},vs[3]={0,0,63},lim[4]={0,0,63,63};
+        const float color[9]={1,1,1,1,1,1,1,1,1};GlPlayerDrawState state;
+        memset(&s_greif_draw_clock,0,sizeof(s_greif_draw_clock));memset(&s_greif_draw_completed,0,sizeof(s_greif_draw_completed));
+        s_player_draw_only=1;s_hd_cpu_diag_enabled=1;memset(&s_hd_cpu_diag,0,sizeof(s_hd_cpu_diag));
+        int native_drawn=hd_on_textured_prim(xs,ys,us,vs,color,13,320,496,0,-1,lim,0);
+        gl_renderer_player_draw_get(&state);FM_CHECK("partial Greif frame not published",!state.greif_valid);
+        player_draw_present_commit();gl_renderer_player_draw_get(&state);gl_renderer_hd_cpu_diag_get(&cpu);
+        FM_CHECK("native source publishes completed Greif clock",state.greif_valid&&state.greif_first_frame==s_frame_count&&state.greif_last_frame==s_frame_count);
+        FM_CHECK("Greif observation keeps native pixels without decode or readback",!native_drawn&&!cpu.decode_requests&&!cpu.readbacks&&!cpu.submitted);
+        FM_CHECK("Greif native observer has no GL errors",glGetError()==GL_NO_ERROR);
+        s_player_draw_only=0;
+    }
     /* The isolated fixture destroys its GL context immediately on return. */
+    fm_emissive_regression(root);
     printf("WORLD_RESULT checks=%d failures=%d\n",fm_checks,fm_failures);
     return fm_failures?1:0;
 }

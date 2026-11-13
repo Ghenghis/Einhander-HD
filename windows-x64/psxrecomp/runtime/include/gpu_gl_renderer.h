@@ -48,6 +48,8 @@ typedef struct {
     unsigned draws;
     uint32_t texture_hash, palette_hash;
     int min_x, min_y, max_x, max_y, width, height;
+    int greif_valid;
+    uint64_t greif_first_frame,greif_last_frame,greif_age_frames;
 } GlPlayerDrawState;
 void gl_renderer_player_draw_get(GlPlayerDrawState *out);
 

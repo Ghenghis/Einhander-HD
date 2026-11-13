@@ -1,6 +1,21 @@
 # Full 24-room facade: actual in-game results
 
-## Latest assembled facade and actors — November 12, 2026
+## Latest full facade and window lighting — November 13, 2026
+
+[![Watch the updated full facade](media/gallery/stage1-lit-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4)
+
+[Play the continuous 52.77-second pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4)
+· [Actual lighting comparison, measurements and limits](STAGE1-EMISSIVE-RESULTS.md)
+· [Facade evidence](media/gallery/stage1-lit-facade-fly-past-results.json)
+
+The 837-entry, 1,669-key private composition includes brighter canyon artwork,
+two optional emissive masks and corrected Greif pages/strips. All ten delivered
+building tiles and both H24 mappings submitted in game. The facade bracket
+measured 60.00 guest frames/s without a starvation increment; the full recording
+averaged 59.43 and accumulated starvation. Firing was disabled and the timer-only
+survival aid is disclosed. Full-stage, audio and installation remain open.
+
+## Earlier 559-entry assembled facade and actors — November 12, 2026
 
 [![Watch the current full facade fly-past](media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)
 

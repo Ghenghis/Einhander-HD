@@ -55,5 +55,21 @@ int main(void){
     CHECK("unknown source set rejected",!hero_draw_key_for_craft(0x724E77DAu,0x21FDE894u,0,9));
     hero_draw_observe_for_craft(&tracker,5,0x8FE8B060u,0x21FDE894u,0,x,next_y,next_area,3);
     hero_draw_snapshot(&tracker,5,1,&s);CHECK("source-set change starts its own union",s.source_set==3&&s.draws==1);
+    GreifDrawClock clock={0};
+    greif_draw_snapshot(&clock,100,1,&s);CHECK("missing Greif cannot invent a clock",!s.greif_valid);
+    greif_draw_observe(&clock,100,0x1263A036u,0,64,256,x,next_y,next_area);
+    greif_draw_snapshot(&clock,100,1,&s);CHECK("native Greif source starts a clock",s.greif_valid&&s.greif_first_frame==100&&s.greif_last_frame==100);
+    greif_draw_observe(&clock,110,0x38DC02FEu,0,64,256,x,next_y,next_area);
+    greif_draw_snapshot(&clock,122,1,&s);CHECK("second page retains encounter and bounded freshness",s.greif_valid&&s.greif_first_frame==100&&s.greif_age_frames==12);
+    greif_draw_snapshot(&clock,123,1,&s);CHECK("old Greif not fresh",!s.greif_valid);
+    greif_draw_observe(&clock,120,0x1263A036u,0,64,256,off_x,next_y,next_area);
+    greif_draw_observe(&clock,120,0x1263A036u,1,64,256,x,next_y,next_area);
+    greif_draw_observe(&clock,120,0x1263A036u,0,16,64,x,next_y,next_area);
+    greif_draw_observe(&clock,120,0x724E77DAu,0,64,256,x,next_y,next_area);
+    greif_draw_snapshot(&clock,120,1,&s);CHECK("wrong source geometry depth and offscreen excluded",s.greif_last_frame==110);
+    greif_draw_observe(&clock,261,0x1263A036u,0,64,256,x,next_y,next_area);
+    greif_draw_snapshot(&clock,261,1,&s);CHECK("absence starts new encounter",s.greif_valid&&s.greif_first_frame==261);
+    greif_draw_observe(&clock,4,0x1263A036u,0,64,256,x,next_y,next_area);
+    greif_draw_snapshot(&clock,4,0,&s);CHECK("reset restarts clock and optout stays invalid",!s.greif_valid&&s.greif_first_frame==4);
     printf("RESULT checks=%u failures=%u\n",checks,failures);return failures?1:0;
 }

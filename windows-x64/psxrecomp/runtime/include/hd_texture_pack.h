@@ -237,6 +237,10 @@ typedef struct HdTexturePixels {
     uint32_t width;
     uint32_t height;
     uint32_t stride;
+    /* Optional8-bit grayscale companion, same dimensions; shares this lease.
+     * Loaded only with startup PSXRECOMP_HD_EMISSIVE=1. Alpha is unchanged. */
+    const uint8_t* emissive;
+    uint32_t emissive_stride;
     void* lease;
 } HdTexturePixels;
 

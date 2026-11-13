@@ -81,6 +81,7 @@ def prepare(label,args):
         PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),
         PSXRECOMP_HD_OPAQUE_BATCH=str(getattr(args,'opaque_batch',0)),
         PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY=str(getattr(args,'short_upload_priority',0)),
+        PSXRECOMP_HD_EMISSIVE=str(getattr(args,'emissive',0)),
         PSXRECOMP_PLAYER_DRAW_TRACKING='0',PSXRECOMP_PLAYER_DRAW_ONLY='0',
         PSX_RUNTIME_PERF_DIAG="0",PSX_FPS_TELEMETRY="0",PSX_FRAME_INTERPOLATION="0",
         PSX_OVERLAY_CAPTURES=str(runtime / "overlay_captures.json"))
@@ -93,8 +94,14 @@ def prepare(label,args):
         hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),
         hd_opaque_batch=bool(getattr(args,'opaque_batch',0)),
         short_upload_priority=bool(getattr(args,'short_upload_priority',0)),
+        emissive_masks=bool(getattr(args,'emissive',0)),
         guest_frame_target=args.guest_frames,
         telemetry_interval_seconds=1.0,route_poll_seconds=1.0,supersampling=9))
+    if getattr(args,'native_menus',False):
+        if not hd:raise ValueError('Native-menu staging requires HD-on measurement')
+        control=directory/'replacement-control.txt';control.write_text('0\n')
+        spec['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
+        report['route_reference_profile']='native-stock';report['pacing_profile']['native_menus']=True
     base.write(directory / "candidate.json",report)
     return report
 
@@ -159,6 +166,9 @@ def run(label,args):
     try:
         process=launch(report)
         proof["native_route"]=enter_city(report, poll_seconds=1)
+        if report['pacing_profile'].get('native_menus'):
+            control=directory/'replacement-control.txt';assert control.read_text().strip()=='0'
+            control.write_text('1\n');proof['pack_enabled_after_native_menus']=dict(at_utc=ui.stamp(),new_menu_art_accepted=False)
         proof["turbo_off"]=probe.request(report,"turbo",enabled=0)
         proof["turbo_state"]=probe.request(report,"turbo_state")
         assert proof["turbo_state"]["enabled"]==0
@@ -227,6 +237,9 @@ if __name__=="__main__":
         help="Opt-in CPU attribution without GPU timer queries; requires a supporting private runtime")
     parser.add_argument("--opaque-batch",type=int,choices=[0,1],default=0,
         help="Private opt-in adjacent opaque HD triangle batching; requires a supporting runtime")
+    parser.add_argument('--emissive',type=int,choices=[0,1],default=0,
+        help='Optional authored window masks; same private candidate can be compared on/off')
+    parser.add_argument('--native-menus',action='store_true')
     parser.add_argument("--guest-frames",type=int,choices=[900,1800],default=0)
     args=parser.parse_args()
     if not re.fullmatch(r"[a-zA-Z0-9_-]+",args.batch):parser.error("batch must be a single directory name")

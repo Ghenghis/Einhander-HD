@@ -59,8 +59,10 @@ def prepare(args):
     for row in files:
         if ui.sha(row['composed_path'])!=row['sha256']:
             raise ValueError('Frozen PNG changed: '+row['name'])
+    for row in candidate.get('emissive_files',[]):
+        if ui.sha(row['composed_path'])!=row['sha256']:raise ValueError('Frozen emissive mask changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
-        gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
+        gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,guest_frames=0)
     report=pacing.prepare('hd-on_rewind-off',config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
@@ -69,6 +71,7 @@ def prepare(args):
         timer_only_assistance=True,lease_seconds=180,stage_clear_acceptance=False)
     report['visual_profile'].update(recorder_backend=args.recorder,capture_seconds=args.capture_seconds)
     report['visual_profile']['native_menus']=bool(args.native_menus)
+    report['visual_profile'].update(emissive=bool(args.emissive),hires_stills=args.hires_stills)
     if args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
@@ -144,7 +147,7 @@ def run(args):
                 audio=probe.request(report,'audio_stats'))
             if second%15==0:
                 row['screenshot']=probe.request(report,'screenshot',path=(shots/f'native-{second:03}.png').as_posix())
-                row['composed']=probe.capture(report,f'world-{second:03}',hires=False)
+                row['composed']=probe.capture(report,f'world-{second:03}',hires=report['visual_profile'].get('hires_stills',False))
                 emit(dict(elapsed=second,frame=row['registers'].get('frame'),
                     target_samples=len(proof['target_draws']),capture=row['composed']['path']))
             proof['observations'].append(row)
@@ -200,6 +203,8 @@ if __name__=='__main__':
     p.add_argument('--runtime',type=Path)
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
+    p.add_argument('--emissive',type=int,choices=[0,1],default=0)
+    p.add_argument('--hires-stills',action='store_true')
     p.add_argument('--route-profile',choices=['hd','assembled-v1'],default=None)
     p.add_argument('--native-menus',action='store_true',help='Verified stock menu route, then enable the entire frozen pack for gameplay; no new-menu acceptance')
     p.add_argument('--recorder',choices=['gdigrab','gfxcapture'],default='gdigrab')

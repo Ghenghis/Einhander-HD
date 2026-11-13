@@ -18,7 +18,20 @@ with survival assistance off, and does not establish stage clear or a release.
 combat excerpt, updated HUD/effects, Continue and evaluation stills. Survival
 assistance was off; that attempt lost all lives and did not clear Stage 1.
 
-### Latest full facade and assembled actors
+### Latest full facade and window lighting
+
+[![Play the updated complete facade pass](media/gallery/stage1-lit-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4)
+
+[Play the continuous 52.77-second entry-to-exit video](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4)
+· [Actual emissive comparison, pacing and limits](STAGE1-EMISSIVE-RESULTS.md)
+
+837 authored entries, 1,669 keys and two optional light masks. All ten delivered
+building tiles submitted. No firing; normal clock; timer-only aid disclosed.
+Facade bracket 60.00 guest frames/s, full recording 59.43 with starvation still
+present. The separate recorder-off opening checks do not establish full-stage
+audio or release acceptance.
+
+### Earlier 559-entry full facade and assembled actors
 
 [![Play the current facade fly-past](media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)
 

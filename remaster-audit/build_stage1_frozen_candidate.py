@@ -69,6 +69,7 @@ def main():
         path=pinned(row['manifest']);metadata=json.loads(path.read_bytes())
         manifest_refs[str(path)]=dict(sha256=sha(path),metadata=metadata)
         pinned(row['image'])
+        if row.get('emissive'):pinned(row['emissive'])
         if row.get('alpha'):pinned(row['alpha'])
         if row.get('source_handoff'):pinned(row['source_handoff'])
         if not KEY.fullmatch(row['key']):raise ValueError('Invalid exact key')
@@ -103,6 +104,10 @@ def main():
             parent=dict(path=row['composed_path'],sha256=row['sha256']))
     exact_file=pack/'ExactRegions.tsv'
     exact_lines=exact_file.read_text().splitlines() if exact_file.exists() else ['EIN_EXACT_REGIONS_V1']
+    masks={}
+    for item in parent.get('emissive_files',[]):
+        if sha(item['composed_path'])!=item['sha256']:raise ValueError('Parent mask changed')
+        masks[item['name']]=dict(item,composed_path=str(replacements/item['name']))
     chosen=set();pixel_equal_reused=0
     for row in plan['entries']:
         image_path=pinned(row['image']);key=row['key'];exact=row.get('exact')
@@ -167,6 +172,19 @@ def main():
                 buffer=io.BytesIO();image.save(buffer,format='PNG');encoded=buffer.getvalue()
         if reuse:pixel_equal_reused+=1
         else:atomic(target,encoded)
+        mask_name=key+'-emissive.png';mask_target=replacements/mask_name
+        if row.get('emissive'):
+            with Image.open(pinned(row['emissive'])) as mask,Image.open(image_path) as rgb_source:
+                if mask.mode!='L' or mask.size!=rgb_source.size:raise ValueError('Mask must be8-bit grayscale with source PNG dimensions')
+                if row.get('image_uv'):
+                    nw,nh=row['image_space_native'];l0,t0,r0,b0=row['image_uv'];sx,sy=mask.width//nw,mask.height//nh
+                    mask=mask.crop((l0*sx,t0*sy,r0*sx,b0*sy))
+                if mask.size!=(width,height):raise ValueError('Final mask and replacement dimensions differ')
+                buffer=io.BytesIO();mask.save(buffer,format='PNG');atomic(mask_target,buffer.getvalue())
+            masks[mask_name]=dict(name=mask_name,composed_path=str(mask_target),sha256=sha(mask_target),bytes=mask_target.stat().st_size,
+                dimensions=[width,height],input=row['emissive'],encoding='8-bit grayscale; RGB modulation only')
+        elif mask_target.exists() and not reuse:
+            raise ValueError('Changed replacement needs an explicit companion mask: '+key)
         ledger[name]=dict(name=name,composed_path=str(target),sha256=sha(target),dimensions=[width,height],
             bytes=target.stat().st_size,origin='frozen artwork candidate',input=row,
             previous_sha256=previous['sha256'] if previous else None,source_proof=source_proof,
@@ -178,12 +196,17 @@ def main():
         frozen_manifests=manifest_refs,parent_candidate=dict(path=str(parent_path),sha256=sha(parent_path)),
         authored_entries=len(plan['entries']),live_visual_accepted=False,production_installed=False,
         pixel_equal_parent_pngs_reused=pixel_equal_reused,
+        emissive_files=sorted(masks.values(),key=lambda x:x['name']),
         composed_at_utc=datetime.now(timezone.utc).isoformat())
     report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT']=str(pack)
     report['launches']['candidate']['environment_overrides'].update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
     # Verify parent identities again after every atomic candidate replacement.
     for row in parent['files']:
         if sha(row['composed_path'])!=row['sha256']:raise ValueError('Parent was changed during composition')
+    for row in parent.get('emissive_files',[]):
+        if sha(row['composed_path'])!=row['sha256']:raise ValueError('Parent mask was changed during composition')
+    for row in masks.values():
+        if sha(row['composed_path'])!=row['sha256']:raise ValueError('Composed mask changed before receipt')
     (out/'candidate.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
     print(json.dumps(dict(candidate=str(out/'candidate.json'),files=len(ledger),authored_entries=len(plan['entries']),production_installed=False)))
 

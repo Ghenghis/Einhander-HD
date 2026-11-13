@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 58,
-  "total_image_bytes": 125516331,
+  "image_count": 61,
+  "total_image_bytes": 132524819,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1631,6 +1631,60 @@
       "source_identifier": "stage1-completion-20261112/astraea-w3-hd-v1/captures/robin-0030.png",
       "unmodified_copy": true,
       "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-canyon-emissive-off.png",
+      "sha256": "2a6af9c890dfa7afb8eaf33e42cd6b1b299a4408c8f3fd8b0a55b526b8a8b7be",
+      "bytes": 2865087,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "Private timer-assisted live capture; release acceptance open",
+      "label": "Canyon emissive off",
+      "source_identifier": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-off-v1/hd-on_rewind-off/captures/world-015-internal.png",
+      "source_sha256": "7279784566fff155284ca34f6d5e90365b0647b1502b3c732b6bacc0cca619d4",
+      "unmodified_copy": false,
+      "pixel_identical_to_source": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-canyon-emissive-on.png",
+      "sha256": "166166ceb0a09b4a992afad92957ed4620a83ba11ebf6cd2163f553f59f2dfe7",
+      "bytes": 3018413,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "category": "actual_capture",
+      "status": "Private timer-assisted live capture; release acceptance open",
+      "label": "Canyon emissive on",
+      "source_identifier": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/captures/world-015-internal.png",
+      "source_sha256": "bf5384069b4f7283178035a697e1ccd3f42047b167bc1ba333205930153b4f71",
+      "unmodified_copy": false,
+      "pixel_identical_to_source": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-lit-facade-poster.png",
+      "sha256": "88add2929966d5b13408c472c23263e7d7f489c5e02bed7e16dbfdc61ec7f678",
+      "bytes": 1124988,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_capture",
+      "status": "Private timer-assisted live capture; release acceptance open",
+      "label": "Updated complete facade",
+      "source_identifier": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/captures/world-060.png",
+      "source_sha256": "66364f1afaed8861a078c4205fe100f8ee493ef1b2aa7b2a1e98d08331c8eeb3",
+      "unmodified_copy": false,
+      "pixel_identical_to_source": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "embedded_metadata_present": false
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1802,9 +1856,20 @@
       "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-lit-facade-fly-past.mp4",
+      "sha256": "32e5438bb74659d0e45317f0d6d06bc61207a50971e16300aa69be33694946fe",
+      "bytes": 75201799,
+      "category": "actual_gameplay_capture",
+      "status": "Continuous full facade entry-to-exit; timer-only aid; no firing; full-stage/audio remain open",
+      "result_manifest": "docs/media/gallery/stage1-lit-facade-fly-past-results.json",
+      "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 10,
-  "total_video_bytes": 364769726,
+  "video_count": 11,
+  "total_video_bytes": 439971525,
   "video_frame_extract_count": 8
 }

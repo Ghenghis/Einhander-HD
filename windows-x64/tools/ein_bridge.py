@@ -120,6 +120,8 @@ class Robin(threading.Thread):
         self._lane_origin = None
         self._lane_last_frame = None
         self._vertical_direction = 1
+        self._greif_anchor = None
+        self._greif_hull_frame = None
         self.position = None
         self.tick = 0.15           # decision period (seconds)
         self.log = []
@@ -158,7 +160,7 @@ class Robin(threading.Thread):
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
-        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "draw_lane")),
+        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "greif_lane", "draw_lane")),
                              ("fire_mode", ("cross", "both"))):
             if key in cfg:
                 if cfg[key] not in allowed:
@@ -202,6 +204,47 @@ class Robin(threading.Thread):
                 moves.append("square")
         return moves
 
+    def greif_target(self,state):
+        """Experimental pad-only sweep, anchored to actual source-draw frames.
+
+        Burst windows are measured in robin-analysis/ROBIN-DEATHS.md. Their
+        avoidance schedule remains a hypothesis until a live encounter passes.
+        """
+        frame,age=state.get('frame'),state.get('age_frames')
+        if type(frame) is not int or type(age) is not int or frame<0 or not 0<=age<=12:
+            raise ValueError('Fresh guest clock unavailable')
+        if self._greif_hull_frame is not None:
+            if frame<self._greif_hull_frame:raise ValueError('Guest clock reversed')
+            if frame-self._greif_hull_frame>150:self._greif_anchor=None
+        self._greif_hull_frame=frame;now=frame+age
+        clock=state.get('greif_draw')
+        if not isinstance(clock,dict) or type(clock.get('valid')) is not bool:
+            raise ValueError('Greif source clock unavailable')
+        if type(clock.get('age_frames')) is not int or clock['age_frames']<0:
+            raise ValueError('Malformed Greif source age')
+        if clock['valid']:
+            first,last,stale=(clock.get(k) for k in ('first_frame','last_frame','age_frames'))
+            if (not all(type(v) is int for v in (first,last,stale)) or
+                not 0<=first<=last<=now or stale!=now-last or stale>12):
+                raise ValueError('Malformed Greif source clock')
+            self._greif_anchor=first
+        elif self._greif_anchor is not None and clock.get('age_frames',0)>180:
+            self._greif_anchor=None
+        g=None if self._greif_anchor is None else now-self._greif_anchor
+        target,tolerance,direction,label=14,2,None,'upper home'
+        if g is not None and g>=400:
+            if g<650:target=14+(g-400)*186/250;direction='down';label='Greif first volley'
+            elif g<680:target=200;tolerance=10;label='Greif volley gap'
+            elif g<900:target=200-(g-680)*186/220;direction='up';label='Greif second volley'
+            else:
+                leg,phase=divmod(g-900,250);down=leg%2==0
+                target=(14+min(phase,200)*186/200) if down else (200-min(phase,200)*186/200)
+                direction='down' if down else 'up';label='Greif later volley hypothesis'
+            if direction:tolerance=10
+        self.position['greif_policy']=dict(anchor=self._greif_anchor,elapsed=g,target_y=target,
+            direction=direction,label=label,qualified=False)
+        return target,tolerance,direction
+
     def draw_buttons(self, state: dict):
         """Screen-space feedback from a fresh, source-matched hull draw union."""
         if not state.get('ok') or not state.get('enabled') or not state.get('valid'):
@@ -219,15 +262,16 @@ class Robin(threading.Thread):
         self.position=dict(x=x,y=y,width=w,height=h,frame=state.get('frame'),
             age_frames=state.get('age_frames'),fresh=True,space=state.get('basis','hull draw geometry'))
         moves=[]
-        if self.movement=='upper_lane':
+        if self.movement in ('upper_lane','greif_lane'):
             # Finite pulses follow actual completed-frame geometry. Open-loop
             # alternating pulses drifted low in the first live upper-lane run.
             if self.weave:
                 if x>32:moves.append('left')
                 elif x<24:moves.append('right')
             if self.dodge:
-                if y>16:moves.append('up')
-                elif y<12:moves.append('down')
+                target,tolerance,direction=self.greif_target(state) if self.movement=='greif_lane' else (14,2,None)
+                if y>target+tolerance and direction!='down':moves.append('up')
+                elif y<target-tolerance and direction!='up':moves.append('down')
             return moves
         if self.weave:
             if x>w*.29:moves.append('left')
@@ -267,13 +311,13 @@ class Robin(threading.Thread):
                 previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
                 draw_moves=None
-                if self.movement in ('draw_lane','upper_lane') or self.hull_guard:
+                if self.movement in ('draw_lane','upper_lane','greif_lane') or self.hull_guard:
                     state=cmd({'cmd':'player_draw'},timeout=1.5)
                     if not state.get('ok') or not state.get('enabled'):
                         self.note('Hull draw tracking unavailable; bot stopped.')
                         self.request_stop();break
                     if state.get('valid'):
-                        if self.movement in ('draw_lane','upper_lane'):
+                        if self.movement in ('draw_lane','upper_lane','greif_lane'):
                             try:draw_moves=self.draw_buttons(state)
                             except ValueError as error:
                                 self.note(str(error)+'; bot stopped.');self.request_stop();break
@@ -281,7 +325,7 @@ class Robin(threading.Thread):
                         # craft is still flying. A fresh hull is not Continue.
                         dead_or_menu=False
                         missing_draws=0
-                    elif self.movement in ('draw_lane','upper_lane') and not dead_or_menu:
+                    elif self.movement in ('draw_lane','upper_lane','greif_lane') and not dead_or_menu:
                         missing_draws+=1
                         if missing_draws>=40:
                             self.note('Hull geometry absent for forty polls; bot stopped.')
@@ -314,7 +358,7 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
-                if self.movement in ("draw_lane","upper_lane"):
+                if self.movement in ("draw_lane","upper_lane","greif_lane"):
                     moves=draw_moves
                     fire=["x"] if self.autofire else []
                     if self.autofire and self.fire_mode=="both":fire.append("square")

@@ -8,6 +8,31 @@ class ImmediateHalt:
     def set(self):pass
 
 class RobinPlayTests(unittest.TestCase):
+    def test_greif_policy_uses_actual_encounter_and_keeps_each_sweep_one_way(self):
+        bot=bridge.Robin();bot.apply(dict(movement='greif_lane'))
+        def moves(g,y=100,first=1000):
+            now=first+g
+            return bot.draw_buttons(dict(ok=True,enabled=True,valid=True,frame=now,age_frames=0,
+                bounds=[18,y-10,38,y+10],viewport=[320,224],greif_draw=dict(valid=True,
+                first_frame=first,last_frame=now,age_frames=0)))
+        # Poll continuously: a >150-frame gap deliberately starts a new life.
+        for g in range(0,401,50):moves(g,14)
+        self.assertEqual(['down'],moves(500,14))
+        self.assertEqual([],moves(510,190))
+        moves(600);moves(680)
+        self.assertEqual(['up'],moves(750,200))
+        self.assertEqual([],moves(760,14))
+        self.assertEqual(1000,bot.position['greif_policy']['anchor'])
+        self.assertEqual(760,bot.position['greif_policy']['elapsed'])
+
+    def test_greif_policy_rejects_missing_future_or_reversed_guest_clock(self):
+        bot=bridge.Robin();bot.position={}
+        with self.assertRaises(ValueError):bot.greif_target(dict(frame=100,age_frames=0))
+        with self.assertRaises(ValueError):bot.greif_target(dict(frame=100,age_frames=0,
+            greif_draw=dict(valid=True,first_frame=101,last_frame=101,age_frames=0)))
+        with self.assertRaises(ValueError):bot.greif_target(dict(frame=99,age_frames=0,
+            greif_draw=dict(valid=False,age_frames=200)))
+
     def test_upper_lane_parking_uses_observed_position_without_open_loop_drift(self):
         bot=bridge.Robin();bot.apply(dict(movement='upper_lane',fire_mode='both'))
         def moves(x,y):return bot.draw_buttons(dict(ok=True,enabled=True,valid=True,

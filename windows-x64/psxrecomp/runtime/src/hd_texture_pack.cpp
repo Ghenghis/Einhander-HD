@@ -448,6 +448,7 @@ struct ExactRegion {
 
 struct DecodedImage {
     std::vector<uint8_t> rgba;
+    std::vector<uint8_t> emissive;
     uint32_t width = 0;
     uint32_t height = 0;
 };
@@ -463,6 +464,7 @@ struct DecodeItem {
 };
 
 struct DecodeCache {
+    bool emissive_enabled = false; /* immutable after pack construction */
     std::mutex mutex;
     std::condition_variable wake;
     std::unordered_map<uint64_t, DecodeItem> items;
@@ -554,6 +556,31 @@ void decode_worker(DecodeCache* cache) {
             decoded->rgba.assign(loaded, loaded + bytes);
         }
         if (loaded) stbi_image_free(loaded);
+        if(decoded && cache->emissive_enabled){
+            const fs::path base(path);
+            const fs::path mask_path=base.parent_path()/(base.stem().string()+"-emissive.png");
+            std::ifstream mask_input(mask_path,std::ios::binary|std::ios::ate);
+            if(mask_input){
+                const auto length=static_cast<std::streamoff>(mask_input.tellg());
+                std::vector<uint8_t> mask_bytes;
+                if(length>=33 && static_cast<uint64_t>(length)<=kMaxPngFileBytes){
+                    mask_bytes.resize(static_cast<size_t>(length));mask_input.seekg(0);
+                    if(!mask_input.read(reinterpret_cast<char*>(mask_bytes.data()),length))mask_bytes.clear();
+                }
+                auto word=[&](size_t i){return (uint32_t(mask_bytes[i])<<24)|(uint32_t(mask_bytes[i+1])<<16)|(uint32_t(mask_bytes[i+2])<<8)|mask_bytes[i+3];};
+                const uint8_t magic[8]={137,80,78,71,13,10,26,10};
+                const bool header=mask_bytes.size()>=33 && !std::memcmp(mask_bytes.data(),magic,8) &&
+                    !std::memcmp(mask_bytes.data()+12,"IHDR",4) && mask_bytes[24]==8 && mask_bytes[25]==0 &&
+                    word(16)==decoded->width && word(20)==decoded->height;
+                int mw=0,mh=0,mc=0;
+                stbi_uc* mask=header?stbi_load_from_memory(mask_bytes.data(),static_cast<int>(mask_bytes.size()),&mw,&mh,&mc,1):nullptr;
+                if(mask && mc==1 && mw==width && mh==height){
+                    const size_t count=static_cast<size_t>(mw)*static_cast<size_t>(mh);
+                    decoded->emissive.assign(mask,mask+count);bytes+=count;
+                }else std::fprintf(stderr,"[hd_tex] ignored invalid emissive mask: %s\n",mask_path.string().c_str());
+                if(mask)stbi_image_free(mask);
+            }
+        }
 
         std::lock_guard<std::mutex> lock(cache->mutex);
         auto it = cache->items.find(key);
@@ -956,6 +983,8 @@ int hd_texture_pack_create(const char* explicit_root,
         }
 
         auto pack = std::make_unique<HdTexturePack>();
+        const char* emissive=std::getenv("PSXRECOMP_HD_EMISSIVE");
+        pack->decode.emissive_enabled=emissive && std::strcmp(emissive,"1")==0;
         pack->asset_root = input.string();
         pack->replacement_root = replacement.lexically_normal().string();
 
@@ -1546,6 +1575,9 @@ int hd_texture_pack_acquire_decoded(HdTexturePack* pack,
     out_pixels->width = lease->image->width;
     out_pixels->height = lease->image->height;
     out_pixels->stride = lease->image->width * 4;
+    if(!lease->image->emissive.empty()){
+        out_pixels->emissive=lease->image->emissive.data();out_pixels->emissive_stride=lease->image->width;
+    }
     out_pixels->lease = lease;
     return HD_TEXTURE_LOOKUP_FOUND;
 }

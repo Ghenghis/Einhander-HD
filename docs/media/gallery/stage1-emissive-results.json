@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "kind": "Actual emissive mask visual comparison and scoped opening cadence",
+  "facade_results": {
+    "path": "docs/media/gallery/stage1-lit-facade-fly-past-results.json",
+    "sha256": "8d890ab19f297cf00eef9d044ccb4e3a77f15d24bc7d6bd342e3c772261fa34a",
+    "bytes": 195486
+  },
+  "candidate_sha256": "245318cda0ecdfb7cf374e6d8ef9e56dca6455ca51e95337adecc97c026a9a2b",
+  "authored_entries": 837,
+  "pack_keys": 1669,
+  "native_region_checks": 226,
+  "runtime": {
+    "build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+    "executable_sha256": "d39571a593b4242c291aa99ca5ca17c50d7ebec878dc3504a11f884b9c2ea221"
+  },
+  "validation": {
+    "receipt": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v27/tests.json",
+      "sha256": "ad032f89d462f44f8b9826f6d30f3a120b484e2c16680c4296783e81a381b721",
+      "bytes": 70659
+    },
+    "summaries": {
+      "native-regions": "RESULT checks=33 failures=0",
+      "watchdog-time": "{\"checks\":9,\"failures\":0}",
+      "freeze-stack": "{\"thread_resumed_before_locking\":true,\"bounded_stack_copy\":true,\"self_suspend_rejected\":true}",
+      "hero-draw": "RESULT checks=52 failures=0",
+      "source-cache-filter": "RESULT checks=14 failures=0",
+      "decode-queue": "{\"checks\":259,\"failures\":0,\"capacity\":32,\"urgent_burst\":4}",
+      "real-gl-world-0": "WORLD_RESULT checks=731 failures=0",
+      "real-gl-world-1": "WORLD_RESULT checks=733 failures=0"
+    },
+    "composer_cases": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/emissive-composer-regression-v1-fixtures/results.json",
+      "sha256": "2473b8d85968b81e4864531be292d209e8af054f8d84ff098cf464b399e91d02",
+      "bytes": 510
+    }
+  },
+  "contract": {
+    "file": "<replacement PNG stem>-emissive.png",
+    "encoding": "8-bit grayscale PNG; same size as replacement",
+    "opt_in": "PSXRECOMP_HD_EMISSIVE=1; default off",
+    "formula": "RGB * mix(vertex_rgb * 2, 1, mask / 255)",
+    "alpha_stp_unchanged": true,
+    "raw_primitives_unchanged": true,
+    "native_fallback_unchanged": true,
+    "async_single_worker": true,
+    "mask_bytes_in_existing_cpu_budget": true,
+    "extra_gl_mask_budget_bytes": 67108864
+  },
+  "mask_files": [
+    {
+      "name": "01F17029-07D24911-emissive.png",
+      "sha256": "d4bc6c37b64ede47f636581dea9baaf09ec03199e50f7d46b98457b42f3ab5dd",
+      "dimensions": [
+        2048,
+        1024
+      ],
+      "bytes": 3060
+    },
+    {
+      "name": "D318FEFA-EA6ACA31-emissive.png",
+      "sha256": "ace3528861d2ca721219036e62c4e4d77242af141d1ff0f7e9c35a0ab0c022f1",
+      "dimensions": [
+        2048,
+        512
+      ],
+      "bytes": 1824
+    }
+  ],
+  "visuals": [
+    {
+      "enabled": false,
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-off-v1/hd-on_rewind-off/world-flypast-proof.json",
+        "sha256": "a4bf2137855e2a07ad1cd1b7c5ff5d3158ee16e4a5fb305de1a50c1cd17d8873",
+        "bytes": 442287
+      },
+      "capture_metadata": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-off-v1/hd-on_rewind-off/captures/world-015.json",
+        "sha256": "b446da0679df21071f0673e0550ed14abe24b737f1c4dfb351a60c8f6f235d0f",
+        "bytes": 853
+      },
+      "still": {
+        "path": "docs/media/gallery/stage1-canyon-emissive-off.png",
+        "sha256": "2a6af9c890dfa7afb8eaf33e42cd6b1b299a4408c8f3fd8b0a55b526b8a8b7be",
+        "bytes": 2865087,
+        "dimensions": [
+          2880,
+          2160
+        ],
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-off-v1/hd-on_rewind-off/captures/world-015-internal.png",
+          "sha256": "7279784566fff155284ca34f6d5e90365b0647b1502b3c732b6bacc0cca619d4",
+          "bytes": 18666048
+        },
+        "pixel_identical": true,
+        "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved"
+      },
+      "composed_frame_bracket": [
+        3935,
+        3940
+      ],
+      "hires_sequential_not_atomic": true,
+      "camera_frame_aligned": false,
+      "timer_only_assistance": true,
+      "ordinary_firing": false
+    },
+    {
+      "enabled": true,
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/world-flypast-proof.json",
+        "sha256": "612a4e5406c81e33245e966d5f266860b82a4552bf6082e35da98c6d00077710",
+        "bytes": 576334
+      },
+      "capture_metadata": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/captures/world-015.json",
+        "sha256": "fe879524a2265fc29dbdf0f3b214cb17b05f5e9a70ad158381cbed8d43894f45",
+        "bytes": 851
+      },
+      "still": {
+        "path": "docs/media/gallery/stage1-canyon-emissive-on.png",
+        "sha256": "166166ceb0a09b4a992afad92957ed4620a83ba11ebf6cd2163f553f59f2dfe7",
+        "bytes": 3018413,
+        "dimensions": [
+          2880,
+          2160
+        ],
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/captures/world-015-internal.png",
+          "sha256": "bf5384069b4f7283178035a697e1ccd3f42047b167bc1ba333205930153b4f71",
+          "bytes": 18666048
+        },
+        "pixel_identical": true,
+        "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved"
+      },
+      "composed_frame_bracket": [
+        3922,
+        3928
+      ],
+      "hires_sequential_not_atomic": true,
+      "camera_frame_aligned": false,
+      "timer_only_assistance": true,
+      "ordinary_firing": false
+    }
+  ],
+  "poster": {
+    "path": "docs/media/gallery/stage1-lit-facade-poster.png",
+    "sha256": "88add2929966d5b13408c472c23263e7d7f489c5e02bed7e16dbfdc61ec7f678",
+    "bytes": 1124988,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/captures/world-060.png",
+      "sha256": "66364f1afaed8861a078c4205fe100f8ee493ef1b2aa7b2a1e98d08331c8eeb3",
+      "bytes": 3687708
+    },
+    "pixel_identical": true,
+    "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved"
+  },
+  "pacing_pair": [
+    {
+      "enabled": false,
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/emissive-pacing-off-v1/hd-on_rewind-off/pacing-proof.json",
+        "sha256": "3456fcaf3d2147d986d172461b059866dfcf32ab3185bbbf0c641ab955c8bc7a",
+        "bytes": 12098048
+      },
+      "runtime_build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+      "guest_frames": 1802,
+      "seconds": 30.00018750000163,
+      "guest_fps": 60.06629125234308,
+      "audio_starved_sample_frames_delta": 0,
+      "initial_audio_fill_ms": 136.9,
+      "final_audio_fill_ms": 176.4,
+      "five_second_windows": [
+        {
+          "start_index": 0,
+          "end_index": 5,
+          "fps": 60.39654652518824
+        },
+        {
+          "start_index": 5,
+          "end_index": 10,
+          "fps": 60.20290659638583
+        },
+        {
+          "start_index": 10,
+          "end_index": 15,
+          "fps": 59.59661372064094
+        },
+        {
+          "start_index": 15,
+          "end_index": 20,
+          "fps": 59.99907121429018
+        },
+        {
+          "start_index": 20,
+          "end_index": 25,
+          "fps": 59.60039217044438
+        },
+        {
+          "start_index": 25,
+          "end_index": 30,
+          "fps": 60.60224955570066
+        }
+      ],
+      "ordinary_fire_input": true,
+      "ram_writes": false,
+      "state_loads": false,
+      "timer_assistance": false,
+      "recording": false
+    },
+    {
+      "enabled": true,
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/emissive-pacing-on-v1/hd-on_rewind-off/pacing-proof.json",
+        "sha256": "fb47be017c6cac505be9a5918adadb4ea406ac52cbfbbfe2fa68845f43f34703",
+        "bytes": 12489196
+      },
+      "runtime_build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+      "guest_frames": 1860,
+      "seconds": 31.000152900000103,
+      "guest_fps": 59.99970406597555,
+      "audio_starved_sample_frames_delta": 2047,
+      "initial_audio_fill_ms": 0.3,
+      "final_audio_fill_ms": 178.1,
+      "five_second_windows": [
+        {
+          "start_index": 0,
+          "end_index": 5,
+          "fps": 59.59838607590454
+        },
+        {
+          "start_index": 5,
+          "end_index": 10,
+          "fps": 60.39643540230957
+        },
+        {
+          "start_index": 10,
+          "end_index": 15,
+          "fps": 59.8011732989039
+        },
+        {
+          "start_index": 15,
+          "end_index": 20,
+          "fps": 59.99904601523829
+        },
+        {
+          "start_index": 20,
+          "end_index": 25,
+          "fps": 59.80424729761019
+        },
+        {
+          "start_index": 25,
+          "end_index": 30,
+          "fps": 60.195387829303506
+        }
+      ],
+      "ordinary_fire_input": true,
+      "ram_writes": false,
+      "state_loads": false,
+      "timer_assistance": false,
+      "recording": false
+    }
+  ],
+  "limitations": [
+    "A single two-run opening pair is not a full-stage cadence/audio test or a settled no-overhead claim.",
+    "Initial audio-buffer fill differs between legs; starvation differences cannot be attributed solely to masks.",
+    "One-Hz sequential telemetry has frame quantization and request-time differences; small FPS differences are not speed claims.",
+    "The two 2160p captures are sequential and not frame-aligned; no pixel-matched brightness ratio is claimed.",
+    "Visual fly-pasts used the disclosed timer-only aid; recorder-off pacing runs used no survival aid.",
+    "The full170-second recording still accumulated audio starvation. Stage clear and production installation remain unverified."
+  ]
+}
