@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 50,
-  "total_image_bytes": 103834231,
+  "image_count": 53,
+  "total_image_bytes": 107077791,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1517,6 +1517,57 @@
       "unmodified_copy": false,
       "pixel_content_preserved": true,
       "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-assembled-facade-poster.png",
+      "sha256": "44e8bef1de7c17beec8997f52200060f1b85786a2d068eec76ef173dd1995aac",
+      "bytes": 1262486,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "public_video_time_seconds": 32,
+      "kind": "lossless PNG extraction of the published gameplay video",
+      "category": "actual_capture",
+      "status": "Assisted assembled pack, scoped facade59.93 guestfps; private candidate",
+      "source_identifier": "actors-flypast-v4 continuous video",
+      "unmodified_copy": false,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-assembled-facade-angled.png",
+      "sha256": "c59e8a762909cf4322972ce7312d030e98638d1f8a6d567fdf6e5c6750cdf80d",
+      "bytes": 925742,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "public_video_time_seconds": 36,
+      "kind": "lossless PNG extraction of the published gameplay video",
+      "category": "actual_capture",
+      "status": "Assisted assembled pack, scoped facade59.93 guestfps; private candidate",
+      "source_identifier": "actors-flypast-v4 continuous video",
+      "unmodified_copy": false,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-assembled-facade-exit.png",
+      "sha256": "dbf98337939933d126e73cd1219be6723633d4a9453519c9042234ab4fc373af",
+      "bytes": 1055332,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "public_video_time_seconds": 48,
+      "kind": "lossless PNG extraction of the published gameplay video",
+      "category": "actual_capture",
+      "status": "Assisted assembled pack, scoped facade59.93 guestfps; private candidate",
+      "source_identifier": "actors-flypast-v4 continuous video",
+      "unmodified_copy": false,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": false
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1644,9 +1695,20 @@
       "status": "continuous entry-to-exit excerpt; timer assisted; measured41.76 guestfps in full recording",
       "result_manifest": "docs/media/gallery/stage1-world-facade-results.json",
       "processing": "Single continuous stream-copy excerpt; no re-encoding, interpolation, retiming, upscaling or internal cuts"
+    },
+    {
+      "path": "docs/media/gallery/stage1-assembled-facade-fly-past.mp4",
+      "sha256": "dd11d454f7f1073294960166d894a60d7d54176111990caa0af7e7c06873d5a6",
+      "bytes": 67581642,
+      "category": "actual_gameplay_capture",
+      "status": "Continuous entry-to-exit excerpt; timer assisted; scoped facade59.93 guestfps, full run59.21",
+      "result_manifest": "docs/media/gallery/stage1-assembled-facade-results.json",
+      "processing": "Single continuous stream-copy excerpt. No retiming, interpolation, upscaling, re-encoding or internal cuts.",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 6,
-  "total_video_bytes": 185825195,
-  "video_frame_extract_count": 5
+  "video_count": 7,
+  "total_video_bytes": 253406837,
+  "video_frame_extract_count": 8
 }

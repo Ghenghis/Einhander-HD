@@ -29,7 +29,7 @@ Source matching and GL submission receipts establish admission. The image establ
 ## Artwork and runtime status
 
 - **24-window sheet:** an artwork review sheet, distinct from the [actual H24 in-game test](H24-IN-GAME-RESULTS.md). The full 4096 × 4096 master was used in that assisted run, and the entry footage and stills show the mapped interiors; final visual acceptance remains open.
-- **Ships and Gunpods:** generated reference-grounded finish concepts; not installed UV textures, geometry or weapon behavior.
+- **Ships and Gunpods:** the concept gallery remains separate from runtime artwork. The latest private capture submitted all five delivered Mk.II hull/engine entries, 14 of 27 Gunpod entries and entries from five enemy page groups. This is partial live integration, not acceptance of all poses, damage phases, equipment behavior or a production installation.
 - **Material sheets:** RGB detail inputs, without a PBR, HDR or dynamic reflection claim.
 - **Title E:** an actual internal title capture with scoped layout review; further UI states and cosmetic issues remain open.
 
@@ -37,7 +37,17 @@ Static reflection/interior artwork can give windows depth and material character
 
 ## Motion and performance
 
-The latest [assembled-world pass](H24-IN-GAME-RESULTS.md) supplies a continuous
+The latest [assembled facade and actor pass](H24-IN-GAME-RESULTS.md) supplies a
+continuous 49.6-second entry-to-exit excerpt. It uses a 559-entry, 1,492-key private
+pack and submitted 368 authored entries during the full run. The measured bracket
+containing all H24/neighbor submissions averaged **59.93 guest frames/s** with no
+audio-starvation increment; the full 170-second recording averaged **59.21** and
+still accumulated starvation. The silent variable-rate video preserves recorded
+timing and packet content; captured video frame rate differs from guest cadence.
+No firing, turbo/rewind off and timer-only assistance are disclosed. Full-stage
+pacing/audio, unseen art phases, latest-menu acceptance and installation remain open.
+
+The earlier 207-entry [assembled-world pass](H24-IN-GAME-RESULTS.md) supplies a continuous
 56.3-second entry-to-exit excerpt with the delivered building tiles, green atlas,
 wall/tunnel window band and signs. The full private recording submitted 182 of
 207 newly composed entries, including all ten delivered building tiles. It used

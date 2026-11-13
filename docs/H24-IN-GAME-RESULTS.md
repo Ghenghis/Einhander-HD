@@ -1,6 +1,53 @@
 # Full 24-room facade: actual in-game results
 
-## Latest assembled-world pass — November 12, 2026
+## Latest assembled facade and actors — November 12, 2026
+
+[![Watch the current full facade fly-past](media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)
+
+[Play the continuous 49.6-second entry-to-exit video](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4) · [Coverage, measurements and hashes](media/gallery/stage1-assembled-facade-results.json) · [Angled view](media/gallery/stage1-assembled-facade-angled.png) · [After exit](media/gallery/stage1-assembled-facade-exit.png)
+
+The fresh private `actors-flypast-v4` run uses the 1,492-key pack with 559 authored
+entries, retaining the original full 4096-pixel H24 and matched neighboring
+facade. It includes the latest frozen sky/menu set, Mk.II hulls, three Gunpod
+families and five enemy page groups. In the full 170-second recording, **368 of
+559 authored entries submitted replacements**, including all ten delivered
+building tiles, the authored wall and tunnel band, all five Mk.II hull/engine
+entries, 14 of 27 Gunpod entries and entries from all five enemy groups. This
+does not accept unseen phases, all poses or every room.
+
+H24 submitted 21 recorded draws at guest frames 5662–7316; the matched neighbor
+submitted 25 at 5725–7360. Front and angled faces are visible in the excerpt,
+with natural sign/building/enemy occlusion. Firing was off and one finite
+72-frame down-left input parked the ship low. The 180-second timer-only aid made
+878 successful writes and stopped without forcibly clearing the countdown.
+There were no lives writes, stage jumps, camera overrides or state loads.
+Turbo, rewind and interpolation were off. The game exited with code zero and
+its debug port closed; quit returned `emu busy or frozen` before closure.
+
+**The telemetry bracket containing all facade submissions measured 59.93 guest
+frames/s**, with 1,858 guest frames in 31.001 seconds and no increase in the
+audio-output starvation counter. This is the scoped normal-clock facade result.
+The full recording averaged **59.21 guest frames/s** and accumulated 98,301
+output-starved sample frames. Full-stage pacing and audible audio acceptance
+remain open. The excerpt is silent; the variable-rate recording averages about
+54.9 captured frames/s, which is separate from guest simulation cadence.
+
+The 1280 × 960 H.264 video is one continuous stream-copy excerpt, with source
+presentation timestamps approximately 26.433–76.050 seconds. All 2,725 compressed
+packets match a contiguous source sequence; relative presentation/decode
+timestamps are preserved within one microsecond. No re-encoding, retiming,
+interpolation, upscaling or internal cuts were used. The poster and stills are
+lossless frame extractions at public 32, 36 and 48 seconds.
+
+This pass used the verified original-menu route, then enabled the entire frozen
+pack after native City verification. The new menu artwork remains separately
+unaccepted: three earlier attempts stopped on changed title/selection templates,
+and their failed evidence is retained. Opaque HD draw batching was enabled in the
+private runtime; CPU attribution, GPU timer queries and experimental world
+filtering were off. The video establishes this observed integration, not an
+unassisted stage clear, complete art approval or a production installation.
+
+## Earlier 207-entry assembled-world pass — November 12, 2026
 
 [![Watch the assembled-world facade pass](media/gallery/stage1-world-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4)
 

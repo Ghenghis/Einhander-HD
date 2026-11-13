@@ -42,6 +42,15 @@ ASTRAEA_ARM_REFERENCES = {
 }
 
 
+ASSEMBLED_REFERENCES = dict(REFERENCES, title=(
+    "dev-center-evidence/stage1-completion-20261112/actors-flypast-v1/hd-on_rewind-off/journey-state-thumbnail.png",
+    "0d6ee409708c66dc103d6d107b0e2228331d0024f75038731835868867da4c4c"), fighter=(
+    "dev-center-evidence/stage1-completion-20261112/actors-flypast-v2/hd-on_rewind-off/updated-fighter-reference-2.png",
+    "a49c4be9caaf3e81c6d71e35e78f3ccfc529e2c461d71576d8ee70454ee1914b"), arm=(
+    "dev-center-evidence/stage1-completion-20261112/actors-flypast-v3/hd-on_rewind-off/updated-arm-reference-2.png",
+    "4b162a149e467cbee25a54e0609aacac7e65a776471848ca2eed0f91c2aee4cb"))
+
+
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
@@ -53,10 +62,11 @@ def native_pixels(image):
 
 
 def load_references(profile="hd"):
-    if profile not in ("hd", "native-stock"):
+    if profile not in ("hd", "native-stock", "assembled-v1"):
         raise ValueError("Unknown native route reference profile")
     pixels, receipts = {}, {}
-    for name, (relative, expected) in (STOCK_REFERENCES if profile == "native-stock" else REFERENCES).items():
+    registry={"hd":REFERENCES,"native-stock":STOCK_REFERENCES,"assembled-v1":ASSEMBLED_REFERENCES}[profile]
+    for name, (relative, expected) in registry.items():
         path = ROOT / relative
         actual = digest(path)
         if actual != expected:

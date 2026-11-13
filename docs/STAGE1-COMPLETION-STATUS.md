@@ -2,12 +2,15 @@
 
 November 12, 2026. **The remaster and Stage 1 release are incomplete.**
 
-The latest [assembled-world facade footage](H24-IN-GAME-RESULTS.md) uses the
-207-entry candidate. Its disclosed timer-assisted private run submitted 182 new
-artwork entries, including all ten delivered building tiles and the wall/tunnel
-band. The published continuous excerpt preserves actual timing. Its measured
-41.76 guest frames/s is below the normal-speed target. It does not establish an
-unassisted stage clear or production installation.
+The latest [assembled facade footage](H24-IN-GAME-RESULTS.md) uses the 559-entry,
+1,492-key candidate. Its disclosed timer-assisted private run submitted 368
+authored entries, including all ten delivered building tiles, the wall/tunnel
+band, the delivered Mk.II hull entries, some Gunpod entries and all five enemy
+page groups. The continuous
+49.6-second excerpt preserves actual packet content and timing. A telemetry
+bracket containing both facade mappings averaged 59.93 guest frames/s with no
+audio-starvation increment. The full recording averaged 59.21 and still recorded
+starvation; full-stage pacing/audio, art acceptance and installation remain open.
 
 Current verified work includes stock-menu routing fixtures, per-vertex UV draw
 receipts, a private Robin controller run without RAM writes, and native source
@@ -48,9 +51,11 @@ full-stage qualification. Native fighter references for Mk.III and Astraea have
 also been captured. Alternate selection requires a distinct label match after
 each finite down input; a failed match cannot confirm the craft. A closed Mk.III
 run supplied 890 verified native source pairs; two incomplete validity maps were
-excluded. Its actual gameplay ended at Continue. Astraea source acquisition is
-in progress; its first attempt stopped on the distinct second ARM-selection
-prompt, and the revised route verifies both slots before confirming each one.
+excluded. Its actual gameplay ended at Continue. Astraea's revised route verified
+both distinct ARM slots, reached native City, then Continue and Total Evaluation.
+Its closed run supplied 900 verified source pairs with one incomplete dump
+excluded, including a previously missing interface key. These separate runs
+overlap in source content and do not establish a stage clear.
 
 Runtime diagnostics show substantial HD/rewind overhead and audio starvation.
 Disabling GPU timer queries did not restore sustained normal cadence. The scoped

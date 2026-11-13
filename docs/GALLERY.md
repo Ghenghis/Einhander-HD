@@ -6,7 +6,21 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
-### Latest assembled-world facade fly-past
+### Latest full facade and assembled actors
+
+[![Play the current facade fly-past](media/gallery/stage1-assembled-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4)
+
+[Play the continuous 49.6-second pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-assembled-facade-fly-past.mp4) · [Actual results and limitations](H24-IN-GAME-RESULTS.md)
+
+Actual entry-to-exit footage from the 559-entry, 1,492-key private pack. All ten
+building tiles submitted; the full recording submitted 368 authored entries.
+The telemetry bracket containing both facade mappings measured **59.93 guest
+frames/s with no audio-starvation increment**. The full run averaged 59.21 and
+still recorded starvation. No firing; turbo/rewind off; timer-only assistance
+disclosed. Silent, variable-rate H.264, with preserved packet content and timing.
+Latest-menu acceptance, full-stage checks and production installation remain open.
+
+### Earlier 207-entry assembled-world facade fly-past
 
 [![Play the assembled-world facade pass](media/gallery/stage1-world-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4)
 

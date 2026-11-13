@@ -24,7 +24,7 @@ regression. Real OpenGL runs passed 680 and 682 checks, including byte-identical
 framebuffers with batching off/on across overlap, UV limits, native interleaving,
 semi-transparency, masks, uploads, copies, live material changes, perspective,
 capacity, eviction and readback boundaries. Exact-region draws were compared
-at both framebuffer origins. The route/GPU guard checks passed 29 tests and
+at both framebuffer origins. The route/GPU guard checks passed 30 tests and
 Robin/devtools checks passed 38 tests.
 
 Actual City runs used the same binary within each pair, the same frozen artwork,

@@ -55,6 +55,12 @@ class NativeRouteTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Unknown"):
             route.load_references("unregistered")
 
+    def test_assembled_title_uses_its_own_pinned_actual_native_reference(self):
+        refs,_=route.load_references("assembled-v1")
+        for expected,pixels in refs.items():
+            self.assertEqual(expected,route.classify_native(pixels,refs,"assembled-v1")["state"])
+        self.assertEqual("unknown",route.classify_native(refs["title"],self.refs)["state"])
+
     def test_original_profile_requires_three_observations_per_prompt(self):
         refs, _ = route.load_references("native-stock")
         with tempfile.TemporaryDirectory() as directory:

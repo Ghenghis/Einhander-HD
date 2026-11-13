@@ -62,11 +62,17 @@ def prepare(args):
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
     report=pacing.prepare('hd-on_rewind-off',config)
+    if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
     report['visual_profile']=dict(kind='assisted assembled-world fly-past',
         normal_clock_settings=True,stable_60fps_established=False,ordinary_fire=False,
         timer_only_assistance=True,lease_seconds=180,stage_clear_acceptance=False)
     report['visual_profile'].update(recorder_backend=args.recorder,capture_seconds=args.capture_seconds)
+    report['visual_profile']['native_menus']=bool(args.native_menus)
+    if args.native_menus:
+        control=directory/'replacement-control.txt';control.write_text('0\n')
+        report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
+        report['route_reference_profile']='native-stock'
     pacing.base.write(directory/'candidate.json',report)
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 
@@ -86,6 +92,12 @@ def run(args):
     try:
         process=pacing.launch(report)
         proof['route']=enter_city(report,poll_seconds=.25)
+        if report['visual_profile'].get('native_menus'):
+            control=directory/'replacement-control.txt'
+            if control.read_text()!='0\n':raise RuntimeError('Native-menu control changed before gameplay')
+            control.write_text('1\n')
+            proof['replacement_enabled_after_native_menus']=dict(at_utc=ui.stamp(),
+                control=pacing.base.ref(control),menu_art_acceptance=False)
         def owned_identity(unused):
             # launch() already validated PID/path before observing title. The
             # retained Popen handle proves this same owned process is still live.
@@ -188,6 +200,8 @@ if __name__=='__main__':
     p.add_argument('--runtime',type=Path)
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
+    p.add_argument('--route-profile',choices=['hd','assembled-v1'],default=None)
+    p.add_argument('--native-menus',action='store_true',help='Verified stock menu route, then enable the entire frozen pack for gameplay; no new-menu acceptance')
     p.add_argument('--recorder',choices=['gdigrab','gfxcapture'],default='gdigrab')
     p.add_argument('--capture-seconds',type=int,choices=[120,150,170],default=170)
     p.add_argument('--prepare-only',action='store_true')
