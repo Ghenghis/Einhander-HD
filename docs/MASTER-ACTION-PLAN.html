@@ -221,7 +221,13 @@ Capacity is bounded by one RTX 3090 Ti and the quiet windows Codex needs for mea
 <li>Release pack: one reconciled HD pack, the audio pack, the options menu, the launcher, HTML docs, and the user's sign-off.</li>
 </ul>
 
-<h2>Lanes and actual state (2026-11-13 15:28Z)</h2>
+<div class="card"><strong>Current measured results and blockers</strong><ul>
+<li><strong>SYS held-fire test:</strong> the isolated build ran 7,589,351 compiled SYS dispatches and averaged 53.4885 fps with 576,066 starved sample frames. Its same-binary interpreter-only control averaged 21.5142 fps. Both had rewind and cached native overlays off. This is not a comparison against the installed build.</li>
+<li><strong>Correctness blocks SYS promotion:</strong> boot fingerprints agree through frame 1048, then diverge at 1049, before the first controller input. The latch RAM hashes match. The SYS owner must explain and fix the first divergent stores before merge or installation. <a href="media/gallery/stage1-sys-runtime-results.json">Exact findings</a>; <a href="media/gallery/stage1-sys-native-on-gameplay.mp4">actual held-fire gameplay</a>; <a href="media/gallery/stage1-sys-native-on-callback.wav">actual output audio</a>.</li>
+<li><strong>GPU unavailable:</strong> after those tests closed, nvidia-smi reported the GPU lost. Further GL/game/CUDA work is paused pending recovery; no later GPU results are accepted. The cause is unestablished. CPU-only stage preparation, debugging and unit tests continue. No reboot has been authorized.</li>
+<li><strong>Inbox continuity:</strong> the shared stream renews its polls and reconnects, but watcher health alone does not prove model delivery. Priority-first hook context now keeps urgent blockers visible (10/10 tests). Same-timestamp reconciliation and outer-task expiry/model-wake tests are being completed with Claude.</li>
+</ul></div>
+<h2>Lanes and actual state (November 13, 2026; updated after SYS firing tests)</h2>
 <p class="small">Each state names exactly one level:
 <ul class="small">
 <li><strong>extracted:</strong> static-predicted from the disc.</li>
@@ -232,7 +238,7 @@ Capacity is bounded by one RTX 3090 Ti and the quiet windows Codex needs for mea
 Queued work is not counted as done. Devin is on user hold; Codex and Claude only.</p>
 <table>
 <tr><th>Lane</th><th>Owner</th><th>Completed artifacts</th><th>State</th><th>Next / blocker</th></tr>
-<tr><td>Runtime: SYS-primary</td><td>Claude agent (isolated worktree)</td><td>Branch <code>claude/sys-primary</code> 3711369: framework, generator (SYS.EXE: 23 shards, 1,817 functions), latch, unit harness, ctest 5/5</td><td class="wip">implemented, not built in full</td><td>Codex review, then a full runtime build and the live section 19.4 tests</td></tr>
+<tr><td>Runtime: SYS-primary</td><td>Claude agent (isolated worktree)</td><td>Branch <code>claude/sys-primary</code> 2efc387: full runtime built; independent latch/restore/split/reset harness passed, 8/8 mutants caught; actual held-fire pair completed</td><td class="blocked">live differential blocked</td><td>First divergent stores at frame 1049; remaining live guard/restore gates after GPU recovery</td></tr>
 <tr><td>Runtime: HD cost</td><td>Claude agent + Codex</td><td>
   <ul>
   <li>Batching boundary cases (24/24).</li>
@@ -258,9 +264,9 @@ Queued work is not counted as done. Devin is on user hold; Codex and Claude only
 <tr><td>Stage 1 art</td><td>Claude agents</td><td>Import plan v3 (635 rows); Greif v4, Astraea v2.1, W5, HUD fades, w3 HUD class-fix, Drache v1 (83 keys), W6 native gaps (7 families), RISE class-fix</td><td class="wip">authored; not imported</td><td>Codex import and live A/B; live-pack class-fix for 386 audited keys; Drache v2; import plan v4</td></tr>
 <tr><td>Robin v2</td><td>Claude agent</td><td>RAM perception (player, 96-record actor pool, collision spheres, Greif HP), planner, 14 offline tests</td><td class="wip">offline only</td><td>Live client (dry-run); <code>read_ram_multi</code> from Codex; first live perception check</td></tr>
 <tr><td>HD audio</td><td>Claude agents</td><td>35 unique XA streams decoded bit-exact; v1 48 kHz masters; runtime pack design and step-1 diff (tests pass)</td><td class="wip">authored v1; not integrated</td><td>AI v2 masters (models installing); SFX inventory; Codex review of step 1</td></tr>
-<tr><td>Stages 2+3</td><td>Claude agent (EIN-STAGE2/3)</td><td>Static export present (stage 2 about 1,010 textures); stage 2 has 9 live-confirmed keys</td><td class="wip">extracted</td><td>Readiness reports landed; validate their source gaps before the first safe art families</td></tr>
-<tr><td>Stages 4+5</td><td>Claude agent (EIN-STAGE4/5)</td><td>Static export present</td><td class="wip">extracted</td><td>Stage 4 readiness report landed, stage 5 pending; confirm stage 4's lowest route live</td></tr>
-<tr><td>Stages 6+7, endings</td><td>Claude agent (EIN-STAGE6/7)</td><td>Static export present (including ending and gallery scopes)</td><td class="wip">extracted</td><td>Readiness reports landed; confirm stage 6's timeout ending, credits and gallery live</td></tr>
+<tr><td>Stages 2+3</td><td>Claude agent (EIN-STAGE2/3)</td><td>Static export present (stage 2 about 1,010 textures); stage 2 has 9 live-confirmed keys</td><td class="wip">extracted</td><td>Both readiness reports complete; stage 2 art preparation underway, stage 3 overlay mapping/source preparation; live confirmation before import</td></tr>
+<tr><td>Stages 4+5</td><td>Claude agent (EIN-STAGE4/5)</td><td>Static export present</td><td class="wip">extracted</td><td>Both readiness reports complete; art preparation underway; confirm stage 4's lowest route live</td></tr>
+<tr><td>Stages 6+7, endings</td><td>Claude agent (EIN-STAGE6/7)</td><td>Static export present (including ending and gallery scopes)</td><td class="wip">extracted</td><td>Both readiness reports complete; art preparation underway; confirm stage 6's timeout ending, credits and gallery live</td></tr>
 <tr><td>Acquisition (AQ-01 onward)</td><td>Codex</td><td>Stage access plan; capture-only aid approved</td><td class="blocked">not started</td><td>Continuous capture chain after the SYS and pacing work</td></tr>
 </table>
 

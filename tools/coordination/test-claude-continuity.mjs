@@ -24,6 +24,27 @@ test('missing/expired/wrong-session continuation blocks stop',()=>{
     {...waiting,continuation:{...waiting.continuation,next_wakeup_utc:new Date(now-1).toISOString()}},
     {...waiting,continuation:{...waiting.continuation,next_wakeup_utc:new Date(now+3600000).toISOString()}}])assert.equal(decide({state}).decision,'block');
 });
+
+test('older urgent blockers stay visible ahead of a burst of routine notes',async()=>{
+  const root=await fs.mkdtemp(path.join(os.tmpdir(),'ein-mail-priority-'));
+  try{
+    const dir=path.join(root,'.hermes3d_orchestrator/inbox/claude-einhander');await fs.mkdir(dir,{recursive:true});
+    const messages=[{id:'msg_urgent',priority:'urgent',created_utc:'2026-11-13T15:00:00Z',body:'Investigate first divergence before promotion'},
+      {id:'msg_high',priority:'high',created_utc:'2026-11-13T15:01:00Z'},
+      ...Array.from({length:7},(_,i)=>({id:'msg_note'+i,priority:'normal',created_utc:`2026-11-13T16:0${i}:00Z`}))];
+    for(const m of messages)await fs.writeFile(path.join(dir,m.id+'.json'),JSON.stringify({...m,status:'unread',sender:'codex-einhander'}));
+    const mail=await inbox(root,'claude-einhander');
+    assert.deepEqual(mail.slice(0,3).map(m=>m.id),['msg_urgent','msg_high','msg_note6']);
+    await fs.mkdir(path.join(root,'coordination'));
+    await writeJson(path.join(root,'coordination/work-continuity.json'),{...config,owner:'claude-einhander',completion_state:'completion.json'});
+    const result=await handle({...input,cwd:root,hook_event_name:'SessionStart'},root);
+    assert.match(result.hookSpecificOutput.additionalContext,/Investigate first divergence before promotion/);
+  }finally{
+    const target=await fs.realpath(root),tempRoot=await fs.realpath(os.tmpdir());
+    assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-mail-priority-'));
+    await fs.rm(target,{recursive:true,force:true});
+  }
+});
 test('real file hook reads mailbox, ignores acknowledgement chatter and throttles context',async()=>{
   const root=await fs.mkdtemp(path.join(os.tmpdir(),'ein-continuity-'));
   try{
