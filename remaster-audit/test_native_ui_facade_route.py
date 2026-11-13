@@ -71,6 +71,16 @@ class NativeRouteTests(unittest.TestCase):
         for name in ("fighter", "arm", "title"):
             self.assertNotEqual("city", route.classify_native(self.refs[name], self.refs)["state"])
 
+    def test_fighter_reference_acquisition_stops_before_selection_confirmation(self):
+        with tempfile.TemporaryDirectory() as directory:
+            transport = FixtureTransport([self.refs[name] for name in ["title"]*3+["fighter"]*3])
+            proof = route.enter_city(dict(evidence=directory, debug_port=4377), stop_at="fighter",
+                timeout_per_state=2, _debug=transport, _clock=lambda: transport.now, _sleep=transport.sleep)
+            self.assertEqual("fighter", proof["final_state"])
+            self.assertEqual(["title"], [x["after_state"] for x in proof["inputs"]])
+            self.assertEqual(2, len(proof["gates"]))
+            self.assertEqual("clear_input", transport.calls[-1][0])
+
     def test_blank_and_actual_fmv_are_unknown(self):
         blank = np.zeros((240, 320, 3), dtype=np.uint8)
         self.assertEqual("unknown", route.classify_native(blank, self.refs)["state"])
@@ -83,6 +93,59 @@ class NativeRouteTests(unittest.TestCase):
         pixels = self.refs["fighter"].copy()
         pixels[50:68, 5:135] = 0
         self.assertEqual("fighter_other_or_label_unverified", route.classify_native(pixels, self.refs)["state"])
+
+    def test_alternate_native_craft_labels_are_distinguished(self):
+        refs, _ = route.load_craft_references()
+        for name, pixels in refs.items():
+            self.assertEqual(name, route.classify_craft(pixels, refs)["craft"])
+        self.assertEqual("unverified", route.classify_craft(np.zeros((240, 320, 3), np.uint8), refs)["craft"])
+
+    def test_alternate_craft_is_verified_after_each_down_input(self):
+        refs, _ = route.load_references("native-stock");crafts, _ = route.load_craft_references()
+        for craft, steps in [("mk3", ["mk3"]), ("astraea", ["mk3", "astraea"])]:
+            with self.subTest(craft=craft), tempfile.TemporaryDirectory() as directory:
+                frames=[refs["title"]]*3+[refs["fighter"]]*3
+                for selected in steps:frames += [crafts[selected]]*3
+                if craft=="astraea":
+                    arms,_=route.load_craft_references(route.ASTRAEA_ARM_REFERENCES)
+                    frames += [arms["arm2"]]*3+[arms["arm1"]]*3
+                else:frames += [refs["arm"]]*3
+                frames += [refs["city"]]*3
+                transport=FixtureTransport(frames)
+                proof=route.enter_city(dict(evidence=directory,debug_port=4377,route_reference_profile="native-stock"),
+                    craft=craft,timeout_per_state=2,_debug=transport,_clock=lambda:transport.now,_sleep=transport.sleep)
+                self.assertTrue(proof["ok"])
+                self.assertEqual(len(steps),sum(x["button"]=="down" for x in proof["inputs"]))
+                self.assertEqual(craft,proof["requested_craft"])
+                if craft=="astraea":
+                    self.assertEqual(["arm2","arm1"],[x["after_state"] for x in proof["inputs"] if x["after_state"].startswith("arm")])
+
+    def test_astraea_arm_slots_are_distinct_and_blank_is_rejected(self):
+        refs,_=route.load_craft_references(route.ASTRAEA_ARM_REFERENCES)
+        for name,pixels in refs.items():self.assertEqual(name,route.classify_arm_slot(pixels,refs)["arm_slot"])
+        self.assertEqual("unverified",route.classify_arm_slot(np.zeros((240,320,3),np.uint8),refs)["arm_slot"])
+
+    def test_astraea_does_not_confirm_arm1_until_selection_changes(self):
+        refs,_=route.load_references("native-stock");crafts,_=route.load_craft_references()
+        arms,_=route.load_craft_references(route.ASTRAEA_ARM_REFERENCES)
+        frames=[refs["title"]]*3+[refs["fighter"]]*3+[crafts["mk3"]]*3+[crafts["astraea"]]*3+[arms["arm2"]]*20
+        with tempfile.TemporaryDirectory() as directory:
+            transport=FixtureTransport(frames)
+            with self.assertRaisesRegex(RuntimeError,"astraea-arm1"):
+                route.enter_city(dict(evidence=directory,debug_port=4377,route_reference_profile="native-stock"),
+                    craft="astraea",timeout_per_state=2,_debug=transport,_clock=lambda:transport.now,_sleep=transport.sleep)
+            proof=json.loads(next(Path(directory).glob("native-facade-route-*/route-proof.json")).read_bytes())
+            self.assertEqual(["arm2"],[x["after_state"] for x in proof["inputs"] if x["after_state"].startswith("arm")])
+
+    def test_wrong_craft_after_down_is_never_confirmed(self):
+        refs, _ = route.load_references("native-stock")
+        with tempfile.TemporaryDirectory() as directory:
+            transport=FixtureTransport([refs["title"]]*3+[refs["fighter"]]*20)
+            with self.assertRaisesRegex(RuntimeError,"fighter-mk3"):
+                route.enter_city(dict(evidence=directory,debug_port=4377,route_reference_profile="native-stock"),
+                    craft="mk3",timeout_per_state=2,_debug=transport,_clock=lambda:transport.now,_sleep=transport.sleep)
+            proof=json.loads(next(Path(directory).glob("native-facade-route-*/route-proof.json")).read_bytes())
+            self.assertEqual(["title"],[x["after_state"] for x in proof["inputs"] if x["button"]=="confirm"])
 
     def test_composed_image_cannot_be_used_as_native_gate(self):
         with self.assertRaises(ValueError):

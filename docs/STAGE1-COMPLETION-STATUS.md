@@ -16,8 +16,11 @@ recorded bot restart after a startup read timeout. Later native play reached the
 night skyline and facade section using ordinary controller input. Stage clear
 has not been established.
 
-A newer private world composition now contains 248 delivered artwork entries
-alongside the existing pack, adding the latest sky and native-style menu set.
+A newer private composition now contains 559 delivered artwork entries in a
+1,492-key pack, adding the latest sky, native-style menu set, Mk.II hulls, three
+Gunpod families and five enemy page groups. The 311 added actor source pairs
+passed native word/CLUT CRC checks. Predicted strip uploads retain their
+unobserved labels; 19 transparent null palettes stay native.
 All 219 exact-region bindings passed the production source
 matcher, and nine sky word/CLUT pairs passed CRC and SHA checks. It uses the
 current immutable sign revisions and retains input-manifest snapshots. This is
@@ -37,19 +40,30 @@ gameplay and closed cleanly. Repeat boot/route and full-stage verification remai
 in progress; failed launches remain excluded. One route missed the title while a
 process identity check ran; that check now precedes boot observation.
 
-The position controller's old render-vector address was transient. Ordinary-input
-calibrations in the opening City and night section agree at a different integer
-coordinate pair, but that pair also failed live qualification. The RAM controller
-is unqualified; read-only hull draw geometry is being implemented as its
-replacement. Full-stage route qualification remains
-pending. A failed bot run reached native results naturally;
-that is end-state evidence, not a stage clear.
+Both RAM position candidates failed live qualification and were removed from
+the controller. A read-only Mk.II source-matched hull observer now publishes
+completed-frame bounds. Its native live attempt ended at Continue without
+confirming it; bounded respawn handling has since been revised and still needs
+full-stage qualification. Native fighter references for Mk.III and Astraea have
+also been captured. Alternate selection requires a distinct label match after
+each finite down input; a failed match cannot confirm the craft. A closed Mk.III
+run supplied 890 verified native source pairs; two incomplete validity maps were
+excluded. Its actual gameplay ended at Continue. Astraea source acquisition is
+in progress; its first attempt stopped on the distinct second ARM-selection
+prompt, and the revised route verifies both slots before confirming each one.
 
 Runtime diagnostics show substantial HD/rewind overhead and audio starvation.
 Disabling GPU timer queries did not restore sustained normal cadence. The scoped
 filtering experiment passes synthetic and production-draw GL checks, but its early
 live comparison never activated the target textures. No filtering speed improvement
 is claimed, and the experiment remains disabled by default.
+
+An independent [opaque draw-batching experiment](STAGE1-RUNTIME-RESULTS.md)
+passes 680/682 real-GL checks with pixel-identical comparison scenes. An early
+same-binary pair measured 53.44 guest frames/s with batching off and 56.91 on.
+A later pair measured 40.60 off and 57.66 on while host CPU load differed.
+Neither establishes sustained 60 fps or resolved audio starvation. The feature
+remains opt-in and uninstalled; a quieter repeated comparison is pending.
 
 Remaining release work:
 

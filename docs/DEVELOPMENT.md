@@ -80,8 +80,12 @@ established, and this option is not a production default.
 command boundary that rejects RAM writes and state loads. It keeps invincibility,
 turbo and rewind off, uses private cards, records ordinary pad decisions and
 observations, and requires an independent stage-clear review. A local `STOP` file
-ends its bounded run. `position_lane` uses a read-only Stage 1 position calibration;
-other stages still require verification. The optional source-capture run is
+ends its bounded run. Both RAM position candidates failed live qualification and
+`position_lane` was removed. The opt-in `draw_lane` reads completed-frame Mk.II
+hull geometry; its revised respawn handling still needs full-stage qualification.
+Alternate native craft selection verifies a distinct label after every down
+input and rejects the Mk.II geometry controller for other craft.
+The optional source-capture run is
 separate from recorder-off acceptance and has explicit native recording bounds.
 
 `build_stage1_frozen_candidate.py` composes a hash-pinned plan into a new private
@@ -89,3 +93,16 @@ pack. Exact sign crops retain other artwork on shared pages. Candidate replaceme
 break parent hardlinks atomically; all parent PNG hashes are checked afterward.
 It rejects changed inputs and never installs a candidate. Frozen input revisions
 and the local source proofs must be supplied separately.
+
+`extend_stage1_actor_plan.py` pins delivered actor exports and verifies full-page
+and derived-strip native CRC identities before composing a fresh private pack.
+Derived upload occurrences remain explicitly unobserved; transparent null
+palettes retain native fallback. The current assembled pack still awaits live
+acceptance and installation.
+
+Private GL tests and capture launchers require a GPU reservation, no holder and
+an empty ComfyUI queue. HTTP errors, timeouts, changed reservations and expired
+holder locks are refused. A coordinated CPU-quiet window is also required before
+attributing performance changes while art exports are running. The opaque HD
+batching and CPU attribution flags remain opt-in; actual measurements and their
+limits are recorded in [Stage 1 runtime results](STAGE1-RUNTIME-RESULTS.md).

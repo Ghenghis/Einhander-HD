@@ -4,6 +4,8 @@ Plan: parent={path,sha256}; entries=[{manifest:{path,sha256}, key, image:
 {path,sha256}, optional exact:{source_words:{path,sha256}, source_clut:
 {path,sha256}, source_shape_words:[w,h], page_xy:[x,y], uv:[l,t,r,b],
 depth:0|1|2, clut_xy:[x,y]}}]. Exact images already cover the UV rectangle.
+Full-upload entries may instead provide native_source with source_words,
+source_clut, source_shape_words and depth; CRC and image geometry are checked.
 Every image must use categorical alpha. Hashes pin inputs; output receipts
 record lineage, retained limitations, and pending live acceptance.
 """
@@ -41,6 +43,18 @@ def atomic(path,data):
     with temporary.open('xb') as stream:stream.write(data)
     temporary.replace(path)
 
+def verified_native_source(source,key):
+    words=pinned(source['source_words']).read_bytes();clut=pinned(source['source_clut']).read_bytes()
+    w,h=source['source_shape_words'];depth=source['depth']
+    if depth not in (0,1,2) or not (1<=w<=1024 and 1<=h<=512) or len(words)!=w*h*2:
+        raise ValueError('Invalid full-upload native source dimensions/depth')
+    if len(clut)!=(32 if depth==0 else 512 if depth==1 else 0):raise ValueError('Invalid native CLUT size')
+    actual=f'{zlib.crc32(words):08X}-{zlib.crc32(clut) if depth<2 else 0:08X}'
+    if actual!=key:raise ValueError('Full-upload native source does not match '+key)
+    return dict(key=key,source_shape_words=[w,h],depth=depth,
+        native_dimensions=[w*(4>>depth),h],words_sha256=hashlib.sha256(words).hexdigest(),
+        clut_sha256=hashlib.sha256(clut).hexdigest())
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--plan',type=Path,required=True)
@@ -58,6 +72,7 @@ def main():
         if row.get('alpha'):pinned(row['alpha'])
         if row.get('source_handoff'):pinned(row['source_handoff'])
         if not KEY.fullmatch(row['key']):raise ValueError('Invalid exact key')
+        if row.get('native_source'):verified_native_source(row['native_source'],row['key'])
         declared=metadata.get('keys',{})
         if isinstance(declared,dict) and row['key'] in declared:
             native=declared[row['key']]
@@ -91,7 +106,8 @@ def main():
     chosen=set()
     for row in plan['entries']:
         image_path=pinned(row['image']);key=row['key'];exact=row.get('exact')
-        source_proof=None
+        source_proof=verified_native_source(row['native_source'],key) if row.get('native_source') else None
+        if exact and row.get('native_source'):raise ValueError('Use either exact or full-upload source proof')
         if exact:
             words=pinned(exact['source_words']).read_bytes();clut=pinned(exact['source_clut']).read_bytes()
             w,h=exact['source_shape_words'];depth=exact['depth'];ppw=4>>depth
@@ -123,6 +139,10 @@ def main():
                 sx,sy=image.width//nw,image.height//nh
                 image=image.crop((l0*sx,t0*sy,r0*sx,b0*sy))
             width,height=image.size
+            if row.get('native_source'):
+                nw,nh=source_proof['native_dimensions']
+                if width%nw or height%nh or width//nw!=height//nh:
+                    raise ValueError('Artwork scale does not match its native upload')
             if row.get('alpha'):
                 with Image.open(pinned(row['alpha'])) as source_alpha:
                     alpha=source_alpha.getchannel('A') if source_alpha.mode=='RGBA' else source_alpha.convert('L')

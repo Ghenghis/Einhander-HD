@@ -28,31 +28,39 @@ def main():
     parser.add_argument('--runtime',type=Path)
     parser.add_argument('--candidate',type=Path)
     parser.add_argument('--hd',choices=['on','off'],default='on')
+    parser.add_argument('--craft',choices=['mk2','mk3','astraea'],default='mk2')
     parser.add_argument('--seconds',type=int,choices=[180,600,900],default=180)
     parser.add_argument('--sources',action='store_true')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
-    parser.add_argument('--movement',choices=['weave','left_lane','position_lane'],default='left_lane',
-        help='Position feedback is experimental and has failed live qualification; left_lane is the default bring-up route')
+    parser.add_argument('--movement',choices=['weave','left_lane','draw_lane'],default='left_lane',
+        help='draw_lane uses opt-in, read-only MkII hull geometry; live qualification is required')
+    parser.add_argument('--revive',type=int,choices=[0,1],default=1)
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     args=parser.parse_args()
+    if args.craft != 'mk2' and (args.hd != 'off' or args.movement == 'draw_lane'):
+        parser.error('Alternate-craft source acquisition requires native HD-off play and no MkII hull controller')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,guest_frames=0)
-    report=pacing.prepare('hd-'+('on' if args.sources else args.hd)+'_rewind-off',config)
+    tracking=args.sources or args.movement=='draw_lane'
+    report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
     overrides=report['launches']['candidate']['environment_overrides']
     overrides.update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
+    overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement=='draw_lane' else '0',
+        PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')
     if args.sources:
         dump=directory/'source-pages';dump.mkdir()
         overrides.update(PSXRECOMP_HD_DUMP=dump.as_posix(),PSXRECOMP_HD_SOURCE_SIDECARS='1')
         report['pacing_profile'].update(source_sidecars=True,recorder=True,
             native_page_dump=True,source_tracker_pack_enabled=True)
-        if args.hd=='off':
-            control=directory/'replacement-control.txt';control.write_text('0\n')
-            overrides['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
-            report['route_reference_profile']='native-stock'
-    report['robin_profile']=dict(hd_replacements=args.hd=='on',sources=args.sources,
-        invincible=False,revive='ordinary Continue inputs only',enemy_material='original colors')
+    if tracking and args.hd=='off':
+        control=directory/'replacement-control.txt';control.write_text('0\n')
+        overrides['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
+        report['route_reference_profile']='native-stock'
+    report['robin_profile']=dict(hd_replacements=args.hd=='on',sources=args.sources,craft=args.craft,
+        invincible=False,revive=bool(args.revive),enemy_material='original colors',
+        hull_draw_tracking=args.movement=='draw_lane',native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
     pacing.base.write(directory/'candidate.json',report)
     ui.copy_verified(Path(__file__),directory/'executed-robin.py')
     proof=dict(started_at_utc=ui.stamp(),kind='Robin live bring-up',ram_writes=False,state_loads=False,
@@ -63,7 +71,7 @@ def main():
     lock=threading.Lock()
     try:
         process=pacing.launch(report)
-        proof['route']=enter_city(report,poll_seconds=1)
+        proof['route']=enter_city(report,poll_seconds=1,craft=args.craft)
         proof['turbo_off']=probe.request(report,'turbo',enabled=0)
         proof['turbo_state']=probe.request(report,'turbo_state')
         assert proof['turbo_state']['enabled']==0
@@ -72,7 +80,7 @@ def main():
         import ein_bridge as bridge
         bridge.DEBUG_PORT=report['debug_port']
         original=bridge.cmd
-        allowed={'read_ram','press','clear_input','get_registers'}
+        allowed={'read_ram','press','clear_input','get_registers','player_draw'}
         def audited(command,timeout=8):
             if command.get('cmd') not in allowed:
                 raise RuntimeError('Pad-only acceptance boundary rejected '+str(command))
@@ -107,7 +115,7 @@ def main():
             segment+=1;source_started=True
         if args.sources:start_sources()
         proof['bot_start']=api(dict(action='start',name='Robin',autofire=True,weave=bool(args.weave),
-            dodge=True,revive=True,invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode))
+            dodge=True,revive=bool(args.revive),invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode))
         assert proof['bot_start']['bot']['invincible'] is False
         start=time.monotonic();next_shot=0
         captures=directory/'observations';captures.mkdir()
@@ -122,9 +130,9 @@ def main():
             row=dict(elapsed_seconds=time.monotonic()-start,
                 registers=probe.request(report,'get_registers'),
                 lives=probe.request(report,'read_ram',addr='0x800813C4',len=1),
-                player_position=probe.request(report,'read_ram',addr='0x80081E18',len=8),
                 player_object=probe.request(report,'read_ram',addr='0x800856E0',len=160),
                 audio=probe.request(report,'audio_stats'))
+            if args.movement=='draw_lane':row['hull_draw']=probe.request(report,'player_draw')
             if index>=next_shot:
                 target=captures/(f'frame-{index:04d}.png')
                 row['screenshot']=ui.command(report,json.dumps(dict(cmd='screenshot',path=target.as_posix())))

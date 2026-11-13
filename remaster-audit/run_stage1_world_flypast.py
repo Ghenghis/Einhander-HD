@@ -25,6 +25,31 @@ NEIGHBOR='74EF95B7-B30D16F0'
 
 def emit(row):print(json.dumps(row),flush=True)
 
+def recorder_command(report,output,backend,seconds):
+    ffmpeg=shutil.which('ffmpeg')
+    if not ffmpeg:raise ValueError('Existing FFmpeg required')
+    arguments=report['launches']['candidate']['arguments']
+    title=arguments[arguments.index('--window-title')+1]
+    prefix=[ffmpeg,'-hide_banner','-loglevel','error','-n']
+    if backend=='gfxcapture':
+        import ctypes
+        user=ctypes.windll.user32
+        user.FindWindowW.argtypes=[ctypes.c_wchar_p,ctypes.c_wchar_p]
+        user.FindWindowW.restype=ctypes.c_void_p
+        user.GetWindowThreadProcessId.argtypes=[ctypes.c_void_p,ctypes.POINTER(ctypes.c_ulong)]
+        hwnd=user.FindWindowW(None,title);pid=ctypes.c_ulong()
+        if not hwnd:raise RuntimeError('Owned game window not found')
+        user.GetWindowThreadProcessId(hwnd,ctypes.byref(pid))
+        marker=pacing.base.read(Path(report['evidence'])/'launch-candidate.json')
+        if pid.value!=marker['pid']:raise RuntimeError('Capture window does not belong to the owned runtime')
+        source=f'gfxcapture=hwnd={hwnd}:capture_cursor=0:capture_border=0:display_border=0:max_framerate=60:output_fmt=bgra'
+        return prefix+['-f','lavfi','-i',source,'-t',str(seconds),'-an','-c:v','h264_nvenc',
+            '-preset','p4','-rc','vbr','-cq','18','-b:v','10M','-maxrate','12M','-bufsize','24M',
+            '-fps_mode','passthrough','-movflags','+faststart',str(output)]
+    return prefix+['-f','gdigrab','-framerate','30','-draw_mouse','0','-i','title='+title,
+        '-t',str(seconds),'-an','-c:v','libx264','-preset','veryfast','-crf','18',
+        '-pix_fmt','yuv420p','-movflags','+faststart',str(output)]
+
 def prepare(args):
     candidate=json.loads(args.candidate.read_bytes())
     if candidate.get('production_installed') is not False:
@@ -35,12 +60,13 @@ def prepare(args):
         if ui.sha(row['composed_path'])!=row['sha256']:
             raise ValueError('Frozen PNG changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
-        gpu_queries=0,world_sampling=args.world_sampling,guest_frames=0)
+        gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
     report=pacing.prepare('hd-on_rewind-off',config)
     directory=Path(report['evidence'])
     report['visual_profile']=dict(kind='assisted assembled-world fly-past',
         normal_clock_settings=True,stable_60fps_established=False,ordinary_fire=False,
         timer_only_assistance=True,lease_seconds=180,stage_clear_acceptance=False)
+    report['visual_profile'].update(recorder_backend=args.recorder,capture_seconds=args.capture_seconds)
     pacing.base.write(directory/'candidate.json',report)
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 
@@ -76,12 +102,9 @@ def run(args):
             max_seconds=180,max_bytes=134217728,source_policy='all')
         recording=True
         output=directory/'world-flypast-original.mp4'
-        arguments=report['launches']['candidate']['arguments']
-        title=arguments[arguments.index('--window-title')+1]
-        command=[ffmpeg,'-hide_banner','-loglevel','error','-n','-f','gdigrab',
-            '-framerate','30','-draw_mouse','0','-i','title='+title,'-t','170','-an',
-            '-c:v','libx264','-preset','veryfast','-crf','18','-pix_fmt','yuv420p',
-            '-movflags','+faststart',str(output)]
+        backend=report['visual_profile'].get('recorder_backend','gdigrab')
+        seconds=report['visual_profile'].get('capture_seconds',170)
+        command=recorder_command(report,output,backend,seconds)
         proof['video']=dict(path=str(output),arguments=command,started_at_utc=ui.stamp(),
             scope='Actual window, no interpolation, retiming or scene cuts; silent; capture load affects cadence')
         recorder=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
@@ -89,7 +112,7 @@ def run(args):
         start=time.monotonic()
         proof['park_input']=probe.request(report,'press',buttons=0xFF3F,frames=72)
         cursor=0;tail='';shots=directory/'observations';shots.mkdir()
-        for second in range(171):
+        for second in range(seconds+1):
             time.sleep(max(0,start+second-time.monotonic()))
             if (directory/'STOP').exists():
                 proof['local_stop_marker']=True;break
@@ -164,6 +187,9 @@ if __name__=='__main__':
     p.add_argument('--candidate',type=Path)
     p.add_argument('--runtime',type=Path)
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
+    p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
+    p.add_argument('--recorder',choices=['gdigrab','gfxcapture'],default='gdigrab')
+    p.add_argument('--capture-seconds',type=int,choices=[120,150,170],default=170)
     p.add_argument('--prepare-only',action='store_true')
     p.add_argument('--run-prepared',action='store_true')
     args=p.parse_args()
