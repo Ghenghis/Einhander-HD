@@ -48,6 +48,10 @@ constexpr size_t kUploadIndexCells =
     size_t{kUploadIndexCols} * kUploadIndexRows;
 constexpr size_t kVramWords = size_t{kVramWidth} * kVramHeight;
 constexpr size_t kDefaultDecodeBudget = size_t{64} * 1024 * 1024;
+/* Stage 1 sign/beacon palette phases share small explicit source rectangles.
+ * Keep a finite bound while allowing those phases to avoid full-page PNGs.
+ * At the largest legal rectangle, retained source words total at most32 MiB. */
+constexpr size_t kMaxExactRegions = 256;
 constexpr uint32_t kTrackingStateMagic = 0x31544448u; /* "HDT1" LE */
 constexpr uint32_t kTrackingStateVersion = 1;
 constexpr size_t kTrackingStateHeaderBytes = 24;
@@ -696,7 +700,7 @@ static bool load_exact_regions(HdTexturePack* pack, const fs::path& directory,
     while (std::getline(stream,line)) {
         if (!line.empty() && line.back()=='\r') line.pop_back();
         if (line.empty()) continue;
-        if (pack->regions.size() >= 64) return fail();
+        if (pack->regions.size() >= kMaxExactRegions) return fail();
         std::istringstream row(line); std::string key,tail;
         unsigned x,y,w,h,depth,cx,cy;
         if (!(row>>key>>x>>y>>w>>h>>depth>>cx>>cy) || (row>>tail)) return fail();

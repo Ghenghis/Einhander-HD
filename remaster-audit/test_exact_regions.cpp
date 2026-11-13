@@ -9,7 +9,7 @@ namespace fs=std::filesystem;
 static int checks,failures;
 #define CHECK(name,x) do{bool ok=!!(x);++checks;failures+=!ok;std::printf("CHECK %s %s\n",name,ok?"PASS":"FAIL");}while(0)
 int main(int argc,char**argv){
- if(argc!=2)return 2;fs::path root=argv[1];char error[512]{};HdTexturePack*pack=nullptr;
+ if(argc!=2&&argc!=3)return 2;fs::path root=argv[1];char error[512]{};HdTexturePack*pack=nullptr;
  CHECK("valid alternate-region manifest",hd_texture_pack_create((root/"valid").string().c_str(),&pack,error,sizeof error)&&hd_texture_pack_region_count(pack)==3);
  if(!pack){std::puts(error);return 2;}
  std::vector<uint16_t> vram(1024*512),raw(64*256,0x001f);
@@ -47,6 +47,25 @@ int main(int argc,char**argv){
  for(const char*bad:{"invalid","crc","duplicate","overlap","missing","depth","palette"}){
   pack=nullptr;bool refused=!hd_texture_pack_create((root/bad).string().c_str(),&pack,error,sizeof error)&&pack==nullptr;
   CHECK(bad,refused);if(pack)hd_texture_pack_destroy(pack);
+ }
+ if(argc==3){
+  fs::path capacity=argv[2];pack=nullptr;
+  CHECK("256 explicit phases accepted at bounded limit",hd_texture_pack_create((capacity/"valid256").string().c_str(),&pack,error,sizeof error)&&hd_texture_pack_region_count(pack)==256);
+  if(pack){
+   std::vector<uint16_t>image(1024*512);image[800]=0x1111;
+   HdTextureDrawQuery query{};query.page_x=768;query.depth=0;query.u_first=128;query.u_last=131;query.clut_x=800;query.clut_y=500;query.vram=image.data();query.vram_word_count=image.size();
+   for(unsigned phase:{0u,127u,255u}){
+    image[500*1024+801]=(uint16_t)(phase+1);hd_texture_pack_invalidate(pack,800,500,16,1);
+    HdTextureSourceMatch found{};
+    CHECK("early/middle/late palette phase still matches exact source",hd_texture_pack_match_region(pack,&query,1,&found)==1&&found.texture_hash==hd_texture_crc32_words_le(image.data()+800,1)&&found.palette_hash==hd_texture_hash_clut(image.data(),image.size(),800,500,0));
+   }
+   auto before=hd_texture_pack_region_validation_count(pack);HdTextureSourceMatch found{};
+   for(int i=0;i<3000;++i)hd_texture_pack_match_region(pack,&query,1,&found);
+   CHECK("256-phase hot cache avoids repeated validation",hd_texture_pack_region_validation_count(pack)==before);
+   hd_texture_pack_destroy(pack);
+  }
+  pack=nullptr;
+  CHECK("257 phases rejected above finite limit",!hd_texture_pack_create((capacity/"invalid257").string().c_str(),&pack,error,sizeof error)&&pack==nullptr);
  }
  std::printf("RESULT checks=%d failures=%d\n",checks,failures);return failures?1:0;
 }
