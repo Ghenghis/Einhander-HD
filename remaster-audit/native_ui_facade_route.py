@@ -25,6 +25,12 @@ REFERENCES = {
     "arm": ("dev-center-evidence/typography-repair-20261112-v11/arm-native-gate.png", "cbd5aa5f25118d3ff9ac5a2c83811cfddb817dd772f0ed9447adaa9c88fb74e6"),
     "city": ("dev-center-evidence/facade-ab-20261112/dark-optics/after-fighter-confirm.png", "44b4c9b05583426fce7f9e99d638aba017d07b6e74a06703458f48a269c5f06d"),
 }
+STOCK_REFERENCES = {
+    "title": ("dev-center-evidence/stage1-completion-20261112/native-reference-v1/title.png", "821a55f6cfc7873d593b5c3deae020a50f63dafac154ab6cfbc9d7af1dccb790"),
+    "fighter": ("dev-center-evidence/stage1-completion-20261112/native-reference-v1/fighter.png", "884fb004ef5fdc1f9f16c2054d7aec0bbe57829c87299f19b868c7bc9ed0f43a"),
+    "arm": ("dev-center-evidence/stage1-completion-20261112/native-reference-v1/arm.png", "753f73dbc0c2fb03f850704c6d89304283e108a1e6a5b0c05d39d28aefee50ce"),
+    "city": ("dev-center-evidence/stage1-completion-20261112/native-reference-v1/city.png", "28f0cd1bd87fb912b5361b00bd0e0d6c5aa1a0b4459113badc82a6e0775e713a"),
+}
 
 
 def digest(path):
@@ -37,9 +43,11 @@ def native_pixels(image):
     return np.asarray(image.convert("RGB"))
 
 
-def load_references():
+def load_references(profile="hd"):
+    if profile not in ("hd", "native-stock"):
+        raise ValueError("Unknown native route reference profile")
     pixels, receipts = {}, {}
-    for name, (relative, expected) in REFERENCES.items():
+    for name, (relative, expected) in (STOCK_REFERENCES if profile == "native-stock" else REFERENCES).items():
         path = ROOT / relative
         actual = digest(path)
         if actual != expected:
@@ -68,7 +76,7 @@ def dice(a, b):
     return float(2*(a & b).sum()/total) if total else 0.0
 
 
-def classify_native(pixels, references):
+def classify_native(pixels, references, profile="hd"):
     """Localized header/label/HUD masks; a 3D-looking scene is insufficient."""
     if pixels.shape != (240, 320, 3):
         raise ValueError("Native gate requires 320x240 RGB pixels")
@@ -81,7 +89,15 @@ def classify_native(pixels, references):
     start = dice(white(crop(pixels, start_rect)), white(crop(references["title"], start_rect)))
     cyan_title = int(blue(crop(pixels, (20, 70, 300, 160))).sum())
     hud_rect = (224, 210, 232, 216)  # fixed multiplier x glyph, not changing digits
-    hud = dice(white(crop(pixels, hud_rect)), white(crop(references["city"], hud_rect)))
+    if profile == "native-stock":
+        # The original fixed multiplier X peaks at 104..112 gray. Its native
+        # anti-aliased shape disappears under the HD glyph's >130 white mask.
+        # Restrict this profile to neutral gray, keeping the same ROI and Dice gate.
+        def hud_mask(a):
+            return (a.min(2) > 88) & ((a.max(2) - a.min(2)) < 16)
+    else:
+        hud_mask = white
+    hud = dice(hud_mask(crop(pixels, hud_rect)), hud_mask(crop(references["city"], hud_rect)))
     body = crop(pixels, (0, 30, 320, 195))
     scene_detail = float(np.abs(np.diff(body.astype(float), axis=1)).mean())
     state = "unknown"
@@ -102,13 +118,14 @@ def enter_city(report, *, timeout_per_state=60, poll_seconds=.25,
     """Return serializable route proof, or raise after saving failed evidence."""
     if not 0 < timeout_per_state <= 60 or not .05 <= poll_seconds <= 1:
         raise ValueError("State deadlines must be <=60 seconds; polling 0.05..1 second")
-    refs, receipts = load_references()
+    profile = report.get("route_reference_profile", "hd")
+    refs, receipts = load_references(profile)
     root = Path(report["evidence"])
     directory = root / ("native-facade-route-" + datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S-%f"))
     directory.mkdir()
     proof = dict(ok=False, debug_port=int(report["debug_port"]), evidence=str(directory),
                  helper=dict(path=str(Path(__file__).resolve()), sha256=digest(__file__)),
-                 references=receipts, observations=[], gates=[], inputs=[], ram_writes=False,
+                 references=receipts, reference_profile=profile, observations=[], gates=[], inputs=[], ram_writes=False,
                  state_loads=False, turbo_changed=False)
     old_port = ui.PORT
     ui.PORT = int(report["debug_port"])
@@ -140,7 +157,7 @@ def enter_city(report, *, timeout_per_state=60, poll_seconds=.25,
                 pixels = native_pixels(image)
             sequence += 1
             observation = dict(sequence=sequence, stage=stage, frame=debug("get_registers").get("frame"),
-                               elapsed=_clock(), **classify_native(pixels, refs))
+                               elapsed=_clock(), **classify_native(pixels, refs, profile))
             proof["observations"].append(observation)
             latest.append((pixels.copy(), observation))
             current = observation["state"]

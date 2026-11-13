@@ -50,7 +50,10 @@ def main():
     except Exception as error:
         result["errors"].append(str(error))
     finally:
-        request(report, "clear_input")
+        try:
+            result['input_release']=request(report, "clear_input")
+        except Exception as error:
+            result['errors'].append('Input release: '+str(error))
         result["ended_at_utc"] = stamp()
         output.write_text(json.dumps(result, indent=2)+"\n")
     print(json.dumps(dict(path=str(output), title_observed=result["observed_title"], errors=result["errors"])))

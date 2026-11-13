@@ -40,6 +40,33 @@ class NativeRouteTests(unittest.TestCase):
             with self.subTest(expected=expected):
                 self.assertEqual(expected, route.classify_native(pixels, self.refs)["state"])
 
+    def test_original_hd_off_scenes_have_a_separate_pinned_profile(self):
+        refs, _ = route.load_references("native-stock")
+        for expected, pixels in refs.items():
+            with self.subTest(expected=expected):
+                self.assertEqual(expected, route.classify_native(pixels, refs, "native-stock")["state"])
+
+    def test_original_gray_hud_rejects_blank_and_menu_scenes(self):
+        refs, _ = route.load_references("native-stock")
+        for pixels in [np.zeros((240, 320, 3), np.uint8), refs["title"], refs["fighter"], refs["arm"]]:
+            self.assertNotEqual("city", route.classify_native(pixels, refs, "native-stock")["state"])
+
+    def test_unknown_reference_profile_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Unknown"):
+            route.load_references("unregistered")
+
+    def test_original_profile_requires_three_observations_per_prompt(self):
+        refs, _ = route.load_references("native-stock")
+        with tempfile.TemporaryDirectory() as directory:
+            transport = FixtureTransport([refs[name] for name in
+                ["title"]*3+["fighter"]*3+["arm"]*3+["city"]*3])
+            proof = route.enter_city(dict(evidence=directory, debug_port=4377,
+                route_reference_profile="native-stock"), timeout_per_state=2,
+                _debug=transport, _clock=lambda: transport.now, _sleep=transport.sleep)
+            self.assertTrue(proof["ok"])
+            self.assertEqual(["title", "fighter", "arm"], [x["after_state"] for x in proof["inputs"]])
+            self.assertTrue(all(g["consecutive"] == 3 for g in proof["gates"]))
+
     def test_city_rejects_actual_selection_and_title_scenes(self):
         for name in ("fighter", "arm", "title"):
             self.assertNotEqual("city", route.classify_native(self.refs[name], self.refs)["state"])

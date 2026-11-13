@@ -21,6 +21,7 @@ import http.server
 import json
 import os
 import socket
+import struct
 import sys
 import threading
 import time
@@ -84,6 +85,10 @@ ADDR_AMMO = "0x80084832"       # u16 weapon ammo
 ADDR_AMMO2 = "0x80084834"      # u16 ammo counter
 ADDR_SCOREMULT = "0x80081326"  # u8 score multiplier
 ADDR_HITS = "0x80085710"       # u8 hit counter per the decoded-address table
+# Read-only Stage 1 movement calibration: Q16 Y then reversed-X. Reversible
+# pad pulses and native screenshots establish the signs; other stages remain
+# unverified. This address is never written by the position controller.
+ADDR_PLAYER_POSITION = "0x800855CC"
 
 # Pad words are active-low (idle = 0xFFFF).
 BTN = {
@@ -113,6 +118,12 @@ class Robin(threading.Thread):
         self.dodge = True          # occasional vertical dodge
         self.revive = True         # push through continue / confirm dialogs
         self.invincible = False    # keep invincibility timer topped up (cheat)
+        self.movement = "weave"
+        self.fire_mode = "cross"
+        self._lane_origin = None
+        self._lane_last_frame = None
+        self._vertical_direction = 1
+        self.position = None
         self.tick = 0.15           # decision period (seconds)
         self.log = []
         self._lock = threading.Lock()
@@ -130,6 +141,8 @@ class Robin(threading.Thread):
                 "autofire": self.autofire, "weave": self.weave,
                 "dodge": self.dodge, "revive": self.revive,
                 "invincible": self.invincible, "tick": self.tick,
+                "movement": self.movement, "fire_mode": self.fire_mode,
+                "position": self.position,
                 "thread_alive": self.is_alive(),
                 "log": list(self.log),
             }
@@ -148,6 +161,12 @@ class Robin(threading.Thread):
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
+        for key, allowed in (("movement", ("weave", "left_lane", "position_lane")),
+                             ("fire_mode", ("cross", "both"))):
+            if key in cfg:
+                if cfg[key] not in allowed:
+                    raise ValueError(key + " must be one of " + ", ".join(allowed))
+                updates[key] = cfg[key]
         for key, value in updates.items():
             setattr(self, key, value)
 
@@ -168,19 +187,65 @@ class Robin(threading.Thread):
         self.running = False
         self._halt.set()
 
+    def lane_buttons(self, frame: int):
+        """Bounded pad movement timed by guest frames, independent of host stalls."""
+        if self._lane_last_frame is not None and frame < self._lane_last_frame:
+            self.request_stop()
+            return []
+        self._lane_last_frame = frame
+        if self._lane_origin is None:
+            self._lane_origin = frame
+        elapsed = frame - self._lane_origin
+        moves = ["left"] if self.weave and elapsed < 24 else []
+        if self.dodge and elapsed >= 24:
+            moves.append("down" if ((elapsed-24)//18) % 2 == 0 else "up")
+        if self.autofire:
+            moves.append("x")
+            if self.fire_mode == "both":
+                moves.append("square")
+        return moves
+
+    def position_buttons(self, raw: bytes):
+        if len(raw) != 8:
+            raise ValueError("Player position requires exactly eight bytes")
+        y_raw, x_raw = struct.unpack("<ii", raw)
+        y, x = y_raw/65536.0, x_raw/65536.0
+        if not (-1024 <= x <= 1024 and -1024 <= y <= 1024):
+            raise ValueError("Player position is outside the calibrated range")
+        self.position = dict(x=x, y=y, space="Stage1 Q16, positive X moves left")
+        moves=[]
+        if self.weave:
+            if x < 180:moves.append("left")
+            elif x > 260:moves.append("right")
+        if self.dodge:
+            if y >= 48:self._vertical_direction=-1
+            elif y <= -48:self._vertical_direction=1
+            moves.append("down" if self._vertical_direction>0 else "up")
+        return moves
+
     def run(self) -> None:
         self.note(f"{self.name} online")
         phase, phase_len, dir_h, dir_v = 0, 0, "right", "down"
+        failed_reads, previous_lives = 0, None
         while self.running:
             try:
                 lives = self._read(ADDR_LIVES, 1)
                 # A disconnected game is not a continue screen. Never inject
                 # revival input after a failed state read.
                 if lives is None:
-                    self.note("Game unavailable; bot stopped and input released.")
-                    self.running = False
                     cmd({"cmd": "clear_input"}, timeout=1)
-                    break
+                    failed_reads += 1
+                    if failed_reads >= 3:
+                        self.note("Game unavailable after three reads; bot stopped and input released.")
+                        self.running = False
+                        break
+                    self.note("State read unavailable; input released while retrying.")
+                    self._halt.wait(.25)
+                    continue
+                failed_reads = 0
+                if previous_lives is not None and lives[0] > previous_lives:
+                    self._lane_origin = None
+                previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
 
                 if self.invincible:
@@ -195,6 +260,33 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
+                if self.movement == "position_lane":
+                    position = self._read(ADDR_PLAYER_POSITION, 8)
+                    try:
+                        if position is None:raise ValueError("Position read unavailable")
+                        moves=self.position_buttons(position)
+                    except ValueError as error:
+                        self.note(str(error)+"; input released and bot stopped.")
+                        self.request_stop()
+                        break
+                    fire=["x"] if self.autofire else []
+                    if self.autofire and self.fire_mode=="both":fire.append("square")
+                    self._press(*(moves+fire),frames=6)
+                    self._halt.wait(.10)
+                    if fire:self._press(*fire,frames=max(12,int(self.tick*60)+12))
+                    self._halt.wait(self.tick)
+                    continue
+                if self.movement == "left_lane":
+                    state = cmd({"cmd": "get_registers"}, timeout=1.5)
+                    if not state.get("ok") or not isinstance(state.get("frame"), int):
+                        cmd({"cmd": "clear_input"}, timeout=1)
+                        self._halt.wait(self.tick)
+                        continue
+                    moves = self.lane_buttons(state["frame"])
+                    if moves:
+                        self._press(*moves, frames=max(6, int(self.tick * 60)))
+                    self._halt.wait(self.tick)
+                    continue
                 if self.weave:
                     phase_len += 1
                     if phase_len >= max(4, int(1.0 / self.tick)):
@@ -208,12 +300,15 @@ class Robin(threading.Thread):
                         moves.append(dir_v)
                 if self.autofire:
                     moves.append("x")
+                    if self.fire_mode == "both":
+                        moves.append("square")
                 if moves:
                     self._press(*moves, frames=max(6, int(self.tick * 60)))
             except Exception as e:  # noqa: BLE001
                 self.note(f"err {e}")
                 self._halt.wait(0.5)
             self._halt.wait(self.tick)
+        cmd({"cmd": "clear_input"}, timeout=1)
         self.note(f"{self.name} stopped")
 
 
