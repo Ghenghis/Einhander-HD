@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-11-13T14:40:29.880692+00:00",
-  "base_revision": "ab6d0e29379f886c7025c7299fbc5a126c8233c6",
+  "generated_at_utc": "2026-11-13T14:46:58.295548+00:00",
+  "base_revision": "a3cfb73fb620962de61bdcf31e84feff62cee3cd",
   "environment_literal_references": {
     "EIN_DEBUG_PORT": [
       {
@@ -500,26 +500,26 @@
     ],
     "PSX_CD_TRAP_CMD": [
       {
-        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
-        "line": 84,
-        "context": "        if (trap_cmd == -2) {\n            const char *e2 = getenv(\"PSX_CD_TRAP_CMD\");\n            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");"
-      },
-      {
         "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
         "line": 1998,
         "context": "        if (trap_cmd == -2) {\n            const char *e = getenv(\"PSX_CD_TRAP_CMD\");\n            trap_cmd = (e && *e) ? strtol(e, NULL, 0) : -1;\n            e = getenv(\"PSX_CD_TRAP_NTH\");   /* stop on the Nth match (default 1st) */"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
+        "line": 84,
+        "context": "        if (trap_cmd == -2) {\n            const char *e2 = getenv(\"PSX_CD_TRAP_CMD\");\n            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");"
       }
     ],
     "PSX_CD_TRAP_NTH": [
       {
-        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
-        "line": 86,
-        "context": "            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");\n            if (e3 && *e3) trap_nth = strtol(e3, NULL, 0);\n        }"
-      },
-      {
         "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
         "line": 2000,
         "context": "            trap_cmd = (e && *e) ? strtol(e, NULL, 0) : -1;\n            e = getenv(\"PSX_CD_TRAP_NTH\");   /* stop on the Nth match (default 1st) */\n            if (e && *e) trap_nth = strtol(e, NULL, 0);\n        }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
+        "line": 86,
+        "context": "            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");\n            if (e3 && *e3) trap_nth = strtol(e3, NULL, 0);\n        }"
       }
     ],
     "PSX_CODEGEN_CYCLE_PER_INSN": [

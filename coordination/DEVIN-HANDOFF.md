@@ -1,5 +1,11 @@
 # Devin: synchronize before assisting
 
+**User-requested hold, 2026-11-13:** keep Devin inactive until the user is home
+later today. Do not prompt, run commands, edit files, claim tasks or resume the
+old conversation while this hold is in force. Connector configuration may stay
+idle. On reactivation, perform the synchronization below against the then-current
+revision; the current inbox acknowledgement remains unverified.
+
 The user asked for Devin to assist without resuming stale work. Start with
 observation and coordination. Do not run the old pending command or resume an
 old implementation plan.

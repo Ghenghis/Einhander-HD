@@ -65,6 +65,7 @@ actual acceptance; it cannot be inferred from artwork counts or area shares.
 The [engineering handbook](handbook/index.html) and [handoff](handbook/handoff.html)
 record exact private builds, source commits, rejected hypotheses and the next
 integration steps. Devin has a dedicated tested observer-only connector and
-[onboarding brief](../coordination/DEVIN-HANDOFF.md). His actual client discovery
-and inbox acknowledgement remain a gate; configuration alone is not proof that
-he is synchronized or authorized to edit shared runtime files.
+[onboarding brief](../coordination/DEVIN-HANDOFF.md), but is on the user's explicit
+hold until the user is home. Codex and Claude continue. On reactivation, actual
+client discovery and inbox acknowledgement remain a gate; configuration alone
+is not proof that he is synchronized or authorized to edit shared runtime files.

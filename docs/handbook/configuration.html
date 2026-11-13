@@ -242,18 +242,18 @@ DEBUG_IO_LOCK = threading.Lock()</code></pre></details><details data-search="ein
         /* The two axes (kernel-call HLE, boot-skip) have DIFFERENT per-image</code></pre></details><details data-search="psx_cd_dma_trace"><summary>PSX_CD_DMA_TRACE <small>(1 references)</small></summary><p><a href="../../windows-x64/psxrecomp/runtime/src/cdrom.c">windows-x64/psxrecomp/runtime/src/cdrom.c</a>:3009</p><pre><code>if (s_dma_trace &lt; 0) {
             const char *e = getenv(&quot;PSX_CD_DMA_TRACE&quot;);
             s_dma_trace = (e &amp;&amp; e[0] &amp;&amp; e[0] != &#x27;0&#x27;) ? 1 : 0;
-        }</code></pre></details><details data-search="psx_cd_trap_cmd"><summary>PSX_CD_TRAP_CMD <small>(2 references)</small></summary><p><a href="../../windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp">windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp</a>:84</p><pre><code>if (trap_cmd == -2) {
-            const char *e2 = getenv(&quot;PSX_CD_TRAP_CMD&quot;);
-            trap_cmd = (e2 &amp;&amp; *e2) ? strtol(e2, NULL, 0) : -1;
-            const char *e3 = getenv(&quot;PSX_CD_TRAP_NTH&quot;);</code></pre><p><a href="../../windows-x64/psxrecomp/runtime/src/cdrom.c">windows-x64/psxrecomp/runtime/src/cdrom.c</a>:1998</p><pre><code>if (trap_cmd == -2) {
+        }</code></pre></details><details data-search="psx_cd_trap_cmd"><summary>PSX_CD_TRAP_CMD <small>(2 references)</small></summary><p><a href="../../windows-x64/psxrecomp/runtime/src/cdrom.c">windows-x64/psxrecomp/runtime/src/cdrom.c</a>:1998</p><pre><code>if (trap_cmd == -2) {
             const char *e = getenv(&quot;PSX_CD_TRAP_CMD&quot;);
             trap_cmd = (e &amp;&amp; *e) ? strtol(e, NULL, 0) : -1;
-            e = getenv(&quot;PSX_CD_TRAP_NTH&quot;);   /* stop on the Nth match (default 1st) */</code></pre></details><details data-search="psx_cd_trap_nth"><summary>PSX_CD_TRAP_NTH <small>(2 references)</small></summary><p><a href="../../windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp">windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp</a>:86</p><pre><code>trap_cmd = (e2 &amp;&amp; *e2) ? strtol(e2, NULL, 0) : -1;
-            const char *e3 = getenv(&quot;PSX_CD_TRAP_NTH&quot;);
-            if (e3 &amp;&amp; *e3) trap_nth = strtol(e3, NULL, 0);
-        }</code></pre><p><a href="../../windows-x64/psxrecomp/runtime/src/cdrom.c">windows-x64/psxrecomp/runtime/src/cdrom.c</a>:2000</p><pre><code>trap_cmd = (e &amp;&amp; *e) ? strtol(e, NULL, 0) : -1;
+            e = getenv(&quot;PSX_CD_TRAP_NTH&quot;);   /* stop on the Nth match (default 1st) */</code></pre><p><a href="../../windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp">windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp</a>:84</p><pre><code>if (trap_cmd == -2) {
+            const char *e2 = getenv(&quot;PSX_CD_TRAP_CMD&quot;);
+            trap_cmd = (e2 &amp;&amp; *e2) ? strtol(e2, NULL, 0) : -1;
+            const char *e3 = getenv(&quot;PSX_CD_TRAP_NTH&quot;);</code></pre></details><details data-search="psx_cd_trap_nth"><summary>PSX_CD_TRAP_NTH <small>(2 references)</small></summary><p><a href="../../windows-x64/psxrecomp/runtime/src/cdrom.c">windows-x64/psxrecomp/runtime/src/cdrom.c</a>:2000</p><pre><code>trap_cmd = (e &amp;&amp; *e) ? strtol(e, NULL, 0) : -1;
             e = getenv(&quot;PSX_CD_TRAP_NTH&quot;);   /* stop on the Nth match (default 1st) */
             if (e &amp;&amp; *e) trap_nth = strtol(e, NULL, 0);
+        }</code></pre><p><a href="../../windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp">windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp</a>:86</p><pre><code>trap_cmd = (e2 &amp;&amp; *e2) ? strtol(e2, NULL, 0) : -1;
+            const char *e3 = getenv(&quot;PSX_CD_TRAP_NTH&quot;);
+            if (e3 &amp;&amp; *e3) trap_nth = strtol(e3, NULL, 0);
         }</code></pre></details><details data-search="psx_codegen_cycle_per_insn"><summary>PSX_CODEGEN_CYCLE_PER_INSN <small>(2 references)</small></summary><p><a href="../../windows-x64/psxrecomp/recompiler/src/full_function_emitter.cpp">windows-x64/psxrecomp/recompiler/src/full_function_emitter.cpp</a>:30</p><pre><code>static bool bios_cycle_per_insn() {
     const char* e = std::getenv(&quot;PSX_CODEGEN_CYCLE_PER_INSN&quot;);
     if (e != nullptr &amp;&amp; e[0] != &#x27;\0&#x27;) return e[0] != &#x27;0&#x27;;
@@ -871,4 +871,4 @@ void dirty_ram_xprobe_arm(int frame_trip, int stk_kb, int warmup) {</code></pre>
         if (env &amp;&amp; *env) xprobe_watch_parse(env);
     }</code></pre></details></div>
 <script>document.getElementById('search').addEventListener('input',function(){let q=this.value.toLowerCase();for(let d of document.querySelectorAll('[data-search]'))d.hidden=!d.dataset.search.includes(q)});</script>
-<footer>Generated 2026-11-13T14:40:29.880692+00:00 · source base ab6d0e29379f · Status is bounded by the cited tests and evidence. <a href="source-inventory.json">Source inventory</a>.</footer></main></div></body></html>
+<footer>Generated 2026-11-13T14:46:58.295548+00:00 · source base a3cfb73fb620 · Status is bounded by the cited tests and evidence. <a href="source-inventory.json">Source inventory</a>.</footer></main></div></body></html>
