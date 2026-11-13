@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "scope": "One verified idle-wake and receiver renewal after reboot",
+  "idle_stop_utc": "2026-11-13T21:08:36.131Z",
+  "nonce_sent_utc": "2026-11-13T21:08:48.626Z",
+  "nonce_model_ack_utc": "2026-11-13T21:09:39.357Z",
+  "reported_watcher_delivery_ms": 605,
+  "reported_model_handling_utc": "2026-11-13T21:09:11Z",
+  "exact_nonce_matched": true,
+  "actual_idle_stop_observed": true,
+  "model_ack_received": true,
+  "replacement_receiver_checkpoint_verified": true,
+  "replacement_wait_seconds": 1500,
+  "post_ack_idle_stop_utc": "2026-11-13T21:09:49.471Z",
+  "indefinite_availability_proven": false,
+  "limitations": [
+    "The provider-owned receiver must be re-armed after each message or deadline.",
+    "This single test does not guarantee uninterrupted future model activity."
+  ]
+}

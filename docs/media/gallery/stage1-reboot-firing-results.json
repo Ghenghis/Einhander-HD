@@ -1,0 +1,525 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-13T21:23:03.548Z",
+  "scope": "One ordered actual ordinary-fire diagnostic pair after reboot",
+  "runtime_sha256": "821a3f569cd7287f93b6bc91e12e01d44d966ef004772d0956e53fb1e9febfbc",
+  "configuration": {
+    "frozen_pngs": 1669,
+    "supersampling": 2,
+    "rewind": false,
+    "opaque_batch": true,
+    "filter_state_cache": true,
+    "keep_bracket": true,
+    "cpu_attribution": true,
+    "ordinary_fire_button": "0x7FFF",
+    "timer_only_assistance": true,
+    "state_loads": false,
+    "video_during_timing": false,
+    "source_capture_during_timing": false,
+    "manual_quiet_ack": true,
+    "background_load": "Unrelated LM Studio service and desktop/graphics activity reported; not stopped"
+  },
+  "method": "Deltas use first and last of121 one-second observations; FPS uses actual elapsed interval. Rolling5s uses five adjacent intervals; interval audio query times are not exactly atomic with frame queries. Nested CPU times overlap and must not be summed. Starvation duration is output sample frames divided by48000, not measured audible silence.",
+  "settings_equal_after_private_path_normalization": true,
+  "only_nonpath_environment_difference": "PSXRECOMP_HD_BATCH_ATTRIB=0 versus1",
+  "variants": {
+    "off": {
+      "observations": 121,
+      "duration_seconds": 119.97607900000003,
+      "first_frame": 3041,
+      "last_frame": 10173,
+      "guest_frames": 7132,
+      "guest_fps": 59.44518323523474,
+      "starved_sample_frames": 34764,
+      "audio_fill_ms": {
+        "first": 132.5,
+        "last": 157.3,
+        "min": 11.7,
+        "max": 193.2
+      },
+      "cpu_deltas": {
+        "attempts": 2370249,
+        "submitted": 2305454,
+        "total_ms": 12138.0267,
+        "source_queries": 2370249,
+        "source_ms": 3963.1628,
+        "decode_requests": 60036,
+        "decode_queue_acquire_ms": 27.159899999999997,
+        "resident_hits": 2304302,
+        "new_texture_draws": 1152,
+        "draw_ms": 4297.8544,
+        "readbacks": 0,
+        "readback_ms": 0,
+        "batch_flushes": 662395,
+        "batched_primitives": 2223321,
+        "pack_invalidate_calls": 3751603,
+        "pack_region_calls": 3751603,
+        "pack_region_ms": 2428.9485000000004,
+        "pack_region_tests": 847862278,
+        "pack_region_hits": 433183,
+        "pack_upload_calls": 3751603,
+        "pack_upload_ms": 4179.1686,
+        "pack_upload_candidates": 277660,
+        "pack_track_calls": 48186,
+        "pack_track_ms": 3854.1529,
+        "pack_index_rebuilds": 96359,
+        "pack_index_rebuild_ms": 3680.5661,
+        "hd_attrib_merges": 0,
+        "hr_kept_leaks": 0,
+        "hd_split_reason": {
+          "not_batchable": 17468,
+          "capacity": 0,
+          "texture_palette_material": 528902,
+          "filter_mask_depth": 0,
+          "dims": 0,
+          "region_upload": 0,
+          "offset_page_clut_only": 0
+        }
+      },
+      "batch_attrib_observed_values": [
+        0
+      ],
+      "worst_one_second_windows": [
+        {
+          "start_s": 106.00017849999995,
+          "end_s": 107.00020069999982,
+          "frames": [
+            9353,
+            9396
+          ],
+          "guest_frames": 43,
+          "fps": 42.99904542119699,
+          "starved_frames": 13908,
+          "fill_ms": [
+            17,
+            11.7
+          ],
+          "cpu_ms": {
+            "total": 200.0009000000009,
+            "draw": 118.83379999999988,
+            "source": 37.20559999999978,
+            "pack_region": 22.37609999999995,
+            "pack_upload": 43.7837999999997,
+            "pack_track": 44.990299999999934,
+            "pack_index_rebuild": 42.98700000000008
+          },
+          "attempts": 17409,
+          "submitted": 17148,
+          "flushes": 5151,
+          "new_textures": 13,
+          "decode_requests": 262,
+          "readbacks": 0
+        },
+        {
+          "start_s": 105.00022970000009,
+          "end_s": 106.00017849999995,
+          "frames": [
+            9309,
+            9353
+          ],
+          "guest_frames": 44,
+          "fps": 44.002252915355584,
+          "starved_frames": 8431,
+          "fill_ms": [
+            134.7,
+            17
+          ],
+          "cpu_ms": {
+            "total": 179.97279999999955,
+            "draw": 103.59640000000036,
+            "source": 34.89420000000018,
+            "pack_region": 20.74980000000005,
+            "pack_upload": 39.7474000000002,
+            "pack_track": 39.42880000000014,
+            "pack_index_rebuild": 37.622699999999895
+          },
+          "attempts": 17222,
+          "submitted": 16353,
+          "flushes": 5076,
+          "new_textures": 16,
+          "decode_requests": 876,
+          "readbacks": 0
+        },
+        {
+          "start_s": 38.00065010000026,
+          "end_s": 39.00055539999994,
+          "frames": [
+            5321,
+            5365
+          ],
+          "guest_frames": 44,
+          "fps": 44.00416719464732,
+          "starved_frames": 4387,
+          "fill_ms": [
+            179.1,
+            24.8
+          ],
+          "cpu_ms": {
+            "total": 56.2201,
+            "draw": 24.77019999999993,
+            "source": 15.15930000000003,
+            "pack_region": 11.880599999999959,
+            "pack_upload": 29.7032999999999,
+            "pack_track": 36.53230000000008,
+            "pack_index_rebuild": 35.02869999999996
+          },
+          "attempts": 10640,
+          "submitted": 10447,
+          "flushes": 2414,
+          "new_textures": 4,
+          "decode_requests": 164,
+          "readbacks": 0
+        }
+      ],
+      "worst_rolling_five_second_window": {
+        "start_s": 105.00022970000009,
+        "end_s": 110.0004772000002,
+        "frames": [
+          9309,
+          9572
+        ],
+        "guest_frames": 263,
+        "fps": 52.59739642887557,
+        "starved_frames": 24818,
+        "fill_ms": [
+          134.7,
+          64.8
+        ],
+        "cpu_ms": {
+          "total": 868.5445,
+          "draw": 445.6862000000001,
+          "source": 197.48730000000023,
+          "pack_region": 114.35079999999971,
+          "pack_upload": 219.49170000000004,
+          "pack_track": 222.85559999999987,
+          "pack_index_rebuild": 213.13239999999996
+        },
+        "attempts": 98543,
+        "submitted": 95641,
+        "flushes": 28628,
+        "new_textures": 38,
+        "decode_requests": 2757,
+        "readbacks": 0
+      },
+      "proof_sha256": "26e765082a79b70c73385e53a95e6681239e24051061eb4968860c3822fa4f24",
+      "errors": [],
+      "process_exit": 0,
+      "port_closed": true,
+      "quit_reply": {
+        "ok": false,
+        "err": "emu busy or frozen"
+      },
+      "command_audit": {
+        "timer_write_requests": 663,
+        "successful_timer_writes": 663,
+        "forbidden_mutations": []
+      }
+    },
+    "on": {
+      "observations": 121,
+      "duration_seconds": 119.96659110000019,
+      "first_frame": 3045,
+      "last_frame": 10217,
+      "guest_frames": 7172,
+      "guest_fps": 59.78331078876499,
+      "starved_sample_frames": 15637,
+      "audio_fill_ms": {
+        "first": 139.8,
+        "last": 163.7,
+        "min": 13.9,
+        "max": 218.2
+      },
+      "cpu_deltas": {
+        "attempts": 2358069,
+        "submitted": 2291674,
+        "total_ms": 8978.237799999999,
+        "source_queries": 2358069,
+        "source_ms": 3710.1531,
+        "decode_requests": 61797,
+        "decode_queue_acquire_ms": 25.9635,
+        "resident_hits": 2290513,
+        "new_texture_draws": 1161,
+        "draw_ms": 2166.3692,
+        "readbacks": 0,
+        "readback_ms": 0,
+        "batch_flushes": 656586,
+        "batched_primitives": 2212406,
+        "pack_invalidate_calls": 3741000,
+        "pack_region_calls": 3741000,
+        "pack_region_ms": 2405.0562,
+        "pack_region_tests": 845466000,
+        "pack_region_hits": 435684,
+        "pack_upload_calls": 3741000,
+        "pack_upload_ms": 4006.1467,
+        "pack_upload_candidates": 279640,
+        "pack_track_calls": 48510,
+        "pack_track_ms": 3616.8431,
+        "pack_index_rebuilds": 97007,
+        "pack_index_rebuild_ms": 3453.6646,
+        "hd_attrib_merges": 0,
+        "hr_kept_leaks": 0,
+        "hd_split_reason": {
+          "not_batchable": 17074,
+          "capacity": 0,
+          "texture_palette_material": 524488,
+          "filter_mask_depth": 0,
+          "dims": 0,
+          "region_upload": 0,
+          "offset_page_clut_only": 0
+        }
+      },
+      "batch_attrib_observed_values": [
+        1
+      ],
+      "worst_one_second_windows": [
+        {
+          "start_s": 105.00050469999996,
+          "end_s": 106.00044449999996,
+          "frames": [
+            9339,
+            9384
+          ],
+          "guest_frames": 45,
+          "fps": 45.00270916309194,
+          "starved_frames": 8441,
+          "fill_ms": [
+            120.1,
+            13.9
+          ],
+          "cpu_ms": {
+            "total": 105.56419999999889,
+            "draw": 56.2482,
+            "source": 29.190900000000056,
+            "pack_region": 20.190399999999954,
+            "pack_upload": 39.08740000000034,
+            "pack_track": 39.669700000000375,
+            "pack_index_rebuild": 37.71169999999984
+          },
+          "attempts": 16516,
+          "submitted": 15975,
+          "flushes": 4969,
+          "new_textures": 16,
+          "decode_requests": 542,
+          "readbacks": 0
+        },
+        {
+          "start_s": 33.00055899999961,
+          "end_s": 34.00036709999995,
+          "frames": [
+            5023,
+            5073
+          ],
+          "guest_frames": 50,
+          "fps": 50.00959684161707,
+          "starved_frames": 1614,
+          "fill_ms": [
+            187,
+            63.8
+          ],
+          "cpu_ms": {
+            "total": 47.32300000000032,
+            "draw": 14.614500000000021,
+            "source": 16.88990000000001,
+            "pack_region": 12.617899999999963,
+            "pack_upload": 16.880800000000022,
+            "pack_track": 10.881200000000035,
+            "pack_index_rebuild": 10.192800000000034
+          },
+          "attempts": 13189,
+          "submitted": 13165,
+          "flushes": 3717,
+          "new_textures": 2,
+          "decode_requests": 26,
+          "readbacks": 0
+        },
+        {
+          "start_s": 106.00044449999996,
+          "end_s": 107.00046059999977,
+          "frames": [
+            9384,
+            9438
+          ],
+          "guest_frames": 54,
+          "fps": 53.99913061400729,
+          "starved_frames": 4103,
+          "fill_ms": [
+            13.9,
+            25.2
+          ],
+          "cpu_ms": {
+            "total": 87.42129999999997,
+            "draw": 30.61310000000003,
+            "source": 31.98790000000008,
+            "pack_region": 21.498999999999796,
+            "pack_upload": 42.511099999999715,
+            "pack_track": 44.48229999999967,
+            "pack_index_rebuild": 42.473199999999906
+          },
+          "attempts": 19402,
+          "submitted": 19323,
+          "flushes": 5794,
+          "new_textures": 7,
+          "decode_requests": 86,
+          "readbacks": 0
+        }
+      ],
+      "worst_rolling_five_second_window": {
+        "start_s": 104.00028219999967,
+        "end_s": 109.00066789999983,
+        "frames": [
+          9283,
+          9557
+        ],
+        "guest_frames": 274,
+        "fps": 54.795773054064945,
+        "starved_frames": 14023,
+        "fill_ms": [
+          183.2,
+          78.8
+        ],
+        "cpu_ms": {
+          "total": 442.46360000000004,
+          "draw": 142.36419999999998,
+          "source": 179.01339999999982,
+          "pack_region": 119.0934000000002,
+          "pack_upload": 221.40909999999985,
+          "pack_track": 222.70400000000018,
+          "pack_index_rebuild": 212.74180000000024
+        },
+        "attempts": 104271,
+        "submitted": 101191,
+        "flushes": 30225,
+        "new_textures": 37,
+        "decode_requests": 2935,
+        "readbacks": 0
+      },
+      "proof_sha256": "b3cc8aab283ed43d6a6b54f5a059f73c7ec85b87787e6be22e7baa74cfa6a32a",
+      "errors": [],
+      "process_exit": 0,
+      "port_closed": true,
+      "quit_reply": {
+        "ok": false,
+        "err": "emu busy or frozen"
+      },
+      "command_audit": {
+        "timer_write_requests": 669,
+        "successful_timer_writes": 669,
+        "forbidden_mutations": []
+      }
+    }
+  },
+  "observed_on_minus_off": {
+    "guest_fps": 0.33812755353025636,
+    "guest_fps_percent": 0.5688056376110806,
+    "starved_sample_frames": -19127,
+    "starvation_percent": -55.019560464848695,
+    "draw_ms": -2131.4852,
+    "draw_ms_percent": -49.594169593088125,
+    "submitted_primitives_percent": -0.5977130751687043,
+    "batch_flushes_percent": -0.8769691800209811
+  },
+  "causal_limits": [
+    "Single ordered OFF then ON pair, without randomization/counterbalancing or matched saved-state replay.",
+    "New attribute merges delta0; offset/page/CLUT-only split reason0 in both. Reduced starvation cannot be claimed as a demonstrated merge benefit.",
+    "Same runtime but CPU draw timer includes driver stalls/submission/setup; shader input selection may affect driver specialization even without merges. The source still calls p_glUniform2f(s_hd_uOff,...) unconditionally per new batch, so no explicit uniform-call elimination is implemented.",
+    "CPU profiling and timer-only invulnerability assistance are active; these are diagnostics, not unassisted gameplay or sustained60fps acceptance.",
+    "Quiet ACK is a manual before-run snapshot and held-resource pledge. LM Studio service had an earlier CPU spike; continuous external host load/clock capture was not enabled.",
+    "No runtime-perf/phase/interpreter/GPU-clock profile in this pair, so unaccounted time cannot be assigned to guest interpreter, GL driver, pacer, CD or host.",
+    "Callback clips have different lengths58.98s and60.03s; post-measurement video/audio are not claimed synchronized.",
+    "Both quit replies reported emu busy or frozen; actual owned process exit0 and closed port establish cleanup."
+  ],
+  "next_targets": [
+    "Reproduce frame9300..9560 stall with low-overhead guest/pacer/driver/source timing and output-buffer/correction logs; ON105..109s accounts14023/15637 starved frames.",
+    "Counterbalance a later OFF leg or ABBA sequence with matched settings/guest ranges before attributing draw-time delta to the flag.",
+    "Index/source costs remain actionable CPU targets: roughly845M region tests,97k index rebuilds/3.45s and3.71s source query wall time in ON; test isolated verified incremental-index/memo candidates after correctness gates.",
+    "Keep SYS-native promotion blocked until parity is proven; this renderer pair does not validate SYS correctness."
+  ],
+  "media": [
+    {
+      "variant": "off",
+      "gallery_file": "stage1-reboot-attrib-off-gameplay.mp4",
+      "sha256": "8e2f2fe1bcc51118e0faa8e5e33a553b484480489afc3d4d6e15ffe915b051df",
+      "bytes": 4486208,
+      "exact_original_copy": true
+    },
+    {
+      "variant": "off",
+      "gallery_file": "stage1-reboot-attrib-off-callback.wav",
+      "sha256": "6e8f0bb7253736177443b46ad0654bd6fa0879129e6cdd51674a8f6dfd2fbc11",
+      "bytes": 11324204,
+      "exact_original_copy": true
+    },
+    {
+      "variant": "off",
+      "gallery_file": "stage1-reboot-attrib-off-process.wav",
+      "sha256": "60e98c36fdb12f1a46ba0c8f6279de63e10e56c9b1a10edd4f79ed8bdee70cc8",
+      "bytes": 1920494,
+      "exact_original_copy": true
+    },
+    {
+      "variant": "on",
+      "gallery_file": "stage1-reboot-attrib-on-gameplay.mp4",
+      "sha256": "71309e51e8edfcae7e4219fb9dc57f7ff7f887a5b2e1416da2ac3a7d4b11190c",
+      "bytes": 4847842,
+      "exact_original_copy": true
+    },
+    {
+      "variant": "on",
+      "gallery_file": "stage1-reboot-attrib-on-callback.wav",
+      "sha256": "fda7f8fa741b13b6f3e3124732809922bc31840c8107f343f8d37c166a9401f5",
+      "bytes": 11525804,
+      "exact_original_copy": true
+    },
+    {
+      "variant": "on",
+      "gallery_file": "stage1-reboot-attrib-on-process.wav",
+      "sha256": "45389095460a4bee0995deb1857ae150d8a8ccfc9720e97a3974d70923c73fb7",
+      "bytes": 1920494,
+      "exact_original_copy": true
+    }
+  ],
+  "hitch_excerpts": [
+    {
+      "variant": "off",
+      "gallery_file": "stage1-reboot-attrib-off-hitch.wav",
+      "bytes": 2304044,
+      "sha256": "d19d25b41a5d96e557af4cee4ff5a362ba5a1cde9065aaaae8bac95b96e24cf0",
+      "seconds": 12,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "source_sha256": "6e8f0bb7253736177443b46ad0654bd6fa0879129e6cdd51674a8f6dfd2fbc11",
+      "source_offset_seconds": 40,
+      "source_offset_sample_frame": 1920000,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "062a0d6b4d4917370f7748b0374c58126895a2f1b1420f61f2cdb7309d6f43ab",
+      "output_pcm_sha256": "062a0d6b4d4917370f7748b0374c58126895a2f1b1420f61f2cdb7309d6f43ab",
+      "pcm_byte_slice_equal": true,
+      "processing": "Exact PCM frame slice only; no resampling, fades, level changes, retiming or added audio"
+    },
+    {
+      "variant": "on",
+      "gallery_file": "stage1-reboot-attrib-on-hitch.wav",
+      "bytes": 2304044,
+      "sha256": "59ded6d0239adf9a6454bb4dac313e946bc66d25d6a133e4ecc4ccf3e7ca4fa0",
+      "seconds": 12,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "source_sha256": "fda7f8fa741b13b6f3e3124732809922bc31840c8107f343f8d37c166a9401f5",
+      "source_offset_seconds": 40,
+      "source_offset_sample_frame": 1920000,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "b692dd931fe85abe29a5fc2b9822933937c9db49260fc5dd398a54d6864e2d18",
+      "output_pcm_sha256": "b692dd931fe85abe29a5fc2b9822933937c9db49260fc5dd398a54d6864e2d18",
+      "pcm_byte_slice_equal": true,
+      "processing": "Exact PCM frame slice only; no resampling, fades, level changes, retiming or added audio"
+    }
+  ],
+  "recording_scope": "Silent actual10s gameplay clips start after timing. Full callback WAVs and12s exact PCM excerpts come from measurement; separate10s process audio comes after timing. Streams are not asserted synchronized.",
+  "audio_resolved": false,
+  "performance_acceptance": false,
+  "production_installed": false,
+  "stage1_complete": false,
+  "full_remaster_complete": false
+}

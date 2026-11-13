@@ -7,9 +7,8 @@ passed all 14,222 GL checks for the isolated v47 attribute-batching candidate
 and all 25,964 GL checks for the isolated source-lookup memo candidate, with
 zero failures. The v47 CPU regression fixtures also passed. The
 [post-reboot renderer receipt](media/gallery/stage1-post-reboot-renderer-results.json)
-records the tested artifacts and log hashes. These are fixture results; the
-live firing comparison and audible acceptance remain pending. Both runtime
-candidates remain isolated, and neither is installed. A separate isolated
+records the tested artifacts and log hashes. Both runtime candidates remain
+isolated, and neither is installed. A separate isolated
 [SYS timing correction](media/gallery/stage1-sys-parity-recovery-results.json)
 now matches native OFF/ON through all 1,100 replayed pre-input frames: 177,057
 stores and their cycles match, with no fingerprint divergence. The regression
@@ -18,8 +17,30 @@ combat, audio or later-game correctness; the SYS worktree remains unchanged.
 
 Capture preflight now uses bounded direct process inspection in place of the
 hanging PowerShell queries, retaining strict process and private-card checks.
-All 46 affected tests passed, and both same-runtime firing variants prepared
-successfully with all 1,669 frozen PNGs verified. Neither has launched.
+All 46 affected tests passed. The [actual firing pair](media/gallery/stage1-reboot-firing-results.json)
+then completed with all 1,669 frozen PNGs verified: attribute mode OFF measured
+59.4452 guest frames/s and 34,764 output-starved sample frames; ON measured
+59.7833 and 15,637. Both used ordinary held fire, scale 2, rewind OFF, CPU
+attribution and the disclosed timer-only survival aid. Neither is stage-clear
+or normal-settings acceptance. Both still dip near guest frames 9300–9560;
+their worst five-second intervals measured 52.60 and 54.80 guest frames/s.
+ON was active but merged no additional primitives, so this ordered pair does
+not establish a batching benefit or resolved audio. Starting audio fill differed,
+and unrelated host activity was reported. Nested CPU times must not be added.
+
+Actual silent gameplay clips are available for [OFF](media/gallery/stage1-reboot-attrib-off-gameplay.mp4)
+and [ON](media/gallery/stage1-reboot-attrib-on-gameplay.mp4). They were recorded
+after timing. Exact recorded audio excerpts around the measured hitch are
+available for [OFF](media/gallery/stage1-reboot-attrib-off-hitch.wav) and
+[ON](media/gallery/stage1-reboot-attrib-on-hitch.wav); these are separate
+intervals and are not presented as synchronized video/audio. Full callback
+WAVs and separate post-timing process captures are indexed in the result receipt.
+
+The [post-reboot inbox test](media/gallery/stage1-inbox-p3-results.json) observed
+Claude idle before sending a nonce, received its exact model acknowledgement
+and verified a replacement receiver checkpoint. The receiver still needs
+renewal after messages or deadlines; one successful test does not establish
+uninterrupted future availability.
 
 The user's current priority is extreme stutter/jitter and broken audio. The
 fresh [0.5% versus1% live audio comparison](STAGE1-AUDIO-RESULTS.md) did not
