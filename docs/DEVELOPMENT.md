@@ -106,3 +106,12 @@ holder locks are refused. A coordinated CPU-quiet window is also required before
 attributing performance changes while art exports are running. The opaque HD
 batching and CPU attribution flags remain opt-in; actual measurements and their
 limits are recorded in [Stage 1 runtime results](STAGE1-RUNTIME-RESULTS.md).
+
+For targeted native extraction, `run_robin_stage1_acceptance.py --sources
+--source-cache-keys DB715733,B24C6DA2` retains only those raw-upload CRCs from
+boot. The optional shortlist accepts at most 32 CRCs and rejects malformed
+settings. It keeps the existing 256-slot/32-MiB source-cache bounds; unrelated
+uploads cannot evict a requested original. An empty setting preserves the
+unfiltered LRU. This is authoring-only and does not enable capture by itself.
+`verify_native_source_capture.py --keys` can verify an explicit full-key subset;
+unrequested sources are not thereby accepted.

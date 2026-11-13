@@ -46,3 +46,13 @@ Both pairs reached native gameplay and closed cleanly. Neither proves sustained
 redundant draw-state skip counter stayed zero in live play, so it has no claimed
 performance benefit. [Machine-readable measurements](media/gallery/stage1-runtime-results.json)
 retain the build hashes and measured deltas.
+
+A later authoring-only source-cache fix addresses incomplete native dumps after
+VRAM overwrites: an explicit raw-CRC shortlist retains requested original upload
+bytes without unrelated LRU churn. Fourteen parser/bounds checks and the updated
+684/686-check GL suites pass. A fresh ordinary-input Mk.III run recovered both
+`DB715733-E0AE221F` and `B24C6DA2-E0AE221F` with all 512 words, matching source
+and CLUT CRCs, and independently decoded PNG pixels. No missing words were
+inferred. The old partial captures remain rejected; this proves the two requested
+sources, not every source in the targeted run. No cadence gain is claimed from
+this capture-only change.

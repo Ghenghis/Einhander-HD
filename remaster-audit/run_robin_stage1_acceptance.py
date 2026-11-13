@@ -31,6 +31,7 @@ def main():
     parser.add_argument('--craft',choices=['mk2','mk3','astraea'],default='mk2')
     parser.add_argument('--seconds',type=int,choices=[180,600,900],default=180)
     parser.add_argument('--sources',action='store_true')
+    parser.add_argument('--source-cache-keys',default='',help='Up to32 comma-separated raw-upload CRCs retained from boot; requires --sources')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
     parser.add_argument('--movement',choices=['weave','left_lane','draw_lane'],default='left_lane',
         help='draw_lane uses opt-in, read-only MkII hull geometry; live qualification is required')
@@ -38,6 +39,8 @@ def main():
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     args=parser.parse_args()
+    if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
+        parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
     if args.craft != 'mk2' and (args.hd != 'off' or args.movement == 'draw_lane'):
         parser.error('Alternate-craft source acquisition requires native HD-off play and no MkII hull controller')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
@@ -46,6 +49,7 @@ def main():
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
     overrides=report['launches']['candidate']['environment_overrides']
+    overrides['PSXRECOMP_HD_SOURCE_CACHE_KEYS']=args.source_cache_keys.upper()
     overrides.update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
     overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement=='draw_lane' else '0',
         PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')

@@ -72,6 +72,25 @@ int facade_motion_gl_regression(const char *root,int expected_world) {
     if(!file)fixture_ok=0;
     else {fixture_ok&=fread(palette,2,16,file)==16&&fgetc(file)==EOF;fclose(file);}
     FM_CHECK("real green native source CRC",fixture_ok&&hd_texture_crc32_words_le(words,64*256)==0x95A3BCF8u&&hd_texture_crc32_words_le(palette,16)==0x723E222Cu);
+    if(fixture_ok){
+        HdSourceUpload saved_sources[HD_SOURCE_CACHE_SLOTS];
+        memcpy(saved_sources,s_hd_sources,sizeof saved_sources);memset(s_hd_sources,0,sizeof s_hd_sources);
+        size_t saved_bytes=s_hd_source_bytes;uint64_t saved_stamp=s_hd_source_stamp;
+        HdSourceCacheFilter saved_filter=s_hd_source_filter;int saved_ready=s_hd_source_filter_ready;
+        int saved_active=s_hd_research.active;s_hd_research.active=1;s_hd_source_bytes=0;s_hd_source_stamp=0;
+        FM_CHECK("source cache shortlist parses",hd_source_cache_filter_parse("95A3BCF8",&s_hd_source_filter));
+        s_hd_source_filter_ready=1;hd_source_upload_store(0x95A3BCF8u,64,256,words);
+        for(unsigned i=1;i<=600;++i){uint16_t noise=(uint16_t)i;hd_source_upload_store(hd_texture_crc32_words_le(&noise,1),1,1,&noise);}
+        FM_CHECK("unrelated uploads do not consume targeted cache budget",s_hd_source_bytes==sizeof words);
+        HdTextureSourceMatch pinned={0};pinned.texture_hash=0x95A3BCF8u;pinned.upload_width_words=64;pinned.upload_height=256;
+        const uint16_t *retained=hd_source_upload_find(&pinned);
+        FM_CHECK("original native bytes survive more than the LRU slot count",retained&&!memcmp(retained,words,sizeof words));
+        pinned.texture_hash=1;
+        FM_CHECK("unlisted source has no fabricated original bytes",!hd_source_upload_find(&pinned));
+        for(unsigned i=0;i<HD_SOURCE_CACHE_SLOTS;++i)free(s_hd_sources[i].words);
+        memcpy(s_hd_sources,saved_sources,sizeof saved_sources);s_hd_source_bytes=saved_bytes;s_hd_source_stamp=saved_stamp;
+        s_hd_source_filter=saved_filter;s_hd_source_filter_ready=saved_ready;s_hd_research.active=saved_active;
+    }
     if(fixture_ok) {
         fm_upload(640,0,64,256,words);fm_upload(16,480,16,1,palette);flush_cpu_upload();
         const int xs[3]={20,52,20},ys[3]={20,20,52},us[3]={0,63,0},vs[3]={0,0,63},lim[4]={0,0,63,63};

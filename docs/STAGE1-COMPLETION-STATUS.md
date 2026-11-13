@@ -56,6 +56,9 @@ both distinct ARM slots, reached native City, then Continue and Total Evaluation
 Its closed run supplied 900 verified source pairs with one incomplete dump
 excluded, including a previously missing interface key. These separate runs
 overlap in source content and do not establish a stage clear.
+A subsequent targeted Mk.III capture recovered both formerly incomplete strips
+with all 512 native words and independently verified pixels. The original
+incomplete receipts remain preserved and excluded.
 
 Runtime diagnostics show substantial HD/rewind overhead and audio starvation.
 Disabling GPU timer queries did not restore sustained normal cadence. The scoped

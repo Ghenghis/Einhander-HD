@@ -2654,6 +2654,17 @@ static void hd_ensure_pack(void) {
  * replacement/GPU caches; gameplay without sidecars has no copies here. */
 #define HD_SOURCE_CACHE_SLOTS 256
 #define HD_SOURCE_CACHE_BUDGET (32u * 1024u * 1024u)
+#include "hd_source_cache_filter.h"
+static HdSourceCacheFilter s_hd_source_filter;
+static int s_hd_source_filter_ready;
+static int hd_source_cache_admits(uint32_t hash) {
+    if(!s_hd_source_filter_ready){
+        if(!hd_source_cache_filter_parse(getenv("PSXRECOMP_HD_SOURCE_CACHE_KEYS"),&s_hd_source_filter))
+            fprintf(stderr,"[hd_tex] invalid source-cache CRC shortlist; upload copies refused\n");
+        s_hd_source_filter_ready=1;
+    }
+    return hd_source_cache_filter_match(&s_hd_source_filter,hash);
+}
 typedef struct {
     uint32_t hash;
     unsigned w, h;
@@ -2678,6 +2689,7 @@ static int hd_source_capture_enabled(void) {
 static void hd_source_upload_store(uint32_t hash, unsigned w, unsigned h,
                                    const uint16_t *words) {
     if (!hd_source_capture_enabled()) return;
+    if (!hd_source_cache_admits(hash)) return;
     const size_t bytes = (size_t)w * h * sizeof(uint16_t);
     if (!bytes || bytes > HD_SOURCE_CACHE_BUDGET) return;
     unsigned i, slot = HD_SOURCE_CACHE_SLOTS;

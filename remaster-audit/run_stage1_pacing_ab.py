@@ -75,6 +75,7 @@ def prepare(label,args):
                 settings_sha256=ui.sha(runtime / "settings.toml"))
     spec["environment_overrides"].update(EIN_DEBUG_PORT="4376",PSX_REWIND="1" if rewind else "0",
         PSXRECOMP_HD_DUMP="",PSXRECOMP_HD_SOURCE_SIDECARS="",PSXRECOMP_HD_PROOF_LOG="",
+        PSXRECOMP_HD_SOURCE_CACHE_KEYS="",
         PSXRECOMP_HD_PROOF_CONTROL="",PSX_GL_PRESENT_PROBE="0",PSX_GL_PERF=str(args.gpu_queries),
         PSXRECOMP_HD_WORLD_SAMPLING=str(args.world_sampling),PSXRECOMP_HD_WORLD_ANISOTROPY="8",
         PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),

@@ -59,6 +59,7 @@ def main():
         results['watchdog-time']=run([str(out/'test-watchdog-time.exe')],'watchdog-time-regressions',env).stdout
         results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
         results['hero-draw']=run([str(out/'test-hero-draw.exe')],'hero-draw-regressions',env).stdout
+        results['source-cache-filter']=run([str(out/'test-source-cache-filter.exe')],'source-cache-filter-regressions',env).stdout
         for enabled in (0,1):
             label='real-gl-world-'+str(enabled)
             result=run([report['test_executable'],str(out/'facade-pack'),str(enabled)],label,
@@ -81,6 +82,7 @@ def main():
     sources=[SOURCE,pack,watchdog,freeze,debug,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),SOURCE.with_name('hero_draw_tracker.h'),ROOT/'windows-x64/psxrecomp/runtime/include/gpu_gl_renderer.h',Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c',AUDIT/'test_hero_draw_tracker.c']
     sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
     sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
+    sources.extend([SOURCE.with_name('hd_source_cache_filter.h'),AUDIT/'test_hd_source_cache_filter.c'])
     hashes={str(p):prior.sha(p) for p in sources}
     out.mkdir()
     shutil.copytree(AUDIT/'facade-motion-experiment/build-v3/facade-pack',out/'facade-pack')
@@ -123,6 +125,9 @@ def main():
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         '-I'+str(SOURCE.parent),'-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),
         str(AUDIT/'test_hero_draw_tracker.c'),'-o',str(out/'test-hero-draw.exe')],'compile-hero-draw-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        '-I'+str(SOURCE.parent),str(AUDIT/'test_hd_source_cache_filter.c'),
+        '-o',str(out/'test-source-cache-filter.exe')],'compile-source-cache-filter-regressions')
     pack_object=out/'hd_texture_pack.cpp.obj'
     pack_command=next(row['arguments'] for row in baseline['commands'] if row['label']=='compile-pack').copy()
     pack_command[pack_command.index('-o')+1]=str(pack_object)
