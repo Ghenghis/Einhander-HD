@@ -1,0 +1,7 @@
+{
+  "hooks": {
+    "SessionStart": [{"hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/tools/coordination/claude-continuity-hook.mjs\" SessionStart", "timeout": 10}]}],
+    "PostToolUse": [{"matcher": ".*", "hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/tools/coordination/claude-continuity-hook.mjs\" PostToolUse", "timeout": 10}]}],
+    "Stop": [{"hooks": [{"type": "command", "command": "node \"${CLAUDE_PROJECT_DIR}/tools/coordination/claude-continuity-hook.mjs\" Stop", "timeout": 10}]}]
+  }
+}

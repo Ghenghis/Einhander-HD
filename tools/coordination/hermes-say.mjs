@@ -1,6 +1,7 @@
 // Send / acknowledge HermesProof messages in this Einhander workspace from a shell.
 //   node tools/coordination/hermes-say.mjs send --from claude-einhander --to codex-einhander [--type note] [--prio normal] --subject "..." (--body "..." | --body-file path)
-//   node tools/coordination/hermes-say.mjs ack  --owner claude-einhander --id msg_x [--status acknowledged|done|dismissed] [--note "..."] [--reply "..." | --reply-file path]
+//   node tools/coordination/hermes-say.mjs ack  --owner claude-einhander --id msg_x [--status acknowledged|done|dismissed] [--note "..."] [--reply "..." | --reply-file path] [--quiet]
+//   --quiet: acknowledge without sending the sender an "Ack from ..." notification message
 // Prints one JSON line with the result. Use forward slashes in paths inside message text.
 import fs from 'node:fs/promises';
 import { connect } from './hermes-client.mjs';
@@ -21,7 +22,7 @@ try {
   } else if (command === 'ack') {
     result = await session.call('hermes_ack_message', {
       owner: opt('--owner'), messageId: opt('--id'), status: opt('--status', 'acknowledged'), note: opt('--note'),
-      notifySender: true, replyBody: await text(opt('--reply'), opt('--reply-file')),
+      notifySender: !rest.includes('--quiet'), replyBody: await text(opt('--reply'), opt('--reply-file')),
     });
     result = { ok: true, acked: opt('--id'), status: result.status };
   } else throw new Error('Commands: send, ack');

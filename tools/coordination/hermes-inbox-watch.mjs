@@ -1,7 +1,7 @@
 // HermesProof inbox watcher for this Einhander workspace (shared by claude-einhander and codex-einhander).
 //
 // Stream mode (default): stays connected, prints ONE line per new message the moment it lands,
-// and keeps the owner's presence fresh so the other agent can see it is listening.
+// and writes separate watcher health. It never claims the model is working.
 //   node tools/coordination/hermes-inbox-watch.mjs --owner claude-einhander
 // Once mode: block until at least one unread message exists (or --wait seconds pass), print, exit.
 //   node tools/coordination/hermes-inbox-watch.mjs --owner codex-einhander --once --wait 110
@@ -10,6 +10,9 @@
 // Output lines (one per message):  MSG <id> from=<sender> type=<type> prio=<priority> subject="..." preview="..."
 // Error lines start with WATCH_ERROR so a supervising monitor sees failures instead of silence.
 import { connect } from './hermes-client.mjs';
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { workspaceRoot } from './workspace-runtime.mjs';
 
 const args = process.argv.slice(2);
 const opt = (name, fallback) => { const i = args.indexOf(name); return i >= 0 && args[i + 1] ? args[i + 1] : fallback; };
@@ -32,9 +35,13 @@ const emit = (m) => {
 };
 
 async function heartbeat(session, status) {
-  await session.call('hermes_update_presence', {
-    owner, role: 'agent', status, note: presenceNote, ttlSeconds: once ? 180 : 300, canInterrupt: true,
-  });
+  const directory=path.join(workspaceRoot,'.hermes3d_orchestrator/inbox-watch');
+  await fs.mkdir(directory,{recursive:true});
+  const target=path.join(directory,owner+'.json'),temporary=target+'.'+process.pid+'.tmp';
+  await fs.writeFile(temporary,JSON.stringify({owner,pid:process.pid,status,note:presenceNote,
+    updated_utc:new Date().toISOString(),last_message_utc:newest||null,watcher_only:true,
+    proves_model_activity:false})+'\n');
+  await fs.rename(temporary,target);
 }
 
 async function runOnce(session) {
@@ -52,16 +59,15 @@ async function runOnce(session) {
 }
 
 async function runStream(session) {
-  await heartbeat(session, 'waiting');
+  await heartbeat(session, 'connected');
   const unread = await session.call('hermes_get_inbox', { owner, includeAcked: false });
   for (const m of unread.messages || []) emit(m);
-  let lastBeat = Date.now();
   for (;;) {
     const r = await session.call('hermes_wait_for_inbox', {
       owner, includeAcked: false, newOnly: Boolean(newest), afterCreatedUtc: newest, timeoutMs: 40000, pollMs: 300,
     });
     for (const m of r.messages || []) emit(m);
-    if (Date.now() - lastBeat > 60000) { await heartbeat(session, 'waiting'); lastBeat = Date.now(); }
+    await heartbeat(session, 'connected');
   }
 }
 
@@ -76,7 +82,8 @@ for (;;) {
   } catch (error) {
     failures++;
     console.log(`WATCH_ERROR ${oneLine(error?.message || error, 300)}`);
-    if (once || failures >= 5) { await session?.close().catch(() => {}); process.exit(1); }
+    await heartbeat(session,'reconnecting').catch(()=>{});
+    if (once) { await session?.close().catch(() => {}); process.exit(1); }
     await new Promise(res => setTimeout(res, Math.min(30000, 2000 * failures)));
   } finally {
     await session?.close().catch(() => {});
