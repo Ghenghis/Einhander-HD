@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "production_installed": false,
+  "stage1_complete": false,
+  "normal_speed_target_achieved": false,
+  "audio_accepted": false,
+  "pairs": {
+    "v14": {
+      "runtime_sha256": "f7aa4b7ec0dcd97d97af95e92065bfe432cd660f801b69a0c3317c1dc2ee37f5",
+      "same_binary": true,
+      "same_artwork": true,
+      "identical_scene_replay": false,
+      "recorder": false,
+      "turbo": false,
+      "rewind": false,
+      "legs": {
+        "off": {
+          "guest_fps": 53.440966479027935,
+          "guest_frames": 1817,
+          "seconds": 34.00013359999866,
+          "cpu_delta": {
+            "attempts": 558885,
+            "submitted": 554022,
+            "total_ms": 13543.621199999998,
+            "source_queries": 558885,
+            "source_ms": 1188.4065,
+            "decode_requests": 4451,
+            "decode_queue_acquire_ms": 9.1147,
+            "resident_hits": 553821,
+            "new_texture_draws": 201,
+            "draw_ms": 11298.445800000001,
+            "readbacks": 0,
+            "readback_ms": 0.0,
+            "batch_flushes": 0,
+            "batched_primitives": 0
+          },
+          "max_batch_primitives": 0,
+          "audio_starved_sample_frames_delta": 175468,
+          "errors": []
+        },
+        "on": {
+          "guest_fps": 56.90583014168382,
+          "guest_frames": 1821,
+          "seconds": 32.000236099993344,
+          "cpu_delta": {
+            "attempts": 557779,
+            "submitted": 552336,
+            "total_ms": 6869.6909,
+            "source_queries": 557779,
+            "source_ms": 1110.5463,
+            "decode_requests": 4758,
+            "decode_queue_acquire_ms": 11.1115,
+            "resident_hits": 552155,
+            "new_texture_draws": 181,
+            "draw_ms": 4733.4406,
+            "readbacks": 0,
+            "readback_ms": 0.0,
+            "batch_flushes": 151659,
+            "batched_primitives": 531462
+          },
+          "max_batch_primitives": 48,
+          "audio_starved_sample_frames_delta": 76336,
+          "errors": []
+        }
+      },
+      "normal_speed_target_achieved": false
+    },
+    "v16": {
+      "runtime_sha256": "0b83ac9398d054c3204c922feb18718885da17adeda561164625acfc0e5d876e",
+      "same_binary": true,
+      "same_artwork": true,
+      "identical_scene_replay": false,
+      "recorder": false,
+      "turbo": false,
+      "rewind": false,
+      "host_load_observed": true,
+      "causal_cadence_gain_established": false,
+      "legs": {
+        "off": {
+          "guest_fps": 40.59967772879465,
+          "guest_frames": 1827,
+          "seconds": 45.00035719998414,
+          "cpu_delta": {
+            "attempts": 592970,
+            "submitted": 588319,
+            "total_ms": 19741.5779,
+            "source_queries": 592970,
+            "source_ms": 1658.0092999999997,
+            "decode_requests": 4286,
+            "decode_queue_acquire_ms": 11.014499999999998,
+            "resident_hits": 588093,
+            "new_texture_draws": 226,
+            "draw_ms": 16658.388300000002,
+            "readbacks": 0,
+            "readback_ms": 0.0,
+            "batch_flushes": 0,
+            "batched_primitives": 0,
+            "batch_state_skips": 0
+          },
+          "max_batch_primitives": 0,
+          "audio_starved_sample_frames_delta": 693362,
+          "errors": []
+        },
+        "on": {
+          "guest_fps": 57.655727314802334,
+          "guest_frames": 1845,
+          "seconds": 32.00029009999707,
+          "cpu_delta": {
+            "attempts": 574724,
+            "submitted": 568407,
+            "total_ms": 7067.3723,
+            "source_queries": 574724,
+            "source_ms": 1185.9194,
+            "decode_requests": 5664,
+            "decode_queue_acquire_ms": 14.7984,
+            "resident_hits": 568204,
+            "new_texture_draws": 203,
+            "draw_ms": 4859.239100000001,
+            "readbacks": 0,
+            "readback_ms": 0.0,
+            "batch_flushes": 154557,
+            "batched_primitives": 546811,
+            "batch_state_skips": 0
+          },
+          "max_batch_primitives": 48,
+          "audio_starved_sample_frames_delta": 56503,
+          "errors": []
+        }
+      },
+      "normal_speed_target_achieved": false
+    }
+  }
+}

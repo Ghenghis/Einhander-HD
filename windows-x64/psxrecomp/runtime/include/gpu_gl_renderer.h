@@ -38,6 +38,33 @@ void gl_renderer_interpolation_diag(int *enabled, int *suspended,
  * texture-upload ticks, FBO-draw ticks. Active only with PSX_RUNTIME_PERF_DIAG. */
 void gl_renderer_runtime_diag(uint64_t out[6]);
 
+/* Opt-in, read-only completed-frame Mk.II hull draw geometry. Coordinates are relative to the
+ * active draw area, not RAM or world axes. Requires HD source tracking, but
+ * replacements may be disabled. A fresh source-matched draw is not pixel
+ * visibility or collision evidence. No GPU synchronization or file I/O. */
+typedef struct {
+    int enabled, valid;
+    uint64_t frame, age_frames;
+    unsigned draws;
+    uint32_t texture_hash, palette_hash;
+    int min_x, min_y, max_x, max_y, width, height;
+} GlPlayerDrawState;
+void gl_renderer_player_draw_get(GlPlayerDrawState *out);
+
+/* Opt-in cumulative CPU wall attribution, independent of GPU timer queries.
+ * Intervals overlap: readback and draw time may be inside total HD time.
+ * Decode time measures queue/acquire calls, not worker-thread PNG work. */
+typedef struct {
+    int enabled;
+    uint64_t frequency, attempts, submitted, total_ticks;
+    uint64_t source_queries, source_ticks, decode_requests, decode_ticks;
+    uint64_t resident_hits, new_texture_draws, draw_ticks;
+    uint64_t readbacks, readback_ticks;
+    uint64_t batch_flushes, batched_primitives, max_batch_primitives;
+    uint64_t batch_state_skips;
+} GlHdCpuDiag;
+void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out);
+
 /* Settings-driven HD texture pack config ([video] hd_textures /
  * hd_texture_root / hd_dump_root in settings.toml). Call once before the
  * first texture upload; values take precedence over PSXRECOMP_HD_TEXTURE_ROOT
@@ -46,7 +73,8 @@ void gl_renderer_runtime_diag(uint64_t out[6]);
 void gpu_hd_texture_config(int enabled, const char *root, const char *dump);
 
 /* Live COLOR-only controls, called on the owning emulation/render thread's
- * debug-command safe point. No GL operations or file I/O. Existing verified
+ * debug-command safe point. A change flushes queued replacement geometry
+ * before updating the material generation; there is no file I/O. Existing verified
  * configured key subsets and loaded detail textures remain unchanged. Optional
  * diagnostic scopes select at most 128 registered exact replacement keys per
  * channel, disable detail and never establish actor ownership. */

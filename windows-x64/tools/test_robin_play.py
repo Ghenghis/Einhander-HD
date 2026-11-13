@@ -1,6 +1,5 @@
 """Behavioral coverage for Robin's pad-only acceptance route and read stalls."""
 import unittest
-import struct
 from unittest.mock import patch
 import ein_bridge as bridge
 
@@ -9,25 +8,66 @@ class ImmediateHalt:
     def set(self):pass
 
 class RobinPlayTests(unittest.TestCase):
-    def test_position_feedback_corrects_both_axes_without_timer_drift(self):
+    def test_draw_feedback_corrects_screen_axes_with_hysteresis(self):
         bot=bridge.Robin()
-        def moves(x,y):return bot.position_buttons(struct.pack('<ii',y,x))
-        self.assertEqual(['left','down'],moves(128,0))
-        self.assertEqual(['up'],moves(220,60))
-        self.assertEqual(['right','down'],moves(300,-60))
-        self.assertEqual(['down'],moves(220,0))
+        def moves(x,y,**kw):return bot.draw_buttons(dict(ok=True,enabled=True,valid=True,
+            bounds=[x-10,y-10,x+10,y+10],viewport=[320,240],**kw))
+        self.assertEqual(['left','down'],moves(160,120))
+        self.assertEqual(['up'],moves(80,170))
+        self.assertEqual(['right','down'],moves(30,60))
+        self.assertEqual(['down'],moves(80,120))
         with self.assertRaises(ValueError):moves(20000,0)
-        with self.assertRaises(ValueError):bot.position_buttons(b'bad')
+        with self.assertRaises(ValueError):bot.draw_buttons(dict(ok=True,enabled=True,valid=False))
 
-    def test_calibrated_city_and_night_pulses_use_integer_global_coordinates(self):
-        self.assertEqual('0x80081E18',bridge.ADDR_PLAYER_POSITION)
-        for start_x,start_y in ((128,-9),(238,-37)):
-            bot=bridge.Robin();bot.apply(dict(dodge=False))
-            raw=lambda x,y:struct.pack('<ii',y,x)
-            for x in (start_x,start_x-114,start_x-228,start_x-114,start_x):
-                bot.position_buttons(raw(x,start_y))
-                self.assertEqual(x,bot.position['x'])
-                self.assertEqual(start_y,bot.position['y'])
+    def test_failed_ram_position_mode_is_not_exposed(self):
+        with self.assertRaises(ValueError):bridge.Robin().apply(dict(movement='position_lane'))
+
+    def test_last_craft_with_zero_spare_lives_is_not_a_continue_screen(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='draw_lane',revive=False,dodge=False))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            if obj['cmd']=='read_ram':return dict(ok=True,data='00')
+            if obj['cmd']=='player_draw':return dict(ok=True,enabled=True,valid=True,
+                bounds=[65,100,95,130],viewport=[320,240],frame=123,age_frames=0)
+            if obj['cmd']=='press':bot.request_stop()
+            return dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertEqual([bridge.btn_word('x')],[c['buttons'] for c in calls if c['cmd']=='press'])
+        self.assertEqual('clear_input',calls[-1]['cmd'])
+
+    def test_missing_hull_releases_input_and_stops_without_blind_fire(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='draw_lane',invincible=False))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            return dict(ok=True,data='03') if obj['cmd']=='read_ram' else dict(ok=True,enabled=True,valid=False)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertFalse(bot.running)
+        self.assertEqual(40,sum(c['cmd']=='player_draw' for c in calls))
+        self.assertFalse(any(c['cmd'] in ('press','write_ram') for c in calls))
+
+    def test_respawn_gap_keeps_bounded_fire_without_guessing_movement(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();polls=0;calls=[]
+        bot.apply(dict(movement='draw_lane',invincible=False,revive=False,fire_mode='both'))
+        def command(obj,timeout=8):
+            nonlocal polls
+            calls.append((polls,obj))
+            if obj['cmd']=='read_ram':return dict(ok=True,data='03' if polls==0 else '02')
+            if obj['cmd']=='player_draw':
+                polls+=1
+                if polls==1:return dict(ok=True,enabled=True,valid=True,
+                    bounds=[65,100,95,130],viewport=[320,224],frame=100,age_frames=0)
+                return dict(ok=True,enabled=True,valid=False,age_frames=60 if polls==2 else 181)
+            if obj['cmd']=='clear_input' and polls==3:bot.request_stop()
+            return dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        gap=[c for phase,c in calls if phase==2 and c['cmd']=='press']
+        self.assertEqual(2,len(gap))
+        self.assertTrue(all(c['buttons']==bridge.btn_word('x','square') for c in gap))
+        self.assertFalse(any(c['cmd']=='press' for phase,c in calls if phase==3))
+        self.assertFalse(any(c['cmd']=='write_ram' for phase,c in calls))
+        self.assertEqual('clear_input',calls[-1][1]['cmd'])
 
     def test_revival_disabled_does_not_confirm_continue_with_autofire(self):
         bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt()

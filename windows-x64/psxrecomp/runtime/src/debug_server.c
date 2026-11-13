@@ -5157,6 +5157,39 @@ static void handle_read_ram(int id, const char *json)
     free(out);
 }
 
+static void handle_player_draw(int id,const char *json) {
+    GlPlayerDrawState s;(void)json;gl_renderer_player_draw_get(&s);
+    send_fmt("{\"id\":%d,\"ok\":true,\"enabled\":%s,\"valid\":%s,"
+             "\"frame\":%llu,\"age_frames\":%llu,\"draws\":%u,"
+             "\"bounds\":[%d,%d,%d,%d],\"viewport\":[%d,%d],"
+             "\"last_key\":\"%08X-%08X\","
+             "\"basis\":\"MkII hull source-matched draw geometry\","
+             "\"not_visibility_proof\":true}",id,s.enabled?"true":"false",s.valid?"true":"false",
+             (unsigned long long)s.frame,(unsigned long long)s.age_frames,s.draws,
+             s.min_x,s.min_y,s.max_x,s.max_y,s.width,s.height,s.texture_hash,s.palette_hash);
+}
+
+static void handle_hd_cpu_profile(int id,const char *json) {
+    GlHdCpuDiag s;(void)json;gl_renderer_hd_cpu_diag_get(&s);
+    double ms=s.frequency?1000.0/(double)s.frequency:0.0;
+    send_fmt("{\"id\":%d,\"ok\":true,\"enabled\":%s,\"attempts\":%llu,"
+             "\"submitted\":%llu,\"total_ms\":%.6f,\"source_queries\":%llu,\"source_ms\":%.6f,"
+             "\"decode_requests\":%llu,\"decode_queue_acquire_ms\":%.6f,"
+             "\"resident_hits\":%llu,\"new_texture_draws\":%llu,\"draw_ms\":%.6f,"
+             "\"readbacks\":%llu,\"readback_ms\":%.6f,"
+             "\"batch_flushes\":%llu,\"batched_primitives\":%llu,\"max_batch_primitives\":%llu,"
+             "\"batch_state_skips\":%llu,"
+             "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
+             id,s.enabled?"true":"false",(unsigned long long)s.attempts,
+             (unsigned long long)s.submitted,(double)s.total_ticks*ms,
+             (unsigned long long)s.source_queries,(double)s.source_ticks*ms,
+             (unsigned long long)s.decode_requests,(double)s.decode_ticks*ms,
+             (unsigned long long)s.resident_hits,(unsigned long long)s.new_texture_draws,
+             (double)s.draw_ticks*ms,(unsigned long long)s.readbacks,(double)s.readback_ticks*ms,
+             (unsigned long long)s.batch_flushes,(unsigned long long)s.batched_primitives,
+             (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips);
+}
+
 /* "dump_ram" is an alias of "read_ram".  The old implementation answered a
  * single request with one response line per 256-byte chunk; any client that
  * follows the one-request/one-response protocol left the extra lines unread,
@@ -13519,6 +13552,8 @@ static const CmdEntry s_commands[] = {
     { "record_frame_dump", handle_record_frame_dump },
     { "record_reads_dump", handle_record_reads_dump },
     { "get_registers",     handle_get_registers },
+    { "player_draw",       handle_player_draw },
+    { "hd_cpu_profile",    handle_hd_cpu_profile },
     { "read_ram",          handle_read_ram },
     { "dump_ram",          handle_read_ram },   /* alias: one request, one response */
     { "write_ram",         handle_write_ram },

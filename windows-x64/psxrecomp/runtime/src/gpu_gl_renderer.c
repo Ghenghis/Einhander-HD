@@ -275,6 +275,7 @@ static void gl_perf_mirror_end(void);   /* mirror pass (timestamp pair; splits s
  * margins go stale + hr gets garbage — perf probe only). */
 static int s_ws_ablate = 0;
 static void flush_tex_batch(void); /* textured-prim batch — defined below, flushed from coherency points */
+static void flush_hd_batch(void); /* opt-in opaque HD batch; shares native flush boundaries */
 static int  hd_on_textured_prim(const int *xs, const int *ys,
                                 const int *us, const int *vs,
                                 const float *col, uint16_t texpage,
@@ -502,6 +503,21 @@ static DirtyRect s_pack_dirty;             /* hr FBO content not in raw mirror *
 static DirtyRect s_up_rects[UP_RECTS_MAX];
 static int       s_up_nrects = 0;
 static uint64_t  s_rt_up_diag[6];
+static GlHdCpuDiag s_hd_cpu_diag;
+static int s_hd_cpu_prim_active;
+static int s_hd_cpu_diag_enabled=-1;
+static int hd_cpu_diag_enabled(void) {
+    if(s_hd_cpu_diag_enabled<0){
+        const char *value=getenv("PSXRECOMP_HD_CPU_PROFILE");
+        s_hd_cpu_diag_enabled=value && strcmp(value,"1")==0;
+    }
+    return s_hd_cpu_diag_enabled;
+}
+void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out) {
+    if(!out)return;
+    *out=s_hd_cpu_diag;out->enabled=hd_cpu_diag_enabled();
+    out->frequency=out->enabled?SDL_GetPerformanceFrequency():0;
+}
 
 static int runtime_upload_diag_enabled(void) {
     static int enabled = -1;
@@ -1724,6 +1740,8 @@ static void ensure_cpu(void) {
         s_gpu_dirty = 0;
         return;
     }
+    const int cpu_diag=hd_cpu_diag_enabled();
+    const uint64_t readback_start=cpu_diag?SDL_GetPerformanceCounter():0;
     flush_flat_batch();
     flush_tex_batch();   /* realise queued textured draws before reading the FBO back */
     flush_cpu_upload();
@@ -1732,6 +1750,7 @@ static void ensure_cpu(void) {
     glReadPixels(0, 0, VRAM_W, VRAM_H, PSXGL_RED_INTEGER, GL_UNSIGNED_SHORT, s_vram);
     p_glBindFramebuffer(PSXGL_READ_FRAMEBUFFER, 0);
     s_gpu_dirty = 0;
+    if(cpu_diag){++s_hd_cpu_diag.readbacks;s_hd_cpu_diag.readback_ticks+=SDL_GetPerformanceCounter()-readback_start;}
     coh_record(GL_COH_ENSURE, 0, 0, VRAM_W - 1, VRAM_H - 1);
 }
 
@@ -2020,6 +2039,7 @@ static int mirror_batch_center_only(int nverts) {
 }
 
 static void flush_tex_batch(void) {
+    flush_hd_batch();
     if (s_tb_n == 0) return;
     int nverts = s_tb_n, semi = s_tb_semi;
     s_tb_n = 0;                             /* clear first: re-entrancy safe */
@@ -2081,6 +2101,7 @@ static int mirror_flat_batch_center_only(int nverts) {
 }
 
 static void flush_flat_batch(void) {
+    flush_hd_batch();
     if (s_fb_n == 0) return;
     int nverts = s_fb_n, semi = s_fb_semi, mask = s_fb_mask;
     s_fb_n = 0;
@@ -2233,6 +2254,7 @@ static void gpu_textured_triangle(const int *xs, const int *ys,
     if (hd_on_textured_prim(xs, ys, us, vs, col, texpage, clut_x, clut_y,
                             rawtex, semi, lim, depth))
         return;
+    flush_hd_batch(); /* native fallback must follow all earlier HD geometry */
 
     /* Append to the textured batch. Flush first if this prim's blend/mask/twin/
      * filter differ from the open batch, or the buffer is full. Per-prim texture
@@ -2836,11 +2858,45 @@ static void hd_dump_source_sidecars(const HdTextureDrawQuery *q,
 /* First source-query and actual GL draw receipts per key/blend-mode, opt-in
  * and bounded. Loading a PNG alone does not constitute an in-game proof. */
 #include "hd_research_renderer.h"
+#include "hero_draw_tracker.h"
+static HeroDrawTracker s_player_draw_tracker;
+static HeroDrawTracker s_player_draw_completed;
+static int s_player_draw_enabled=-1;
+static int s_player_draw_only=-1;
+static int player_draw_enabled(void) {
+    if(s_player_draw_enabled<0){
+        const char *value=getenv("PSXRECOMP_PLAYER_DRAW_TRACKING");
+        s_player_draw_enabled=value && strcmp(value,"1")==0;
+    }
+    return s_player_draw_enabled;
+}
+static int player_draw_only(void) {
+    if(s_player_draw_only<0){
+        const char *value=getenv("PSXRECOMP_PLAYER_DRAW_ONLY");
+        s_player_draw_only=value && strcmp(value,"1")==0;
+    }
+    return s_player_draw_only;
+}
+static void player_draw_on_source(const HdTextureSourceMatch *m,const HdTextureDrawQuery *q,
+                                  const int *xs,const int *ys) {
+    if(player_draw_enabled() && m->upload_width_words==16 && m->upload_height==64){
+        const int area[4]={s_area_x1,s_area_y1,s_area_x2,s_area_y2};
+        hero_draw_observe(&s_player_draw_tracker,s_frame_count,m->texture_hash,m->palette_hash,
+                         q->depth,xs,ys,area);
+    }
+}
+void gl_renderer_player_draw_get(GlPlayerDrawState *out) {
+    if(out)hero_draw_snapshot(&s_player_draw_completed,s_frame_count,player_draw_enabled(),out);
+}
+static void player_draw_present_commit(void) {
+    if(player_draw_enabled())s_player_draw_completed=s_player_draw_tracker;
+}
 static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
                                   const HdTextureDrawQuery *q,
                                   const HdTexturePixels *px, int semi,
                                   const int *xs, const int *ys,
                                   const int *us, const int *vs) {
+    if(!px)player_draw_on_source(m,q,xs,ys);
     hd_research_on_draw(m,q,px,semi,xs,ys,us,vs);
     static int initialized = 0;
     static FILE *log = NULL;
@@ -3195,7 +3251,37 @@ static int hd_facade_motion_match(const HdTextureSourceMatch *m,const HdTextureD
         q->clut_x==0 && q->clut_y==480;
 }
 
+/* Only adjacent opaque triangles without mask checking are batched. Their
+ * per-triangle UV limits, colors, depth and perspective ride in TEXV. All
+ * uniform/resource/state differences split the batch. Storage is fixed. */
+#define HD_OPAQUE_BATCH_MAX 256
+typedef struct {
+    uint32_t texture,palette;
+    uint64_t material_generation;
+    unsigned program;
+    int off_x,off_y,width,height,filter,mask,depth,page_x,page_y,clut_x,clut_y;
+    int region_x,region_y,exact_region,has_upload;
+} HdOpaqueBatchKey;
+typedef struct {
+    HdTextureSourceMatch source;
+    HdTextureDrawQuery query;
+    unsigned width,height;
+    int xs[3],ys[3],us[3],vs[3];
+} HdOpaqueReceipt;
+static HdOpaqueBatchKey s_hd_batch_key;
+static HdOpaqueReceipt s_hd_batch_receipts[HD_OPAQUE_BATCH_MAX];
+static float s_hd_batch_vertices[HD_OPAQUE_BATCH_MAX*3*TEXV];
+static unsigned s_hd_batch_n;
+static int s_hd_opaque_batch_enabled=-1;
+static int hd_opaque_batch_enabled(void) {
+    if(s_hd_opaque_batch_enabled<0){
+        const char *value=getenv("PSXRECOMP_HD_OPAQUE_BATCH");
+        s_hd_opaque_batch_enabled=value && strcmp(value,"1")==0;
+    }
+    return s_hd_opaque_batch_enabled;
+}
 static void hd_tex_release_slot(HdTexSlot *slot) {
+    flush_hd_batch(); /* a queued batch owns a live reference to its texture */
     if(slot->tex)glDeleteTextures(1,&slot->tex);
     if(s_hd_facade_motion.resident_mip_bytes>=slot->facade_mip_bytes)
         s_hd_facade_motion.resident_mip_bytes-=slot->facade_mip_bytes;
@@ -3330,6 +3416,7 @@ int gl_renderer_skin_material_configure(const char *player_profile,int player_st
         return 0;
     }
     if(preserve_accents>=0)player.preserve_accents=enemy.preserve_accents=preserve_accents;
+    flush_hd_batch(); /* receipts and already-set uniforms belong to the old generation */
     s_hd_skin=player;s_hd_skin_enemy=enemy;
     ++s_hd_live_generation;
     if(error && error_capacity>0)error[0]=0;
@@ -3339,6 +3426,7 @@ int gl_renderer_skin_material_configure(const char *player_profile,int player_st
 
 static GLuint hd_tex_object(uint32_t th, uint32_t ph,
                             const HdTexturePixels *px) {
+    flush_hd_batch();
     int slot = -1, oldest = 0, i;
     uint64_t omin = ~0ull;
     for (i = 0; i < HD_TEX_CACHE_MAX; i++) {
@@ -3383,19 +3471,19 @@ static GLuint hd_tex_object(uint32_t th, uint32_t ph,
  * blend/stencil contract is identical: opaque -> one pass (+ stencil fixup
  * under mask-check); semi modes 0/1/3 without mask-check -> one dual-source
  * pass (u_semimode 4); everything else -> conservative STP two-pass. */
-static void hd_draw_passes(int semi, int mask) {
+static void hd_draw_passes(int semi, int mask, int nverts) {
     int bsemi = (semi < 0) ? -1 : ((!s_mask_check && semi != 2) ? 4 : semi);
     p_glUniform1i(s_hd_uSemimode, bsemi < 0 ? 0 : bsemi);
     if (bsemi < 0) {
         glDisable(GL_BLEND);
         mask_stencil(mask);
         p_glUniform1i(s_hd_uSemipass, 0);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, nverts);
         if (s_mask_check) {
             glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
             mask_stencil(1);
             p_glUniform1i(s_hd_uSemipass, 2);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            glDrawArrays(GL_TRIANGLES, 0, nverts);
             glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
         } else if (!mask) {
             s_stencil_valid = 0;
@@ -3406,17 +3494,46 @@ static void hd_draw_passes(int semi, int mask) {
         p_glBlendFuncSeparate(GL_ONE, PSXGL_SRC1_ALPHA, GL_ONE, GL_ZERO);
         if (mask) mask_stencil(1); else glDisable(GL_STENCIL_TEST);
         p_glUniform1i(s_hd_uSemipass, 0);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, nverts);
         if (!mask) s_stencil_valid = 0;
     } else {
         glDisable(GL_BLEND);
         mask_stencil(mask);
         p_glUniform1i(s_hd_uSemipass, 1);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, nverts);
         apply_psx_blend(semi);
         mask_stencil(1);
         p_glUniform1i(s_hd_uSemipass, 2);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, nverts);
+    }
+}
+
+static void flush_hd_batch(void) {
+    unsigned n=s_hd_batch_n;
+    if(!n)return;
+    s_hd_batch_n=0; /* receipts/cache operations cannot recursively flush it */
+    const int diag=hd_cpu_diag_enabled();
+    const uint64_t started=diag?SDL_GetPerformanceCounter():0;
+    /* No state-changing operation may pass a native flush boundary while this
+     * batch is pending. The first triangle already established HD GL state. */
+    p_glBindVertexArray(s_tex_vao);
+    p_glBindBuffer(PSXGL_ARRAY_BUFFER,s_tex_vbo);
+    p_glBufferData(PSXGL_ARRAY_BUFFER,(ptrdiff_t)(n*3*TEXV*sizeof(float)),s_hd_batch_vertices,PSXGL_STREAM_DRAW);
+    hd_draw_passes(-1,s_hd_batch_key.mask,(int)n*3);
+    for(unsigned i=0;i<n;++i){
+        HdOpaqueReceipt *r=&s_hd_batch_receipts[i];HdTexturePixels px={0};
+        px.width=r->width;px.height=r->height;
+        hd_proof_draw_receipt(&r->source,&r->query,&px,-1,r->xs,r->ys,r->us,r->vs);
+        ++s_hd_proof_counts[4];++s_hd_proof_counts[r->source.upload_serial?9:8];
+    }
+    hr_end();
+    if(diag){
+        s_hd_cpu_diag.submitted+=n;
+        const uint64_t ticks=SDL_GetPerformanceCounter()-started;
+        s_hd_cpu_diag.draw_ticks+=ticks;
+        if(!s_hd_cpu_prim_active)s_hd_cpu_diag.total_ticks+=ticks;
+        ++s_hd_cpu_diag.batch_flushes;s_hd_cpu_diag.batched_primitives+=n;
+        if(n>s_hd_cpu_diag.max_batch_primitives)s_hd_cpu_diag.max_batch_primitives=n;
     }
 }
 
@@ -3439,7 +3556,7 @@ static void hd_rearm_pending_destination(int x0,int y0,int x1,int y1) {
 /* Per-prim replacement attempt. Returns 1 when the prim was drawn from the
  * replacement texture (caller skips the native batch append), 0 to fall back.
  * Also performs dump-mode work on its internal probe result. */
-static int hd_on_textured_prim(const int *xs, const int *ys,
+static int hd_on_textured_prim_impl(const int *xs, const int *ys,
                                const int *us, const int *vs,
                                const float *col, uint16_t texpage,
                                uint16_t clut_x, uint16_t clut_y,
@@ -3478,8 +3595,18 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
     q.clut_y  = clut_y;
     q.vram    = s_vram;
     q.vram_word_count = (size_t)VRAM_W * VRAM_H;
+    const int cpu_diag=hd_cpu_diag_enabled();
+    const uint64_t source_start=cpu_diag?SDL_GetPerformanceCounter():0;
     const int upload_status=hd_texture_pack_match_source(s_hd_pack,&q,&m);
+    if(cpu_diag){++s_hd_cpu_diag.source_queries;s_hd_cpu_diag.source_ticks+=SDL_GetPerformanceCounter()-source_start;}
     if(upload_status==HD_TEXTURE_LOOKUP_AMBIGUOUS || upload_status==HD_TEXTURE_LOOKUP_ERROR)return 0;
+    /* Native observer mode uses only existing CPU-upload identities. It never
+     * enters page/region readback, research I/O, PNG decoding or replacement
+     * drawing. The game still submits the ordinary native textured primitive. */
+    if(player_draw_only()){
+        if(upload_status==HD_TEXTURE_LOOKUP_FOUND)player_draw_on_source(&m,&q,xs,ys);
+        return 0;
+    }
     if(upload_status!=HD_TEXTURE_LOOKUP_FOUND){
         HdTextureRegionCandidate region;
         const int region_status=hd_texture_pack_probe_region(s_hd_pack,&q,&region);
@@ -3585,21 +3712,25 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
      * lease. Reuse it even after the bounded decode cache evicts its PNG. */
     HdTexSlot *resident = hd_tex_find(m.texture_hash, m.palette_hash);
     if (resident) {
+        if(cpu_diag)++s_hd_cpu_diag.resident_hits;
         resident_tex = resident->tex;
         resident->stamp = ++s_hd_stamp;
         px.width = resident->w;
         px.height = resident->h;
         s_hd_proof_counts[10]++;
     } else {
+        const uint64_t decode_start=cpu_diag?SDL_GetPerformanceCounter():0;
         const int decode_status = hd_texture_pack_request_decode(s_hd_pack, m.texture_hash,
                                                                   m.palette_hash);
+        if(cpu_diag){++s_hd_cpu_diag.decode_requests;s_hd_cpu_diag.decode_ticks+=SDL_GetPerformanceCounter()-decode_start;}
         if (decode_status != HD_TEXTURE_LOOKUP_FOUND) {
             s_hd_proof_counts[decode_status == HD_TEXTURE_LOOKUP_NONE ? 6 : 7]++;
             return 0;                               /* queued or absent */
         }
-        if (hd_texture_pack_acquire_decoded(s_hd_pack, m.texture_hash,
-                                            m.palette_hash, &px)
-                != HD_TEXTURE_LOOKUP_FOUND) {
+        const uint64_t acquire_start=cpu_diag?SDL_GetPerformanceCounter():0;
+        const int acquire_status=hd_texture_pack_acquire_decoded(s_hd_pack,m.texture_hash,m.palette_hash,&px);
+        if(cpu_diag)s_hd_cpu_diag.decode_ticks+=SDL_GetPerformanceCounter()-acquire_start;
+        if (acquire_status != HD_TEXTURE_LOOKUP_FOUND) {
             s_hd_proof_counts[6]++;
             return 0;
         }
@@ -3685,8 +3816,35 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
         float verts[3 * TEXV];
         float *vp = verts;
         GLuint tex;
-        flush_tex_batch();
-        flush_flat_batch();
+        const int batch=hd_opaque_batch_enabled() && semi<0 && !s_mask_check && !native_edge_width && !g_wide_cur;
+        HdOpaqueBatchKey key;
+        if(batch){memset(&key,0,sizeof(key));
+        key.texture=m.texture_hash;key.palette=m.palette_hash;key.program=s_hd_prog;
+        key.material_generation=s_hd_live_generation;
+        key.off_x=off_x;key.off_y=off_y;key.width=img_w;key.height=m.upload_height;
+        key.filter=s_tex_filter;key.mask=s_mask_set;key.depth=q.depth;
+        key.page_x=q.page_x;key.page_y=q.page_y;key.clut_x=q.clut_x;key.clut_y=q.clut_y;
+        key.region_x=m.region_x;key.region_y=m.region_y;key.exact_region=m.exact_region;key.has_upload=m.upload_serial!=0;
+        }
+        if(s_hd_batch_n && (!batch || memcmp(&key,&s_hd_batch_key,sizeof(key)) || s_hd_batch_n>=HD_OPAQUE_BATCH_MAX))flush_hd_batch();
+        if(!s_hd_batch_n){flush_tex_batch();flush_flat_batch();}
+        const uint64_t draw_start=cpu_diag?SDL_GetPerformanceCounter():0;
+        if(cpu_diag && !resident_tex)++s_hd_cpu_diag.new_texture_draws;
+        for (i = 0; i < 3; i++, vp += TEXV) {
+            vp[0] = s_pc_valid ? s_pc_x[i] : (float)xs[i];
+            vp[1] = s_pc_valid ? s_pc_y[i] : (float)ys[i];
+            vp[2] = (float)us[i];   vp[3] = (float)vs[i];
+            vp[4] = col[i*3+0];     vp[5] = col[i*3+1];
+            vp[6] = col[i*3+2];     vp[7] = 1.0f;
+            vp[8]  = (float)page_x;  vp[9]  = (float)page_y;
+            vp[10] = (float)clut_x;  vp[11] = (float)clut_y;
+            vp[12] = (float)depth;   vp[13] = (float)rawtex;
+            vp[14] = (float)lim[0];  vp[15] = (float)lim[1];
+            vp[16] = (float)lim[2];  vp[17] = (float)lim[3];
+            vp[18] = semi >= 0 ? (float)(semi + 1) : 0.0f;
+            vp[19] = s_pq_valid ? s_pq[i] : 0.0f;
+        }
+        if(!s_hd_batch_n){
         if(native_edge_width)pack_flush(); /* include wrapped framebuffer taps */
         hr_begin(1);
         p_glUseProgram(s_hd_prog);
@@ -3737,33 +3895,44 @@ static int hd_on_textured_prim(const int *xs, const int *ys,
         p_glUniform1i(s_hd_uMaskset, s_mask_set);
         p_glUniform2f(s_hd_uOff, (float)off_x, (float)off_y);
         p_glUniform2f(s_hd_uDim, (float)img_w, (float)m.upload_height);
-        for (i = 0; i < 3; i++, vp += TEXV) {
-            vp[0] = s_pc_valid ? s_pc_x[i] : (float)xs[i];
-            vp[1] = s_pc_valid ? s_pc_y[i] : (float)ys[i];
-            vp[2] = (float)us[i];   vp[3] = (float)vs[i];
-            vp[4] = col[i*3+0];     vp[5] = col[i*3+1];
-            vp[6] = col[i*3+2];     vp[7] = 1.0f;
-            vp[8]  = (float)page_x;  vp[9]  = (float)page_y;
-            vp[10] = (float)clut_x;  vp[11] = (float)clut_y;
-            vp[12] = (float)depth;   vp[13] = (float)rawtex;
-            vp[14] = (float)lim[0];  vp[15] = (float)lim[1];
-            vp[16] = (float)lim[2];  vp[17] = (float)lim[3];
-            vp[18] = semi >= 0 ? (float)(semi + 1) : 0.0f;
-            vp[19] = s_pq_valid ? s_pq[i] : 0.0f;
         }
+        if(batch){
+            unsigned index=s_hd_batch_n;HdOpaqueReceipt *r=&s_hd_batch_receipts[index];
+            if(!index)s_hd_batch_key=key;
+            memcpy(s_hd_batch_vertices+index*3*TEXV,verts,sizeof(verts));
+            r->source=m;r->query=q;r->width=px.width;r->height=px.height;
+            memcpy(r->xs,xs,sizeof(r->xs));memcpy(r->ys,ys,sizeof(r->ys));
+            memcpy(r->us,us,sizeof(r->us));memcpy(r->vs,vs,sizeof(r->vs));
+            ++s_hd_batch_n;
+        }else{
         p_glBindVertexArray(s_tex_vao);
         p_glBindBuffer(PSXGL_ARRAY_BUFFER, s_tex_vbo);
         p_glBufferData(PSXGL_ARRAY_BUFFER,
                        (ptrdiff_t)(3 * TEXV * sizeof(float)),
                        verts, PSXGL_STREAM_DRAW);
-        hd_draw_passes(semi, s_mask_set);
+        hd_draw_passes(semi, s_mask_set,3);
         hd_proof_draw_receipt(&m, &q, &px, semi, xs, ys, us, vs);
         s_hd_proof_counts[4]++;
         s_hd_proof_counts[m.upload_serial ? 9 : 8]++;
         hr_end();
+        if(cpu_diag)++s_hd_cpu_diag.submitted;
+        }
+        if(cpu_diag)s_hd_cpu_diag.draw_ticks+=SDL_GetPerformanceCounter()-draw_start;
     }
     hd_texture_pixels_release(&px);
     return 1;
+}
+
+static int hd_on_textured_prim(const int *xs,const int *ys,const int *us,const int *vs,
+        const float *col,uint16_t texpage,uint16_t clut_x,uint16_t clut_y,
+        int rawtex,int semi,const int *lim,int depth) {
+    const int diag=hd_cpu_diag_enabled();
+    const uint64_t start=diag?SDL_GetPerformanceCounter():0;
+    if(diag)++s_hd_cpu_prim_active;
+    int drawn=hd_on_textured_prim_impl(xs,ys,us,vs,col,texpage,clut_x,clut_y,rawtex,semi,lim,depth);
+    if(diag)--s_hd_cpu_prim_active;
+    if(diag){++s_hd_cpu_diag.attempts;s_hd_cpu_diag.total_ticks+=SDL_GetPerformanceCounter()-start;}
+    return drawn;
 }
 
 static void gpu_copy_rect(int sx,int sy,int dx,int dy,int w,int h) {
@@ -3826,7 +3995,7 @@ static void gpu_copy_rect(int sx,int sy,int dx,int dy,int w,int h) {
      * enter the HD dumper/replacement path. Snapshot the completed native GPU
      * copy (including mask semantics) before tracking its new residency.
      * Keep this readback strictly opt-in with the external HD pack. */
-    if (s_hd_state > 0 && s_hd_pack && s_vram) {
+    if (s_hd_state > 0 && s_hd_pack && s_vram && !player_draw_only()) {
         uint16_t *copied = (uint16_t *)malloc((size_t)w * h * sizeof(uint16_t));
         if (copied) {
             int row;
@@ -3906,9 +4075,22 @@ static void glb_set_perspective_triangle(int enabled, float q0, float q1, float 
     s_pq[0] = q0; s_pq[1] = q1; s_pq[2] = q2;
     sw_set_perspective_triangle(enabled, q0, q1, q2);
 }
-static void glb_set_draw_area(int x1,int y1,int x2,int y2) { flush_flat_batch(); flush_tex_batch(); s_area_x1=x1; s_area_y1=y1; s_area_x2=x2; s_area_y2=y2; sw_set_draw_area(x1,y1,x2,y2); }
+static void glb_set_draw_area(int x1,int y1,int x2,int y2) {
+    if(hd_opaque_batch_enabled() && x1==s_area_x1 && y1==s_area_y1 && x2==s_area_x2 && y2==s_area_y2){
+        if(s_hd_batch_n && hd_cpu_diag_enabled())++s_hd_cpu_diag.batch_state_skips;
+        sw_set_draw_area(x1,y1,x2,y2);return;
+    }
+    flush_flat_batch();flush_tex_batch();
+    s_area_x1=x1;s_area_y1=y1;s_area_x2=x2;s_area_y2=y2;sw_set_draw_area(x1,y1,x2,y2);
+}
 static void glb_get_draw_area(int *x1,int *y1,int *x2,int *y2) { sw_get_draw_area(x1,y1,x2,y2); }
-static void glb_set_draw_offset(int x,int y) { flush_flat_batch(); flush_tex_batch(); s_off_x=x; s_off_y=y; sw_set_draw_offset(x,y); }
+static void glb_set_draw_offset(int x,int y) {
+    if(hd_opaque_batch_enabled() && x==s_off_x && y==s_off_y){
+        if(s_hd_batch_n && hd_cpu_diag_enabled())++s_hd_cpu_diag.batch_state_skips;
+        sw_set_draw_offset(x,y);return;
+    }
+    flush_flat_batch();flush_tex_batch();s_off_x=x;s_off_y=y;sw_set_draw_offset(x,y);
+}
 
 /* Pre-context draws (s_raster_ok == 0) fall back to the software rasterizer
  * over CPU VRAM; the initial full-VRAM upload at context init folds them in.
@@ -5360,6 +5542,9 @@ static void gl_perf_present_enter(void) {
     g_bdg_cur = (g_wide_cur != 0); g_bdg_base = g_wide_cur_base; g_bdg_w = g_wide_w; g_bdg_off = g_wide_off;
     s_bdg_applied = 0; s_bdg_prims = 0; s_bdg_clearx = -999999;
     { extern void psx_ws_dbg_gate_frame_snapshot(void); psx_ws_dbg_gate_frame_snapshot(); }
+    /* Publish only a completed draw set, so a debug poll between hull
+     * triangles cannot mistake a partial union for the whole craft. */
+    player_draw_present_commit();
     if (!s_pf_on) return;
     uint64_t now = SDL_GetPerformanceCounter();
     s_pf_enter = now;

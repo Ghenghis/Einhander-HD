@@ -22,6 +22,7 @@ from native_ui_facade_route import enter_city
 from run_facade_ab_probe import identity, close
 import stage_world_candidate as world
 import ui_candidate_probe as probe
+from gpu_capture_guard import require_quiet_gpu
 
 ROOT = base.ROOT / "remaster-audit/dev-center-evidence/stage1-completion-20261112"
 SOURCE = base.OUTPUT / "h24-matched-r3"
@@ -76,6 +77,9 @@ def prepare(label,args):
         PSXRECOMP_HD_DUMP="",PSXRECOMP_HD_SOURCE_SIDECARS="",PSXRECOMP_HD_PROOF_LOG="",
         PSXRECOMP_HD_PROOF_CONTROL="",PSX_GL_PRESENT_PROBE="0",PSX_GL_PERF=str(args.gpu_queries),
         PSXRECOMP_HD_WORLD_SAMPLING=str(args.world_sampling),PSXRECOMP_HD_WORLD_ANISOTROPY="8",
+        PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),
+        PSXRECOMP_HD_OPAQUE_BATCH=str(getattr(args,'opaque_batch',0)),
+        PSXRECOMP_PLAYER_DRAW_TRACKING='0',PSXRECOMP_PLAYER_DRAW_ONLY='0',
         PSX_RUNTIME_PERF_DIAG="0",PSX_FPS_TELEMETRY="0",PSX_FRAME_INTERPOLATION="0",
         PSX_OVERLAY_CAPTURES=str(runtime / "overlay_captures.json"))
     report.update(evidence=str(directory),debug_port=4376,variant=label,
@@ -84,6 +88,8 @@ def prepare(label,args):
         source_sidecars=False,recorder=False,video_capture=False,ram_writes=False,
         timer_assistance=False,gl_present_probe=False,gl_timer_queries=bool(args.gpu_queries),
         world_sampling=bool(args.world_sampling),runtime_build=base.ref(args.runtime.resolve()) if args.runtime else None,
+        hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),
+        hd_opaque_batch=bool(getattr(args,'opaque_batch',0)),
         guest_frame_target=args.guest_frames,
         telemetry_interval_seconds=1.0,route_poll_seconds=1.0,supersampling=9))
     base.write(directory / "candidate.json",report)
@@ -93,6 +99,7 @@ def prepare(label,args):
 def launch(report):
     directory = Path(report["evidence"])
     assert not (directory / "launch-candidate.json").exists()
+    base.write(directory/'gpu-ready.json',require_quiet_gpu())
     for port in range(4373,4379):
         try:
             with socket.create_connection(("127.0.0.1",port),timeout=.2):
@@ -165,6 +172,7 @@ def run(label,args):
                 before=time.monotonic()
                 sample[cmd]=ui.command(report,json.dumps(dict(cmd=cmd,**fields)))
                 sample[cmd+"_request_ms"]=(time.monotonic()-before)*1000
+            if getattr(args,'cpu_profile',0):sample['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
             sample["ended_monotonic"]=time.monotonic()
             proof["samples"].append(sample)
             if index%15==0:
@@ -212,6 +220,10 @@ if __name__=="__main__":
     parser.add_argument("--candidate",type=Path,help="Private pinned artwork candidate.json")
     parser.add_argument("--gpu-queries",type=int,choices=[0,1],default=1)
     parser.add_argument("--world-sampling",type=int,choices=[0,1],default=0)
+    parser.add_argument("--cpu-profile",type=int,choices=[0,1],default=0,
+        help="Opt-in CPU attribution without GPU timer queries; requires a supporting private runtime")
+    parser.add_argument("--opaque-batch",type=int,choices=[0,1],default=0,
+        help="Private opt-in adjacent opaque HD triangle batching; requires a supporting runtime")
     parser.add_argument("--guest-frames",type=int,choices=[900,1800],default=0)
     args=parser.parse_args()
     if not re.fullmatch(r"[a-zA-Z0-9_-]+",args.batch):parser.error("batch must be a single directory name")

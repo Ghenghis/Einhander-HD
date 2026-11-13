@@ -43,25 +43,28 @@ def main():
             print((result.stdout+result.stderr)[-12000:]);raise SystemExit(result.returncode)
         return result
     if args.test:
+        from gpu_capture_guard import require_quiet_gpu
+        quiet=require_quiet_gpu()
         report=json.loads((out/'build.json').read_bytes())
         if (out/'tests.json').exists():raise ValueError('Tests already recorded; use a fresh build')
         for name in ('executable','test_executable'):
             if prior.sha(report[name])!=report[name+'_sha256']:raise ValueError('Executable changed')
         env=os.environ.copy()
         for key in list(env):
-            if key.startswith(('PSXRECOMP_HD_','PSXRECOMP_SKIN_')) or key=='PSX_LOAD_SLOT':env.pop(key)
+            if key.startswith(('PSXRECOMP_HD_','PSXRECOMP_SKIN_','PSXRECOMP_PLAYER_DRAW_')) or key=='PSX_LOAD_SLOT':env.pop(key)
         env.update(PSXRECOMP_HD_PAGE_FALLBACK='1',PSXRECOMP_HD_CPU_AUTHORITY='0',
             PSXRECOMP_HD_FACADE_MOTION='0')
         results={}
         results['native-regions']=run([str(out/'test-regions.exe'),str(out/'region-fixtures'),str(out/'capacity-fixtures')],'native-region-regressions',env).stdout
         results['watchdog-time']=run([str(out/'test-watchdog-time.exe')],'watchdog-time-regressions',env).stdout
         results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
+        results['hero-draw']=run([str(out/'test-hero-draw.exe')],'hero-draw-regressions',env).stdout
         for enabled in (0,1):
             label='real-gl-world-'+str(enabled)
             result=run([report['test_executable'],str(out/'facade-pack'),str(enabled)],label,
                 dict(env,PSXRECOMP_HD_WORLD_SAMPLING=str(enabled),PSXRECOMP_HD_WORLD_ANISOTROPY='8'))
             results[label]=result.stdout
-        write(out/'tests.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),results=results,
+        write(out/'tests.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),gpu_preflight=quiet,results=results,
             build_sha256=prior.sha(out/'build.json'),commands=commands))
         return
     if out.exists():raise ValueError('Use a fresh immutable build directory')
@@ -74,7 +77,10 @@ def main():
         raise ValueError('Pre-experiment source changed')
     watchdog=SOURCE.with_name('starvation_ring.c')
     freeze=SOURCE.with_name('freeze_heartbeat.c')
-    sources=[SOURCE,pack,watchdog,freeze,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c']
+    debug=SOURCE.with_name('debug_server.c')
+    sources=[SOURCE,pack,watchdog,freeze,debug,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),SOURCE.with_name('hero_draw_tracker.h'),ROOT/'windows-x64/psxrecomp/runtime/include/gpu_gl_renderer.h',Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c',AUDIT/'test_hero_draw_tracker.c']
+    sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
+    sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
     hashes={str(p):prior.sha(p) for p in sources}
     out.mkdir()
     shutil.copytree(AUDIT/'facade-motion-experiment/build-v3/facade-pack',out/'facade-pack')
@@ -82,8 +88,10 @@ def main():
     green_key='95A3BCF8-723E222C'
     for suffix in ('words.bin','clut.bin'):
         shutil.copy2(green/(green_key+'.'+suffix),out/'facade-pack'/(green_key+'.'+suffix))
+        shutil.copy2(green/('724E77DA-21FDE894.'+suffix),out/'facade-pack'/('724E77DA-21FDE894.'+suffix))
     from PIL import Image
     Image.new('RGBA',(1024,1024),(64,96,128,127)).save(out/'facade-pack'/(green_key+'.png'))
+    Image.new('RGBA',(64,64),(0,0,0,0)).save(out/'facade-pack'/'724E77DA-21FDE894.png')
     (out/'facade_baseline_shader.h').write_text('static const char *facade_baseline_hd_fs='+json.dumps(extract_shader(saved))+';\n')
     shutil.copytree(prior.BASE/'fixtures',out/'region-fixtures')
     cross=out/'region-fixtures/cross-depth'
@@ -112,6 +120,9 @@ def main():
         str(AUDIT/'test_starvation_watchdog_time.c'),'-o',str(out/'test-watchdog-time.exe')],'compile-watchdog-regressions')
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         str(AUDIT/'test_freeze_stack_capture.c'),'-o',str(out/'test-freeze-stack.exe')],'compile-freeze-stack-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        '-I'+str(SOURCE.parent),'-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),
+        str(AUDIT/'test_hero_draw_tracker.c'),'-o',str(out/'test-hero-draw.exe')],'compile-hero-draw-regressions')
     pack_object=out/'hd_texture_pack.cpp.obj'
     pack_command=next(row['arguments'] for row in baseline['commands'] if row['label']=='compile-pack').copy()
     pack_command[pack_command.index('-o')+1]=str(pack_object)
@@ -127,10 +138,11 @@ def main():
         run(command,'compile-'+destination.stem)
     watchdog_object=out/'starvation_ring.c.obj';compile_renderer(watchdog_object,watchdog)
     freeze_object=out/'freeze_heartbeat.c.obj';compile_renderer(freeze_object,freeze)
+    debug_object=out/'debug_server.c.obj';compile_renderer(debug_object,debug)
     response=(prior.BASE/'exact-region-link.rsp').read_text().splitlines()
     def link(renderer,destination,main=None):
         values=response.copy()
-        for suffix,replacement in [('/gpu_gl_renderer.c.obj',renderer),('/hd_texture_pack.cpp.obj',pack_object),('/starvation_ring.c.obj',watchdog_object),('/freeze_heartbeat.c.obj',freeze_object)]+([('/main.cpp.obj',main)] if main else []):
+        for suffix,replacement in [('/gpu_gl_renderer.c.obj',renderer),('/hd_texture_pack.cpp.obj',pack_object),('/starvation_ring.c.obj',watchdog_object),('/freeze_heartbeat.c.obj',freeze_object),('/debug_server.c.obj',debug_object)]+([('/main.cpp.obj',main)] if main else []):
             matches=[i for i,value in enumerate(values) if value.strip('"').replace('\\','/').endswith(suffix)]
             if len(matches)!=1:raise ValueError('Ambiguous pinned link object '+suffix)
             values[matches[0]]='"'+replacement.as_posix()+'"'

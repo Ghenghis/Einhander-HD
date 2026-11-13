@@ -85,11 +85,6 @@ ADDR_AMMO = "0x80084832"       # u16 weapon ammo
 ADDR_AMMO2 = "0x80084834"      # u16 ammo counter
 ADDR_SCOREMULT = "0x80081326"  # u8 score multiplier
 ADDR_HITS = "0x80085710"       # u8 hit counter per the decoded-address table
-# Read-only Stage 1 movement calibration: signed integer Y then reversed-X.
-# Opening-City and night-section pad pulses agree at these global coordinates.
-# The old 0x800855CC render vector is transient and must not drive movement.
-# Other stages remain unverified. The controller never writes this address.
-ADDR_PLAYER_POSITION = "0x80081E18"
 
 # Pad words are active-low (idle = 0xFFFF).
 BTN = {
@@ -162,7 +157,7 @@ class Robin(threading.Thread):
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
-        for key, allowed in (("movement", ("weave", "left_lane", "position_lane")),
+        for key, allowed in (("movement", ("weave", "left_lane", "draw_lane")),
                              ("fire_mode", ("cross", "both"))):
             if key in cfg:
                 if cfg[key] not in allowed:
@@ -206,27 +201,36 @@ class Robin(threading.Thread):
                 moves.append("square")
         return moves
 
-    def position_buttons(self, raw: bytes):
-        if len(raw) != 8:
-            raise ValueError("Player position requires exactly eight bytes")
-        y, x = struct.unpack("<ii", raw)
-        if not (-1024 <= x <= 1024 and -1024 <= y <= 1024):
-            raise ValueError("Player position is outside the calibrated range")
-        self.position = dict(x=x, y=y, space="Stage1 integer, positive X moves left")
+    def draw_buttons(self, state: dict):
+        """Screen-space feedback from a fresh, source-matched hull draw union."""
+        if not state.get('ok') or not state.get('enabled') or not state.get('valid'):
+            raise ValueError('Fresh hull draw unavailable')
+        bounds,viewport=state.get('bounds'),state.get('viewport')
+        if (not isinstance(bounds,list) or len(bounds)!=4 or
+            not isinstance(viewport,list) or len(viewport)!=2 or
+            not all(isinstance(v,int) for v in bounds+viewport)):
+            raise ValueError('Malformed hull draw geometry')
+        l,t,r,b=bounds;w,h=viewport
+        if not (128<=w<=1024 and 128<=h<=512 and l<=r and t<=b and
+                0<r-l<w//2 and 0<b-t<h//2 and r>=0 and l<w and b>=0 and t<h):
+            raise ValueError('Hull geometry is outside the calibrated viewport')
+        x,y=(l+r)/2,(t+b)/2
+        self.position=dict(x=x,y=y,width=w,height=h,frame=state.get('frame'),
+            age_frames=state.get('age_frames'),fresh=True,space='MkII hull draw geometry')
         moves=[]
         if self.weave:
-            if x < 180:moves.append("left")
-            elif x > 260:moves.append("right")
+            if x>w*.29:moves.append('left')
+            elif x<w*.19:moves.append('right')
         if self.dodge:
-            if y >= 48:self._vertical_direction=-1
-            elif y <= -48:self._vertical_direction=1
-            moves.append("down" if self._vertical_direction>0 else "up")
+            if y>=h*.64:self._vertical_direction=-1
+            elif y<=h*.32:self._vertical_direction=1
+            moves.append('down' if self._vertical_direction>0 else 'up')
         return moves
 
     def run(self) -> None:
         self.note(f"{self.name} online")
         phase, phase_len, dir_h, dir_v = 0, 0, "right", "down"
-        failed_reads, previous_lives = 0, None
+        failed_reads, previous_lives, missing_draws, respawn_grace = 0, None, 0, 0
         while self.running:
             try:
                 lives = self._read(ADDR_LIVES, 1)
@@ -243,10 +247,43 @@ class Robin(threading.Thread):
                     self._halt.wait(.25)
                     continue
                 failed_reads = 0
+                respawn_grace=max(0,respawn_grace-1)
+                if previous_lives is not None and lives[0]<previous_lives:
+                    respawn_grace=20
                 if previous_lives is not None and lives[0] > previous_lives:
                     self._lane_origin = None
                 previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
+                draw_moves=None
+                if self.movement=='draw_lane':
+                    state=cmd({'cmd':'player_draw'},timeout=1.5)
+                    if not state.get('ok') or not state.get('enabled'):
+                        self.note('Hull draw tracking unavailable; bot stopped.')
+                        self.request_stop();break
+                    if state.get('valid'):
+                        try:draw_moves=self.draw_buttons(state)
+                        except ValueError as error:
+                            self.note(str(error)+'; bot stopped.');self.request_stop();break
+                        # The native lives counter can be zero while the last
+                        # craft is still flying. A fresh hull is not Continue.
+                        dead_or_menu=False
+                        missing_draws=0
+                    elif not dead_or_menu:
+                        missing_draws+=1
+                        if missing_draws>=40:
+                            self.note('Hull geometry absent for forty polls; bot stopped.')
+                            self.request_stop();break
+                        age=state.get('age_frames')
+                        if respawn_grace and self.position is not None and isinstance(age,int) and 12<age<=180:
+                            # After an observed life loss, keep bounded fire
+                            # through the respawn fly-in without guessing any
+                            # movement. Zero lives still stops before Continue.
+                            self.position=dict(self.position,fresh=False,age_frames=age)
+                            draw_moves=[]
+                        else:
+                            cmd({'cmd':'clear_input'},timeout=1)
+                            self._halt.wait(self.tick)
+                            continue
 
                 if self.invincible:
                     cmd({"cmd": "write_ram",
@@ -264,15 +301,8 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
-                if self.movement == "position_lane":
-                    position = self._read(ADDR_PLAYER_POSITION, 8)
-                    try:
-                        if position is None:raise ValueError("Position read unavailable")
-                        moves=self.position_buttons(position)
-                    except ValueError as error:
-                        self.note(str(error)+"; input released and bot stopped.")
-                        self.request_stop()
-                        break
+                if self.movement == "draw_lane":
+                    moves=draw_moves
                     fire=["x"] if self.autofire else []
                     if self.autofire and self.fire_mode=="both":fire.append("square")
                     self._press(*(moves+fire),frames=6)
