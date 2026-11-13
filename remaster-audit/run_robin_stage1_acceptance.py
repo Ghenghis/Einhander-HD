@@ -44,6 +44,9 @@ def main():
     parser.add_argument('--terminal-ui-stills',action='store_true',help='Retain one-Hz native frames at zero lives; never confirms Continue')
     parser.add_argument('--composed-stills',action='store_true')
     parser.add_argument('--record-video',action='store_true',help='Record the owned window with validated gfxcapture/NVENC; not recorder-off acceptance')
+    parser.add_argument('--submission-log',action='store_true',help='Retain unsampled first-occurrence replacement receipts, bounded to4096 identities')
+    parser.add_argument('--player-material',choices=['configured','stock'],default='configured')
+    parser.add_argument('--dense-gpu-frames',action='store_true',help='Retain bounded previous-frame GP0 rings alongside sequential stills; not atomic or complete replay')
     parser.add_argument('--continues',type=int,choices=range(0,11),default=0,
         help='Experimental bounded Continue confirmations after three increasing native prompt frames; never presses Start')
     args=parser.parse_args()
@@ -52,8 +55,8 @@ def main():
         parser.error('--continues requires --revive 0 --movement draw_lane --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
-    if args.craft != 'mk2' and (args.hd != 'off' or args.movement == 'draw_lane'):
-        parser.error('Alternate-craft source acquisition requires native HD-off play and no MkII hull controller')
+    if args.craft != 'mk2' and (args.movement=='draw_lane' or (args.hd=='on' and not args.native_menus)):
+        parser.error('Alternate craft require native menus and no MkII hull controller; HD-on needs --native-menus')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,guest_frames=0)
     tracking=args.sources or args.movement=='draw_lane'
@@ -62,6 +65,9 @@ def main():
     overrides=report['launches']['candidate']['environment_overrides']
     overrides['PSXRECOMP_HD_SOURCE_CACHE_KEYS']=args.source_cache_keys.upper()
     overrides.update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
+    if args.player_material=='stock':
+        overrides.update(PSXRECOMP_SKIN_PROFILE='stock',PSXRECOMP_SKIN_DETAIL_PATH='')
+    if args.submission_log:overrides['PSXRECOMP_HD_PROOF_LOG']=str(directory/'first-submissions.jsonl')
     overrides.update(PSXRECOMP_PLAYER_DRAW_TRACKING='1' if args.movement=='draw_lane' else '0',
         PSXRECOMP_PLAYER_DRAW_ONLY='1' if args.movement=='draw_lane' and args.hd=='off' and not args.sources else '0')
     if args.sources:
@@ -78,6 +84,7 @@ def main():
         native_menus=args.native_menus,terminal_ui_stills=args.terminal_ui_stills,composed_stills=args.composed_stills,
         video_recording=args.record_video,
         verified_continue_limit=args.continues,
+        first_submission_log=args.submission_log,player_material=args.player_material,dense_gpu_frames=args.dense_gpu_frames,
         hull_draw_tracking=args.movement=='draw_lane',native_observer_only=overrides['PSXRECOMP_PLAYER_DRAW_ONLY']=='1')
     pacing.base.write(directory/'candidate.json',report)
     ui.copy_verified(Path(__file__),directory/'executed-robin.py')
@@ -154,6 +161,9 @@ def main():
             from native_continue_gate import ContinueGate,REFERENCE,REFERENCE_SHA
             continue_gate=ContinueGate()
             proof['verified_continues']=dict(limit=args.continues,reference=dict(path=str(REFERENCE),sha256=REFERENCE_SHA),attempts=[])
+            import native_continue_gate
+            proof['verified_continues']['helper']=pacing.base.ref(Path(native_continue_gate.__file__))
+            ui.copy_verified(Path(native_continue_gate.__file__),directory/'executed-continue-gate.py')
         start=time.monotonic();next_shot=0
         captures=directory/'observations';captures.mkdir()
         for index in range(args.seconds+1):
@@ -212,6 +222,12 @@ def main():
                 target=captures/(f'frame-{index:04d}.png')
                 row['screenshot']=ui.command(report,json.dumps(dict(cmd='screenshot',path=target.as_posix())))
                 if args.composed_stills:row['composed']=probe.capture(report,f'robin-{index:04d}',hires=False)
+                if args.dense_gpu_frames:
+                    frame=row['registers']['frame']-1
+                    data=probe.request(report,'gpu_frame_dump',frame=frame,count=65536)
+                    target=captures/f'gpu-frame-{frame:08d}.json';pacing.base.write(target,data)
+                    row['gpu_frame']=dict(**pacing.base.ref(target),requested_frame=frame,
+                        scope='Bounded prior guest-frame GP0 ring; sequential with stills, not atomic; ring/count limits apply')
                 row['bot']=api()['bot'];assert row['bot']['invincible'] is False
                 print(json.dumps(dict(elapsed=index,frame=row['registers'].get('frame'),
                     lives=row['lives'],bot_running=row['bot']['running'],screenshot=str(target))),flush=True)

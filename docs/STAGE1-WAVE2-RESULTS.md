@@ -27,16 +27,18 @@ Continue, rewind or turbo. Native menus preceded enabling the full HD pack, so
 this does not accept the new title/selection artwork. Opaque batching, source
 capture and video recording were active.
 
-The sampled draw log submitted **216 of 723 authored entries**, including 13
+The sampled draw log submitted **375 of 723 authored entries**, including all ten
+delivered building tiles, 71 office-atlas palettes, 59 beacon palettes, 13
 fireball palettes, nine smoke palettes, the muzzle flash, 31 lamp/panel palettes,
 HUD strips and 25 results palettes. The large-explosion family and seven
 predicted wordmark uploads were not observed. A submitted draw does not prove
 visible pixels, ownership, or every pose, palette and animation phase.
 
-The SPREADER pickup label is readable in the retained 30-second frame, but its
-`5C02D3C1-E0C06BFB` source was queried without an HD submission. The authored
-strip is present in the pack; its runtime admission remains a specific open
-defect. Readability does not establish that this wordmark replacement drew. Fire and
+The SPREADER pickup label is readable in the retained 30-second frame. Its
+`5C02D3C1-E0C06BFB` source was queried, but no HD submission for that key was
+sampled in this run. The authored strip is present in the pack. Because the log
+is rate limited, that absence does not establish a runtime admission failure;
+wordmark acceptance needs further draw/crop evidence. Fire and
 smoke appear in combat, including against the facade approach. Faint class-boundary
 outlines remain a review concern; this was a v2 observation, not a matched v1/v2
 comparison. Results still contain mixed typography and the known red grade
@@ -53,8 +55,26 @@ sample frames. This is not recorder-off pacing or audible-audio acceptance.
 
 ![Actual evaluation after losing all lives](media/gallery/stage1-wave2-evaluation.png)
 
-The [machine-readable result](media/gallery/stage1-wave2-results.json) retains
+The [corrected machine-readable result](media/gallery/stage1-wave2-results-v2.json) retains
 the build/composition references, entry-level sampled coverage, controls,
 measured deltas, media hashes and contiguous packet proof. The candidate is
-private and uninstalled. Remaining work is tracked in
+private and uninstalled. The original receipt counted only 216 entries because
+it compared full source-page keys with registered region keys. Revision 2 checks
+the actual composed keys against their input rows; the original receipt remains
+available as superseded evidence.
+
+A separate [one-credit Continue check](media/gallery/stage1-continue-results.json)
+passed: prompt frames 10384, 10444 and 10504 preceded one six-frame Cross input.
+Positive lives and fresh hull geometry were observed before restarting ordinary
+controller input. It stopped at the next verified Continue under its one-credit
+limit and closed cleanly. This accepts that Continue transition, not stage clear.
+The native reference fixtures are included with the regression tests.
+
+A subsequent [v18 wordmark observation](media/gallery/stage1-wordmark-results.json)
+positively recorded the SPREADER strip being submitted at 4096×128. Its texture
+window mask and offset were zero. The original missing sample must not be
+treated as an admission failure. All wordmarks and pickup transitions still
+need individual visual acceptance.
+
+Remaining work is tracked in
 [completion status](STAGE1-COMPLETION-STATUS.md).

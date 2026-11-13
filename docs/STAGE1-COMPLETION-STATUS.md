@@ -4,12 +4,20 @@ November 12, 2026. **The remaster and Stage 1 release are incomplete.**
 
 The newer [Wave 2 gameplay test](STAGE1-WAVE2-RESULTS.md) exercised a 723-entry,
 1,559-key private composition. All 219 native region checks passed, and the
-sampled log submitted 216 authored entries. The revised HUD, fire/smoke, Continue
+corrected sampled log submitted 375 authored entries. The revised HUD, fire/smoke, Continue
 and evaluation screens have actual captures. With survival assistance off, the
 controller lost all remaining lives; no stage clear was established. The whole
 276-second observation averaged 55.55 guest frames/s and still accumulated
-output-starved sample frames. A bounded, visually verified Continue route is
-being qualified; the legacy blind revival inputs are not used for acceptance.
+output-starved sample frames. A separate one-credit, visually verified Continue
+route passed and resumed gameplay, then stopped at the next prompt under its
+bounded limit. The legacy blind revival inputs are not used for acceptance.
+
+A following Mk.III composition has 729 authored entries in 1,562 keys and passes
+220 native region checks. It adds two verified hulls, two recovered native strips,
+one exact mechanical-cell binding and a strip-cell overlay that preserves nearby
+HUD pixels. Live craft/pose qualification is in progress. A separate v18 run
+positively recorded the authored SPREADER strip being submitted; missing sampled
+receipts in the earlier run did not establish an admission failure.
 
 The latest [assembled facade footage](H24-IN-GAME-RESULTS.md) uses the 559-entry,
 1,492-key candidate. Its disclosed timer-assisted private run submitted 368

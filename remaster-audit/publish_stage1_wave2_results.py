@@ -6,6 +6,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import zlib
 
 ROOT=Path(__file__).resolve().parents[1]
 E=ROOT/'remaster-audit/dev-center-evidence/stage1-completion-20261112'
@@ -39,9 +40,18 @@ def main():
     groups=defaultdict(lambda:dict(entries=0,submitted_entries=0))
     ledger=[]
     for row in entries:
+        key=row['key']
+        if row.get('exact'):
+            exact=row['exact'];w,h=exact['source_shape_words'];ppw=4>>exact['depth']
+            l,t,r,b=exact['uv'];words=Path(exact['source_words']['path']).read_bytes()
+            clut=Path(exact['source_clut']['path']).read_bytes()
+            cropped=b''.join(words[(y*w+l//ppw)*2:(y*w+r//ppw)*2] for y in range(t,b))
+            key=f'{zlib.crc32(cropped):08X}-{zlib.crc32(clut) if exact["depth"]<2 else 0:08X}'
+        composed=next(x for x in candidate['files'] if x['name']==key+'.png')
+        assert composed['input']==row,'Coverage must identify the actual composed registration'
         group=Path(row['manifest']['path']).parent.name;group_row=groups[group]
-        group_row['entries']+=1;group_row['submitted_entries']+=int(bool(submitted[row['key']]))
-        ledger.append(dict(key=row['key'],group=group,sampled_submissions=submitted[row['key']],
+        group_row['entries']+=1;group_row['submitted_entries']+=int(bool(submitted[key]))
+        ledger.append(dict(key=key,source_page_or_upload_key=row['key'],group=group,sampled_submissions=submitted[key],
                            authored_image_sha256=row['image']['sha256']))
     observations=proof['gameplay_observations'];first,last=observations[0],observations[-1]
     seconds=last['elapsed_seconds']-first['elapsed_seconds'];frames=last['registers']['frame']-first['registers']['frame']
@@ -65,7 +75,8 @@ def main():
         if target.exists():assert sha(target)==sha(RUN/original)
         else:shutil.copyfile(RUN/original,target)
         stills.append(dict(**reference(target),source=original))
-    result=dict(schema_version=1,run_id='robin-wave2-hd-v1',kind='Actual unassisted gameplay observation; stage-clear attempt failed',
+    result=dict(schema_version=2,run_id='robin-wave2-hd-v1',kind='Actual unassisted gameplay observation; stage-clear attempt failed',
+        supersedes='stage1-wave2-results.json',correction='Use composed exact-region CRC keys for coverage instead of full source-page keys; original v1 receipt retained.',
         source_proof=reference(RUN/'robin-proof.json'),candidate=reference(candidate_path),composition_plan=reference(plan_path),
         controls=dict(ram_writes=False,state_loads=False,timer_assistance=False,invincible=False,automatic_continue=False,
             turbo=False,rewind=False,opaque_batch=True,source_capture=True,video_recording=True,
@@ -80,14 +91,14 @@ def main():
             source_start_pts_seconds=min(float(p['pts_time']) for p in a),
             source_end_pts_seconds=max(float(p['pts_time'])+float(p.get('duration_time','0')) for p in a),
             max_relative_timestamp_error_seconds=timing,silent=True,retiming=False,interpolation=False,reencoding=False),
-        stills=stills,coverage=dict(authored_entries=len(entries),authored_entries_submitted=sum(bool(submitted[x['key']]) for x in entries),
+        stills=stills,coverage=dict(authored_entries=len(entries),authored_entries_submitted=sum(bool(x['sampled_submissions']) for x in ledger),
             all_submitted_keys=len(submitted),groups=dict(sorted(groups.items())),entries=ledger),
         limitations=['GL submission samples are not visible-pixel or complete animation proof.',
             'Unassisted refers to survival: ordinary automated controller input was used.',
             'No full-stage, boss-clear, audible-audio, all-menu, all-palette or installed-release acceptance.',
             'This v2 effects observation is not a matched v1/v2 A/B test; bright-background class-boundary outlines remain under review.',
             'Source capture is bounded and sampled; it is not a complete replay.'])
-    target=OUT/'stage1-wave2-results.json';assert not target.exists(),'Keep published proof immutable; use a new revision'
+    target=OUT/'stage1-wave2-results-v2.json';assert not target.exists(),'Keep published proof immutable; use a new revision'
     write(target,result)
     print(json.dumps({k:result[k] for k in ['performance','outcome']}))
     print(json.dumps(dict(video_bytes=video.stat().st_size,submitted=result['coverage']['authored_entries_submitted'],

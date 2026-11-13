@@ -3,7 +3,7 @@ import unittest
 from PIL import Image
 import numpy as np
 import native_continue_gate as gate
-from native_ui_facade_route import native_pixels, load_references
+from native_ui_facade_route import native_pixels
 
 class ContinueTests(unittest.TestCase):
     def test_real_countdown_sequence(self):
@@ -18,9 +18,10 @@ class ContinueTests(unittest.TestCase):
         self.assertFalse(g.issued)
 
     def test_gameplay_and_other_menus_cannot_confirm(self):
-        g=gate.ContinueGate();refs,_=load_references('native-stock')
-        with Image.open(gate.REFERENCE.with_name('frame-0180.png')) as image:refs['evaluation']=native_pixels(image)
-        for image in [*refs.values(),np.zeros((240,320,3),np.uint8)]:
+        g=gate.ContinueGate();refs=[]
+        for name in ['title.png','fighter.png','arm.png','frame-0030.png','frame-0180.png']:
+            with Image.open(gate.REFERENCE.with_name(name)) as image:refs.append(native_pixels(image))
+        for image in [*refs,np.zeros((240,320,3),np.uint8)]:
             for frame in range(3):self.assertFalse(g.observe(image,frame)['ready'])
             with self.assertRaises(RuntimeError):g.mark_issued()
 

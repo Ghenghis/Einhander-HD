@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "run": "wordmark-admission-v1",
+  "runtime": "sampling-build-v18",
+  "proof_sha256": "dd75ab89d1f63768d2cc7da4e79f8d6144d0695cf5e6f9304090cd1e244ce64e",
+  "ram_writes": false,
+  "state_loads": false,
+  "timer_assistance": false,
+  "stage_clear_verified": false,
+  "clean_exit": true,
+  "errors": [],
+  "key": "5C02D3C1-E0C06BFB",
+  "actual_sampled_submissions": [
+    {
+      "event": "replacement_gl_draw_submitted",
+      "key": "5C02D3C1-E0C06BFB",
+      "frame": 8339,
+      "host_mono_ms": 200615291,
+      "upload_serial": 16,
+      "native_words": [
+        64,
+        8
+      ],
+      "source_kind": "upload",
+      "depth": 0,
+      "semi": -1,
+      "page_xy": [
+        960,
+        256
+      ],
+      "source_word_xy": [
+        16,
+        0
+      ],
+      "clut_xy": [
+        288,
+        480
+      ],
+      "uv_bounds": [
+        64,
+        72,
+        126,
+        78
+      ],
+      "xy": [
+        [
+          118,
+          104
+        ],
+        [
+          181,
+          104
+        ],
+        [
+          118,
+          111
+        ]
+      ],
+      "uv_vertices": [
+        [
+          64,
+          72
+        ],
+        [
+          127,
+          72
+        ],
+        [
+          64,
+          79
+        ]
+      ],
+      "replacement_size": [
+        4096,
+        128
+      ],
+      "texture_window_mask": [
+        0,
+        0
+      ],
+      "texture_window_offset": [
+        0,
+        0
+      ],
+      "gpu_dirty": 1,
+      "pending_cpu_upload_rects": 0,
+      "pack_dirty": 1,
+      "cpu_authority_dual": 0,
+      "cpu_vram_may_be_stale": true,
+      "not_visibility_proof": true,
+      "material_generation": 0,
+      "material_channel": "stock",
+      "material_profile": "stock",
+      "material_strength": 0.0,
+      "material_applied": false,
+      "material_diagnostic_scope": false,
+      "material_preserve_accents": false
+    }
+  ],
+  "scope": "Positive draw admission for this wordmark; missing sampled rows cannot establish other keys failed; no complete wordmark, pose, palette, animation, audio or stage acceptance"
+}

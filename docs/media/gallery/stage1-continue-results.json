@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "run": "robin-continue-hd-v2",
+  "source_proof": "remaster-audit/dev-center-evidence/stage1-completion-20261112/robin-continue-hd-v2/hd-on_rewind-off/robin-proof.json",
+  "source_proof_sha256": "7e1169f7b5c789fc30477b410bf5813e24566f2c7bcc51c4f29c1a149dd2b169",
+  "survival_assistance": false,
+  "ram_writes": false,
+  "state_loads": false,
+  "automatic_controller_input": true,
+  "legacy_blind_revive": false,
+  "continue_limit": 1,
+  "confirmed": {
+    "at_seconds": 139.00069529999746,
+    "three_increasing_frames": [
+      10384,
+      10444,
+      10504
+    ],
+    "button": "Cross",
+    "finite_guest_frames": 6,
+    "press_ok": true
+  },
+  "resumed": {
+    "at_seconds": 144.00040610000724,
+    "lives": 3,
+    "hull_frame": 10802,
+    "hull_age_guest_frames": 3,
+    "ordinary_bot_restarted": true
+  },
+  "stop_reason": "Bounded Continue limit reached at verified prompt",
+  "exit_code": 0,
+  "errors": [],
+  "stage_clear_verified": false,
+  "scope": "One observed Continue and resumed gameplay only; no full-stage, normal launcher, audio or other menu-state acceptance"
+}

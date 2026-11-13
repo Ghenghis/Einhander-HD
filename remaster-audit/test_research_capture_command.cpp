@@ -27,6 +27,7 @@ static uint16_t *s_vram=vram.data();
 static HdTexturePack *s_hd_pack=(HdTexturePack*)1;
 static void *s_ctx=(void*)1;
 static int s_raster_ok=1,s_hd_state=1,s_gpu_dirty=1,s_up_nrects=2,s_cpu_auth_dual=0;
+static int s_tw_mask_x=3,s_tw_mask_y=5,s_tw_off_x=7,s_tw_off_y=11;
 static struct {int set;} s_pack_dirty={1};
 static uint64_t s_frame_count=1000,test_ms=50000,s_hd_live_generation;
 static HdSkinConfig s_hd_skin,s_hd_skin_enemy;
@@ -66,6 +67,7 @@ int main(int argc,char **argv){
  HdTextureSourceMatch m{};m.texture_hash=0x11223344;m.palette_hash=0x55667788;m.upload_serial=42;m.upload_width_words=2;m.upload_height=2;HdTextureDrawQuery q{};q.depth=0;q.clut_x=800;q.clut_y=500;q.u_last=7;q.v_last=1;q.vram=s_vram;q.vram_word_count=vram.size();int xs[3]={87,110,130},ys[3]={104,120,128};int us[3]={192,222,192},vs[3]={248,248,254};HdTexturePixels px{};px.width=16;px.height=4;
  hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.sources==1&&s_hd_research.records==2&&s_hd_research.files==5,"first source emits four bounded sidecars and receipt");
  auto draw_bytes=read_file(base/"main/capture.jsonl");std::string draw_text(draw_bytes.begin(),draw_bytes.end());check(draw_text.find("\"uv_vertices\":[[192,248],[222,248],[192,254]]")!=std::string::npos,"receipt preserves oriented per-vertex UVs independently of bounds");
+ check(draw_text.find("\"texture_window_mask\":[3,5],\"texture_window_offset\":[7,11]")!=std::string::npos,"receipt preserves actual texture-window mask and offset");
  auto words=read_file(base/"main/11223344-55667788.words.bin");auto valid=read_file(base/"main/11223344-55667788.valid.bin");check(words.size()==8&&valid.size()==4&&valid[0]==1,"raw source uses reconstructed fragments and explicit valid mask");check(words[0]==(uint8_t)vram[256*1024+400]&&words[1]==(uint8_t)(vram[256*1024+400]>>8),"source words are little endian");
  for(int i=0;i<2000;++i)hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.records==2&&s_hd_research.sources==1,"repeated draw signatures do not exhaust receipt budget");
  hd_research_on_draw(&m,&q,&px,0,xs,ys,us,vs);check(s_hd_research.records==3,"actual replacement submission is distinct from source query");s_frame_count+=60;test_ms+=1000;hd_research_on_draw(&m,&q,nullptr,0,xs,ys,us,vs);check(s_hd_research.records==4,"same draw resamples after sixty guest frames");

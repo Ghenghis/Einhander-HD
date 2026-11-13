@@ -7,7 +7,7 @@ import numpy as np
 from PIL import Image
 from native_ui_facade_route import native_pixels, crop, dice
 
-REFERENCE=Path(__file__).resolve().parent/'dev-center-evidence/stage1-completion-20261112/robin-wave2-hd-v1/hd-on_rewind-off/observations/terminal-0148.png'
+REFERENCE=Path(__file__).resolve().parent/'fixtures/native-continue/terminal-0148.png'
 REFERENCE_SHA='6453244cba6a5c57871654713323c3cd037d2ef25bb683dbe568771c9f1a39ed'
 
 def load_reference():
