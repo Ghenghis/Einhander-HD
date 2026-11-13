@@ -9,7 +9,13 @@
 //
 // Output lines (one per message):  MSG <id> from=<sender> type=<type> prio=<priority> subject="..." preview="..."
 // Error lines start with WATCH_ERROR so a supervising monitor sees failures instead of silence.
+// Stream mode also re-reads all unread mail every --reconcile seconds (default 90): the long-poll cursor is
+// created_utc only, and a message stamped with the cursor's own instant would otherwise wait for a reconnect.
+//
+// Watcher health is not model delivery. A host that runs this under a bounded task (Claude Code's Monitor
+// is capped at 30 minutes) must re-arm it from a real model turn.
 import { connect } from './hermes-client.mjs';
+import { createEmitter, emitUnread, oneLine, streamStep } from './hermes-inbox-stream.mjs';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { workspaceRoot } from './workspace-runtime.mjs';
@@ -19,36 +25,31 @@ const opt = (name, fallback) => { const i = args.indexOf(name); return i >= 0 &&
 const owner = opt('--owner', '');
 const once = args.includes('--once');
 const waitSeconds = Number(opt('--wait', '110'));
+const reconcileSeconds = Number(opt('--reconcile', '90'));
 const presenceNote = opt('--note', 'listening on HermesProof inbox (auto-notify watcher)');
 if (!/^[a-z][a-z0-9-]{1,63}$/.test(owner)) { console.log('WATCH_ERROR usage: --owner <agent-id>'); process.exit(1); }
 
-const oneLine = (s, n) => String(s ?? '').replace(/\s+/g, ' ').trim().slice(0, n).replace(/"/g, "'");
-const seen = new Set();
-let newest = '';
-const emit = (m) => {
-  if (seen.has(m.id)) return false;
-  seen.add(m.id);
-  if (m.created_utc > newest) newest = m.created_utc;
-  const lagMs = Date.now() - Date.parse(m.created_utc);
-  console.log(`MSG ${m.id} from=${m.sender} type=${m.type} prio=${m.priority} sent=${m.created_utc} lag_ms=${lagMs} subject="${oneLine(m.subject, 160)}" preview="${oneLine(m.body, 220)}"`);
-  return true;
-};
+const out = createEmitter();
+const emit = out.emit;
 
 async function heartbeat(session, status) {
   const directory=path.join(workspaceRoot,'.hermes3d_orchestrator/inbox-watch');
   await fs.mkdir(directory,{recursive:true});
   const target=path.join(directory,owner+'.json'),temporary=target+'.'+process.pid+'.tmp';
+  // A watcher killed from outside (e.g. a host task deadline) cannot write a final status, so every
+  // heartbeat carries its own expiry: past stale_after_utc the file proves nothing, whatever status says.
+  // Heartbeats come at least every 45 s (one long-poll bound), so 120 s leaves room for one slow call.
+  const now=Date.now();
   await fs.writeFile(temporary,JSON.stringify({owner,pid:process.pid,status,note:presenceNote,
-    updated_utc:new Date().toISOString(),last_message_utc:newest||null,watcher_only:true,
+    updated_utc:new Date(now).toISOString(),stale_after_utc:new Date(now+120000).toISOString(),
+    last_message_utc:out.newest||null,watcher_only:true,
     proves_model_activity:false})+'\n');
   await fs.rename(temporary,target);
 }
 
 async function runOnce(session) {
   const deadline = Date.now() + waitSeconds * 1000;
-  const unread = await session.call('hermes_get_inbox', { owner, includeAcked: false });
-  let count = 0;
-  for (const m of unread.messages || []) if (emit(m)) count++;
+  let count = await emitUnread(session, owner, out);
   while (!count && Date.now() < deadline) {
     // hermes-client.mjs aborts any tool call after 45 s, so each long-poll stays under that.
     const timeoutMs = Math.min(40000, Math.max(1000, deadline - Date.now()));
@@ -60,13 +61,15 @@ async function runOnce(session) {
 
 async function runStream(session) {
   await heartbeat(session, 'connected');
-  const unread = await session.call('hermes_get_inbox', { owner, includeAcked: false });
-  for (const m of unread.messages || []) emit(m);
+  await emitUnread(session, owner, out);
+  let lastReconcile = Date.now();
   for (;;) {
-    const r = await session.call('hermes_wait_for_inbox', {
-      owner, includeAcked: false, newOnly: Boolean(newest), afterCreatedUtc: newest, timeoutMs: 40000, pollMs: 300,
+    let reconciled = false;
+    await streamStep(session, owner, out, () => {
+      reconciled = Date.now() - lastReconcile >= reconcileSeconds * 1000;
+      return reconciled;
     });
-    for (const m of r.messages || []) emit(m);
+    if (reconciled) lastReconcile = Date.now();
     await heartbeat(session, 'connected');
   }
 }
