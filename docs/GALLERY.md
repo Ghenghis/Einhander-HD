@@ -6,6 +6,12 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+[Latest region-index test](media/gallery/stage1-region-index-results.json):
+[actual gameplay](media/gallery/stage1-region-index-on-gameplay.mp4) and
+[actual output callback audio](media/gallery/stage1-region-index-on-callback.wav).
+Both still show a failing diagnostic. The ten-second silent clip is normal speed,
+timer-assisted, and recorded after timing; audio is supplied separately.
+
 [Latest audio diagnostics](STAGE1-AUDIO-RESULTS.md) include the focused batching
 comparison and [actual game process output](media/gallery/stage1-batching-process-output.wav).
 Capture integrity passed; gameplay/audio smoothness remains unaccepted.

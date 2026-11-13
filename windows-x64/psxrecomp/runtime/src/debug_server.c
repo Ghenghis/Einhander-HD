@@ -5209,6 +5209,7 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"pack_upload_calls\":%llu,\"pack_upload_ms\":%.6f,\"pack_upload_candidates\":%llu,"
              "\"pack_track_calls\":%llu,\"pack_track_ms\":%.6f,"
              "\"pack_index_rebuilds\":%llu,\"pack_index_rebuild_ms\":%.6f,"
+             "\"pack_region_index\":%llu,\"pack_region_index_cuts\":%llu,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5226,7 +5227,8 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (double)s.pack_region_ns/1e6,(unsigned long long)s.pack_region_tests,(unsigned long long)s.pack_region_hits,
              (unsigned long long)s.pack_upload_calls,(double)s.pack_upload_ns/1e6,(unsigned long long)s.pack_upload_candidates,
              (unsigned long long)s.pack_track_calls,(double)s.pack_track_ns/1e6,
-             (unsigned long long)s.pack_index_rebuilds,(double)s.pack_index_rebuild_ns/1e6);
+             (unsigned long long)s.pack_index_rebuilds,(double)s.pack_index_rebuild_ns/1e6,
+             (unsigned long long)s.pack_region_index,(unsigned long long)s.pack_region_index_cuts);
 }
 
 static void handle_dirty_pc_profile(int id,const char *json){

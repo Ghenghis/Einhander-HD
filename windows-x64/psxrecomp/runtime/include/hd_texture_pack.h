@@ -120,9 +120,13 @@ typedef struct {
     uint64_t upload_calls, upload_ns, upload_candidates;
     uint64_t track_calls, track_ns;
     uint64_t index_rebuilds, index_rebuild_ns;
+    uint64_t region_index_cuts;   /* cuts resolved by the region index (0 when off) */
 } HdTexturePackCostStats;
 void hd_texture_pack_set_cost_profile(HdTexturePack* pack, int enabled);
 void hd_texture_pack_get_cost_stats(const HdTexturePack* pack, HdTexturePackCostStats* out);
+/* Exact-region broad phase. Default OFF; PSXRECOMP_HD_REGION_INDEX=1 at pack
+ * creation enables it (same binary control/on). Decisions are identical. */
+int hd_texture_pack_region_index_enabled(const HdTexturePack* pack);
 
 /* One surviving physical fragment of a tracked upload: VRAM rect plus its
  * origin within the logical upload. Enough to re-decode the upload from VRAM. */

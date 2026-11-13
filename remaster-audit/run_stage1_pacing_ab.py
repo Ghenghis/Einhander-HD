@@ -85,6 +85,7 @@ def prepare(label,args):
         PSXRECOMP_HD_PROOF_CONTROL="",PSX_GL_PRESENT_PROBE="0",PSX_GL_PERF=str(args.gpu_queries),
         PSXRECOMP_HD_WORLD_SAMPLING=str(args.world_sampling),PSXRECOMP_HD_WORLD_ANISOTROPY="8",
         PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),
+        PSXRECOMP_HD_REGION_INDEX=str(getattr(args,'region_index',0)),
         PSXRECOMP_HD_FILTER_STATE_CACHE=str(getattr(args,'filter_state_cache',0)),
         PSXRECOMP_HD_KEEP_BRACKET=str(getattr(args,'keep_bracket',0)),
         PSXRECOMP_HD_OPAQUE_BATCH=str(getattr(args,'opaque_batch',0)),
@@ -102,6 +103,7 @@ def prepare(label,args):
         timer_assistance=False,gl_present_probe=False,gl_timer_queries=bool(args.gpu_queries),
         world_sampling=bool(args.world_sampling),runtime_build=base.ref(args.runtime.resolve()) if args.runtime else None,
         hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),
+        region_index=bool(getattr(args,'region_index',0)),
         runtime_perf=bool(getattr(args,'runtime_perf',0)),
         filter_state_cache=bool(getattr(args,'filter_state_cache',0)),
         keep_bracket=bool(getattr(args,'keep_bracket',0)),
@@ -254,6 +256,7 @@ if __name__=="__main__":
     parser.add_argument('--emissive',type=int,choices=[0,1],default=0,
         help='Optional authored window masks; same private candidate can be compared on/off')
     parser.add_argument('--native-menus',action='store_true')
+    parser.add_argument('--region-index',type=int,choices=[0,1],default=0)
     parser.add_argument("--guest-frames",type=int,choices=[900,1800],default=0)
     args=parser.parse_args()
     if not re.fullmatch(r"[a-zA-Z0-9_-]+",args.batch):parser.error("batch must be a single directory name")

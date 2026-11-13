@@ -1971,10 +1971,32 @@
       "processing": "Contiguous stream-copy preview including nearest-keyframe preroll; no re-encoding, internal cuts, retiming or interpolation",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-off-gameplay.mp4",
+      "sha256": "6df92e1c8ab3b1e12f71370da5901d404cd4c78b50aafaaaba5664fe1430660a",
+      "bytes": 5349559,
+      "category": "actual_gameplay_capture",
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Timer-assisted/no-fire diagnostic; audio failing",
+      "processing": "Actual 1280x960 game window, normal speed, 30 Hz recorder; no motion interpolation or deliberate retiming. Separate audio overlaps this capture but is not asserted synchronized.",
+      "retimed": false,
+      "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-on-gameplay.mp4",
+      "sha256": "2ad21df424bafdc31b33832d06ac68ddcaae3637eca250ce30c380b961a9ab8e",
+      "bytes": 6098957,
+      "category": "actual_gameplay_capture",
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Timer-assisted/no-fire diagnostic; audio failing",
+      "processing": "Actual 1280x960 game window, normal speed, 30 Hz recorder; no motion interpolation or deliberate retiming. Separate audio overlaps this capture but is not asserted synchronized.",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 12,
-  "total_video_bytes": 482993110,
+  "video_count": 14,
+  "total_video_bytes": 494441626,
   "video_frame_extract_count": 8,
   "audio_assets": [
     {
@@ -2122,8 +2144,56 @@
       "result_manifest": "docs/media/gallery/stage1-idle-diagnostic-results.json",
       "status": "Failing diagnostic; 90ms observer gap disclosed separately",
       "processing": "Exact capture WAV copy, including 4320 observer-inserted zero frames"
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-off-callback.wav",
+      "sha256": "6a50bb323435d4dcf76313aca0f04b6696e246e447d0dbe263e4e2990197ed51",
+      "bytes": 1966124,
+      "category": "actual_game_callback_pcm",
+      "seconds": 10.24,
+      "rate": 48000,
+      "channels": 2,
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Failing stutter diagnostic; timer-assisted/no-fire",
+      "processing": "Actual game output callback PCM; exact copy, no capture-helper fill, resampling or retiming. Recorded after performance timing; physical output acceptance unverified."
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-off-process.wav",
+      "sha256": "3395c9c0220d0f7cb636bd82725dd7701495b9f4419e3e3bc3af5445a0891d51",
+      "bytes": 1920496,
+      "category": "owned_game_process_loopback",
+      "seconds": 10,
+      "rate": 48000,
+      "channels": 2,
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Failing stutter diagnostic; timer-assisted/no-fire",
+      "processing": "Exact process-loopback file; observer inserted 60 ms of silence. This fill is not evidence of a runtime gap."
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-on-callback.wav",
+      "sha256": "3e968c41f98b2ae33e45656eed5514701a22ba9cbdd1e4a10434308083223a64",
+      "bytes": 1979564,
+      "category": "actual_game_callback_pcm",
+      "seconds": 10.31,
+      "rate": 48000,
+      "channels": 2,
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Failing stutter diagnostic; timer-assisted/no-fire",
+      "processing": "Actual game output callback PCM; exact copy, no capture-helper fill, resampling or retiming. Recorded after performance timing; physical output acceptance unverified."
+    },
+    {
+      "path": "docs/media/gallery/stage1-region-index-on-process.wav",
+      "sha256": "b1eecf447fcf2a1489f4db7b2fd684d05c7aa55d93a4e4f51009061934daae98",
+      "bytes": 1920496,
+      "category": "owned_game_process_loopback",
+      "seconds": 10,
+      "rate": 48000,
+      "channels": 2,
+      "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
+      "status": "Failing stutter diagnostic; timer-assisted/no-fire",
+      "processing": "Exact process-loopback file; observer inserted 60 ms of silence. This fill is not evidence of a runtime gap."
     }
   ],
-  "audio_count": 11,
-  "total_audio_bytes": 24577388
+  "audio_count": 15,
+  "total_audio_bytes": 32364068
 }

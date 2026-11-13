@@ -2529,6 +2529,8 @@ static void hd_cpu_diag_pack_cost(GlHdCpuDiag *out) {
     out->pack_upload_calls=c.upload_calls;out->pack_upload_ns=c.upload_ns;out->pack_upload_candidates=c.upload_candidates;
     out->pack_track_calls=c.track_calls;out->pack_track_ns=c.track_ns;
     out->pack_index_rebuilds=c.index_rebuilds;out->pack_index_rebuild_ns=c.index_rebuild_ns;
+    out->pack_region_index=(uint64_t)hd_texture_pack_region_index_enabled(s_hd_pack);
+    out->pack_region_index_cuts=c.region_index_cuts;
 }
 static int s_hd_dump = 0;
 static char s_hd_dump_dir[1024];

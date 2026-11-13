@@ -31,6 +31,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #endif
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <intrin.h>   /* _BitScanForward64 (region index) */
+#endif
 
 namespace fs = std::filesystem;
 
@@ -65,6 +68,23 @@ constexpr uint32_t kMaxTrackingStateFragments = 262144;
 #ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
 constexpr size_t kMaxPngFileBytes = size_t{64} * 1024 * 1024;
 #endif
+
+/* Exact-region invalidation broad phase: separable 32-word column bands and
+ * 32-row bands, one bit per region (at most kMaxExactRegions). A region is set
+ * in every band its source rectangle (or, for 4/8bpp, its CLUT row) touches,
+ * so (column bands & row bands) over a cut is a superset of the regions the
+ * cut can intersect. The original exact predicate still makes every decision. */
+constexpr unsigned kRegionTile = 32;
+constexpr unsigned kRegionCols = kVramWidth / kRegionTile;
+constexpr unsigned kRegionRows = kVramHeight / kRegionTile;
+constexpr unsigned kRegionWords = (kMaxExactRegions + 63) / 64;
+inline unsigned region_ctz64(uint64_t v) {
+#if defined(_MSC_VER) && !defined(__clang__)
+    unsigned long i; _BitScanForward64(&i, v); return unsigned(i);
+#else
+    return unsigned(__builtin_ctzll(v));
+#endif
+}
 
 /* Diagnostic cost clock (only read when a pack's cost profile is enabled). */
 inline uint64_t cost_now_ns() {
@@ -211,6 +231,27 @@ std::vector<Fragment> physical_fragments(unsigned x,
         source_y += yspan.second;
     }
     return result;
+}
+
+/* Allocation-free twin of physical_rects(): the same at most four
+ * non-wrapping pieces, written to a caller array. */
+unsigned physical_rect_array(unsigned x, unsigned y, unsigned width,
+                             unsigned height, Rect out[4]) {
+    if (width == 0 || height == 0 || width > kVramWidth || height > kVramHeight)
+        return 0;
+    const unsigned px = x & (kVramWidth - 1);
+    const unsigned py = y & (kVramHeight - 1);
+    const unsigned first_w = std::min(width, kVramWidth - px);
+    const unsigned first_h = std::min(height, kVramHeight - py);
+    const unsigned xs[2][2] = {{px, first_w}, {0, width - first_w}};
+    const unsigned ys[2][2] = {{py, first_h}, {0, height - first_h}};
+    unsigned n = 0;
+    for (const auto& yspan : ys) {
+        if (yspan[1] == 0) continue;
+        for (const auto& xspan : xs)
+            if (xspan[1] != 0) out[n++] = Rect{xspan[0], yspan[0], xspan[1], yspan[1]};
+    }
+    return n;
 }
 
 std::vector<Rect> physical_rects(unsigned x,
@@ -708,6 +749,16 @@ struct HdTexturePack {
     Rect upload_bounds{};
     std::vector<ExactRegion> regions;
     uint64_t region_validations = 0;
+    /* Region broad phase; rebuilt whenever regions.size() differs from the
+     * count it was built for (the set is only appended during create).
+     * Default OFF: PSXRECOMP_HD_REGION_INDEX=1 at pack creation selects it,
+     * so one binary can run a matched control/on pair. */
+    bool region_index_enabled = false;
+    size_t region_index_count = 0;
+    uint64_t region_src_cols[kRegionCols][kRegionWords]{};
+    uint64_t region_src_rows[kRegionRows][kRegionWords]{};
+    uint64_t region_pal_cols[kRegionCols][kRegionWords]{};
+    uint64_t region_pal_rows[kRegionRows][kRegionWords]{};
     bool cost_enabled = false;          /* diagnostic counters only */
     HdTexturePackCostStats cost{};
     DecodeCache decode;
@@ -787,6 +838,7 @@ static bool region_covers(const ExactRegion& region,const HdTextureDrawQuery& q)
 size_t hd_texture_pack_region_count(const HdTexturePack* pack){return pack?pack->regions.size():0;}
 uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack){return pack?pack->region_validations:0;}
 void hd_texture_pack_set_cost_profile(HdTexturePack* pack,int enabled){if(pack)pack->cost_enabled=enabled!=0;}
+int hd_texture_pack_region_index_enabled(const HdTexturePack* pack){return pack&&pack->region_index_enabled?1:0;}
 void hd_texture_pack_get_cost_stats(const HdTexturePack* pack,HdTexturePackCostStats* out){
     if(out)std::memset(out,0,sizeof(*out));
     if(pack&&out)*out=pack->cost;
@@ -833,6 +885,77 @@ int hd_texture_pack_match_region(HdTexturePack* pack,const HdTextureDrawQuery* q
         out->source_word_x=query->page_x+query->u_first/(4u>>query->depth)-candidate->x;
         out->source_y=query->page_y+query->v_first-candidate->y;}
     return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+/* Build the exact-region broad phase. Regions are validated in-bounds at load
+ * (x+w<=1024, y+h<=512, clut_x+colors<=1024); clamp anyway so a band index
+ * can never leave the arrays. More than kMaxExactRegions cannot be indexed:
+ * leave the count stale so callers keep using the exhaustive loop. */
+void region_index_build(HdTexturePack* pack) {
+    std::memset(pack->region_src_cols, 0, sizeof pack->region_src_cols);
+    std::memset(pack->region_src_rows, 0, sizeof pack->region_src_rows);
+    std::memset(pack->region_pal_cols, 0, sizeof pack->region_pal_cols);
+    std::memset(pack->region_pal_rows, 0, sizeof pack->region_pal_rows);
+    pack->region_index_count = 0;
+    if (pack->regions.size() > kMaxExactRegions) return;
+    const auto mark = [](uint64_t (*bands)[kRegionWords], unsigned nbands,
+                         unsigned first, unsigned last, size_t id) {
+        for (unsigned b = first / kRegionTile; b <= last / kRegionTile && b < nbands; ++b)
+            bands[b][id / 64] |= uint64_t{1} << (id % 64);
+    };
+    for (size_t id = 0; id < pack->regions.size(); ++id) {
+        const ExactRegion& r = pack->regions[id];
+        const unsigned x = r.x, y = r.y, w = r.width, h = r.height;
+        /* Anything not a proper in-bounds rectangle is marked in every band:
+         * a conservative superset, so the exact predicate alone decides.
+         * Bounds use x < W && w <= W - x (no addition can wrap). */
+        if (w != 0 && h != 0 && x < kVramWidth && w <= kVramWidth - x &&
+            y < kVramHeight && h <= kVramHeight - y) {
+            mark(pack->region_src_cols, kRegionCols, x, x + w - 1, id);
+            mark(pack->region_src_rows, kRegionRows, y, y + h - 1, id);
+        } else {
+            mark(pack->region_src_cols, kRegionCols, 0, kVramWidth - 1, id);
+            mark(pack->region_src_rows, kRegionRows, 0, kVramHeight - 1, id);
+        }
+        if (r.palette.empty()) continue;
+        const unsigned cx = r.clut_x, cy = r.clut_y;
+        if (cx < kVramWidth && cy < kVramHeight &&
+            r.palette.size() <= size_t{kVramWidth - cx}) {
+            mark(pack->region_pal_cols, kRegionCols, cx, cx + unsigned(r.palette.size()) - 1, id);
+            mark(pack->region_pal_rows, kRegionRows, cy, cy, id);
+        } else {
+            mark(pack->region_pal_cols, kRegionCols, 0, kVramWidth - 1, id);
+            mark(pack->region_pal_rows, kRegionRows, 0, kVramHeight - 1, id);
+        }
+    }
+    pack->region_index_count = pack->regions.size();
+}
+
+/* Exact-region component of hd_texture_pack_invalidate: identical decisions
+ * to the exhaustive loop (same predicate, candidate superset), no allocation. */
+void region_invalidate_cut(HdTexturePack* pack, const Rect& cut) {
+    uint64_t sc[kRegionWords] = {}, sr[kRegionWords] = {};
+    uint64_t pc[kRegionWords] = {}, pr[kRegionWords] = {};
+    for (unsigned b = cut.x / kRegionTile; b <= (cut.x + cut.width - 1) / kRegionTile; ++b)
+        for (unsigned w = 0; w < kRegionWords; ++w) {
+            sc[w] |= pack->region_src_cols[b][w]; pc[w] |= pack->region_pal_cols[b][w];
+        }
+    for (unsigned b = cut.y / kRegionTile; b <= (cut.y + cut.height - 1) / kRegionTile; ++b)
+        for (unsigned w = 0; w < kRegionWords; ++w) {
+            sr[w] |= pack->region_src_rows[b][w]; pr[w] |= pack->region_pal_rows[b][w];
+        }
+    for (unsigned w = 0; w < kRegionWords; ++w) {
+        for (uint64_t bits = (sc[w] & sr[w]) | (pc[w] & pr[w]); bits; bits &= bits - 1) {
+            ExactRegion& region = pack->regions[size_t{w} * 64 + region_ctz64(bits)];
+            const Rect source{region.x,region.y,region.width,region.height};
+            const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
+            if (pack->cost_enabled) ++pack->cost.region_tests;
+            if (intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))) {
+                if (pack->cost_enabled) ++pack->cost.region_hits;
+                region.cache_valid=false;
+            }
+        }
+    }
 }
 
 unsigned upload_index_cell(unsigned tx, unsigned ty) {
@@ -1053,6 +1176,11 @@ int hd_texture_pack_create(const char* explicit_root,
         }
 
         if (!load_exact_regions(pack.get(),input,error,error_capacity)) return 0;
+        {
+            const char* index = std::getenv("PSXRECOMP_HD_REGION_INDEX");
+            pack->region_index_enabled = index && std::strcmp(index, "1") == 0;
+            if (pack->region_index_enabled) region_index_build(pack.get());
+        }
         *out_pack = pack.release();
         return 1;
     } catch (const std::exception& exception) {
@@ -1131,14 +1259,23 @@ void hd_texture_pack_invalidate(HdTexturePack* pack,
     if (cost) ++pack->cost.invalidate_calls;
     if (!pack->regions.empty()) {
         const uint64_t t0 = cost ? cost_now_ns() : 0;
-        const auto region_cuts=physical_rects(x,y,width_words,height);
-        for(auto& region:pack->regions) for(const auto& cut:region_cuts) {
-            const Rect source{region.x,region.y,region.width,region.height};
-            const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
-            if (cost) ++pack->cost.region_tests;
-            if(intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))){
-                if (cost) ++pack->cost.region_hits;
-                region.cache_valid=false;
+        if (pack->region_index_enabled && pack->region_index_count != pack->regions.size())
+            region_index_build(pack);
+        if (pack->region_index_enabled && pack->region_index_count == pack->regions.size()) {
+            Rect region_cuts[4];
+            const unsigned ncuts = physical_rect_array(x, y, width_words, height, region_cuts);
+            for (unsigned c = 0; c < ncuts; ++c) region_invalidate_cut(pack, region_cuts[c]);
+            if (cost) pack->cost.region_index_cuts += ncuts;
+        } else {   /* default (control) path: the original exhaustive loop */
+            const auto region_cuts=physical_rects(x,y,width_words,height);
+            for(auto& region:pack->regions) for(const auto& cut:region_cuts) {
+                const Rect source{region.x,region.y,region.width,region.height};
+                const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
+                if (cost) ++pack->cost.region_tests;
+                if(intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))){
+                    if (cost) ++pack->cost.region_hits;
+                    region.cache_valid=false;
+                }
             }
         }
         if (cost) { ++pack->cost.region_calls; pack->cost.region_ns += cost_now_ns() - t0; }

@@ -71,6 +71,7 @@ typedef struct {
     uint64_t pack_invalidate_calls,pack_region_calls,pack_region_ns,pack_region_tests,pack_region_hits;
     uint64_t pack_upload_calls,pack_upload_ns,pack_upload_candidates;
     uint64_t pack_track_calls,pack_track_ns,pack_index_rebuilds,pack_index_rebuild_ns;
+    uint64_t pack_region_index,pack_region_index_cuts;   /* toggle state, index-resolved cuts */
 } GlHdCpuDiag;
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out);
 

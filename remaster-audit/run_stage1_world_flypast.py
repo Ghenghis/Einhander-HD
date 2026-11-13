@@ -63,7 +63,7 @@ def prepare(args):
         if ui.sha(row['composed_path'])!=row['sha256']:raise ValueError('Frozen emissive mask changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,
-        cpu_profile=args.cpu_profile,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
+        cpu_profile=args.cpu_profile,region_index=args.region_index,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
     report=pacing.prepare(('hd-on' if args.hd_pack_enabled else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off'),config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
@@ -80,6 +80,7 @@ def prepare(args):
     report['visual_profile'].update(media_profile=bool(args.media_profile),rewind_capture=bool(args.rewind))
     report['visual_profile']['interp_pc_profile']=bool(args.interp_pc_profile)
     report['visual_profile']['process_loopback_seconds']=args.process_loopback_seconds
+    report['visual_profile']['post_video_seconds']=args.post_video_seconds
     report['visual_profile']['gpu_clock_profile']=args.gpu_clock_profile
     report['visual_profile']['phase_profile']=args.phase_profile
     report['visual_profile']['idle_skip_override']=args.idle_skip
@@ -249,6 +250,15 @@ def run(args):
                 start_sample_frame=a['frames'],frames=response['frames'],seconds=response['frames']/b['rate'],
                 observation_elapsed_bracket=[first['elapsed_seconds'],last['elapsed_seconds']],response=response,
                 scope='Exact device-rate PCM from this owned game callback; no system loopback, resampling, retiming or added audio; copied after measurement',audible_acceptance=False)
+        post_seconds=report['visual_profile'].get('post_video_seconds',0)
+        if post_seconds:
+            output=directory/'post-measurement-gameplay.mp4'
+            command=recorder_command(report,output,report['visual_profile']['recorder_backend'],post_seconds)
+            proof['video']=dict(path=str(output),arguments=command,started_at_utc=ui.stamp(),
+                after_measurement=True,
+                scope='Actual window at normal game speed; silent; no interpolation, retiming or scene cuts. Recorder starts after the final measured sample. Audio is provided separately; streams are not asserted synchronized.')
+            recorder=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         loopback_seconds=report['visual_profile'].get('process_loopback_seconds',0)
         if loopback_seconds:
             owned_identity(None)
@@ -350,6 +360,9 @@ if __name__=='__main__':
     p.add_argument('--idle-skip',type=int,choices=[0,1],default=None,
         help='Explicit private override of the existing guarded idle-loop enhancement')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
+    p.add_argument('--region-index',type=int,choices=[0,1],default=0)
+    p.add_argument('--post-video-seconds',type=int,choices=[0,10,30],default=0,
+        help='Actual silent gameplay clip after telemetry timing, alongside separate process audio')
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     p.add_argument('--emissive',type=int,choices=[0,1],default=0)
     p.add_argument('--cpu-profile',type=int,choices=[0,1],default=0,help='Cumulative HD CPU attribution; includes CPU timing overhead and is not baseline pacing acceptance')
@@ -373,6 +386,8 @@ if __name__=='__main__':
     p.add_argument('--prepare-only',action='store_true')
     p.add_argument('--run-prepared',action='store_true')
     args=p.parse_args()
+    if args.post_video_seconds and (not args.telemetry_only or args.post_video_seconds!=args.process_loopback_seconds):
+        p.error('Post-measurement video requires telemetry-only and matching process-loopback duration')
     if args.telemetry_only and args.hires_stills:p.error('Telemetry-only disables all measurement screenshots')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):p.error('Use one directory name')
     if not args.run_prepared:

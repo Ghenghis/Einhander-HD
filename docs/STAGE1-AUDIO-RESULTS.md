@@ -1,5 +1,22 @@
 # Audio and stutter remain unresolved
 
+Latest November 13 diagnostic: the same-build region-index OFF/ON pair gave
+**53.9445 / 52.8674 fps** and **534,907 / 635,047 starved sample frames** over
+120 seconds. Region-check CPU time fell from 3,037.6 to 210.4 ms, but no net
+gameplay improvement is established. The index remains off by default.
+[Exact results and limitations](media/gallery/stage1-region-index-results.json).
+
+[Actual callback audio, index on](media/gallery/stage1-region-index-on-callback.wav)
+is an exact 10.31-second game-output PCM copy with no helper-inserted silence.
+[Control callback audio](media/gallery/stage1-region-index-off-callback.wav) is
+10.24 seconds. These failing examples were captured after timing, alongside
+separate actual gameplay videos: [index on](media/gallery/stage1-region-index-on-gameplay.mp4)
+and [control](media/gallery/stage1-region-index-off-gameplay.mp4). The clips are
+silent, normal speed, unretimed, and not asserted synchronized to the separate
+audio. Both use the disclosed timer-only aid and no firing. The process-loopback
+WAVs in the report each contain 60 ms of observer-inserted silence; those fills
+are separate from runtime starvation. Combat, boss-fire and FMV acceptance remain open.
+
 November 13, 2026. The user reports extreme stuttering, jitter and bad audio.
 The production release is not accepted. Changing the correction limit alone
 did not resolve the live starvation counters.
