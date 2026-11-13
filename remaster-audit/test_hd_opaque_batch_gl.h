@@ -157,8 +157,6 @@ static void fm_hd_batch_shutdown_case(void) {
     GlSkinMaterialState state;char error[256];
     gl_renderer_skin_material_configure("stock",0,"stock",0,"configured","configured",1,&state,error,sizeof error);
     s_hd_cpu_diag_enabled=1;s_hd_opaque_batch_enabled=1;s_player_draw_only=0;
-    const int attrib_saved=s_hd_batch_attrib;
-    s_hd_batch_attrib=0;                          /* reference: uniform-offset path */
     batch_shutdown_scene(0);flush_tex_batch();ensure_cpu();
     memcpy(base,s_vram,sizeof base);              /* same scene without the HD prims */
     batch_shutdown_scene(1);
@@ -166,7 +164,6 @@ static void fm_hd_batch_shutdown_case(void) {
     flush_tex_batch();ensure_cpu();
     memcpy(reference,s_vram,sizeof reference);
     FM_CHECK("shutdown case: the HD batch changes CPU VRAM (non-vacuous reference)",memcmp(base,reference,sizeof reference)!=0);
-    s_hd_batch_attrib=attrib_saved;               /* shut down under the selected mode */
     batch_shutdown_scene(1);
     FM_CHECK("shutdown case: batch pending again before shutdown",s_hd_batch_n==2&&s_gpu_dirty);
     FM_CHECK("shutdown case: no GL error before shutdown",glGetError()==GL_NO_ERROR);
@@ -178,89 +175,8 @@ static void fm_hd_batch_shutdown_case(void) {
     s_hd_opaque_batch_enabled=0;
     free(rgba);   /* GL texture already released by shutdown; pixels are host-owned */
 }
-/* Attrib batching (review add-on): consecutive HD prims that share texture,
- * palette and GL state but differ only in texture page, CLUT position or
- * upload offset. Uniform-offset batching splits them; attrib batching must
- * merge them with byte-identical pixels. Sources are real uploads whose CRC
- * keys resolve to resident replacement textures. */
-static void attrib_hd_prim(int slot,uint16_t texpage,uint16_t cx,uint16_t cy) {
-    const int x0=12+(slot%8)*36,y0=12+(slot/8%6)*36;
-    int xs[3]={x0,x0+44,x0},ys[3]={y0,y0,y0+44};
-    const int us[3]={0,63,0},vs[3]={0,0,63},limits[4]={0,0,63,63};
-    float colors[9];for(int i=0;i<3;++i){colors[i*3]=.4f+.05f*(slot%5);colors[i*3+1]=.6f;colors[i*3+2]=.5f;}
-    const int drawn=hd_on_textured_prim(xs,ys,us,vs,colors,texpage,cx,cy,0,-1,limits,0);
-    if(slot<48)FM_CHECK("attrib fixture prim admitted",drawn==1);   /* timing runs stay unprinted */
-    else if(drawn!=1)FM_CHECK("attrib timing prim admitted",0);
-}
-typedef struct { uint64_t flushes,merges,offset_splits,us; } AttribRun;
-static AttribRun attrib_scene(int which,int attrib,int prims) {
-    GlSkinMaterialState state;char error[256];
-    gl_renderer_skin_material_configure("stock",0,"stock",0,"configured","configured",1,&state,error,sizeof error);
-    glb_set_precise_triangle(0,0,0,0,0,0,0);glb_set_perspective_triangle(0,0,0,0);
-    glb_set_mask_bits(0,0);glb_set_texture_filter(1);glb_set_draw_area(0,0,319,239);glb_set_draw_offset(0,0);
-    gpu_fill(0,0,320,240,0);flush_tex_batch();glFinish();
-    s_hd_batch_attrib=attrib;
-    const uint64_t f0=s_hd_cpu_diag.batch_flushes,m0=s_hd_cpu_diag.hd_attrib_merges,o0=s_hd_cpu_diag.hd_split_reason[6];
-    const uint64_t t0=SDL_GetPerformanceCounter();
-    for(int i=0;i<prims;++i){
-        const int alt=i&1;
-        if(which==0)attrib_hd_prim(i,(uint16_t)(alt?(10|16):10),16,480);          /* page (640,0)/(640,256) */
-        else if(which==1)attrib_hd_prim(i,(uint16_t)(alt?(13|16):(12|16)),16,480);/* offset 0 / 256 px */
-        else if(which==2)attrib_hd_prim(i,10,16,(uint16_t)(alt?481:480));         /* CLUT row 480 / 481 */
-        else attrib_hd_prim(i,(uint16_t)(i%3==0?10:i%3==1?(10|16):(11|16)),16,(uint16_t)(480+(i%2)));
-    }
-    flush_flat_batch();flush_tex_batch();flush_cpu_upload();glFinish();
-    AttribRun r;r.us=(SDL_GetPerformanceCounter()-t0)*1000000u/SDL_GetPerformanceFrequency();
-    r.flushes=s_hd_cpu_diag.batch_flushes-f0;r.merges=s_hd_cpu_diag.hd_attrib_merges-m0;
-    r.offset_splits=s_hd_cpu_diag.hd_split_reason[6]-o0;
-    s_hd_batch_attrib=0;
-    return r;
-}
-static void fm_hd_batch_attrib_merge_cases(const HdTexturePixels *fixture,unsigned char *a,unsigned char *b,size_t bytes) {
-    static uint16_t page[64*256],wide[128*256],clut[16];
-    for(int y=0;y<256;++y)memcpy(page+y*64,s_vram+(size_t)y*VRAM_W+640,64*sizeof(uint16_t));
-    memcpy(clut,s_vram+(size_t)480*VRAM_W+16,sizeof clut);
-    FM_CHECK("attrib fixture reuses the resident 95A3BCF8 source",hd_texture_crc32_words_le(page,64*256)==0x95A3BCF8u&&
-        hd_texture_crc32_words_le(clut,16)==0x723E222Cu);
-    for(int y=0;y<256;++y){memcpy(wide+y*128,page+y*64,64*sizeof(uint16_t));memcpy(wide+y*128+64,page+y*64,64*sizeof(uint16_t));}
-    fm_upload(640,256,64,256,page);           /* same source at a second texture page */
-    fm_upload(704,256,64,256,page);           /* and a third */
-    fm_upload(768,256,128,256,wide);          /* one upload spanning pages 12/13 (offset varies) */
-    fm_upload(16,481,16,1,clut);              /* same palette at a second CLUT row */
-    flush_cpu_upload();
-    hd_tex_object(hd_texture_crc32_words_le(wide,128*256),0x723E222Cu,fixture);
-    const int old_diag=s_hd_cpu_diag_enabled,old_keep=s_hd_keep_bracket;
-    s_hd_cpu_diag_enabled=1;s_hd_opaque_batch_enabled=1;
-    static const char *names[4]={"page","offset","clut","mixed"};
-    for(int keep=0;keep<2;++keep)for(int which=0;which<4;++which){
-        s_hd_keep_bracket=keep;
-        AttribRun off=attrib_scene(which,0,24);batch_fixture_read(a);
-        AttribRun on=attrib_scene(which,1,24);batch_fixture_read(b);
-        char label[160];
-        snprintf(label,sizeof label,"attrib %s alternation keep=%d: pixel parity",names[which],keep);FM_CHECK(label,!memcmp(a,b,bytes));
-        snprintf(label,sizeof label,"attrib %s alternation keep=%d: uniform path splits on offset/page/CLUT only",names[which],keep);
-        FM_CHECK(label,off.offset_splits>0&&off.merges==0);
-        const int eligible=!s_hd_facade_motion.enabled&&!s_hd_world_sampling;
-        snprintf(label,sizeof label,"attrib %s alternation keep=%d: merge or conservative sampling fallback",names[which],keep);
-        FM_CHECK(label,eligible?(on.merges>0&&on.offset_splits==0&&on.flushes<off.flushes):
-            (on.merges==0&&on.offset_splits>0&&on.flushes==off.flushes));
-        printf("ATTRIB %s keep=%d flushes off=%llu on=%llu merges=%llu\n",names[which],keep,
-            (unsigned long long)off.flushes,(unsigned long long)on.flushes,(unsigned long long)on.merges);
-        FM_CHECK("attrib scene leaves no pending batch or GL error",!s_hd_batch_n&&glGetError()==GL_NO_ERROR);
-    }
-    {   /* fixture time, 2000 alternating prims incl. glFinish, off vs on */
-        s_hd_keep_bracket=0;
-        for(int rep=0;rep<3;++rep){
-            AttribRun off=attrib_scene(3,0,2000);AttribRun on=attrib_scene(3,1,2000);
-            printf("ATTRIB timing mixed 2000 prims rep%d: off=%llu us (%llu flushes) on=%llu us (%llu flushes)\n",rep,
-                (unsigned long long)off.us,(unsigned long long)off.flushes,(unsigned long long)on.us,(unsigned long long)on.flushes);
-        }
-    }
-    s_hd_keep_bracket=old_keep;s_hd_cpu_diag_enabled=old_diag;s_hd_opaque_batch_enabled=0;
-}
 static void fm_hd_opaque_batch_regression(const char *root) {
     FM_CHECK("opaque batch disabled by default",!hd_opaque_batch_enabled());
-    FM_CHECK("attrib batching disabled by default",!hd_batch_attrib_enabled());
     unsigned char *pixels=(unsigned char*)malloc(1024u*1024u*4u);
     size_t bytes=(size_t)VRAM_W*VRAM_H*s_scale*s_scale*4;
     unsigned char *a=(unsigned char*)malloc(bytes),*b=(unsigned char*)malloc(bytes);
@@ -305,23 +221,6 @@ static void fm_hd_opaque_batch_regression(const char *root) {
         s_hd_keep_bracket=previous;s_hd_cpu_diag_enabled=old_diag;
     }
     fm_hd_batch_alias_readback_case(a,b,bytes);
-    /* Every boundary scene with batching on: uniform offset vs attrib offset. */
-    {
-        const int previous=s_hd_keep_bracket;
-        s_hd_opaque_batch_enabled=1;
-        for(int keep=0;keep<2;++keep)for(int which=0;which<HD_BATCH_CASES;++which){
-            s_hd_keep_bracket=keep;
-            s_hd_batch_attrib=0;batch_fixture_scene(which,&fixture);batch_fixture_read(a);
-            s_hd_batch_attrib=1;batch_fixture_scene(which,&fixture);batch_fixture_read(b);
-            s_hd_batch_attrib=0;
-            char label[128];snprintf(label,sizeof label,"attrib pixel parity keep=%d case %d",keep,which);
-            FM_CHECK(label,!memcmp(a,b,bytes));
-            FM_CHECK("attrib boundary scene drains and has no GL error",!s_hd_batch_n&&glGetError()==GL_NO_ERROR);
-        }
-        s_hd_keep_bracket=previous;s_hd_opaque_batch_enabled=0;
-    }
-    s_hd_batch_attrib=1;fm_hd_batch_alias_readback_case(a,b,bytes);s_hd_batch_attrib=0;   /* case A under attrib */
-    fm_hd_batch_attrib_merge_cases(&fixture,a,b,bytes);
     uint16_t exact[1024],palette[16];
     int exact_ok=fm_read_words(root,"words.bin",exact,1024)&&fm_read_words(root,"clut.bin",palette,16);
     FM_CHECK("batch exact-region fixture readable",exact_ok);

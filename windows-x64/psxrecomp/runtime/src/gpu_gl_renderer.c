@@ -411,9 +411,7 @@ static GLuint s_tex_prog = 0, s_tex_vao = 0, s_tex_vbo = 0;
  * PS1-faithful default, which makes the vertex shader's w exactly 1.0 and the
  * fragment shader read the noperspective varying — i.e. bit-identical to the
  * pre-feature pipeline. */
-/* +2: a_hdoff (location 10), the per-primitive HD upload-pixel offset. Native
- * textured vertices write 0; HD_FS reads it only when u_hd_attrib != 0. */
-#define TEXV 22
+#define TEXV 20
 static GLuint s_blit_prog = 0, s_blit_vao = 0, s_blit_vbo = 0;
 static GLuint s_pack_prog = 0, s_stencil_prog = 0, s_empty_vao = 0;
 
@@ -521,13 +519,11 @@ static int hd_short_upload_priority_enabled(void) {
     return enabled;
 }
 static void hd_cpu_diag_pack_cost(GlHdCpuDiag *out); /* defined after s_hd_pack */
-static int hd_batch_attrib_enabled(void);           /* defined with the HD batch */
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out) {
     if(!out)return;
     *out=s_hd_cpu_diag;out->enabled=hd_cpu_diag_enabled();
     out->frequency=out->enabled?SDL_GetPerformanceFrequency():0;
     if(out->enabled)hd_cpu_diag_pack_cost(out);
-    out->hd_batch_attrib=(uint64_t)hd_batch_attrib_enabled();
 }
 
 static int runtime_upload_diag_enabled(void) {
@@ -1138,7 +1134,6 @@ static const char *TEX_VS =
     "layout(location=7) in vec4 a_limits;\n"
     "layout(location=8) in float a_semi;\n"
     "layout(location=9) in float a_q;   /* persp weight; 0 = affine (default) */\n"
-    "layout(location=10) in vec2 a_hdoff; /* HD upload-px offset (attrib batching) */\n"
     "uniform float u_shift;\n"
     "uniform float u_xoff;   /* native-wide x translation (px); 0 canonical */\n"
     "uniform float u_xhalf;  /* x clip half-extent (px); 512 canonical */\n"
@@ -1149,8 +1144,7 @@ static const char *TEX_VS =
     "flat out int v_persp;\n"
     "flat out ivec2 v_tpage; flat out ivec2 v_clut; flat out int v_depth;\n"
     "flat out int v_raw; flat out ivec4 v_limits; flat out int v_semi;\n"
-    "flat out vec2 v_hdoff;\n"
-    "void main(){ v_uv = a_uv; v_uv_p = a_uv; v_col = a_col; v_hdoff = a_hdoff;\n"
+    "void main(){ v_uv = a_uv; v_uv_p = a_uv; v_col = a_col;\n"
     "  v_persp = (a_q > 0.0) ? 1 : 0;\n"
     "  v_tpage = ivec2(a_tpage + 0.5); v_clut = ivec2(a_clut + 0.5);\n"
     "  v_depth = int(a_depth + 0.5); v_raw = int(a_raw + 0.5);\n"
@@ -1343,9 +1337,7 @@ static const char *HD_FS =
     "uniform int u_hd_facade_motion; /* opt-in, exact facade RGB only */\n"
     "uniform usampler2D u_hd_native;\n"
     "uniform int u_hd_native_edge; /* physical prefix width;0=ordinary replacement */\n"
-    "uniform vec2 u_hd_off_uniform; /* upload-px coordinate of page uv (0,0) */\n"
-    "flat in vec2 v_hdoff;    /* same value per primitive (attrib batching) */\n"
-    "uniform int u_hd_attrib; /* 0: uniform offset (default); 1: per-vertex */\n"
+    "uniform vec2 u_hd_off;   /* upload-px coordinate of page uv (0,0) */\n"
     "uniform vec2 u_hd_dim;   /* upload native px dims (w,h) */\n"
     "uniform int u_semipass;\n"
     "uniform int u_semimode;\n"
@@ -1381,7 +1373,6 @@ static const char *HD_FS =
      * hd_dump_upload writes RGBA using this same encoding, so dumps are usable
      * as replacements without manual alpha editing. */
     "void main(){\n"
-    "  vec2 u_hd_off = (u_hd_attrib != 0) ? v_hdoff : u_hd_off_uniform;\n"
     "  int stp; vec3 rgb; vec4 c;\n"
     "  vec2 uv = (v_persp != 0) ? v_uv_p : v_uv;\n"
     "  vec2 facade_dx=dFdx(uv)/u_hd_dim,facade_dy=dFdy(uv)/u_hd_dim;\n"
@@ -2374,7 +2365,6 @@ static void gpu_textured_triangle(const int *xs, const int *ys,
             vp[16] = (float)lim[2];  vp[17] = (float)lim[3];
             vp[18] = semi >= 0 ? (float)(semi + 1) : 0.0f;          /* a_semi code */
             vp[19] = s_pq_valid ? s_pq[i] : 0.0f;                   /* a_q; 0 = affine */
-            vp[20] = 0.0f;           vp[21] = 0.0f;                 /* a_hdoff (HD only) */
         }
         s_tb_n += 3;
         if (isolate) flush_tex_batch();   /* draw this semi prim alone, in submission order */
@@ -3295,19 +3285,6 @@ static GLuint s_hd_prog = 0;
 static GLint s_hd_uHd = -1, s_hd_uOff = -1, s_hd_uDim = -1,
              s_hd_uMaskset = -1, s_hd_uSemipass = -1, s_hd_uSemimode = -1,
              s_hd_uFilter = -1;
-/* Opt-in, default OFF (PSXRECOMP_HD_BATCH_ATTRIB=1): the HD upload-pixel
- * offset rides per vertex (a_hdoff, flat) instead of the u_hd_off uniform, so
- * draw offset, texture page and CLUT position leave the opaque batch key. */
-static GLint s_hd_uAttrib = -1;
-static int s_hd_attrib_gate = -1;
-static int s_hd_batch_attrib = -1;
-static int hd_batch_attrib_enabled(void) {
-    if (s_hd_batch_attrib < 0) {
-        const char *value = getenv("PSXRECOMP_HD_BATCH_ATTRIB");
-        s_hd_batch_attrib = value && strcmp(value, "1") == 0;
-    }
-    return s_hd_batch_attrib;
-}
 static GLint s_hd_uFacadeMotion = -1;
 static GLint s_hd_uEmissive = -1,s_hd_uEmissiveEnabled = -1;
 static int s_hd_emissive_enabled=-1;
@@ -3426,22 +3403,6 @@ typedef struct {
     int xs[3],ys[3],us[3],vs[3];
 } HdOpaqueReceipt;
 static HdOpaqueBatchKey s_hd_batch_key;
-static HdOpaqueBatchKey s_hd_batch_key_full; /* first prim's key incl. offset/page/CLUT */
-/* Diagnostic split classification (hd_split_reason[] in GlHdCpuDiag):
- * 0 next prim not batchable, 1 capacity, 2 texture/palette/program/material,
- * 3 filter/mask/depth, 4 upload dims, 5 region/upload identity, 6 ONLY draw
- * offset / texture page / CLUT position differ (what attrib batching merges). */
-static unsigned hd_split_reason_of(int batch,unsigned n,const HdOpaqueBatchKey *a,const HdOpaqueBatchKey *b) {
-    if(!batch)return 0;
-    if(n>=HD_OPAQUE_BATCH_MAX)return 1;
-    if(a->texture!=b->texture||a->palette!=b->palette||a->program!=b->program||
-       a->material_generation!=b->material_generation)return 2;
-    if(a->filter!=b->filter||a->mask!=b->mask||a->depth!=b->depth)return 3;
-    if(a->width!=b->width||a->height!=b->height)return 4;
-    if(a->region_x!=b->region_x||a->region_y!=b->region_y||a->exact_region!=b->exact_region||
-       a->has_upload!=b->has_upload)return 5;
-    return 6;
-}
 static HdOpaqueReceipt s_hd_batch_receipts[HD_OPAQUE_BATCH_MAX];
 static float s_hd_batch_vertices[HD_OPAQUE_BATCH_MAX*3*TEXV];
 static unsigned s_hd_batch_n;
@@ -4024,18 +3985,7 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
         key.page_x=q.page_x;key.page_y=q.page_y;key.clut_x=q.clut_x;key.clut_y=q.clut_y;
         key.region_x=m.region_x;key.region_y=m.region_y;key.exact_region=m.exact_region;key.has_upload=m.upload_serial!=0;
         }
-        /* Attrib batching: the offset rides per vertex and page/CLUT already do,
-         * so they leave the key. Facade/world sampling experiments decide
-         * per-batch sampler state from page/CLUT, so they keep the full key. */
-        const int attrib=hd_batch_attrib_enabled() && !s_hd_facade_motion.enabled && !s_hd_world_sampling;
-        HdOpaqueBatchKey full;
-        if(batch)full=key;else memset(&full,0,sizeof(full));
-        if(batch && attrib){key.off_x=key.off_y=0;key.page_x=key.page_y=0;key.clut_x=key.clut_y=0;}
         const int split=s_hd_batch_n && (!batch || memcmp(&key,&s_hd_batch_key,sizeof(key)) || s_hd_batch_n>=HD_OPAQUE_BATCH_MAX);
-        if(cpu_diag && s_hd_batch_n){
-            if(split)++s_hd_cpu_diag.hd_split_reason[hd_split_reason_of(batch,s_hd_batch_n,&full,&s_hd_batch_key_full)];
-            else if(memcmp(&full,&s_hd_batch_key_full,sizeof(full)))++s_hd_cpu_diag.hd_attrib_merges;
-        }
         const int keep=hd_keep_bracket_enabled()&&!g_wide_cur&&!native_edge_width &&
             (split || s_hd_batch_n==0) && (!split || (!s_tb_n&&!s_fb_n));
         s_hr_keep_open=keep;
@@ -4062,13 +4012,11 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
             vp[16] = (float)lim[2];  vp[17] = (float)lim[3];
             vp[18] = semi >= 0 ? (float)(semi + 1) : 0.0f;
             vp[19] = s_pq_valid ? s_pq[i] : 0.0f;
-            vp[20] = (float)off_x;   vp[21] = (float)off_y;     /* a_hdoff */
         }
         if(!s_hd_batch_n){
         if(native_edge_width){hr_close_kept();pack_flush();} /* include wrapped framebuffer taps */
         hr_begin(1);
         p_glUseProgram(s_hd_prog);
-        if(s_hd_attrib_gate!=attrib){p_glUniform1i(s_hd_uAttrib,attrib);s_hd_attrib_gate=attrib;}
         p_glActiveTexture(PSXGL_TEXTURE0);
         tex = resident_tex ? resident_tex : hd_tex_object(m.texture_hash, m.palette_hash, &px);
         glBindTexture(GL_TEXTURE_2D, tex);
@@ -4134,7 +4082,7 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
         }
         if(batch){
             unsigned index=s_hd_batch_n;HdOpaqueReceipt *r=&s_hd_batch_receipts[index];
-            if(!index){s_hd_batch_key=key;s_hd_batch_key_full=full;}
+            if(!index)s_hd_batch_key=key;
             memcpy(s_hd_batch_vertices+index*3*TEXV,verts,sizeof(verts));
             r->source=m;r->query=q;r->width=px.width;r->height=px.height;
             memcpy(r->xs,xs,sizeof(r->xs));memcpy(r->ys,ys,sizeof(r->ys));
@@ -4829,8 +4777,7 @@ static int init_gpu_raster(void) {
         s_hd_uHd      = p_glGetUniformLocation(s_hd_prog, "u_hd");
         s_hd_uEmissive = p_glGetUniformLocation(s_hd_prog,"u_hd_emissive");
         s_hd_uEmissiveEnabled = p_glGetUniformLocation(s_hd_prog,"u_hd_emissive_enabled");
-        s_hd_uOff     = p_glGetUniformLocation(s_hd_prog, "u_hd_off_uniform");
-        s_hd_uAttrib  = p_glGetUniformLocation(s_hd_prog, "u_hd_attrib");
+        s_hd_uOff     = p_glGetUniformLocation(s_hd_prog, "u_hd_off");
         s_hd_uDim     = p_glGetUniformLocation(s_hd_prog, "u_hd_dim");
         s_hd_uMaskset = p_glGetUniformLocation(s_hd_prog, "u_maskset");
         s_hd_uSemipass= p_glGetUniformLocation(s_hd_prog, "u_semipass");
@@ -4850,7 +4797,6 @@ static int init_gpu_raster(void) {
         s_hd_uDetailScale = p_glGetUniformLocation(s_hd_prog,"u_skin_detail_scale");
         p_glUseProgram(s_hd_prog);
         p_glUniform1i(s_hd_uFacadeMotion,0);
-        p_glUniform1i(s_hd_uAttrib,0);s_hd_attrib_gate=0;
         p_glUniform1i(s_hd_uEmissive,3);p_glUniform1i(s_hd_uEmissiveEnabled,0);
         s_hd_emissive_gate=0;
         p_glUniform1i(s_hd_uSkinEnabled,0);
@@ -4946,7 +4892,6 @@ static int init_gpu_raster(void) {
         p_glVertexAttribPointer(7, 4, GL_FLOAT, GL_FALSE, st, (void*)(14*sizeof(float))); p_glEnableVertexAttribArray(7); /* limits */
         p_glVertexAttribPointer(8, 1, GL_FLOAT, GL_FALSE, st, (void*)(18*sizeof(float))); p_glEnableVertexAttribArray(8); /* semi   */
         p_glVertexAttribPointer(9, 1, GL_FLOAT, GL_FALSE, st, (void*)(19*sizeof(float))); p_glEnableVertexAttribArray(9); /* q      */
-        p_glVertexAttribPointer(10, 2, GL_FLOAT, GL_FALSE, st, (void*)(20*sizeof(float))); p_glEnableVertexAttribArray(10); /* hdoff */
     }
 
     p_glGenVertexArrays(1, &s_blit_vao);
