@@ -2,6 +2,21 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+After the emergency reboot, the RTX 3090 Ti is responding again. Fresh tests
+passed all 14,222 GL checks for the isolated v47 attribute-batching candidate
+and all 25,964 GL checks for the isolated source-lookup memo candidate, with
+zero failures. The v47 CPU regression fixtures also passed. The
+[post-reboot renderer receipt](media/gallery/stage1-post-reboot-renderer-results.json)
+records the tested artifacts and log hashes. These are fixture results; the
+live firing comparison and audible acceptance remain pending. Both runtime
+candidates remain isolated, and neither is installed. The remaining SYS boot
+parity error is under separate CPU-only investigation.
+
+Capture preflight now uses bounded direct process inspection in place of the
+hanging PowerShell queries, retaining strict process and private-card checks.
+All 46 affected tests passed, and both same-runtime firing variants prepared
+successfully with all 1,669 frozen PNGs verified. Neither has launched.
+
 The user's current priority is extreme stutter/jitter and broken audio. The
 fresh [0.5% versus1% live audio comparison](STAGE1-AUDIO-RESULTS.md) did not
 resolve starvation at either limit. Quiet interval-level runtime attribution is

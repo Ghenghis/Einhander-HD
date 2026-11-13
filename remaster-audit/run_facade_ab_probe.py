@@ -18,6 +18,7 @@ import build_facade_ab_candidates as builder
 import launch_ui_candidate as ui
 import ui_candidate_probe as probe
 from native_ui_facade_route import enter_city
+from private_process_checks import process_identity, verify_private_identity
 
 ROOTS = (builder.OUTPUT, builder.OUTPUT.parent / "facade-tonal-ab-20261112")
 
@@ -31,14 +32,8 @@ def identity(report):
     directory = Path(report["evidence"])
     launch = json.loads((directory / "launch-candidate.json").read_bytes())
     pid = int(launch["pid"])
-    query = ("Get-CimInstance Win32_Process -Filter 'ProcessId = " + str(pid) +
-             "' | Select-Object ProcessId,ExecutablePath | ConvertTo-Json -Compress")
-    result = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", query],
-                            check=True, capture_output=True, text=True, timeout=15)
-    row = json.loads(result.stdout)
-    expected = Path(report["launches"]["candidate"]["arguments"][0]).resolve()
-    assert row["ProcessId"] == pid and Path(row["ExecutablePath"]).resolve() == expected
-    assert expected.is_relative_to(directory.resolve())
+    row = process_identity(pid)
+    verify_private_identity(row, pid, report["launches"]["candidate"]["arguments"], directory)
     return launch
 
 

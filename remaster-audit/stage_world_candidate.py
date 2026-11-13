@@ -21,6 +21,7 @@ from PIL import Image
 
 import launch_ui_candidate as ui
 import verify_world_source_backlog as world
+from private_process_checks import running_games, require_seed_closed
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -75,17 +76,8 @@ def closed_private_seed():
     require(proof["sha256"] == seed["source_sha256"] and proof["bytes"] == 131072 and
             proof["header"] == "MC" and any(r.get("pilot") and r.get("directory_xor") for r in proof["entries"]),
             "Closed private seed lacks a valid PILOT directory proof")
-    command = ("Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'Einhander_Recompiled.exe' } | "
-               "Select-Object ProcessId,ExecutablePath,CommandLine | ConvertTo-Json -Compress")
-    result = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", command],
-                            capture_output=True, text=True, timeout=20, check=True)
-    active = json.loads(result.stdout) if result.stdout.strip() else []
-    active = [active] if isinstance(active, dict) else active
-    for row in active:
-        executable = str(row.get("ExecutablePath") or "")
-        arguments = str(row.get("CommandLine") or "")
-        require(str(expected_root).lower() not in (executable + " " + arguments).lower(),
-                "The private v4 card source may be in active use")
+    active = running_games()
+    require_seed_closed(active, expected_root)
     return source, dict(source=str(source), source_sha256=seed["source_sha256"],
                         source_directory_proof=file_receipt(directory), parent_seed_receipt=file_receipt(PARENT / "private-card-seed.json"),
                         source_process_absent_now=True, profile="PILOT", user_cards_mounted=False,

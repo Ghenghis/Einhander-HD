@@ -1,0 +1,182 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-13T20:54:25.975Z",
+  "scope": "Post-reboot renderer fixture verification only",
+  "gpu": {
+    "name": "NVIDIA GeForce RTX 3090 Ti",
+    "driver": "621.14",
+    "health_observed": true
+  },
+  "attribute_batching": {
+    "source_commit": "dda9e6a9f1ce5c2c83ae03619f6455432d0461d3",
+    "runtime_sha256": "821a3f569cd7287f93b6bc91e12e01d44d966ef004772d0956e53fb1e9febfbc",
+    "test_executable_sha256": "ce850b9cbfa9d5dfba62fbfcdbb313b14337908ca584969611a0779689cb3b03",
+    "runs": [
+      {
+        "label": "native-regions",
+        "exit": 0,
+        "log_sha256": "e95fd1b8d59c91b8447320092925cfc2946941938b092d66817dfb14ba3d7902",
+        "check_lines": 33,
+        "world_result": []
+      },
+      {
+        "label": "watchdog-time",
+        "exit": 0,
+        "log_sha256": "6aaaeaa10be78df479591e74e8191af7dae74a2314324447fe52ca182f864944",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "freeze-stack",
+        "exit": 0,
+        "log_sha256": "d323073e206e99527fd08d884c2035445151fc4844a5feb84f27486885ed88b6",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "hero-draw",
+        "exit": 0,
+        "log_sha256": "10395ac5b54e9e2c585d341c7ae396bb861c2a2b16d687d84289f5b0088f7b9a",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "threat-draw",
+        "exit": 0,
+        "log_sha256": "052dab3a5a31eacf25665b4853d34b463e25b37e45e68d7c241d92d261d50b48",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "interp-pc-sampler",
+        "exit": 0,
+        "log_sha256": "97c69ad37306bccb154208fb82f07059c74e630c3354fc889ddf9eab21787b7d",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "timestamp-batch",
+        "exit": 0,
+        "log_sha256": "c731838bf6c03159f40555af037d593c0513a54230a0b60ccf0eef9ccf0a006d",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "rewind-cadence",
+        "exit": 0,
+        "log_sha256": "3036ab09fa8b6b9c9107a0b3222e200d2cdec57ea8c850f01960281016fa07ff",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "source-cache-filter",
+        "exit": 0,
+        "log_sha256": "97c69ad37306bccb154208fb82f07059c74e630c3354fc889ddf9eab21787b7d",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "decode-queue",
+        "exit": 0,
+        "log_sha256": "4ccc9cced5c9be60f9821f6330085c7d0efa1445a5da0e4d7debbeefeeaee2f7",
+        "check_lines": 0,
+        "world_result": []
+      },
+      {
+        "label": "real-gl-world-0",
+        "exit": 0,
+        "log_sha256": "1b5a50ab9b3280da396fa40ee0a504b5ecac8765b167b4ac7d92c701f5caf463",
+        "check_lines": 3555,
+        "world_result": [
+          [
+            "3555",
+            "0"
+          ]
+        ]
+      },
+      {
+        "label": "real-gl-world-1",
+        "exit": 0,
+        "log_sha256": "fb3023202322444a3b3c5297e093e3f2b21dbd108eab79dc12abf6200e791408",
+        "check_lines": 3557,
+        "world_result": [
+          [
+            "3557",
+            "0"
+          ]
+        ]
+      },
+      {
+        "label": "real-gl-world-0-filter-cache-1",
+        "exit": 0,
+        "log_sha256": "205c0cfdaa58f8641b11bb11e7f3cd4305130ef53644bd594cdbc3d307af07b9",
+        "check_lines": 3555,
+        "world_result": [
+          [
+            "3555",
+            "0"
+          ]
+        ]
+      },
+      {
+        "label": "real-gl-world-0-keep-bracket-1",
+        "exit": 0,
+        "log_sha256": "f1a926f5b584053026fa6e3ecbdfcfc9c749f2b5c383dcbd170e9726ff5e7ab4",
+        "check_lines": 3555,
+        "world_result": [
+          [
+            "3555",
+            "0"
+          ]
+        ]
+      }
+    ],
+    "gl_checks": 14222,
+    "gl_failures": 0,
+    "cpu_fixture_exits_all_zero": true,
+    "source_integration": "isolated candidate branch; live firing gate remains pending"
+  },
+  "source_lookup_memo": {
+    "test_executable_sha256": "44b2ebac0d7f30dbdcb4cad918a748a4c5cde73caef5a0c13febc8fa8d04e827",
+    "runs": [
+      {
+        "memo": 0,
+        "keep_bracket": 0,
+        "log_sha256": "41f217b86fc95394a15343be940e42e8dda4cb8762e6a592c4a9015eba83d360",
+        "checks": 6491,
+        "failures": 0
+      },
+      {
+        "memo": 0,
+        "keep_bracket": 1,
+        "log_sha256": "3243334c059380b2796571d71ffadd69a84ef9735bab24a6ee37437ca17d257b",
+        "checks": 6491,
+        "failures": 0
+      },
+      {
+        "memo": 1,
+        "keep_bracket": 0,
+        "log_sha256": "003eecedcdef039b6e5c43ea84322f7ebd44ae3909aa198a76ea386ec7a4d33c",
+        "checks": 6491,
+        "failures": 0
+      },
+      {
+        "memo": 1,
+        "keep_bracket": 1,
+        "log_sha256": "acc0aa6deca3274a8d427131a3f7ef98179a329844664c727fdc305c1098c6d1",
+        "checks": 6491,
+        "failures": 0
+      }
+    ],
+    "command_exit": 0,
+    "gl_checks": 25964,
+    "gl_failures": 0,
+    "source_integration": "isolated review candidate"
+  },
+  "live_firing_comparison": "NOT RUN after reboot",
+  "audio_resolved": false,
+  "performance_acceptance": false,
+  "production_installed": false,
+  "stage1_complete": false,
+  "full_remaster_complete": false
+}

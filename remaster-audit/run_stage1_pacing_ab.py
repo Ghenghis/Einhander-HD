@@ -119,7 +119,8 @@ def prepare(label,args):
         if not hd:raise ValueError('Native-menu staging requires HD-on measurement')
         control=directory/'replacement-control.txt';control.write_text('0\n')
         spec['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
-        report['route_reference_profile']='native-stock';report['pacing_profile']['native_menus']=True
+        report['route_reference_profile']='native-stock-scale2' if scale==2 else 'native-stock'
+        report['pacing_profile']['native_menus']=True
     base.write(directory / "candidate.json",report)
     return report
 
