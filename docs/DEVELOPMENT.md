@@ -51,4 +51,12 @@ The facade motion experiment is source-specific and disabled by default. Its GPU
 
 Publish deliberately selected media with provenance under `docs/media/gallery/`. Keep raw dumps, full packs, saves, credentials, model weights and generated game/BIOS outputs local.
 
+The matched facade uses the generated [neighbor RGB master](media/gallery/h24-neighbor-material.png), authored at 1254 × 1254. `build_h24_matched_facade.py` registers it at the verified neighbor source rectangle, preserves native alpha classes and checks that all 1,195 preceding keys are unchanged. It packs at 4096 × 4096 without claiming new native detail. `run_h24_matched_flypast.py` reuses the private no-fire route and declared timer-only aid. These local pilot tools depend on the existing private parent candidate, source guides, native route fixtures and game setup; they are not clean-checkout installers. Preparation and capture use immutable run directories and refuse overwrite.
+
+```sh
+python remaster-audit/build_h24_matched_facade.py --check
+```
+
+That command verifies an existing local matched candidate without launching the game. The [in-game results](H24-IN-GAME-RESULTS.md) distinguish the captured implementation from later CLI-only publication changes.
+
 Use focused commits for runtime changes, authoring/verification tools and documentation/media. Record actual validation and limitations. A passing fixture establishes that fixture's result, not whole-game coverage.

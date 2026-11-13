@@ -14,6 +14,8 @@ The actual renderer submitted both replacements as 4096 × 4096 exact regions: 2
 
 The silent 1280 × 960 footage was requested at 30 Hz. The 46.1-second publication is a single continuous source 18–64-second excerpt, copied without re-encoding, interpolation, speed changes, upscaling or internal cuts. The poster is a lossless extraction at public 14 seconds. The new and earlier runs are different frames/viewpoints, not a synchronized A/B. Repeated room patterns, seam/palette coverage, all-room readability and frame pacing remain review work; static interiors do not establish dynamic reflections or room parallax. This is a verified private integration, not an installed production-pack release.
 
+The [generated neighbor RGB master](media/gallery/h24-neighbor-material.png) and local integration/capture tools are published alongside this footage; see the [developer notes](DEVELOPMENT.md). The builder gained a project-relative default art input and a read-only verification CLI after capture. The captured candidate pixels remain unchanged, and the original builder snapshot hash is retained in the results.
+
 ## Earlier full pass with the blue strips still present — November 12, 2026
 
 [![Watch the full facade fly-past](media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)

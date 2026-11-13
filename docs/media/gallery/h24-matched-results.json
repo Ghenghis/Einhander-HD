@@ -77,19 +77,19 @@
       "published": false
     },
     {
-      "source_identifier": "remaster-audit/build_h24_matched_facade.py",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-matched-r3/executed-builder.py",
       "sha256": "668167d0018248c7d40e1a731524a7967a45082c1545481c197bd371b3500e6d",
       "published": false
     },
     {
       "source_identifier": "remaster-audit/run_h24_matched_flypast.py",
       "sha256": "907fd122b32fd04d664496cae4f3d1855f07406613a15aec7bc4f32989c68bc6",
-      "published": false
+      "published": true
     },
     {
       "source_identifier": "remaster-audit/run_h24_facade_review.py",
       "sha256": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2",
-      "published": false
+      "published": true
     }
   ],
   "draw_evidence": {
@@ -239,5 +239,50 @@
     "constant_timestamp_offset_seconds": 18.0,
     "reencoding": false,
     "retiming": false
-  }
+  },
+  "published_implementation": [
+    {
+      "path": "remaster-audit/build_h24_matched_facade.py",
+      "sha256": "152808c2ac33d3b30551f776b6cfc5317cbce4d7f6c5a678e3da379d632f72b6"
+    },
+    {
+      "path": "remaster-audit/run_h24_matched_flypast.py",
+      "sha256": "907fd122b32fd04d664496cae4f3d1855f07406613a15aec7bc4f32989c68bc6"
+    },
+    {
+      "path": "remaster-audit/run_h24_full_flypast.py",
+      "sha256": "f9a078f29a75b0e088d8fccba716d58160e3cb85aade04d5f4aac53ffc06e51a"
+    },
+    {
+      "path": "remaster-audit/run_h24_facade_review.py",
+      "sha256": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2"
+    },
+    {
+      "path": "remaster-audit/run_facade_ab_probe.py",
+      "sha256": "90836cdd644c0ef62aed629bc644a970a76d51465873067d404cc20b8c5552df"
+    }
+  ],
+  "published_neighbor_art": {
+    "path": "docs/media/gallery/h24-neighbor-material.png",
+    "sha256": "2fb08f95bb0d812037d17d235f85f1a7a5c4b58a4af69c31d8db9c35273f6060",
+    "bytes": 1884320,
+    "dimensions": [
+      1254,
+      1254
+    ],
+    "category": "generated_material_reference",
+    "label": "Matched neighbor RGB texture master",
+    "status": "Generated1254-square RGB source used for verified private exact-region replacement; runtime4096 packing preserves native alpha separately",
+    "source_identifier": "remaster-audit/assets/h24-neighbor-v1/neighbor-master.png",
+    "unmodified_copy": true,
+    "pixel_content_preserved": true,
+    "embedded_metadata_present": true,
+    "qualification": {
+      "provider": "OpenAI built-in ImageGen",
+      "native_4096_authored": false,
+      "gameplay_capture": false,
+      "applied_exact_key": "74EF95B7-B30D16F0"
+    }
+  },
+  "publication_changes": "After capture, builder default artwork input was changed to the public project asset and a read-only --check CLI was added. Captured candidate pixels were not changed; original builder snapshot hash is retained separately."
 }

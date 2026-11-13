@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 46,
-  "total_image_bytes": 98997960,
+  "image_count": 47,
+  "total_image_bytes": 100882280,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1444,10 +1444,32 @@
         "target_visibility": true,
         "motion_performance_acceptance": false
       }
+    },
+    {
+      "path": "docs/media/gallery/h24-neighbor-material.png",
+      "sha256": "2fb08f95bb0d812037d17d235f85f1a7a5c4b58a4af69c31d8db9c35273f6060",
+      "bytes": 1884320,
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "category": "generated_material_reference",
+      "label": "Matched neighbor RGB texture master",
+      "status": "Generated1254-square RGB source used for verified private exact-region replacement; runtime4096 packing preserves native alpha separately",
+      "source_identifier": "remaster-audit/assets/h24-neighbor-v1/neighbor-master.png",
+      "unmodified_copy": true,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": true,
+      "qualification": {
+        "provider": "OpenAI built-in ImageGen",
+        "native_4096_authored": false,
+        "gameplay_capture": false,
+        "applied_exact_key": "74EF95B7-B30D16F0"
+      }
     }
   ],
   "losslessly_reencoded_capture_count": 6,
-  "byte_identical_copy_count": 38,
+  "byte_identical_copy_count": 39,
   "video_assets": [
     {
       "path": "docs/media/gallery/h24-fly-past-entry.mp4",

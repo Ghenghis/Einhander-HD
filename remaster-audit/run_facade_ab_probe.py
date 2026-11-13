@@ -1,7 +1,8 @@
 """One immutable variant, finite native entry, observed exact-region proof.
 
 Stills are 2880x2160; optional video records the actual 1280x960 window.
-No injected RAM, stage jumps, state loads, asset rewrites or matched-state claim.
+Optional timer-only survival assistance is declared in the proof. No stage
+jumps, state loads, asset rewrites or matched-state claim.
 """
 import argparse
 import json
@@ -85,6 +86,8 @@ def main():
                         help="Explicitly continue this report's verified private process")
     parser.add_argument("--video", action="store_true")
     parser.add_argument("--fire", action="store_true", help="Hold the ordinary fire button during this bounded visual test")
+    parser.add_argument("--survival-assist", action="store_true",
+                        help="Private visual review only: declared 180s invincibility-timer hold after City gate")
     parser.add_argument("--route-turbo", action="store_true", help="Fast-forward approach only; restore normal speed before evidence")
     parser.add_argument("--follow-seconds", type=int, choices=(0, 30, 60, 90), default=0,
                         help="Continue normal fly-past with additional2160p observations")
@@ -119,6 +122,7 @@ def main():
     ui.copy_verified(Path(__file__), executed)
     proof = dict(started_at_utc=ui.stamp(), candidate=builder.ref(directory / "candidate.json"),
         helper=builder.ref(executed), ram_writes=False, state_loads=False,
+        survival_assist_requested=args.survival_assist,
         approach_fast_forward=args.route_turbo,
         matched_state_comparison=False, live_visual_accepted=False, errors=[], shots=[])
     proof["ordinary_fire_input"] = args.fire
@@ -129,6 +133,7 @@ def main():
         raise ValueError("Unsupported registered comparison dimensions")
     builder.SIZE = expected_dimensions[0]
     started = False
+    survival = None
     may_close = args.adopt_launched
     try:
         if args.adopt_launched:
@@ -142,6 +147,13 @@ def main():
             raise RuntimeError("Native title gate failed; input stopped")
         proof["native_route"] = enter_city(report)
         emit(dict(native_city_route=proof["native_route"]["evidence"], ok=True))
+        if args.survival_assist:
+            from run_h24_facade_review import SurvivalAid
+            survival_helper = directory / "executed-survival-helper.py"
+            ui.copy_verified(Path(__file__).with_name("run_h24_facade_review.py"), survival_helper)
+            proof["survival_helper"] = builder.ref(survival_helper)
+            survival = SurvivalAid(report, identity, ui.command, ui.stamp)
+            emit(dict(survival_assistance="timer only, private visual test", lease_seconds=180))
         native = directory / "native-facade-fly-past"
         native.mkdir(exist_ok=False)
         proof["record_start"] = probe.request(report, "research_capture", op="start", path=native.as_posix(),
@@ -190,6 +202,9 @@ def main():
                         shot = probe.capture_static(report, "follow-facade-" + str(delay))
                         proof["shots"].append(shot)
                         emit(dict(normal_speed_follow_seconds=delay, capture=shot))
+                        if args.video and delay == 30:
+                            proof["middle_motion"] = motion(report, label="facade-middle-window-motion")
+                            emit(proof["middle_motion"])
                     if args.video and args.follow_seconds:
                         proof["later_motion"] = motion(report, label="facade-later-window-motion")
                         emit(proof["later_motion"])
@@ -206,6 +221,15 @@ def main():
     except Exception as error:
         proof["errors"].append(str(error))
     finally:
+        survival_stopped = True
+        if survival is not None:
+            try:
+                proof["survival_assistance"] = survival.stop()
+            except Exception as error:
+                survival_stopped = False
+                proof["errors"].append("Survival hold release: " + str(error))
+                proof["survival_assistance"] = dict(worker_termination_confirmed=False,
+                    forced_timer_clear=False, command_receipts="commands/")
         if started:
             try:
                 proof["final_input_release"] = probe.request(report, "clear_input")
@@ -215,11 +239,17 @@ def main():
                 proof["errors"].append("Recorder stop: " + str(error))
         # Marker was absent before this invocation; only a new owned launch
         # can enter this path. identity() checks its exact PID and executable.
-        if may_close or (not had_launch and launch_marker.exists()):
+        if not survival_stopped:
+            proof["close"] = dict(deferred=True, reason="Survival worker termination unconfirmed; port must not be reused")
+        elif may_close or (not had_launch and launch_marker.exists()):
             try:
                 proof["close"] = close(report)
             except Exception as error:
                 proof["errors"].append("Owned-process close: " + str(error))
+        writes = [json.loads(path.read_bytes()) for path in (directory / "commands").glob("*.json")
+                  if '"write_ram"' in path.read_text(encoding="utf-8")]
+        proof["ram_write_commands"] = len(writes)
+        proof["ram_writes"] = any(row.get("reply", {}).get("ok") is True for row in writes)
         proof["ended_at_utc"] = ui.stamp()
         builder.write(output, proof)
         emit(dict(path=str(output), target_draw_observed=proof.get("target_draw_observed", False),
