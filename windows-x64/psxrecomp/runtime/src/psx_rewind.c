@@ -21,6 +21,14 @@
 
 #if defined(PSX_HAS_RBENGINE_SNAP)
 #include "retcomm_rbengine/snap_ring.h"
+#if defined(_WIN32)
+#  ifndef WIN32_LEAN_AND_MEAN
+#    define WIN32_LEAN_AND_MEAN
+#  endif
+#  include <windows.h>
+#else
+#  include <time.h>
+#endif
 #endif
 
 #define RW_THUMB_W     128
@@ -30,7 +38,11 @@
 #define RW_DEF_INTERVAL 15
 /* Match netplay §96 FMV media snaps (default 4; MEDIA_KF uses 2). */
 #define RW_DEF_FMV_INTERVAL 4
+/* mdec_recently_active() units are 338688 guest cycles (mdec.c), not one
+ * 564480-cycle NTSC vblank: 8 units + 1/2 = 2.88M cycles ~= 5.1 vblanks,
+ * 60 units + 1/2 = 20.5M cycles ~= 36 vblanks (~0.6 s). */
 #define RW_FMV_MDEC_HYSTERESIS 8u
+#define RW_FMV_D24_MDEC_HOLD   60u
 #define RW_PANEL_W     640
 #define RW_PANEL_H     176
 #define RW_SLIDE_MS    180u
@@ -138,6 +150,12 @@ int  psx_rewind_overlay_image(const uint32_t **pixels, int *w, int *h)
     return 0;
 }
 float psx_rewind_slide(void) { return 0.f; }
+void psx_rewind_stats_get(PsxRewindStats *out)
+{
+    if (out)
+        memset(out, 0, sizeof(*out));
+}
+void psx_rewind_stats_reset(void) {}
 
 #else /* PSX_HAS_RBENGINE_SNAP */
 
@@ -151,6 +169,7 @@ static uint32_t s_bios;
 static uint32_t s_entry;
 static uint32_t s_interval = RW_DEF_INTERVAL;
 static uint32_t s_fmv_interval = RW_DEF_FMV_INTERVAL;
+static int s_fmv_legacy; /* PSX_REWIND_FMV_LEGACY=1: old media rule (A/B) */
 static uint32_t s_depth = RW_DEF_DEPTH;
 static int s_depth_pref = -1; /* -1 = unset; else from settings.toml / launcher */
 static int s_interval_pref = -1;
@@ -259,6 +278,8 @@ static int rewind_wanted(void)
         }
         s_fmv_interval =
             env_u32("PSX_REWIND_FMV_INTERVAL", RW_DEF_FMV_INTERVAL, 1u, 16u);
+        e = getenv("PSX_REWIND_FMV_LEGACY");
+        s_fmv_legacy = (e && e[0] == '1') ? 1 : 0;
         {
             uint32_t depth_def = s_depth_pref > 0 ? (uint32_t)s_depth_pref
                                                   : RW_DEF_DEPTH;
@@ -269,14 +290,36 @@ static int rewind_wanted(void)
     return s_enabled;
 }
 
-/* Same heuristic as netplay rb_fmv_media_active — denser snaps while media runs. */
+/* Denser snaps while a MOVIE plays. Netplay's rb_fmv_media_active keeps its
+ * wider rule on purpose (rollback must resim media state); local rewind
+ * restores a whole state, so density here only buys granularity.
+ *
+ * A movie is MDEC colour-decode progress. Every PS1 movie frame, silent or
+ * with XA audio, 15- or 24-bit, is a colour MDEC decode; 4/8-bit decodes
+ * (texture decompression) do not stamp mdec_recently_active().
+ *
+ * 24-bpp scan-out counts only while MDEC fed it recently, which carries the
+ * movie cadence across a short CD stall inside a 24-bit movie. A 24-bpp still
+ * or menu with no MDEC decode is not a movie.
+ *
+ * A live XA stream on its own is NOT a movie: games stream their BGM as
+ * XA-ADPCM. Einhander (SCUS-94243) is one MODE2/2352 track with no CD-DA, so
+ * cdrom_xa_stream_active() stays latched for nearly all of stage 1 (recorded:
+ * normal2-rewind-on-v2, xa=1 with MDEC flat and depth24=0), which pinned
+ * ordinary gameplay to the 4-frame movie cadence instead of the user's 15.
+ * Cost of dropping it: the frames between a movie's first XA sector and its
+ * first MDEC decode (recorded intro: XA on at frame <= 1891, first decode in
+ * 1892..1908) and audio-only stills use the user's interval. Snapshots
+ * already serialize the full XA decoder state. */
 static int rewind_fmv_media_active(void)
 {
-    if (gpu_display_is_depth24())
-        return 1;
+    if (s_fmv_legacy)
+        return gpu_display_is_depth24() ||
+               mdec_recently_active(RW_FMV_MDEC_HYSTERESIS) ||
+               cdrom_xa_stream_active();
     if (mdec_recently_active(RW_FMV_MDEC_HYSTERESIS))
         return 1;
-    if (cdrom_xa_stream_active())
+    if (gpu_display_is_depth24() && mdec_recently_active(RW_FMV_D24_MDEC_HOLD))
         return 1;
     return 0;
 }
@@ -441,16 +484,46 @@ int psx_rewind_needs_present(void)
     return s_open || s_slide > 0.01f || s_anim_dir != 0;
 }
 
+/* Host-only diagnostics; see PsxRewindStats. Not part of any snapshot. */
+static PsxRewindStats s_stats;
+static uint32_t s_due_since_frame;
+
+static uint64_t rw_mono_us(void)
+{
+#if defined(_WIN32)
+    static LARGE_INTEGER freq;
+    LARGE_INTEGER c;
+    if (!freq.QuadPart)
+        QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&c);
+    return (uint64_t)((double)c.QuadPart * 1.0e6 / (double)freq.QuadPart);
+#else
+    struct timespec ts;
+    clock_gettime(CLOCK_MONOTONIC, &ts);
+    return (uint64_t)ts.tv_sec * 1000000u + (uint64_t)ts.tv_nsec / 1000u;
+#endif
+}
+
 void psx_rewind_note_frame(void)
 {
     uint32_t iv;
     if (!psx_rewind_enabled() || s_open || psx_netplay_active())
         return;
     s_frame++;
+    s_stats.frames++;
+    if (rewind_fmv_media_active())
+        s_stats.media_frames++;
     iv = rewind_capture_interval();
     if (s_last_capture_frame == 0xffffffffu ||
-        s_frame - s_last_capture_frame >= iv)
+        s_frame - s_last_capture_frame >= iv) {
+        if (!s_capture_due) {
+            s_stats.due_edges++;
+            s_due_since_frame = s_frame;
+        }
         s_capture_due = 1;
+    }
+    if (s_capture_due)
+        s_stats.due_frames++;
 }
 
 static int do_capture(CPUState *cpu, uint32_t resume_pc)
@@ -461,26 +534,79 @@ static int do_capture(CPUState *cpu, uint32_t resume_pc)
     CPUState snap;
     uint32_t tick = s_frame;
     uint32_t pc;
+    uint64_t t0, t1, t2, lat;
 
-    if (!cpu || !s_ring)
+    s_stats.attempts++;
+    if (!cpu || !s_ring) {
+        s_stats.skip_no_ring++;
         return 0;
+    }
     pc = rewind_resolve_resume_pc(cpu, resume_pc);
-    if (!psx_irq_resume_context_snapshot_safe() || !resume_pc_ok(pc))
+    if (!psx_irq_resume_context_snapshot_safe()) {
+        s_stats.skip_unsafe++;
         return 0;
+    }
+    if (!resume_pc_ok(pc)) {
+        s_stats.skip_pc++;
+        return 0;
+    }
     snap = *cpu;
     snap.pc = pc;
+    t0 = rw_mono_us();
     if (!boot_state_save_buffer_raw(&snap, s_bios, s_entry, &blob, &len) ||
-        !blob || !len)
+        !blob || !len) {
+        s_stats.skip_save++;
         return 0;
+    }
+    t1 = rw_mono_us();
     if (!rbe_snap_ring_store(s_ring, tick, blob, len)) {
         free(blob);
+        s_stats.skip_store++;
         return 0;
     }
     capture_thumb(thumb);
     list_push(tick, thumb);
     s_last_capture_frame = s_frame;
     s_capture_due = 0;
+    t2 = rw_mono_us();
+    s_stats.taken++;
+    if (rewind_fmv_media_active())
+        s_stats.taken_media++;
+    s_stats.save_us_total += t1 - t0;
+    if (t1 - t0 > s_stats.save_us_max)
+        s_stats.save_us_max = t1 - t0;
+    s_stats.capture_us_total += t2 - t0;
+    if (t2 - t0 > s_stats.capture_us_max)
+        s_stats.capture_us_max = t2 - t0;
+    s_stats.last_blob_bytes = (uint64_t)len;
+    lat = s_frame >= s_due_since_frame ? (uint64_t)(s_frame - s_due_since_frame) : 0u;
+    s_stats.latency_frames_total += lat;
+    if (lat > s_stats.latency_frames_max)
+        s_stats.latency_frames_max = lat;
     return 1;
+}
+
+void psx_rewind_stats_get(PsxRewindStats *out)
+{
+    if (!out)
+        return;
+    *out = s_stats;
+    out->enabled = psx_rewind_enabled();
+    out->media_now = out->enabled ? rewind_fmv_media_active() : 0;
+    out->capture_due = s_capture_due;
+    out->interval = s_interval;
+    out->fmv_interval = s_fmv_interval;
+    out->effective_interval = out->enabled ? rewind_capture_interval() : 0u;
+    out->depth = s_depth;
+    out->count = s_count;
+    out->frame = s_frame;
+    out->last_capture_frame = s_last_capture_frame;
+}
+
+void psx_rewind_stats_reset(void)
+{
+    memset(&s_stats, 0, sizeof(s_stats));
+    s_due_since_frame = s_frame;
 }
 
 static int do_load(CPUState *cpu, uint32_t tick)

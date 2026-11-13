@@ -83,6 +83,7 @@ def prepare(args):
     report['visual_profile']['gpu_clock_profile']=args.gpu_clock_profile
     report['visual_profile']['phase_profile']=args.phase_profile
     report['visual_profile']['idle_skip_override']=args.idle_skip
+    report['visual_profile']['rewind_profile']=args.rewind_profile
     if args.idle_skip is not None:
         report['launches']['candidate']['environment_overrides']['PSX_IDLE_SKIP']=str(args.idle_skip)
     if args.process_loopback_seconds:
@@ -154,6 +155,8 @@ def run(args):
             composed_stills=report['visual_profile'].get('composed_stills',True),timer_assistance=True)
         if report['visual_profile'].get('phase_profile'):
             proof['measurement_load']['backend_counter_snapshots']=True
+        if report['visual_profile'].get('rewind_profile'):
+            proof['measurement_load']['rewind_stats']=True
         if report['visual_profile'].get('gpu_clock_profile'):
             executable=shutil.which('nvidia-smi')
             if not executable:raise RuntimeError('Requested GPU clock profiler is unavailable')
@@ -205,6 +208,8 @@ def run(args):
                 row['static_phase_hot']=probe.request(report,'phase_hot',top=32,set='static')
             if report['visual_profile'].get('idle_skip_override') is not None and second%15==0:
                 row['idle_skip']=probe.request(report,'idle_skip')
+            if report['visual_profile'].get('rewind_profile') and second%15==0:
+                row['rewind_stats']=probe.request(report,'rewind_stats')
             if report['visual_profile'].get('interp_pc_profile') and second in (0,65,75,85,95,120,150,169):
                 row['interp_pc_profile']=probe.request(report,'dirty_pc_profile')
             if report['visual_profile'].get('media_profile'):
@@ -341,6 +346,7 @@ if __name__=='__main__':
         help='Optional owned-process audio smoke after timing measurement')
     p.add_argument('--gpu-clock-profile',action='store_true',help='Read-only1Hz GPU clock log through owned-process cleanup')
     p.add_argument('--phase-profile',action='store_true',help='Snapshot existing historical backend sampler every15seconds')
+    p.add_argument('--rewind-profile',action='store_true',help='Observe actual capture attempts, safe skips, stored snapshots and movie classification; requires rewind_stats support')
     p.add_argument('--idle-skip',type=int,choices=[0,1],default=None,
         help='Explicit private override of the existing guarded idle-loop enhancement')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)

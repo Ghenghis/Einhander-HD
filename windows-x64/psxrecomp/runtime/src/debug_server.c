@@ -46,6 +46,7 @@
 #include "crash_trace.h"
 #include "gpu_gl_renderer.h"
 #include "lockstep.h"
+#include "psx_rewind.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11325,6 +11326,48 @@ static void handle_fmv_state(int id, const char *json)
              (unsigned)(sio_get_pad_buttons() & 0xFFFFu));
 }
 
+/* Local rewind capture accounting. Unlike hd_cpu_profile.readbacks (every
+ * counted ensure_cpu glReadPixels, from any caller, only when the FBO is
+ * dirty and PSXRECOMP_HD_CPU_PROFILE=1), this counts captures themselves.
+ * {"cmd":"rewind_stats","reset":1} zeroes the counters after replying. */
+static void handle_rewind_stats(int id, const char *json)
+{
+    PsxRewindStats s;
+    int reset = json_get_int(json, "reset", 0);
+    psx_rewind_stats_get(&s);
+    send_fmt("{\"id\":%d,\"ok\":true,\"enabled\":%s,\"media_now\":%d,"
+             "\"capture_due\":%d,\"interval\":%u,\"fmv_interval\":%u,"
+             "\"effective_interval\":%u,\"depth\":%u,\"count\":%u,"
+             "\"frame\":%u,\"last_capture_frame\":%u,"
+             "\"frames\":%llu,\"media_frames\":%llu,"
+             "\"due_edges\":%llu,\"due_frames\":%llu,\"attempts\":%llu,"
+             "\"skip_no_ring\":%llu,\"skip_unsafe\":%llu,\"skip_pc\":%llu,"
+             "\"skip_save\":%llu,\"skip_store\":%llu,"
+             "\"taken\":%llu,\"taken_media\":%llu,"
+             "\"save_ms_total\":%.3f,\"save_ms_max\":%.3f,"
+             "\"capture_ms_total\":%.3f,\"capture_ms_max\":%.3f,"
+             "\"last_blob_bytes\":%llu,"
+             "\"latency_frames_total\":%llu,\"latency_frames_max\":%llu,"
+             "\"scope\":\"host-only cumulative; attempts are due polls, not requests\"}",
+             id, s.enabled ? "true" : "false", s.media_now, s.capture_due,
+             s.interval, s.fmv_interval, s.effective_interval, s.depth, s.count,
+             s.frame, s.last_capture_frame,
+             (unsigned long long)s.frames, (unsigned long long)s.media_frames,
+             (unsigned long long)s.due_edges, (unsigned long long)s.due_frames,
+             (unsigned long long)s.attempts,
+             (unsigned long long)s.skip_no_ring, (unsigned long long)s.skip_unsafe,
+             (unsigned long long)s.skip_pc, (unsigned long long)s.skip_save,
+             (unsigned long long)s.skip_store,
+             (unsigned long long)s.taken, (unsigned long long)s.taken_media,
+             (double)s.save_us_total / 1000.0, (double)s.save_us_max / 1000.0,
+             (double)s.capture_us_total / 1000.0, (double)s.capture_us_max / 1000.0,
+             (unsigned long long)s.last_blob_bytes,
+             (unsigned long long)s.latency_frames_total,
+             (unsigned long long)s.latency_frames_max);
+    if (reset)
+        psx_rewind_stats_reset();
+}
+
 static void handle_mdec_trace(int id, const char *json)
 {
     uint64_t total = mdec_debug_get_event_total();
@@ -13769,6 +13812,7 @@ static const CmdEntry s_commands[] = {
     { "mdec_state",        handle_mdec_state },
     { "mdec_trace",        handle_mdec_trace },
     { "fmv_state",         handle_fmv_state },
+    { "rewind_stats",      handle_rewind_stats },
     { "mdec_trace_clear",  handle_mdec_trace_clear },
     { "set_input",         handle_set_input },
     { "press",             handle_press },

@@ -456,6 +456,25 @@ if(BUILD_TESTING)
     target_include_directories(psx_timestamp_batch_test PRIVATE include)
     add_test(NAME psx_timestamp_batch_test COMMAND psx_timestamp_batch_test)
 
+    # Compile the actual rewind unit (included by the fixture), MDEC and ring.
+    # Recorded fixtures contain only media signal counters, never disc bytes.
+    set(_REWIND_TEST_RBE "${CMAKE_CURRENT_SOURCE_DIR}/../lib/retcomm-rbengine")
+    if(EXISTS "${_REWIND_TEST_RBE}/src/snap/rbe_snap_ring.c")
+        add_executable(rewind_cadence_test
+            tests/test_rewind_cadence.c
+            src/mdec.c
+            "${_REWIND_TEST_RBE}/src/snap/rbe_snap_ring.c")
+        target_include_directories(rewind_cadence_test PRIVATE
+            include "${_REWIND_TEST_RBE}/include")
+        target_compile_definitions(rewind_cadence_test PRIVATE
+            PSX_HAS_RBENGINE_SNAP=1 WITH_REWIND_STATS=1)
+        if(UNIX)
+            target_link_libraries(rewind_cadence_test PRIVATE m)
+        endif()
+        add_test(NAME rewind_cadence_test COMMAND rewind_cadence_test
+            "${CMAKE_CURRENT_SOURCE_DIR}/tests/fixtures/rewind")
+    endif()
+
     add_executable(psx_vblank_clock_test
         tests/test_psx_vblank_clock.c
         src/psx_vblank_clock.c)
