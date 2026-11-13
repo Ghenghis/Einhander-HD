@@ -13,6 +13,7 @@
 #ifdef _WIN32
 #include <windows.h>
 #include <dbghelp.h>
+#include "freeze_stack_capture.h"
 #endif
 
 /* State accessors. All defined in other compilation units; declared here
@@ -174,11 +175,19 @@ static uint32_t s_last_wedge_kind = 0;  /* informational, last detected kind */
 /* Capture the main thread's call stack at the moment of a hard freeze.
  *
  * Called from the heartbeat thread when wedge_kind==1 (frame_count not
- * advancing). Suspends the main thread, walks its stack via StackWalk64,
- * symbolizes via SymFromAddr, then resumes. Each frame becomes a JSON
+ * advancing). Copies registers and a bounded stack, resumes the main thread,
+ * then walks the snapshot and symbolizes it. Each frame becomes a JSON
  * object {addr, symbol?, displacement?, module?}.
  *
  * Best-effort: if DbgHelp init fails, dump an empty array and continue. */
+static FreezeStackSnapshot s_stack_snapshot;
+static BOOL CALLBACK freeze_snapshot_read(HANDLE process,DWORD64 address,PVOID buffer,DWORD size,LPDWORD read) {
+    int cached=freeze_stack_read_cached(&s_stack_snapshot,(uintptr_t)address,buffer,size);
+    if(cached){if(read)*read=cached>0?size:0;return cached>0;}
+    SIZE_T got=0;BOOL ok=ReadProcessMemory(process,(LPCVOID)(uintptr_t)address,buffer,size,&got);
+    if(read)*read=(DWORD)got;return ok;
+}
+
 static void freeze_dump_main_stack_json(FILE *f) {
     if (!f) return;
     if (!s_main_thread) { fputs("[]", f); return; }
@@ -196,17 +205,13 @@ static void freeze_dump_main_stack_json(FILE *f) {
         }
     }
 
-    DWORD susp_count = SuspendThread(s_main_thread);
-    if (susp_count == (DWORD)-1) { fputs("[]", f); return; }
-
-    CONTEXT ctx;
-    memset(&ctx, 0, sizeof(ctx));
-    ctx.ContextFlags = CONTEXT_FULL;
-    if (!GetThreadContext(s_main_thread, &ctx)) {
-        ResumeThread(s_main_thread);
+    if (!freeze_capture_stack(s_main_thread,s_main_thread_id,&s_stack_snapshot)) {
         fputs("[]", f);
         return;
     }
+    /* Target has resumed. DbgHelp/stdio may acquire loader/heap/CRT locks
+     * held by it, so none of those calls may run inside the suspension. */
+    CONTEXT ctx=s_stack_snapshot.context;
 
     STACKFRAME64 frame;
     memset(&frame, 0, sizeof(frame));
@@ -234,8 +239,8 @@ static void freeze_dump_main_stack_json(FILE *f) {
     SYMBOL_INFO *sym = &sym_storage.si;
 
     for (int depth = 0; depth < 128; depth++) {
-        if (!StackWalk64(machine, GetCurrentProcess(), s_main_thread, &frame,
-                         &ctx, NULL, SymFunctionTableAccess64, SymGetModuleBase64,
+        if (depth && !StackWalk64(machine, GetCurrentProcess(), s_main_thread, &frame,
+                         &ctx, freeze_snapshot_read, SymFunctionTableAccess64, SymGetModuleBase64,
                          NULL)) {
             break;
         }
@@ -284,7 +289,6 @@ static void freeze_dump_main_stack_json(FILE *f) {
     }
     fputc(']', f);
 
-    ResumeThread(s_main_thread);
 }
 
 /* Multi-sample stack capture for still-running wedges (wedge_kind 2 and 3).
