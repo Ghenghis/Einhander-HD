@@ -17,7 +17,20 @@ It is rejected. The old helper falsely accepted the unfinished comparison; a
 shared validation gate now rejects unfinished shadows, unrestored native execution
 and sustained guest freezes, including when staging an older receipt. Seven tests
 and revalidation of the actual successful/frozen runs passed. The R1/R2 timing
-comparison and complete-unit collision correction remain pending.
+comparison is now [measured](media/gallery/stage1-native48-performance-results.json):
+OFF/ON averaged 58.9406/59.2282 guest frames/s. The exact 350-frame fight window
+improved from 53.5496 to 56.2000, while guest-work time fell from 18.0186 to
+16.4133 ms/frame and interpreted instructions from 111,933 to 92,977 per frame.
+Total starved output sample frames fell from 87,159 to 54,088; both still fail.
+This is one ordered pair with different initial audio fill and live input timing,
+not a causal estimate or smoothness acceptance. No recorder, shadow replay,
+source collection or screenshot polling ran during measurement. The route used
+held fire and the disclosed timer-only aid, scale2, rewind OFF. Original candidate
+pacing metadata incorrectly said unassisted; the actual command audit is
+recorded, originals preserved, and future preparation now marks assistance.
+Exact measured hitch audio is available for [OFF](media/gallery/stage1-native48-off-hitch.wav)
+and [ON](media/gallery/stage1-native48-on-hitch.wav), with unchanged PCM bytes.
+The complete-unit collision correction remains pending.
 
 The bad segment itself is now recorded: [15-second silent mini-boss video](media/gallery/stage1-miniboss-stutter-20261113.mp4)
 and [separate game-process audio](media/gallery/stage1-miniboss-stutter-20261113.wav).

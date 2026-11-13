@@ -70,6 +70,9 @@ def prepare(args):
     report['visual_profile']=dict(kind='assisted assembled-world fly-past',
         normal_clock_settings=True,stable_60fps_established=False,ordinary_fire=False,
         timer_only_assistance=True,lease_seconds=180,stage_clear_acceptance=False)
+    # The generic pacing preparation starts with unassisted metadata. This
+    # runner always starts SurvivalAid; disclose its timer writes in both profiles.
+    report['pacing_profile'].update(ram_writes=True,timer_assistance=True)
     report['visual_profile'].update(recorder_backend=args.recorder,capture_seconds=args.capture_seconds)
     report['visual_profile']['native_menus']=bool(args.native_menus)
     report['visual_profile']['hd_pack_enabled']=bool(args.hd_pack_enabled)

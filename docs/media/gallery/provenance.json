@@ -2376,8 +2376,48 @@
       "category": "actual_game_process_audio",
       "status": "Capture integrity passes;9 likely runtime dropouts; unresolved",
       "result_manifest": "docs/media/gallery/stage1-index48-results.json"
+    },
+    {
+      "path": "docs/media/gallery/stage1-native48-off-hitch.wav",
+      "sha256": "a3e2303c6b08fd6bf73c3e0f401dc18b66b6f53f6b0e4b90782fb7feb8fdb7c8",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-native48-performance-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "d2372113b7e8c2af79167bf96947e73b346a6eb50404dd5187232b378523cc0f",
+      "source_offset_sample_frame": 1823520,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "e0391f613ed589c5b538ebe61eabf235a799ec2f690e9ca758ab6a0a8301194c",
+      "output_pcm_sha256": "e0391f613ed589c5b538ebe61eabf235a799ec2f690e9ca758ab6a0a8301194c",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9273,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
+    },
+    {
+      "path": "docs/media/gallery/stage1-native48-on-hitch.wav",
+      "sha256": "6ac7797ab2556d0eba3df4ce44771934aebd79a23be9437d625b6de004bc634c",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-native48-performance-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "316469b3a96b4f7e70ae65bc01c0a45c76fd9577932e09faae474f31cd664beb",
+      "source_offset_sample_frame": 1871040,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "8c1d672081019db602fb0e5f8c7a0bde3d2f111d2caee1e9efc4bd40c36010d7",
+      "output_pcm_sha256": "8c1d672081019db602fb0e5f8c7a0bde3d2f111d2caee1e9efc4bd40c36010d7",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9302,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
     }
   ],
-  "audio_count": 24,
-  "total_audio_bytes": 70464362
+  "audio_count": 26,
+  "total_audio_bytes": 75072450
 }

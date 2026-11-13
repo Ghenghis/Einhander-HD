@@ -1,0 +1,308 @@
+{
+  "scope": "One ordered OFF/ON pair; CPU/runtime telemetry and disclosed held-fire/timer-only route; no recorder or shadow during measurement",
+  "normal_clock": true,
+  "supersampling": 2,
+  "rewind_enabled": false,
+  "production_installed": false,
+  "collision_candidate_excluded": true,
+  "manual_quiet_ack_sha256": "1f22bfbe14ccefd1a13373c22b0db80816e4fdabf4733612b473795ab1cd3338",
+  "runs": [
+    {
+      "batch": "native48-off-r1",
+      "runtime_sha256": "22635802b9b7d6ad7aaf680ca5387e432c0400ce734359fa31e2cf66d665ca94",
+      "proof_sha256": "daf1e3071703451cd0b8c28c8a24d21e0a1363a79bff9aa0109be9cf6880cb69",
+      "candidate_sha256": "f3166b7a8caac00dd6eba79b91fa12c23f6ea569646624eb75f60568bda80852",
+      "seconds": 119.98528800000008,
+      "guest_frames": 7072,
+      "fps": 58.940559445921366,
+      "starved_output_sample_frames": 87159,
+      "overflow_drops": 0,
+      "initial_fill_ms": 212.5,
+      "final_fill_ms": 210.7,
+      "hitch_bench": {
+        "frames": 350,
+        "wall_ms": 6535.997,
+        "guest_work_ms": 6306.511,
+        "pacer_ms": 62.362,
+        "autocapture_main_ms": 0.11,
+        "provider_poll_ms": 0.098,
+        "dirty_insns": 39176447,
+        "dirty_dispatches": 254294,
+        "overlay_native": 163881,
+        "overlay_interp": 271809,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "hitch_fps": 53.549596182495186,
+      "guest_work_ms_per_hitch_frame": 18.01860285714286,
+      "dirty_insns_per_hitch_frame": 111932.70571428571,
+      "worst_five_second_interval": {
+        "fps": 51.397288279071866,
+        "first_frame": 7652,
+        "last_frame": 7909,
+        "first_elapsed": 77.00044849999995,
+        "last_elapsed": 82.0007122999998
+      },
+      "audio_hitch_observation_bracket": {
+        "first_frame": 9214,
+        "last_frame": 9644,
+        "starved_sample_frames": 29259,
+        "host_start": 7444320,
+        "host_end": 7828320
+      },
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "measured_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "qualified_entries": [],
+      "qualified_after": null
+    },
+    {
+      "batch": "native48-on-r1",
+      "runtime_sha256": "22635802b9b7d6ad7aaf680ca5387e432c0400ce734359fa31e2cf66d665ca94",
+      "proof_sha256": "6447c1ae3578a1e9156b442239f43b4c9e1173166a8e3947c879cac99e516ae8",
+      "candidate_sha256": "c0924914b51d9c095b0d1f526ad1df09f417720663b93ff1a6894856fee114b1",
+      "seconds": 119.97654739999962,
+      "guest_frames": 7106,
+      "fps": 59.2282421355961,
+      "starved_output_sample_frames": 54088,
+      "overflow_drops": 0,
+      "initial_fill_ms": 115.3,
+      "final_fill_ms": 68.1,
+      "hitch_bench": {
+        "frames": 350,
+        "wall_ms": 6227.754,
+        "guest_work_ms": 5744.646,
+        "pacer_ms": 334.193,
+        "autocapture_main_ms": 0.098,
+        "provider_poll_ms": 0.069,
+        "dirty_insns": 32541779,
+        "dirty_dispatches": 252629,
+        "overlay_native": 178380,
+        "overlay_interp": 270352,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "hitch_fps": 56.20003616070898,
+      "guest_work_ms_per_hitch_frame": 16.413274285714284,
+      "dirty_insns_per_hitch_frame": 92976.51142857142,
+      "worst_five_second_interval": {
+        "fps": 54.799254730137555,
+        "first_frame": 7902,
+        "last_frame": 8176,
+        "first_elapsed": 81.00041409999994,
+        "last_elapsed": 86.00048209999977
+      },
+      "audio_hitch_observation_bracket": {
+        "first_frame": 9243,
+        "last_frame": 9639,
+        "starved_sample_frames": 12372,
+        "host_start": 7468800,
+        "host_end": 7803840
+      },
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "measured_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "qualified_entries": [
+        "0x0003A6FC",
+        "0x0003A998"
+      ],
+      "qualified_after": {
+        "0x0003A6FC": {
+          "id": 1,
+          "ok": true,
+          "candidates": [
+            {
+              "index": 577,
+              "addr": "0x0003A6FC",
+              "state": 0,
+              "nranges": 1,
+              "crc": "0x8D2AD4AF",
+              "live": "0x8D2AD4AF",
+              "match": 1,
+              "val_gen": 0,
+              "gen": 0,
+              "dll": 41,
+              "diff_passes": 0,
+              "device_touch": 0
+            }
+          ]
+        },
+        "0x0003A998": {
+          "id": 1,
+          "ok": true,
+          "candidates": [
+            {
+              "index": 578,
+              "addr": "0x0003A998",
+              "state": 0,
+              "nranges": 1,
+              "crc": "0xFA0206A9",
+              "live": "0xFA0206A9",
+              "match": 1,
+              "val_gen": 0,
+              "gen": 0,
+              "dll": 42,
+              "diff_passes": 0,
+              "device_touch": 0
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "audio_fixed": false,
+  "full_game_smoothness_accepted": false,
+  "date": "2026-11-13",
+  "stutter_fixed": false,
+  "actual_timer_assistance": true,
+  "causal_limits": [
+    "One ordered OFF then ON pair, without counterbalancing.",
+    "Starting audio fill differed: 212.5 ms OFF and 115.3 ms ON.",
+    "Same menu/controller route; live input timing is not an identical-frame replay.",
+    "CPU/runtime telemetry was enabled in both runs. Guest-work includes interpreted/static execution and synchronous graphics work.",
+    "Scale2, rewind OFF, held fire and timer-only survival aid; not unassisted, stage-clear, normal-rewind, or full-game acceptance."
+  ],
+  "audio_assets": [
+    {
+      "path": "docs/media/gallery/stage1-native48-off-hitch.wav",
+      "sha256": "a3e2303c6b08fd6bf73c3e0f401dc18b66b6f53f6b0e4b90782fb7feb8fdb7c8",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-native48-performance-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "d2372113b7e8c2af79167bf96947e73b346a6eb50404dd5187232b378523cc0f",
+      "source_offset_sample_frame": 1823520,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "e0391f613ed589c5b538ebe61eabf235a799ec2f690e9ca758ab6a0a8301194c",
+      "output_pcm_sha256": "e0391f613ed589c5b538ebe61eabf235a799ec2f690e9ca758ab6a0a8301194c",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9273,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
+    },
+    {
+      "path": "docs/media/gallery/stage1-native48-on-hitch.wav",
+      "sha256": "6ac7797ab2556d0eba3df4ce44771934aebd79a23be9437d625b6de004bc634c",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-native48-performance-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "316469b3a96b4f7e70ae65bc01c0a45c76fd9577932e09faae474f31cd664beb",
+      "source_offset_sample_frame": 1871040,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "8c1d672081019db602fb0e5f8c7a0bde3d2f111d2caee1e9efc4bd40c36010d7",
+      "output_pcm_sha256": "8c1d672081019db602fb0e5f8c7a0bde3d2f111d2caee1e9efc4bd40c36010d7",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9302,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
+    }
+  ],
+  "assistance_metadata_correction": {
+    "scope": "Original pinned candidates retained; actual run audit overrides inherited false pacing flags",
+    "original_pacing_flags": {
+      "ram_writes": false,
+      "timer_assistance": false
+    },
+    "actual": {
+      "ram_writes": true,
+      "timer_assistance": true
+    },
+    "runs": [
+      {
+        "batch": "native48-off-r1",
+        "timer_write_requests": 607,
+        "successful_timer_writes": 607,
+        "forbidden_mutations": []
+      },
+      {
+        "batch": "native48-on-r1",
+        "timer_write_requests": 592,
+        "successful_timer_writes": 592,
+        "forbidden_mutations": []
+      }
+    ]
+  },
+  "native_activation": {
+    "scope": "Actual retained native call ring copied after timing; not a complete hitch-window per-function census",
+    "ring_calls_total": 9853884,
+    "entries": [
+      {
+        "entry": "0x0003A6FC",
+        "retained_native_calls": 107,
+        "returned_calls": 107,
+        "first_frame": 10163,
+        "last_frame": 10180,
+        "sample": [
+          {
+            "addr": "0x0003A6FC",
+            "crc": "0x8D2AD4AF",
+            "frame": 10180,
+            "seq": 9853784,
+            "returned": 1
+          },
+          {
+            "addr": "0x0003A6FC",
+            "crc": "0x8D2AD4AF",
+            "frame": 10180,
+            "seq": 9853782,
+            "returned": 1
+          }
+        ]
+      },
+      {
+        "entry": "0x0003A998",
+        "retained_native_calls": 98,
+        "returned_calls": 98,
+        "first_frame": 10163,
+        "last_frame": 10180,
+        "sample": [
+          {
+            "addr": "0x0003A998",
+            "crc": "0xFA0206A9",
+            "frame": 10180,
+            "seq": 9853787,
+            "returned": 1
+          },
+          {
+            "addr": "0x0003A998",
+            "crc": "0xFA0206A9",
+            "frame": 10180,
+            "seq": 9853785,
+            "returned": 1
+          }
+        ]
+      }
+    ]
+  }
+}
