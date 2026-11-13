@@ -747,6 +747,11 @@ struct HdTexturePack {
      * larger after invalidation, but is reset with tracking and therefore can
      * only cause extra work, never a missed invalidation. */
     Rect upload_bounds{};
+    /* Incremental upload-index maintenance instead of a full rebuild after
+     * every track_upload and every erasure. Default OFF:
+     * PSXRECOMP_HD_UPLOAD_INDEX_INCREMENTAL=1 at pack creation selects it, so
+     * one binary can run a matched control/on pair. */
+    bool upload_index_incremental = false;
     std::vector<ExactRegion> regions;
     uint64_t region_validations = 0;
     /* Region broad phase; rebuilt whenever regions.size() differs from the
@@ -839,6 +844,7 @@ size_t hd_texture_pack_region_count(const HdTexturePack* pack){return pack?pack-
 uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack){return pack?pack->region_validations:0;}
 void hd_texture_pack_set_cost_profile(HdTexturePack* pack,int enabled){if(pack)pack->cost_enabled=enabled!=0;}
 int hd_texture_pack_region_index_enabled(const HdTexturePack* pack){return pack&&pack->region_index_enabled?1:0;}
+int hd_texture_pack_upload_index_incremental(const HdTexturePack* pack){return pack&&pack->upload_index_incremental?1:0;}
 void hd_texture_pack_get_cost_stats(const HdTexturePack* pack,HdTexturePackCostStats* out){
     if(out)std::memset(out,0,sizeof(*out));
     if(pack&&out)*out=pack->cost;
@@ -1038,6 +1044,71 @@ void upload_index_rebuild(HdTexturePack* pack) {
     }
 }
 
+/* Exact union of every tracked upload's bounds: the same loop, order and
+ * arithmetic as upload_index_rebuild, without touching the index. No
+ * allocation; one pass over four words per upload. */
+void upload_bounds_recompute(HdTexturePack* pack) {
+    pack->upload_bounds = Rect{};
+    for (const Upload& upload : pack->uploads) {
+        if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0) {
+            pack->upload_bounds = upload.bounds;
+        } else {
+            const unsigned right = std::max(
+                pack->upload_bounds.x + pack->upload_bounds.width,
+                upload.bounds.x + upload.bounds.width);
+            const unsigned bottom = std::max(
+                pack->upload_bounds.y + pack->upload_bounds.height,
+                upload.bounds.y + upload.bounds.height);
+            pack->upload_bounds.x = std::min(pack->upload_bounds.x, upload.bounds.x);
+            pack->upload_bounds.y = std::min(pack->upload_bounds.y, upload.bounds.y);
+            pack->upload_bounds.width = right - pack->upload_bounds.x;
+            pack->upload_bounds.height = bottom - pack->upload_bounds.y;
+        }
+    }
+}
+
+/* Incremental twins of upload_index_rebuild for its two hot callers. Both
+ * rely on the invariant every path keeps: each upload with fragments has
+ * index_tiles == the tiles of its current bounds, appears once in exactly
+ * those buckets, and upload_by_serial maps its serial to it; nothing else is
+ * indexed. (track_upload adds; invalidate refreshes or removes each upload it
+ * changes; reset clears; state load rebuilds.) Bucket order may differ from a
+ * rebuild; upload_index_collect sorts and de-duplicates, so no lookup can
+ * observe it. upload_bounds is recomputed exactly as a rebuild would. */
+struct IncrementalCost {
+    HdTexturePack* p; uint64_t t0;
+    ~IncrementalCost() { if (p) { ++p->cost.index_incremental; p->cost.index_incremental_ns += cost_now_ns() - t0; } }
+};
+
+/* After push_back() that did not reallocate: every older Upload* is still
+ * exact, so only the new upload is indexed. */
+void upload_index_after_push(HdTexturePack* pack) {
+    IncrementalCost cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    upload_index_add(pack, pack->uploads.back());
+    upload_bounds_recompute(pack);
+}
+
+/* After the emptied uploads were compacted out from index first_moved on.
+ * upload_index_remove already dropped their tiles and serials when they
+ * emptied; survivors keep their tiles and serials, and only those at
+ * first_moved.. moved, so only their Upload* is re-pointed. */
+void upload_index_after_erase(HdTexturePack* pack, size_t first_moved) {
+    IncrementalCost cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    for (size_t i = first_moved; i < pack->uploads.size(); ++i) {
+        Upload& upload = pack->uploads[i];
+        const auto indexed = pack->upload_by_serial.find(upload.serial);
+        if (indexed == pack->upload_by_serial.end()) {
+            /* Unreachable while the invariant holds; stay authoritative. */
+            cost.p = nullptr;
+            upload_index_rebuild(pack);
+            return;
+        }
+        indexed->second = &upload;
+        if (pack->cost_enabled) ++pack->cost.index_pointer_fixups;
+    }
+    upload_bounds_recompute(pack);
+}
+
 void upload_index_collect(const HdTexturePack* pack,
                           const std::vector<Rect>& query,
                           std::vector<uint64_t>* out_serials) {
@@ -1180,6 +1251,8 @@ int hd_texture_pack_create(const char* explicit_root,
             const char* index = std::getenv("PSXRECOMP_HD_REGION_INDEX");
             pack->region_index_enabled = index && std::strcmp(index, "1") == 0;
             if (pack->region_index_enabled) region_index_build(pack.get());
+            const char* incremental = std::getenv("PSXRECOMP_HD_UPLOAD_INDEX_INCREMENTAL");
+            pack->upload_index_incremental = incremental && std::strcmp(incremental, "1") == 0;
         }
         *out_pack = pack.release();
         return 1;
@@ -1326,6 +1399,17 @@ void hd_texture_pack_invalidate(HdTexturePack* pack,
         }
     }
     const auto old_size = pack->uploads.size();
+    if (pack->upload_index_incremental) {
+        /* Same compaction, started at the first emptied upload: everything
+         * before it stays in place, so only the uploads after it move. */
+        const auto emptied = [](const Upload& upload) { return upload.fragments.empty(); };
+        const auto first = std::find_if(pack->uploads.begin(), pack->uploads.end(), emptied);
+        const size_t first_moved = static_cast<size_t>(first - pack->uploads.begin());
+        pack->uploads.erase(std::remove_if(first, pack->uploads.end(), emptied),
+                            pack->uploads.end());
+        if (old_size != pack->uploads.size()) upload_index_after_erase(pack, first_moved);
+        return;
+    }
     pack->uploads.erase(
         std::remove_if(pack->uploads.begin(), pack->uploads.end(),
                        [](const Upload& upload) { return upload.fragments.empty(); }),
@@ -1377,11 +1461,18 @@ int hd_texture_pack_track_upload(HdTexturePack* pack,
         pack->upload_bounds.width = right - pack->upload_bounds.x;
         pack->upload_bounds.height = bottom - pack->upload_bounds.y;
     }
+    /* Incremental mode: a push within capacity moves no Upload, so only the
+     * new one is indexed; a reallocating push (geometric growth) rebuilds. */
+    const bool push_keeps_pointers = pack->uploads.size() < pack->uploads.capacity();
     pack->uploads.push_back(std::move(upload));
-    /* A push may reallocate the vector, so refresh all broad-phase pointers
-     * after adding an upload.  Upload creation is far less frequent than GPU
-     * primitive submission. */
-    upload_index_rebuild(pack);
+    if (pack->upload_index_incremental && push_keeps_pointers) {
+        upload_index_after_push(pack);
+    } else {
+        /* A push may reallocate the vector, so refresh all broad-phase pointers
+         * after adding an upload.  Upload creation is far less frequent than GPU
+         * primitive submission. */
+        upload_index_rebuild(pack);
+    }
     if (out_texture_hash) *out_texture_hash = hash;
     return 1;
 }

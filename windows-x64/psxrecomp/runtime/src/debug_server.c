@@ -5213,6 +5213,8 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"hd_batch_attrib\":%llu,\"hd_attrib_merges\":%llu,"
              "\"hd_split_reason\":{\"not_batchable\":%llu,\"capacity\":%llu,\"texture_palette_material\":%llu,"
              "\"filter_mask_depth\":%llu,\"dims\":%llu,\"region_upload\":%llu,\"offset_page_clut_only\":%llu},"
+             "\"pack_upload_index_incremental\":%llu,\"pack_index_incremental\":%llu,"
+             "\"pack_index_incremental_ms\":%.6f,\"pack_index_pointer_fixups\":%llu,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5236,7 +5238,9 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (unsigned long long)s.hd_split_reason[0],(unsigned long long)s.hd_split_reason[1],
              (unsigned long long)s.hd_split_reason[2],(unsigned long long)s.hd_split_reason[3],
              (unsigned long long)s.hd_split_reason[4],(unsigned long long)s.hd_split_reason[5],
-             (unsigned long long)s.hd_split_reason[6]);
+             (unsigned long long)s.hd_split_reason[6],
+             (unsigned long long)s.pack_upload_index_incremental,(unsigned long long)s.pack_index_incremental,
+             (double)s.pack_index_incremental_ns/1e6,(unsigned long long)s.pack_index_pointer_fixups);
 }
 
 static void handle_dirty_pc_profile(int id,const char *json){

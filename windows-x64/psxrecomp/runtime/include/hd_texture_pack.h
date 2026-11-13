@@ -113,7 +113,10 @@ uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack);
  * upload_*: the coarse tracked-upload fragment component of the same call,
  * counted only when it passes the upload_bounds broad phase.
  * track_*: hd_texture_pack_track_upload (CRC + invalidate + index rebuild).
- * index_*: upload_index_rebuild calls (from track_upload and erasures). */
+ * index_*: upload_index_rebuild calls (from track_upload and erasures).
+ * index_incremental_*: the incremental replacements of those rebuilds (0 when
+ * the toggle is off); index_pointer_fixups counts uploads re-pointed after a
+ * compaction. All index_* intervals nest inside track_* and upload_*. */
 typedef struct {
     uint64_t invalidate_calls;
     uint64_t region_calls, region_ns, region_tests, region_hits;
@@ -121,12 +124,18 @@ typedef struct {
     uint64_t track_calls, track_ns;
     uint64_t index_rebuilds, index_rebuild_ns;
     uint64_t region_index_cuts;   /* cuts resolved by the region index (0 when off) */
+    uint64_t index_incremental, index_incremental_ns, index_pointer_fixups;
 } HdTexturePackCostStats;
 void hd_texture_pack_set_cost_profile(HdTexturePack* pack, int enabled);
 void hd_texture_pack_get_cost_stats(const HdTexturePack* pack, HdTexturePackCostStats* out);
 /* Exact-region broad phase. Default OFF; PSXRECOMP_HD_REGION_INDEX=1 at pack
  * creation enables it (same binary control/on). Decisions are identical. */
 int hd_texture_pack_region_index_enabled(const HdTexturePack* pack);
+/* Incremental upload-index maintenance. Default OFF;
+ * PSXRECOMP_HD_UPLOAD_INDEX_INCREMENTAL=1 at pack creation enables it (same
+ * binary control/on). Tracked state and every lookup are identical; only the
+ * full rebuild after each track_upload / erasure is replaced. */
+int hd_texture_pack_upload_index_incremental(const HdTexturePack* pack);
 
 /* One surviving physical fragment of a tracked upload: VRAM rect plus its
  * origin within the logical upload. Enough to re-decode the upload from VRAM. */
