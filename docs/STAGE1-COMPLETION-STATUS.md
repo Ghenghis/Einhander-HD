@@ -2,8 +2,11 @@
 
 November 12, 2026. **The remaster and Stage 1 release are incomplete.**
 
-The [matched 24-room facade footage](H24-IN-GAME-RESULTS.md) remains the published
-visual result. Its disclosed timer-assisted private run does not establish an
+The latest [assembled-world facade footage](H24-IN-GAME-RESULTS.md) uses the
+207-entry candidate. Its disclosed timer-assisted private run submitted 182 new
+artwork entries, including all ten delivered building tiles and the wall/tunnel
+band. The published continuous excerpt preserves actual timing. Its measured
+41.76 guest frames/s is below the normal-speed target. It does not establish an
 unassisted stage clear or production installation.
 
 Current verified work includes stock-menu routing fixtures, per-vertex UV draw
@@ -13,11 +16,12 @@ recorded bot restart after a startup read timeout. Later native play reached the
 night skyline and facade section using ordinary controller input. Stage clear
 has not been established.
 
-A private world composition now contains 207 delivered artwork entries alongside
-the existing pack, including the authored wall and tunnel window band. All 219 exact-region bindings passed the production source
+A newer private world composition now contains 248 delivered artwork entries
+alongside the existing pack, adding the latest sky and native-style menu set.
+All 219 exact-region bindings passed the production source
 matcher, and nine sky word/CLUT pairs passed CRC and SHA checks. It uses the
 current immutable sign revisions and retains input-manifest snapshots. This is
-registration evidence, not live visual acceptance. The frozen artwork's documented
+registration evidence; those latest additions still need live acceptance. The frozen artwork's documented
 defects remain open. Lamp/flare sprites that were only baseline upscales were not
 counted as newly authored. A private runtime now accepts overlapping VRAM regions
 at different texture depths, with both interpretations tested; conflicts at the
@@ -35,10 +39,10 @@ process identity check ran; that check now precedes boot observation.
 
 The position controller's old render-vector address was transient. Ordinary-input
 calibrations in the opening City and night section agree at a different integer
-coordinate pair, but that pair also failed live qualification. Position mode is
-experimental and is not the default acceptance route. Eight behavior checks pass,
-including refusing Continue input when revival is disabled; full-stage route
-qualification remains pending. A failed bot run reached native results naturally;
+coordinate pair, but that pair also failed live qualification. The RAM controller
+is unqualified; read-only hull draw geometry is being implemented as its
+replacement. Full-stage route qualification remains
+pending. A failed bot run reached native results naturally;
 that is end-state evidence, not a stage clear.
 
 Runtime diagnostics show substantial HD/rewind overhead and audio starvation.

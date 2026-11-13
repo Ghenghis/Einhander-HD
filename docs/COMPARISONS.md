@@ -37,7 +37,17 @@ Static reflection/interior artwork can give windows depth and material character
 
 ## Motion and performance
 
-The latest [matched-facade pass](H24-IN-GAME-RESULTS.md) replaces the formerly blue strip mapping with photographic interiors and matching dark/rust-brown materials. Both exact-region replacements are drawn and visible in the new recording; the earlier blue-strip footage remains historical comparison material. These are separate runs, not aligned frames. The new neighbor art is 1254 × 1254 resampled to 4096 × 4096, while the original H24 master is unchanged.
+The latest [assembled-world pass](H24-IN-GAME-RESULTS.md) supplies a continuous
+56.3-second entry-to-exit excerpt with the delivered building tiles, green atlas,
+wall/tunnel window band and signs. The full private recording submitted 182 of
+207 newly composed entries, including all ten delivered building tiles. It used
+no firing, turbo/rewind off and disclosed timer-only assistance. Measured progress
+was **41.76 guest frames/s** with recording/research active, below the normal-speed
+target. The excerpt preserves actual timing; steady 60 fps and continuous audio
+are not established. The results include packet/timestamp verification and
+per-entry draw coverage. This is not a production installation or stage clear.
+
+The earlier [matched-facade pass](H24-IN-GAME-RESULTS.md) replaces the formerly blue strip mapping with photographic interiors and matching dark/rust-brown materials. Both exact-region replacements are drawn and visible in that recording; the earlier blue-strip footage remains historical comparison material. These are separate runs, not aligned frames. The neighbor art is 1254 × 1254 resampled to 4096 × 4096, while the original H24 master is unchanged.
 
 A separate fresh H24 run now supplies a [continuous 46.1-second entry-to-exit excerpt](H24-IN-GAME-RESULTS.md). Firing is off and the ship is parked near the lower-left; the main facade view is clear around 12 seconds. The game uses normal speed, turbo and rewind off, with timer assistance disclosed. Natural enemy and foreground geometry occlusion remains. The silent 1280 × 960 recording was requested at 30 Hz; final visual and performance acceptance remain open.
 

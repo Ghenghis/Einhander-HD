@@ -6,6 +6,19 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+### Latest assembled-world facade fly-past
+
+[![Play the assembled-world facade pass](media/gallery/stage1-world-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4)
+
+[Play the continuous 56.3-second pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4) · [Actual results and limitations](H24-IN-GAME-RESULTS.md)
+
+Fresh actual gameplay with the 207-entry world candidate, including the delivered
+building tiles and wall/tunnel window band. No firing; turbo/rewind off; disclosed
+timer-only assistance. Front and angled faces appear around 20–40 seconds.
+The full recording averaged **41.76 guest frames/s**, below the normal-speed
+target; the silent excerpt preserves actual timing. This is private integration
+evidence, with production installation and full-stage acceptance still open.
+
 ### Matched 24-room facade and former blue-window strips
 
 Fresh actual game footage shows matching photographic interiors, dark glass and rust-brown framing on both facade mappings. The original 24-room artwork is unchanged. The new strip follows its own native layout; its 1254 × 1254 RGB art is resampled to 4096 × 4096 for runtime with categorical alpha preserved.

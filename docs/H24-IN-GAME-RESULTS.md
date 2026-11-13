@@ -1,5 +1,44 @@
 # Full 24-room facade: actual in-game results
 
+## Latest assembled-world pass — November 12, 2026
+
+[![Watch the assembled-world facade pass](media/gallery/stage1-world-facade-poster.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4)
+
+[Play the continuous 56.3-second excerpt](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4) · [Results, coverage and hashes](media/gallery/stage1-world-facade-results.json) · [Later facade view](media/gallery/stage1-world-facade-angled.png) · [After exit](media/gallery/stage1-world-facade-exit.png)
+
+The fresh private `world-flypast-v1` run uses the assembled 207-entry artwork
+candidate, including the ten delivered building tiles, green building atlas,
+wall/tunnel window band and sign revisions. The original H24 and matched neighbor
+artwork remain present. All ten building tiles, the authored wall and the tunnel
+band submitted replacements in the full 170-second run. Overall, 182 of the 207
+newly composed entries submitted; unseen phases and later scenes remain untested.
+Submission receipts establish mapping, while the video and stills supply the
+separate visibility evidence. They do not establish approval of every room or
+all remaining city surfaces.
+
+The excerpt begins before the facade enters and continues beyond its departure.
+Front and angled placements are visible around 20–40 seconds. Firing is off and
+a finite ordinary down-left movement parks the ship low. Enemies, buildings and
+signs still cross naturally. The private timer-only invulnerability aid made
+856 successful writes during its 180-second lease, then stopped. No lives writes,
+state loads, stage jumps, camera overrides or enemy removal occurred. Turbo and
+rewind were off. The process exited normally, and the debug port closed; quit
+returned `emu busy or frozen` before closure was observed.
+
+**The normal-speed performance target is not met.** The full recording averaged
+41.76 guest frames per second with recording/research active. The clip preserves
+that actual motion without speed adjustment. It is silent; the audio-output
+starvation counter increased by 2,450,917 sample frames, which is not a count of
+discrete audible gaps. Recorder-off pacing and continuous audio remain open.
+
+The 1280 × 960 H.264 publication is a single stream-copy excerpt from source
+54.2–110.433 seconds. All 1,673 compressed video packets match a contiguous source
+sequence, with relative timestamps preserved within one microsecond. No
+re-encoding, interpolation, upscaling or internal cuts were used. This verifies
+the observed private integration; the reconciled production installation, known
+art defects and full-stage acceptance remain unfinished. Newer sky/menu/player
+deliveries were not substituted into this frozen recording.
+
 ## Matched facade — remaining blue strips replaced
 
 [![Watch the matched facade in the game](media/gallery/h24-matched-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-matched-fly-past.mp4)
