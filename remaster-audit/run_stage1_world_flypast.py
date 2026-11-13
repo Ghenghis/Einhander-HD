@@ -1,6 +1,6 @@
 """Record a fresh assembled-world visual pass; never install a candidate.
 
-Actual window recording, ordinary no-fire positioning, turbo/rewind off and
+Actual window recording, ordinary positioning (optional held fire), turbo off and
 the disclosed 180-second timer-only aid. This is not stage-clear or recorder-off
 performance acceptance. Prepare verifies frozen PNGs without using the GPU.
 """
@@ -63,7 +63,7 @@ def prepare(args):
         if ui.sha(row['composed_path'])!=row['sha256']:raise ValueError('Frozen emissive mask changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,
-        cpu_profile=args.cpu_profile,region_index=args.region_index,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
+        cpu_profile=args.cpu_profile,region_index=args.region_index,batch_attrib=args.batch_attrib,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
     report=pacing.prepare(('hd-on' if args.hd_pack_enabled else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off'),config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
@@ -85,6 +85,8 @@ def prepare(args):
     report['visual_profile']['phase_profile']=args.phase_profile
     report['visual_profile']['idle_skip_override']=args.idle_skip
     report['visual_profile']['rewind_profile']=args.rewind_profile
+    report['visual_profile']['ordinary_fire']=args.ordinary_fire
+    report['visual_profile']['static_image_profile']=args.static_image_profile
     if args.idle_skip is not None:
         report['launches']['candidate']['environment_overrides']['PSX_IDLE_SKIP']=str(args.idle_skip)
     if args.process_loopback_seconds:
@@ -114,11 +116,14 @@ def run(args):
     ui.copy_verified(Path(__file__),directory/'executed-world-flypast.py')
     ui.copy_verified(Path(__file__).with_name('run_h24_facade_review.py'),directory/'executed-survival-helper.py')
     proof=dict(started_at_utc=ui.stamp(),candidate=pacing.base.ref(directory/'candidate.json'),
-        errors=[],observations=[],target_draws=[],ordinary_fire=False,state_loads=False,
+        errors=[],observations=[],target_draws=[],ordinary_fire=bool(report['visual_profile'].get('ordinary_fire')),state_loads=False,
         stage_clear_verified=False,live_visual_accepted=False,production_installed=False)
     process=None;aid=None;recorder=None;recording=False;gpu_monitor=None;gpu_log=None
     try:
         process=pacing.launch(report)
+        if report['visual_profile'].get('static_image_profile'):
+            proof['static_image_at_title']=probe.request(report,'static_image_status')
+            proof['boot_fingerprints']=probe.request(report,'frame_fingerprint',count=4096)
         proof['route']=enter_city(report,poll_seconds=.25)
         if report['visual_profile'].get('native_menus'):
             control=directory/'replacement-control.txt'
@@ -178,6 +183,8 @@ def run(args):
             proof['measurement_load']['actual_instruction_sampler']=True
         start=time.monotonic()
         proof['park_input']=probe.request(report,'press',buttons=0xFF3F,frames=72)
+        if proof['ordinary_fire']:
+            proof['fire_input']=probe.request(report,'set_input',buttons='0x7FFF')
         cursor=0;tail='';shots=directory/'observations';shots.mkdir()
         for second in range(seconds+1):
             time.sleep(max(0,start+second-time.monotonic()))
@@ -197,6 +204,8 @@ def run(args):
                 registers=probe.request(report,'get_registers'),
                 lives=probe.request(report,'read_ram',addr='0x800813C4',len=1),
                 audio=probe.request(report,'audio_stats'))
+            if report['visual_profile'].get('static_image_profile') and second%15==0:
+                row['static_image_status']=probe.request(report,'static_image_status')
             if report['visual_profile'].get('cpu_profile'):
                 row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
                 if row['hd_cpu_profile'].get('hr_kept_leaks',0):
@@ -360,7 +369,10 @@ if __name__=='__main__':
     p.add_argument('--idle-skip',type=int,choices=[0,1],default=None,
         help='Explicit private override of the existing guarded idle-loop enhancement')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
+    p.add_argument('--ordinary-fire',action='store_true',help='Hold the ordinary fire pad button after initial positioning; disclosed diagnostic')
+    p.add_argument('--static-image-profile',action='store_true',help='Observe SYS identity, arm state and actual native dispatch counts every15seconds')
     p.add_argument('--region-index',type=int,choices=[0,1],default=0)
+    p.add_argument('--batch-attrib',type=int,choices=[0,1],default=0)
     p.add_argument('--post-video-seconds',type=int,choices=[0,10,30],default=0,
         help='Actual silent gameplay clip after telemetry timing, alongside separate process audio')
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)

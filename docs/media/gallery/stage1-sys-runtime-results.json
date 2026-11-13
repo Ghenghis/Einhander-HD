@@ -1,0 +1,1041 @@
+{
+  "schema_version": 1,
+  "at_utc": "2026-11-13T16:03:57.869026+00:00",
+  "kind": "Experimental SYS native execution versus same-binary interpreted control, held weapon fire",
+  "scope": "Both use the new isolated executable, native cached overlays disabled, rewind disabled; not a comparison against the installed/current release.",
+  "runs": {
+    "off": {
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-off-boot-r1/hd-on_rewind-off/world-flypast-proof.json",
+        "sha256": "f953c2b87b02dea83d9dda4054e614b84bde3e3e26e86e479ae78c16103c063c",
+        "bytes": 964753
+      },
+      "runtime_build_sha256": "c05eff2de0d60b3b063b5e52b995ffece85cc3c2b6e41e41059fc255c135176d",
+      "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+      "measurement_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "guest_frames": 2581,
+      "seconds": 119.96738220000407,
+      "guest_fps": 21.514181210498336,
+      "starved_sample_frames_delta": 3672576,
+      "initial_fill_ms": 0.3,
+      "final_fill_ms": 7.1,
+      "timer_only_assistance": true,
+      "ordinary_fire": true,
+      "state_loads": false,
+      "starved_intervals": [
+        {
+          "ending_seconds": 1.0005028000159655,
+          "delta": 31055
+        },
+        {
+          "ending_seconds": 2.0001782000181265,
+          "delta": 31510
+        },
+        {
+          "ending_seconds": 3.0003025000041816,
+          "delta": 29742
+        },
+        {
+          "ending_seconds": 4.000499499990838,
+          "delta": 31031
+        },
+        {
+          "ending_seconds": 5.000253900012467,
+          "delta": 28278
+        },
+        {
+          "ending_seconds": 6.0005211000097916,
+          "delta": 28126
+        },
+        {
+          "ending_seconds": 7.000300400017295,
+          "delta": 31182
+        },
+        {
+          "ending_seconds": 8.000386700005038,
+          "delta": 28606
+        },
+        {
+          "ending_seconds": 9.000470500002848,
+          "delta": 30878
+        },
+        {
+          "ending_seconds": 10.000217399996473,
+          "delta": 29415
+        },
+        {
+          "ending_seconds": 11.000553799996851,
+          "delta": 29414
+        },
+        {
+          "ending_seconds": 12.000355700001819,
+          "delta": 30222
+        },
+        {
+          "ending_seconds": 13.000233400001889,
+          "delta": 30198
+        },
+        {
+          "ending_seconds": 14.000416199996835,
+          "delta": 29918
+        },
+        {
+          "ending_seconds": 15.000413300003856,
+          "delta": 30071
+        },
+        {
+          "ending_seconds": 16.000374600000214,
+          "delta": 32798
+        },
+        {
+          "ending_seconds": 17.00060400000075,
+          "delta": 31358
+        },
+        {
+          "ending_seconds": 18.000396100018406,
+          "delta": 31839
+        },
+        {
+          "ending_seconds": 19.000439099996584,
+          "delta": 33934
+        },
+        {
+          "ending_seconds": 20.000567100010812,
+          "delta": 33935
+        },
+        {
+          "ending_seconds": 21.000617100013187,
+          "delta": 32318
+        },
+        {
+          "ending_seconds": 22.00042460000259,
+          "delta": 29743
+        },
+        {
+          "ending_seconds": 23.000503999996,
+          "delta": 31206
+        },
+        {
+          "ending_seconds": 24.00045210000826,
+          "delta": 31006
+        },
+        {
+          "ending_seconds": 25.000660299992887,
+          "delta": 27494
+        },
+        {
+          "ending_seconds": 26.00027439999394,
+          "delta": 31182
+        },
+        {
+          "ending_seconds": 27.00062410000828,
+          "delta": 29263
+        },
+        {
+          "ending_seconds": 28.000390700006392,
+          "delta": 28758
+        },
+        {
+          "ending_seconds": 29.000641099992208,
+          "delta": 30070
+        },
+        {
+          "ending_seconds": 30.00017129999469,
+          "delta": 30702
+        },
+        {
+          "ending_seconds": 31.000469799997518,
+          "delta": 31030
+        },
+        {
+          "ending_seconds": 32.000507399992784,
+          "delta": 31183
+        },
+        {
+          "ending_seconds": 33.00057560001733,
+          "delta": 28302
+        },
+        {
+          "ending_seconds": 34.000551800010726,
+          "delta": 29894
+        },
+        {
+          "ending_seconds": 35.000562100001844,
+          "delta": 31030
+        },
+        {
+          "ending_seconds": 36.00040990000707,
+          "delta": 28934
+        },
+        {
+          "ending_seconds": 37.0003617000184,
+          "delta": 29415
+        },
+        {
+          "ending_seconds": 38.00041910001892,
+          "delta": 29894
+        },
+        {
+          "ending_seconds": 39.00067290000152,
+          "delta": 31510
+        },
+        {
+          "ending_seconds": 40.00062760000583,
+          "delta": 32167
+        },
+        {
+          "ending_seconds": 41.000419299991336,
+          "delta": 34366
+        },
+        {
+          "ending_seconds": 42.00069350001286,
+          "delta": 26710
+        },
+        {
+          "ending_seconds": 43.00043810001807,
+          "delta": 28782
+        },
+        {
+          "ending_seconds": 44.00049219999346,
+          "delta": 31838
+        },
+        {
+          "ending_seconds": 45.00053720001597,
+          "delta": 29415
+        },
+        {
+          "ending_seconds": 46.00044780000462,
+          "delta": 31030
+        },
+        {
+          "ending_seconds": 47.0002933999931,
+          "delta": 32318
+        },
+        {
+          "ending_seconds": 48.000273999990895,
+          "delta": 31183
+        },
+        {
+          "ending_seconds": 49.000244299997576,
+          "delta": 28454
+        },
+        {
+          "ending_seconds": 50.000277400016785,
+          "delta": 26990
+        },
+        {
+          "ending_seconds": 51.000686500017764,
+          "delta": 26838
+        },
+        {
+          "ending_seconds": 52.00094369999715,
+          "delta": 29238
+        },
+        {
+          "ending_seconds": 53.000304200017126,
+          "delta": 27974
+        },
+        {
+          "ending_seconds": 54.0008225000056,
+          "delta": 29086
+        },
+        {
+          "ending_seconds": 55.00039930001367,
+          "delta": 28278
+        },
+        {
+          "ending_seconds": 56.000528000004124,
+          "delta": 26510
+        },
+        {
+          "ending_seconds": 57.00027429999318,
+          "delta": 29718
+        },
+        {
+          "ending_seconds": 58.000307900016196,
+          "delta": 30726
+        },
+        {
+          "ending_seconds": 59.000413300003856,
+          "delta": 51573
+        },
+        {
+          "ending_seconds": 60.00057659999584,
+          "delta": 78740
+        },
+        {
+          "ending_seconds": 62.28164780000225,
+          "delta": 1592
+        },
+        {
+          "ending_seconds": 62.297785500006285,
+          "delta": 27062
+        },
+        {
+          "ending_seconds": 63.14365360001102,
+          "delta": 2072
+        },
+        {
+          "ending_seconds": 64.0007484999951,
+          "delta": 31966
+        },
+        {
+          "ending_seconds": 65.000412399997,
+          "delta": 25495
+        },
+        {
+          "ending_seconds": 66.00046680000378,
+          "delta": 31687
+        },
+        {
+          "ending_seconds": 67.00033060001442,
+          "delta": 32470
+        },
+        {
+          "ending_seconds": 68.00047080000513,
+          "delta": 31030
+        },
+        {
+          "ending_seconds": 69.01011689999723,
+          "delta": 32975
+        },
+        {
+          "ending_seconds": 70.00047299999278,
+          "delta": 33934
+        },
+        {
+          "ending_seconds": 71.0004934000026,
+          "delta": 34263
+        },
+        {
+          "ending_seconds": 72.00035869999556,
+          "delta": 32142
+        },
+        {
+          "ending_seconds": 73.00061139999889,
+          "delta": 30551
+        },
+        {
+          "ending_seconds": 74.00056889999541,
+          "delta": 30702
+        },
+        {
+          "ending_seconds": 75.00061909999931,
+          "delta": 29766
+        },
+        {
+          "ending_seconds": 76.00051919999532,
+          "delta": 31031
+        },
+        {
+          "ending_seconds": 77.00055640001665,
+          "delta": 32646
+        },
+        {
+          "ending_seconds": 78.00041430001147,
+          "delta": 31990
+        },
+        {
+          "ending_seconds": 79.00037110000267,
+          "delta": 32015
+        },
+        {
+          "ending_seconds": 80.00036440000986,
+          "delta": 32142
+        },
+        {
+          "ending_seconds": 81.0006657000049,
+          "delta": 29566
+        },
+        {
+          "ending_seconds": 82.0006080000021,
+          "delta": 29439
+        },
+        {
+          "ending_seconds": 83.00049380000564,
+          "delta": 29894
+        },
+        {
+          "ending_seconds": 84.00068369999644,
+          "delta": 29414
+        },
+        {
+          "ending_seconds": 85.0004414000141,
+          "delta": 31358
+        },
+        {
+          "ending_seconds": 86.00071960000787,
+          "delta": 43262
+        },
+        {
+          "ending_seconds": 87.00038909999421,
+          "delta": 80386
+        },
+        {
+          "ending_seconds": 89.70728470000904,
+          "delta": 10639
+        },
+        {
+          "ending_seconds": 89.718455299997,
+          "delta": 1112
+        },
+        {
+          "ending_seconds": 90.00031470000977,
+          "delta": 7783
+        },
+        {
+          "ending_seconds": 91.00038030001451,
+          "delta": 32319
+        },
+        {
+          "ending_seconds": 92.00030069999048,
+          "delta": 31206
+        },
+        {
+          "ending_seconds": 93.00021050000214,
+          "delta": 38182
+        },
+        {
+          "ending_seconds": 94.00051650000387,
+          "delta": 25167
+        },
+        {
+          "ending_seconds": 95.00040459999582,
+          "delta": 33455
+        },
+        {
+          "ending_seconds": 96.00060590001522,
+          "delta": 33126
+        },
+        {
+          "ending_seconds": 97.00062350000371,
+          "delta": 30878
+        },
+        {
+          "ending_seconds": 98.00037510000402,
+          "delta": 32799
+        },
+        {
+          "ending_seconds": 99.00067800001125,
+          "delta": 30878
+        },
+        {
+          "ending_seconds": 100.00040350001655,
+          "delta": 30550
+        },
+        {
+          "ending_seconds": 101.0004256000102,
+          "delta": 43742
+        },
+        {
+          "ending_seconds": 102.00039080000715,
+          "delta": 18471
+        },
+        {
+          "ending_seconds": 103.00039600001764,
+          "delta": 29742
+        },
+        {
+          "ending_seconds": 104.00084120000247,
+          "delta": 29894
+        },
+        {
+          "ending_seconds": 105.00028910001856,
+          "delta": 28934
+        },
+        {
+          "ending_seconds": 106.00052520001191,
+          "delta": 29743
+        },
+        {
+          "ending_seconds": 107.00069929999881,
+          "delta": 30374
+        },
+        {
+          "ending_seconds": 108.00082620000467,
+          "delta": 30702
+        },
+        {
+          "ending_seconds": 109.00024130000384,
+          "delta": 33303
+        },
+        {
+          "ending_seconds": 110.0002189000079,
+          "delta": 35702
+        },
+        {
+          "ending_seconds": 111.00163630000316,
+          "delta": 36159
+        },
+        {
+          "ending_seconds": 112.00063150000642,
+          "delta": 29110
+        },
+        {
+          "ending_seconds": 113.00084620001144,
+          "delta": 43693
+        },
+        {
+          "ending_seconds": 114.00074960000347,
+          "delta": 12103
+        },
+        {
+          "ending_seconds": 115.00014730001567,
+          "delta": 30854
+        },
+        {
+          "ending_seconds": 116.00047480000649,
+          "delta": 30879
+        },
+        {
+          "ending_seconds": 117.00016930000857,
+          "delta": 30702
+        },
+        {
+          "ending_seconds": 118.00042540000868,
+          "delta": 30702
+        },
+        {
+          "ending_seconds": 119.00051979999989,
+          "delta": 28783
+        },
+        {
+          "ending_seconds": 120.00022670000908,
+          "delta": 31662
+        }
+      ],
+      "executable_sha256": "a15d253b942324445a3048bf8dd787a97fff8f290d1caf79b3f9855c919c8ce7",
+      "static_image": {
+        "id": 1,
+        "ok": true,
+        "state": "armed",
+        "armed": 1,
+        "native": 0,
+        "image_lo": "0x80010000",
+        "image_hi": "0x80062000",
+        "entry": "0x800116FC",
+        "sha256": "3e57eb464b31f9a036fab56c8e170496cf55dcae082de9c1632c82b8454a6a09",
+        "boot_text_lo": "0x10000",
+        "boot_text_hi": "0x32000",
+        "text_image_lo": "0x10000",
+        "overlay_floor": "0x62000",
+        "latch_attempts": 1,
+        "latch_rejects": 0,
+        "last_reject_addr": "0x00000000",
+        "arms": 1,
+        "disarms": 0,
+        "restore_arms": 0,
+        "restore_disarms": 0,
+        "restore_rejects": 0,
+        "reentry_disarms": 0,
+        "last_disarm": "",
+        "arm_frame": 1048,
+        "arm_cycle": 591960211,
+        "arm_ram2m_sha256": "619c37c08a982154c62c53ea4044942e9d61b0be6c14b3be162b5af44c07a20e",
+        "native_dispatches": 0,
+        "native_dispatches_before_arm": 0,
+        "reason": ""
+      },
+      "callback_audio": {
+        "path": "docs/media/gallery/stage1-sys-native-off-callback.wav",
+        "sha256": "2f3de4034d95079e5dd1be671e689d3dabcfe120ba49709bccf5d550939a666e",
+        "bytes": 1954604,
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-off-boot-r1/hd-on_rewind-off/callback-over-process-capture.wav",
+          "sha256": "2f3de4034d95079e5dd1be671e689d3dabcfe120ba49709bccf5d550939a666e",
+          "bytes": 1954604
+        },
+        "byte_identical": true,
+        "seconds": 10.18,
+        "frames": 488640,
+        "rate": 48000,
+        "channels": 2,
+        "scope": "Exact game output callback PCM after timing; no loopback-helper fill, resampling, retiming or added audio. Physical output acceptance unverified."
+      },
+      "gameplay_video": {
+        "path": "docs/media/gallery/stage1-sys-native-off-gameplay.mp4",
+        "sha256": "b8c1406ffacc15f429f07065b0e9e922d140cd64b71e7bd33535ee45fa2b37f7",
+        "bytes": 4066553,
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-off-boot-r1/hd-on_rewind-off/post-measurement-gameplay.mp4",
+          "sha256": "b8c1406ffacc15f429f07065b0e9e922d140cd64b71e7bd33535ee45fa2b37f7",
+          "bytes": 4066553
+        },
+        "byte_identical": true,
+        "seconds": 10,
+        "silent": true,
+        "dimensions": [
+          1280,
+          960
+        ],
+        "recorder_hz": 30,
+        "scope": "Actual normal-speed game window, held fire, timer-only invulnerability aid. Silent; separate audio is not asserted synchronized. Recorded after timing, no motion interpolation or deliberate retiming."
+      },
+      "separate_process_capture_observer_fill_frames": 480,
+      "rewind_enabled": false,
+      "cached_overlay_native_execution": false
+    },
+    "on": {
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-on-fire-r1/hd-on_rewind-off/world-flypast-proof.json",
+        "sha256": "6c6d428b7c6dae15d382bd5ce7d95cd3962af4cf3be175a987fa2f2ce51265e9",
+        "bytes": 927828
+      },
+      "runtime_build_sha256": "c05eff2de0d60b3b063b5e52b995ffece85cc3c2b6e41e41059fc255c135176d",
+      "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+      "measurement_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      },
+      "guest_frames": 6417,
+      "seconds": 119.96970119999605,
+      "guest_fps": 53.48850531270816,
+      "starved_sample_frames_delta": 576066,
+      "initial_fill_ms": 148.6,
+      "final_fill_ms": 7.1,
+      "timer_only_assistance": true,
+      "ordinary_fire": true,
+      "state_loads": false,
+      "starved_intervals": [
+        {
+          "ending_seconds": 3.0003010000218637,
+          "delta": 397
+        },
+        {
+          "ending_seconds": 4.00040240000817,
+          "delta": 2334
+        },
+        {
+          "ending_seconds": 5.0004715000104625,
+          "delta": 6545
+        },
+        {
+          "ending_seconds": 6.00069159999839,
+          "delta": 8605
+        },
+        {
+          "ending_seconds": 7.000439900002675,
+          "delta": 3148
+        },
+        {
+          "ending_seconds": 9.000483500014525,
+          "delta": 3557
+        },
+        {
+          "ending_seconds": 10.000533000013093,
+          "delta": 7037
+        },
+        {
+          "ending_seconds": 11.000293000019155,
+          "delta": 6107
+        },
+        {
+          "ending_seconds": 12.000569600000745,
+          "delta": 12469
+        },
+        {
+          "ending_seconds": 13.000551200006157,
+          "delta": 2395
+        },
+        {
+          "ending_seconds": 14.000497000000905,
+          "delta": 1872
+        },
+        {
+          "ending_seconds": 15.001076500018826,
+          "delta": 2663
+        },
+        {
+          "ending_seconds": 16.00037560000783,
+          "delta": 15349
+        },
+        {
+          "ending_seconds": 17.000723100005416,
+          "delta": 5651
+        },
+        {
+          "ending_seconds": 18.000415800022893,
+          "delta": 6132
+        },
+        {
+          "ending_seconds": 19.00103690000833,
+          "delta": 6405
+        },
+        {
+          "ending_seconds": 20.000849600008223,
+          "delta": 8836
+        },
+        {
+          "ending_seconds": 22.00037710001925,
+          "delta": 2262
+        },
+        {
+          "ending_seconds": 23.00032000002102,
+          "delta": 2243
+        },
+        {
+          "ending_seconds": 24.00044390000403,
+          "delta": 5804
+        },
+        {
+          "ending_seconds": 25.00071420002496,
+          "delta": 2078
+        },
+        {
+          "ending_seconds": 29.000436200003605,
+          "delta": 1209
+        },
+        {
+          "ending_seconds": 30.00051959999837,
+          "delta": 2748
+        },
+        {
+          "ending_seconds": 31.000344900006894,
+          "delta": 7164
+        },
+        {
+          "ending_seconds": 36.000630499998806,
+          "delta": 4027
+        },
+        {
+          "ending_seconds": 37.00018530001398,
+          "delta": 4886
+        },
+        {
+          "ending_seconds": 44.00062020000769,
+          "delta": 3384
+        },
+        {
+          "ending_seconds": 45.00048970000353,
+          "delta": 8531
+        },
+        {
+          "ending_seconds": 46.0007798000006,
+          "delta": 6005
+        },
+        {
+          "ending_seconds": 47.00027280001086,
+          "delta": 151
+        },
+        {
+          "ending_seconds": 60.00038380001206,
+          "delta": 5728
+        },
+        {
+          "ending_seconds": 61.0006357000093,
+          "delta": 1991
+        },
+        {
+          "ending_seconds": 62.00066140000126,
+          "delta": 6602
+        },
+        {
+          "ending_seconds": 63.00032320001628,
+          "delta": 9261
+        },
+        {
+          "ending_seconds": 64.00045800002408,
+          "delta": 10931
+        },
+        {
+          "ending_seconds": 65.00032690001535,
+          "delta": 10021
+        },
+        {
+          "ending_seconds": 67.00047810000251,
+          "delta": 2025
+        },
+        {
+          "ending_seconds": 68.00056200000108,
+          "delta": 4121
+        },
+        {
+          "ending_seconds": 69.00054710000404,
+          "delta": 1787
+        },
+        {
+          "ending_seconds": 70.00045610000961,
+          "delta": 766
+        },
+        {
+          "ending_seconds": 77.000455100002,
+          "delta": 1072
+        },
+        {
+          "ending_seconds": 78.00050780002493,
+          "delta": 5538
+        },
+        {
+          "ending_seconds": 79.00040330001502,
+          "delta": 4187
+        },
+        {
+          "ending_seconds": 80.0005824000109,
+          "delta": 3197
+        },
+        {
+          "ending_seconds": 81.00073580001481,
+          "delta": 5202
+        },
+        {
+          "ending_seconds": 82.0006057000137,
+          "delta": 9869
+        },
+        {
+          "ending_seconds": 83.00068759999704,
+          "delta": 14540
+        },
+        {
+          "ending_seconds": 84.00069040001836,
+          "delta": 14061
+        },
+        {
+          "ending_seconds": 85.0006406000175,
+          "delta": 16005
+        },
+        {
+          "ending_seconds": 86.0005009000015,
+          "delta": 11259
+        },
+        {
+          "ending_seconds": 87.0005361000076,
+          "delta": 10549
+        },
+        {
+          "ending_seconds": 88.0005384000251,
+          "delta": 20197
+        },
+        {
+          "ending_seconds": 89.00058560000616,
+          "delta": 17293
+        },
+        {
+          "ending_seconds": 90.00056890002452,
+          "delta": 8757
+        },
+        {
+          "ending_seconds": 91.00042320002103,
+          "delta": 13860
+        },
+        {
+          "ending_seconds": 92.00068389999797,
+          "delta": 15853
+        },
+        {
+          "ending_seconds": 93.00046380001004,
+          "delta": 11053
+        },
+        {
+          "ending_seconds": 94.00079970000661,
+          "delta": 4947
+        },
+        {
+          "ending_seconds": 95.00060010000016,
+          "delta": 4084
+        },
+        {
+          "ending_seconds": 96.00019030002295,
+          "delta": 2188
+        },
+        {
+          "ending_seconds": 103.00059670000337,
+          "delta": 5552
+        },
+        {
+          "ending_seconds": 104.00053230000776,
+          "delta": 6235
+        },
+        {
+          "ending_seconds": 105.00040420002188,
+          "delta": 5518
+        },
+        {
+          "ending_seconds": 106.00038170002517,
+          "delta": 2626
+        },
+        {
+          "ending_seconds": 107.00078940001549,
+          "delta": 7140
+        },
+        {
+          "ending_seconds": 108.00034520000918,
+          "delta": 8228
+        },
+        {
+          "ending_seconds": 109.00042440000107,
+          "delta": 14693
+        },
+        {
+          "ending_seconds": 110.00027750001755,
+          "delta": 11484
+        },
+        {
+          "ending_seconds": 111.00048000001698,
+          "delta": 9540
+        },
+        {
+          "ending_seconds": 112.00053859999753,
+          "delta": 13733
+        },
+        {
+          "ending_seconds": 113.00065160001395,
+          "delta": 23909
+        },
+        {
+          "ending_seconds": 114.00061790001928,
+          "delta": 16510
+        },
+        {
+          "ending_seconds": 115.00067860001582,
+          "delta": 7899
+        },
+        {
+          "ending_seconds": 116.00053540000226,
+          "delta": 10501
+        },
+        {
+          "ending_seconds": 117.00041090001469,
+          "delta": 5676
+        },
+        {
+          "ending_seconds": 118.00081040000077,
+          "delta": 10804
+        },
+        {
+          "ending_seconds": 119.00059050001437,
+          "delta": 10044
+        },
+        {
+          "ending_seconds": 120.00056200000108,
+          "delta": 9036
+        }
+      ],
+      "executable_sha256": "a15d253b942324445a3048bf8dd787a97fff8f290d1caf79b3f9855c919c8ce7",
+      "static_image": {
+        "id": 1,
+        "ok": true,
+        "state": "armed",
+        "armed": 1,
+        "native": 1,
+        "image_lo": "0x80010000",
+        "image_hi": "0x80062000",
+        "entry": "0x800116FC",
+        "sha256": "3e57eb464b31f9a036fab56c8e170496cf55dcae082de9c1632c82b8454a6a09",
+        "boot_text_lo": "0x10000",
+        "boot_text_hi": "0x32000",
+        "text_image_lo": "0x10000",
+        "overlay_floor": "0x62000",
+        "latch_attempts": 1,
+        "latch_rejects": 0,
+        "last_reject_addr": "0x00000000",
+        "arms": 1,
+        "disarms": 0,
+        "restore_arms": 0,
+        "restore_disarms": 0,
+        "restore_rejects": 0,
+        "reentry_disarms": 0,
+        "last_disarm": "",
+        "arm_frame": 1048,
+        "arm_cycle": 591960211,
+        "arm_ram2m_sha256": "619c37c08a982154c62c53ea4044942e9d61b0be6c14b3be162b5af44c07a20e",
+        "native_dispatches": 7589351,
+        "native_dispatches_before_arm": 0,
+        "reason": ""
+      },
+      "callback_audio": {
+        "path": "docs/media/gallery/stage1-sys-native-on-callback.wav",
+        "sha256": "4d30975029433a9ea5789965b24f2022eea895bee6f6236ad0c5921fc6923d5a",
+        "bytes": 1966124,
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-on-fire-r1/hd-on_rewind-off/callback-over-process-capture.wav",
+          "sha256": "4d30975029433a9ea5789965b24f2022eea895bee6f6236ad0c5921fc6923d5a",
+          "bytes": 1966124
+        },
+        "byte_identical": true,
+        "seconds": 10.24,
+        "frames": 491520,
+        "rate": 48000,
+        "channels": 2,
+        "scope": "Exact game output callback PCM after timing; no loopback-helper fill, resampling, retiming or added audio. Physical output acceptance unverified."
+      },
+      "gameplay_video": {
+        "path": "docs/media/gallery/stage1-sys-native-on-gameplay.mp4",
+        "sha256": "60d8b3a4111cdae702cff480bc6bc5d9b42769b1eb627b916294056306ddbc9d",
+        "bytes": 6087947,
+        "source": {
+          "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sys-native-on-fire-r1/hd-on_rewind-off/post-measurement-gameplay.mp4",
+          "sha256": "60d8b3a4111cdae702cff480bc6bc5d9b42769b1eb627b916294056306ddbc9d",
+          "bytes": 6087947
+        },
+        "byte_identical": true,
+        "seconds": 10,
+        "silent": true,
+        "dimensions": [
+          1280,
+          960
+        ],
+        "recorder_hz": 30,
+        "scope": "Actual normal-speed game window, held fire, timer-only invulnerability aid. Silent; separate audio is not asserted synchronized. Recorded after timing, no motion interpolation or deliberate retiming."
+      },
+      "separate_process_capture_observer_fill_frames": 1920,
+      "rewind_enabled": false,
+      "cached_overlay_native_execution": false
+    }
+  },
+  "boot_comparison": {
+    "first_common_frame": 1,
+    "identical_through_frame": 1048,
+    "first_divergent_frame": 1049,
+    "differing_fields": [
+      "wr",
+      "wc",
+      "pc"
+    ],
+    "off": {
+      "frame": 1049,
+      "wr": "0xb5626bf2e1e92ae0",
+      "pc": "0x3926298afec381a1",
+      "wc": 16619677,
+      "mmio": "0x6815b7103964e3a3",
+      "mc": 42032,
+      "sp": "0x14650fb0739d0383",
+      "sc": 0,
+      "cyc": 592139520
+    },
+    "on": {
+      "frame": 1049,
+      "wr": "0x5f7e8a9e23874360",
+      "pc": "0x0ba3b378b2beaa61",
+      "wc": 16619681,
+      "mmio": "0x6815b7103964e3a3",
+      "mc": 42032,
+      "sp": "0x14650fb0739d0383",
+      "sc": 0,
+      "cyc": 592139520
+    },
+    "first_input_trigger_frames": {
+      "off": 1895,
+      "on": 1896
+    },
+    "divergence_before_any_input": true,
+    "differential_acceptance_pass": false
+  },
+  "audio_resolved": false,
+  "production_installed": false,
+  "runtime_merge_approved": false,
+  "limitations": [
+    "One ordered pair; equal wall-time windows cover different guest-frame totals and scenes.",
+    "Both runs hold ordinary fire and use the same disclosed 180-second timer-only aid; no lives writes or state loads.",
+    "Rewind and native cached overlays are off for this first qualification; normal-user/full-stage acceptance remains open.",
+    "A faster average does not establish sustained smoothness or runtime correctness. Pre-input differential failed at frame 1049.",
+    "Audio and silent video are actual post-measurement captures with observer load and unverified synchronization.",
+    "Callback WAVs contain no loopback-helper fill. Separate unpublished process recordings contain 10 ms off / 40 ms on of observer fill."
+  ]
+}

@@ -1993,10 +1993,32 @@
       "processing": "Actual 1280x960 game window, normal speed, 30 Hz recorder; no motion interpolation or deliberate retiming. Separate audio overlaps this capture but is not asserted synchronized.",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-sys-native-off-gameplay.mp4",
+      "sha256": "b8c1406ffacc15f429f07065b0e9e922d140cd64b71e7bd33535ee45fa2b37f7",
+      "bytes": 4066553,
+      "category": "actual_gameplay_capture",
+      "result_manifest": "docs/media/gallery/stage1-sys-runtime-results.json",
+      "status": "Held-fire timer-assisted diagnostic; no stage-clear acceptance",
+      "processing": "Actual normal-speed game window, held fire, timer-only invulnerability aid. Silent; separate audio is not asserted synchronized. Recorded after timing, no motion interpolation or deliberate retiming.",
+      "retimed": false,
+      "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-sys-native-on-gameplay.mp4",
+      "sha256": "60d8b3a4111cdae702cff480bc6bc5d9b42769b1eb627b916294056306ddbc9d",
+      "bytes": 6087947,
+      "category": "actual_gameplay_capture",
+      "result_manifest": "docs/media/gallery/stage1-sys-runtime-results.json",
+      "status": "Held-fire timer-assisted diagnostic; no stage-clear acceptance",
+      "processing": "Actual normal-speed game window, held fire, timer-only invulnerability aid. Silent; separate audio is not asserted synchronized. Recorded after timing, no motion interpolation or deliberate retiming.",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 14,
-  "total_video_bytes": 494441626,
+  "video_count": 16,
+  "total_video_bytes": 504596126,
   "video_frame_extract_count": 8,
   "audio_assets": [
     {
@@ -2192,8 +2214,32 @@
       "result_manifest": "docs/media/gallery/stage1-region-index-results.json",
       "status": "Failing stutter diagnostic; timer-assisted/no-fire",
       "processing": "Exact process-loopback file; observer inserted 60 ms of silence. This fill is not evidence of a runtime gap."
+    },
+    {
+      "path": "docs/media/gallery/stage1-sys-native-off-callback.wav",
+      "sha256": "2f3de4034d95079e5dd1be671e689d3dabcfe120ba49709bccf5d550939a666e",
+      "bytes": 1954604,
+      "seconds": 10.18,
+      "rate": 48000,
+      "channels": 2,
+      "category": "actual_game_callback_pcm",
+      "result_manifest": "docs/media/gallery/stage1-sys-runtime-results.json",
+      "status": "Experimental SYS firing test; audio failing; parity blocker",
+      "processing": "Exact game output callback PCM after timing; no loopback-helper fill, resampling, retiming or added audio. Physical output acceptance unverified."
+    },
+    {
+      "path": "docs/media/gallery/stage1-sys-native-on-callback.wav",
+      "sha256": "4d30975029433a9ea5789965b24f2022eea895bee6f6236ad0c5921fc6923d5a",
+      "bytes": 1966124,
+      "seconds": 10.24,
+      "rate": 48000,
+      "channels": 2,
+      "category": "actual_game_callback_pcm",
+      "result_manifest": "docs/media/gallery/stage1-sys-runtime-results.json",
+      "status": "Experimental SYS firing test; audio failing; parity blocker",
+      "processing": "Exact game output callback PCM after timing; no loopback-helper fill, resampling, retiming or added audio. Physical output acceptance unverified."
     }
   ],
-  "audio_count": 15,
-  "total_audio_bytes": 32364068
+  "audio_count": 17,
+  "total_audio_bytes": 36284796
 }

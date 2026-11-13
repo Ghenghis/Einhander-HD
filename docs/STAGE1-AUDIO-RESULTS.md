@@ -1,6 +1,19 @@
 # Audio and stutter remain unresolved
 
-Latest November 13 diagnostic: the same-build region-index OFF/ON pair gave
+The first isolated SYS-runtime **held-fire** test averaged **53.4885 fps** with
+**576,066 starved sample frames** over 120 seconds. Its same-binary interpreter
+control gave 21.5142 fps / 3,672,576 starved frames. Cached native overlays and
+rewind were disabled in both; this is not a comparison against the installed build.
+The compiled run executed 7,589,351 SYS dispatches and reached the Greif firing
+scene, but its write fingerprints diverged at frame 1049, before any input.
+**Runtime correctness and audio acceptance both remain blocked.**
+[Full SYS findings](media/gallery/stage1-sys-runtime-results.json),
+[actual callback audio](media/gallery/stage1-sys-native-on-callback.wav), and
+[actual silent gameplay](media/gallery/stage1-sys-native-on-gameplay.mp4).
+The media comes from after timing, at normal game speed with the disclosed
+timer-only aid and held fire; separate audio/video synchronization is unverified.
+
+Earlier November 13 diagnostic: the same-build region-index OFF/ON pair gave
 **53.9445 / 52.8674 fps** and **534,907 / 635,047 starved sample frames** over
 120 seconds. Region-check CPU time fell from 3,037.6 to 210.4 ms, but no net
 gameplay improvement is established. The index remains off by default.
