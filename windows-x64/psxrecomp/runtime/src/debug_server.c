@@ -5200,6 +5200,7 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              "\"batch_flushes\":%llu,\"batched_primitives\":%llu,\"max_batch_primitives\":%llu,"
              "\"batch_state_skips\":%llu,"
              "\"base_filter_updates\":%llu,\"base_filter_skips\":%llu,"
+             "\"hr_bracket_keeps\":%llu,\"hr_bracket_skips\":%llu,"
              "\"scope\":\"cumulative CPU wall time; nested intervals overlap; PNG worker time excluded\"}",
              id,s.enabled?"true":"false",(unsigned long long)s.attempts,
              (unsigned long long)s.submitted,(double)s.total_ticks*ms,
@@ -5209,7 +5210,8 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (double)s.draw_ticks*ms,(unsigned long long)s.readbacks,(double)s.readback_ticks*ms,
              (unsigned long long)s.batch_flushes,(unsigned long long)s.batched_primitives,
              (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips,
-             (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips);
+             (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips,
+             (unsigned long long)s.hr_bracket_keeps,(unsigned long long)s.hr_bracket_skips);
 }
 
 /* "dump_ram" is an alias of "read_ram".  The old implementation answered a

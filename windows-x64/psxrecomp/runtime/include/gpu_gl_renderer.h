@@ -65,6 +65,7 @@ typedef struct {
     uint64_t batch_flushes, batched_primitives, max_batch_primitives;
     uint64_t batch_state_skips;
     uint64_t base_filter_updates,base_filter_skips;
+    uint64_t hr_bracket_keeps,hr_bracket_skips;
 } GlHdCpuDiag;
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out);
 

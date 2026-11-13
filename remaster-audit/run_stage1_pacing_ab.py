@@ -59,6 +59,11 @@ def prepare(label,args):
     seed, receipt = world.closed_private_seed()
     ui.copy_verified(seed, state / "card1.mcd")
     settings = (original.parent / "settings.toml").read_text(encoding="utf-8")
+    scale=int(getattr(args,'supersampling',9))
+    if scale not in (1,2,3,4,6,8,9,12,16):raise ValueError('Unsupported private render scale')
+    for name,value in [('supersampling',scale),('rewind_depth',50 if rewind else 0),('rewind_interval',15)]:
+        settings,count=re.subn(r'(?m)^'+name+r'\s*=.*$',name+' = '+str(value),settings)
+        if count!=1:raise ValueError('Ambiguous private setting '+name)
     settings, n = re.subn(r"(?m)^hd_textures\s*=.*$", "hd_textures = " + str(hd).lower(), settings)
     assert n == 1
     settings,n=re.subn(r'(?m)^hd_texture_root\s*=.*$',
@@ -74,12 +79,14 @@ def prepare(label,args):
     spec.update(writable_state=str(state),user_cards_mounted=False,
                 settings_sha256=ui.sha(runtime / "settings.toml"))
     spec["environment_overrides"].update(EIN_DEBUG_PORT="4376",PSX_REWIND="1" if rewind else "0",
+        PSX_REWIND_DEPTH="50",PSX_REWIND_INTERVAL="15",PSX_REWIND_FMV_INTERVAL=str(getattr(args,'rewind_fmv_interval',4)),
         PSXRECOMP_HD_DUMP="",PSXRECOMP_HD_SOURCE_SIDECARS="",PSXRECOMP_HD_PROOF_LOG="",
         PSXRECOMP_HD_SOURCE_CACHE_KEYS="",
         PSXRECOMP_HD_PROOF_CONTROL="",PSX_GL_PRESENT_PROBE="0",PSX_GL_PERF=str(args.gpu_queries),
         PSXRECOMP_HD_WORLD_SAMPLING=str(args.world_sampling),PSXRECOMP_HD_WORLD_ANISOTROPY="8",
         PSXRECOMP_HD_CPU_PROFILE=str(getattr(args,'cpu_profile',0)),
         PSXRECOMP_HD_FILTER_STATE_CACHE=str(getattr(args,'filter_state_cache',0)),
+        PSXRECOMP_HD_KEEP_BRACKET=str(getattr(args,'keep_bracket',0)),
         PSXRECOMP_HD_OPAQUE_BATCH=str(getattr(args,'opaque_batch',0)),
         PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY=str(getattr(args,'short_upload_priority',0)),
         PSXRECOMP_HD_EMISSIVE=str(getattr(args,'emissive',0)),
@@ -97,11 +104,13 @@ def prepare(label,args):
         hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),
         runtime_perf=bool(getattr(args,'runtime_perf',0)),
         filter_state_cache=bool(getattr(args,'filter_state_cache',0)),
+        keep_bracket=bool(getattr(args,'keep_bracket',0)),
         hd_opaque_batch=bool(getattr(args,'opaque_batch',0)),
         short_upload_priority=bool(getattr(args,'short_upload_priority',0)),
         emissive_masks=bool(getattr(args,'emissive',0)),
         guest_frame_target=args.guest_frames,
-        telemetry_interval_seconds=1.0,route_poll_seconds=1.0,supersampling=9))
+        telemetry_interval_seconds=1.0,route_poll_seconds=1.0,supersampling=scale,
+        rewind_depth=50 if rewind else 0,rewind_interval=15,rewind_fmv_interval=int(getattr(args,'rewind_fmv_interval',4))))
     if getattr(args,'native_menus',False):
         if not hd:raise ValueError('Native-menu staging requires HD-on measurement')
         control=directory/'replacement-control.txt';control.write_text('0\n')

@@ -82,6 +82,22 @@ static void fm_hd_opaque_batch_regression(const char *root) {
         FM_CHECK("no pending geometry after a flush boundary",!s_hd_batch_n);
         FM_CHECK("batch scene has no GL errors",glGetError()==GL_NO_ERROR);
     }
+    {
+        const int previous=s_hd_keep_bracket,old_diag=s_hd_cpu_diag_enabled;
+        const uint64_t keeps=s_hd_cpu_diag.hr_bracket_keeps,skips=s_hd_cpu_diag.hr_bracket_skips;
+        s_hd_cpu_diag_enabled=1;s_hd_opaque_batch_enabled=1;
+        for(int which=0;which<15;++which){
+            s_hd_keep_bracket=0;batch_fixture_scene(which,&fixture);batch_fixture_read(a);
+            s_hd_keep_bracket=1;batch_fixture_scene(which,&fixture);batch_fixture_read(b);
+            char label[128];snprintf(label,sizeof label,"kept FBO pixel parity at native/HD boundary case %d",which);
+            FM_CHECK(label,!memcmp(a,b,bytes));
+            GLint framebuffer=-1;glGetIntegerv(0x8CA6 /*GL_DRAW_FRAMEBUFFER_BINDING*/,&framebuffer);
+            FM_CHECK("kept FBO cannot leak beyond the immediate HD bracket",!s_hr_fbo_open&&!s_hr_keep_open&&framebuffer==0);
+            FM_CHECK("kept FBO boundary has no GL error",glGetError()==GL_NO_ERROR);
+        }
+        FM_CHECK("real native-to-HD transitions skip owned FBO rebinds",s_hd_cpu_diag.hr_bracket_keeps>keeps&&s_hd_cpu_diag.hr_bracket_skips>skips);
+        s_hd_keep_bracket=previous;s_hd_cpu_diag_enabled=old_diag;
+    }
     uint16_t exact[1024],palette[16];
     int exact_ok=fm_read_words(root,"words.bin",exact,1024)&&fm_read_words(root,"clut.bin",palette,16);
     FM_CHECK("batch exact-region fixture readable",exact_ok);

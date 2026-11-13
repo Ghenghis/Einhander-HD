@@ -1950,5 +1950,23 @@
   ],
   "video_count": 12,
   "total_video_bytes": 482993110,
-  "video_frame_extract_count": 8
+  "video_frame_extract_count": 8,
+  "audio_assets": [
+    {
+      "path": "docs/media/gallery/stage1-transition-audio-failed.wav",
+      "sha256": "f4492530128b101b32354b70da22b8d2c79fb298a5845a87ecc2233f3b768374",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Failed diagnostic; audio remains unresolved",
+      "result_manifest": "docs/media/gallery/stage1-runtime-audio-results.json",
+      "retimed": false,
+      "resampled": false,
+      "processing": "Exact contiguous PCM copy"
+    }
+  ],
+  "audio_count": 1,
+  "total_audio_bytes": 2304044
 }

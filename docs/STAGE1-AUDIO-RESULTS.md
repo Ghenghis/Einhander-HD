@@ -39,3 +39,14 @@ gaps, the Greif approach/arrival/fire windows and native FMV playback. The quiet
 120/170-second route clock starts after City, not at application boot. Actual
 device-rate game callback audio will be retained for audible review; silent
 footage and synthetic audio probes do not qualify it.
+
+[Actual twelve-second game-output audio](media/gallery/stage1-transition-audio-failed.wav)
+is now available from the following failed diagnostic. It is exact contiguous
+48kHz stereo callback PCM, including the real starvation, copied after timing
+measurement. The run averaged 59.4888 guest frames/s and accumulated 38,195
+starved output frames in 120 seconds. It used the opt-in framebuffer-bracket
+experiment, private render preference 9 and rewind off. No same-binary bracket
+control or normal-settings acceptance is claimed.
+[Audio provenance and results](media/gallery/stage1-runtime-audio-results.json)
+include sample offsets and PCM hashes. Normal preference 2 and rewind depth50,
+interval15 are the next controls; true FMV playback remains a separate gate.

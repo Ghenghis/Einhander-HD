@@ -1,0 +1,126 @@
+{
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/keep-bracket-greif-audio-v1/hd-on_rewind-off/world-flypast-proof.json",
+    "sha256": "59556fef9df454eb8a5a6c495d15d159db424a5d4ab66034b9a5cab5e3c20235",
+    "bytes": 662524
+  },
+  "runtime_build_sha256": "3fa07415144cc4e60583d3cacd17fa125e5875b1ec2a80ae335f93629d2343a7",
+  "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+  "measurement_load": {
+    "video": false,
+    "source_capture": false,
+    "composed_stills": false,
+    "timer_assistance": true
+  },
+  "guest_frames": 7138,
+  "seconds": 119.98906380002154,
+  "guest_fps": 59.48875484099509,
+  "starved_sample_frames_delta": 38195,
+  "initial_fill_ms": 179.0,
+  "final_fill_ms": 193.1,
+  "timer_only_assistance": true,
+  "ordinary_fire": false,
+  "state_loads": false,
+  "starved_intervals": [
+    {
+      "ending_seconds": 32.000362799997674,
+      "delta": 276
+    },
+    {
+      "ending_seconds": 78.00020360000781,
+      "delta": 2048
+    },
+    {
+      "ending_seconds": 79.00068369999644,
+      "delta": 942
+    },
+    {
+      "ending_seconds": 80.00018529998488,
+      "delta": 1418
+    },
+    {
+      "ending_seconds": 81.00065080000786,
+      "delta": 3762
+    },
+    {
+      "ending_seconds": 82.0005586000043,
+      "delta": 9036
+    },
+    {
+      "ending_seconds": 83.00014369998826,
+      "delta": 6381
+    },
+    {
+      "ending_seconds": 94.00031549998675,
+      "delta": 2599
+    },
+    {
+      "ending_seconds": 95.00030499999411,
+      "delta": 6812
+    },
+    {
+      "ending_seconds": 96.00064779998502,
+      "delta": 3203
+    },
+    {
+      "ending_seconds": 97.000581100001,
+      "delta": 1446
+    },
+    {
+      "ending_seconds": 107.00023599999258,
+      "delta": 272
+    }
+  ],
+  "schema_version": 1,
+  "kind": "Actual device-output PCM from failed Stage1 diagnostic",
+  "audio": {
+    "path": "docs/media/gallery/stage1-transition-audio-failed.wav",
+    "sha256": "f4492530128b101b32354b70da22b8d2c79fb298a5845a87ecc2233f3b768374",
+    "bytes": 2304044,
+    "rate": 48000,
+    "channels": 2,
+    "sample_width_bytes": 2,
+    "seconds": 12,
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/keep-bracket-greif-audio-v1/hd-on_rewind-off/audio-review-v1/greif-transition-actual-host.wav",
+      "sha256": "f4492530128b101b32354b70da22b8d2c79fb298a5845a87ecc2233f3b768374",
+      "bytes": 2304044
+    },
+    "pcm_verification": {
+      "source_sha256": "2b561a342a4afff512cb16ba666656655927adcc46c0486893cca0131886d3e9",
+      "clip_sha256": "f4492530128b101b32354b70da22b8d2c79fb298a5845a87ecc2233f3b768374",
+      "pcm_sha256": "c858335d42831b216cb12005c537b112a9100415cbd30d6e0dc198fc77d6d2e4",
+      "sample_start_absolute": 6316800,
+      "source_offset_frames": 912960,
+      "frames": 576000,
+      "rate": 48000,
+      "seconds": 12.0,
+      "selected_counter_interval_seconds": [
+        81.00065080000786,
+        82.0005586000043
+      ],
+      "selected_interval_starved_output_frames": 9036,
+      "retimed": false,
+      "resampled": false,
+      "filters": false,
+      "scope": "Actual owned game callback output. Failed diagnostic, not repaired audio. Exact contiguous PCM copy."
+    }
+  },
+  "private_render_preference": 9,
+  "rewind_enabled": false,
+  "keep_bracket_enabled": true,
+  "filter_state_cache_enabled": false,
+  "bracket_keeps": 112607,
+  "interpreter_snapshots": 6,
+  "host_audio_copied_after_final_measurement": true,
+  "audio_resolved": false,
+  "audible_acceptance": false,
+  "production_installed": false,
+  "limitations": [
+    "This is failed diagnostic audio, not an enhanced or repaired soundtrack.",
+    "Exact contiguous callback PCM, including actual starvation. No system audio, filters, resampling or retiming.",
+    "One opt-in run without a same-binary bracket-off control; no causal performance improvement claim.",
+    "Private render preference9 differs from normal user2; normal rewind50/15 remains to be compared.",
+    "This game-travel/Greif observation does not establish native FMV playback acceptance."
+  ]
+}

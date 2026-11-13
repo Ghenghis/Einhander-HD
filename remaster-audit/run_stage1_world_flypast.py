@@ -63,8 +63,8 @@ def prepare(args):
         if ui.sha(row['composed_path'])!=row['sha256']:raise ValueError('Frozen emissive mask changed: '+row['name'])
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,
-        cpu_profile=args.cpu_profile,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,guest_frames=0)
-    report=pacing.prepare('hd-on_rewind-off',config)
+        cpu_profile=args.cpu_profile,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
+    report=pacing.prepare('hd-on_rewind-'+('on' if args.rewind else 'off'),config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
     report['visual_profile']=dict(kind='assisted assembled-world fly-past',
@@ -76,6 +76,7 @@ def prepare(args):
     report['visual_profile'].update(record_video=not args.telemetry_only,source_capture=not args.telemetry_only,
         composed_stills=not args.telemetry_only,telemetry_only=args.telemetry_only,cpu_profile=bool(args.cpu_profile),runtime_perf=bool(args.runtime_perf))
     report['visual_profile'].update(retain_host_audio=bool(args.retain_host_audio),dirty_profile=bool(args.dirty_profile))
+    report['visual_profile'].update(media_profile=bool(args.media_profile),rewind_capture=bool(args.rewind))
     if args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
@@ -84,7 +85,7 @@ def prepare(args):
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 
 def run(args):
-    directory=pacing.ROOT/args.batch/'hd-on_rewind-off'
+    directory=pacing.ROOT/args.batch/('hd-on_rewind-on' if args.rewind else 'hd-on_rewind-off')
     report=pacing.base.read(directory/'candidate.json')
     if (directory/'world-flypast-proof.json').exists() or (directory/'launch-candidate.json').exists():
         raise ValueError('Fresh prepared run required')
@@ -157,6 +158,10 @@ def run(args):
                 row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
             if report['visual_profile'].get('dirty_profile') and second in (0,65,75,85,95,120,150,169):
                 row['dirty_ram_stats']=probe.request(report,'dirty_ram_stats')
+            if report['visual_profile'].get('media_profile'):
+                row['fmv_state']=probe.request(report,'fmv_state')
+                row['gpu_state']=probe.request(report,'gpu_state')
+                row['cdrom_state']=probe.request(report,'cdrom_state')
             if second%15==0:
                 if report['visual_profile'].get('composed_stills',True):
                     row['screenshot']=probe.request(report,'screenshot',path=(shots/f'native-{second:03}.png').as_posix())
@@ -238,6 +243,11 @@ if __name__=='__main__':
     p.add_argument('--cpu-profile',type=int,choices=[0,1],default=0,help='Cumulative HD CPU attribution; includes CPU timing overhead and is not baseline pacing acceptance')
     p.add_argument('--runtime-perf',type=int,choices=[0,1],default=0,help='One-second opt-in guest/pacer/overlay/provider attribution in stdout; not baseline acceptance')
     p.add_argument('--filter-state-cache',type=int,choices=[0,1],default=0,help='Opt-in owned HD texture nearest/linear state cache; private experiment')
+    p.add_argument('--keep-bracket',type=int,choices=[0,1],default=0,help='Opt-in immediate native-flush/HD framebuffer bracket retention; private experiment')
+    p.add_argument('--supersampling',type=int,choices=[1,2,3,4,6,8,9,12,16],default=9,help='Private render preference; normal user setting is2, visual baseline9')
+    p.add_argument('--rewind',type=int,choices=[0,1],default=0,help='Enable snapshot capture with user depth50/interval15; never loads a state')
+    p.add_argument('--rewind-fmv-interval',type=int,choices=[4,15],default=4,help='Private existing-env cadence control; same binary, snapshots remain enabled')
+    p.add_argument('--media-profile',action='store_true',help='Observe actual XA/MDEC/depth24 and CD activity; diagnostic overhead disclosed')
     p.add_argument('--dirty-profile',action='store_true',help='Read interpreter PC counters at bounded transition/Greif checkpoints; diagnostic overhead disclosed')
     p.add_argument('--retain-host-audio',action='store_true',help='After measurement, preserve up to60seconds of actual game callback PCM for audible review')
     p.add_argument('--hires-stills',action='store_true')

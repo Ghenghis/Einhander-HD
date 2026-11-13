@@ -1526,9 +1526,21 @@ static void apply_psx_blend(int mode) {
 }
 
 /* ---- hr FBO render-state bracket ---------------------------------------- */
+/* Opt-in: retain the owned hr FBO only across native flush -> immediate HD
+ * begin, avoiding its redundant unbind/rebind. Other callers close normally. */
+static int s_hr_keep_open,s_hr_fbo_open;
+static int s_hd_keep_bracket=-1;
+static int hd_keep_bracket_enabled(void){
+    if(s_hd_keep_bracket<0){const char *value=getenv("PSXRECOMP_HD_KEEP_BRACKET");
+        s_hd_keep_bracket=value&&!strcmp(value,"1");}
+    return s_hd_keep_bracket;
+}
 static void hr_begin(int clip_to_draw_area) {
-    p_glBindFramebuffer(PSXGL_FRAMEBUFFER, s_hr_fbo);
-    glViewport(0, 0, VRAM_W * s_scale, VRAM_H * s_scale);
+    if(!s_hr_fbo_open){
+        p_glBindFramebuffer(PSXGL_FRAMEBUFFER, s_hr_fbo);
+        glViewport(0, 0, VRAM_W * s_scale, VRAM_H * s_scale);
+    }else if(hd_cpu_diag_enabled())++s_hd_cpu_diag.hr_bracket_skips;
+    s_hr_fbo_open=0;
     glEnable(GL_SCISSOR_TEST);
     if (clip_to_draw_area) {
         int sw = s_area_x2 - s_area_x1 + 1, sh = s_area_y2 - s_area_y1 + 1;
@@ -1545,6 +1557,18 @@ static void hr_end(void) {
         p_glBlendEquationSeparate(PSXGL_FUNC_ADD, PSXGL_FUNC_ADD);
     glDisable(GL_STENCIL_TEST);
     glDisable(GL_SCISSOR_TEST);
+    if(s_hr_keep_open){
+        s_hr_fbo_open=1;
+        if(hd_cpu_diag_enabled())++s_hd_cpu_diag.hr_bracket_keeps;
+        return;
+    }
+    p_glBindVertexArray(0);
+    p_glUseProgram(0);
+    p_glBindFramebuffer(PSXGL_FRAMEBUFFER, 0);
+}
+static void hr_close_kept(void){
+    if(!s_hr_fbo_open)return;
+    s_hr_fbo_open=0;
     p_glBindVertexArray(0);
     p_glUseProgram(0);
     p_glBindFramebuffer(PSXGL_FRAMEBUFFER, 0);
@@ -3941,7 +3965,11 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
         key.region_x=m.region_x;key.region_y=m.region_y;key.exact_region=m.exact_region;key.has_upload=m.upload_serial!=0;
         }
         if(s_hd_batch_n && (!batch || memcmp(&key,&s_hd_batch_key,sizeof(key)) || s_hd_batch_n>=HD_OPAQUE_BATCH_MAX))flush_hd_batch();
-        if(!s_hd_batch_n){flush_tex_batch();flush_flat_batch();}
+        if(!s_hd_batch_n){
+            s_hr_keep_open=hd_keep_bracket_enabled()&&!g_wide_cur;
+            flush_tex_batch();flush_flat_batch();
+            s_hr_keep_open=0;
+        }
         const uint64_t draw_start=cpu_diag?SDL_GetPerformanceCounter():0;
         if(cpu_diag && !resident_tex)++s_hd_cpu_diag.new_texture_draws;
         for (i = 0; i < 3; i++, vp += TEXV) {
@@ -3959,7 +3987,7 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
             vp[19] = s_pq_valid ? s_pq[i] : 0.0f;
         }
         if(!s_hd_batch_n){
-        if(native_edge_width)pack_flush(); /* include wrapped framebuffer taps */
+        if(native_edge_width){hr_close_kept();pack_flush();} /* include wrapped framebuffer taps */
         hr_begin(1);
         p_glUseProgram(s_hd_prog);
         p_glActiveTexture(PSXGL_TEXTURE0);

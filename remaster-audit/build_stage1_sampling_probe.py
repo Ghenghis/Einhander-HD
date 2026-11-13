@@ -72,6 +72,9 @@ def main():
         label='real-gl-world-0-filter-cache-1'
         results[label]=run([report['test_executable'],str(out/'facade-pack'),'0'],label,
             dict(env,PSXRECOMP_HD_WORLD_SAMPLING='0',PSXRECOMP_HD_FILTER_STATE_CACHE='1')).stdout
+        label='real-gl-world-0-keep-bracket-1'
+        results[label]=run([report['test_executable'],str(out/'facade-pack'),'0'],label,
+            dict(env,PSXRECOMP_HD_WORLD_SAMPLING='0',PSXRECOMP_HD_KEEP_BRACKET='1')).stdout
         write(out/'tests.json',dict(at_utc=datetime.now(timezone.utc).isoformat(),gpu_preflight=quiet,results=results,
             build_sha256=prior.sha(out/'build.json'),commands=commands))
         return
