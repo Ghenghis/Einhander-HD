@@ -221,19 +221,47 @@ Capacity is bounded by one RTX 3090 Ti and the quiet windows Codex needs for mea
 <li>Release pack: one reconciled HD pack, the audio pack, the options menu, the launcher, HTML docs, and the user's sign-off.</li>
 </ul>
 
-<h2>Agent allocation now</h2>
+<h2>Lanes and actual state (2026-11-13 15:28Z)</h2>
+<p class="small">Each state names exactly one level:
+<ul class="small">
+<li><strong>extracted:</strong> static-predicted from the disc.</li>
+<li><strong>authored:</strong> frozen HD candidate, class-exact.</li>
+<li><strong>imported:</strong> in a run's pack.</li>
+<li><strong>live-accepted:</strong> approved in a live A/B or acceptance.</li>
+</ul>
+Queued work is not counted as done. Devin is on user hold; Codex and Claude only.</p>
 <table>
-<tr><th>Track</th><th>Owner</th><th>Status</th></tr>
-<tr><td>Runtime measurement, imports, capture runs</td><td>Codex (budget-limited)</td><td class="wip">active</td></tr>
-<tr><td>SYS-primary implementation (isolated worktree)</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>CPS-unit v2 (virtual PC, escape cleanup)</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>GPU-phase breakdown, GL boundary tests</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>Robin v2 (RAM perception, planner)</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>Static extraction for stages 2–7</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>HD music and voice</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>HD sound effects</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>Runtime audio pack design</td><td>Claude agent</td><td class="wip">active</td></tr>
-<tr><td>Drache art; 8 native families</td><td>Claude agents</td><td class="wip">active</td></tr>
+<tr><th>Lane</th><th>Owner</th><th>Completed artifacts</th><th>State</th><th>Next / blocker</th></tr>
+<tr><td>Runtime: SYS-primary</td><td>Claude agent (isolated worktree)</td><td>Branch <code>claude/sys-primary</code> 3711369: framework, generator (SYS.EXE: 23 shards, 1,817 functions), latch, unit harness, ctest 5/5</td><td class="wip">implemented, not built in full</td><td>Codex review, then a full runtime build and the live section 19.4 tests</td></tr>
+<tr><td>Runtime: HD cost</td><td>Claude agent + Codex</td><td>
+  <ul>
+  <li>Batching boundary cases (24/24).</li>
+  <li>Counters committed (04f8afe).</li>
+  <li>Region index revision 3 (default-off toggle; 74,913 checks, 0 mismatches).</li>
+  <li><strong>v45 matched pair</strong> (same build 50355824, same frozen pack, settings and observers; 120 s at normal speed, no fire, timer-assisted):
+    <ul>
+    <li>index OFF: 53.944 fps, 534,907 starved samples, region loop 3,037.6 ms over 6,472 frames;</li>
+    <li>index ON: 52.867 fps, 635,047 starved samples, region loop 210.4 ms over 6,344 frames, 3,033,874 indexed cuts.</li>
+    </ul>
+    That is about 93% less time in that component, but <strong>no net game gain established</strong>, and both runs still fail on audio. <a href="media/gallery/stage1-region-index-results.json">Exact report</a>; <a href="media/gallery/stage1-region-index-on-gameplay.mp4">actual silent gameplay</a>; <a href="media/gallery/stage1-region-index-on-callback.wav">separate actual callback audio</a>. Media was captured after timing.</li>
+  </ul>
+</td><td class="wip">index kept default OFF</td><td>Next measured target: the nested upload-index maintenance (incremental index in progress). Batch-key split reduction in progress. SYS qualification remains critical.</td></tr>
+<tr><td>Runtime: CPS validation</td><td>Claude agent</td><td>Phase 2 (accepted in principle); v2 virtual-PC (AS REQUIRED)</td><td class="wip">isolated</td><td>v3: RAM-mirror cases (Codex blocking review)</td></tr>
+<tr><td>Runtime: rewind</td><td>Codex + Claude agent</td><td>
+  <ul>
+  <li>Classifier and counters committed (7be82c4), live-verified: media_frames 0. Only 1 of 2,732 snapshot attempts was taken.</li>
+  <li><strong>Cause found:</strong> the sticky capture request is only tested on a 1-in-16,384 call stride, which almost always lands mid-pump in the interpreter.</li>
+  <li>An unapplied safe-edge capture fix reports 3.98 snapshots/s at interval 15 in a real rewind-unit test with a simulated caller, at about 2.1 ms per snapshot. This is not a live game result; <a href="../remaster-audit/runtime-review/rewind-fmv/unsafe-skip/README.md">local test receipt and pending live checks</a>.</li>
+  </ul>
+</td><td class="wip">classifier integrated; capture fix isolated</td><td>Codex review, then a live check that gameplay snapshots are taken without new hitches</td></tr>
+<tr><td>Gallery, endings, credits</td><td>Claude</td><td>Inventory of the 100 gallery screens (TEX and words exact for all 100) and the ending/credits members, with contact sheets and native renders</td><td class="wip">extracted</td><td>The static ending-scope key fix for member 4/21; an HD plan that splits each illustration from its lettering</td></tr>
+<tr><td>Stage 1 art</td><td>Claude agents</td><td>Import plan v3 (635 rows); Greif v4, Astraea v2.1, W5, HUD fades, w3 HUD class-fix, Drache v1 (83 keys), W6 native gaps (7 families), RISE class-fix</td><td class="wip">authored; not imported</td><td>Codex import and live A/B; live-pack class-fix for 386 audited keys; Drache v2; import plan v4</td></tr>
+<tr><td>Robin v2</td><td>Claude agent</td><td>RAM perception (player, 96-record actor pool, collision spheres, Greif HP), planner, 14 offline tests</td><td class="wip">offline only</td><td>Live client (dry-run); <code>read_ram_multi</code> from Codex; first live perception check</td></tr>
+<tr><td>HD audio</td><td>Claude agents</td><td>35 unique XA streams decoded bit-exact; v1 48 kHz masters; runtime pack design and step-1 diff (tests pass)</td><td class="wip">authored v1; not integrated</td><td>AI v2 masters (models installing); SFX inventory; Codex review of step 1</td></tr>
+<tr><td>Stages 2+3</td><td>Claude agent (EIN-STAGE2/3)</td><td>Static export present (stage 2 about 1,010 textures); stage 2 has 9 live-confirmed keys</td><td class="wip">extracted</td><td>Readiness reports landed; validate their source gaps before the first safe art families</td></tr>
+<tr><td>Stages 4+5</td><td>Claude agent (EIN-STAGE4/5)</td><td>Static export present</td><td class="wip">extracted</td><td>Stage 4 readiness report landed, stage 5 pending; confirm stage 4's lowest route live</td></tr>
+<tr><td>Stages 6+7, endings</td><td>Claude agent (EIN-STAGE6/7)</td><td>Static export present (including ending and gallery scopes)</td><td class="wip">extracted</td><td>Readiness reports landed; confirm stage 6's timeout ending, credits and gallery live</td></tr>
+<tr><td>Acquisition (AQ-01 onward)</td><td>Codex</td><td>Stage access plan; capture-only aid approved</td><td class="blocked">not started</td><td>Continuous capture chain after the SYS and pacing work</td></tr>
 </table>
 
 <h2>Risks</h2>
