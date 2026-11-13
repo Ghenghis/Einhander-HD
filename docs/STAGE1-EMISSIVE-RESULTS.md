@@ -63,6 +63,12 @@ The differing starting buffers prevent attributing starvation differences solely
 to the masks. One opening pair does not establish no overhead, resolved audio,
 or sustained full-stage cadence.
 
+A later 170-second same-route test also disabled source collection and
+measurement stills. It averaged 59.9238 guest frames/s with 9,061 additional
+starved sample frames, concentrated near seconds 148–149. It retained the
+timer-only aid and no firing. [The actual counters and limits](STAGE1-UI-RESULTS.md#audio-and-cadence-follow-up)
+remain short of full-combat or audible audio acceptance.
+
 ## Implementation and remaining work
 
 The startup option is `PSXRECOMP_HD_EMISSIVE=1`; it remains **off by default**.
@@ -78,6 +84,18 @@ their prior semantics. Invalid mask dimensions or encoding cannot affect the
 replacement. The production adapter resets the mask gate when switching to an
 unmasked key. The combined runtime passed **731/733 real-GL checks**, including
 loader, lease, budget, brightness, class, raw/fallback and key-switch checks.
+
+A subsequent v28 shader qualification changes the mask target to
+`max(vertex_rgb * 2, 1)` per channel. This preserves lighting that was already
+above neutral. Its mixed-channel and partial-mask regressions pass within
+735/737 real-GL checks. Two additional delivered region-O distant-city masks
+are registered in a fresh private composition. Both were submitted in game;
+[the actual 2160p still and component receipts](media/gallery/stage1-atlas-window-mask-results.json)
+retain their separate v28 provenance. All authored RGB images are unchanged;
+the four masks total 11 MiB as R8 textures. Full motion/material acceptance
+remains open. The video and comparison above retain their original v27 provenance.
+
+![Actual distant lit-window cells, v28](media/gallery/stage1-atlas-lit-windows.png)
 
 The replacement pack and runtime binary remain private and uninstalled. Further palette,
 pose, UV/material, full-stage/audio, interface, normal-launcher and rollback

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "kind": "Four-mask city-window component observation",
+  "candidate": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-w3-atlas-lit-v1/candidate.json",
+    "sha256": "03080ed163760d583233d7e9fa8243d05fca2332f37909f29fbc2ebb9d78b7c7",
+    "bytes": 6357780
+  },
+  "authored_entries": 837,
+  "pack_keys": 1669,
+  "all_authored_rgb_unchanged": true,
+  "native_verification": {
+    "keys": 1669,
+    "region_checks": 226,
+    "failures": 0
+  },
+  "native_receipt": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-w3-atlas-lit-v1/native-verification.json",
+    "sha256": "9ddaa795f34cd888e09ad67ac6174101355e4c6719eb5afdf52954f91270ebfa",
+    "bytes": 293
+  },
+  "runtime": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v28/build.json",
+    "sha256": "a430ead82f77341d0892b298d27d538a142aa20294b20076665393de08472e49",
+    "bytes": 31952
+  },
+  "validation": {
+    "receipt": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v28/tests.json",
+      "sha256": "5e2c6e5f3f8f8f557a94286a349d81bc241f3b2b96b17518f93fc9a701ea5d75",
+      "bytes": 71235
+    },
+    "summaries": {
+      "native-regions": "RESULT checks=33 failures=0",
+      "watchdog-time": "{\"checks\":9,\"failures\":0}",
+      "freeze-stack": "{\"thread_resumed_before_locking\":true,\"bounded_stack_copy\":true,\"self_suspend_rejected\":true}",
+      "hero-draw": "RESULT checks=52 failures=0",
+      "source-cache-filter": "RESULT checks=14 failures=0",
+      "decode-queue": "{\"checks\":259,\"failures\":0,\"capacity\":32,\"urgent_burst\":4}",
+      "real-gl-world-0": "WORLD_RESULT checks=735 failures=0",
+      "real-gl-world-1": "WORLD_RESULT checks=737 failures=0"
+    }
+  },
+  "formula": "RGB * mix(vertex_rgb * 2, max(vertex_rgb * 2, 1), mask / 255)",
+  "startup_opt_in": "PSXRECOMP_HD_EMISSIVE=1; default off",
+  "mask_files": [
+    {
+      "name": "01F17029-07D24911-emissive.png",
+      "sha256": "d4bc6c37b64ede47f636581dea9baaf09ec03199e50f7d46b98457b42f3ab5dd",
+      "dimensions": [
+        2048,
+        1024
+      ]
+    },
+    {
+      "name": "95A3BCF8-07A9568D-emissive.png",
+      "sha256": "83c458135ba48db265a0a0d349e7541d69be5d65ac2b72d2f6260f23bf538ffa",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "95A3BCF8-60245B3A-emissive.png",
+      "sha256": "af78354145c32d44a2fefcd7ea62f8d83c56767bffb2176e9a2d5ac00f398bfc",
+      "dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "name": "D318FEFA-EA6ACA31-emissive.png",
+      "sha256": "ace3528861d2ca721219036e62c4e4d77242af141d1ff0f7e9c35a0ab0c022f1",
+      "dimensions": [
+        2048,
+        512
+      ]
+    }
+  ],
+  "mask_gpu_bytes": 11534336,
+  "actual_gl_submissions": [
+    {
+      "key": "95A3BCF8-07A9568D",
+      "samples": 48,
+      "first_frame": 7720,
+      "last_frame": 11087
+    },
+    {
+      "key": "95A3BCF8-60245B3A",
+      "samples": 53,
+      "first_frame": 7677,
+      "last_frame": 11092
+    }
+  ],
+  "source_proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v2/hd-on_rewind-off/robin-proof.json",
+    "sha256": "bca32639e0b0d6b25eb2619ec7b9f64197a571f6d26153dcd5f41040e74a8043",
+    "bytes": 565980
+  },
+  "capture_metadata": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v2/hd-on_rewind-off/captures/robin-0105.json",
+    "sha256": "4a0980e77fa0399fcef560253280ceb4b4f078e309d72bccbef2e7ec3e09d272",
+    "bytes": 854
+  },
+  "image": {
+    "path": "docs/media/gallery/stage1-atlas-lit-windows.png",
+    "sha256": "fd7799d816e506a0d4b14a4984b8a778e858fb7ed0270847025596d50699a380",
+    "bytes": 1398046,
+    "dimensions": [
+      2880,
+      2160
+    ],
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v2/hd-on_rewind-off/captures/robin-0105-internal.png",
+      "sha256": "6313bf9a984ddda29d653e279e9aad679216da5800699ca5372ae03f6cfd5e16",
+      "bytes": 18666048
+    },
+    "pixel_identical": true,
+    "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved"
+  },
+  "stage_clear_verified": false,
+  "production_installed": false,
+  "all_art_motion_accepted": false,
+  "limitations": [
+    "Actual sequential2160p frame; not frame-aligned with an OFF capture. No measured pixel-matched brightness ratio.",
+    "This controller trial stopped at135seconds after a false checkpoint inference; it is excluded from progression qualification.",
+    "The masks affect selected lit cells in distant atlas region O only. They do not finish every building surface or all artwork.",
+    "The earlier complete facade video remains the original v27/two-mask test; it is not relabeled as this v28 run.",
+    "No dynamic illumination, reflection or parallax is added; full-motion/material/audio acceptance remains open."
+  ]
+}

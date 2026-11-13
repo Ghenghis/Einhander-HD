@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "kind": "Same-route descriptive diagnostic-load comparison",
+  "recorded": {
+    "proof": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/w3-emissive-on-v1/hd-on_rewind-off/world-flypast-proof.json",
+      "sha256": "612a4e5406c81e33245e966d5f266860b82a4552bf6082e35da98c6d00077710",
+      "bytes": 576334
+    },
+    "measurement_load": {
+      "video": true,
+      "source_capture": true,
+      "composed_stills": true
+    },
+    "guest_frames": 10102,
+    "seconds": 169.96951389999595,
+    "guest_fps": 59.43418774465437,
+    "starved_sample_frames_delta": 65521,
+    "initial_fill_ms": 128.3,
+    "final_fill_ms": 198.8,
+    "timer_only_assistance": true,
+    "ordinary_fire": false,
+    "state_loads": false,
+    "starved_intervals": [
+      {
+        "ending_seconds": 1.0062988999998197,
+        "delta": 3396
+      },
+      {
+        "ending_seconds": 10.007059199997457,
+        "delta": 2581
+      },
+      {
+        "ending_seconds": 78.00766730000032,
+        "delta": 7982
+      },
+      {
+        "ending_seconds": 79.00814900000114,
+        "delta": 5411
+      },
+      {
+        "ending_seconds": 80.00804179999977,
+        "delta": 4607
+      },
+      {
+        "ending_seconds": 81.00685229999362,
+        "delta": 4103
+      },
+      {
+        "ending_seconds": 82.00758629999473,
+        "delta": 2446
+      },
+      {
+        "ending_seconds": 83.0071317999973,
+        "delta": 2796
+      },
+      {
+        "ending_seconds": 138.1244025999913,
+        "delta": 18914
+      },
+      {
+        "ending_seconds": 139.006547099998,
+        "delta": 173
+      },
+      {
+        "ending_seconds": 143.00830549999955,
+        "delta": 2180
+      },
+      {
+        "ending_seconds": 144.00689930000226,
+        "delta": 2278
+      },
+      {
+        "ending_seconds": 145.00700430001598,
+        "delta": 1895
+      },
+      {
+        "ending_seconds": 150.00636090000626,
+        "delta": 822
+      },
+      {
+        "ending_seconds": 151.0060419999936,
+        "delta": 5327
+      },
+      {
+        "ending_seconds": 166.00702799999272,
+        "delta": 610
+      }
+    ],
+    "runtime_build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+    "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27"
+  },
+  "quiet": {
+    "proof": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/world-telemetry-lit-v1/hd-on_rewind-off/world-flypast-proof.json",
+      "sha256": "152f96f09c3df1d5aff9e574653122bb382a4a080238b963db970e258e0e4b13",
+      "bytes": 478052
+    },
+    "measurement_load": {
+      "video": false,
+      "source_capture": false,
+      "composed_stills": false,
+      "timer_assistance": true
+    },
+    "guest_frames": 10186,
+    "seconds": 169.98254120000638,
+    "guest_fps": 59.9238011627021,
+    "starved_sample_frames_delta": 9061,
+    "initial_fill_ms": 163.6,
+    "final_fill_ms": 181.1,
+    "timer_only_assistance": true,
+    "ordinary_fire": false,
+    "state_loads": false,
+    "starved_intervals": [
+      {
+        "ending_seconds": 148.00069190000067,
+        "delta": 4286
+      },
+      {
+        "ending_seconds": 149.0002048999886,
+        "delta": 4775
+      }
+    ],
+    "runtime_build_sha256": "cb52447370e663f749239c36936be2524776526d1ed81797a6c0577ab717255c",
+    "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27"
+  },
+  "same_runtime_and_candidate": true,
+  "causal_no_overhead_claim": false,
+  "full_combat_acceptance": false,
+  "audible_audio_acceptance": false,
+  "limitations": [
+    "One sequential pair; no repeat or randomized order. Different initial buffer fill and host state limit causal attribution.",
+    "Both routes used the disclosed timer-only aid and no firing. No unassisted or full-stage performance claim.",
+    "Quiet-route residual starvation remains, concentrated near148-149 seconds. Counter evidence does not prove acceptable audible output."
+  ],
+  "controlled_audio_probe": {
+    "receipt": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/audio-clock-probe-v1/result.json",
+      "sha256": "6cb5ea6d61dea2c4a9f3fd853f53a5d7090d2bce5799c2d63aa0d1d21236d559"
+    },
+    "source_sha256": "6e117c58fc1b8c0538ec16a07ea5946a10a1d7188de8b1f5ccb5fd8b3b3779e7",
+    "audio_bridge_sha256": "cde6849a145af93e52e28c6f16a189529530bb64ec7699d5c56d39924c244796",
+    "cases": [
+      {
+        "case": "nominal",
+        "seconds": 120,
+        "producer_hz": 44100.0,
+        "starved_output_frames": 0,
+        "overflow_source_frames": 0,
+        "final_fill_ms": 175.665,
+        "correction": 0.0,
+        "controlled_synthetic_input": true
+      },
+      {
+        "case": "steady59.9238guestfps",
+        "seconds": 120,
+        "producer_hz": 44043.993,
+        "starved_output_frames": 0,
+        "overflow_source_frames": 0,
+        "final_fill_ms": 163.251,
+        "correction": -0.00127,
+        "controlled_synthetic_input": true
+      },
+      {
+        "case": "steady59.4342guestfps",
+        "seconds": 120,
+        "producer_hz": 43684.137,
+        "starved_output_frames": 17815,
+        "overflow_source_frames": 0,
+        "final_fill_ms": 0.359,
+        "correction": -0.005,
+        "controlled_synthetic_input": true
+      },
+      {
+        "case": "nominal_with300ms_gap",
+        "seconds": 120,
+        "producer_hz": 44100.0,
+        "starved_output_frames": 6171,
+        "overflow_source_frames": 0,
+        "final_fill_ms": 173.636,
+        "correction": -0.000115,
+        "controlled_synthetic_input": true
+      }
+    ],
+    "actual_game_audio": false,
+    "audible_qa": false
+  }
+}

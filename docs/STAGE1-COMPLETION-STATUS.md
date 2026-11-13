@@ -10,18 +10,36 @@ all ten delivered building tiles submitted. The facade bracket measured 60.00
 guest frames/s with no starvation increment; the full recording averaged 59.43
 and still accumulated starvation. Recorder-off opening samples measured 60.07
 with masks off and 60.00 on, with different starting audio-buffer levels.
-The masks remain off by default, and nothing is installed.
+The masks remain off by default, and nothing is installed. A later same-route
+170-second observation without video, source dumps or measurement screenshots
+averaged 59.9238 and accumulated 9,061 starved sample frames, concentrated near
+148–149 seconds. It still used the disclosed timer-only aid and no firing;
+full-combat cadence and audible audio acceptance remain open.
 
 The preceding composition combines the new Astraea hulls and
 32 canopy phases, scoped Gunpod cells, approved sign revisions, three canyon
 wall/band bindings and revised HUD/results glyphs. The [live Astraea test](STAGE1-WAVE3-RESULTS.md)
 positively submitted all five new hull bindings and all 32 canopy phases, with
 448 authored entries submitted overall. It closed cleanly after 180 seconds,
-without a stage clear. The new HUD/results font was not exercised. Greif v2
+without a stage clear. A subsequent [HUD/results census](STAGE1-UI-RESULTS.md)
+positively submitted nine new font bindings and observed Total Evaluation and
+Field Evaluation. Exit reached the opening movie and story text; return to title
+remains unverified. Greif v2
 failed an independent transparency check; the corrected v3 is now imported and
 observed in the later fly-past, with pose/material acceptance still open.
 Another 157 historical HUD fade aliases still lack
 captured palette bytes and remain unresolved.
+
+A newer private composition adds two delivered distant-city window masks while
+retaining all 837 authored RGB entries and passing all 226 native region checks.
+The v28 mask shader preserves above-neutral vertex lighting while lifting shaded
+channels; 735/737 real-GL checks pass with zero failures. Its live acceptance is
+in progress. Both additional atlas bindings were submitted and captured.
+The [stage-relative controller trial](STAGE1-CONTROLLER-RESULTS.md) ended at the
+third verified Continue prompt after two Continues, without a stage clear.
+Its camera-gap and bounded recovery fixes pass 25 controller checks; threat
+avoidance remains unfinished. Neither candidate has been installed or accepted
+as a completed stage.
 
 The newer [Wave 2 gameplay test](STAGE1-WAVE2-RESULTS.md) exercised a 723-entry,
 1,559-key private composition. All 219 native region checks passed, and the

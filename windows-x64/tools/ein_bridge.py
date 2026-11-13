@@ -30,6 +30,7 @@ from pathlib import Path
 
 from devtools_service import DevTools, scoped_path
 from research_service import ResearchService
+import robin_stage_policy
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TOOLS = os.path.join(ROOT, "tools")
@@ -122,6 +123,7 @@ class Robin(threading.Thread):
         self._vertical_direction = 1
         self._greif_anchor = None
         self._greif_hull_frame = None
+        self._stage = None
         self.position = None
         self.tick = 0.15           # decision period (seconds)
         self.log = []
@@ -160,7 +162,7 @@ class Robin(threading.Thread):
                 updates[key] = cfg[key]
         if "name" in cfg:
             updates["name"] = str(cfg["name"] or "Robin")[:24]
-        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "greif_lane", "draw_lane")),
+        for key, allowed in (("movement", ("weave", "left_lane", "upper_lane", "greif_lane", "stage_lane", "draw_lane")),
                              ("fire_mode", ("cross", "both"))):
             if key in cfg:
                 if cfg[key] not in allowed:
@@ -168,6 +170,7 @@ class Robin(threading.Thread):
                 updates[key] = cfg[key]
         for key, value in updates.items():
             setattr(self, key, value)
+        if self.movement=='stage_lane':self._stage=robin_stage_policy.session()
 
     def _read(self, addr: str, n: int):
         r = cmd({"cmd": "read_ram", "addr": addr, "size": n}, timeout=1.5)
@@ -262,6 +265,13 @@ class Robin(threading.Thread):
         self.position=dict(x=x,y=y,width=w,height=h,frame=state.get('frame'),
             age_frames=state.get('age_frames'),fresh=True,space=state.get('basis','hull draw geometry'))
         moves=[]
+        if self.movement=='stage_lane':
+            self.greif_target(state)  # Validate the actual source clock before using it.
+            moves=self._stage.moves(state,x,y)
+            if not self.weave:moves=[m for m in moves if m not in ('left','right')]
+            if not self.dodge:moves=[m for m in moves if m not in ('up','down')]
+            self.position['stage_policy']=dict(self._stage.last)
+            return moves
         if self.movement in ('upper_lane','greif_lane'):
             # Finite pulses follow actual completed-frame geometry. Open-loop
             # alternating pulses drifted low in the first live upper-lane run.
@@ -286,6 +296,7 @@ class Robin(threading.Thread):
         self.note(f"{self.name} online")
         phase, phase_len, dir_h, dir_v = 0, 0, "right", "down"
         failed_reads, previous_lives, missing_draws, respawn_grace = 0, None, 0, 0
+        missing_since=None
         while self.running:
             try:
                 lives = self._read(ADDR_LIVES, 1)
@@ -302,6 +313,7 @@ class Robin(threading.Thread):
                     self._halt.wait(.25)
                     continue
                 failed_reads = 0
+                if self._stage is not None:self._stage.note_lives(lives[0])
                 respawn_grace=max(0,respawn_grace-1)
                 if previous_lives is not None and lives[0]<previous_lives:
                     respawn_grace=20
@@ -311,13 +323,13 @@ class Robin(threading.Thread):
                 previous_lives = lives[0]
                 dead_or_menu = lives[0] == 0
                 draw_moves=None
-                if self.movement in ('draw_lane','upper_lane','greif_lane') or self.hull_guard:
+                if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') or self.hull_guard:
                     state=cmd({'cmd':'player_draw'},timeout=1.5)
                     if not state.get('ok') or not state.get('enabled'):
                         self.note('Hull draw tracking unavailable; bot stopped.')
                         self.request_stop();break
                     if state.get('valid'):
-                        if self.movement in ('draw_lane','upper_lane','greif_lane'):
+                        if self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane'):
                             try:draw_moves=self.draw_buttons(state)
                             except ValueError as error:
                                 self.note(str(error)+'; bot stopped.');self.request_stop();break
@@ -325,12 +337,21 @@ class Robin(threading.Thread):
                         # craft is still flying. A fresh hull is not Continue.
                         dead_or_menu=False
                         missing_draws=0
-                    elif self.movement in ('draw_lane','upper_lane','greif_lane') and not dead_or_menu:
+                        missing_since=None
+                    elif self.movement in ('draw_lane','upper_lane','greif_lane','stage_lane') and not dead_or_menu:
+                        if self._stage is not None and type(state.get('frame')) is int and type(state.get('age_frames')) is int:
+                            self._stage.absent(state['frame']+state['age_frames'])
                         missing_draws+=1
-                        if missing_draws>=40:
-                            self.note('Hull geometry absent for forty polls; bot stopped.')
+                        if missing_since is None:missing_since=time.monotonic()
+                        age=state.get('age_frames');draw_frame=state.get('frame')
+                        known_clock=type(age) is int and type(draw_frame) is int and age>=0 and draw_frame>=0
+                        # Measured native death-to-respawn gaps exceed the old
+                        # forty-poll (~6s) limit. Release input while waiting,
+                        # with both a guest-frame and host-time bound. Missing
+                        # clock replies retain the original forty-poll stop.
+                        if missing_draws>=40 and (not known_clock or age>720 or time.monotonic()-missing_since>15):
+                            self.note('Hull geometry absent beyond bounded respawn wait; bot stopped.')
                             self.request_stop();break
-                        age=state.get('age_frames')
                         if respawn_grace and self.position is not None and isinstance(age,int) and 12<age<=180:
                             # After an observed life loss, keep bounded fire
                             # through the respawn fly-in without guessing any
@@ -358,7 +379,7 @@ class Robin(threading.Thread):
                     continue
 
                 moves = []
-                if self.movement in ("draw_lane","upper_lane","greif_lane"):
+                if self.movement in ("draw_lane","upper_lane","greif_lane","stage_lane"):
                     moves=draw_moves
                     fire=["x"] if self.autofire else []
                     if self.autofire and self.fire_mode=="both":fire.append("square")

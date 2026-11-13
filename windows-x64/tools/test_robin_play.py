@@ -127,6 +127,36 @@ class RobinPlayTests(unittest.TestCase):
         self.assertFalse(any(c['cmd']=='write_ram' for phase,c in calls))
         self.assertEqual('clear_input',calls[-1][1]['cmd'])
 
+    def test_normal_respawn_can_exceed_forty_polls_without_blind_movement(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();polls=0;calls=[]
+        bot.apply(dict(movement='draw_lane',revive=False,fire_mode='both'))
+        def command(obj,timeout=8):
+            nonlocal polls
+            calls.append((polls,obj))
+            if obj['cmd']=='read_ram':return dict(ok=True,data='02')
+            if obj['cmd']=='player_draw':
+                polls+=1
+                if polls<=60:return dict(ok=True,enabled=True,valid=False,frame=1000,age_frames=200+polls*5)
+                return dict(ok=True,enabled=True,valid=True,bounds=[65,100,95,130],viewport=[320,224],frame=1510,age_frames=0)
+            if obj['cmd']=='press':bot.request_stop()
+            return dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertEqual(61,polls)
+        self.assertFalse(any(c['cmd'] in ('press','write_ram') for phase,c in calls if phase<=60))
+        self.assertTrue(any(c['cmd']=='press' for phase,c in calls if phase==61))
+
+    def test_expired_guest_respawn_wait_stops_and_releases_input(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt();calls=[]
+        bot.apply(dict(movement='draw_lane',revive=False))
+        def command(obj,timeout=8):
+            calls.append(obj)
+            return dict(ok=True,data='02') if obj['cmd']=='read_ram' else dict(ok=True,enabled=True,valid=False,frame=1000,age_frames=721)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertFalse(bot.running)
+        self.assertEqual(40,sum(c['cmd']=='player_draw' for c in calls))
+        self.assertFalse(any(c['cmd'] in ('press','write_ram') for c in calls))
+        self.assertEqual('clear_input',calls[-1]['cmd'])
+
     def test_revival_disabled_does_not_confirm_continue_with_autofire(self):
         bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt()
         bot.apply(dict(revive=False,autofire=True,invincible=False))

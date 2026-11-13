@@ -1426,7 +1426,7 @@ static const char *HD_FS =
     "  if (v_raw == 0) {\n"
     "    vec3 modulation=v_col.rgb*2.0;\n"
     "    if(u_hd_emissive_enabled!=0 && !native_edge)\n"
-    "      modulation=mix(modulation,vec3(1.0),texture(u_hd_emissive,rgb_pos).r);\n"
+    "      modulation=mix(modulation,max(modulation,vec3(1.0)),texture(u_hd_emissive,rgb_pos).r);\n"
     "    rgb=clamp(rgb*modulation,0.0,1.0);\n"
     "  }\n"
     "  float dst_factor = 0.0;\n"

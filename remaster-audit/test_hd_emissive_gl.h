@@ -13,12 +13,13 @@ static const char *EM_VS=
     "noperspective out vec2 v_uv; noperspective out vec4 v_col;\n"
     "smooth out vec2 v_uv_p;flat out int v_persp;flat out int v_raw;\n"
     "flat out ivec2 v_tpage;flat out ivec4 v_limits;flat out int v_semi;\n"
-    "uniform vec2 phase;uniform float skew;uniform int em_raw;\n"
+    "uniform vec2 phase;uniform float skew;uniform int em_raw;uniform vec3 em_col;\n"
     "void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);\n"
     "gl_Position=vec4(p*2.0-1.0,0,1);v_uv=vec2(phase.x+p.x*60.3+p.y*skew,phase.y+p.y*61.7);v_uv_p=v_uv;\n"
-    "v_col=vec4(0.25);v_persp=0;v_raw=em_raw;v_tpage=ivec2(768,0);v_limits=ivec4(0,0,63,63);v_semi=1;}\n";
+    "v_col=vec4(em_col,1.0);v_persp=0;v_raw=em_raw;v_tpage=ivec2(768,0);v_limits=ivec4(0,0,63,63);v_semi=1;}\n";
 static void em_gate(GLuint program,int enabled,int raw){
     p_glUseProgram(program);fm_i(program,"u_hd_emissive",3);fm_i(program,"u_hd_emissive_enabled",enabled);fm_i(program,"em_raw",raw);
+    p_glUniform3f(p_glGetUniformLocation(program,"em_col"),.25f,.25f,.25f);
 }
 static void fm_emissive_regression(const char *root){
     char path[2048],error[512]={0};snprintf(path,sizeof path,"%s/../emissive-pack",root);
@@ -82,6 +83,12 @@ static void fm_emissive_regression(const char *root){
                 FM_CHECK("full mask preserves authored lit colour",abs((int)b[right]-100)<=1&&abs((int)b[right+1]-150)<=1&&abs((int)b[right+2]-200)<=1);
                 int classes_same=1;for(int i=3;i<(int)sizeof a;i+=4)if(a[i]!=b[i])classes_same=0;
                 FM_CHECK("mask leaves cutout and STP classes unchanged",classes_same);
+                em_gate(program,0,0);p_glUniform3f(p_glGetUniformLocation(program,"em_col"),.75f,.25f,.5f);
+                fm_render(program,slot,0,0,0,0,a);
+                em_gate(program,1,0);p_glUniform3f(p_glGetUniformLocation(program,"em_col"),.75f,.25f,.5f);
+                fm_render(program,slot,0,0,0,0,b);
+                FM_CHECK("mask retains above-neutral channels while lifting shaded channels",abs((int)b[right]-150)<=1&&abs((int)b[right+1]-150)<=1&&abs((int)b[right+2]-200)<=1&&a[right]==b[right]&&a[right+2]==b[right+2]);
+                FM_CHECK("partial mask cannot dim above-neutral vertex lighting",abs((int)b[mid]-150)<=1&&abs((int)b[mid+1]-113)<=1&&abs((int)b[mid+2]-200)<=1);
                 em_gate(program,0,1);fm_render(program,slot,0,0,0,0,a);
                 em_gate(program,1,1);fm_render(program,slot,0,0,0,0,b);
                 FM_CHECK("raw primitive ignores emissive modulation",!memcmp(a,b,sizeof a));

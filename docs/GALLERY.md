@@ -8,7 +8,7 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 [Wave 3 Astraea gameplay](STAGE1-WAVE3-RESULTS.md) includes a continuous actual
 clip, all five new hull bindings and all 32 canopy phases submitted in game.
-The canyon windows still need brightness correction; stage completion remains open.
+The later mask test below supplies a canyon brightness correction; stage completion remains open.
 
 [Mk.III authored hull gameplay](STAGE1-MK3-RESULTS.md) adds a continuous actual
 clip and positive draw evidence for six new bindings. It is a component test,
@@ -30,6 +30,10 @@ building tiles submitted. No firing; normal clock; timer-only aid disclosed.
 Facade bracket 60.00 guest frames/s, full recording 59.43 with starvation still
 present. The separate recorder-off opening checks do not establish full-stage
 audio or release acceptance.
+
+[Actual HUD and results observation](STAGE1-UI-RESULTS.md) adds lossless 2160p
+Total Evaluation and Field Evaluation stills. Nine delivered font bindings were
+observed; missing fade palettes and return to title remain unresolved.
 
 ### Earlier 559-entry full facade and assembled actors
 

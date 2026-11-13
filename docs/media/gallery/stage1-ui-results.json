@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "kind": "Actual closed HUD and results observation",
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/robin-proof.json",
+    "sha256": "4eec833d0fdb8893e316101fc0f81c08e51ed0302c98d1360d8251104fbf87b0",
+    "bytes": 2491032
+  },
+  "duration_seconds": 600.0003382000141,
+  "font_manifest": {
+    "path": "remaster-audit/comfy-authoring/w3-hud/frozen/hud-label-font-BDAE4156-v1/manifest.json",
+    "sha256": "cf914cecf4b72204ca379494cabdacd358d2aa9274211d57f3177296c739b070",
+    "bytes": 152285
+  },
+  "font_bindings_submitted_gl": [
+    {
+      "key": "2C781811-B88C038E",
+      "first_frame": 12100
+    },
+    {
+      "key": "5C02D3C1-B88C038E",
+      "first_frame": 12103
+    },
+    {
+      "key": "786B98BF-B88C038E",
+      "first_frame": 12101
+    },
+    {
+      "key": "913A6603-B88C038E",
+      "first_frame": 12103
+    },
+    {
+      "key": "921FC559-B88C038E",
+      "first_frame": 12101
+    },
+    {
+      "key": "AAA5C104-B88C038E",
+      "first_frame": 12103
+    },
+    {
+      "key": "BDAE4156-B88C038E",
+      "first_frame": 12137
+    },
+    {
+      "key": "D050AD1B-B88C038E",
+      "first_frame": 12101
+    },
+    {
+      "key": "E1F18F98-B88C038E",
+      "first_frame": 12102
+    }
+  ],
+  "historical_missing_palette_keys": 157,
+  "historical_missing_keys_recovered": [],
+  "native_source_verification": {
+    "receipt": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/native-source-verification.json",
+      "sha256": "3d5b159a879c714c0b90541a3ac6d3e6cf5646f45356d0d894126e556ff801d9",
+      "bytes": 1405829
+    },
+    "passed_pairs": 837,
+    "rejected": [
+      {
+        "key": "59471BC6-E0AE221F",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-00F61447",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-17761414",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-87D74FCC",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-91478949",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-C288EEEE",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-D2D9B701",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-D6B2BFF7",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-E0AE221F",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-E20902CB",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-EE4896FB",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-EF6E99C9",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "B24C6DA2-FEB2DF2F",
+        "error": "Incomplete validity map"
+      },
+      {
+        "key": "DB715733-E0AE221F",
+        "error": "Incomplete validity map"
+      }
+    ],
+    "all_passed": false
+  },
+  "observed_ui": [
+    "Total Evaluation",
+    "Field Evaluation / Shot Down graph",
+    "Exit to native opening movie",
+    "Finite Start skip to native story text"
+  ],
+  "return_to_title_verified": false,
+  "stage_clear_verified": false,
+  "production_installed": false,
+  "images": [
+    {
+      "path": "docs/media/gallery/stage1-total-evaluation.png",
+      "sha256": "e962a92ac19dac975daedce485be603202b9104889a5a050f42bd1fb23183efd",
+      "bytes": 1954339,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "source": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/captures/hud-total-evaluation-internal.png",
+        "sha256": "2224c0a28b507af568bd47accf8f0bdb5e81d27bb1b892537fb3a1fa5c93d665",
+        "bytes": 18666048
+      },
+      "pixel_identical": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "label": "Total Evaluation",
+      "capture_metadata": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/captures/hud-total-evaluation.json",
+        "sha256": "def762cd92874ff69a5943884c1804a14cc8b9a77144a43f084085bc76eb7770",
+        "bytes": 888
+      },
+      "hires_sequential_not_atomic": true
+    },
+    {
+      "path": "docs/media/gallery/stage1-field-evaluation.png",
+      "sha256": "1dddf38fe5dda0b387bcbc3bbc5e3e42b326c899feeaf177f62e33c32fab7651",
+      "bytes": 1552939,
+      "dimensions": [
+        2880,
+        2160
+      ],
+      "source": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/captures/hud-field-graph-settled-internal.png",
+        "sha256": "cdbcc8d29fbd1d6394e1c704453145097f69b368ac66d6a66d367edcd4ca2ddb",
+        "bytes": 18666048
+      },
+      "pixel_identical": true,
+      "processing": "Lossless PNG compression; original pixel bytes and dimensions preserved",
+      "label": "Field Evaluation",
+      "capture_metadata": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/hud-fade-census-v1/hd-on_rewind-off/captures/hud-field-graph-settled.json",
+        "sha256": "1f89223e7b3d43c5f48872921072627acee9aabdeae667a8ec12e0a1f5117408",
+        "bytes": 897
+      },
+      "hires_sequential_not_atomic": true
+    }
+  ],
+  "limitations": [
+    "Nine positive font draw bindings do not establish every glyph, fade phase or menu state.",
+    "All157 historical missing palette keys remain unresolved; no palettes were synthesized.",
+    "Fourteen incomplete native validity maps were rejected and excluded; the complete source-capture verifier did not pass.",
+    "The24-bit movie scanout rejects the hires API; supported composed-only captures were retained instead.",
+    "Return to title, pause/configuration/rankings/save/name entry and stage clear remain unverified."
+  ]
+}

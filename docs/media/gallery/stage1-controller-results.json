@@ -1,0 +1,1962 @@
+{
+  "schema_version": 1,
+  "kind": "Actual bounded unassisted stage-policy qualification",
+  "trials": [
+    {
+      "run": "stage-lane-mk3-v1",
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v1/hd-on_rewind-off/robin-proof.json",
+        "sha256": "f5795fd77ed74e1b2f66239b47324286ab84eab4b1f27daf02a91aefd27e8157",
+        "bytes": 398986
+      },
+      "measurement_seconds": 90.99972120000166,
+      "end_lives": "01",
+      "verified_continues": [],
+      "closed_cleanly": true,
+      "qualification_passed": false,
+      "stage_clear_verified": false,
+      "reason": "Forty-poll hull absence stopped control during a camera/respawn gap.",
+      "policy_observations": [
+        {
+          "elapsed_seconds": 0.00046480001765303314,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 3593,
+            "stage": 1,
+            "greif": -5129,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "left",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 15.000207200006116,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 4440,
+            "stage": 848,
+            "greif": -4282,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 30.00025860001915,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 5330,
+            "stage": 1738,
+            "greif": -3392,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 105.52000000000001,
+            "direction": "down",
+            "label": "fighter wave 3",
+            "moves": [
+              "right",
+              "down"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 45.000425700010965,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 6205,
+            "stage": 526,
+            "greif": -4604,
+            "life": 2,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5299,
+                "stage": 1707,
+                "life": 1,
+                "next_checkpoint": 0
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 60.00027590000536,
+          "native_lives": "02",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 6259,
+            "stage": 580,
+            "greif": -4550,
+            "life": 2,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "left"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5299,
+                "stage": 1707,
+                "life": 1,
+                "next_checkpoint": 0
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 75.00057500001276,
+          "native_lives": "02",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 6259,
+            "stage": 580,
+            "greif": -4550,
+            "life": 2,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "left"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5299,
+                "stage": 1707,
+                "life": 1,
+                "next_checkpoint": 0
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 90.00055560001056,
+          "native_lives": "01",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 6259,
+            "stage": 580,
+            "greif": -4550,
+            "life": 2,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "left"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5299,
+                "stage": 1707,
+                "life": 1,
+                "next_checkpoint": 0
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "stage-lane-mk3-v2",
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v2/hd-on_rewind-off/robin-proof.json",
+        "sha256": "bca32639e0b0d6b25eb2619ec7b9f64197a571f6d26153dcd5f41040e74a8043",
+        "bytes": 565980
+      },
+      "measurement_seconds": 133.99972359999083,
+      "end_lives": "01",
+      "verified_continues": [],
+      "closed_cleanly": true,
+      "qualification_passed": false,
+      "stage_clear_verified": false,
+      "reason": "Camera/clipping absence falsely advanced the inferred checkpoint without native life loss.",
+      "policy_observations": [
+        {
+          "elapsed_seconds": 0.0005487000162247568,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 3654,
+            "stage": 1,
+            "greif": -5129,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "left",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 15.00056620000396,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 4501,
+            "stage": 848,
+            "greif": -4282,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 30.000328599999193,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 5378,
+            "stage": 1725,
+            "greif": -3405,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 92.0,
+            "direction": "down",
+            "label": "fighter wave 3",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 45.000550000026124,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 5877,
+            "stage": 2224,
+            "greif": -2906,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 60.0005066000158,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 7111,
+            "stage": 2292,
+            "greif": -2838,
+            "life": 2,
+            "checkpoint": 1733,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5814,
+                "stage": 2161,
+                "life": 1,
+                "next_checkpoint": 1733
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 75.00035440002102,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 7937,
+            "stage": 3118,
+            "greif": -2012,
+            "life": 2,
+            "checkpoint": 1733,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5814,
+                "stage": 2161,
+                "life": 1,
+                "next_checkpoint": 1733
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 90.0002150000073,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 8569,
+            "stage": 3750,
+            "greif": -1380,
+            "life": 2,
+            "checkpoint": 1733,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5814,
+                "stage": 2161,
+                "life": 1,
+                "next_checkpoint": 1733
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 105.00055789999897,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 9591,
+            "stage": 2375,
+            "greif": -2755,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 89.0,
+            "direction": "down",
+            "label": "fighter wave 4",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5814,
+                "stage": 2161,
+                "life": 1,
+                "next_checkpoint": 1733
+              },
+              {
+                "hit_frame": 8495,
+                "stage": 3676,
+                "life": 2,
+                "next_checkpoint": 1733
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 120.0005379000213,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-1",
+            "now": 10395,
+            "stage": 3179,
+            "greif": -1951,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 14,
+            "direction": "top",
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 5814,
+                "stage": 2161,
+                "life": 1,
+                "next_checkpoint": 1733
+              },
+              {
+                "hit_frame": 8495,
+                "stage": 3676,
+                "life": 2,
+                "next_checkpoint": 1733
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "run": "stage-lane-mk3-v3",
+      "proof": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/stage-lane-mk3-v3/hd-on_rewind-off/robin-proof.json",
+        "sha256": "b04893cf5368f9ea9bed3cc3fc2e9dd2eb48f1547d5841daa7a31d713433bd06",
+        "bytes": 1975277
+      },
+      "measurement_seconds": 480.00015229999553,
+      "end_lives": "00",
+      "verified_continues": [
+        {
+          "confirmed_seconds": 162.00044360000174,
+          "resumed_seconds": 167.00060430000303,
+          "resumed_frame": 12899,
+          "resumed_lives": 3
+        },
+        {
+          "confirmed_seconds": 313.00037269998575,
+          "resumed_seconds": 318.00028859998565,
+          "resumed_frame": 20855,
+          "resumed_lives": 3
+        }
+      ],
+      "closed_cleanly": true,
+      "qualification_passed": false,
+      "stage_clear_verified": false,
+      "reason": "Two verified Continues consumed; stopped at the third verified prompt without stage clear.",
+      "policy_observations": [
+        {
+          "elapsed_seconds": 0.0004245000018272549,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 3653,
+            "stage": 1,
+            "greif": -5129,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [
+              "left",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 15.0002506999881,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 4486,
+            "stage": 834,
+            "greif": -4296,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 30.000411099987105,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 5362,
+            "stage": 1710,
+            "greif": -3420,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 76.4,
+            "direction": "down",
+            "label": "fighter wave 3",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 45.00042490000487,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 6167,
+            "stage": 2515,
+            "greif": -2615,
+            "life": 1,
+            "checkpoint": 0,
+            "target_y": 111.0,
+            "direction": "up",
+            "label": "fighter wave 4",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": []
+          }
+        },
+        {
+          "elapsed_seconds": 60.00131419999525,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 7051,
+            "stage": 2122,
+            "greif": -3008,
+            "life": 2,
+            "checkpoint": 1733,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 75.00054750000709,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 7888,
+            "stage": 1878,
+            "greif": -3252,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 88.88,
+            "direction": "up",
+            "label": "fighter wave 3",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 90.00056129999575,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 8766,
+            "stage": 2756,
+            "greif": -2374,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 105.00037439999869,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 9621,
+            "stage": 3611,
+            "greif": -1519,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 120.00043419998838,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 10373,
+            "stage": 4363,
+            "greif": -767,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 38.70000000000002,
+            "direction": "down",
+            "label": "neon sweep",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 135.00026110000908,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 11118,
+            "stage": 5108,
+            "greif": 184,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 150.0005419999943,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 11929,
+            "stage": 5919,
+            "greif": 995,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 102.35,
+            "direction": "down",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 165.00038829998812,
+          "native_lives": "03",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 12126,
+            "stage": 6116,
+            "greif": 1192,
+            "life": 3,
+            "checkpoint": 1733,
+            "target_y": 160.94,
+            "direction": "up",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 180.00057559998822,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 13575,
+            "stage": 4552,
+            "greif": -578,
+            "life": 4,
+            "checkpoint": 3882,
+            "target_y": 31.199999999999974,
+            "direction": "up",
+            "label": "neon sweep",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 195.00050019999617,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 14350,
+            "stage": 5327,
+            "greif": 237,
+            "life": 4,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 210.00051690000691,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 14975,
+            "stage": 5952,
+            "greif": 862,
+            "life": 4,
+            "checkpoint": 3882,
+            "target_y": 46.127272727272725,
+            "direction": "up",
+            "label": "Greif volley 2",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 225.00025399998412,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 15972,
+            "stage": 4505,
+            "greif": -625,
+            "life": 5,
+            "checkpoint": 3882,
+            "target_y": 73.49999999999997,
+            "direction": "up",
+            "label": "neon sweep",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 240.0004690999922,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 16753,
+            "stage": 5286,
+            "greif": 168,
+            "life": 5,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 255.00045059999684,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 17278,
+            "stage": 5811,
+            "greif": 693,
+            "life": 5,
+            "checkpoint": 3882,
+            "target_y": 189.0090909090909,
+            "direction": "up",
+            "label": "Greif volley 2",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 270.0005230999959,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 18326,
+            "stage": 4553,
+            "greif": -577,
+            "life": 6,
+            "checkpoint": 3882,
+            "target_y": 30.299999999999983,
+            "direction": "up",
+            "label": "neon sweep",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 285.00045259998296,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 19175,
+            "stage": 5402,
+            "greif": 284,
+            "life": 6,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 300.00018440000713,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 19897,
+            "stage": 6124,
+            "greif": 1006,
+            "life": 6,
+            "checkpoint": 3882,
+            "target_y": 112.58,
+            "direction": "down",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "down"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 315.00063739999314,
+          "native_lives": "03",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 20058,
+            "stage": 6285,
+            "greif": 1167,
+            "life": 6,
+            "checkpoint": 3882,
+            "target_y": 184.19,
+            "direction": "up",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 6204,
+                "stage": 2552,
+                "life": 1,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 330.00047800000175,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 21481,
+            "stage": 4509,
+            "greif": -621,
+            "life": 7,
+            "checkpoint": 3882,
+            "target_y": 69.89999999999998,
+            "direction": "up",
+            "label": "neon sweep",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 345.0004037999897,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 22202,
+            "stage": 5230,
+            "greif": 136,
+            "life": 7,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 360.0004368000082,
+          "native_lives": "03",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 22994,
+            "stage": 6022,
+            "greif": 928,
+            "life": 7,
+            "checkpoint": 3882,
+            "target_y": 40.04,
+            "direction": "down",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "right"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 7304,
+                "stage": 2375,
+                "life": 2,
+                "next_checkpoint": 1733,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 375.00047639998957,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 23857,
+            "stage": 4330,
+            "greif": -800,
+            "life": 8,
+            "checkpoint": 3882,
+            "target_y": 18.999999999999986,
+            "direction": "up",
+            "label": "neon sweep",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 390.00035799999023,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 24637,
+            "stage": 5110,
+            "greif": -20,
+            "life": 8,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 405.00034450000385,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 25393,
+            "stage": 5866,
+            "greif": 752,
+            "life": 8,
+            "checkpoint": 3882,
+            "target_y": 139.12727272727273,
+            "direction": "up",
+            "label": "Greif volley 2",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 420.0001743999892,
+          "native_lives": "02",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 26133,
+            "stage": 6606,
+            "greif": 1492,
+            "life": 8,
+            "checkpoint": 3882,
+            "target_y": 99.56,
+            "direction": "down",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "right",
+              "down"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 12059,
+                "stage": 6049,
+                "life": 3,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 435.000618799997,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 27001,
+            "stage": 4397,
+            "greif": -733,
+            "life": 9,
+            "checkpoint": 3882,
+            "target_y": 69.30000000000001,
+            "direction": "down",
+            "label": "neon sweep",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 26060,
+                "stage": 6533,
+                "life": 8,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 450.00048519999837,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 27774,
+            "stage": 5170,
+            "greif": 48,
+            "life": 9,
+            "checkpoint": 3882,
+            "target_y": 28,
+            "direction": null,
+            "label": "upper home",
+            "moves": [],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 26060,
+                "stage": 6533,
+                "life": 8,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 465.00050639998517,
+          "native_lives": "01",
+          "running": true,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 28599,
+            "stage": 5995,
+            "greif": 873,
+            "life": 9,
+            "checkpoint": 3882,
+            "target_y": 36.827272727272714,
+            "direction": "up",
+            "label": "Greif volley 2",
+            "moves": [
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 26060,
+                "stage": 6533,
+                "life": 8,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        },
+        {
+          "elapsed_seconds": 480.00057679999736,
+          "native_lives": "00",
+          "running": false,
+          "policy": {
+            "version": "stage-schedule-experiment-2",
+            "now": 29057,
+            "stage": 6453,
+            "greif": 1331,
+            "life": 9,
+            "checkpoint": 3882,
+            "target_y": 31.669999999999987,
+            "direction": "up",
+            "label": "Greif later hypothesis",
+            "moves": [
+              "right",
+              "up"
+            ],
+            "qualified": false,
+            "deaths": [
+              {
+                "hit_frame": 14912,
+                "stage": 5889,
+                "life": 4,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 17215,
+                "stage": 5748,
+                "life": 5,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 19995,
+                "stage": 6222,
+                "life": 6,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 22963,
+                "stage": 5991,
+                "life": 7,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              },
+              {
+                "hit_frame": 26060,
+                "stage": 6533,
+                "life": 8,
+                "next_checkpoint": 3882,
+                "basis": "Observed native lives decrement; hit frame estimated from last hull"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "all_stage_clear_attempts_failed": true,
+  "ram_writes": false,
+  "state_loads": false,
+  "timer_assistance": false,
+  "production_installed": false,
+  "limitations": [
+    "Checkpoint A timing remains approximate.",
+    "Source-matched hull geometry is not visibility or collision proof; the native lives counter now gates death/checkpoint changes.",
+    "The25 passing controller tests verify input/clock/absence guards, not successful gameplay.",
+    "The run used source capture and sequential stills; it is not baseline pacing or audible audio acceptance."
+  ]
+}
