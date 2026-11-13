@@ -38,3 +38,10 @@ also limits consecutive hook continuations without tool work. Its documented
 [hook lifecycle and Stop behavior](https://code.claude.com/docs/en/hooks#stop)
 remain authoritative. A running watcher alone does not prove an active model or
 a completed project.
+
+The user's subsequent request exposed an empty durable pending queue despite
+the broad production backlog. Twelve owner-targeted workstreams are now queued,
+with an execution brief in `coordination/CLAUDE-WORK-QUEUE.md`. Audio and stutter
+root-cause reviews have highest priority. The guard also checks eligible queued
+work and blocks an otherwise valid waiting turn while independent items remain.
+Nine tests now cover this condition and exact owner/blocked/claimed filtering.

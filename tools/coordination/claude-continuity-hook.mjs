@@ -18,10 +18,21 @@ export async function inbox(base,owner){
   }
   return rows.sort((a,b)=>String(b.created_utc).localeCompare(String(a.created_utc)));
 }
-export function stopDecision({config,state,completion,mail,input,now=Date.now()}){
+export async function pendingWork(base,owner){
+  const directory=inside(base,'.hermes3d_orchestrator/tasks/pending');let names;
+  try{names=await fs.readdir(directory);}catch(e){if(e.code==='ENOENT')return [];throw e;}
+  const rows=[];
+  for(const name of names.filter(x=>/^[a-zA-Z0-9_-]+\.json$/.test(x))){
+    const task=await read(path.join(directory,name),null);
+    if(task&&task.target_owner_pattern===owner&&!task.blocked_reason&&!task.claimed_by)rows.push(task);
+  }
+  return rows.sort((a,b)=>(b.priority||0)-(a.priority||0));
+}
+export function stopDecision({config,state,completion,mail,queued=[],input,now=Date.now()}){
   if(state?.user_stop?.requested===true&&String(state.user_stop.reason||'').trim())return {};
   if(mail.length)return {decision:'block',reason:`Act on ${mail.length} unread Hermes message(s) before yielding: ${mail.slice(0,5).map(m=>m.id).join(', ')}. Read bodies, complete or checkpoint the requests, and acknowledge quietly.`};
   if(config.status==='complete'&&completion?.full_remaster_complete===true)return {};
+  if(queued.length)return {decision:'block',reason:`${queued.length} eligible Claude work item(s) remain in the durable queue: ${queued.slice(0,4).map(t=>t.task_id).join(', ')}. Read coordination/CLAUDE-WORK-QUEUE.md, claim and complete the highest eligible work; reconcile already completed items or record exact blockers. Do not enter a waiting turn while independent queued work remains.`};
   const age=now-Date.parse(state?.checkpoint_utc),wake=Date.parse(state?.continuation?.next_wakeup_utc);
   const waiting=typeof input.session_id==='string'&&input.session_id.length>0&&state?.session_id===input.session_id&&state?.phase==='waiting'&&
     Array.isArray(state.pending_task_ids)&&state.pending_task_ids.length>0&&String(state.next_action||'').trim()&&
@@ -40,18 +51,18 @@ export async function handle(input,base=root){
   const owner=config.owner,privateDir=inside(base,'.hermes3d_orchestrator/continuity');
   const state=await read(path.join(privateDir,owner+'.json'),null);
   const completion=await read(inside(base,config.completion_state),null);
-  const mail=await inbox(base,owner),event=input.hook_event_name;
+  const mail=await inbox(base,owner),queued=await pendingWork(base,owner),event=input.hook_event_name;
   await fs.mkdir(privateDir,{recursive:true});
   const sessionKey=crypto.createHash('sha256').update(String(input.session_id||'unknown')).digest('hex').slice(0,16);
   const activity=path.join(privateDir,`activity-${sessionKey}.json`);
   const previous=await read(activity,{}),now=Date.now();
   await fs.writeFile(activity,JSON.stringify({session_id:input.session_id,event,model_hook_observed_at_utc:new Date(now).toISOString(),notified_at_utc:previous.notified_at_utc})+'\n');
-  if(event==='Stop')return stopDecision({config,state,completion,mail,input,now});
+  if(event==='Stop')return stopDecision({config,state,completion,mail,queued,input,now});
   if(event==='PostToolUse'&&now-Date.parse(previous.notified_at_utc||0)<15000)return {};
-  if(event==='SessionStart'||(event==='PostToolUse'&&mail.length)){
+  if(event==='SessionStart'||(event==='PostToolUse'&&(mail.length||queued.length))){
     const context=`Einhander autonomous continuation: read CLAUDE.md and coordination/CLAUDE-HANDOFF.md. Overall completion=${completion?.full_remaster_complete===true}. ${mail.length} unread actionable Hermes message(s). `+
       mail.slice(0,5).map(m=>`${m.id} from=${m.sender} ${m.subject}`).join('; ')+
-      '. Read actual bodies and acknowledge quietly. Continue unfinished work; checkpoint and arm real continuation before a waiting turn.';
+      `. ${queued.length} eligible queued work item(s); read coordination/CLAUDE-WORK-QUEUE.md. Read actual mail bodies and acknowledge quietly. Claim the next eligible task; checkpoint and arm real continuation before a necessary waiting turn.`;
     await fs.writeFile(activity,JSON.stringify({session_id:input.session_id,event,model_hook_observed_at_utc:new Date(now).toISOString(),notified_at_utc:new Date(now).toISOString()})+'\n');
     return {hookSpecificOutput:{hookEventName:event,additionalContext:context}};
   }

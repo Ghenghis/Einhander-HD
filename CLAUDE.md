@@ -9,6 +9,8 @@ handoff, successful test or message acknowledgement is not project completion.
   inbox before work, during waits, after handoffs and before yielding.
 - Claim eligible work and lock files before editing. Respect Codex's live game
   and shared GPU/CPU reservations. Choose independent work while resources wait.
+- Drain `coordination/CLAUDE-WORK-QUEUE.md` and your durable Hermes queue. A
+  bounded waiting checkpoint cannot replace available independent queued work.
 - Refresh your own task/presence with actual work and task IDs. The inbox
   watcher records only its connection health and must not impersonate you.
 - Send concrete results with paths, hashes, actual checks and remaining work.
