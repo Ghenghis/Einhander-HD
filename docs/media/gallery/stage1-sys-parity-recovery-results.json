@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-11-13T20:59:54.190Z",
+  "scope": "Isolated CPU-only pre-input SYS parity validation through frame1100; no performance or release acceptance",
+  "base_source_commit": "6692f15a883ffc5a44f11e2589cc17d3f80679e5",
+  "fix": "Bypass the zero-cycle trampoline shortcut; execute live three-instruction vector stubs through the existing interpreter",
+  "source_sha256": "8df1c6d39e368c39542433e0346e96d85815a8d8378009e087c90a1c54fc21fd",
+  "executable_sha256": "9064019f8a6389747ca7d993f1cfa8ea4fd2c9178a8571e1be150159235759ff",
+  "proof_sha256": "7ef031bf435b27309b0aac00df167cc11c7dd343fdb95d54da93c2873f5cb579",
+  "patch_sha256": "2d2e07082f95b086c149ea1a7749ed14b3ed509336bf930f9e85aaab2dbde675",
+  "off": {
+    "exit": 0,
+    "headless": true,
+    "software_renderer": true
+  },
+  "on": {
+    "exit": 0,
+    "headless": true,
+    "software_renderer": true
+  },
+  "comparison": {
+    "frames": 1100,
+    "stores_per_run": 177057,
+    "store_cycle_differences": 0,
+    "first_store_difference": null,
+    "fingerprint_first_divergence": null,
+    "frame_boundaries_identical": true,
+    "passed": true
+  },
+  "regression_control": {
+    "store_cycle_differences": 122517,
+    "fingerprint_first_divergence": 1051,
+    "rejected": true
+  },
+  "coverage": {
+    "all_three_bios_vectors": true,
+    "warm_A0_and_B0": true,
+    "warm_C0": "NOT RUN",
+    "dedicated_synthetic_irq_fixture": "NOT RUN"
+  },
+  "trace_sha256": {
+    "off": "5e0b3a6b35bacc3156077d591b519359c0fbd3aed27f83a1adf6b9a849be99e6",
+    "on": "d0fd2826f27f07969e64721de564ea07faba8e4b381022e404892cae1022f4a1"
+  },
+  "limitations": [
+    "No dedicated synthetic cold/warm/IRQ fixture was added.",
+    "Real replay exercised A0/B0/C0, warm3-cycle A0/B0 and frame1050 IRQ savedEPC; warmC0 synthetic case NOT RUN.",
+    "No pad input; parity to1100 does not establish ordinary combat, game semantics after1100, performance, audio, stage completion or full remaster acceptance.",
+    "Runtime candidate remains isolated; no production integration, installation or promotion."
+  ],
+  "performance_acceptance": false,
+  "audio_resolved": false,
+  "production_installed": false,
+  "stage1_complete": false,
+  "full_remaster_complete": false
+}

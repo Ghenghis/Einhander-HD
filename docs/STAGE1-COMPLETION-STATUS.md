@@ -9,8 +9,12 @@ zero failures. The v47 CPU regression fixtures also passed. The
 [post-reboot renderer receipt](media/gallery/stage1-post-reboot-renderer-results.json)
 records the tested artifacts and log hashes. These are fixture results; the
 live firing comparison and audible acceptance remain pending. Both runtime
-candidates remain isolated, and neither is installed. The remaining SYS boot
-parity error is under separate CPU-only investigation.
+candidates remain isolated, and neither is installed. A separate isolated
+[SYS timing correction](media/gallery/stage1-sys-parity-recovery-results.json)
+now matches native OFF/ON through all 1,100 replayed pre-input frames: 177,057
+stores and their cycles match, with no fingerprint divergence. The regression
+rejects the original frame-1051 failure. This bounded replay does not establish
+combat, audio or later-game correctness; the SYS worktree remains unchanged.
 
 Capture preflight now uses bounded direct process inspection in place of the
 hanging PowerShell queries, retaining strict process and private-card checks.
