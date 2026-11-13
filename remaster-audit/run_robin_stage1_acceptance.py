@@ -31,7 +31,8 @@ def main():
     parser.add_argument('--seconds',type=int,choices=[180,600,900],default=180)
     parser.add_argument('--sources',action='store_true')
     parser.add_argument('--weave',type=int,choices=[0,1],default=1)
-    parser.add_argument('--movement',choices=['weave','left_lane','position_lane'],default='position_lane')
+    parser.add_argument('--movement',choices=['weave','left_lane','position_lane'],default='left_lane',
+        help='Position feedback is experimental and has failed live qualification; left_lane is the default bring-up route')
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     args=parser.parse_args()
@@ -121,6 +122,7 @@ def main():
             row=dict(elapsed_seconds=time.monotonic()-start,
                 registers=probe.request(report,'get_registers'),
                 lives=probe.request(report,'read_ram',addr='0x800813C4',len=1),
+                player_position=probe.request(report,'read_ram',addr='0x80081E18',len=8),
                 player_object=probe.request(report,'read_ram',addr='0x800856E0',len=160),
                 audio=probe.request(report,'audio_stats'))
             if index>=next_shot:

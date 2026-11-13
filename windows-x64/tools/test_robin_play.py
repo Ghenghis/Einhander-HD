@@ -11,13 +11,34 @@ class ImmediateHalt:
 class RobinPlayTests(unittest.TestCase):
     def test_position_feedback_corrects_both_axes_without_timer_drift(self):
         bot=bridge.Robin()
-        def moves(x,y):return bot.position_buttons(struct.pack('<ii',round(y*65536),round(x*65536)))
+        def moves(x,y):return bot.position_buttons(struct.pack('<ii',y,x))
         self.assertEqual(['left','down'],moves(128,0))
         self.assertEqual(['up'],moves(220,60))
         self.assertEqual(['right','down'],moves(300,-60))
         self.assertEqual(['down'],moves(220,0))
         with self.assertRaises(ValueError):moves(20000,0)
         with self.assertRaises(ValueError):bot.position_buttons(b'bad')
+
+    def test_calibrated_city_and_night_pulses_use_integer_global_coordinates(self):
+        self.assertEqual('0x80081E18',bridge.ADDR_PLAYER_POSITION)
+        for start_x,start_y in ((128,-9),(238,-37)):
+            bot=bridge.Robin();bot.apply(dict(dodge=False))
+            raw=lambda x,y:struct.pack('<ii',y,x)
+            for x in (start_x,start_x-114,start_x-228,start_x-114,start_x):
+                bot.position_buttons(raw(x,start_y))
+                self.assertEqual(x,bot.position['x'])
+                self.assertEqual(start_y,bot.position['y'])
+
+    def test_revival_disabled_does_not_confirm_continue_with_autofire(self):
+        bot=bridge.Robin();bot.running=True;bot._halt=ImmediateHalt()
+        bot.apply(dict(revive=False,autofire=True,invincible=False))
+        calls=[]
+        def command(obj,timeout=8):
+            calls.append(obj)
+            return dict(ok=True,data='00') if obj['cmd']=='read_ram' else dict(ok=True)
+        with patch.object(bridge,'cmd',command):bot.run()
+        self.assertFalse(bot.running)
+        self.assertEqual(['read_ram','clear_input'],[c['cmd'] for c in calls])
 
     def test_lane_uses_guest_progress_and_does_not_drift_horizontally(self):
         bot=bridge.Robin();bot.apply(dict(movement='left_lane',fire_mode='both'))

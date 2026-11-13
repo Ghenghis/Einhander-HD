@@ -118,10 +118,13 @@ def launch(report):
         else:raise TimeoutError('Owned runtime did not open its debug listener within60 seconds')
         base.write(directory/'launch-ready.json',dict(pid=process.pid,debug_port=4376,
             listener_ready_seconds=time.monotonic()-ready_started,at_utc=ui.stamp()))
+        # CIM identity checks can take longer than the title's idle timeout.
+        # Perform them before watching boot, so callers can act on the observed
+        # title immediately instead of finding the native attract sequence.
+        identity(report)
         import observe_native_boot as boot
         sys.argv=[boot.__file__,"--evidence",str(directory),"--label","pacing-boot"]
         assert boot.main()==0,"Native boot gate failed"
-        identity(report)
     except BaseException:
         cleanup=dict(pid=process.pid,owned_popen_handle=True,reason='Boot/identity gate failed',force_terminated=False)
         if process.poll() is None:
