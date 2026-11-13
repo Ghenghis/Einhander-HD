@@ -2,6 +2,18 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The [index-only experiment](media/gallery/stage1-index48-results.json) removed
+95,019 full rebuilds but did not fix the mini-boss hitch or audio starvation.
+The 350-frame hitch interval still took about 6.9 seconds; most wall time was
+in guest work. Actual instruction sampling identified hot interpreted ranges
+around 0x3A998 and 0xB5Cxx. Guarded native-code qualification is the next target.
+
+The bad segment itself is now recorded: [15-second silent mini-boss video](media/gallery/stage1-miniboss-stutter-20261113.mp4)
+and [separate game-process audio](media/gallery/stage1-miniboss-stutter-20261113.wav).
+Capture integrity passed with zero missing/filled packets, while the PCM analyzer
+found nine likely runtime dropouts. This assisted reproduction includes recording
+overhead and is not pacing acceptance. It is different from the post-timing clips below.
+
 After the emergency reboot, the RTX 3090 Ti is responding again. Fresh tests
 passed all 14,222 GL checks for the isolated v47 attribute-batching candidate
 and all 25,964 GL checks for the isolated source-lookup memo candidate, with

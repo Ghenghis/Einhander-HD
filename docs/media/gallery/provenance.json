@@ -2043,10 +2043,23 @@
       "processing": "Exact original silent normal-speed window recording after timing; no interpolation, retiming or scene cuts. Separate audio streams are not asserted synchronized.",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-miniboss-stutter-20261113.mp4",
+      "sha256": "d9a532489fbd89d3814e44ecc55164d8da13ded5f4aa7f8b4125b98d8098e037",
+      "bytes": 19441082,
+      "seconds": 15,
+      "width": 1280,
+      "height": 960,
+      "category": "actual_gameplay_capture",
+      "status": "Actual mini-boss stutter reproduction; timer-assisted; recorder overhead disclosed; unresolved",
+      "result_manifest": "docs/media/gallery/stage1-index48-results.json",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 18,
-  "total_video_bytes": 513930176,
+  "video_count": 19,
+  "total_video_bytes": 533371258,
   "video_frame_extract_count": 8,
   "audio_assets": [
     {
@@ -2352,8 +2365,19 @@
       "source_pcm_slice_sha256": "b692dd931fe85abe29a5fc2b9822933937c9db49260fc5dd398a54d6864e2d18",
       "output_pcm_sha256": "b692dd931fe85abe29a5fc2b9822933937c9db49260fc5dd398a54d6864e2d18",
       "pcm_byte_slice_equal": true
+    },
+    {
+      "path": "docs/media/gallery/stage1-miniboss-stutter-20261113.wav",
+      "sha256": "8750a99816dca00f801f03d21d89009424ce210807e123dae0da36cda442be9b",
+      "bytes": 2880482,
+      "seconds": 15,
+      "rate": 48000,
+      "channels": 2,
+      "category": "actual_game_process_audio",
+      "status": "Capture integrity passes;9 likely runtime dropouts; unresolved",
+      "result_manifest": "docs/media/gallery/stage1-index48-results.json"
     }
   ],
-  "audio_count": 23,
-  "total_audio_bytes": 67583880
+  "audio_count": 24,
+  "total_audio_bytes": 70464362
 }

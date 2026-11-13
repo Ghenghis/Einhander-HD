@@ -1,0 +1,131 @@
+{
+  "date": "2026-11-13",
+  "scope": "Isolated upload-index experiment plus captured actual mini-boss failure",
+  "runtime_sha256": "22635802b9b7d6ad7aaf680ca5387e432c0400ce734359fa31e2cf66d665ca94",
+  "gl": [
+    {
+      "index": 0,
+      "world": 0,
+      "exit": 0,
+      "result": [
+        [
+          "3555",
+          "0"
+        ]
+      ]
+    },
+    {
+      "index": 0,
+      "world": 1,
+      "exit": 0,
+      "result": [
+        [
+          "3557",
+          "0"
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "world": 0,
+      "exit": 0,
+      "result": [
+        [
+          "3555",
+          "0"
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "world": 1,
+      "exit": 0,
+      "result": [
+        [
+          "3557",
+          "0"
+        ]
+      ]
+    }
+  ],
+  "off": {
+    "fps": 58.549279953114926,
+    "starved": 118587,
+    "index_mode": 0,
+    "rebuilds": 95019,
+    "rebuild_ms": 3562.3993,
+    "incremental": 0,
+    "incremental_ms": 0,
+    "exit": 0,
+    "errors": []
+  },
+  "on": {
+    "fps": 58.1073417574741,
+    "starved": 153966,
+    "index_mode": 1,
+    "rebuilds": 0,
+    "rebuild_ms": 0,
+    "incremental": 93747,
+    "incremental_ms": 132.54250000000002,
+    "exit": 0,
+    "errors": []
+  },
+  "hitch_bench": {
+    "frames": [
+      9250,
+      9600
+    ],
+    "off": {
+      "wall_ms": 6931.939,
+      "guest_work_ms": 6441.986,
+      "pacer_ms": 339.985
+    },
+    "on": {
+      "wall_ms": 6983.564,
+      "guest_work_ms": 6638.592,
+      "pacer_ms": 178.076
+    }
+  },
+  "index_optimization_removed_rebuilds": true,
+  "stutter_fixed": false,
+  "audio_fixed": false,
+  "causal_limits": [
+    "One ordered pair; other user project CPU load changed and was not stopped.",
+    "Guest-work timing includes guest execution and synchronous GPU commands; it is not pure CPU emulation time.",
+    "Captured failure is a separate recording run with telemetry and recorder load, not pacing acceptance."
+  ],
+  "capture": {
+    "trigger_frame": 8844,
+    "duration_seconds": 15,
+    "video_silent": true,
+    "audio_process_scoped": true,
+    "synchronization_asserted": false,
+    "packet_holes": 0,
+    "zero_filled_sample_frames": 0,
+    "likely_runtime_dropouts": 9,
+    "media": [
+      {
+        "path": "docs/media/gallery/stage1-miniboss-stutter-20261113.mp4",
+        "sha256": "d9a532489fbd89d3814e44ecc55164d8da13ded5f4aa7f8b4125b98d8098e037",
+        "bytes": 19441082
+      },
+      {
+        "path": "docs/media/gallery/stage1-miniboss-stutter-20261113.wav",
+        "sha256": "8750a99816dca00f801f03d21d89009424ce210807e123dae0da36cda442be9b",
+        "bytes": 2880482
+      }
+    ]
+  },
+  "pc_sampling": {
+    "instruction_attempts": 630932534,
+    "samples": 616323,
+    "dropped": 0,
+    "hot_ranges": [
+      "0x3A998 vicinity",
+      "0xB5Cxx"
+    ],
+    "scope": "Randomized interpreted instruction attempts, not elapsed-time shares"
+  },
+  "next": "Qualify and test native execution for resident SYS and boss BINPACK1 hot routines with exact byte/range guards.",
+  "production_installed": false
+}
