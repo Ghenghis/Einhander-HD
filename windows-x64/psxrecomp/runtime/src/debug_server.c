@@ -23,6 +23,7 @@
 #include "overlay_capture.h"
 #include "code_provider.h"
 #include "overlay_backend.h"
+#include "interp_pc_sampler.h"
 #include "cpu_state.h"
 #include "pgxp.h"
 #include "dma.h"
@@ -5167,7 +5168,7 @@ static void handle_threat_draw(int id,const char *json){
     for(unsigned i=0;i<s.count&&i<THREAT_DRAW_MAX;++i){
         const ThreatDrawBox *b=s.boxes+i;
         pos+=snprintf(out+pos,sizeof(out)-pos,"%s{\"family\":\"%s\",\"key\":\"%08X-%08X\",\"bounds\":[%d,%d,%d,%d]}",
-            i?",":"",b->family==1?"fighter":b->family==2?"uhu":b->family==4?"greif":"tracer",b->texture,b->palette,
+            i?",":"",threat_draw_family_name(b->family),b->texture,b->palette,
             b->bounds[0],b->bounds[1],b->bounds[2],b->bounds[3]);
     }
     snprintf(out+pos,sizeof(out)-pos,"],\"scope\":\"partial source-query clusters; not object identity, pixel visibility or collision proof\"}");
@@ -5212,6 +5213,19 @@ static void handle_hd_cpu_profile(int id,const char *json) {
              (unsigned long long)s.max_batch_primitives,(unsigned long long)s.batch_state_skips,
              (unsigned long long)s.base_filter_updates,(unsigned long long)s.base_filter_skips,
              (unsigned long long)s.hr_bracket_keeps,(unsigned long long)s.hr_bracket_skips);
+}
+
+static void handle_dirty_pc_profile(int id,const char *json){
+    int enabled=json_get_int(json,"enabled",-1),reset=json_get_int(json,"reset",0);
+    if(enabled< -1||enabled>1||(reset!=0&&reset!=1)){send_err(id,"enabled must be -1/0/1 and reset 0/1");return;}
+    dirty_ram_pc_profile_configure(enabled,reset);
+    InterpPcSampleStats stats;InterpPcBucket rows[INTERP_PC_SAMPLE_TOP];
+    unsigned count=dirty_ram_pc_profile_get(&stats,rows,INTERP_PC_SAMPLE_TOP);
+    char out[16384];size_t pos=0;
+    pos+=snprintf(out,sizeof(out),"{\"id\":%d,\"ok\":true,\"enabled\":%s,\"bucket_bytes\":16,\"stride_range\":[512,1535],\"observed_instruction_attempts\":%llu,\"samples\":%llu,\"dropped\":%llu,\"occupied_buckets\":%u,\"top\":[",id,stats.enabled?"true":"false",(unsigned long long)stats.observed,(unsigned long long)stats.samples,(unsigned long long)stats.dropped,stats.occupied);
+    for(unsigned i=0;i<count;++i)pos+=snprintf(out+pos,sizeof(out)-pos,"%s{\"pc_lo\":\"0x%08X\",\"samples\":%llu}",i?",":"",rows[i].pc,(unsigned long long)rows[i].samples);
+    snprintf(out+pos,sizeof(out)-pos,"],\"scope\":\"Randomized interpreted RAM instruction-attempt samples; 16-byte buckets. Not dispatch-chain totals, native work or elapsed-time shares.\"}");
+    debug_server_send_line(out);
 }
 
 /* "dump_ram" is an alias of "read_ram".  The old implementation answered a
@@ -13670,6 +13684,7 @@ static const CmdEntry s_commands[] = {
     { "dirty_block_log",   handle_dirty_block_log },
     { "dirty_flow_log",    handle_dirty_flow_log },
     { "dirty_insn_log",    handle_dirty_insn_log },
+    { "dirty_pc_profile", handle_dirty_pc_profile },
     { "dirty_insn_dump_file", handle_dirty_insn_dump_file },
     { "dirty_block_dump_file", handle_dirty_block_dump_file },
     { "fntrace_arm",       handle_fntrace_arm },

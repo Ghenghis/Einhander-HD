@@ -25,7 +25,7 @@ class CombatPolicy:
         for item in objects:
             if not isinstance(item,dict):self.last=result;return result
             bounds=item.get('bounds');family=item.get('family');key=item.get('key')
-            if (family not in ('fighter','uhu','greif','tracer') or not isinstance(key,str) or
+            if (family not in ('fighter','uhu','greif','greif_arm','greif_mount','tracer') or not isinstance(key,str) or
                 not isinstance(bounds,list) or len(bounds)!=4 or not all(type(v) is int for v in bounds) or
                 not 0<=bounds[0]<bounds[2]<320 or not 0<=bounds[1]<bounds[3]<224):
                 self.last=result;return result
@@ -53,7 +53,13 @@ class CombatPolicy:
         def cost(q):
             value=max(0,q['bounds'][0]-r)*.25+abs(q['y']-y)
             return value*.55 if q['track']==self.lock else value
-        chosen=min(forward,key=cost) if forward else None
+        # Prefer the source-proven moving gun arm, then its exposed mount.
+        # A fresh component replaces the housing/base aim; no cached phase or
+        # disappearance is interpreted as proof of damage or destruction.
+        arms=[q for q in forward if q['family']=='greif_arm']
+        mounts=[q for q in forward if q['family']=='greif_mount']
+        eligible=arms or mounts or forward
+        chosen=min(eligible,key=cost) if eligible else None
         target_y=80.;tolerance=10.;result.update(source_frame=frame,visible_enemy_clusters=len(tracks),fire=True)
         if chosen:
             self.lock=chosen['track'];flight=min(24,max(0,(chosen['x']-x)/12))

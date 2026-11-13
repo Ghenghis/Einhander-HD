@@ -77,6 +77,11 @@ def prepare(args):
         composed_stills=not args.telemetry_only,telemetry_only=args.telemetry_only,cpu_profile=bool(args.cpu_profile),runtime_perf=bool(args.runtime_perf))
     report['visual_profile'].update(retain_host_audio=bool(args.retain_host_audio),dirty_profile=bool(args.dirty_profile))
     report['visual_profile'].update(media_profile=bool(args.media_profile),rewind_capture=bool(args.rewind))
+    report['visual_profile']['interp_pc_profile']=bool(args.interp_pc_profile)
+    report['launches']['candidate']['environment_overrides'].update(PSX_OVERLAY_DIFF='0',PSX_OVERLAY_DIFF_ADDR='0')
+    if args.qualified_code_proof:
+        from build_stage1_code_cache import stage_qualified_cache
+        stage_qualified_cache(report,args.qualified_code_proof)
     if args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
@@ -133,6 +138,9 @@ def run(args):
                 stderr=subprocess.PIPE,creationflags=subprocess.CREATE_NO_WINDOW)
         proof['measurement_load']=dict(video=recorder is not None,source_capture=recording,
             composed_stills=report['visual_profile'].get('composed_stills',True),timer_assistance=True)
+        if report['visual_profile'].get('interp_pc_profile'):
+            proof['interp_pc_profile_start']=probe.request(report,'dirty_pc_profile',enabled=1,reset=1)
+            proof['measurement_load']['actual_instruction_sampler']=True
         start=time.monotonic()
         proof['park_input']=probe.request(report,'press',buttons=0xFF3F,frames=72)
         cursor=0;tail='';shots=directory/'observations';shots.mkdir()
@@ -158,6 +166,8 @@ def run(args):
                 row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
             if report['visual_profile'].get('dirty_profile') and second in (0,65,75,85,95,120,150,169):
                 row['dirty_ram_stats']=probe.request(report,'dirty_ram_stats')
+            if report['visual_profile'].get('interp_pc_profile') and second in (0,65,75,85,95,120,150,169):
+                row['interp_pc_profile']=probe.request(report,'dirty_pc_profile')
             if report['visual_profile'].get('media_profile'):
                 row['fmv_state']=probe.request(report,'fmv_state')
                 row['gpu_state']=probe.request(report,'gpu_state')
@@ -171,6 +181,8 @@ def run(args):
             proof['observations'].append(row)
             with (directory/'visual-observations.jsonl').open('a') as stream:stream.write(json.dumps(row)+'\n')
             if recorder is not None and recorder.poll() is not None:break
+        if report['visual_profile'].get('interp_pc_profile'):
+            proof['interp_pc_profile_end']=probe.request(report,'dirty_pc_profile',enabled=0)
         if report['visual_profile'].get('retain_host_audio'):
             # Copy historical callback PCM only AFTER the final measured sample.
             # Explicit absolute sample indices avoid the native start=-1/oldest
@@ -249,6 +261,8 @@ if __name__=='__main__':
     p.add_argument('--rewind-fmv-interval',type=int,choices=[4,15],default=4,help='Private existing-env cadence control; same binary, snapshots remain enabled')
     p.add_argument('--media-profile',action='store_true',help='Observe actual XA/MDEC/depth24 and CD activity; diagnostic overhead disclosed')
     p.add_argument('--dirty-profile',action='store_true',help='Read interpreter PC counters at bounded transition/Greif checkpoints; diagnostic overhead disclosed')
+    p.add_argument('--interp-pc-profile',action='store_true',help='Opt-in actual instruction-PC sampling; not dispatch-chain attribution or pacing acceptance')
+    p.add_argument('--qualified-code-proof',type=Path,help='Stage only observed-qualified cached code for this exact same executable')
     p.add_argument('--retain-host-audio',action='store_true',help='After measurement, preserve up to60seconds of actual game callback PCM for audible review')
     p.add_argument('--hires-stills',action='store_true')
     p.add_argument('--telemetry-only',action='store_true',help='Same disclosed timer-assisted route without video, source collection or measurement screenshots')

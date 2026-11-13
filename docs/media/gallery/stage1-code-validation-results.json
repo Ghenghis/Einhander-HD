@@ -1,0 +1,208 @@
+{
+  "schema_version": 1,
+  "kind": "Failed private compiled-code correctness validation",
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/loaded-code-validation-v1/hd-on_rewind-off/loaded-code/code-capture-proof.json",
+    "sha256": "2e081daa07f372beea160af2580ac088fccb4c65d56e57c61fcdaa9a4a231417",
+    "bytes": 624183
+  },
+  "run": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/loaded-code-validation-v1/hd-on_rewind-off/world-flypast-proof.json",
+    "sha256": "26c72edf4d11960edc37e6be2ba8e8bd6ef27fd82a79843c3005ccb4a037ad63",
+    "bytes": 954736
+  },
+  "cache_build": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/loaded-code-cache-v2/build.json",
+    "sha256": "5d27a8377ded238105ad57ac4169fbe9905e74323383352c75802b6d6ef0a8b0",
+    "bytes": 12182
+  },
+  "compile_exit": 0,
+  "artifacts_built": 12,
+  "requested_hot_entries_exported": [
+    "0x00026714",
+    "0x000D8094",
+    "0x000D266C",
+    "0x0003A998",
+    "0x00096020",
+    "0x000AE52C",
+    "0x00091790",
+    "0x00091AF8",
+    "0x000393D8"
+  ],
+  "raw_boot_text_bytes_independently_compared": 131076,
+  "shadow_calls": 8206,
+  "divergences": 107,
+  "skipped_device_or_unsafe": 6863,
+  "exception_escapes": 0,
+  "divergence_kind_counts": {
+    "16": 82,
+    "15": 4,
+    "8": 4,
+    "9": 16,
+    "1": 1
+  },
+  "kind_labels": {
+    "1": "PC",
+    "8": "multiply/divide timestamp",
+    "9": "GTE timestamp",
+    "15": "guest cycle",
+    "16": "trace/replay"
+  },
+  "hot_candidate_results": {
+    "0x00026714": [],
+    "0x000D8094": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x000D266C": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 0
+      }
+    ],
+    "0x0003A998": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      },
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x00096020": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x000AE52C": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x00091790": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x00091AF8": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ],
+    "0x000393D8": [
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      },
+      {
+        "match": 1,
+        "diff_passes": 0,
+        "device_touch": 1
+      }
+    ]
+  },
+  "hot_divergences": [
+    {
+      "addr": "0x0003A998",
+      "kind": 9,
+      "cycle_native": 4983,
+      "cycle_interp": 5001,
+      "trace_ops": 579,
+      "replay_ops": 579
+    },
+    {
+      "addr": "0x000393D8",
+      "kind": 9,
+      "cycle_native": 373,
+      "cycle_interp": 371,
+      "trace_ops": 29,
+      "replay_ops": 29
+    },
+    {
+      "addr": "0x00091790",
+      "kind": 16,
+      "cycle_native": 168,
+      "cycle_interp": 51,
+      "trace_ops": 4,
+      "replay_ops": 4
+    },
+    {
+      "addr": "0x00091AF8",
+      "kind": 16,
+      "cycle_native": 0,
+      "cycle_interp": 9113,
+      "trace_ops": 928,
+      "replay_ops": 0
+    },
+    {
+      "addr": "0x0003A998",
+      "kind": 9,
+      "cycle_native": 1196,
+      "cycle_interp": 1200,
+      "trace_ops": 128,
+      "replay_ops": 128
+    },
+    {
+      "addr": "0x000393D8",
+      "kind": 9,
+      "cycle_native": 373,
+      "cycle_interp": 371,
+      "trace_ops": 29,
+      "replay_ops": 29
+    },
+    {
+      "addr": "0x00096020",
+      "kind": 16,
+      "cycle_native": 3582,
+      "cycle_interp": 5740,
+      "trace_ops": 701,
+      "replay_ops": 701
+    },
+    {
+      "addr": "0x000AE52C",
+      "kind": 16,
+      "cycle_native": 184007,
+      "cycle_interp": 233173,
+      "trace_ops": 36934,
+      "replay_ops": 36934
+    },
+    {
+      "addr": "0x000D8094",
+      "kind": 16,
+      "cycle_native": 814,
+      "cycle_interp": 1061,
+      "trace_ops": 163,
+      "replay_ops": 163
+    }
+  ],
+  "hot_entries_with_32_clean_comparisons": [],
+  "correctness_accepted": false,
+  "performance_accepted": false,
+  "audio_resolved": false,
+  "production_installed": false,
+  "guard_changed": false,
+  "cps_mode": 1,
+  "limitations": [
+    "Compilation and matching code bytes do not establish equivalent execution.",
+    "Global shadowing also exercised additional region functions and can suppress nested native calls while validating a long-lived parent.",
+    "Failure kinds still require focused diagnosis of core, codegen, shadow accounting and diagnostic interference; no timing check was disabled.",
+    "Timer-assisted no-fire diagnostic, not an ordinary-input combat, movie or performance acceptance run.",
+    "No raw game code, captured RAM, disc data or compiled game-derived modules are published."
+  ]
+}

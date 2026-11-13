@@ -3531,8 +3531,16 @@ retry_candidates:
          * their valid cached DLL (Tomba FMV's 0x80106424/0x80106688 case). */
         if (head < 0 && g_psx_cps_mode)
             loaded_range_ci = overlay_find_by_range(phys);
+        /* A continuation owner can be awaiting its own differential budget
+         * without its root ever being called. It must not prevent an exact
+         * manifested entry from loading for an independent comparison.
+         * Keep normal bundle preference and all live-byte checks unchanged. */
+        int owner_diff_gated = loaded_range_ci >= 0 && s_diff_mode &&
+            addr >= 0x10000u &&
+            cand_selected_for_diff(&s_cand[loaded_range_ci]) &&
+            (s_diff_addr || s_cand[loaded_range_ci].diff_passes < OVERLAY_DIFF_BUDGET);
         exact_needs_load = lazy_exact &&
-            (loaded_range_ci < 0 || s_cand[loaded_range_ci].device_touch);
+            (loaded_range_ci < 0 || s_cand[loaded_range_ci].device_touch || owner_diff_gated);
         if (head < 0 && (loaded_range_ci < 0 || exact_needs_load) &&
             !lazy_loaded && try_load_region(phys)) {
             lazy_loaded = 1;

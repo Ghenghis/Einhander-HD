@@ -39,5 +39,16 @@ int main(void){
     memset(&s,0,sizeof s);
     for(unsigned i=0;i<THREAT_DRAW_MAX+4;++i)observe(&s,20,10,250,0xC7502427u,i,0);
     CHECK("capacity never exceeds fixed array and reports overflow",s.count==THREAT_DRAW_MAX&&s.dropped==4);
+    memset(&s,0,sizeof s);
+    observe(&s,30,200,260,0x38DC02FEu,0x3F675C0Du,0);
+    observe(&s,30,204,260,0x1263A036u,0x6E78D825u,0);
+    observe(&s,30,204,260,0x1263A036u,0x724442F7u,0);
+    CHECK("touching arm housing and mount retain separate target geometry",s.count==3&&s.boxes[0].family==5&&s.boxes[1].family==4&&s.boxes[2].family==6);
+    observe(&s,30,208,260,0xE27E0D6Au,0x724442F7u,0);
+    CHECK("mount page and audited strip join only their own component",s.count==3&&s.boxes[2].family==6&&s.boxes[2].bounds[2]==212);
+    CHECK("arm palette mismatch stays generic",threat_draw_family(0x38DC02FEu,0x724442F7u,0)==4);
+    CHECK("mount strip requires exact palette and depth",threat_draw_family(0xE27E0D6Au,0,0)==0&&threat_draw_family(0xE27E0D6Au,0x724442F7u,1)==0);
+    CHECK("all audited mount strips map",threat_draw_family(0xA0FF13ADu,0x724442F7u,0)==6&&threat_draw_family(0x67F52663u,0x724442F7u,0)==6&&threat_draw_family(0x8EB9EAC9u,0x724442F7u,0)==6);
+    CHECK("new families have stable public names",strcmp(threat_draw_family_name(5),"greif_arm")==0&&strcmp(threat_draw_family_name(6),"greif_mount")==0&&strcmp(threat_draw_family_name(99),"unknown")==0);
     printf("RESULT checks=%u failures=%u\n",checks,failures);return failures?1:0;
 }

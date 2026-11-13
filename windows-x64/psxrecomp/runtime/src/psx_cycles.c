@@ -673,7 +673,14 @@ uint32_t psx_mult_latency_u(uint32_t rs) {  /* MULTU (unsigned) */
 
 /* DIV/DIVU latency is the fixed constant 37 — emitted directly at the op site. */
 
+/* Completion deadlines and stalls must observe the instruction's issue time,
+ * including deferred host charges. DLL callbacks already publish before these
+ * calls; do the same for interpreted/host code so batching cannot move a guest
+ * deadline or invent latency after the device has completed. */
+static inline void psx_ts_publish(void) { psx_cyc_batch_flush(); }
+
 void psx_muldiv_set(CPUState* cpu, uint32_t latency) {
+    psx_ts_publish();
     cpu->muldiv_ts_done = psx_cycle_count + (uint64_t)latency;
 }
 
@@ -684,6 +691,7 @@ void psx_muldiv_stall(CPUState* cpu) {
      * have been "free" for following instructions are spent here instead. Plus the
      * off-by-one shortcut: a deadline exactly one cycle out just retracts (no stall).
      * (No-load code has read_absorb==0, so this reduces to a plain advance.) */
+    psx_ts_publish();
     if (cpu->muldiv_ts_done > psx_cycle_count) {
         if (cpu->muldiv_ts_done == psx_cycle_count + 1u) {
             cpu->muldiv_ts_done--;   /* off-by-one: retract the deadline, no advance */
@@ -703,6 +711,7 @@ void psx_muldiv_stall(CPUState* cpu) {
  * §1+DO_LDS that bracket this ran in the instruction's psx_cyc_step (COP2 is non-load).
  * MTC2/CTC2 (writes) use psx_gte_stall (stall only, no give-back). */
 void psx_gte_read(CPUState* cpu, uint32_t rt) {
+    psx_ts_publish();
     if (cpu->gte_ts_done > psx_cycle_count) {
         uint32_t stall = (uint32_t)(cpu->gte_ts_done - psx_cycle_count);
         cpu->ld_absorb = stall;
@@ -761,6 +770,7 @@ uint32_t psx_gte_cmd_latency(uint32_t cmd) {
 
 void psx_gte_set(CPUState* cpu, uint32_t latency) {
     /* Back-to-back GTE ops serialize: finish the prior op first. */
+    psx_ts_publish();
     if (cpu->gte_ts_done > psx_cycle_count) {
         psx_advance_cycles((uint32_t)(cpu->gte_ts_done - psx_cycle_count));
     }
@@ -768,6 +778,7 @@ void psx_gte_set(CPUState* cpu, uint32_t latency) {
 }
 
 void psx_gte_stall(CPUState* cpu) {
+    psx_ts_publish();
     if (cpu->gte_ts_done > psx_cycle_count) {
         psx_advance_cycles((uint32_t)(cpu->gte_ts_done - psx_cycle_count));
     }

@@ -24,7 +24,7 @@ class ThreatPolicy:
         for item in objects:
             if not isinstance(item,dict):return None
             b=item.get('bounds');family=item.get('family');key=item.get('key')
-            if (family not in ('fighter','uhu','tracer','greif') or not isinstance(key,str) or
+            if (family not in ('fighter','uhu','tracer','greif','greif_arm','greif_mount') or not isinstance(key,str) or
                 not isinstance(b,list) or len(b)!=4 or not all(type(v) is int for v in b) or
                 not 0<=b[0]<b[2]<320 or not 0<=b[1]<b[3]<224):
                 return None
@@ -32,7 +32,7 @@ class ThreatPolicy:
         hl,ht,hr,hb=hull;hx,hy=(hl+hr)/2,(ht+hb)/2
         current=[];predicted=[];used=set()
         for family,key,b in boxes:
-            if family=='greif':continue  # Its hull is not the observed lethal attack.
+            if family in ('greif','greif_arm','greif_mount'):continue  # Body parts are aim observations, not collision proof.
             cx,cy=(b[0]+b[2])/2,(b[1]+b[3])/2;match=None;distance=math.inf
             for i,(old_family,old_key,old_frame,px,py) in enumerate(self.previous):
                 dt=frame-old_frame

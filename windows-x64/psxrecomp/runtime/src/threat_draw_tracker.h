@@ -18,6 +18,11 @@ typedef struct {
 
 static int threat_draw_family(uint32_t texture,uint32_t palette,unsigned depth) {
     if(depth)return 0;
+    /* Audited component CLUTs: keep the moving gun arm and exposed mount
+     * separate from the housing/base union. Geometry is not an HP assertion. */
+    if(texture==0x38DC02FEu&&palette==0x3F675C0Du)return 5;
+    if(palette==0x724442F7u&&(texture==0x1263A036u||texture==0xE27E0D6Au||
+       texture==0xA0FF13ADu||texture==0x67F52663u||texture==0x8EB9EAC9u))return 6;
     if(texture==0x1263A036u||texture==0x38DC02FEu)return 4; /* Greif target, not a body-contact hazard. */
     if(texture==0x46D3938Eu||texture==0x87C52FC0u)return 2; /* Uhu */
     if(texture==0xC7502427u||texture==0xAB58BBA4u)return 3; /* tracer */
@@ -26,6 +31,13 @@ static int threat_draw_family(uint32_t texture,uint32_t palette,unsigned depth) 
     if(palette==0x527B28B9u && (texture==0x6BB2A2A3u||texture==0x05C32A1Eu||
        texture==0xDEA9D15Cu||texture==0x3FE0776Du||texture==0x3594C110u||texture==0x784BFD39u))return 1;
     return 0;
+}
+static const char *threat_draw_family_name(int family){
+    switch(family){
+    case 1:return "fighter";case 2:return "uhu";case 3:return "tracer";
+    case 4:return "greif";case 5:return "greif_arm";case 6:return "greif_mount";
+    default:return "unknown";
+    }
 }
 static int threat_boxes_touch(const int a[4],const int b[4]) {
     return a[0]<=b[2]+2&&a[2]+2>=b[0]&&a[1]<=b[3]+2&&a[3]+2>=b[1];

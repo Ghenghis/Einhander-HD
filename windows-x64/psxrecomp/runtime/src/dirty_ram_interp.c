@@ -30,6 +30,7 @@
 #include "psx_cycles.h"
 #include "psx_icache.h"
 #include "psx_instr_cost.h"  /* psx_instr_base_cycles — single-source cycle cost */
+#include "interp_pc_sampler.h"
 #include "gpu.h"   /* psx_ws_is_backdrop_site / psx_ws_backdrop_x (interp hook) */
 #include "ws_backdrop_detect.h"  /* shared backdrop-window detector (auto_backdrop) */
 #include "lockstep.h"
@@ -254,7 +255,19 @@ static DirtyRamPcEntry *pc_table_get_or_insert(uint32_t pc) {
  * overlay_capture can report execution-verified seeds for the region. A PSX
  * instruction is aligned, making this a single direct bitmap OR rather than a
  * cache-unfriendly open-addressed lookup on every guest instruction. */
+static InterpPcSampler s_pc_sampler;
+void dirty_ram_pc_profile_configure(int enabled,int reset){
+    int active=enabled<0?s_pc_sampler.enabled:enabled!=0;
+    if(reset||!s_pc_sampler.rng)interp_pc_sampler_init(&s_pc_sampler,active);
+    else s_pc_sampler.enabled=active;
+}
+unsigned dirty_ram_pc_profile_get(InterpPcSampleStats *stats,InterpPcBucket *rows,unsigned capacity){
+    if(stats){stats->enabled=s_pc_sampler.enabled;stats->occupied=s_pc_sampler.occupied;
+        stats->observed=s_pc_sampler.observed;stats->samples=s_pc_sampler.samples;stats->dropped=s_pc_sampler.dropped;}
+    return interp_pc_sampler_top(&s_pc_sampler,rows,capacity);
+}
 static inline void exec_pc_table_record(uint32_t pc) {
+    interp_pc_sampler_observe(&s_pc_sampler,pc);
     uint32_t phys = pc & 0x1FFFFFFFu;
     if (phys < 2u * 1024u * 1024u && (phys & 3u) == 0u) {
         uint32_t word = phys >> 2;

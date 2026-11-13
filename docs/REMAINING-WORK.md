@@ -9,8 +9,9 @@ a completed deliverable. The detailed brief is
 - **Runtime and audio — Codex, with Claude's independent review.** Highest
   priority: pre-Greif travel, arrival and weapon-fire stalls, plus FMV playback.
   Normal preference2 controls still starve audio, including with rewind off.
-  Gameplay code replacing boot-text RAM remains interpreted; acquire and
-  compile its actual bytes with strict matching. Next gates: isolate the
+  A deferred-clock timestamp defect now passes its regression; one measured
+  hot routine passes native/interpreter correctness under the corrected build.
+  Other cached entries and actual audio remain unaccepted. Next gates: isolate the
   expensive work, verify each change against a control, preserve
   actual host audio, then demonstrate sustained normal gameplay and FMV output.
 - **Robin and progression — Codex, with enemy/weak-point review from Claude.**

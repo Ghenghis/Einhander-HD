@@ -450,6 +450,12 @@ if(BUILD_TESTING)
     add_test(NAME psx_cycle_event_boundaries_test
              COMMAND psx_cycle_event_boundaries_test)
 
+    add_executable(psx_timestamp_batch_test
+        tests/test_psx_timestamp_batch.c
+        src/psx_cycles.c)
+    target_include_directories(psx_timestamp_batch_test PRIVATE include)
+    add_test(NAME psx_timestamp_batch_test COMMAND psx_timestamp_batch_test)
+
     add_executable(psx_vblank_clock_test
         tests/test_psx_vblank_clock.c
         src/psx_vblank_clock.c)

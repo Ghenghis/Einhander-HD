@@ -62,6 +62,8 @@ def main():
         results['freeze-stack']=run([str(out/'test-freeze-stack.exe')],'freeze-stack-regressions',env).stdout
         results['hero-draw']=run([str(out/'test-hero-draw.exe')],'hero-draw-regressions',env).stdout
         results['threat-draw']=run([str(out/'test-threat-draw.exe')],'threat-draw-regressions',env).stdout
+        results['interp-pc-sampler']=run([str(out/'test-interp-pc-sampler.exe')],'interp-pc-sampler-regressions',env).stdout
+        results['timestamp-batch']=run([str(out/'test-timestamp-batch.exe')],'timestamp-batch-regressions',env).stdout
         results['source-cache-filter']=run([str(out/'test-source-cache-filter.exe')],'source-cache-filter-regressions',env).stdout
         results['decode-queue']=run([str(out/'test-decode-queue.exe')],'decode-queue-regressions',env).stdout
         for enabled in (0,1):
@@ -92,7 +94,10 @@ def main():
     sources=[SOURCE,pack,watchdog,freeze,debug,freeze.with_name('freeze_stack_capture.h'),watchdog.with_name('starvation_watchdog_time.h'),SOURCE.with_name('hd_research_renderer.h'),SOURCE.with_name('hero_draw_tracker.h'),ROOT/'windows-x64/psxrecomp/runtime/include/gpu_gl_renderer.h',Path(__file__),AUDIT/'test_stage1_sampling_gl.c',AUDIT/'test_facade_motion_gl.c',AUDIT/'test_facade_motion_gl.cpp',AUDIT/'test_exact_regions.cpp',AUDIT/'test_starvation_watchdog_time.c',AUDIT/'test_freeze_stack_capture.c',AUDIT/'test_hero_draw_tracker.c']
     sources.append(AUDIT/'test_hd_opaque_batch_gl.h')
     sources.append(AUDIT/'test_hd_emissive_gl.h')
-    sources.extend([SOURCE.with_name('threat_draw_tracker.h'),AUDIT/'test_threat_draw_tracker.c'])
+    sources.extend([SOURCE.with_name('threat_draw_tracker.h'),AUDIT/'test_threat_draw_tracker.c',
+        SOURCE.with_name('dirty_ram_interp.c'),SOURCE.with_name('psx_cycles.c'),SOURCE.with_name('overlay_loader.c'),
+        ROOT/'windows-x64/psxrecomp/runtime/include/interp_pc_sampler.h',AUDIT/'test_interp_pc_sampler.c',
+        ROOT/'windows-x64/psxrecomp/runtime/tests/test_psx_timestamp_batch.c',ROOT/'windows-x64/psxrecomp/runtime/tests/test_psx_cycle_event_boundaries.c'])
     sources.extend([SOURCE.with_name('main.cpp'),SOURCE.with_name('recomp_audio_drc.h')])
     sources.extend([AUDIT/'gpu_capture_guard.py',AUDIT/'test_gpu_capture_guard.py'])
     sources.extend([SOURCE.with_name('hd_source_cache_filter.h'),AUDIT/'test_hd_source_cache_filter.c'])
@@ -163,6 +168,13 @@ def main():
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         '-I'+str(SOURCE.parent),str(AUDIT/'test_threat_draw_tracker.c'),'-o',str(out/'test-threat-draw.exe')],'compile-threat-draw-regressions')
     run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        '-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),str(AUDIT/'test_interp_pc_sampler.c'),
+        '-o',str(out/'test-interp-pc-sampler.exe')],'compile-interp-pc-sampler-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
+        '-I'+str(ROOT/'windows-x64/psxrecomp/runtime/include'),
+        str(ROOT/'windows-x64/psxrecomp/runtime/tests/test_psx_timestamp_batch.c'),str(SOURCE.with_name('psx_cycles.c')),
+        '-o',str(out/'test-timestamp-batch.exe')],'compile-timestamp-batch-regressions')
+    run([str(prior.COMPILER.with_name('clang.exe')),'-std=c11','-O2','-static',
         '-I'+str(SOURCE.parent),str(AUDIT/'test_hd_source_cache_filter.c'),
         '-o',str(out/'test-source-cache-filter.exe')],'compile-source-cache-filter-regressions')
     run([str(prior.COMPILER),'-std=c++17','-O2','-static',str(AUDIT/'test_hd_decode_queue.cpp'),
@@ -183,10 +195,13 @@ def main():
     watchdog_object=out/'starvation_ring.c.obj';compile_renderer(watchdog_object,watchdog)
     freeze_object=out/'freeze_heartbeat.c.obj';compile_renderer(freeze_object,freeze)
     debug_object=out/'debug_server.c.obj';compile_renderer(debug_object,debug)
+    interp_object=out/'dirty_ram_interp.c.obj';compile_renderer(interp_object,SOURCE.with_name('dirty_ram_interp.c'))
+    cycles_object=out/'psx_cycles.c.obj';compile_renderer(cycles_object,SOURCE.with_name('psx_cycles.c'))
+    loader_object=out/'overlay_loader.c.obj';compile_renderer(loader_object,SOURCE.with_name('overlay_loader.c'))
     response=(prior.BASE/'exact-region-link.rsp').read_text().splitlines()
     def link(renderer,destination,main=None):
         values=response.copy()
-        for suffix,replacement in [('/gpu_gl_renderer.c.obj',renderer),('/hd_texture_pack.cpp.obj',pack_object),('/starvation_ring.c.obj',watchdog_object),('/freeze_heartbeat.c.obj',freeze_object),('/debug_server.c.obj',debug_object)]+([('/main.cpp.obj',main)] if main else []):
+        for suffix,replacement in [('/gpu_gl_renderer.c.obj',renderer),('/hd_texture_pack.cpp.obj',pack_object),('/starvation_ring.c.obj',watchdog_object),('/freeze_heartbeat.c.obj',freeze_object),('/debug_server.c.obj',debug_object),('/dirty_ram_interp.c.obj',interp_object),('/psx_cycles.c.obj',cycles_object),('/overlay_loader.c.obj',loader_object)]+([('/main.cpp.obj',main)] if main else []):
             matches=[i for i,value in enumerate(values) if value.strip('"').replace('\\','/').endswith(suffix)]
             if len(matches)!=1:raise ValueError('Ambiguous pinned link object '+suffix)
             values[matches[0]]='"'+replacement.as_posix()+'"'

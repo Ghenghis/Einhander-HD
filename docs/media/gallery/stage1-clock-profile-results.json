@@ -1,0 +1,351 @@
+{
+  "schema_version": 1,
+  "kind": "Clock regression and bounded compiled hot-loop correctness result",
+  "clock_regression": {
+    "receipt": {
+      "path": "remaster-audit/verification/timestamp-batch-v1/proof.json",
+      "sha256": "730b66a7b7b9a465509e6cf0456408a181ea72ec2448b7cf9fcfef96b4a99107",
+      "bytes": 684
+    },
+    "before_checks": 11,
+    "before_failures": 10,
+    "after_checks": 12,
+    "after_failures": 0,
+    "batched_vs_published_cases": 3250,
+    "before_source_sha256": "07f3df621e20c37192b918b1d667df9b9ecdd70a7e4f332227941b53f8d3addd",
+    "after_source_sha256": "c5b0035add8ddf273388ba1b4fc7b3129a219e82b3e831e7d826f8c3e6db7fc7",
+    "existing_device_causality_check_passed": true
+  },
+  "actual_pc_profile": {
+    "proof": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/actual-pc-profile-v1/hd-on_rewind-off/world-flypast-proof.json",
+      "sha256": "00d07cd0ff574d0ee31ce847d26bc5966518b99bf036562e7dd27c00012615e3",
+      "bytes": 1203244
+    },
+    "snapshot_elapsed_seconds": 95.00020010001026,
+    "snapshot_samples": 389193,
+    "snapshot_dropped": 0,
+    "snapshot_occupied": 7611,
+    "final_samples": 526462,
+    "final_dropped": 5883,
+    "final_occupied": 8192,
+    "final_dropped_fraction": 0.011174595697315286,
+    "top64": [
+      {
+        "pc_lo": "0x0003A9D0",
+        "samples": 4863
+      },
+      {
+        "pc_lo": "0x0003A9F0",
+        "samples": 4809
+      },
+      {
+        "pc_lo": "0x0003AA00",
+        "samples": 4779
+      },
+      {
+        "pc_lo": "0x0003AA20",
+        "samples": 4764
+      },
+      {
+        "pc_lo": "0x0003AA40",
+        "samples": 4763
+      },
+      {
+        "pc_lo": "0x0003A9E0",
+        "samples": 4756
+      },
+      {
+        "pc_lo": "0x0003AA30",
+        "samples": 4732
+      },
+      {
+        "pc_lo": "0x0003AA10",
+        "samples": 4612
+      },
+      {
+        "pc_lo": "0x0003AAF0",
+        "samples": 4278
+      },
+      {
+        "pc_lo": "0x0003A9C0",
+        "samples": 3685
+      },
+      {
+        "pc_lo": "0x0003AA50",
+        "samples": 3617
+      },
+      {
+        "pc_lo": "0x000B5CD0",
+        "samples": 3593
+      },
+      {
+        "pc_lo": "0x000B5CE0",
+        "samples": 2769
+      },
+      {
+        "pc_lo": "0x000B5C90",
+        "samples": 2535
+      },
+      {
+        "pc_lo": "0x0003AA60",
+        "samples": 2522
+      },
+      {
+        "pc_lo": "0x0003AA90",
+        "samples": 2511
+      },
+      {
+        "pc_lo": "0x0003AA70",
+        "samples": 2498
+      },
+      {
+        "pc_lo": "0x0003AAD0",
+        "samples": 2494
+      },
+      {
+        "pc_lo": "0x0003AAB0",
+        "samples": 2469
+      },
+      {
+        "pc_lo": "0x0003AAE0",
+        "samples": 2450
+      },
+      {
+        "pc_lo": "0x0003AAA0",
+        "samples": 2431
+      },
+      {
+        "pc_lo": "0x0003AAC0",
+        "samples": 2430
+      },
+      {
+        "pc_lo": "0x0003AA80",
+        "samples": 2419
+      },
+      {
+        "pc_lo": "0x000B5C80",
+        "samples": 2320
+      },
+      {
+        "pc_lo": "0x00004550",
+        "samples": 2254
+      },
+      {
+        "pc_lo": "0x000D6F50",
+        "samples": 2009
+      },
+      {
+        "pc_lo": "0x0003A780",
+        "samples": 1873
+      },
+      {
+        "pc_lo": "0x0003A770",
+        "samples": 1845
+      },
+      {
+        "pc_lo": "0x0003A790",
+        "samples": 1839
+      },
+      {
+        "pc_lo": "0x0003A740",
+        "samples": 1800
+      },
+      {
+        "pc_lo": "0x00004590",
+        "samples": 1791
+      },
+      {
+        "pc_lo": "0x0003A760",
+        "samples": 1778
+      },
+      {
+        "pc_lo": "0x0003A750",
+        "samples": 1752
+      },
+      {
+        "pc_lo": "0x000045A0",
+        "samples": 1734
+      },
+      {
+        "pc_lo": "0x0003A7A0",
+        "samples": 1721
+      },
+      {
+        "pc_lo": "0x000D6EB0",
+        "samples": 1574
+      },
+      {
+        "pc_lo": "0x00004560",
+        "samples": 1573
+      },
+      {
+        "pc_lo": "0x000D6F60",
+        "samples": 1510
+      },
+      {
+        "pc_lo": "0x0003A7B0",
+        "samples": 1509
+      },
+      {
+        "pc_lo": "0x0003A820",
+        "samples": 1457
+      },
+      {
+        "pc_lo": "0x0003A830",
+        "samples": 1410
+      },
+      {
+        "pc_lo": "0x00090F70",
+        "samples": 1349
+      },
+      {
+        "pc_lo": "0x0003A810",
+        "samples": 1341
+      },
+      {
+        "pc_lo": "0x0003AB00",
+        "samples": 1329
+      },
+      {
+        "pc_lo": "0x00091B70",
+        "samples": 1326
+      },
+      {
+        "pc_lo": "0x00091E60",
+        "samples": 1315
+      },
+      {
+        "pc_lo": "0x0003A800",
+        "samples": 1305
+      },
+      {
+        "pc_lo": "0x00091E70",
+        "samples": 1304
+      },
+      {
+        "pc_lo": "0x0003A7F0",
+        "samples": 1274
+      },
+      {
+        "pc_lo": "0x0003A7E0",
+        "samples": 1255
+      },
+      {
+        "pc_lo": "0x0003A7C0",
+        "samples": 1235
+      },
+      {
+        "pc_lo": "0x0003A7D0",
+        "samples": 1233
+      },
+      {
+        "pc_lo": "0x000046C0",
+        "samples": 1150
+      },
+      {
+        "pc_lo": "0x000045F0",
+        "samples": 1055
+      },
+      {
+        "pc_lo": "0x000988C0",
+        "samples": 1054
+      },
+      {
+        "pc_lo": "0x000B5FA0",
+        "samples": 1033
+      },
+      {
+        "pc_lo": "0x000B5EE0",
+        "samples": 1030
+      },
+      {
+        "pc_lo": "0x00090F60",
+        "samples": 1028
+      },
+      {
+        "pc_lo": "0x000BF2B0",
+        "samples": 1021
+      },
+      {
+        "pc_lo": "0x0003A730",
+        "samples": 1003
+      },
+      {
+        "pc_lo": "0x000047D0",
+        "samples": 987
+      },
+      {
+        "pc_lo": "0x000BF1F0",
+        "samples": 981
+      },
+      {
+        "pc_lo": "0x00016F90",
+        "samples": 928
+      },
+      {
+        "pc_lo": "0x00016F80",
+        "samples": 875
+      }
+    ],
+    "groups": [
+      {
+        "pc_lo": "0x0003A9C0",
+        "pc_hi_exclusive": "0x0003AB10",
+        "visible_top64_buckets": 21,
+        "visible_samples": 73211,
+        "interpreted_sample_share_lower_bound": 0.18810975531420143
+      },
+      {
+        "pc_lo": "0x0003A730",
+        "pc_hi_exclusive": "0x0003A840",
+        "visible_top64_buckets": 17,
+        "visible_samples": 25630,
+        "interpreted_sample_share_lower_bound": 0.06585421628857661
+      },
+      {
+        "pc_lo": "0x000B5C80",
+        "pc_hi_exclusive": "0x000B5CF0",
+        "visible_top64_buckets": 4,
+        "visible_samples": 11217,
+        "interpreted_sample_share_lower_bound": 0.028821176125983766
+      }
+    ],
+    "bucket_bytes": 16,
+    "scope": "Interpreted RAM instruction-attempt frequency only; not frame time or native work",
+    "original_entry_chain_gain_estimates_withdrawn": true
+  },
+  "native_correctness": {
+    "proof": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/published-ts-focus3A998-v1/hd-on_rewind-off/loaded-code/code-capture-proof.json",
+      "sha256": "d766adf95217a1b505091964f5237947d54ba1c70f9f52aa2ba18d0b64b3943b",
+      "bytes": 195106
+    },
+    "build": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v40-published-timestamps/build.json",
+      "sha256": "6b22e74d85be1539ef8d0b0b2fb42cd0609539e178cd87e5e1302625bafe8a89",
+      "bytes": 48140
+    },
+    "qualified_entries": [
+      "0x0003A998"
+    ],
+    "minimum_clean_calls": 32,
+    "shadow_calls": 3685,
+    "divergences": 0,
+    "skipped_device_or_unsafe": 0,
+    "exception_escapes": 0,
+    "live_code_crc_matched": true,
+    "other_entries_accepted": false
+  },
+  "performance_accepted": false,
+  "audio_resolved": false,
+  "production_installed": false,
+  "limitations": [
+    "Only the isolated 3A998 artifact was imported for the focused correctness run; the other eight requested entries remain unqualified.",
+    "The first profile filled 8192 slots late. Use its snapshot at 95s with zero drops; visible groups are lower bounds because only the top 64 buckets were exported.",
+    "The next profiler capacity is 32768; this does not retroactively remove dropped samples.",
+    "A competing authoring job was reported early in the correctness run. Diagnostic reads and shadow comparisons also preclude a pacing claim.",
+    "Correct clock tests and observed-input native equivalence do not establish smooth audio, ordinary combat, FMV or full-game completion.",
+    "No captured RAM, original game code or compiled game-derived modules are included."
+  ]
+}

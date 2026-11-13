@@ -80,3 +80,38 @@ Next: acquire the actual gameplay code that replaces boot-text RAM, check its
 execution evidence and exact-byte cache admission, then compare a compiled
 candidate with the control. Rendering submission remains a separate target.
 Native FMV playback, ordinary combat and sustained audible acceptance are open.
+
+The subsequent [compiled-code correctness check](media/gallery/stage1-code-validation-results.json)
+also failed: 12 staging modules exported all nine requested hot entries, but
+the live native/interpreter comparison recorded 107 timing, trace or PC
+differences over 8,206 comparisons. None of the nine targets qualified with
+32 clean comparisons. Exact byte matching remained enabled, and the staging
+cache was not installed or accepted as an audio fix.
+
+That global check also exercised additional region functions; a long-lived
+parent being shadowed can keep nested calls interpreted. A focused follow-up
+exposed an exact-entry validation gap: a broader unverified owner prevented the
+specific entry from loading for its comparison. The diagnostic selection is
+being corrected without changing normal bundle preference or byte checks.
+
+Dispatch-entry instruction totals also proved unsuitable for ranking hot
+functions: they include subsequent chained execution. A default-off direct-PC
+sampler now measures real interpreted RAM instruction attempts. Its 95-second
+snapshot has 389,193 samples and zero drops; the final histogram filled and
+dropped 1.1%, which is disclosed. These are interpreted instruction frequencies,
+not frame-time shares. The earlier estimated gain from the short `0x26714` return
+sequence is withdrawn.
+
+The [clock/profile results](media/gallery/stage1-clock-profile-results.json)
+identify a real loop around `0x3A9C0–0x3AAF0` and a reproducible core clock defect:
+multiply/divide and GTE completion timestamps ignored deferred CPU charges.
+The new regression failed 10 of 11 checks before the fix. After publishing those
+charges at the boundary, 12 checks pass, including 3,250 comparisons with explicitly
+published time and the existing device-deadline causality checks.
+
+The isolated `0x3A998` routine then passed 3,685 native/interpreter comparisons with
+zero divergences, skips or escapes under the corrected v40 build. Its live code
+CRC matches and its qualification with 32 clean comparisons is retained. Only this routine is
+qualified. A competing authoring job was reported early in that diagnostic;
+neither its speed nor its audio is accepted. Clean normal-settings pacing,
+ordinary combat, native FMV and audible acceptance remain required.

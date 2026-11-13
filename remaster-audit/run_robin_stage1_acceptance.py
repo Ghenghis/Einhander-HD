@@ -51,6 +51,8 @@ def main():
     parser.add_argument('--threat-draw',action='store_true',help='Experimental partial source-query cluster avoidance; requires stage_lane and hull guard')
     parser.add_argument('--fire-mode',choices=['cross','both'],default='both')
     parser.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
+    parser.add_argument('--supersampling',type=int,choices=[1,2,3,4,6,8,9,12,16],default=9,
+        help='Private render preference; explicitly use2 for normal-settings qualification')
     parser.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     parser.add_argument('--short-upload-priority',type=int,choices=[0,1],default=0)
     parser.add_argument('--emissive',type=int,choices=[0,1],default=0)
@@ -81,7 +83,7 @@ def main():
     if args.craft != 'mk2' and (args.movement=='draw_lane' or (args.hd=='on' and not args.native_menus)):
         parser.error('Alternate craft require native menus and no MkII hull controller; HD-on needs --native-menus')
     if not __import__('re').fullmatch('[a-zA-Z0-9_-]+',args.batch):parser.error('Use a single batch directory name')
-    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,short_upload_priority=args.short_upload_priority,emissive=args.emissive,guest_frames=0)
+    config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,short_upload_priority=args.short_upload_priority,emissive=args.emissive,guest_frames=0,supersampling=args.supersampling)
     tracking=args.sources or args.movement in ('draw_lane','upper_lane','greif_lane','stage_lane','combat_lane') or args.hull_guard
     report=pacing.prepare('hd-'+('on' if tracking else args.hd)+'_rewind-off',config)
     directory=Path(report['evidence'])
@@ -103,7 +105,7 @@ def main():
     if (tracking and args.hd=='off') or args.native_menus:
         control=directory/'replacement-control.txt';control.write_text('0\n')
         overrides['PSXRECOMP_HD_PROOF_CONTROL']=str(control)
-        report['route_reference_profile']='native-stock'
+        report['route_reference_profile']='native-stock-scale2' if args.supersampling==2 else 'native-stock'
     report['robin_profile']=dict(hd_replacements=args.hd=='on',sources=args.sources,craft=args.craft,
         observer_craft=args.observer_craft,
         invincible=False,revive=bool(args.revive),enemy_material='original colors',
