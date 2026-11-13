@@ -4,6 +4,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { read,writeJson } from './claude-continuity-hook.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const args = process.argv.slice(2);
@@ -11,8 +12,7 @@ const opt = (n, d = '') => { const i = args.indexOf(n); return i >= 0 && args[i 
 const dir = path.join(root, '.hermes3d_orchestrator', 'continuity');
 const file = path.join(dir, 'claude-einhander.json');
 await fs.mkdir(dir, { recursive: true });
-let previous = {};
-try { previous = JSON.parse(await fs.readFile(file, 'utf8')); } catch {}
+const previous = await read(file,{});
 const state = {
   session_id: opt('--session', previous.session_id || ''),
   checkpoint_utc: new Date().toISOString(),
@@ -27,5 +27,5 @@ const state = {
 };
 const stopReason = opt('--user-stop');
 if (stopReason) state.user_stop = { requested: true, reason: stopReason };
-await fs.writeFile(file, JSON.stringify(state, null, 2) + '\n');
+await writeJson(file,state);
 console.log(JSON.stringify({ ok: true, file: file.replace(/\\/g, '/'), ...state }));

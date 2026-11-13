@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import {stopDecision,handle,inbox,pendingWork} from './claude-continuity-hook.mjs';
+import {stopDecision,handle,inbox,pendingWork,read,writeJson} from './claude-continuity-hook.mjs';
 const now=Date.now(),input={session_id:'test-session'},config={status:'active',max_wait_minutes:30};
 const decide=(overrides={})=>stopDecision({config,state:null,completion:{full_remaster_complete:false},mail:[],input,now,...overrides});
 test('unfinished work blocks voluntary stop and repeat hook does not silently abandon it',()=>{
@@ -30,10 +30,11 @@ test('real file hook reads mailbox, ignores acknowledgement chatter and throttle
     await fs.mkdir(path.join(root,'coordination'));await fs.writeFile(path.join(root,'coordination/work-continuity.json'),JSON.stringify({...config,owner:'claude-einhander',completion_state:'completion.json'}));
     await fs.writeFile(path.join(root,'completion.json'),JSON.stringify({full_remaster_complete:false}));
     const dir=path.join(root,'.hermes3d_orchestrator/inbox/claude-einhander');await fs.mkdir(dir,{recursive:true});
-    await fs.writeFile(path.join(dir,'msg_action.json'),JSON.stringify({id:'msg_action',status:'unread',sender:'codex-einhander',subject:'Finish pending work'}));
+    await fs.writeFile(path.join(dir,'msg_action.json'),JSON.stringify({id:'msg_action',status:'unread',sender:'codex-einhander',subject:'Finish pending work',body:'Pause competing GPU work for the actual game test.'}));
     await fs.writeFile(path.join(dir,'msg_ack.json'),JSON.stringify({id:'msg_ack',status:'unread',metadata:{ack_for_message_id:'other'}}));
     assert.equal((await inbox(root,'claude-einhander')).length,1);
     const startup=await handle({...input,cwd:root,hook_event_name:'SessionStart'},root);assert.match(startup.hookSpecificOutput.additionalContext,/msg_action/);
+    assert.match(startup.hookSpecificOutput.additionalContext,/Pause competing GPU work/);
     for(let i=0;i<3;i++)assert.deepEqual(await handle({...input,cwd:root,hook_event_name:'PostToolUse'},root),{});
     assert.equal((await handle({...input,cwd:root,hook_event_name:'Stop'},root)).decision,'block');
     assert.deepEqual(await handle({...input,cwd:path.dirname(root),hook_event_name:'Stop'},root),{});
@@ -44,6 +45,18 @@ test('real file hook reads mailbox, ignores acknowledgement chatter and throttle
       {task_id:'claimed',target_owner_pattern:'claude-einhander',claimed_by:'claude-einhander'}])
       await fs.writeFile(path.join(pending,row.task_id+'.json'),JSON.stringify(row));
     assert.deepEqual((await pendingWork(root,'claude-einhander')).map(t=>t.task_id),['mine']);
+    const racing=path.join(root,'concurrent-state.json');await writeJson(racing,{valid:true});
+    const concurrent=await Promise.allSettled(Array.from({length:24},async(_,i)=>{
+      await writeJson(racing,{valid:true,index:i});assert.equal((await read(racing,{})).valid,true);
+      await handle({...input,cwd:root,hook_event_name:'PostToolUse'},root);
+    }));
+    assert.deepEqual(concurrent.filter(r=>r.status==='rejected').map(r=>String(r.reason)),[]);
+    // Other producers may still write in place. A brief partial read retries;
+    // permanently malformed state remains an error, never a silent success.
+    await fs.writeFile(racing,'{');
+    const repair=(async()=>{await new Promise(resolve=>setTimeout(resolve,15));await writeJson(racing,{repaired:true});})();
+    assert.equal((await read(racing,{})).repaired,true);await repair;
+    await fs.writeFile(racing,'{');await assert.rejects(read(racing,{}),SyntaxError);
   }finally{
     const target=await fs.realpath(root),tempRoot=await fs.realpath(os.tmpdir());
     assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-continuity-'));

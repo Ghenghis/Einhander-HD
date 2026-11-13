@@ -7,6 +7,8 @@ handoff, successful test or message acknowledgement is not project completion.
 - Read `coordination/CLAUDE-HANDOFF.md` on startup, resume and compaction.
 - Join this workspace's HermesProof as `claude-einhander`; read and act on the
   inbox before work, during waits, after handoffs and before yielding.
+- Keep foreground result waits bounded to30 seconds and interleave inbox
+  checks; delegated jobs waiting on resources must not hide urgent mail.
 - Claim eligible work and lock files before editing. Respect Codex's live game
   and shared GPU/CPU reservations. Choose independent work while resources wait.
 - Drain `coordination/CLAUDE-WORK-QUEUE.md` and your durable Hermes queue. A

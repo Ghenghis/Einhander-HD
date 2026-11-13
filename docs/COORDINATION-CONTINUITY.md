@@ -45,3 +45,8 @@ with an execution brief in `coordination/CLAUDE-WORK-QUEUE.md`. Audio and stutte
 root-cause reviews have highest priority. The guard also checks eligible queued
 work and blocks an otherwise valid waiting turn while independent items remain.
 Nine tests now cover this condition and exact owner/blocked/claimed filtering.
+Recent message bodies are included directly in hook context. Activity and
+checkpoint writes now replace files atomically, and JSON reads briefly retry
+partial writes from other producers. Concurrent hook/read tests preserve
+fail-closed behavior for persistently malformed state. Claude confirmed claiming
+all twelve tasks, with nine active tracks; claims are not completed deliverables.
