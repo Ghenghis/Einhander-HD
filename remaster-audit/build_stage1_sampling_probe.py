@@ -86,6 +86,15 @@ def main():
     Image.new('RGBA',(1024,1024),(64,96,128,127)).save(out/'facade-pack'/(green_key+'.png'))
     (out/'facade_baseline_shader.h').write_text('static const char *facade_baseline_hd_fs='+json.dumps(extract_shader(saved))+';\n')
     shutil.copytree(prior.BASE/'fixtures',out/'region-fixtures')
+    cross=out/'region-fixtures/cross-depth'
+    shutil.copytree(out/'region-fixtures/valid',cross)
+    raw=struct.pack('<128H',*([0x001f]*128));clut=struct.pack('<16H',*range(16))
+    key=f'{zlib.crc32(raw):08X}-{zlib.crc32(clut):08X}'
+    for suffix,data in [('words.bin',raw),('valid.bin',bytes([1])*128),('clut.bin',clut)]:
+        (cross/(key+'.'+suffix)).write_bytes(data)
+    Image.new('RGBA',(64,8),(8,16,24,255)).save(cross/(key+'.png'))
+    with (cross/'ExactRegions.tsv').open('a') as stream:
+        stream.write(f'{key}\t448\t256\t16\t8\t0\t800\t500\n')
     for count,label in [(256,'valid256'),(257,'invalid257')]:
         directory=out/'capacity-fixtures'/label;directory.mkdir(parents=True)
         rows=[];raw=struct.pack('<H',0x1111);th=zlib.crc32(raw)

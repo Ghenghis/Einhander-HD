@@ -730,7 +730,9 @@ static bool load_exact_regions(HdTexturePack* pack, const fs::path& directory,
         for(const auto& old:pack->regions){
             const bool overlap=x<old.x+old.width && x+w>old.x && y<old.y+old.height && y+h>old.y;
             const bool same=x==old.x&&y==old.y&&w==old.width&&h==old.height&&depth==old.depth;
-            if(overlap && !same)return fail();
+            // Texture depth is part of every draw query. Different-depth
+            // interpretations may legitimately reuse the same VRAM words.
+            if(overlap && depth==old.depth && !same)return fail();
             if(same && region.words==old.words && region.palette==old.palette && cx==old.clut_x&&cy==old.clut_y)return fail();
         }
         pack->regions.push_back(std::move(region));

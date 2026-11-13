@@ -44,6 +44,19 @@ int main(int argc,char**argv){
  vram[500*1024+801]^=1;hd_texture_pack_invalidate(pack,801,500,1,1);
  CHECK("palette byte mutation invalidates cached source",hd_texture_pack_match_region(pack,&indexed,1,&m)==0);
  hd_texture_pack_destroy(pack);
+ if(argc==3){
+ pack=nullptr;
+ CHECK("different-depth overlapping VRAM interpretations accepted",hd_texture_pack_create((root/"cross-depth").string().c_str(),&pack,error,sizeof error)&&hd_texture_pack_region_count(pack)==4);
+ if(pack){
+  for(int y=0;y<256;++y)for(int x=0;x<64;++x)vram[(y+256)*1024+x+448]=0x001f;
+  for(int i=0;i<16;++i)vram[500*1024+800+i]=(uint16_t)i;
+  HdTextureDrawQuery cross{};cross.page_x=448;cross.page_y=256;cross.u_last=63;cross.v_last=7;cross.clut_x=800;cross.clut_y=500;cross.vram=vram.data();cross.vram_word_count=vram.size();
+  CHECK("4bpp overlap selects its own exact source",hd_texture_pack_probe_region(pack,&cross,&region)==1&&region.depth==0&&hd_texture_pack_match_region(pack,&cross,1,&m)==1&&m.upload_width_words==16);
+  cross.depth=2;cross.clut_x=0;cross.clut_y=0;
+  CHECK("16bpp overlap selects its own exact source",hd_texture_pack_probe_region(pack,&cross,&region)==1&&region.depth==2&&hd_texture_pack_match_region(pack,&cross,1,&m)==1&&m.upload_width_words==64);
+  hd_texture_pack_destroy(pack);
+ }
+ }
  for(const char*bad:{"invalid","crc","duplicate","overlap","missing","depth","palette"}){
   pack=nullptr;bool refused=!hd_texture_pack_create((root/bad).string().c_str(),&pack,error,sizeof error)&&pack==nullptr;
   CHECK(bad,refused);if(pack)hd_texture_pack_destroy(pack);
