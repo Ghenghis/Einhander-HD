@@ -72,6 +72,9 @@ typedef struct {
     uint64_t pack_upload_calls,pack_upload_ns,pack_upload_candidates;
     uint64_t pack_track_calls,pack_track_ns,pack_index_rebuilds,pack_index_rebuild_ns;
     uint64_t pack_region_index,pack_region_index_cuts;   /* toggle state, index-resolved cuts */
+    /* Opaque HD batch split reasons (see hd_split_reason_of) and prims merged
+     * only because attrib batching (PSXRECOMP_HD_BATCH_ATTRIB=1) is on. */
+    uint64_t hd_split_reason[7],hd_attrib_merges,hd_batch_attrib;
 } GlHdCpuDiag;
 void gl_renderer_hd_cpu_diag_get(GlHdCpuDiag *out);
 
