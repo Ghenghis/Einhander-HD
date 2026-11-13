@@ -60,3 +60,32 @@ python remaster-audit/build_h24_matched_facade.py --check
 That command verifies an existing local matched candidate without launching the game. The [in-game results](H24-IN-GAME-RESULTS.md) distinguish the captured implementation from later CLI-only publication changes.
 
 Use focused commits for runtime changes, authoring/verification tools and documentation/media. Record actual validation and limitations. A passing fixture establishes that fixture's result, not whole-game coverage.
+
+## Stage 1 completion work
+
+The [completion status](STAGE1-COMPLETION-STATUS.md) separates verified components from the remaining release work.
+`run_stage1_pacing_ab.py` creates fresh private HD/rewind diagnostic legs. Select a new
+`--batch`; `--gpu-queries 0` permits observer controls. `--guest-frames` bounds the
+amount of emulated progress, without promising an identical scene or input replay.
+Both the recorder and survival aid stay off. Its private build and route fixtures
+are required; this is a local diagnostic, not a clean-checkout benchmark.
+
+`build_stage1_sampling_probe.py` builds a private executable and separate hidden-GL
+checks from pinned local objects. The world sampler is explicitly opt-in through
+`PSXRECOMP_HD_WORLD_SAMPLING=1`. It affects admitted green-atlas/facade RGB sampling;
+categorical alpha remains at level zero. No live performance improvement has been
+established, and this option is not a production default.
+
+`run_robin_stage1_acceptance.py` starts Robin through its HTTP API behind a
+command boundary that rejects RAM writes and state loads. It keeps invincibility,
+turbo and rewind off, uses private cards, records ordinary pad decisions and
+observations, and requires an independent stage-clear review. A local `STOP` file
+ends its bounded run. `position_lane` uses a read-only Stage 1 position calibration;
+other stages still require verification. The optional source-capture run is
+separate from recorder-off acceptance and has explicit native recording bounds.
+
+`build_stage1_frozen_candidate.py` composes a hash-pinned plan into a new private
+pack. Exact sign crops retain other artwork on shared pages. Candidate replacements
+break parent hardlinks atomically; all parent PNG hashes are checked afterward.
+It rejects changed inputs and never installs a candidate. Frozen input revisions
+and the local source proofs must be supplied separately.

@@ -150,7 +150,7 @@ been decoded, so injected blocks may still fail the game's own checks.
 | In-game save / name entry | **Blocked** | name-entry screen unreachable for user; cards are structurally fine |
 | `save_editor.py` inject | **Writes entry, game recognition unproven** | dir entry + checksum valid; payload format undecoded |
 | `ein_bridge.py` + `dev_menu.html` | **Written, not run E2E** | bridge compiles; no live session yet |
-| Robin autoplay bot | **Written, not live-tested** | addresses/config plausible, unproven |
+| Robin autoplay bot | **Live pad-only bring-up verified; stage clear pending** | private native runs, ordinary Continue inputs, no RAM writes; position feedback and full-stage acceptance remain under test |
 | `post_degrain` shader path | **Compiled, A/B unverified** | compiles; no visual comparison done |
 | Launcher **DEV TOOLS** panel (Settings) | **New — syntax-checked, not run in-app** | native ImGui panel wired into PSX Settings; connects to :4370, edits `.mcd` cards natively |
 | Savestate x/y sign-extension fix (older) | **Unverified** | fix landed earlier; no regression capture |
