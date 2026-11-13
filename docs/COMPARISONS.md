@@ -37,7 +37,9 @@ Static reflection/interior artwork can give windows depth and material character
 
 ## Motion and performance
 
-The [H24 results](H24-IN-GAME-RESULTS.md) publish three original silent window recordings and four full-resolution stills from the November 12, 2026 private run. The entry clip shows the target facade. The middle and later clips document subsequent city gameplay; they do not establish additional H24 placements or palette coverage. The run used normal game speed, disabled turbo and rewind, and disclosed a bounded player-invulnerability timer aid. Encoded recording averages range from about 42.7 to 45.0 frames per second; these measure the video files, not renderer cadence. Final visual acceptance remains false in the saved run proof.
+A separate fresh H24 run now supplies a [continuous 46.1-second entry-to-exit excerpt](H24-IN-GAME-RESULTS.md). Firing is off and the ship is parked near the lower-left; the main facade view is clear around 12 seconds. The game uses normal speed, turbo and rewind off, with timer assistance disclosed. Natural enemy and foreground geometry occlusion remains. The silent 1280 × 960 recording was requested at 30 Hz; final visual and performance acceptance remain open.
+
+The earlier entry-only section of the [H24 results](H24-IN-GAME-RESULTS.md) preserves three original silent window recordings and four full-resolution stills from the November 12, 2026 private run. The entry clip shows the target facade. The middle and later clips document subsequent city gameplay; they do not establish additional H24 placements or palette coverage. The run used normal game speed, disabled turbo and rewind, and disclosed a bounded player-invulnerability timer aid. Encoded recording averages range from about 42.7 to 45.0 frames per second; these measure the video files, not renderer cadence. Final visual acceptance remains false in the saved run proof.
 
 Review full-resolution stills and normal-speed fly-pasts at distant, middle and close placements. Check window readability, dark-wall contrast, highlights, seams, repeat patterns, oblique views and palette changes.
 

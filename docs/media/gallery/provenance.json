@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 44,
-  "total_image_bytes": 96790600,
+  "image_count": 45,
+  "total_image_bytes": 97709369,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1393,6 +1393,32 @@
       },
       "public_sha256": "d6b47d70f2f33d033c319a9856d0c7fafcc0aa5f3e69aa47b70f4183fa74b36d",
       "public_bytes": 2495725
+    },
+    {
+      "path": "docs/media/gallery/h24-full-fly-past.png",
+      "source_identifier": "docs/media/gallery/h24-full-fly-past.mp4",
+      "sha256": "03c015d17ace394f0dc276b8736a77adf473083aad8c39e06d318159d5191403",
+      "bytes": 918769,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_capture",
+      "label": "Unobstructed front and angled H24 facade at 12 seconds into the full-pass excerpt",
+      "status": "Frame extracted from actual assisted gameplay video; not a separate 2160p readback",
+      "unmodified_copy": false,
+      "pixel_content_preserved": true,
+      "embedded_metadata_present": false,
+      "encoding": {
+        "method": "Decoded source video frame at 12 seconds, saved as lossless PNG; no crop, resize or pixel edits"
+      },
+      "qualification": {
+        "assisted_visual_review": true,
+        "source_video_seconds": 12,
+        "target_visibility": true,
+        "motion_performance_acceptance": false,
+        "live_visual_accepted": false
+      }
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1463,8 +1489,33 @@
       "retimed": false,
       "interpolated_frames": false,
       "target_visibility": false
+    },
+    {
+      "path": "docs/media/gallery/h24-full-fly-past.mp4",
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/fullpass-original.mp4",
+      "source_sha256": "0692f1dc4daa4b8956cc88a5b8623fb638af5809b620cb1b07b901d9e8fed96b",
+      "sha256": "2d0d1741afd049b187de9bd01fde0604680865f4e8b9997ee3da5a328c693e96",
+      "bytes": 53370109,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "duration_seconds": 46.1,
+      "decoded_frame_count": 1366,
+      "requested_capture_rate_hz": 30,
+      "audio_streams": 0,
+      "unmodified_copy": false,
+      "editing": "One continuous excerpt requested at source 18–64 seconds; H.264 stream copy with MP4 edit list/keyframe preroll; no re-encoding, retiming, interpolation, scaling or internal cuts",
+      "source_duration_seconds": 115.0,
+      "category": "actual_assisted_gameplay_video",
+      "status": "Fresh full facade pass, normal speed settings; final visual and performance acceptance open",
+      "label": "H24 full facade entry-to-exit, no firing",
+      "target_visibility": true,
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 3,
-  "total_video_bytes": 14762033
+  "video_count": 4,
+  "total_video_bytes": 68132142,
+  "video_frame_extract_count": 1
 }

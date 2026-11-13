@@ -1,10 +1,28 @@
 # Full 24-room facade: actual in-game results
 
+## Fresh entry-to-exit pass — November 12, 2026
+
+[![Watch the full facade fly-past](media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)
+
+[Play/download the continuous 46.1-second fly-past](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4) · [Full-pass evidence and hashes](media/gallery/h24-fullpass-results.json)
+
+A fresh private run (`h24-fullpass-r2`) captured the full 4096 × 4096, 24-room candidate from before its entry at the right until after its departure. The ship was moved to the lower-left with a finite ordinary movement pulse, then firing was left off. The front/angled facade is clearly exposed around **12 seconds** into this excerpt. Foreground buildings and signs temporarily occlude it as the camera moves; enemies still cross naturally. No enemies were removed and the camera was not overridden.
+
+The footage shows photographic rooms on dark structural panels, interspersed with remaining bright blue-window mappings. Repeated static room patterns are visible. This is better evidence for motion review than the earlier entry-only clip, while final realism approval, individual readability of all 24 rooms, seam/palette coverage and performance acceptance remain open.
+
+The game ran at normal-speed settings with turbo verified off at both ends, rewind disabled, no fast-forward and no state loads. A timer-only invulnerability aid used a 180-second lease and recorded **694 successful writes**, then stopped. This is assisted visual-review footage. Claude confirmed a quiet GPU window before launch; that window was released after recording.
+
+The silent source recording is 115 seconds at 1280 × 960, requested at 30 Hz. The published file is one continuous excerpt requested from source seconds 18–64, trimmed with H.264 stream copy and an MP4 edit list. Its measured duration is 46.1 seconds; no re-encoding, speed change, interpolation, upscaling or internal cuts were applied. The poster is a lossless extraction from public video time 12 seconds, not a separate 2160p readback. File capture cadence does not establish renderer frame pacing or 60 fps.
+
+Preparation verified all 1,195 PNG hashes, with 1,194 parent keys unchanged and categorical alpha preserved. The frozen master hash matches the earlier run. Exact-key draw samples span game frames 5723–7433. The all-vertices-left-edge detector did not trigger; **entry and exit were verified in the actual video**, not inferred from absent draw samples. The run recorded no top-level errors. The quit reply was `emu busy or frozen`, followed by a successful debug-port-closed check; graceful quit success is not claimed.
+
+## Earlier entry-only run
+
 Tested November 12, 2026, 5:22–5:25 PM Arizona time (November 13, 00:22–00:25 UTC). Run: `h24-v2-4096-r1`, Windows OpenGL recompiled runtime.
 
 The full 4096 × 4096 H24 v2 master reached the running game. The entry video and two adjacent internal stills show its varied room interiors on front and angled building faces. This establishes visible integration of the candidate. Final visual approval remains open: the saved proof records `live_visual_accepted: false`.
 
-## Watch the actual footage
+### Watch the actual footage
 
 [![Play the H24 entry fly-past](media/gallery/h24-front-angle.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4)
 
@@ -16,27 +34,27 @@ These are three separate, byte-identical copies of the original captures, with g
 
 **Assistance disclosure:** a private player-invulnerability countdown aid was active, with a 180-second lease. The run records 614 successful one-byte writes to that timer and no lives writes, stage jumps or state loads. The helper stopped after about 124 seconds, without forcibly clearing the live timer. This is assisted visual-review footage. It is not evidence of unassisted survival or gameplay balance.
 
-## Full-resolution stills
+### Full-resolution stills
 
 Each still is a separate synchronous internal OpenGL readback at 2880 × 2160. Public PNGs use lossless compression with identical decoded pixels; no crop or resize was applied. Their frames bracket or follow the video and are not asserted to be exact video frames.
 
-### Target entry, frames 5800–5802
+#### Target entry, frames 5800–5802
 
 ![H24 facade entering at the right of the city view](media/gallery/h24-entry.png)
 
-### Front and angled faces, frames 6080–6084
+#### Front and angled faces, frames 6080–6084
 
 ![Photographic H24 rooms on dark facade faces beside remaining blue-window mappings](media/gallery/h24-front-angle.png)
 
-### Subsequent city view, frames 7692–7694
+#### Subsequent city view, frames 7692–7694
 
 ![Middle city view from the same assisted session; additional H24 visibility is unverified](media/gallery/h24-middle.png)
 
-### Later city view, frames 8890–8893
+#### Later city view, frames 8890–8893
 
 ![Later city view from the same assisted session; additional H24 visibility is unverified](media/gallery/h24-later.png)
 
-## What the test establishes
+### What the test establishes
 
 - Preparation verification checked all 1,195 PNG keys: 1,194 parent keys were unchanged, and the one facade replacement preserved categorical native alpha. The run used the full frozen 24-room master at 4096 × 4096.
 - The recorded native route passed title, fighter selection, weapon selection and City gates before the facade test. User memory cards were not mounted.
@@ -44,7 +62,7 @@ Each still is a separate synchronous internal OpenGL readback at 2880 × 2160. P
 - The photographic rooms and dark structural bands are visible on front and angled faces. Adjacent blue-window sections remain different mappings, so this is partial building/scene coverage.
 - The saved run contains no top-level errors. Input was released and capture stopped. The quit command returned `emu busy or frozen`; the subsequent process-close check reported the debug port closed. The quit reply is not described as a successful graceful shutdown.
 
-## What remains open
+### What remains open
 
 The six-second entry clip is a short approach view. It does not show a complete close-to-distant traversal or establish readability of every one of the 24 authored rooms. The middle and later recordings primarily show other buildings and do not extend the exact-key visibility result. Seams, repeated placements, all palette variants and final realism still need review.
 
@@ -52,8 +70,8 @@ The windows use static interior/reflection artwork on existing geometry. This te
 
 FFprobe counted 270 frames in the 6.00-second entry file, 256 in the 6.00-second middle file, and 268 in the 5.95-second later file. Their average encoded rates are about 45.0, 42.7 and 45.0 fps. Normal game-speed settings do not establish stable real-time renderer cadence. Window recording adds load; performance, hitching and continuous audio acceptance remain open. No audio stream was recorded.
 
-## Evidence and provenance
+### Evidence and provenance
 
 [Machine-readable results and artifact hashes](media/gallery/h24-in-game-results.json) preserve selected facts from the saved run and hashes of the private source receipts. [Gallery provenance](media/gallery/provenance.json) identifies each public asset, original source and pixel-preserving encoding. Private launch configuration, disc paths, saves, runtime binaries and replacement packs are excluded.
 
-This publication verifies and packages an existing run; it does not claim a new game run was executed while preparing these results.
+The entry-only publication packaged an existing run. The full-pass section above documents a separate fresh game run.

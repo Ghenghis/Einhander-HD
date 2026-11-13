@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "run_id": "h24-fullpass-r2",
+  "test_date_arizona": "2026-11-12",
+  "started_at_utc": "2026-11-13T00:52:16.537603+00:00",
+  "ended_at_utc": "2026-11-13T00:55:40.270808+00:00",
+  "fresh_game_run": true,
+  "candidate": {
+    "authored_rooms": 24,
+    "runtime_dimensions": [
+      4096,
+      4096
+    ],
+    "authoring_sha256": "b18daa9019de48e59068689e0b0cfaedb46bb0cdbf429172610379e3404724ce",
+    "unchanged_parent_keys": 1194,
+    "changed_png_keys": 1,
+    "production_installed": false
+  },
+  "source_receipts": [
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/candidate.json",
+      "sha256": "cd2503fcdf64a708c6e26af73de1eeb36c271a16dea1b89c092da7773fa613a9",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/preparation-verification.json",
+      "sha256": "a42e12fe8a7bfc68b473ba9f9b7a72af3bc76eb4f8bc37e7fd32c36ca15bf1d1",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/fullpass-proof.json",
+      "sha256": "bf1d47a9cbcf6d725f028568cfb549adcd3781a2edee9fef887d826add287700",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/executed-fullpass.py",
+      "sha256": "f9a078f29a75b0e088d8fccba716d58160e3cb85aade04d5f4aac53ffc06e51a",
+      "published": false
+    },
+    {
+      "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/native-fullpass/capture.jsonl",
+      "sha256": "bb01e0c1a63d701003e1c2f52f8ced2342edade07954a3fc00a1f2f844357d87",
+      "published": false
+    }
+  ],
+  "execution": {
+    "native_route_passed": true,
+    "ordinary_fire_input": false,
+    "ordinary_movement": {
+      "buttons": "down and left",
+      "duration_seconds": 1.2,
+      "purpose": "Park at lower-left to reduce player obstruction"
+    },
+    "turbo_enabled_at_start": false,
+    "turbo_enabled_at_end": false,
+    "rewind_enabled": false,
+    "state_loads": false,
+    "user_cards_mounted": false,
+    "survival_assistance": {
+      "kind": "invincibility countdown only",
+      "address": "0x80085718",
+      "width_bytes": 1,
+      "value": 165,
+      "lease_seconds": 180,
+      "interval_seconds": 0.15,
+      "started_at_utc": "2026-11-13T00:53:21.923923+00:00",
+      "stopped_at_utc": "2026-11-13T00:55:38.597565+00:00",
+      "successful_writes": 694,
+      "last_write_at_utc": "2026-11-13T00:55:38.586881+00:00",
+      "forced_timer_clear": false,
+      "lives_writes": false,
+      "stage_jumps": false,
+      "state_loads": false,
+      "purpose": "Visual reachability aid; not unassisted gameplay or performance evidence"
+    },
+    "errors": [],
+    "close": {
+      "pid": 26296,
+      "clear_input": {
+        "id": 1,
+        "ok": true
+      },
+      "quit_reply": {
+        "ok": false,
+        "err": "emu busy or frozen"
+      },
+      "port_closed": true
+    },
+    "quiet_gpu_ack_message": "msg_3a96eb244d501812",
+    "gpu_release_message": "msg_614c3d3458e0cb81",
+    "extra_readback": "One 2160p readback before first target draw; no repeated target readbacks during the pass"
+  },
+  "target_draw_evidence": {
+    "key": "52F33418-5E9B9AC3",
+    "sample_count": 22,
+    "first_game_frame": 5723,
+    "last_game_frame": 7433,
+    "draw_submission_alone_is_visibility_proof": false,
+    "exit_edge_detector_triggered": false,
+    "note": "Automatic all-vertices-left-edge detector did not trigger; full entry/exit verified from video, not inferred from absent samples."
+  },
+  "visual_review": {
+    "complete_entry_to_exit_captured": true,
+    "reviewed_source_video_seconds": [
+      18,
+      23,
+      27,
+      30,
+      35,
+      40,
+      45,
+      50,
+      55,
+      62
+    ],
+    "public_start_and_end_reviewed": true,
+    "reviewed_public_video_seconds": [
+      0,
+      12,
+      45
+    ],
+    "findings": [
+      "Target enters from right, crosses front/angled placements, passes behind foreground buildings/signs and leaves view",
+      "No firing; the main facade view at public12s is unobstructed by enemies or explosions",
+      "Enemies still cross naturally; no enemy removal or camera override",
+      "Blue-window strips remain different mappings; repeated static room patterns remain visible"
+    ],
+    "all_24_rooms_individually_verified": false,
+    "live_visual_accepted": false,
+    "performance_accepted": false,
+    "audio_continuity_tested": false
+  },
+  "video_asset": {
+    "path": "docs/media/gallery/h24-full-fly-past.mp4",
+    "source_identifier": "remaster-audit/dev-center-evidence/facade-ab-20261112/h24-fullpass-r2/fullpass-original.mp4",
+    "source_sha256": "0692f1dc4daa4b8956cc88a5b8623fb638af5809b620cb1b07b901d9e8fed96b",
+    "sha256": "2d0d1741afd049b187de9bd01fde0604680865f4e8b9997ee3da5a328c693e96",
+    "bytes": 53370109,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "duration_seconds": 46.1,
+    "decoded_frame_count": 1366,
+    "requested_capture_rate_hz": 30,
+    "audio_streams": 0,
+    "unmodified_copy": false,
+    "editing": "One continuous excerpt requested at source 18–64 seconds; H.264 stream copy with MP4 edit list/keyframe preroll; no re-encoding, retiming, interpolation, scaling or internal cuts",
+    "source_duration_seconds": 115.0,
+    "category": "actual_assisted_gameplay_video",
+    "status": "Fresh full facade pass, normal speed settings; final visual and performance acceptance open",
+    "label": "H24 full facade entry-to-exit, no firing",
+    "target_visibility": true,
+    "retimed": false,
+    "interpolated_frames": false
+  },
+  "poster_asset": {
+    "path": "docs/media/gallery/h24-full-fly-past.png",
+    "source_identifier": "docs/media/gallery/h24-full-fly-past.mp4",
+    "sha256": "03c015d17ace394f0dc276b8736a77adf473083aad8c39e06d318159d5191403",
+    "bytes": 918769,
+    "dimensions": [
+      1280,
+      960
+    ],
+    "category": "actual_capture",
+    "label": "Unobstructed front and angled H24 facade at 12 seconds into the full-pass excerpt",
+    "status": "Frame extracted from actual assisted gameplay video; not a separate 2160p readback",
+    "unmodified_copy": false,
+    "pixel_content_preserved": true,
+    "embedded_metadata_present": false,
+    "encoding": {
+      "method": "Decoded source video frame at 12 seconds, saved as lossless PNG; no crop, resize or pixel edits"
+    },
+    "qualification": {
+      "assisted_visual_review": true,
+      "source_video_seconds": 12,
+      "target_visibility": true,
+      "motion_performance_acceptance": false,
+      "live_visual_accepted": false
+    }
+  }
+}

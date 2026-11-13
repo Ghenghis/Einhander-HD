@@ -50,13 +50,13 @@ The new facade master contains **24 photographic rooms**: 13 offices, three stor
 
 <sub>Artwork review sheet. Asset preparation and in-game acceptance are tracked separately.</sub>
 
-**Actual 24-room in-game test, November 12, 2026:** the full 4096 × 4096 master was loaded and its exact texture key was submitted by the renderer. The entry clip shows the photographic rooms on front and angled faces as the building enters from the right; neighboring blue-window sections retain other mappings.
+**Actual entry-to-exit fly-past, November 12, 2026:** a fresh run used the full 4096 × 4096, 24-room master. Firing was off and the ship was parked near the lower-left. Watch the windows cross front and angled views, with a clear main facade view around 12 seconds. Neighboring blue-window sections retain other mappings.
 
-[![Watch the actual 24-room facade entry clip](docs/media/gallery/h24-front-angle.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4)
+[![Watch the full 24-room facade fly-past](docs/media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)
 
-[Watch the original six-second fly-past](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4) · [Full-resolution stills, additional clips and test results](docs/H24-IN-GAME-RESULTS.md)
+[Watch the continuous 46-second fly-past](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4) · [Actual results, evidence and earlier footage](docs/H24-IN-GAME-RESULTS.md)
 
-<sub>Assisted private visual test: normal game speed with turbo and rewind disabled; a bounded player-invulnerability timer aid was active. Silent 1280 × 960 window recording; separate 2880 × 2160 stills. Final visual approval and performance acceptance remain open.</sub>
+<sub>Assisted private visual test: normal speed, turbo and rewind off, bounded player-invulnerability timer aid disclosed. Silent 1280 × 960 video. Natural enemy/building/sign occlusion remains. Final visual and performance acceptance remain open.</sub>
 
 The tile is bound to verified native source words, palette and UV coordinates. A similar-looking neighboring building uses a different tile and needs its own layout. The current inventory contains 324 palette keys across ten mixed atlas families; these do not count buildings or establish complete environment coverage.
 

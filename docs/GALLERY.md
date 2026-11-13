@@ -6,15 +6,15 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
-### Full 24-room facade: actual assisted fly-past
+### Full 24-room facade: fresh entry-to-exit fly-past
 
-The November 12, 2026 private run used the full 4096 × 4096 H24 v2 master. The entry recording shows the photographic interiors on the building entering from the right. The blue-window sections remain separate mappings. This is a normal-speed assisted visual test with a bounded invulnerability-timer aid; turbo and rewind were disabled.
+The fresh November 12 private run used the frozen 4096 × 4096 H24 v2 master. Firing was off, with the ship parked near the lower-left. The continuous excerpt starts before the facade enters from the right and finishes after it leaves. The main facade view at 12 seconds is unobstructed; natural enemy, building and sign occlusion remains elsewhere. Blue-window sections still use separate mappings.
 
-[![Play the original six-second H24 entry recording](media/gallery/h24-front-angle.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4)
+[![Play the continuous 46-second H24 fly-past](media/gallery/h24-full-fly-past.png)](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4)
 
-[Play/download the original entry clip](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4) · [All clips, 2160p stills, evidence and limits](H24-IN-GAME-RESULTS.md)
+[Play/download the full pass](https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-full-fly-past.mp4) · [New results, disclosures and earlier footage](H24-IN-GAME-RESULTS.md)
 
-The silent recording is 1280 × 960; the linked still is a separate 2880 × 2160 internal capture. The result establishes a visible in-game integration of the full master. It does not establish all-room readability, final visual acceptance or 60 fps performance.
+Normal game-speed settings, turbo and rewind off; bounded invulnerability-timer aid disclosed. Silent 1280 × 960 recording, with a lossless video-frame poster. Final visual acceptance, all-room readability and performance acceptance remain open.
 
 ### Recompiled stock textures, 4× rendering
 
