@@ -1,0 +1,2344 @@
+{
+  "generated_at_utc": "2026-11-13T14:40:29.880692+00:00",
+  "base_revision": "ab6d0e29379f886c7025c7299fbc5a126c8233c6",
+  "environment_literal_references": {
+    "EIN_DEBUG_PORT": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 176,
+        "context": "        \"EIN_DEV_URL\": \"http://127.0.0.1:8094\",\n        \"EIN_DEBUG_PORT\": \"4370\",\n        \"PSXRECOMP_SKIN_PROFILE\": identity,\n        \"PSXRECOMP_SKIN_KEYS\": \",\".join(targets),"
+      },
+      {
+        "path": "windows-x64/tools/ein_bridge.py",
+        "line": 40,
+        "context": "DEBUG_HOST = \"127.0.0.1\"\nDEBUG_PORT = int(os.environ.get(\"EIN_DEBUG_PORT\", \"4370\"))\nDEBUG_IO_LOCK = threading.Lock()\n"
+      }
+    ],
+    "EIN_DEV_URL": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 175,
+        "context": "    return {\n        \"EIN_DEV_URL\": \"http://127.0.0.1:8094\",\n        \"EIN_DEBUG_PORT\": \"4370\",\n        \"PSXRECOMP_SKIN_PROFILE\": identity,"
+      }
+    ],
+    "PSXRECOMP_AUDIO_LEGACY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 2024,
+        "context": "    static int v = -1;\n    if (v < 0) { const char* e = getenv(\"PSXRECOMP_AUDIO_LEGACY\"); v = (e && *e && *e != '0') ? 1 : 0; }\n    return v != 0;\n}"
+      }
+    ],
+    "PSXRECOMP_HD_CPU_AUTHORITY": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 192,
+        "context": "        \"PSXRECOMP_HD_DECODE_BUDGET_MB\": \"256\",\n        \"PSXRECOMP_HD_CPU_AUTHORITY\": \"0\",\n        \"PSXRECOMP_HD_DUMP\": \"\",\n        \"PSXRECOMP_HD_SOURCE_SIDECARS\": \"\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 354,
+        "context": "    if(enabled<0) {\n        const char *value=getenv(\"PSXRECOMP_HD_CPU_AUTHORITY\");\n        enabled=value && strcmp(value,\"1\")==0;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_CPU_PROFILE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 511,
+        "context": "    if(s_hd_cpu_diag_enabled<0){\n        const char *value=getenv(\"PSXRECOMP_HD_CPU_PROFILE\");\n        s_hd_cpu_diag_enabled=value && strcmp(value,\"1\")==0;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_DECODE_BUDGET_MB": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 191,
+        "context": "        \"PSXRECOMP_HD_PAGE_FALLBACK\": \"1\",\n        \"PSXRECOMP_HD_DECODE_BUDGET_MB\": \"256\",\n        \"PSXRECOMP_HD_CPU_AUTHORITY\": \"0\",\n        \"PSXRECOMP_HD_DUMP\": \"\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2677,
+        "context": "        s_hd_pack) {\n        const char *budget = getenv(\"PSXRECOMP_HD_DECODE_BUDGET_MB\");\n        if (budget && *budget) {\n            char *end = NULL;"
+      }
+    ],
+    "PSXRECOMP_HD_DUMP": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 193,
+        "context": "        \"PSXRECOMP_HD_CPU_AUTHORITY\": \"0\",\n        \"PSXRECOMP_HD_DUMP\": \"\",\n        \"PSXRECOMP_HD_SOURCE_SIDECARS\": \"\",\n        \"PSXRECOMP_HD_PROOF_LOG\": \"\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2653,
+        "context": "    const char *dump = s_hd_cfg_dump[0] ? s_hd_cfg_dump\n                                        : getenv(\"PSXRECOMP_HD_DUMP\");\n    /* hd_textures=true with no paths: dump to a default dir under cwd. */\n    if (s_hd_cfg_enable > 0 && (!root || !root[0]) && (!dump || !dump[0]))"
+      }
+    ],
+    "PSXRECOMP_HD_EMISSIVE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3282,
+        "context": "static int hd_emissive_enabled(void){\n    if(s_hd_emissive_enabled<0){const char *value=getenv(\"PSXRECOMP_HD_EMISSIVE\");s_hd_emissive_enabled=value&&!strcmp(value,\"1\");}\n    return s_hd_emissive_enabled;\n}"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/hd_texture_pack.cpp",
+        "line": 986,
+        "context": "        auto pack = std::make_unique<HdTexturePack>();\n        const char* emissive=std::getenv(\"PSXRECOMP_HD_EMISSIVE\");\n        pack->decode.emissive_enabled=emissive && std::strcmp(emissive,\"1\")==0;\n        pack->asset_root = input.string();"
+      }
+    ],
+    "PSXRECOMP_HD_FACADE_ANISOTROPY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3339,
+        "context": "    hd_facade_motion_parse(getenv(\"PSXRECOMP_HD_FACADE_MOTION\"),\n                          getenv(s_hd_world_sampling?\"PSXRECOMP_HD_WORLD_ANISOTROPY\":\"PSXRECOMP_HD_FACADE_ANISOTROPY\"));\n    if(!s_hd_facade_motion.enabled && !s_hd_world_sampling)return;\n    if(SDL_GL_ExtensionSupported(\"GL_EXT_texture_filter_anisotropic\") ||"
+      }
+    ],
+    "PSXRECOMP_HD_FACADE_MOTION": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3338,
+        "context": "    s_hd_world_sampling=world && !strcmp(world,\"1\");\n    hd_facade_motion_parse(getenv(\"PSXRECOMP_HD_FACADE_MOTION\"),\n                          getenv(s_hd_world_sampling?\"PSXRECOMP_HD_WORLD_ANISOTROPY\":\"PSXRECOMP_HD_FACADE_ANISOTROPY\"));\n    if(!s_hd_facade_motion.enabled && !s_hd_world_sampling)return;"
+      }
+    ],
+    "PSXRECOMP_HD_FILTER_STATE_CACHE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3305,
+        "context": "static int hd_filter_state_cache_enabled(void){\n    if(s_hd_filter_state_cache<0){const char *value=getenv(\"PSXRECOMP_HD_FILTER_STATE_CACHE\");\n        s_hd_filter_state_cache=value&&!strcmp(value,\"1\");}\n    return s_hd_filter_state_cache;"
+      }
+    ],
+    "PSXRECOMP_HD_KEEP_BRACKET": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 1534,
+        "context": "static int hd_keep_bracket_enabled(void){\n    if(s_hd_keep_bracket<0){const char *value=getenv(\"PSXRECOMP_HD_KEEP_BRACKET\");\n        s_hd_keep_bracket=value&&!strcmp(value,\"1\");}\n    return s_hd_keep_bracket;"
+      }
+    ],
+    "PSXRECOMP_HD_OPAQUE_BATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3399,
+        "context": "    if(s_hd_opaque_batch_enabled<0){\n        const char *value=getenv(\"PSXRECOMP_HD_OPAQUE_BATCH\");\n        s_hd_opaque_batch_enabled=value && strcmp(value,\"1\")==0;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_PAGE_FALLBACK": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 190,
+        "context": "        \"PSXRECOMP_HD_TEXTURE_ROOT\": str(Path(root).resolve() / \"hd-textures\" / \"stage1-v1\"),\n        \"PSXRECOMP_HD_PAGE_FALLBACK\": \"1\",\n        \"PSXRECOMP_HD_DECODE_BUDGET_MB\": \"256\",\n        \"PSXRECOMP_HD_CPU_AUTHORITY\": \"0\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2784,
+        "context": "    if (enabled < 0) {\n        const char *value = getenv(\"PSXRECOMP_HD_PAGE_FALLBACK\");\n        enabled = value && strcmp(value,\"1\") == 0;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_PROOF_CONTROL": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 196,
+        "context": "        \"PSXRECOMP_HD_PROOF_LOG\": \"\",\n        \"PSXRECOMP_HD_PROOF_CONTROL\": \"\",\n    }\n"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3041,
+        "context": "    if (!initialized) {\n        path = getenv(\"PSXRECOMP_HD_PROOF_CONTROL\");\n        initialized = 1;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_PROOF_LOG": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 195,
+        "context": "        \"PSXRECOMP_HD_SOURCE_SIDECARS\": \"\",\n        \"PSXRECOMP_HD_PROOF_LOG\": \"\",\n        \"PSXRECOMP_HD_PROOF_CONTROL\": \"\",\n    }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2994,
+        "context": "    if (!initialized) {\n        const char *path = getenv(\"PSXRECOMP_HD_PROOF_LOG\");\n        initialized = 1;\n        if (path && *path) log = fopen(path, \"ab\");"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3061,
+        "context": "    if (!initialized) {\n        const char *log = getenv(\"PSXRECOMP_HD_PROOF_LOG\");\n        initialized=1;\n        if (log && *log) snprintf(path,sizeof path,\"%s.stats.json\",log);"
+      }
+    ],
+    "PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 518,
+        "context": "    static int enabled=-1;\n    if(enabled<0){const char *value=getenv(\"PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY\");enabled=value&&strcmp(value,\"1\")==0;}\n    return enabled;\n}"
+      }
+    ],
+    "PSXRECOMP_HD_SOURCE_CACHE_KEYS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2706,
+        "context": "    if(!s_hd_source_filter_ready){\n        if(!hd_source_cache_filter_parse(getenv(\"PSXRECOMP_HD_SOURCE_CACHE_KEYS\"),&s_hd_source_filter))\n            fprintf(stderr,\"[hd_tex] invalid source-cache CRC shortlist; upload copies refused\\n\");\n        s_hd_source_filter_ready=1;"
+      }
+    ],
+    "PSXRECOMP_HD_SOURCE_SIDECARS": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 194,
+        "context": "        \"PSXRECOMP_HD_DUMP\": \"\",\n        \"PSXRECOMP_HD_SOURCE_SIDECARS\": \"\",\n        \"PSXRECOMP_HD_PROOF_LOG\": \"\",\n        \"PSXRECOMP_HD_PROOF_CONTROL\": \"\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2727,
+        "context": "    if (enabled < 0) {\n        const char *value = getenv(\"PSXRECOMP_HD_SOURCE_SIDECARS\");\n        enabled = value && strcmp(value,\"1\") == 0;\n    }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2835,
+        "context": "    if (enabled < 0) {\n        const char *value = getenv(\"PSXRECOMP_HD_SOURCE_SIDECARS\");\n        enabled = value && strcmp(value, \"1\") == 0;\n    }"
+      }
+    ],
+    "PSXRECOMP_HD_TEXTURE_ROOT": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 256,
+        "context": "        self.assertIn(\"--launcher\", prepared[\"arguments\"])\n        self.assertEqual(prepared[\"environment_overrides\"][\"PSXRECOMP_HD_TEXTURE_ROOT\"], str(self.pack))\n        executable.write_bytes(b\"changed runtime\")\n        with self.assertRaisesRegex(ValueError, \"Executable changed\"):"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 189,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE\": format(enemy_detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_HD_TEXTURE_ROOT\": str(Path(root).resolve() / \"hd-textures\" / \"stage1-v1\"),\n        \"PSXRECOMP_HD_PAGE_FALLBACK\": \"1\",\n        \"PSXRECOMP_HD_DECODE_BUDGET_MB\": \"256\","
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2651,
+        "context": "    const char *root = s_hd_cfg_root[0] ? s_hd_cfg_root\n                                        : getenv(\"PSXRECOMP_HD_TEXTURE_ROOT\");\n    const char *dump = s_hd_cfg_dump[0] ? s_hd_cfg_dump\n                                        : getenv(\"PSXRECOMP_HD_DUMP\");"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/hd_texture_pack.cpp",
+        "line": 944,
+        "context": "        const char* selected = explicit_root;\n        if (!selected || !selected[0]) selected = std::getenv(\"PSXRECOMP_HD_TEXTURE_ROOT\");\n        if (!selected || !selected[0]) {\n            write_error(error, error_capacity,"
+      }
+    ],
+    "PSXRECOMP_HD_WORLD_ANISOTROPY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3339,
+        "context": "    hd_facade_motion_parse(getenv(\"PSXRECOMP_HD_FACADE_MOTION\"),\n                          getenv(s_hd_world_sampling?\"PSXRECOMP_HD_WORLD_ANISOTROPY\":\"PSXRECOMP_HD_FACADE_ANISOTROPY\"));\n    if(!s_hd_facade_motion.enabled && !s_hd_world_sampling)return;\n    if(SDL_GL_ExtensionSupported(\"GL_EXT_texture_filter_anisotropic\") ||"
+      }
+    ],
+    "PSXRECOMP_HD_WORLD_SAMPLING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 3336,
+        "context": "static void hd_facade_motion_init(void) {\n    const char *world=getenv(\"PSXRECOMP_HD_WORLD_SAMPLING\");\n    s_hd_world_sampling=world && !strcmp(world,\"1\");\n    hd_facade_motion_parse(getenv(\"PSXRECOMP_HD_FACADE_MOTION\"),"
+      }
+    ],
+    "PSXRECOMP_PLAYER_DRAW_CRAFT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2936,
+        "context": "        s_player_draw_enabled=value && strcmp(value,\"1\")==0;\n        const char *craft=getenv(\"PSXRECOMP_PLAYER_DRAW_CRAFT\");\n        if(craft&&strcmp(craft,\"auto\")==0)s_player_draw_source_set=1;\n        else if(!craft||strcmp(craft,\"mk2\")==0)s_player_draw_source_set=2;"
+      }
+    ],
+    "PSXRECOMP_PLAYER_DRAW_ONLY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2947,
+        "context": "    if(s_player_draw_only<0){\n        const char *value=getenv(\"PSXRECOMP_PLAYER_DRAW_ONLY\");\n        s_player_draw_only=value && strcmp(value,\"1\")==0;\n    }"
+      }
+    ],
+    "PSXRECOMP_PLAYER_DRAW_TRACKING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2934,
+        "context": "    if(s_player_draw_enabled<0){\n        const char *value=getenv(\"PSXRECOMP_PLAYER_DRAW_TRACKING\");\n        s_player_draw_enabled=value && strcmp(value,\"1\")==0;\n        const char *craft=getenv(\"PSXRECOMP_PLAYER_DRAW_CRAFT\");"
+      }
+    ],
+    "PSXRECOMP_SKIN_DETAIL_": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2561,
+        "context": "    const HdSkinConfig *material=enemy?&s_hd_skin_enemy:&s_hd_skin;\n    const char *prefix=enemy?\"PSXRECOMP_SKIN_ENEMY_DETAIL_\":\"PSXRECOMP_SKIN_DETAIL_\";\n    char variable[96];\n    const char *path,*strength,*scale;"
+      }
+    ],
+    "PSXRECOMP_SKIN_DETAIL_PATH": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 103,
+        "context": "        self.assertEqual(result[\"descriptor\"][\"enemy_detail_map\"], \"none\")\n        self.assertEqual(env[\"PSXRECOMP_SKIN_DETAIL_PATH\"], \"\")\n        self.assertEqual(env[\"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\"], \"\")\n"
+      },
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 112,
+        "context": "        self.assertEqual(descriptor[\"authored_detail\"][\"player\"][\"path\"], str(path))\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_PATH\"], str(path))\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_STRENGTH\"], \"0.120000\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_SCALE\"], \"8.000000\")"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 183,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_STRENGTH\": format(enemy_strength, \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_PATH\": detail[\"path\"],\n        \"PSXRECOMP_SKIN_DETAIL_STRENGTH\": format(detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_SCALE\": format(detail[\"scale\"], \".6f\"),"
+      }
+    ],
+    "PSXRECOMP_SKIN_DETAIL_SCALE": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 114,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_STRENGTH\"], \"0.120000\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_SCALE\"], \"8.000000\")\n        self.assertEqual(descriptor[\"authored_detail\"][\"player\"][\"wrap\"], \"mirrored_repeat\")\n        self.receipt()"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 185,
+        "context": "        \"PSXRECOMP_SKIN_DETAIL_STRENGTH\": format(detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_SCALE\": format(detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\": enemy_detail[\"path\"],\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH\": format(enemy_detail[\"strength\"], \".6f\"),"
+      }
+    ],
+    "PSXRECOMP_SKIN_DETAIL_STRENGTH": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 113,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_PATH\"], str(path))\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_STRENGTH\"], \"0.120000\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_DETAIL_SCALE\"], \"8.000000\")\n        self.assertEqual(descriptor[\"authored_detail\"][\"player\"][\"wrap\"], \"mirrored_repeat\")"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 184,
+        "context": "        \"PSXRECOMP_SKIN_DETAIL_PATH\": detail[\"path\"],\n        \"PSXRECOMP_SKIN_DETAIL_STRENGTH\": format(detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_SCALE\": format(detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\": enemy_detail[\"path\"],"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2561,
+        "context": "    const HdSkinConfig *material=enemy?&s_hd_skin_enemy:&s_hd_skin;\n    const char *prefix=enemy?\"PSXRECOMP_SKIN_ENEMY_DETAIL_\":\"PSXRECOMP_SKIN_DETAIL_\";\n    char variable[96];\n    const char *path,*strength,*scale;"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_PATH": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 104,
+        "context": "        self.assertEqual(env[\"PSXRECOMP_SKIN_DETAIL_PATH\"], \"\")\n        self.assertEqual(env[\"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\"], \"\")\n\n    def test_authored_detail_can_enrich_stock_colors_with_separate_receipt(self):"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 186,
+        "context": "        \"PSXRECOMP_SKIN_DETAIL_SCALE\": format(detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\": enemy_detail[\"path\"],\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH\": format(enemy_detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE\": format(enemy_detail[\"scale\"], \".6f\"),"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 188,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH\": format(enemy_detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE\": format(enemy_detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_HD_TEXTURE_ROOT\": str(Path(root).resolve() / \"hd-textures\" / \"stage1-v1\"),\n        \"PSXRECOMP_HD_PAGE_FALLBACK\": \"1\","
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 187,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_DETAIL_PATH\": enemy_detail[\"path\"],\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH\": format(enemy_detail[\"strength\"], \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE\": format(enemy_detail[\"scale\"], \".6f\"),\n        \"PSXRECOMP_HD_TEXTURE_ROOT\": str(Path(root).resolve() / \"hd-textures\" / \"stage1-v1\"),"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_KEYS": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 181,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_PROFILE\": enemy_identity,\n        \"PSXRECOMP_SKIN_ENEMY_KEYS\": \",\".join(enemy_targets),\n        \"PSXRECOMP_SKIN_ENEMY_STRENGTH\": format(enemy_strength, \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_PATH\": detail[\"path\"],"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4703,
+        "context": "        status = hd_skin_config_parse_channel(&s_hd_skin_enemy,\n            getenv(\"PSXRECOMP_SKIN_ENEMY_PROFILE\"),getenv(\"PSXRECOMP_SKIN_ENEMY_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"),1);\n        if (status < 0)"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_PROFILE": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 183,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_KEYS\"], \",\".join(DEFAULT_PLAYER_KEYS))\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"stock\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_STRENGTH\"], \"0.550000\")\n        self.assertEqual({path.name: path.read_bytes() for path in self.pngs.iterdir()}, originals)"
+      },
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 208,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_PROFILE\"], \"aurora-teal\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"crimson-red\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"], \"0.900000\")\n        self.assertEqual(len(descriptor[\"source_textures\"]), 10)"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 180,
+        "context": "        \"PSXRECOMP_SKIN_STRENGTH\": format(strength, \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_PROFILE\": enemy_identity,\n        \"PSXRECOMP_SKIN_ENEMY_KEYS\": \",\".join(enemy_targets),\n        \"PSXRECOMP_SKIN_ENEMY_STRENGTH\": format(enemy_strength, \".6f\"),"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4703,
+        "context": "        status = hd_skin_config_parse_channel(&s_hd_skin_enemy,\n            getenv(\"PSXRECOMP_SKIN_ENEMY_PROFILE\"),getenv(\"PSXRECOMP_SKIN_ENEMY_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"),1);\n        if (status < 0)"
+      }
+    ],
+    "PSXRECOMP_SKIN_ENEMY_STRENGTH": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 209,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"crimson-red\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"], \"0.900000\")\n        self.assertEqual(len(descriptor[\"source_textures\"]), 10)\n        self.assertEqual(set(descriptor[\"targets\"]) & set(descriptor[\"enemy_targets\"]), set())"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 182,
+        "context": "        \"PSXRECOMP_SKIN_ENEMY_KEYS\": \",\".join(enemy_targets),\n        \"PSXRECOMP_SKIN_ENEMY_STRENGTH\": format(enemy_strength, \".6f\"),\n        \"PSXRECOMP_SKIN_DETAIL_PATH\": detail[\"path\"],\n        \"PSXRECOMP_SKIN_DETAIL_STRENGTH\": format(detail[\"strength\"], \".6f\"),"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4704,
+        "context": "            getenv(\"PSXRECOMP_SKIN_ENEMY_PROFILE\"),getenv(\"PSXRECOMP_SKIN_ENEMY_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"),1);\n        if (status < 0)\n            fprintf(stderr,\"[skin_material] invalid enemy profile/key/strength; stock enemy material retained\\n\");"
+      }
+    ],
+    "PSXRECOMP_SKIN_KEYS": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 182,
+        "context": "        self.assertEqual(descriptor[\"source_pack\"][\"copied_pngs\"], 0)\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_KEYS\"], \",\".join(DEFAULT_PLAYER_KEYS))\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"stock\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_STRENGTH\"], \"0.550000\")"
+      },
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 226,
+        "context": "        self.assertNotIn(FIGHTER_KEY, result[\"descriptor\"][\"targets\"])\n        self.assertNotIn(FIGHTER_KEY, result[\"descriptor\"][\"environment\"][\"PSXRECOMP_SKIN_KEYS\"])\n        explicit = self.materials.stage(dict(profile=\"aurora-teal\", targets=[FIGHTER_KEY]))\n        self.assertEqual(explicit[\"descriptor\"][\"targets\"], [FIGHTER_KEY])"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 178,
+        "context": "        \"PSXRECOMP_SKIN_PROFILE\": identity,\n        \"PSXRECOMP_SKIN_KEYS\": \",\".join(targets),\n        \"PSXRECOMP_SKIN_STRENGTH\": format(strength, \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_PROFILE\": enemy_identity,"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4695,
+        "context": "        int status = hd_skin_config_parse(&s_hd_skin,\n            getenv(\"PSXRECOMP_SKIN_PROFILE\"),getenv(\"PSXRECOMP_SKIN_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_STRENGTH\"));\n        if (status < 0)"
+      }
+    ],
+    "PSXRECOMP_SKIN_PROFILE": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 207,
+        "context": "        self.assertEqual(descriptor[\"enemy_profile\"], \"crimson-red\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_PROFILE\"], \"aurora-teal\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"crimson-red\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_STRENGTH\"], \"0.900000\")"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 177,
+        "context": "        \"EIN_DEBUG_PORT\": \"4370\",\n        \"PSXRECOMP_SKIN_PROFILE\": identity,\n        \"PSXRECOMP_SKIN_KEYS\": \",\".join(targets),\n        \"PSXRECOMP_SKIN_STRENGTH\": format(strength, \".6f\"),"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4695,
+        "context": "        int status = hd_skin_config_parse(&s_hd_skin,\n            getenv(\"PSXRECOMP_SKIN_PROFILE\"),getenv(\"PSXRECOMP_SKIN_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_STRENGTH\"));\n        if (status < 0)"
+      }
+    ],
+    "PSXRECOMP_SKIN_STRENGTH": [
+      {
+        "path": "windows-x64/tools/test_material_profiles.py",
+        "line": 184,
+        "context": "        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_ENEMY_PROFILE\"], \"stock\")\n        self.assertEqual(descriptor[\"environment\"][\"PSXRECOMP_SKIN_STRENGTH\"], \"0.550000\")\n        self.assertEqual({path.name: path.read_bytes() for path in self.pngs.iterdir()}, originals)\n        self.assertFalse(list(Path(result[\"config_path\"]).parent.glob(\"*.png\")))"
+      },
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "line": 179,
+        "context": "        \"PSXRECOMP_SKIN_KEYS\": \",\".join(targets),\n        \"PSXRECOMP_SKIN_STRENGTH\": format(strength, \".6f\"),\n        \"PSXRECOMP_SKIN_ENEMY_PROFILE\": enemy_identity,\n        \"PSXRECOMP_SKIN_ENEMY_KEYS\": \",\".join(enemy_targets),"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 4696,
+        "context": "            getenv(\"PSXRECOMP_SKIN_PROFILE\"),getenv(\"PSXRECOMP_SKIN_KEYS\"),\n            getenv(\"PSXRECOMP_SKIN_STRENGTH\"));\n        if (status < 0)\n            fprintf(stderr,\"[skin_material] invalid profile/key/strength; stock material retained\\n\");"
+      }
+    ],
+    "PSXRECOMP_THREAT_DRAW_TRACKING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 2928,
+        "context": "static int threat_draw_enabled(void){\n    if(s_threat_draw_enabled<0){const char *value=getenv(\"PSXRECOMP_THREAT_DRAW_TRACKING\");\n        s_threat_draw_enabled=value&&!strcmp(value,\"1\");}\n    return s_threat_draw_enabled;"
+      }
+    ],
+    "PSXRECOMP_VERBOSE_RI_WARNINGS": [
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/code_generator.cpp",
+        "line": 29,
+        "context": "static bool should_print_reserved_opcode_warning(uint32_t addr) {\n    const char* e = std::getenv(\"PSXRECOMP_VERBOSE_RI_WARNINGS\");\n    if (e != nullptr && e[0] != '\\0' && e[0] != '0')\n        return true;"
+      }
+    ],
+    "PSXRECOMP_XDELTA3": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/mod_runtime.cpp",
+        "line": 533,
+        "context": "    }\n    const char* override_tool = std::getenv(\"PSXRECOMP_XDELTA3\");\n    const std::filesystem::path decoder =\n        override_tool && override_tool[0]"
+      }
+    ],
+    "PSX_APE_CARD_UNSTICK": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/sio.c",
+        "line": 499,
+        "context": "    if (s_ape_unstick_env < 0) {\n        const char *e = getenv(\"PSX_APE_CARD_UNSTICK\");\n        if (e && e[0] == '0')\n            s_ape_unstick_env = 0;"
+      }
+    ],
+    "PSX_AUDIO_SHADOW": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/spu_shadow.c",
+        "line": 41,
+        "context": "        /* Env (debug override) wins when present; else the config value. */\n        const char* e = getenv(\"PSX_AUDIO_SHADOW\");\n        if (e) {\n            s_enabled = (e[0] == '1' || e[0] == 'y' || e[0] == 'Y' ||"
+      }
+    ],
+    "PSX_BENCH_WINDOW": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3202,
+        "context": "    }\n    if (const char *window = std::getenv(\"PSX_BENCH_WINDOW\")) {\n        if (runtime_perf_parse_window(window,\n                                      &g_runtime_perf.bench_start_frame,"
+      }
+    ],
+    "PSX_BIOS_HLE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13576,
+        "context": "    {\n        if (const char* e = std::getenv(\"PSX_BIOS_HLE\"))\n            bios_hle = (e[0] && e[0] != '0');\n        if (const char* e = std::getenv(\"PSX_BIOS_HLE_KEEP_INTRO\"))"
+      }
+    ],
+    "PSX_BIOS_HLE_KEEP_INTRO": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13578,
+        "context": "            bios_hle = (e[0] && e[0] != '0');\n        if (const char* e = std::getenv(\"PSX_BIOS_HLE_KEEP_INTRO\"))\n            bios_hle_keep_intro = (e[0] && e[0] != '0');\n        /* The two axes (kernel-call HLE, boot-skip) have DIFFERENT per-image"
+      }
+    ],
+    "PSX_CD_DMA_TRACE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
+        "line": 3009,
+        "context": "        if (s_dma_trace < 0) {\n            const char *e = getenv(\"PSX_CD_DMA_TRACE\");\n            s_dma_trace = (e && e[0] && e[0] != '0') ? 1 : 0;\n        }"
+      }
+    ],
+    "PSX_CD_TRAP_CMD": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
+        "line": 84,
+        "context": "        if (trap_cmd == -2) {\n            const char *e2 = getenv(\"PSX_CD_TRAP_CMD\");\n            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
+        "line": 1998,
+        "context": "        if (trap_cmd == -2) {\n            const char *e = getenv(\"PSX_CD_TRAP_CMD\");\n            trap_cmd = (e && *e) ? strtol(e, NULL, 0) : -1;\n            e = getenv(\"PSX_CD_TRAP_NTH\");   /* stop on the Nth match (default 1st) */"
+      }
+    ],
+    "PSX_CD_TRAP_NTH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_libretro.cpp",
+        "line": 86,
+        "context": "            trap_cmd = (e2 && *e2) ? strtol(e2, NULL, 0) : -1;\n            const char *e3 = getenv(\"PSX_CD_TRAP_NTH\");\n            if (e3 && *e3) trap_nth = strtol(e3, NULL, 0);\n        }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
+        "line": 2000,
+        "context": "            trap_cmd = (e && *e) ? strtol(e, NULL, 0) : -1;\n            e = getenv(\"PSX_CD_TRAP_NTH\");   /* stop on the Nth match (default 1st) */\n            if (e && *e) trap_nth = strtol(e, NULL, 0);\n        }"
+      }
+    ],
+    "PSX_CODEGEN_CYCLE_PER_INSN": [
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/full_function_emitter.cpp",
+        "line": 30,
+        "context": "static bool bios_cycle_per_insn() {\n    const char* e = std::getenv(\"PSX_CODEGEN_CYCLE_PER_INSN\");\n    if (e != nullptr && e[0] != '\\0') return e[0] != '0';\n    return true;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/code_generator.cpp",
+        "line": 44,
+        "context": "    // Set PSX_CODEGEN_CYCLE_PER_INSN=0 to force the old block-up-front mode.\n    const char* e = std::getenv(\"PSX_CODEGEN_CYCLE_PER_INSN\");\n    if (e != nullptr && e[0] != '\\0') return e[0] != '0';\n    return true;"
+      }
+    ],
+    "PSX_COSIM_PORT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cosim.c",
+        "line": 370,
+        "context": "    unsigned short port = 4600;\n    const char *e = getenv(\"PSX_COSIM_PORT\");\n    if (e && *e) port = (unsigned short)atoi(e);\n    /* Stride fixed at launch (env) so the checkpoint cycle boundaries are identical in"
+      }
+    ],
+    "PSX_COSIM_START_CYCLE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cosim.c",
+        "line": 376,
+        "context": "    if (st && *st) { unsigned long long v = strtoull(st, 0, 10); if (v) g_stride = v; }\n    const char *sc = getenv(\"PSX_COSIM_START_CYCLE\");\n    if (sc && *sc) { unsigned long long v = strtoull(sc, 0, 10); g_next_cp = (uint64_t)v; }\n#ifdef _WIN32"
+      }
+    ],
+    "PSX_COSIM_STRIDE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cosim.c",
+        "line": 374,
+        "context": "     * both processes before either runs a single instruction \u2014 no set-stride race. */\n    const char *st = getenv(\"PSX_COSIM_STRIDE\");\n    if (st && *st) { unsigned long long v = strtoull(st, 0, 10); if (v) g_stride = v; }\n    const char *sc = getenv(\"PSX_COSIM_START_CYCLE\");"
+      }
+    ],
+    "PSX_CPS": [
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/strict_translator.cpp",
+        "line": 30,
+        "context": "static const bool g_strict_cps = []() {\n    const char* e = std::getenv(\"PSX_CPS\");\n    return e == nullptr || e[0] != '0';\n}();"
+      },
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/full_function_emitter.cpp",
+        "line": 171,
+        "context": "    static const bool cps = []() {\n        const char* e = std::getenv(\"PSX_CPS\");\n        return e == nullptr || e[0] != '0';\n    }();"
+      },
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/full_function_emitter.cpp",
+        "line": 1670,
+        "context": "    static const bool cps = []() {\n        const char* e = std::getenv(\"PSX_CPS\");\n        return e == nullptr || e[0] != '0';\n    }();"
+      },
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/code_generator.cpp",
+        "line": 101,
+        "context": "    // CPS is the DEFAULT (RECURSION_BUG.md \u00a725). Opt out (legacy) with PSX_CPS=0.\n    { const char* e = std::getenv(\"PSX_CPS\"); cps_enabled_ = (e == nullptr || e[0] != '0'); }\n}\n"
+      }
+    ],
+    "PSX_DEBUG_FMV_QUIET": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 137,
+        "context": "    if (enabled < 0) {\n        const char *env = getenv(\"PSX_DEBUG_FMV_QUIET\");\n        enabled = (!env || env[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_DEFER_SWITCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/interrupts.c",
+        "line": 680,
+        "context": "    static int s = -1;\n    if (s < 0) { const char *e = getenv(\"PSX_DEFER_SWITCH\"); s = (e && e[0] == '0') ? 0 : 1; }\n    return s;\n}"
+      }
+    ],
+    "PSX_DEVTRACE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_main.cpp",
+        "line": 184,
+        "context": "        const char* pt = std::getenv(\"PSX_PARITY_TRACE\");\n        const char* dt = std::getenv(\"PSX_DEVTRACE\");\n        if ((pt && pt[0] && pt[0] != '0') || (dt && dt[0] && dt[0] != '0')) {\n            device_trace_arm(1);"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13829,
+        "context": "        const char* pt = std::getenv(\"PSX_PARITY_TRACE\");\n        const char* dt = std::getenv(\"PSX_DEVTRACE\");\n        if ((pt && pt[0] && pt[0] != '0') || (dt && dt[0] && dt[0] != '0')) {\n            device_trace_arm(1);"
+      }
+    ],
+    "PSX_DEV_INPUT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 4611,
+        "context": "    if (cached < 0) {\n        const char* e = std::getenv(\"PSX_DEV_INPUT\");\n        const std::string value = lower_copy(trim_copy(e ? e : \"\"));\n        cached = (value == \"1\" || value == \"true\" ||"
+      }
+    ],
+    "PSX_DIRTY_ENTRY_POLL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 2994,
+        "context": "        if (s_entry_poll_enabled < 0) {\n            const char* e = getenv(\"PSX_DIRTY_ENTRY_POLL\");\n            s_entry_poll_enabled = (e && e[0] == '0') ? 0 : 1;\n        }"
+      }
+    ],
+    "PSX_DISPLAY_RING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 8611,
+        "context": "    if (enabled < 0) {\n        const char *e = getenv(\"PSX_DISPLAY_RING\");\n        enabled = (!e || !*e || *e != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_EMIT_PROD": [
+      {
+        "path": "windows-x64/psxrecomp/recompiler/src/code_generator.cpp",
+        "line": 3181,
+        "context": "        if (s_emit_prod < 0) {\n            const char* e = std::getenv(\"PSX_EMIT_PROD\");\n            s_emit_prod = (e && *e == '0') ? 0 : 1;  // default ON; =0 restores full-scan baseline\n        }"
+      }
+    ],
+    "PSX_EVENT_STEP_CONSERVATIVE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_cycles.c",
+        "line": 72,
+        "context": "void psx_event_step_conservative_env_init(void) {\n    const char *e = getenv(\"PSX_EVENT_STEP_CONSERVATIVE\");\n    if (e && e[0] == '1') g_event_step_conservative = 1;\n}"
+      }
+    ],
+    "PSX_EXC_CLEAR_RESUME_LATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/interrupts.c",
+        "line": 1737,
+        "context": "    if (s_clear_resume_latch < 0) {\n        const char *e = getenv(\"PSX_EXC_CLEAR_RESUME_LATCH\");\n        s_clear_resume_latch = (e && *e) ? atoi(e) : 1;\n    }"
+      }
+    ],
+    "PSX_EXIT_HALT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13930,
+        "context": "     * still-loaded overlays + full guest state are live-inspectable over TCP. */\n    { const char *e = std::getenv(\"PSX_EXIT_HALT\");\n      if (e && e[0] && e[0] != '0') {\n          extern void psx_fatal_halt(const char *reason);"
+      }
+    ],
+    "PSX_FAIL_FAST_UNKNOWN_DISPATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/traps.c",
+        "line": 1403,
+        "context": "        if (s_fail_fast < 0) {\n            const char *e = getenv(\"PSX_FAIL_FAST_UNKNOWN_DISPATCH\");\n            s_fail_fast = (e && *e == '0') ? 0 : 1;\n        }"
+      }
+    ],
+    "PSX_FAST_FORWARD_SPEED": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 579,
+        "context": "    if (value == -2) {\n        const char *e = std::getenv(\"PSX_FAST_FORWARD_SPEED\");\n        value = 4;\n        if (e && e[0]) {"
+      }
+    ],
+    "PSX_FIBER_STACK_KB": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/traps.c",
+        "line": 532,
+        "context": "    if (s_fiber_kb < 0) {\n        const char *e = getenv(\"PSX_FIBER_STACK_KB\");\n        s_fiber_kb = (e && *e) ? atol(e) : 1024;\n        if (s_fiber_kb < 256) s_fiber_kb = 256;"
+      }
+    ],
+    "PSX_FNTRACE_ALL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/fntrace.c",
+        "line": 95,
+        "context": "    static int boot_all = -1;\n    if (boot_all == -1) { const char *e = getenv(\"PSX_FNTRACE_ALL\");\n                          boot_all = (e && *e && *e != '0') ? 1 : 0; }\n    if (boot_all) return 1;"
+      }
+    ],
+    "PSX_FNTRACE_ARM": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 14124,
+        "context": "\n    fntrace_arm_from_env(\"PSX_FNTRACE_ARM\");\n\n    /* Function entry/exit ring buffers (32 MB each, 64 MB total). */"
+      }
+    ],
+    "PSX_FN_FILTER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 14142,
+        "context": "    s_fn_trace_filter_hi = 0xFFFFFFFFu;\n    fn_trace_filter_from_env(\"PSX_FN_FILTER\");\n\n    if (!s_call_focus) {"
+      }
+    ],
+    "PSX_FORCE_INTERP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 613,
+        "context": "    static int s = -1;\n    if (s < 0) { const char* e = getenv(\"PSX_FORCE_INTERP\"); s = (e && e[0] && e[0] != '0'); }\n    return s;\n}"
+      }
+    ],
+    "PSX_FPS_TELEMETRY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 557,
+        "context": "    if (s_fps_telemetry_enabled < 0) {\n        const char *e = std::getenv(\"PSX_FPS_TELEMETRY\");\n        s_fps_telemetry_enabled = (e && e[0] && e[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_FRAME_BLEND": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 7076,
+        "context": "            if (blend_cfg < 0) {\n                const char* e = getenv(\"PSX_FRAME_BLEND\");\n                blend_cfg = (e && e[0] == '1') ? 1 : 0;   /* default off (masker only) */\n            }"
+      }
+    ],
+    "PSX_FRAME_INTERPOLATION": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11607,
+        "context": "        psx_smooth_60fps_set(atoi(e) ? 1 : 0);\n    if (const char *e = std::getenv(\"PSX_FRAME_INTERPOLATION\"))\n        g_frame_interpolation = atoi(e) ? 1 : 0;\n    if (const char *e = std::getenv(\"PSX_FRAME_INTERPOLATION_FPS\")) {"
+      }
+    ],
+    "PSX_FRAME_INTERPOLATION_FPS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11609,
+        "context": "        g_frame_interpolation = atoi(e) ? 1 : 0;\n    if (const char *e = std::getenv(\"PSX_FRAME_INTERPOLATION_FPS\")) {\n        int fps = atoi(e);\n        if (fps == 0 || fps >= 90) g_frame_interpolation_fps = fps;"
+      }
+    ],
+    "PSX_GEOMETRY_CORRECTION": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 12896,
+        "context": "     * after the interesting window. '0' = off, anything else = on. */\n    if (const char* e = std::getenv(\"PSX_GEOMETRY_CORRECTION\"))\n        g_video_geometry_correction = (*e && *e != '0') ? 1 : 0;\n    if (const char* e = std::getenv(\"PSX_PERSPECTIVE_TEXTURING\"))"
+      }
+    ],
+    "PSX_GL_FORCE_CPU_PRESENT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11272,
+        "context": "            sio_set_legacy_cfg(gc.runtime.legacy_pad_config ? 1 : 0);\n            { const char *e = std::getenv(\"PSX_GL_FORCE_CPU_PRESENT\");\n              if (e && e[0] && e[0] != '0') g_gl_fbo_present = 0; }\n            game_entry_pc = gc.entry_pc;"
+      }
+    ],
+    "PSX_GL_INTERP_DIAG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 5854,
+        "context": "                  effective_hz >= source_hz && effective_hz <= 1000.0) ? 1 : 0;\n    const char *diag = getenv(\"PSX_GL_INTERP_DIAG\");\n    s_interp_diag = diag && diag[0] && diag[0] != '0';\n    if (active != s_interp_enabled || source_hz != s_interp_source_hz ||"
+      }
+    ],
+    "PSX_GL_PERF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 5670,
+        "context": "    {\n        const char *enabled = getenv(\"PSX_GL_PERF\");\n        if (enabled && enabled[0] == '0') return;\n    }"
+      }
+    ],
+    "PSX_GL_PRESENT_PROBE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 866,
+        "context": "    if (probe_pixels < 0) {\n        const char *cfg = getenv(\"PSX_GL_PRESENT_PROBE\");\n        probe_pixels = (cfg && cfg[0] == '1') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_HEADLESS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 10830,
+        "context": "    }\n    if (const char *e = std::getenv(\"PSX_HEADLESS\")) {\n        if (e[0] && e[0] != '0') {\n            g_headless = 1;"
+      }
+    ],
+    "PSX_HLE_SCHEDULER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/traps.c",
+        "line": 767,
+        "context": "    if (s_mode < 0) {\n        const char* e = getenv(\"PSX_HLE_SCHEDULER\");\n        if (e && e[0]) s_mode = (e[0] == '0') ? 0 : 1;\n        else           s_mode = s_hle_sched_default;"
+      }
+    ],
+    "PSX_ICACHE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_icache.c",
+        "line": 18,
+        "context": "    if (s < 0) {\n        const char* e = getenv(\"PSX_ICACHE\");\n        s = (e == NULL || e[0] == '\\0') ? 1 : (e[0] != '0');\n    }"
+      }
+    ],
+    "PSX_IDLE_SKIP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11017,
+        "context": "                extern int g_idle_skip_enabled;\n                const char *idle_env = std::getenv(\"PSX_IDLE_SKIP\");\n                g_idle_skip_enabled = idle_env\n                    ? (idle_env[0] == '1' ? 1 : 0)"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_cycles.c",
+        "line": 440,
+        "context": "         * normal game launches set g_idle_skip_enabled from RuntimeConfig. */\n        const char *e = getenv(\"PSX_IDLE_SKIP\");\n        g_idle_skip_enabled = e ? (e[0] == '1') : 0;\n    }"
+      }
+    ],
+    "PSX_KERNEL_BLESS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 213,
+        "context": "    if (kbless_enabled < 0) {\n        const char* e = getenv(\"PSX_KERNEL_BLESS\");\n        kbless_enabled = (e && e[0] == '0') ? 0 : 1;\n        if (psx_bios_kernel_body_count > KBLESS_MAX_ENTRIES) kbless_enabled = 0;"
+      }
+    ],
+    "PSX_LANG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/text_xlate.cpp",
+        "line": 916,
+        "context": "extern \"C\" void text_xlate_init(const char* project_root, const char* language) {\n    const char* env = std::getenv(\"PSX_LANG\");\n    if (env && *env) g_lang = env;\n    else if (language && *language) g_lang = language;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/text_xlate.cpp",
+        "line": 931,
+        "context": "    // and the launcher's choice is ignored (matches text_xlate_init precedence).\n    const char* env = std::getenv(\"PSX_LANG\");\n    std::string want = (env && *env) ? env : (language ? language : \"\");\n    std::lock_guard<std::mutex> lk(g_mtx);"
+      }
+    ],
+    "PSX_LOAD_DELAY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 2004,
+        "context": "    if (g_psx_load_delay < 0) {\n        const char* e = getenv(\"PSX_LOAD_DELAY\");\n        g_psx_load_delay = (e && e[0] == '0') ? 0 : 1;\n    }"
+      }
+    ],
+    "PSX_LOAD_SLOT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13659,
+        "context": "         * at the next safe block boundary after boot. */\n        if (const char *ls = std::getenv(\"PSX_LOAD_SLOT\")) {\n            int slot = atoi(ls);\n            if (slot >= 0 && slot < 12) {"
+      }
+    ],
+    "PSX_LOW_LATENCY_INPUT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11603,
+        "context": "     * PSX_FRAME_INTERPOLATION=0/1; PSX_FRAME_INTERPOLATION_FPS=0|90+. */\n    if (const char *e = std::getenv(\"PSX_LOW_LATENCY_INPUT\")) g_low_latency_input = atoi(e) ? 1 : 0;\n    if (const char *e = std::getenv(\"PSX_VSYNC\"))             g_video_vsync       = atoi(e);\n    if (const char *e = std::getenv(\"PSX_SMOOTH_60FPS\"))"
+      }
+    ],
+    "PSX_MIXED_OWNER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 965,
+        "context": "    static int v = -1;\n    if (v < 0) { const char *e = getenv(\"PSX_MIXED_OWNER\"); v = (e && e[0] == '0') ? 0 : 1; }\n    return v;\n}"
+      }
+    ],
+    "PSX_MIXED_STACK_KB": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 983,
+        "context": "    static long v = -1;\n    if (v < 0) { const char *e = getenv(\"PSX_MIXED_STACK_KB\");\n                 v = (e && *e) ? atol(e) : 700; if (v < 64) v = 64; }\n    return (size_t)v * 1024u;"
+      }
+    ],
+    "PSX_MMIO_WAIT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 1944,
+        "context": "        static int s_mw = -1;\n        if (s_mw < 0) { const char* e = getenv(\"PSX_MMIO_WAIT\"); s_mw = (e && e[0] == '0') ? 0 : 1; }\n        if (!s_mw) return 0u;\n        if (phys >= 0x1F801C00u && phys <= 0x1F801FFFu)            /* SPU (929) */"
+      }
+    ],
+    "PSX_NATIVE_BLOCK": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2713,
+        "context": "    {\n        const char *nb = getenv(\"PSX_NATIVE_BLOCK\");\n        if (nb && *nb) {\n            const char *p = nb;"
+      }
+    ],
+    "PSX_NATIVE_RANK_LIMIT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2729,
+        "context": "    {\n        const char *limit = getenv(\"PSX_NATIVE_RANK_LIMIT\");\n        if (limit && *limit) {\n            unsigned long long n = strtoull(limit, NULL, 0);"
+      }
+    ],
+    "PSX_ND_INTRO_PROBE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 14009,
+        "context": "        {\n            const char *nd = getenv(\"PSX_ND_INTRO_PROBE\");\n            const char *pcs = getenv(\"PSX_PC_PROBE\");\n            if ((nd && *nd && *nd != '0') || (pcs && *pcs)) {"
+      }
+    ],
+    "PSX_ND_OT_OPAQUE_LAST": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dma.c",
+        "line": 721,
+        "context": "            if (!e || !*e)\n                e = getenv(\"PSX_ND_OT_OPAQUE_LAST\");\n            s_nd_flap_last = (e && *e && *e != '0') ? 1 : 0;\n            if (s_nd_flap_last)"
+      }
+    ],
+    "PSX_ND_SIB_FLAP_LAST": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dma.c",
+        "line": 719,
+        "context": "        if (s_nd_flap_last < 0) {\n            const char *e = getenv(\"PSX_ND_SIB_FLAP_LAST\");\n            if (!e || !*e)\n                e = getenv(\"PSX_ND_OT_OPAQUE_LAST\");"
+      }
+    ],
+    "PSX_ND_SIB_OT_AVSZ": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gte.cpp",
+        "line": 1842,
+        "context": "            s_sib_batch = (e && *e && *e != '0') ? 1 : 0;\n            const char *a = std::getenv(\"PSX_ND_SIB_OT_AVSZ\");\n            s_sib_avsz = (a && *a && *a != '0') ? 1 : 0;\n            const char *b = std::getenv(\"PSX_ND_SIB_OT_BIAS\");"
+      }
+    ],
+    "PSX_ND_SIB_OT_BATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gte.cpp",
+        "line": 1840,
+        "context": "        if (s_sib_batch < 0) {\n            const char *e = std::getenv(\"PSX_ND_SIB_OT_BATCH\");\n            s_sib_batch = (e && *e && *e != '0') ? 1 : 0;\n            const char *a = std::getenv(\"PSX_ND_SIB_OT_AVSZ\");"
+      }
+    ],
+    "PSX_ND_SIB_OT_BIAS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gte.cpp",
+        "line": 1844,
+        "context": "            s_sib_avsz = (a && *a && *a != '0') ? 1 : 0;\n            const char *b = std::getenv(\"PSX_ND_SIB_OT_BIAS\");\n            s_sib_bias = (b && *b) ? std::atoi(b) : 0;\n            const char *ix = std::getenv(\"PSX_ND_SIB_OT_IDX\");"
+      }
+    ],
+    "PSX_ND_SIB_OT_IDX": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gte.cpp",
+        "line": 1846,
+        "context": "            s_sib_bias = (b && *b) ? std::atoi(b) : 0;\n            const char *ix = std::getenv(\"PSX_ND_SIB_OT_IDX\");\n            s_sib_force_idx = (ix && *ix) ? std::atoi(ix) : -1;\n            if (s_sib_batch)"
+      }
+    ],
+    "PSX_ND_SIB_OT_LIFT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 2733,
+        "context": "        if (s_sib_lift == -2) {\n            const char *e = getenv(\"PSX_ND_SIB_OT_LIFT\");\n            if (e && *e) {\n                s_sib_lift = atoi(e);"
+      }
+    ],
+    "PSX_ND_WOOD_CLEAR80": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 2687,
+        "context": "        if (s_clear80 < 0) {\n            const char *e = getenv(\"PSX_ND_WOOD_CLEAR80\");\n            s_clear80 = (e && *e && *e != '0') ? 1 : 0;\n            if (s_clear80)"
+      }
+    ],
+    "PSX_NETPLAY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 105,
+        "context": "    if (!cfg) return;\n    v = getenv(\"PSX_NETPLAY\");\n    if (v && v[0] && v[0] != '0') cfg->enabled = 1;\n    v = getenv(\"PSX_NET_SLOT\");"
+      }
+    ],
+    "PSX_NETPLAY_TIMING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 5075,
+        "context": "    if (s_np_timing_enabled < 0) {\n        const char *e = std::getenv(\"PSX_NETPLAY_TIMING\");\n        s_np_timing_enabled = (e && e[0] && e[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_NET_ALLOW_STUN_ONLY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3555,
+        "context": "        } else {\n            const char *allow_stun = getenv(\"PSX_NET_ALLOW_STUN_ONLY\");\n            fprintf(stderr,\n                    \"psx_netplay: ICE STUN-only (no TURN) stun=%s:%u \""
+      }
+    ],
+    "PSX_NET_BIND": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 118,
+        "context": "    cfg->session_id = env_u(\"PSX_NET_SESSION_ID\", cfg->session_id);\n    v = getenv(\"PSX_NET_BIND\");\n    if (v && v[0]) {\n        strncpy(cfg->bind_hostport, v, sizeof(cfg->bind_hostport) - 1);"
+      }
+    ],
+    "PSX_NET_CATCHUP_CAP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4766,
+        "context": "        return 0;\n    cap = np_starv_env_int(\"PSX_NET_CATCHUP_CAP\", PSX_CATCHUP_CAP_DEFAULT);\n    if (cap <= 0 && g_starv.recovery_amount <= 0)\n        return 0;"
+      }
+    ],
+    "PSX_NET_DELAY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 113,
+        "context": "    if (v && v[0]) cfg->input_player = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_DELAY\");\n    if (v && v[0]) cfg->input_delay = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_PREDICTION\");"
+      }
+    ],
+    "PSX_NET_DELAY_SYNC_DIAG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4038,
+        "context": "    if (cached < 0) {\n        const char *v = getenv(\"PSX_NET_DELAY_SYNC_DIAG\");\n        if (!v || !v[0])\n            v = getenv(\"PSX_NET_STARVATION_DIAG\");"
+      }
+    ],
+    "PSX_NET_DIAG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4025,
+        "context": "    if (cached < 0) {\n        const char *v = getenv(\"PSX_NET_DIAG\");\n        cached = (v && v[0] && v[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_NET_DIAG_HZ": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4052,
+        "context": "        return cached;\n    hz = env_u(\"PSX_NET_DIAG_HZ\", 2);\n    if (hz < 1) hz = 1;\n    if (hz > 30) hz = 30;"
+      }
+    ],
+    "PSX_NET_FMV_MEDIA_KF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 1762,
+        "context": "    if (latched < 0) {\n        const char *e = getenv(\"PSX_NET_FMV_MEDIA_KF\");\n        latched = (e && e[0] == '0') ? 0 : 1;\n    }"
+      }
+    ],
+    "PSX_NET_FMV_PRESENT_DIV": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 6691,
+        "context": "        if (s_fmv_present_div < 0) {\n            const char *e = getenv(\"PSX_NET_FMV_PRESENT_DIV\");\n            unsigned v = 2u;\n            if (e && e[0] && sscanf(e, \"%u\", &v) == 1 && v >= 1u && v <= 8u)"
+      }
+    ],
+    "PSX_NET_FMV_SNAP_INTERVAL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 231,
+        "context": "    if (!latched) {\n        const char *e = getenv(\"PSX_NET_FMV_SNAP_INTERVAL\");\n        if (e && e[0]) {\n            unsigned v = 0;"
+      }
+    ],
+    "PSX_NET_FORCE_TURN": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 135,
+        "context": "    }\n    v = getenv(\"PSX_NET_FORCE_TURN\");\n    if (v && v[0] && v[0] != '0')\n        cfg->force_turn = 1;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3575,
+        "context": "            int force_turn = cfg->force_turn ? 1 : 0;\n            const char *ft = getenv(\"PSX_NET_FORCE_TURN\");\n            if (ft && ft[0] && ft[0] != '0')\n                force_turn = 1;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3667,
+        "context": "            int ft = cfg->force_turn ? 1 : 0;\n            const char *fte = getenv(\"PSX_NET_FORCE_TURN\");\n            if (fte && fte[0] == '1')\n                ft = 1;"
+      }
+    ],
+    "PSX_NET_INPUT_PLAYER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 111,
+        "context": "    if (v && v[0]) cfg->slot_count = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_INPUT_PLAYER\");\n    if (v && v[0]) cfg->input_player = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_DELAY\");"
+      }
+    ],
+    "PSX_NET_LOBBY_URL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_lobby_client.c",
+        "line": 15,
+        "context": "{\n    const char *e = getenv(\"PSX_NET_LOBBY_URL\");\n    if (e && e[0])\n        return e;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_lobby_client.c",
+        "line": 981,
+        "context": "{\n    const char *e = getenv(\"PSX_NET_LOBBY_URL\");\n    if (e && e[0])\n        return e;"
+      }
+    ],
+    "PSX_NET_MODE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 138,
+        "context": "        cfg->force_turn = 1;\n    v = getenv(\"PSX_NET_MODE\");\n    if (v && v[0]) {\n        if (strcmp(v, \"rollback\") == 0 || strcmp(v, \"rb\") == 0)"
+      }
+    ],
+    "PSX_NET_PEER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 123,
+        "context": "    }\n    v = getenv(\"PSX_NET_PEER\");\n    if (v && v[0]) {\n        strncpy(cfg->peer_hostport, v, sizeof(cfg->peer_hostport) - 1);"
+      }
+    ],
+    "PSX_NET_PREDICTION": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 115,
+        "context": "    if (v && v[0]) cfg->input_delay = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_PREDICTION\");\n    if (v && v[0]) cfg->input_prediction = (int)strtol(v, NULL, 10);\n    cfg->session_id = env_u(\"PSX_NET_SESSION_ID\", cfg->session_id);"
+      }
+    ],
+    "PSX_NET_SESSION_ID": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 117,
+        "context": "    if (v && v[0]) cfg->input_prediction = (int)strtol(v, NULL, 10);\n    cfg->session_id = env_u(\"PSX_NET_SESSION_ID\", cfg->session_id);\n    v = getenv(\"PSX_NET_BIND\");\n    if (v && v[0]) {"
+      }
+    ],
+    "PSX_NET_SLOT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 107,
+        "context": "    if (v && v[0] && v[0] != '0') cfg->enabled = 1;\n    v = getenv(\"PSX_NET_SLOT\");\n    if (v && v[0]) cfg->local_slot = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_SLOTS\");"
+      }
+    ],
+    "PSX_NET_SLOTS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 109,
+        "context": "    if (v && v[0]) cfg->local_slot = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_SLOTS\");\n    if (v && v[0]) cfg->slot_count = (int)strtol(v, NULL, 10);\n    v = getenv(\"PSX_NET_INPUT_PLAYER\");"
+      }
+    ],
+    "PSX_NET_SNAP_DENSE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 267,
+        "context": "    if (!latched) {\n        const char *e = getenv(\"PSX_NET_SNAP_DENSE\");\n        if (e && e[0]) {\n            unsigned v = 0;"
+      }
+    ],
+    "PSX_NET_SNAP_INTERVAL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 202,
+        "context": "    if (!latched) {\n        const char *e = getenv(\"PSX_NET_SNAP_INTERVAL\");\n        if (e && e[0]) {\n            unsigned v = 0;"
+      }
+    ],
+    "PSX_NET_STARVATION_DIAG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4040,
+        "context": "        if (!v || !v[0])\n            v = getenv(\"PSX_NET_STARVATION_DIAG\");\n        cached = (v && v[0] && v[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_NET_STARVATION_ENTER_FRAMES": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4528,
+        "context": "    sim = rnet_session_sim_tick(g_np.session);\n    enter_need = np_starv_env_int(\"PSX_NET_STARVATION_ENTER_FRAMES\",\n                                  PSX_STARVATION_ENTER_DEFAULT);\n    exit_need = np_starv_env_int(\"PSX_NET_STARVATION_EXIT_FRAMES\","
+      }
+    ],
+    "PSX_NET_STARVATION_EXIT_FRAMES": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4530,
+        "context": "                                  PSX_STARVATION_ENTER_DEFAULT);\n    exit_need = np_starv_env_int(\"PSX_NET_STARVATION_EXIT_FRAMES\",\n                                 PSX_STARVATION_EXIT_DEFAULT);\n"
+      }
+    ],
+    "PSX_NET_STARVATION_EXIT_HR_LEAD": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3853,
+        "context": "    int delay = psx_netplay_input_delay();\n    int hr_lead = np_starv_env_int(\"PSX_NET_STARVATION_EXIT_HR_LEAD\",\n                                   PSX_STARVATION_EXIT_HR_LEAD_DEFAULT);\n    if (delay < 0)"
+      }
+    ],
+    "PSX_NET_STARVATION_RECOVERY_BURST": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 4593,
+        "context": "        if (g_starv.just_cleared) {\n            int burst = np_starv_env_int(\"PSX_NET_STARVATION_RECOVERY_BURST\",\n                                         PSX_STARVATION_RECOVERY_BURST_DEFAULT);\n            g_starv.just_cleared = 0;"
+      }
+    ],
+    "PSX_NET_STUN_HOST": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3457,
+        "context": "        const char *env_turn_pass = getenv(\"PSX_NET_TURN_PASS\");\n        const char *env_stun = getenv(\"PSX_NET_STUN_HOST\");\n\n        g_np.ice_has_turn = 0;"
+      }
+    ],
+    "PSX_NET_STUN_PORT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3521,
+        "context": "            ice.stun_host = g_np.ice_stun_host;\n            ice.stun_port = (rnet_u16)env_u(\"PSX_NET_STUN_PORT\", ice.stun_port\n                                                                     ? ice.stun_port\n                                                                     : 3478);"
+      }
+    ],
+    "PSX_NET_TRANSPORT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 128,
+        "context": "    }\n    v = getenv(\"PSX_NET_TRANSPORT\");\n    if (v && v[0]) {\n        if (strcmp(v, \"ice\") == 0 || strcmp(v, \"ICE\") == 0)"
+      }
+    ],
+    "PSX_NET_TURN_HOST": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3454,
+        "context": "        int naddr;\n        const char *env_turn_host = getenv(\"PSX_NET_TURN_HOST\");\n        const char *env_turn_user = getenv(\"PSX_NET_TURN_USER\");\n        const char *env_turn_pass = getenv(\"PSX_NET_TURN_PASS\");"
+      }
+    ],
+    "PSX_NET_TURN_PASS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3456,
+        "context": "        const char *env_turn_user = getenv(\"PSX_NET_TURN_USER\");\n        const char *env_turn_pass = getenv(\"PSX_NET_TURN_PASS\");\n        const char *env_stun = getenv(\"PSX_NET_STUN_HOST\");\n"
+      }
+    ],
+    "PSX_NET_TURN_PORT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3536,
+        "context": "            ice.turn_pass = g_np.ice_turn_pass;\n            ice.turn_port = (rnet_u16)env_u(\"PSX_NET_TURN_PORT\", 3478);\n            g_np.ice_has_turn = 1;\n        }"
+      }
+    ],
+    "PSX_NET_TURN_USER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 3455,
+        "context": "        const char *env_turn_host = getenv(\"PSX_NET_TURN_HOST\");\n        const char *env_turn_user = getenv(\"PSX_NET_TURN_USER\");\n        const char *env_turn_pass = getenv(\"PSX_NET_TURN_PASS\");\n        const char *env_stun = getenv(\"PSX_NET_STUN_HOST\");"
+      }
+    ],
+    "PSX_NET_VRAM_DIRTY_VERIFY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_vram_dirty.c",
+        "line": 18,
+        "context": "        return;\n    e = getenv(\"PSX_NET_VRAM_DIRTY_VERIFY\");\n    s_verify = (e && e[0] && e[0] != '0') ? 1 : 0;\n}"
+      }
+    ],
+    "PSX_NO_LAUNCHER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11869,
+        "context": "        force_launcher ||\n        (!std::getenv(\"PSX_NO_LAUNCHER\") && !force_no_launcher && !skip_launcher_setting);\n    if (want_launcher) {\n        launcher_boot_timing_mark(\"host:before_sdl_init\");"
+      }
+    ],
+    "PSX_OVERLAY_AUTOCOMPILE_CMD": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11814,
+        "context": "        }\n        if (const char *e = std::getenv(\"PSX_OVERLAY_AUTOCOMPILE_CMD\")) {\n            if (e[0]) {\n                env_ac_cmd = e;"
+      }
+    ],
+    "PSX_OVERLAY_AUTOCOMPILE_CWD": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11833,
+        "context": "            std::string ac_cwd = deferred_overlay_project_root.string();\n            if (const char *e = std::getenv(\"PSX_OVERLAY_AUTOCOMPILE_CWD\")) {\n                if (e[0]) ac_cwd = e;\n            }"
+      }
+    ],
+    "PSX_OVERLAY_AUTOCOMPILE_OFF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11822,
+        "context": "        }\n        if (const char *e = std::getenv(\"PSX_OVERLAY_AUTOCOMPILE_OFF\")) {\n            if (e[0] && e[0] != '0') {\n                ac_cmd = nullptr;"
+      }
+    ],
+    "PSX_OVERLAY_BACKEND": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_backend.c",
+        "line": 50,
+        "context": "     * loader; only the gap-fill compiler is forced to tcc). */\n    OverlayBackend want = parse_backend(getenv(\"PSX_OVERLAY_BACKEND\"),\n                                        parse_backend(cfg, OVERLAY_BACKEND_AUTO));\n    OverlayBackend eff = want;"
+      }
+    ],
+    "PSX_OVERLAY_CACHE_DIR": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/autocompile.c",
+        "line": 859,
+        "context": "     * the loader reads. This is THE fix for the read/write-location divergence. */\n    if (s_cache_dir[0]) SetEnvironmentVariableA(\"PSX_OVERLAY_CACHE_DIR\", s_cache_dir);\n    if (s_captures[0])  SetEnvironmentVariableA(\"PSX_OVERLAY_CAPTURES\",  s_captures);\n    SetEnvironmentVariableA(\"PSX_OVERLAY_LIVE_AUTOCOMPILE\", \"1\");"
+      }
+    ],
+    "PSX_OVERLAY_CACHE_INVENTORY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 1934,
+        "context": "     * operator explicitly requests the diagnostic. */\n    const char *inventory = getenv(\"PSX_OVERLAY_CACHE_INVENTORY\");\n    if (inventory && *inventory && *inventory != '0') {\n        fprintf(stderr, \"overlay cache scan: %d shared library file(s) indexed \""
+      }
+    ],
+    "PSX_OVERLAY_CAPTURES": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/autocompile.c",
+        "line": 860,
+        "context": "    if (s_cache_dir[0]) SetEnvironmentVariableA(\"PSX_OVERLAY_CACHE_DIR\", s_cache_dir);\n    if (s_captures[0])  SetEnvironmentVariableA(\"PSX_OVERLAY_CAPTURES\",  s_captures);\n    SetEnvironmentVariableA(\"PSX_OVERLAY_LIVE_AUTOCOMPILE\", \"1\");\n    /* Pin the FLAVOR the same way: the tool's --flavor defaults to 0 (play),"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3645,
+        "context": "    std::filesystem::path value_base = project_root;\n    if (const char* e = std::getenv(\"PSX_OVERLAY_CAPTURES\")) direct = e;\n    if (const char* e = std::getenv(\"PSX_OVERLAY_CAPTURE_ROOT\")) store_root = e;\n"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3677,
+        "context": "                    value = value.substr(1, value.size() - 2);\n                if (key == \"PSX_OVERLAY_CAPTURES\") {\n                    direct = value;\n                    value_base = config.parent_path();"
+      }
+    ],
+    "PSX_OVERLAY_CAPTURE_ROOT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3646,
+        "context": "    if (const char* e = std::getenv(\"PSX_OVERLAY_CAPTURES\")) direct = e;\n    if (const char* e = std::getenv(\"PSX_OVERLAY_CAPTURE_ROOT\")) store_root = e;\n\n    if (direct.empty() && store_root.empty()) {"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3680,
+        "context": "                    value_base = config.parent_path();\n                } else if (key == \"PSX_OVERLAY_CAPTURE_ROOT\") {\n                    store_root = value;\n                    value_base = config.parent_path();"
+      }
+    ],
+    "PSX_OVERLAY_DIFF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2798,
+        "context": "    {\n        const char *diff = getenv(\"PSX_OVERLAY_DIFF\");\n        if (diff && *diff && *diff != '0') {\n            s_diff_mode = 1;"
+      }
+    ],
+    "PSX_OVERLAY_DIFF_ADDR": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2803,
+        "context": "        }\n        const char *diff_addr = getenv(\"PSX_OVERLAY_DIFF_ADDR\");\n        if (diff_addr && *diff_addr) {\n            s_diff_addr = (uint32_t)strtoul(diff_addr, NULL, 0);"
+      }
+    ],
+    "PSX_OVERLAY_FLAVOR": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/autocompile.c",
+        "line": 870,
+        "context": "        snprintf(flavor_buf, sizeof flavor_buf, \"%d\", (int)PSX_OVERLAY_FLAVOR);\n        SetEnvironmentVariableA(\"PSX_OVERLAY_FLAVOR\", flavor_buf);\n    }\n"
+      }
+    ],
+    "PSX_OVERLAY_FP_LOG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 3988,
+        "context": "    if (enabled < 0) {\n        const char *e = getenv(\"PSX_OVERLAY_FP_LOG\");\n        enabled = (e && e[0] && e[0] != '0') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_OVERLAY_IMAGE_WARM": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 1316,
+        "context": "static void overlay_image_warm_init(void) {\n    const char *e = getenv(\"PSX_OVERLAY_IMAGE_WARM\");\n    if (e && (e[0] == '0' || e[0] == 'n' || e[0] == 'N'))\n        s_image_warm_enabled = 0;"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_BUDGET": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2767,
+        "context": "    {\n        const char *budget = getenv(\"PSX_OVERLAY_IRQ_BUDGET\");\n        if (budget && *budget) {\n            uint32_t n = (uint32_t)strtoul(budget, NULL, 0);"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_DEFER_CDROM": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2783,
+        "context": "    {\n        const char *defer_cd = getenv(\"PSX_OVERLAY_IRQ_DEFER_CDROM\");\n        if (defer_cd && *defer_cd && *defer_cd != '0') {\n            s_irq_defer_cdrom = 1;"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_NO_CDROM": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2776,
+        "context": "    {\n        const char *no_cd = getenv(\"PSX_OVERLAY_IRQ_NO_CDROM\");\n        if (no_cd && *no_cd && *no_cd != '0') {\n            s_irq_suppress_cdrom_only = 1;"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_POST_PUMP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2790,
+        "context": "    {\n        const char *post = getenv(\"PSX_OVERLAY_IRQ_POST_PUMP\");\n        if (post && *post && *post != '0') {\n            s_irq_post_dispatch_pump = 1;"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_RATELIMIT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2755,
+        "context": "        const char *sup = getenv(\"PSX_OVERLAY_IRQ_SUPPRESS\");\n        const char *rl  = getenv(\"PSX_OVERLAY_IRQ_RATELIMIT\");\n        if (sup && *sup && *sup != '0') {\n            overlay_loader_set_irq_suppress(1, 0);"
+      }
+    ],
+    "PSX_OVERLAY_IRQ_SUPPRESS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2754,
+        "context": "    {\n        const char *sup = getenv(\"PSX_OVERLAY_IRQ_SUPPRESS\");\n        const char *rl  = getenv(\"PSX_OVERLAY_IRQ_RATELIMIT\");\n        if (sup && *sup && *sup != '0') {"
+      }
+    ],
+    "PSX_OVERLAY_LIVE_AUTOCOMPILE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/autocompile.c",
+        "line": 861,
+        "context": "    if (s_captures[0])  SetEnvironmentVariableA(\"PSX_OVERLAY_CAPTURES\",  s_captures);\n    SetEnvironmentVariableA(\"PSX_OVERLAY_LIVE_AUTOCOMPILE\", \"1\");\n    /* Pin the FLAVOR the same way: the tool's --flavor defaults to 0 (play),\n     * so an instrumented (flavor 2) runtime spawned a compile whose shards it"
+      }
+    ],
+    "PSX_OVERLAY_NATIVE_OFF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2747,
+        "context": "    {\n        const char *no = getenv(\"PSX_OVERLAY_NATIVE_OFF\");\n        if (no && *no && *no != '0') {\n            s_native_exec = 0;"
+      }
+    ],
+    "PSX_OVERLAY_REGION_FLOOR": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11325,
+        "context": "                {\n                    const char* fenv = std::getenv(\"PSX_OVERLAY_REGION_FLOOR\");\n                    if (fenv && fenv[0]) {\n                        uint32_t v = (uint32_t)strtoul(fenv, nullptr, 0) & 0x1FFFFFFFu;"
+      }
+    ],
+    "PSX_OVERLAY_UNIT_DEFER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2052,
+        "context": "    if (cached < 0) {\n        const char *e = getenv(\"PSX_OVERLAY_UNIT_DEFER\");\n        cached = (e && (e[0] == '0' || e[0] == 'n' || e[0] == 'N')) ? 0 : 1;\n    }"
+      }
+    ],
+    "PSX_PARITY_TCB": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_main.cpp",
+        "line": 167,
+        "context": "        };\n        uint32_t tcb     = envhex(\"PSX_PARITY_TCB\",     0xA000E35Cu);\n        uint32_t trigger = envhex(\"PSX_PARITY_TRIGGER\", 0x8001344Cu); /* setter */\n        uint32_t watch[PARITY_WATCH_MAX] = {"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13796,
+        "context": "        };\n        uint32_t tcb     = envhex(\"PSX_PARITY_TCB\",     0xA000E35Cu);\n        uint32_t trigger = envhex(\"PSX_PARITY_TRIGGER\", 0x800CD3F8u);\n        uint32_t watch[PARITY_WATCH_MAX] = {"
+      }
+    ],
+    "PSX_PARITY_TRACE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_main.cpp",
+        "line": 162,
+        "context": "     * TCB / trigger / watch are env-tunable (same vars as psx-runtime). */\n    if (const char* pt = std::getenv(\"PSX_PARITY_TRACE\"); pt && pt[0] && pt[0] != '0') {\n        auto envhex = [](const char* k, uint32_t dflt) -> uint32_t {\n            const char* v = std::getenv(k);"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_main.cpp",
+        "line": 183,
+        "context": "    {\n        const char* pt = std::getenv(\"PSX_PARITY_TRACE\");\n        const char* dt = std::getenv(\"PSX_DEVTRACE\");\n        if ((pt && pt[0] && pt[0] != '0') || (dt && dt[0] && dt[0] != '0')) {"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13791,
+        "context": "     * trigger dispatch 0x800CD3F8, watch the handshake flag + state struct). */\n    if (const char* pt = std::getenv(\"PSX_PARITY_TRACE\"); pt && pt[0] && pt[0] != '0') {\n        auto envhex = [](const char* k, uint32_t dflt) -> uint32_t {\n            const char* v = std::getenv(k);"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13828,
+        "context": "    {\n        const char* pt = std::getenv(\"PSX_PARITY_TRACE\");\n        const char* dt = std::getenv(\"PSX_DEVTRACE\");\n        if ((pt && pt[0] && pt[0] != '0') || (dt && dt[0] && dt[0] != '0')) {"
+      }
+    ],
+    "PSX_PARITY_TRIGGER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/beetle_main.cpp",
+        "line": 168,
+        "context": "        uint32_t tcb     = envhex(\"PSX_PARITY_TCB\",     0xA000E35Cu);\n        uint32_t trigger = envhex(\"PSX_PARITY_TRIGGER\", 0x8001344Cu); /* setter */\n        uint32_t watch[PARITY_WATCH_MAX] = {\n            0x801FEB78u, 0x8006D9ACu, 0x800CD3F8u,"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13797,
+        "context": "        uint32_t tcb     = envhex(\"PSX_PARITY_TCB\",     0xA000E35Cu);\n        uint32_t trigger = envhex(\"PSX_PARITY_TRIGGER\", 0x800CD3F8u);\n        uint32_t watch[PARITY_WATCH_MAX] = {\n            0x801FEB78u, /* thread1 stack saved-ra slot */"
+      }
+    ],
+    "PSX_PARITY_WATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 13807,
+        "context": "        int wc = PARITY_WATCH_MAX;\n        if (const char* wl = std::getenv(\"PSX_PARITY_WATCH\"); wl && wl[0]) {\n            wc = 0; std::string s(wl); size_t p = 0;\n            while (p < s.size() && wc < PARITY_WATCH_MAX) {"
+      }
+    ],
+    "PSX_PC_PROBE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 14010,
+        "context": "            const char *nd = getenv(\"PSX_ND_INTRO_PROBE\");\n            const char *pcs = getenv(\"PSX_PC_PROBE\");\n            if ((nd && *nd && *nd != '0') || (pcs && *pcs)) {\n                pc_probe_clear_state();"
+      }
+    ],
+    "PSX_PERSPECTIVE_TEXTURING": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 12898,
+        "context": "        g_video_geometry_correction = (*e && *e != '0') ? 1 : 0;\n    if (const char* e = std::getenv(\"PSX_PERSPECTIVE_TEXTURING\"))\n        g_video_perspective_texturing = (*e && *e != '0') ? 1 : 0;\n    if (const char* e = std::getenv(\"PSX_PGXP_CPU_MODE\"))"
+      }
+    ],
+    "PSX_PGXP_CPU_MODE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 12900,
+        "context": "        g_video_perspective_texturing = (*e && *e != '0') ? 1 : 0;\n    if (const char* e = std::getenv(\"PSX_PGXP_CPU_MODE\"))\n        g_video_pgxp_cpu_mode = (*e && *e != '0') ? 1 : 0;\n    gte_geometry_correction_set(g_video_geometry_correction);"
+      }
+    ],
+    "PSX_POLLHACK_VBLANK": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu.c",
+        "line": 2729,
+        "context": "        if (poll_fire < 0) {\n            const char* e = getenv(\"PSX_POLLHACK_VBLANK\");\n            poll_fire = (e && e[0] == '1') ? 1 : 0;\n        }"
+      }
+    ],
+    "PSX_POLL_PROOF": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 1996,
+        "context": "        static int s_pp = -1;\n        if (s_pp < 0) { const char* e = getenv(\"PSX_POLL_PROOF\"); s_pp = (e && e[0]) ? atoi(e) : 0; }\n        if (s_pp > 0) psx_load_charge_cycles((uint32_t)s_pp);\n    }"
+      }
+    ],
+    "PSX_POST_LOAD_PROBE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
+        "line": 3200,
+        "context": "void cdrom_accelerate_after_savestate(void) {\n    const char *probe = getenv(\"PSX_POST_LOAD_PROBE\");\n    const int log_probe = (probe && probe[0] == '1');\n    s_savestate_cd_boost_vblanks = CDROM_SAVESTATE_BOOST_VBLANKS;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 494,
+        "context": "    if (s_post_load_probe_enabled < 0) {\n        const char *e = std::getenv(\"PSX_POST_LOAD_PROBE\");\n        s_post_load_probe_enabled = (e && e[0] == '1') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_PRECISE_ALWAYS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 2723,
+        "context": "    if (s_slice_always < 0) {\n        const char *e = getenv(\"PSX_PRECISE_ALWAYS\");\n        s_slice_always = (e && e[0] == '1') ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_PRECISE_MARGIN": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 2727,
+        "context": "    if (s_slice_margin < 0) {\n        const char *e = getenv(\"PSX_PRECISE_MARGIN\");\n        s_slice_margin = (e && *e) ? atoi(e) : 0;\n        if (s_slice_margin < 0) s_slice_margin = 0;"
+      }
+    ],
+    "PSX_PRECISE_SLICE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 2699,
+        "context": "void psx_precise_slice_init_from_env(void) {\n    const char *e = getenv(\"PSX_PRECISE_SLICE\");\n    g_psx_precise_slice = (e && e[0] == '1') ? 1 : 0;\n}"
+      }
+    ],
+    "PSX_RB_CD_BISECT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/cdrom.c",
+        "line": 1595,
+        "context": "        if (s_bisect < 0) {\n            const char *e = getenv(\"PSX_RB_CD_BISECT\");\n            s_bisect = (e && e[0] && e[0] != '0') ? 1 : 0;\n        }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 783,
+        "context": "    s_cd_bisect_inited = 1;\n    e = getenv(\"PSX_RB_CD_BISECT\");\n    if (!e || !e[0] || e[0] == '0')\n        return;"
+      }
+    ],
+    "PSX_RB_CD_BISECT_ARM": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 793,
+        "context": "    }\n    e = getenv(\"PSX_RB_CD_BISECT_ARM\");\n    if (e && e[0]) {\n        unsigned n = (unsigned)atoi(e);"
+      }
+    ],
+    "PSX_RB_CHAIN_MAX_HOPS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 819,
+        "context": "{\n    const char *e = getenv(\"PSX_RB_CHAIN_MAX_HOPS\");\n    if (e && e[0]) {\n        int v = atoi(e);"
+      }
+    ],
+    "PSX_RB_CHAIN_MAX_TICKS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 834,
+        "context": "{\n    const char *e = getenv(\"PSX_RB_CHAIN_MAX_TICKS\");\n    if (e && e[0]) {\n        int v = atoi(e);"
+      }
+    ],
+    "PSX_RB_CHAIN_MIN_AHEAD": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 853,
+        "context": "    uint32_t min_ahead = RB_OWNERSHIP_CHAIN_MIN_AHEAD;\n    const char *e = getenv(\"PSX_RB_CHAIN_MIN_AHEAD\");\n    if (e && e[0]) {\n        int v = atoi(e);"
+      }
+    ],
+    "PSX_RB_CHAIN_SUPPRESS_MS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 883,
+        "context": "{\n    const char *e = getenv(\"PSX_RB_CHAIN_SUPPRESS_MS\");\n    if (e && e[0]) {\n        int v = atoi(e);"
+      }
+    ],
+    "PSX_RB_CHAIN_SUPPRESS_TICKS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay_rb.c",
+        "line": 869,
+        "context": "{\n    const char *e = getenv(\"PSX_RB_CHAIN_SUPPRESS_TICKS\");\n    if (e && e[0]) {\n        int v = atoi(e);"
+      }
+    ],
+    "PSX_RB_HC_SILENT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 2491,
+        "context": "    if (s_on < 0) {\n        const char *e = getenv(\"PSX_RB_HC_SILENT\");\n        s_on = (e && e[0]) ? (atoi(e) != 0) : 1;\n        fprintf(stderr,"
+      }
+    ],
+    "PSX_RB_PAD_LOG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 1839,
+        "context": "    if (s_on < 0) {\n        const char *e = getenv(\"PSX_RB_PAD_LOG\");\n        s_on = (e && e[0] == '1' && e[1] == '\\0') ? 1 : 0;\n        if (s_on)"
+      }
+    ],
+    "PSX_RB_PAD_TRACE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 1854,
+        "context": "    if (s_on < 0) {\n        const char *e = getenv(\"PSX_RB_PAD_TRACE\");\n        s_on = (e && e[0] == '1' && e[1] == '\\0') ? 1 : 0;\n        if (s_on)"
+      }
+    ],
+    "PSX_RB_SELFCHECK": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 346,
+        "context": "{\n    const char *e = getenv(\"PSX_RB_SELFCHECK\");\n    if (!e || !*e || *e == '0')\n        return;"
+      }
+    ],
+    "PSX_RB_SELFCHECK_FAULT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 360,
+        "context": "    s_span = sc_env_u32(\"PSX_RB_SELFCHECK_SPAN\", SC_SPAN_DEF, 4u, SC_SPAN_MAX);\n    s_fault = sc_env_u32(\"PSX_RB_SELFCHECK_FAULT\", 0u, 0u, 1u) != 0u;\n    /* Default 1: throwaway resim(s) of the snap clear live-RECORD host\n     * ambient so counted #1 matches #2/#3. 0 disables; 2+ for stubborn windows. */"
+      }
+    ],
+    "PSX_RB_SELFCHECK_INTERVAL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 357,
+        "context": "    s_entry_pc = entry_pc;\n    s_interval = sc_env_u32(\"PSX_RB_SELFCHECK_INTERVAL\", SC_INTERVAL_DEF,\n                            120u, 1000000u);\n    s_span = sc_env_u32(\"PSX_RB_SELFCHECK_SPAN\", SC_SPAN_DEF, 4u, SC_SPAN_MAX);"
+      }
+    ],
+    "PSX_RB_SELFCHECK_MASH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 364,
+        "context": "    s_prime = sc_env_u32(\"PSX_RB_SELFCHECK_PRIME\", 1u, 0u, 4u);\n    s_mash = sc_env_u32(\"PSX_RB_SELFCHECK_MASH\", 0u, 0u, 1u) != 0u;\n    s_mash_rate = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_RATE\", 75u, 1u, 100u);\n    s_mash_rng = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_SEED\", 0xC0FFEEu, 1u,"
+      }
+    ],
+    "PSX_RB_SELFCHECK_MASH_RATE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 365,
+        "context": "    s_mash = sc_env_u32(\"PSX_RB_SELFCHECK_MASH\", 0u, 0u, 1u) != 0u;\n    s_mash_rate = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_RATE\", 75u, 1u, 100u);\n    s_mash_rng = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_SEED\", 0xC0FFEEu, 1u,\n                            0xffffffffu);"
+      }
+    ],
+    "PSX_RB_SELFCHECK_MASH_SEED": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 366,
+        "context": "    s_mash_rate = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_RATE\", 75u, 1u, 100u);\n    s_mash_rng = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_SEED\", 0xC0FFEEu, 1u,\n                            0xffffffffu);\n    s_mash_word = 0xFFFFu;"
+      }
+    ],
+    "PSX_RB_SELFCHECK_PRIME": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 363,
+        "context": "     * ambient so counted #1 matches #2/#3. 0 disables; 2+ for stubborn windows. */\n    s_prime = sc_env_u32(\"PSX_RB_SELFCHECK_PRIME\", 1u, 0u, 4u);\n    s_mash = sc_env_u32(\"PSX_RB_SELFCHECK_MASH\", 0u, 0u, 1u) != 0u;\n    s_mash_rate = sc_env_u32(\"PSX_RB_SELFCHECK_MASH_RATE\", 75u, 1u, 100u);"
+      }
+    ],
+    "PSX_RB_SELFCHECK_SPAN": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_selfcheck.c",
+        "line": 359,
+        "context": "                            120u, 1000000u);\n    s_span = sc_env_u32(\"PSX_RB_SELFCHECK_SPAN\", SC_SPAN_DEF, 4u, SC_SPAN_MAX);\n    s_fault = sc_env_u32(\"PSX_RB_SELFCHECK_FAULT\", 0u, 0u, 1u) != 0u;\n    /* Default 1: throwaway resim(s) of the snap clear live-RECORD host"
+      }
+    ],
+    "PSX_RB_SPU_DIG_REGS_ONLY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/netplay_state_digest.c",
+        "line": 207,
+        "context": "    if (s < 0) {\n        const char *e = getenv(\"PSX_RB_SPU_DIG_REGS_ONLY\");\n        s = (e && e[0] == '1' && e[1] == '\\0') ? 1 : 0;\n        if (s) {"
+      }
+    ],
+    "PSX_RB_SPU_PARTS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 652,
+        "context": "        if (s_parts < 0) {\n            const char *e = getenv(\"PSX_RB_SPU_PARTS\");\n            s_parts = (e && e[0] == '1' && e[1] == '\\0') ? 1 : 0;\n            if (s_parts) {"
+      }
+    ],
+    "PSX_READ_WATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 13995,
+        "context": "         * frame land in the unified buffer as REC_KIND_RAM_R. */\n        const char *rw = getenv(\"PSX_READ_WATCH\");\n        if (rw && *rw) {\n            char tmp[64]; snprintf(tmp, sizeof(tmp), \"%s\", rw);"
+      }
+    ],
+    "PSX_RECORD_FRAME": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 13987,
+        "context": "    {\n        const char *rf = getenv(\"PSX_RECORD_FRAME\");\n        if (rf && *rf) {\n            s_rec_frame = (int64_t)strtoll(rf, NULL, 0);"
+      }
+    ],
+    "PSX_RECURSION_LIMIT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 2394,
+        "context": "    if (s_rec_limit == 0) {\n        const char *e = getenv(\"PSX_RECURSION_LIMIT\");\n        s_rec_limit = (e && *e) ? atoi(e) : 256;\n        if (s_rec_limit < 32) s_rec_limit = 32;"
+      }
+    ],
+    "PSX_REWIND": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_rewind.c",
+        "line": 268,
+        "context": "    if (s_enabled < 0) {\n        e = getenv(\"PSX_REWIND\");\n        if (e && e[0] == '0')\n            s_enabled = 0;"
+      }
+    ],
+    "PSX_REWIND_DEPTH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_rewind.c",
+        "line": 287,
+        "context": "            s_depth = normalize_rewind_depth(\n                env_u32(\"PSX_REWIND_DEPTH\", depth_def, 4u, RW_MAX_DEPTH));\n        }\n    }"
+      }
+    ],
+    "PSX_REWIND_FMV_INTERVAL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_rewind.c",
+        "line": 280,
+        "context": "        s_fmv_interval =\n            env_u32(\"PSX_REWIND_FMV_INTERVAL\", RW_DEF_FMV_INTERVAL, 1u, 16u);\n        e = getenv(\"PSX_REWIND_FMV_LEGACY\");\n        s_fmv_legacy = (e && e[0] == '1') ? 1 : 0;"
+      }
+    ],
+    "PSX_REWIND_FMV_LEGACY": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_rewind.c",
+        "line": 281,
+        "context": "            env_u32(\"PSX_REWIND_FMV_INTERVAL\", RW_DEF_FMV_INTERVAL, 1u, 16u);\n        e = getenv(\"PSX_REWIND_FMV_LEGACY\");\n        s_fmv_legacy = (e && e[0] == '1') ? 1 : 0;\n        {"
+      }
+    ],
+    "PSX_REWIND_INTERVAL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_rewind.c",
+        "line": 277,
+        "context": "            s_interval = normalize_rewind_interval(\n                env_u32(\"PSX_REWIND_INTERVAL\", iv_def, 1u, 60u));\n        }\n        s_fmv_interval ="
+      }
+    ],
+    "PSX_RUMBLE_TRACE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 4084,
+        "context": "    static const bool trace = [] {\n        const char* e = std::getenv(\"PSX_RUMBLE_TRACE\");\n        return e && e[0] && e[0] != '0';\n    }();"
+      }
+    ],
+    "PSX_RUNTIME_PERF_DIAG": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c",
+        "line": 530,
+        "context": "    if (enabled < 0) {\n        const char *e = getenv(\"PSX_RUNTIME_PERF_DIAG\");\n        enabled = e && e[0] && e[0] != '0';\n    }"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3183,
+        "context": "    g_runtime_perf.initialized = true;\n    const char *enabled = std::getenv(\"PSX_RUNTIME_PERF_DIAG\");\n    g_runtime_perf.enabled = enabled && enabled[0] && enabled[0] != '0';\n    if (!g_runtime_perf.enabled) return;"
+      },
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/overlay_loader.c",
+        "line": 2683,
+        "context": "    {\n        const char *perf = getenv(\"PSX_RUNTIME_PERF_DIAG\");\n        s_native_hot_enabled = perf && perf[0] && perf[0] != '0';\n    }"
+      }
+    ],
+    "PSX_RUNTIME_PERF_DIAG_MS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 3189,
+        "context": "    if (!g_runtime_perf.frequency) g_runtime_perf.frequency = 1;\n    if (const char *interval = std::getenv(\"PSX_RUNTIME_PERF_DIAG_MS\")) {\n        char *tail = nullptr;\n        long requested = std::strtol(interval, &tail, 10);"
+      }
+    ],
+    "PSX_SAME_THREAD_RESTORE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/interrupts.c",
+        "line": 1863,
+        "context": "    if (s_str_mode_env == -2) {\n        const char *e = getenv(\"PSX_SAME_THREAD_RESTORE\");\n        s_str_mode_env = (e && *e) ? atoi(e) : -1;\n        if (s_str_mode_env < -1 || s_str_mode_env > 3) s_str_mode_env = -1;"
+      }
+    ],
+    "PSX_SCREEN": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu.c",
+        "line": 3089,
+        "context": "    ScreenKind kind = (ScreenKind)s_screen_kind_cfg;\n    const char* name = getenv(\"PSX_SCREEN\");\n    ScreenKind envk;\n    if (name && screen_kind_from_name(name, &envk)) kind = envk;"
+      }
+    ],
+    "PSX_SHARD_RESULT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/autocompile.c",
+        "line": 1007,
+        "context": "    /* Find the LAST occurrence (a run may print more than once over its life). */\n    const char *marker = \"PSX_SHARD_RESULT\";\n    const char *hit = NULL, *p = buf;\n    for (;;) {"
+      }
+    ],
+    "PSX_SHELLWIN_INTERP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 630,
+        "context": "#else\n        const char* e = getenv(\"PSX_SHELLWIN_INTERP\");\n        s = (e && e[0] && e[0] != '0');\n#endif"
+      }
+    ],
+    "PSX_SIO_PAD_SYNC_RX": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/sio.c",
+        "line": 2178,
+        "context": "            if (s_pad_sync_rx < 0) {\n                const char *e = getenv(\"PSX_SIO_PAD_SYNC_RX\");\n                s_pad_sync_rx = (e && e[0] == '1') ? 1 : 0;\n            }"
+      }
+    ],
+    "PSX_SMOOTH_60FPS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11605,
+        "context": "    if (const char *e = std::getenv(\"PSX_VSYNC\"))             g_video_vsync       = atoi(e);\n    if (const char *e = std::getenv(\"PSX_SMOOTH_60FPS\"))\n        psx_smooth_60fps_set(atoi(e) ? 1 : 0);\n    if (const char *e = std::getenv(\"PSX_FRAME_INTERPOLATION\"))"
+      }
+    ],
+    "PSX_SPU_SAMPLE_EVENTS": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/interrupts.c",
+        "line": 414,
+        "context": "    if (enabled < 0) {\n        const char *e = getenv(\"PSX_SPU_SAMPLE_EVENTS\");\n        enabled = (!e || !*e || strcmp(e, \"0\") != 0) ? 1 : 0;\n    }"
+      }
+    ],
+    "PSX_STACK_GUARD_KB": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/debug_server.c",
+        "line": 2002,
+        "context": "        static long s_guard_kb = -2;\n        if (s_guard_kb == -2) { const char *e = getenv(\"PSX_STACK_GUARD_KB\");\n                                s_guard_kb = (e && *e) ? atol(e) : -1; }\n        if (s_guard_kb > 0 && base > sp && (base - sp) > (uintptr_t)s_guard_kb * 1024u) {"
+      }
+    ],
+    "PSX_START_BISECT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 206,
+        "context": "    if (s_on < 0) {\n        s_on = psx_start_bisect_env_flag(\"PSX_START_BISECT\");\n        if (s_on) {\n            fprintf(stderr,"
+      }
+    ],
+    "PSX_START_BISECT_NO_CATCHUP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 247,
+        "context": "    if (s < 0) {\n        s = psx_start_bisect_env_flag(\"PSX_START_BISECT_NO_CATCHUP\");\n        if (s)\n            fprintf(stderr, \"psxrecomp: start-bisect NO catch-up budget\\n\");"
+      }
+    ],
+    "PSX_START_BISECT_NO_GC_UPDATE_IN_ADMIT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 222,
+        "context": "    if (s < 0) {\n        s = psx_start_bisect_env_flag(\"PSX_START_BISECT_NO_GC_UPDATE_IN_ADMIT\");\n        if (s)\n            fprintf(stderr,"
+      }
+    ],
+    "PSX_START_BISECT_NO_REPLAY_PRODUCE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 258,
+        "context": "    if (s < 0) {\n        s = psx_start_bisect_env_flag(\"PSX_START_BISECT_NO_REPLAY_PRODUCE\");\n        if (s)\n            fprintf(stderr,"
+      }
+    ],
+    "PSX_START_BISECT_NO_TIPHOLD_CAPTURE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 235,
+        "context": "    if (s < 0) {\n        s = psx_start_bisect_env_flag(\"PSX_START_BISECT_NO_TIPHOLD_CAPTURE\");\n        if (s)\n            fprintf(stderr,"
+      }
+    ],
+    "PSX_START_BISECT_SPIN": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 270,
+        "context": "    if (s < 0)\n        s = psx_start_bisect_env_flag(\"PSX_START_BISECT_SPIN\");\n    return s;\n}"
+      }
+    ],
+    "PSX_START_CONSUMER": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/psx_netplay.c",
+        "line": 323,
+        "context": "    if (s_on < 0) {\n        s_on = psx_start_bisect_env_flag(\"PSX_START_CONSUMER\");\n        if (s_on) {\n            fprintf(stderr,"
+      }
+    ],
+    "PSX_STARVATION_TIMEOUT_US": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/starvation_ring.c",
+        "line": 74,
+        "context": "    if (!resolved) {\n        const char *e = getenv(\"PSX_STARVATION_TIMEOUT_US\");\n        if (e && *e) timeout = strtoull(e, NULL, 10);\n        resolved = 1;"
+      }
+    ],
+    "PSX_TOMB_CARD_EVCB_PROTECT": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/memory.c",
+        "line": 1645,
+        "context": "            if (s_tomb_evcb_protect < 0) {\n                const char *e = getenv(\"PSX_TOMB_CARD_EVCB_PROTECT\");\n                s_tomb_evcb_protect = (e && e[0] == '1') ? 1 : 0;\n            }"
+      }
+    ],
+    "PSX_TRUST_DRIVER_VSYNC": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 2714,
+        "context": "        return cached;\n    if (const char *e = std::getenv(\"PSX_TRUST_DRIVER_VSYNC\");\n        e && e[0] && e[0] != '0') {\n        cached = 0;"
+      }
+    ],
+    "PSX_VSYNC": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/main.cpp",
+        "line": 11604,
+        "context": "    if (const char *e = std::getenv(\"PSX_LOW_LATENCY_INPUT\")) g_low_latency_input = atoi(e) ? 1 : 0;\n    if (const char *e = std::getenv(\"PSX_VSYNC\"))             g_video_vsync       = atoi(e);\n    if (const char *e = std::getenv(\"PSX_SMOOTH_60FPS\"))\n        psx_smooth_60fps_set(atoi(e) ? 1 : 0);"
+      }
+    ],
+    "PSX_WS_FORCE_2D": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/gpu.c",
+        "line": 311,
+        "context": "    static int env = -1;\n    if (env < 0) { const char *e = getenv(\"PSX_WS_FORCE_2D\"); env = (e && e[0] == '1') ? 1 : 0; }\n    return ws_full_2d || env;\n}"
+      }
+    ],
+    "PSX_XLATE_ALLOW_NUL": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/text_xlate.cpp",
+        "line": 899,
+        "context": "            static const bool allow_nul = [] {\n                const char* e = std::getenv(\"PSX_XLATE_ALLOW_NUL\"); return e && e[0] == '1'; }();\n            if (term != Term::FFFF && !allow_nul && !sj_clean_text(buf, len)) continue;\n            if (apply_to_reg(ram, cpu, sp, argregs[a], te, term))"
+      }
+    ],
+    "PSX_XLATE_CAPTURE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/text_xlate.cpp",
+        "line": 921,
+        "context": "        g_dir = (fs::path(project_root) / \"translations\").string();\n    const char* capenv = std::getenv(\"PSX_XLATE_CAPTURE\");\n    if (capenv && capenv[0] == '0') g_capture_on.store(false);\n    else if (capenv && capenv[0] == '1') g_capture_on.store(true);"
+      }
+    ],
+    "PSX_XLATE_LE": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/text_xlate.cpp",
+        "line": 213,
+        "context": "        // once known this becomes an EncodingProfile flag.\n        static const bool le = [] { const char* e = std::getenv(\"PSX_XLATE_LE\");\n                                    return e && e[0] == '1'; }();\n        if (le) { out.push_back((uint8_t)(g & 0xFF)); out.push_back((uint8_t)(g >> 8)); }"
+      }
+    ],
+    "PSX_XPROBE_FRAME_TRIP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 1125,
+        "context": "    g_xprobe_env_done = 1;\n    const char *a = getenv(\"PSX_XPROBE_FRAME_TRIP\"); if (a && *a) g_xprobe_frame_trip = atoi(a);\n    const char *b = getenv(\"PSX_XPROBE_STK_KB\");     if (b && *b) g_xprobe_stk_kb     = atoi(b);\n    const char *c = getenv(\"PSX_XPROBE_WARMUP\");     if (c && *c) g_xprobe_warmup     = atoi(c);"
+      }
+    ],
+    "PSX_XPROBE_STK_KB": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 1126,
+        "context": "    const char *a = getenv(\"PSX_XPROBE_FRAME_TRIP\"); if (a && *a) g_xprobe_frame_trip = atoi(a);\n    const char *b = getenv(\"PSX_XPROBE_STK_KB\");     if (b && *b) g_xprobe_stk_kb     = atoi(b);\n    const char *c = getenv(\"PSX_XPROBE_WARMUP\");     if (c && *c) g_xprobe_warmup     = atoi(c);\n}"
+      }
+    ],
+    "PSX_XPROBE_WARMUP": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 1127,
+        "context": "    const char *b = getenv(\"PSX_XPROBE_STK_KB\");     if (b && *b) g_xprobe_stk_kb     = atoi(b);\n    const char *c = getenv(\"PSX_XPROBE_WARMUP\");     if (c && *c) g_xprobe_warmup     = atoi(c);\n}\nvoid dirty_ram_xprobe_arm(int frame_trip, int stk_kb, int warmup) {"
+      }
+    ],
+    "PSX_XPROBE_WATCH": [
+      {
+        "path": "windows-x64/psxrecomp/runtime/src/dirty_ram_interp.c",
+        "line": 1189,
+        "context": "        s_xprobe_watch_env_done = 1;\n        const char *env = getenv(\"PSX_XPROBE_WATCH\");\n        if (env && *env) xprobe_watch_parse(env);\n    }"
+      }
+    ]
+  },
+  "registered_ctest_names": [
+    {
+      "name": "launcher_device_roundtrip_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 29
+    },
+    {
+      "name": "cause_ip2_combinational_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 35
+    },
+    {
+      "name": "psx_cyc_batch_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 42
+    },
+    {
+      "name": "psx_icache_fastpath_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 58
+    },
+    {
+      "name": "psx_memory_geometry_${_ram_geometry}_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 69
+    },
+    {
+      "name": "host_keymap_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 82
+    },
+    {
+      "name": "keyboard_pad_chord_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 93
+    },
+    {
+      "name": "hd_texture_pack_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 104
+    },
+    {
+      "name": "sio_dualshock_rumble_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 120
+    },
+    {
+      "name": "gte_register_access_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 133
+    },
+    {
+      "name": "pgxp_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 143
+    },
+    {
+      "name": "psx_instr_cost_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 147
+    },
+    {
+      "name": "ws_aspect_cone_math_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 156
+    },
+    {
+      "name": "ws_ui_group_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 162
+    },
+    {
+      "name": "mod_gpu_dma_aperture_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 167
+    },
+    {
+      "name": "spu_fidelity_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 181
+    },
+    {
+      "name": "overlay_capture_retry_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 199
+    },
+    {
+      "name": "overlay_path_canon_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 205
+    },
+    {
+      "name": "bios_hle_plan_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 214
+    },
+    {
+      "name": "disc_path_resolve_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 225
+    },
+    {
+      "name": "bios_rom_alias_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 232
+    },
+    {
+      "name": "iso_reader_cdda_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 241
+    },
+    {
+      "name": "iso_reader_sbi_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 249
+    },
+    {
+      "name": "mod_packages_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 259
+    },
+    {
+      "name": "text_xlate_fix_only_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 267
+    },
+    {
+      "name": "mod_runtime_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 282
+    },
+    {
+      "name": "autocompile_publication_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 291
+    },
+    {
+      "name": "autocompile_degraded_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 301
+    },
+    {
+      "name": "cdrom_irq_mask_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 331
+    },
+    {
+      "name": "sio_spu_istat_ownership_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 344
+    },
+    {
+      "name": "chain_handler_check_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 352
+    },
+    {
+      "name": "frame_pacing_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 358
+    },
+    {
+      "name": "frame_interpolation_schedule_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 367
+    },
+    {
+      "name": "gpu_primitive_reject_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 372
+    },
+    {
+      "name": "gpu_sw_edges_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 376
+    },
+    {
+      "name": "gpu_vk_upload_alignment_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 381
+    },
+    {
+      "name": "netplay_hash_confirm_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 412
+    },
+    {
+      "name": "netplay_snap_ring_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 421
+    },
+    {
+      "name": "rb_post_tip_filter_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 426
+    },
+    {
+      "name": "netplay_input_hist_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 437
+    },
+    {
+      "name": "overlay_store_cycle_barrier_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 443
+    },
+    {
+      "name": "psx_cycle_event_boundaries_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 450
+    },
+    {
+      "name": "psx_timestamp_batch_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 457
+    },
+    {
+      "name": "rewind_cadence_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 474
+    },
+    {
+      "name": "psx_vblank_clock_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 482
+    },
+    {
+      "name": "spu_end_without_repeat_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 487
+    },
+    {
+      "name": "spu_pitch_zero_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 493
+    },
+    {
+      "name": "spu_gaussian_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 498
+    },
+    {
+      "name": "frame_interpolation_context_ownership_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 502
+    },
+    {
+      "name": "mod_bezel_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 505
+    },
+    {
+      "name": "rewind_toggle_combo_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 508
+    },
+    {
+      "name": "savestate_status_protocol_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 511
+    },
+    {
+      "name": "overlay_region_floor_config_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 514
+    },
+    {
+      "name": "screenshot_hires_pitch_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 517
+    },
+    {
+      "name": "sio_card_protocol_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 534
+    },
+    {
+      "name": "overlay_posix_test",
+      "path": "windows-x64/psxrecomp/runtime/CMakeLists.txt",
+      "line": 545
+    },
+    {
+      "name": "emitter_directive_line_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 349
+    },
+    {
+      "name": "debug_trace_ranges_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 357
+    },
+    {
+      "name": "cli_boot_path_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 364
+    },
+    {
+      "name": "recompiler_patch_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 389
+    },
+    {
+      "name": "full_function_emitter_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 412
+    },
+    {
+      "name": "recompiler_patch_cxx17_header_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 422
+    },
+    {
+      "name": "video_enhancement_settings_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 438
+    },
+    {
+      "name": "bios_address_model_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 442
+    },
+    {
+      "name": "l2_structural_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 447
+    },
+    {
+      "name": "l2_structural_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 448
+    },
+    {
+      "name": "reachable_discovery_test",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 449
+    },
+    {
+      "name": "cli_project_packaging",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 453
+    },
+    {
+      "name": "overlay_cross_page_delay_codegen",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 463
+    },
+    {
+      "name": "fmv_cycle_batch_codegen",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 469
+    },
+    {
+      "name": "kuseg_dispatch_lookup",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 475
+    },
+    {
+      "name": "overlay_shim_compile_contract",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 481
+    },
+    {
+      "name": "lwlr_load_delay_forward",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 485
+    },
+    {
+      "name": "dirty_text_continuation_guards",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 491
+    },
+    {
+      "name": "dirty_text_admission_guards",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 495
+    },
+    {
+      "name": "bios_backend_constant_codegen",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 499
+    },
+    {
+      "name": "stall_report",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 505
+    },
+    {
+      "name": "${_t}",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 524
+    },
+    {
+      "name": "aot_overlay_discovery",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 542
+    },
+    {
+      "name": "${_t}",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 583
+    },
+    {
+      "name": "overlay_exact_unmask_runtime",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 593
+    },
+    {
+      "name": "${_t}",
+      "path": "windows-x64/psxrecomp/recompiler/CMakeLists.txt",
+      "line": 624
+    }
+  ],
+  "scope": "Runtime/recompiler source and include directories, plus Windows tools. Quoted literal names only; defaults and dynamic names are not inferred."
+}

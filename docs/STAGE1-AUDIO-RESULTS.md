@@ -172,3 +172,23 @@ exact callback excerpts for [off](media/gallery/stage1-batching-off-audio.wav)
 and [on](media/gallery/stage1-batching-on-audio.wav) are retained. Next: test the
 combined, separately checked rendering options and qualified code, then verify
 ordinary combat, boss fire and FMV. **No production runtime is installed.**
+
+The subsequent [guarded-idle diagnostic](media/gallery/stage1-idle-diagnostic-results.json)
+averaged **57.3576fps / 217,156 starved sample frames**. The safe idle option made
+no additional gameplay skips, so its higher average cannot be attributed to
+skipped gameplay loops. The [ten-second process capture](media/gallery/stage1-idle-process-output.wav)
+contains a documented 90ms observer-filled silence at 6.05s. Independent sample
+alignment confirmed the supplied 4,256-frame callback offset over 18 interior
+half-second windows: 14 match within one PCM unit throughout; three have localized
+peak differences. The observer-filled interval has callback audio present. The
+main shorter gaps occur in both recordings and carry the bridge-underrun
+fingerprint. This does not establish whole-device continuity or smooth audio.
+
+The narrower rewind classifier and real capture counters are now committed in
+source. The [v43 live verification](media/gallery/stage1-rewind-classifier-results.json)
+recorded zero movie-classified frames in 6,686 gameplay frames, one stored
+snapshot with 2.716ms serialization, and 2,731 unsafe-context refusals. The
+52-check real-unit regression and registered CTest pass; all four expanded GL
+modes pass with 1,525/1,527 checks. The assisted no-fire live run still averaged
+**55.7528fps / 367,648 starved sample frames**. It verifies classification and
+accounting, not a speed gain or audio acceptance. The runtime remains uninstalled.

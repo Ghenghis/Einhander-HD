@@ -1,5 +1,11 @@
 # Developer orientation
 
+The [offline engineering handbook](handbook/index.html) covers runtime behavior,
+configuration references, actual test commands, evidence, open defects and the
+[current integration handoff](handbook/handoff.html). Its generated source
+inventory distinguishes reviewed defaults from unresolved source expressions.
+Devin starts with the [read-only synchronization handoff](../coordination/DEVIN-HANDOFF.md).
+
 ## Layout
 
 - `windows-x64/`: active game integration, modified runtime/framework, launcher and development tools.

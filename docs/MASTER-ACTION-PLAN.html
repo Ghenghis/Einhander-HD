@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Einhänder HD Master Plan</title>
+<style>
+:root{--bg:#0f1115;--panel:#171a21;--ink:#e6e8ee;--muted:#9aa3b2;--line:#2a2f3a;--accent:#e0a33a;--ok:#5bbf7a;--warn:#e0a33a;--bad:#e06a5b;--code:#0b0d11}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){--bg:#f7f7f5;--panel:#ffffff;--ink:#1d2129;--muted:#5b6474;--line:#dfe2e8;--accent:#a8660f;--ok:#2f8a4f;--warn:#a8660f;--bad:#b23b2c;--code:#f1f2f4}}
+:root[data-theme="dark"]{--bg:#0f1115;--panel:#171a21;--ink:#e6e8ee;--muted:#9aa3b2;--line:#2a2f3a;--accent:#e0a33a;--ok:#5bbf7a;--warn:#e0a33a;--bad:#e06a5b;--code:#0b0d11}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:28px;margin:0 0 4px}
+h2{font-size:20px;margin:40px 0 12px;padding-top:12px;border-top:1px solid var(--line)}
+h3{font-size:16px;margin:24px 0 8px}
+p,li{color:var(--ink)}
+.sub{color:var(--muted);margin:0 0 24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px;margin:12px 0}
+table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+code{background:var(--code);padding:1px 5px;border-radius:4px;font-size:13px}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.done{color:var(--ok)} .wip{color:var(--warn)} .blocked{color:var(--bad)}
+ol li,ul li{margin:4px 0}
+.small{font-size:13px;color:var(--muted)}
+</style>
+</head>
+<body>
+<main>
+<h1>Einhänder HD: master action plan</h1>
+<p class="sub">From stage 1 acceptance to all seven stages, endings and extras. Drafted 2026-11-13 by the Claude coordinator for review by the user and Codex. Status reflects what has been measured. Items that are planned or unverified are marked as such.</p>
+
+<div class="card">
+<strong>Where we are (observations, 2026-11-13; single runs unless stated)</strong>
+<ul>
+<li><strong>Smoothness: observations only, not acceptance.</strong>
+  <ul>
+  <li><strong>Native textures:</strong> one assisted, no-fire stage 1 run gave 60.008 fps with zero starved samples. This does not show sustained normal gameplay or full-game acceptance.</li>
+  <li><strong>HD-on runs</strong> on the same day ranged from about 47 to 59.9 fps. The idle diagnostic gave 57.36. Most of them had audio starvation.</li>
+  <li><strong>HD draw batching</strong> (<code>PSXRECOMP_HD_OPAQUE_BATCH=1</code>): one ordered off/on pair gave 49.4 vs 55.9 fps. That pair does not prove a speed gain.</li>
+  <li>Batching is off in <code>Play-HD.cmd</code>. Promoting it to default is a proposal, pending correctness and acceptance gates.</li>
+  <li>Run-to-run variance has not been characterised statistically, so decisions need repeated runs.</li>
+  </ul></li>
+<li><strong>Sampler contexts</strong>, phase_profile in one slow window. These are sampled contexts, not exact costs or pure GPU time.
+  <ul>
+  <li>The interpreter context is about 39% and the GPU-processing context about 34%.</li>
+  <li>The "native" context (about 26%) is dominated by the game's VSync wait at 0x8001303C, which includes frame-end host work.</li>
+  </ul></li>
+<li><strong>Audio evidence (v41 idle run).</strong>
+  <ul>
+  <li>The bracketing counters show 8,201 starved out of 488,160 callback frames.</li>
+  <li>The process capture shows one 90 ms observer gap (4,320 zero-filled frames) and four separate likely engine dropouts.</li>
+  <li>Alignment between the process and callback recordings is not yet established: whole-window correlation was 0.173.</li>
+  </ul></li>
+<li><strong>Stage 1 art.</strong>
+  <ul>
+  <li>31 of 85 key families are HD in the live pack.</li>
+  <li>Import plan v3 adds 635 rows that are built and class-validated (1,769 files, 0 mismatches).</li>
+  <li>Drache and 8 remaining families are in progress; 16 families need capture.</li>
+  </ul></li>
+<li><strong>Stages 2–7.</strong>
+  <ul>
+  <li>Stage 2 was entered once in a research run with an invincibility aid, and 9 post-Drache (stage 2) keys have native sources from it. Nothing beyond that has been captured.</li>
+  <li>There is no mid-game save. The US disc's debug menu is a stub, and the hidden stage select is disabled in US code.</li>
+  <li>A continuous capture run is therefore the route in.</li>
+  </ul></li>
+<li><strong>Robin</strong> has not yet killed the Greif. It sees enemies only through textured draws, so untextured beams and bullets are invisible to it.</li>
+</ul>
+</div>
+
+<h2>Principles</h2>
+<ul>
+<li><strong>Smoothness first.</strong> No visual or audio feature ships if it adds stutter or audio dropouts.</li>
+<li><strong>Faithful remaster.</strong> HD textures are class-exact to the native alpha at every texel centre. Never invent text or glyphs, and never recolour palettes. Audio keeps the composition, timing and loop points.</li>
+<li><strong>Acceptance stays honest.</strong> Each stage's final run is played by Robin with pad input only: no invincibility, no RAM writes, no cheats. Capture-only runs may use a clearly labelled invincibility aid and never count as acceptance.</li>
+<li><strong>Everything is reproducible.</strong> Frozen deliveries carry manifests and hashes, every runtime change carries a regression test, and every decision is documented in HTML under <code>docs/</code>.</li>
+</ul>
+
+<h2>Phases</h2>
+<table>
+<tr><th>Phase</th><th>Goal</th><th>Runs</th><th>Exit criterion</th></tr>
+<tr><td>0. Continuity</td><td>Full HTML documentation and a Codex→Claude handoff before Codex's weekly budget ends; clean, scoped commits pushed</td><td>Now, in parallel with everything</td><td>Claude can build, run, measure and release without Codex</td></tr>
+<tr><td>1. Finish stage 1</td><td>Smooth HD stage 1, all art in, HD audio option, Robin pad-only clear, menus/HUD/end states, Dev Control Center features</td><td>Now (critical path)</td><td>Robin clears stage 1 pad-only on the release build at 60 fps with zero starvation; user sign-off</td></tr>
+<tr><td>1D. Stage 1 HD demo</td><td>A Windows build that plays stage 1 through the Drache and the tally, then returns to the title</td><td>After phase 1</td><td>Installer/launcher runs the demo end to end on the user's own disc and BIOS</td></tr>
+<tr><td>2. Acquire stages 2–7</td><td>Native sources for every stage, both sides of each branch, bosses, endings, credits, gallery, movies, unlockable ships and pods</td><td>Starts now, in parallel with phase 1</td><td>The acquisition validator passes for each stage</td></tr>
+<tr><td>3. Parallel stage production</td><td>HD art and audio for stages 2–7 simultaneously, one squad per stage</td><td>Per stage, as soon as that stage's sources validate</td><td>Each stage's import plan has 0 class mismatches and live A/B is approved</td></tr>
+<tr><td>4. Robin v2 for all stages</td><td>RAM-aware perception, dodge planner, weak-point targeting, pod policy, per-boss modules</td><td>Starts now for stage 1; per stage afterwards</td><td>Pad-only clear of each stage</td></tr>
+<tr><td>5. Full release</td><td>Endings, credits, gallery, unlockables, menus with all HD options, launcher, docs, final 1–7 acceptance</td><td>After phases 3–4</td><td>Final Robin 1–7 run plus a Game Over leg; user sign-off</td></tr>
+</table>
+
+<h2>Phase 0: continuity and documentation (now)</h2>
+<ol>
+<li><strong>Codex: HTML documentation set under <code>docs/</code>.</strong> It should cover:
+  <ul>
+  <li>runtime architecture, and every runtime flag with its default;</li>
+  <li>build and release with exact commands;</li>
+  <li>all test suites and how to run them;</li>
+  <li>the run and evidence harness and the quiet-window protocol;</li>
+  <li>the Dev Center and launcher;</li>
+  <li>the HD pack format and import procedure;</li>
+  <li>the Robin architecture;</li>
+  <li>open defects and rejected hypotheses, with evidence;</li>
+  <li>the measured performance history (disclosing the <code>hd_opaque_batch</code> confound);</li>
+  <li>a <em>Codex → Claude handoff</em> page: in-flight work, uncommitted changes, private build locations and the next 10 actions.</li>
+  </ul>
+  Requested 2026-11-13.</li>
+<li><strong>Claude</strong> mirrors the handoff in <code>coordination/CLAUDE-HANDOFF.md</code>, keeps this plan current, and records every delivery in the ledgers.</li>
+<li><strong>Repository hygiene.</strong>
+  <ul>
+  <li>Scoped commits.</li>
+  <li>No raw game data, generated game code or private binaries in pushed history.</li>
+  <li>Remove dead experiments once their evidence is archived.</li>
+  </ul></li>
+</ol>
+
+<h2>Phase 1: finish stage 1</h2>
+<h3>1A. Smoothness (Codex runtime, Claude review and analysis)</h3>
+<ol>
+<li><strong>Proposal: HD opaque batching on by default.</strong> Not approved yet. It follows correctness checks and acceptance. Gates:
+  <ul>
+  <li>repeated alternating off/on pairs;</li>
+  <li>a framebuffer hash comparison at fixed stage 1 frames;</li>
+  <li>the batch regression in the real GL fixture (target name to be verified; it is a header included in the GL fixture, not a known CTest target);</li>
+  <li>visual checks of the Greif, emissive and palette-cycled draws.</li>
+  </ul>
+  The skin-detail concern was refuted by two independent source proofs.</li>
+<li><strong>Reduce GPU-processing cost.</strong> About 34% of sampled contexts; section 22 measured the HD draw handler at about 246 ms/s and about 185 ms/s of HD-on cost as untimed. Break down GP0 processing per step (key hashing, cache lookup, first-use decode/upload, CLUT handling, batch build). Then apply the top fixes: memoise keys per VRAM page and CLUT generation, skip re-hashing unchanged pages, and move decode off the emulation thread. <span class="tag">analysis in progress</span></li>
+<li><strong>Reduce interpreted code.</strong> About 39% of sampled contexts.
+  <ul>
+  <li>Integrate the CPS-unit validation fix (phase 2; v2 revision for virtual-PC aliases in progress). It lets non-leaf and continuation code qualify.</li>
+  <li>Then qualify the hot SYS.EXE loops (R1 0x3A998 is already qualified; next R2 0x3A6FC, R4 0xB5C80 and the rest of the section 18 list).</li>
+  <li>Then SYS-primary static compilation. Its isolated implementation and bootstrap tests are in progress.</li>
+  </ul></li>
+<li><strong>Rewind cadence fix.</strong> Ordinary gameplay is classified as a movie because of the XA music latch. The fix restores the user's gameplay target cadence (interval 15 frames, about 4/s) and keeps the movie target (about 15/s). These are target cadences when a safe snapshot succeeds; live runs show almost no successful snapshots, and the new counters are needed to measure them. Diff and tests are ready.</li>
+<li><strong>Timing fix</strong> (published GTE/MULT timestamps) is kept. The effective-time shortcut was rejected because it changes device-service points.</li>
+<li><strong>Measurement protocol:</strong> at least 3 alternating repeats per arm; game window foregrounded and untouched; manual quiet ACK; NVML logging.</li>
+</ol>
+<h3>1B. Art</h3>
+<ol>
+<li>Import plan v3: 635 rows, class-exact. Codex imports it, then runs a live A/B. Decisions pending: 5 HUD duplicates, the HUD-fade CLUTs, and Astraea v2.1 (an optional set).</li>
+<li>Drache HD (W6, in progress) and the 8 native-but-sourced families (W6, in progress).</li>
+<li>The 16 capture-needed families come from the AQ-01 capture run (shared with phase 2).</li>
+</ol>
+<h3>1C. HD audio (opt-in, must not cost smoothness)</h3>
+<ol>
+<li><strong>Music and voice.</strong>
+  <ul>
+  <li>Bit-exact XA decode of every stream.</li>
+  <li>Super-resolution to 48 kHz and per-stem restoration via source separation.</li>
+  <li>Sample-accurate length and loop points.</li>
+  </ul>
+  Models are downloaded from official sources with user approval. <span class="tag">in progress</span></li>
+<li><strong>Sound effects.</strong> Bit-exact SPU ADPCM decode, keyed by CRC32, with HD clean source samples and seamless loops. <span class="tag">in progress</span></li>
+<li><strong>Runtime audio pack</strong> (design for Codex): music replacement on an audio worker thread with fallback, SFX substitution feasibility, FLAC/Opus/PCM choice, and a 48 kHz output stage. <span class="tag">in progress</span></li>
+</ol>
+<h3>1D. Robin v2 (stage 1 first)</h3>
+<ol>
+<li><strong>RAM-decoded world state</strong>, read-only: player, enemies, boss parts, bullets, beams, pickups and scroll. This removes the blind spot for untextured projectiles. <span class="tag">design in progress</span></li>
+<li><strong>Short-horizon threat prediction</strong> and a dodge planner over pad inputs. Weak-point targeting: the Greif's grey gun arm, then the mount; the Drache's head, then the eye. A pod pickup and switching policy.</li>
+<li><strong>Offline scoring</strong> against recorded traces. Then live: Greif kill, Drache kill, full pad-only stage 1 clear.</li>
+</ol>
+<h3>1E. Menus, HUD, end states and the Dev Control Center</h3>
+<ol>
+<li>An in-game options menu exposing the HD features: HD textures, batching, audio pack on/off, 48 kHz output, rewind, filtering. It uses original-style lettering and invents no text.</li>
+<li>Title, results/tally, game over, continue, ranking and name entry all in HD.</li>
+<li><strong>Dev Control Center completion:</strong>
+  <ul>
+  <li>Robin v2 controls and its live world-state view;</li>
+  <li>quiet-window status;</li>
+  <li>the run/evidence browser;</li>
+  <li>HD pack import and validation;</li>
+  <li>audio pack toggle;</li>
+  <li>stage capture tools;</li>
+  <li>the performance dashboard (phase profile, starvation, NVML).</li>
+  </ul></li>
+</ol>
+
+<h2>Phase 1D: stage 1 HD demo build</h2>
+<ul>
+<li><strong>Scope:</strong> boot → title → stage 1 through the Drache and the tally → return to the title (or a "demo complete" screen built only from existing game lettering). All stage 1 HD art and audio, with smooth pacing.</li>
+<li><strong>Packaging:</strong> a versioned Windows build plus launcher. The runtime needs the user's own disc image and BIOS; no game data or BIOS is bundled in anything distributed.</li>
+<li><strong>Gate:</strong> phase 1 exit criterion.</li>
+</ul>
+
+<h2>Phase 2: acquisition of stages 2–7 (starts now)</h2>
+<ol>
+<li><strong>Capture-only continuous chain</strong> (Codex now, Claude after handoff): stock-first dumping, recorder windows per segment, and one Continue leg per stage, starting with AQ-01 (Drache, tally, stage 2 entry). Invincibility-only aid, labelled capture-only.</li>
+<li><strong>Static extraction from the disc</strong> (in progress): decode BINPACK containers and any compression, validate on stage 1 keys, then predict stage 2–7 keys and native sources so authoring can start before live capture. An HD texture built on a static source is imported only after live capture confirms its key.</li>
+<li><strong>Coverage</strong> (from the catalogue): 7 stages with their mid-bosses and bosses, branches, two endings, movies MOV01–06, credits, gallery, and the unlockables:
+  <ul>
+  <li>Schabe, EOS UFG Mk.IX;</li>
+  <li>the Juno, Flash, Mosquito and Python pods.</li>
+  </ul></li>
+</ol>
+
+<h2>Phase 3: parallel production of stages 2–7</h2>
+<table>
+<tr><th>Squad (per stage)</th><th>Work</th></tr>
+<tr><td>Census</td><td>Key census of the stage's captures, family grouping, carry-over check against stage 1 globals</td></tr>
+<tr><td>World</td><td>Backgrounds, scenery, terrain, signs (dark buildings with bright windows, motion-safe realism)</td></tr>
+<tr><td>Actors</td><td>Enemies, mid-boss and boss (Greif v4 pipeline), weak-point notes for Robin</td></tr>
+<tr><td>Effects and HUD</td><td>Explosions, weapon fire, pods, stage-specific HUD and lettering</td></tr>
+<tr><td>Audio</td><td>The stage's music stems and new SFX (shared audio pipeline)</td></tr>
+<tr><td>Integration</td><td>Per-stage import plan, class validation, live A/B</td></tr>
+</table>
+<p class="small">
+Capacity is bounded by one RTX 3090 Ti and the quiet windows Codex needs for measurement. Squads run CPU authoring and validation in parallel, and GPU generation goes through the shared queue.
+<ul class="small">
+<li><strong>Peak:</strong> about 10 agents at once.</li>
+<li><strong>Order:</strong> each stage moves as soon as its sources validate.</li>
+<li><strong>Stage 4:</strong> includes the lowest route.</li>
+<li><strong>Stage 6:</strong> includes the timeout ending.</li>
+</ul>
+</p>
+
+<h2>Phase 4 and 5: Robin for all stages, and release</h2>
+<ul>
+<li>Per-stage Robin modules: boss patterns, branch routes, then a pad-only clear per stage. Finally, a 1–7 run plus a Game Over leg.</li>
+<li>Release pack: one reconciled HD pack, the audio pack, the options menu, the launcher, HTML docs, and the user's sign-off.</li>
+</ul>
+
+<h2>Agent allocation now</h2>
+<table>
+<tr><th>Track</th><th>Owner</th><th>Status</th></tr>
+<tr><td>Runtime measurement, imports, capture runs</td><td>Codex (budget-limited)</td><td class="wip">active</td></tr>
+<tr><td>SYS-primary implementation (isolated worktree)</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>CPS-unit v2 (virtual PC, escape cleanup)</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>GPU-phase breakdown, GL boundary tests</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>Robin v2 (RAM perception, planner)</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>Static extraction for stages 2–7</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>HD music and voice</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>HD sound effects</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>Runtime audio pack design</td><td>Claude agent</td><td class="wip">active</td></tr>
+<tr><td>Drache art; 8 native families</td><td>Claude agents</td><td class="wip">active</td></tr>
+</table>
+
+<h2>Risks</h2>
+<ul>
+<li><strong>Codex budget runs out.</strong> Mitigation: phase 0 documentation now, and Claude takes over runtime and capture work after the handoff.</li>
+<li><strong>HD cost may not reach 60 fps through rendering fixes alone.</strong> Mitigation: interpreter reduction (CPS fix, SYS shards, SYS-primary) in parallel.</li>
+<li><strong>Static extraction may not match runtime keys</strong> (composed pages, palette cycling). Mitigation: the live capture chain remains the authority.</li>
+<li><strong>Measurement noise.</strong> Mitigation: repeats, foreground control and quiet windows.</li>
+</ul>
+<p class="small">Sources:
+<code>remaster-audit/stage1-closeout/</code>, <code>remaster-audit/runtime-review/RUNTIME-REVIEW.md</code> §15–21,
+<code>remaster-audit/fullgame-prep/{secrets,stage-access}/</code>, <code>remaster-audit/claude-backlog/w4-import-plan/</code>, <code>remaster-audit/audio-enhancement/</code>.</p>
+</main>
+</body>
+</html>

@@ -2110,8 +2110,20 @@
       "status": "Diagnostic audio; whole-run smoothness still failing",
       "result_manifest": "docs/media/gallery/stage1-batching-audio-results.json",
       "processing": "Unmodified capture WAV"
+    },
+    {
+      "path": "docs/media/gallery/stage1-idle-process-output.wav",
+      "sha256": "045ff17b00deef9eba89b17930d90db40b5d28ecd933006f2b36440e0aa89182",
+      "bytes": 1920496,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 10,
+      "category": "owned_game_process_loopback",
+      "result_manifest": "docs/media/gallery/stage1-idle-diagnostic-results.json",
+      "status": "Failing diagnostic; 90ms observer gap disclosed separately",
+      "processing": "Exact capture WAV copy, including 4320 observer-inserted zero frames"
     }
   ],
-  "audio_count": 10,
-  "total_audio_bytes": 22656892
+  "audio_count": 11,
+  "total_audio_bytes": 24577388
 }

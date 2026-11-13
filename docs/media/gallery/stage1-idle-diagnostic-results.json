@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "kind": "Existing guarded idle-loop option diagnostic",
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/world-flypast-proof.json",
+    "sha256": "ef0f11516d4d8115c36648761b67b632e328701aca511146eed80a827c436e16",
+    "bytes": 1258113
+  },
+  "runtime_build_sha256": "6989cfe6b8787f6dacac9eeb1c2e00a55f5d6ae23efffcb3119acdfb14f8ca2c",
+  "composition_plan_sha256": "0960587b4ad7362cb5e91b1e2053989a2195ede558942b9d0d72685de1719e27",
+  "measurement_load": {
+    "video": false,
+    "source_capture": false,
+    "composed_stills": false,
+    "timer_assistance": true,
+    "backend_counter_snapshots": true,
+    "gpu_clock_profile": true
+  },
+  "guest_frames": 6882,
+  "seconds": 119.98416510000243,
+  "guest_fps": 57.357568761378666,
+  "starved_sample_frames_delta": 217156,
+  "initial_fill_ms": 67.3,
+  "final_fill_ms": 63.1,
+  "timer_only_assistance": true,
+  "ordinary_fire": false,
+  "state_loads": false,
+  "starved_intervals": [
+    {
+      "ending_seconds": 10.000386899977457,
+      "delta": 11912
+    },
+    {
+      "ending_seconds": 11.00030699998024,
+      "delta": 6708
+    },
+    {
+      "ending_seconds": 37.00038689997746,
+      "delta": 4534
+    },
+    {
+      "ending_seconds": 38.000379999983124,
+      "delta": 2285
+    },
+    {
+      "ending_seconds": 49.000371299975086,
+      "delta": 1074
+    },
+    {
+      "ending_seconds": 50.000788499979535,
+      "delta": 3075
+    },
+    {
+      "ending_seconds": 55.00066559997504,
+      "delta": 5023
+    },
+    {
+      "ending_seconds": 56.00032919997466,
+      "delta": 559
+    },
+    {
+      "ending_seconds": 58.00490859997808,
+      "delta": 5083
+    },
+    {
+      "ending_seconds": 59.000586099980865,
+      "delta": 1161
+    },
+    {
+      "ending_seconds": 66.00150029998622,
+      "delta": 7750
+    },
+    {
+      "ending_seconds": 67.00026529998286,
+      "delta": 4782
+    },
+    {
+      "ending_seconds": 79.00072329997784,
+      "delta": 2296
+    },
+    {
+      "ending_seconds": 80.0002594999969,
+      "delta": 7396
+    },
+    {
+      "ending_seconds": 81.00052069997764,
+      "delta": 4163
+    },
+    {
+      "ending_seconds": 82.00036459998228,
+      "delta": 4060
+    },
+    {
+      "ending_seconds": 83.00064669997664,
+      "delta": 12772
+    },
+    {
+      "ending_seconds": 84.00053140000091,
+      "delta": 11485
+    },
+    {
+      "ending_seconds": 85.00067549999221,
+      "delta": 15500
+    },
+    {
+      "ending_seconds": 86.00041579999379,
+      "delta": 9565
+    },
+    {
+      "ending_seconds": 87.00047919998178,
+      "delta": 10950
+    },
+    {
+      "ending_seconds": 88.0004074999888,
+      "delta": 4442
+    },
+    {
+      "ending_seconds": 89.0006519999879,
+      "delta": 2699
+    },
+    {
+      "ending_seconds": 90.00057639999432,
+      "delta": 3726
+    },
+    {
+      "ending_seconds": 91.00072659997386,
+      "delta": 1780
+    },
+    {
+      "ending_seconds": 97.00070279999636,
+      "delta": 2568
+    },
+    {
+      "ending_seconds": 98.00047529998119,
+      "delta": 5676
+    },
+    {
+      "ending_seconds": 103.00031730000046,
+      "delta": 468
+    },
+    {
+      "ending_seconds": 104.00055609998526,
+      "delta": 5199
+    },
+    {
+      "ending_seconds": 105.00041589999455,
+      "delta": 3805
+    },
+    {
+      "ending_seconds": 106.00036449998152,
+      "delta": 1004
+    },
+    {
+      "ending_seconds": 107.00063059999957,
+      "delta": 20
+    },
+    {
+      "ending_seconds": 108.00068529997952,
+      "delta": 6161
+    },
+    {
+      "ending_seconds": 109.00020699997549,
+      "delta": 10172
+    },
+    {
+      "ending_seconds": 110.00036029997864,
+      "delta": 4212
+    },
+    {
+      "ending_seconds": 111.00065929998527,
+      "delta": 5548
+    },
+    {
+      "ending_seconds": 112.00062419997994,
+      "delta": 214
+    },
+    {
+      "ending_seconds": 113.00047259998973,
+      "delta": 6017
+    },
+    {
+      "ending_seconds": 114.00053929997375,
+      "delta": 11633
+    },
+    {
+      "ending_seconds": 115.00033209999674,
+      "delta": 3735
+    },
+    {
+      "ending_seconds": 116.000341499981,
+      "delta": 5263
+    },
+    {
+      "ending_seconds": 117.00048909999896,
+      "delta": 681
+    }
+  ],
+  "executable_sha256": "5c217865b6a1ce5a77c4bbe4cb72b6ea3f9f044475476db7d733911eaaee2dff",
+  "settings": {
+    "render_preference": 2,
+    "opaque_batch": true,
+    "filter_state_cache": true,
+    "keep_bracket": true,
+    "rewind": true,
+    "rewind_interval": 15,
+    "rewind_fmv_interval": 4,
+    "idle_skip": true,
+    "staged_native_cache": false
+  },
+  "idle": {
+    "before": {
+      "id": 1,
+      "ok": true,
+      "enabled": 1,
+      "skips": 2,
+      "cycles_skipped": 3964,
+      "last_pc": "0x80027744",
+      "last_quantum": 2
+    },
+    "after": {
+      "id": 1,
+      "ok": true,
+      "enabled": 1,
+      "skips": 2,
+      "cycles_skipped": 3964,
+      "last_pc": "0x80027744",
+      "last_quantum": 2
+    },
+    "gameplay_skips": 0,
+    "conclusion": "No gameplay skips occurred. The higher run average cannot be attributed to skipped gameplay loops."
+  },
+  "process_audio": {
+    "path": "docs/media/gallery/stage1-idle-process-output.wav",
+    "sha256": "045ff17b00deef9eba89b17930d90db40b5d28ecd933006f2b36440e0aa89182",
+    "bytes": 1920496,
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/process-output-after-measurement.wav",
+      "sha256": "045ff17b00deef9eba89b17930d90db40b5d28ecd933006f2b36440e0aa89182",
+      "bytes": 1920496
+    },
+    "seconds": 10,
+    "rate": 48000,
+    "channels": 2,
+    "frames": 480000,
+    "sample_width_bytes": 2,
+    "capture_integrity_pass": true,
+    "observer_gap_fill_frames": 4320,
+    "observer_gap_fill_ms": 90,
+    "observer_gap_start_seconds": 6.05,
+    "observer_timestamp_errors": 0,
+    "observer_discontinuities": 0,
+    "candidate_verdicts": {
+      "capture_loss": 1,
+      "likely_dropout": 4
+    },
+    "findings": [
+      {
+        "t_s": 6.05,
+        "ms": 90.0,
+        "class": "capture_gap_fill",
+        "hard_zero": true,
+        "mid_audio": true,
+        "in_music_window": false,
+        "dropout_candidate": true,
+        "frame0": 290400,
+        "frame1": 294720,
+        "digital_silence": true,
+        "core_ms": 90.0,
+        "core_start_frame": 290400,
+        "start_phase_mod_packet": 0,
+        "fall_ms": 1.0,
+        "rise_ms": 0.0,
+        "held_fade": false,
+        "fade_ms": null,
+        "fade_fit_rel_err": 0.6532007324551747,
+        "held_values": null,
+        "verdict": "capture_loss",
+        "evidence": "zero-fill inserted by the capture tool (gap record)"
+      },
+      {
+        "t_s": 8.252,
+        "ms": 9.0,
+        "class": "pcm_silence",
+        "hard_zero": false,
+        "mid_audio": true,
+        "in_music_window": false,
+        "dropout_candidate": true,
+        "frame0": 396096,
+        "frame1": 396528,
+        "digital_silence": true,
+        "core_ms": 10.145833333333334,
+        "core_start_frame": 396057,
+        "start_phase_mod_packet": 57,
+        "fall_ms": 8.0,
+        "rise_ms": 2.0,
+        "held_fade": true,
+        "fade_ms": 3.0,
+        "fade_fit_rel_err": 0.0003046170058618341,
+        "held_values": [
+          -5061,
+          -1758
+        ],
+        "verdict": "likely_dropout",
+        "evidence": "held sample x linear 3.0 ms fade (fit error 0.0%) into 10.15 ms of digital silence: output-ring underrun signature of the runtime bridge (rab_pull), not a musical release"
+      },
+      {
+        "t_s": 8.352,
+        "ms": 9.0,
+        "class": "pcm_silence",
+        "hard_zero": false,
+        "mid_audio": true,
+        "in_music_window": false,
+        "dropout_candidate": true,
+        "frame0": 400896,
+        "frame1": 401328,
+        "digital_silence": true,
+        "core_ms": 10.1875,
+        "core_start_frame": 400855,
+        "start_phase_mod_packet": 55,
+        "fall_ms": 7.0,
+        "rise_ms": 6.0,
+        "held_fade": true,
+        "fade_ms": 3.0,
+        "fade_fit_rel_err": 0.0005227001194743377,
+        "held_values": [
+          -1671,
+          3069
+        ],
+        "verdict": "likely_dropout",
+        "evidence": "held sample x linear 3.0 ms fade (fit error 0.1%) into 10.19 ms of digital silence: output-ring underrun signature of the runtime bridge (rab_pull), not a musical release"
+      },
+      {
+        "t_s": 8.502,
+        "ms": 9.0,
+        "class": "pcm_silence",
+        "hard_zero": false,
+        "mid_audio": true,
+        "in_music_window": false,
+        "dropout_candidate": true,
+        "frame0": 408096,
+        "frame1": 408528,
+        "digital_silence": true,
+        "core_ms": 10.1875,
+        "core_start_frame": 408055,
+        "start_phase_mod_packet": 55,
+        "fall_ms": 5.0,
+        "rise_ms": 4.0,
+        "held_fade": true,
+        "fade_ms": 3.0,
+        "fade_fit_rel_err": 0.001101174586225307,
+        "held_values": [
+          -693,
+          1873
+        ],
+        "verdict": "likely_dropout",
+        "evidence": "held sample x linear 3.0 ms fade (fit error 0.1%) into 10.19 ms of digital silence: output-ring underrun signature of the runtime bridge (rab_pull), not a musical release"
+      },
+      {
+        "t_s": 9.702,
+        "ms": 9.0,
+        "class": "pcm_silence",
+        "hard_zero": false,
+        "mid_audio": true,
+        "in_music_window": false,
+        "dropout_candidate": true,
+        "frame0": 465696,
+        "frame1": 466128,
+        "digital_silence": true,
+        "core_ms": 10.291666666666666,
+        "core_start_frame": 465650,
+        "start_phase_mod_packet": 50,
+        "fall_ms": 5.0,
+        "rise_ms": 4.0,
+        "held_fade": true,
+        "fade_ms": 3.0,
+        "fade_fit_rel_err": 0.00035355678121906376,
+        "held_values": [
+          -7071,
+          -2119
+        ],
+        "verdict": "likely_dropout",
+        "evidence": "held sample x linear 3.0 ms fade (fit error 0.0%) into 10.29 ms of digital silence: output-ring underrun signature of the runtime bridge (rab_pull), not a musical release"
+      }
+    ],
+    "callback_counter_bracket": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/callback-over-process-capture.wav",
+      "sha256": "9519e3d0e171160cd98d74bffb310e83518bda8906a0bd0ddc2650020f8a1e5f",
+      "start_sample_frame": 8267040,
+      "frames": 488160,
+      "starved_sample_frames_delta": 8201
+    },
+    "timing_source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/process-output-after-measurement.timing.jsonl",
+      "sha256": "44144bfa7bda878a0732a4bedac4e1e6350cdd4998eb527043a3e00d115c85b3",
+      "bytes": 383026
+    },
+    "analysis_source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/process-audio-analysis.json",
+      "sha256": "3f5c5121a50fd2f917fc7b05f41450d3495f2cc82f2487808d54bed244272539",
+      "bytes": 13107
+    },
+    "edited_after_capture": false,
+    "physical_output_acceptance": false,
+    "scope": "Exact copy of process capture WAV; includes a documented 90 ms observer-inserted silence. Four separate likely runtime-bridge dropouts are inferential.",
+    "sample_alignment": {
+      "offset_callback_minus_process_frames": 4256,
+      "sample_rate": 48000,
+      "independently_checked_windows": 18,
+      "minimum_correlation_outside_observer_hole": 0.999989607877688,
+      "windows_matching_within_one_lsb": 14,
+      "matched_main_dropout_contexts": [
+        {
+          "process_start_seconds": 8.252,
+          "checked_context_ms": 40,
+          "max_difference_lsb": 1,
+          "nonzero_callback_samples": 3727
+        },
+        {
+          "process_start_seconds": 8.352,
+          "checked_context_ms": 40,
+          "max_difference_lsb": 1,
+          "nonzero_callback_samples": 3726
+        },
+        {
+          "process_start_seconds": 8.502,
+          "checked_context_ms": 40,
+          "max_difference_lsb": 1,
+          "nonzero_callback_samples": 3725
+        },
+        {
+          "process_start_seconds": 9.702,
+          "checked_context_ms": 40,
+          "max_difference_lsb": 1,
+          "nonzero_callback_samples": 3715
+        }
+      ],
+      "source": {
+        "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/independent-callback-alignment.json",
+        "sha256": "3a75d005b1eab33b74bf385b7e2f466bb771c27d46a7bc47a23b2292478f3f80",
+        "bytes": 3762
+      },
+      "conclusion": "Four main PCM gaps occur in both aligned callback and process recordings. The observer-filled interval has callback audio present. Local peak differences remain; this does not establish whole-device continuity."
+    }
+  },
+  "diagnostic_observers": {
+    "video": false,
+    "source_capture": false,
+    "composed_stills": false,
+    "timer_assistance": true,
+    "backend_counter_snapshots": true,
+    "gpu_clock_profile": true
+  },
+  "gpu_clock_log": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/v41-idle-on-r1/hd-on_rewind-on/gpu-clock-observation.csv",
+    "sha256": "c4f592aba9ce9a214c9087df8141eadb912d0ba4be6188f02e215f91c4c3a8a3",
+    "bytes": 9289
+  },
+  "audio_resolved": false,
+  "ordinary_combat_acceptance": false,
+  "production_installed": false,
+  "limitations": [
+    "Single assisted no-fire route, not an identical input replay or full-stage acceptance.",
+    "Cached phase reads, CPU attribution, media telemetry and 1Hz NVML add observer load.",
+    "Process capture starts after timing, covers the owned process tree and verified console child only.",
+    "Callback reference brackets capture setup and teardown; its 8201 starved sample frames are not an exact one-to-one gap attribution.",
+    "Observer filled a 90ms delivery hole with zeros; this is not evidence of a 90ms game-audio dropout.",
+    "Averages and starvation are run-specific; no causal speed benefit from idle skip is accepted.",
+    "Initial unaligned envelope correlation was weak; independent interior-window sample alignment subsequently confirmed the supplied 4256-frame offset, with localized peak differences retained."
+  ]
+}

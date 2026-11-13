@@ -16,6 +16,11 @@ a completed deliverable. The detailed brief is
   controls improved from49.43 to55.86fps but both still starved. The normal
   launcher leaves experimental batching off. The process-audio observer now
   captures the owned game tree with its verified Windows console child.
+  The narrower rewind classifier and actual capture counters are committed and
+  pass 52 real-unit checks plus registered CTest. Live gameplay now reports zero
+  movie-classified frames; one snapshot was stored and 2,731 unsafe-context
+  attempts refused. Audio still starves. Expanded batch boundaries pass the
+  fresh 1,525/1,527-check GL modes; no whole-game speed benefit is accepted.
   Next gates: combine verified options, isolate expensive work, verify each
   change against a control, preserve
   actual host audio, then demonstrate sustained normal gameplay and FMV output.
@@ -34,12 +39,14 @@ a completed deliverable. The detailed brief is
   these are not integrated or accepted. The earlier searchlight-beam texture
   identification was corrected: current evidence points to untextured polygons,
   so a texture replacement cannot yet be claimed to improve those cones.
-- **HUD and menus — Claude; capture and acceptance by Codex.** 157 historical
-  HUD fade aliases still lack native palette evidence. Finish available
+- **HUD and menus — Claude; capture and acceptance by Codex.** The latest scoped
+  census leaves 133 HUD fade keys / 58 CLUTs after a 24-key delivery. Three
+  reconstructed CLUTs still rely on individual CRC matches and need review. Finish available
   typography, selection, pause/configuration, Continue/Game Over, evaluation,
   rankings, save/name entry and warnings. Missing inputs require captures.
-- **Unreached Stage 1 sources — Codex.** The current census reports 218 Drache
-  keys with source pixels for 141, and 128 post-Drache keys with pixels for 9.
+- **Remaining source acquisition — integration owner.** The current census reports
+  218 Drache keys with source pixels for 141. The 128 post-Drache keys include
+  Stage 2 material, with source pixels for 9; they are not all Stage 1 gaps.
   Five cloud keys and other named effect/strip sources remain outstanding.
   These are capture gaps in this census, not a count of all remaining art.
 - **Ready-to-play release — Codex.** Reconcile one frozen pack, install a
@@ -54,3 +61,10 @@ Immediate experiment results are reported when each owned run closes and its
 evidence is checked. Art work proceeds in coordinated CPU/GPU windows. Final
 timing remains gated by performance, progression, missing source acquisition and
 actual acceptance; it cannot be inferred from artwork counts or area shares.
+
+The [engineering handbook](handbook/index.html) and [handoff](handbook/handoff.html)
+record exact private builds, source commits, rejected hypotheses and the next
+integration steps. Devin has a dedicated tested observer-only connector and
+[onboarding brief](../coordination/DEVIN-HANDOFF.md). His actual client discovery
+and inbox acknowledgement remain a gate; configuration alone is not proof that
+he is synchronized or authorized to edit shared runtime files.
