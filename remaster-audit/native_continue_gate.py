@@ -44,7 +44,11 @@ class ContinueGate:
         if self.issued or not self.ready:raise RuntimeError('Unverified or duplicate Continue confirmation refused')
         self.issued=True;self.ready=False
 
-    def resumed(self,*,lives,hull_valid):
-        if not self.issued or not hull_valid or not isinstance(lives,int) or lives<=0:
-            raise RuntimeError('Continue resume requires positive lives and fresh hull geometry')
+    def resumed(self,*,lives,hull_valid=False,gameplay_frames=None):
+        # The caller may instead supply three frames positively classified by
+        # the native gameplay HUD/scene gate, for craft without a hull observer.
+        frames=gameplay_frames or []
+        gameplay=len(frames)==3 and all(isinstance(f,int) for f in frames) and frames[0]<frames[1]<frames[2]
+        if not self.issued or not (hull_valid or gameplay) or not isinstance(lives,int) or lives<=0:
+            raise RuntimeError('Continue resume requires positive lives and fresh hull or three verified gameplay frames')
         self.issued=False;self.streak.clear();self.ready=False

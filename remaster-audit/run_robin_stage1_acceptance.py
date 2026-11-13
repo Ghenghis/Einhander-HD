@@ -51,8 +51,8 @@ def main():
         help='Experimental bounded Continue confirmations after three increasing native prompt frames; never presses Start')
     args=parser.parse_args()
     if args.native_menus and args.hd!='on':parser.error('--native-menus enables replacements only after the stock route, so requires --hd on')
-    if args.continues and (args.revive or args.movement!='draw_lane' or not args.terminal_ui_stills):
-        parser.error('--continues requires --revive 0 --movement draw_lane --terminal-ui-stills')
+    if args.continues and (args.revive or args.movement not in ('draw_lane','left_lane') or not args.terminal_ui_stills):
+        parser.error('--continues requires --revive 0 --movement draw_lane/left_lane --terminal-ui-stills')
     if args.source_cache_keys and (not args.sources or not __import__('re').fullmatch(r'[0-9A-Fa-f]{8}(,[0-9A-Fa-f]{8}){0,31}',args.source_cache_keys)):
         parser.error('Source cache shortlist requires --sources and1..32 exact eight-digit CRCs')
     if args.craft != 'mk2' and (args.movement=='draw_lane' or (args.hd=='on' and not args.native_menus)):
@@ -156,7 +156,7 @@ def main():
             dodge=True,revive=bool(args.revive),invincible=False,tick=.15,movement=args.movement,fire_mode=args.fire_mode)
         proof['bot_start']=api(bot_options)
         assert proof['bot_start']['bot']['invincible'] is False
-        continue_gate=None;pending_continue=None
+        continue_gate=None;pending_continue=None;resume_frames=[];resume_refs=None
         if args.continues:
             from native_continue_gate import ContinueGate,REFERENCE,REFERENCE_SHA
             continue_gate=ContinueGate()
@@ -164,6 +164,10 @@ def main():
             import native_continue_gate
             proof['verified_continues']['helper']=pacing.base.ref(Path(native_continue_gate.__file__))
             ui.copy_verified(Path(native_continue_gate.__file__),directory/'executed-continue-gate.py')
+            if args.movement=='left_lane':
+                from native_ui_facade_route import load_references
+                resume_refs,receipts=load_references('native-stock')
+                proof['verified_continues']['resume_gameplay_references']=receipts
         start=time.monotonic();next_shot=0
         captures=directory/'observations';captures.mkdir()
         for index in range(args.seconds+1):
@@ -185,12 +189,22 @@ def main():
             if continue_gate is not None:
                 from PIL import Image
                 from native_ui_facade_route import native_pixels
-                hull_valid=row['hull_draw'].get('valid') is True
+                hull_valid=row.get('hull_draw',{}).get('valid') is True
                 lives=int(row['lives']['hex'],16)
                 if pending_continue is not None:
-                    if lives>0 and hull_valid:
-                        continue_gate.resumed(lives=lives,hull_valid=hull_valid)
-                        pending_continue['resumed']=dict(elapsed_seconds=row['elapsed_seconds'],frame=row['registers']['frame'],lives=lives,hull=row['hull_draw'])
+                    if resume_refs is not None:
+                        from native_ui_facade_route import classify_native
+                        with Image.open(captures/f'terminal-{index:04d}.png') as image:
+                            row['continue_resume_gate']=classify_native(native_pixels(image),resume_refs,'native-stock')
+                        frame=row['registers']['frame']
+                        if lives>0 and row['continue_resume_gate']['state']=='city' and (not resume_frames or frame>resume_frames[-1]):
+                            resume_frames=(resume_frames+[frame])[-3:]
+                        else:resume_frames=[]
+                    if lives>0 and (hull_valid or len(resume_frames)==3):
+                        continue_gate.resumed(lives=lives,hull_valid=hull_valid,gameplay_frames=resume_frames)
+                        pending_continue['resumed']=dict(elapsed_seconds=row['elapsed_seconds'],frame=row['registers']['frame'],lives=lives,
+                            hull=row.get('hull_draw'),native_gameplay_frames=list(resume_frames),
+                            basis='fresh source-matched hull' if hull_valid else 'three distinct native gameplay HUD/scene matches')
                         pending_continue['bot_restart']=api(bot_options)
                         assert pending_continue['bot_restart']['bot']['invincible'] is False
                         pending_continue=None
@@ -210,6 +224,7 @@ def main():
                             break
                         pending_continue=dict(elapsed_seconds=row['elapsed_seconds'],frame=row['registers']['frame'],
                             consecutive_frames=list(continue_gate.streak),last_capture=ui.sha(capture))
+                        resume_frames=[]
                         proof['verified_continues']['attempts'].append(pending_continue)
                         pending_continue['bot_stop']=api(dict(action='stop'))
                         continue_gate.mark_issued()
@@ -225,8 +240,8 @@ def main():
                 if args.dense_gpu_frames:
                     frame=row['registers']['frame']-1
                     data=probe.request(report,'gpu_frame_dump',frame=frame,count=65536)
-                    target=captures/f'gpu-frame-{frame:08d}.json';pacing.base.write(target,data)
-                    row['gpu_frame']=dict(**pacing.base.ref(target),requested_frame=frame,
+                    gpu_target=captures/f'gpu-frame-{frame:08d}.json';pacing.base.write(gpu_target,data)
+                    row['gpu_frame']=dict(**pacing.base.ref(gpu_target),requested_frame=frame,
                         scope='Bounded prior guest-frame GP0 ring; sequential with stills, not atomic; ring/count limits apply')
                 row['bot']=api()['bot'];assert row['bot']['invincible'] is False
                 print(json.dumps(dict(elapsed=index,frame=row['registers'].get('frame'),

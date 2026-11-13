@@ -24,6 +24,10 @@ Keep Einhänder's dark silhouettes, saturated windows and industrial character. 
 
 This repository contains the modified recompilation sources, authoring tools and verification workflow. The restoration is in active development. Whole-game coverage, frame pacing and audio continuity remain open work.
 
+Latest component evidence: [Wave 2 HUD/effects gameplay](docs/STAGE1-WAVE2-RESULTS.md),
+[Mk.III authored hulls](docs/STAGE1-MK3-RESULTS.md), and
+[remaining completion gates](docs/STAGE1-COMPLETION-STATUS.md).
+
 ## Stock · DuckStation · Einhänder HD
 
 <table>

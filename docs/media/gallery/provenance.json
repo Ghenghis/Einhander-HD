@@ -5,8 +5,8 @@
   "included_game_binaries_or_retail_data_files": false,
   "includes_gameplay_screenshots": true,
   "prompts_or_private_machine_paths_included": false,
-  "image_count": 56,
-  "total_image_bytes": 118140915,
+  "image_count": 57,
+  "total_image_bytes": 121828623,
   "assets": [
     {
       "path": "docs/media/gallery/stock-native-city.png",
@@ -1604,6 +1604,18 @@
       "category": "actual_gameplay_capture",
       "status": "W2 unassisted ordinary-controller-input gameplay; not stage clear",
       "processing": "Byte-for-byte composed screenshot; no scaling or pixel changes"
+    },
+    {
+      "path": "docs/media/gallery/stage1-mk3-hull.png",
+      "sha256": "824efe21b49d568c0aaa442658c705eb25fbbbb43e689ec5bcd1dd1618b68a06",
+      "bytes": 3687708,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "category": "actual_gameplay_capture",
+      "status": "MkIII authored-hull qualification, ordinary controller input, survival assistance off",
+      "processing": "Byte-for-byte composed screenshot"
     }
   ],
   "losslessly_reencoded_capture_count": 6,
@@ -1753,9 +1765,20 @@
       "processing": "Single contiguous stream-copy excerpt; no re-encoding, interpolation, retiming, scaling or internal cuts",
       "retimed": false,
       "interpolated_frames": false
+    },
+    {
+      "path": "docs/media/gallery/stage1-mk3-gameplay.mp4",
+      "sha256": "c84d7281cad7dcb911e1d8a710342c295b3ea7e49f548d85275f39e255ae9e27",
+      "bytes": 25463375,
+      "category": "actual_gameplay_capture",
+      "status": "Continuous MkIII component test; unassisted survival; no stage-clear claim",
+      "result_manifest": "docs/media/gallery/stage1-mk3-results.json",
+      "processing": "Contiguous stream-copy excerpt; no retiming, interpolation, scaling, re-encoding or internal cuts",
+      "retimed": false,
+      "interpolated_frames": false
     }
   ],
-  "video_count": 8,
-  "total_video_bytes": 293234917,
+  "video_count": 9,
+  "total_video_bytes": 318698292,
   "video_frame_extract_count": 8
 }

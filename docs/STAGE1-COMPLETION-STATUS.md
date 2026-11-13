@@ -15,7 +15,10 @@ bounded limit. The legacy blind revival inputs are not used for acceptance.
 A following Mk.III composition has 729 authored entries in 1,562 keys and passes
 220 native region checks. It adds two verified hulls, two recovered native strips,
 one exact mechanical-cell binding and a strip-cell overlay that preserves nearby
-HUD pixels. Live craft/pose qualification is in progress. A separate v18 run
+HUD pixels. The [Mk.III live test](STAGE1-MK3-RESULTS.md) positively submitted all
+six new bindings and closed after 180 seconds with two lives remaining. Pose,
+palette and material acceptance remains open. A longer ordinary-input stage
+attempt is in progress with bounded, visually verified native Continues. A separate v18 run
 positively recorded the authored SPREADER strip being submitted; missing sampled
 receipts in the earlier run did not establish an admission failure.
 

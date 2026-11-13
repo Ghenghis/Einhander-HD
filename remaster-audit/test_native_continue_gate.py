@@ -4,6 +4,7 @@ from PIL import Image
 import numpy as np
 import native_continue_gate as gate
 from native_ui_facade_route import native_pixels
+from native_ui_facade_route import classify_native
 
 class ContinueTests(unittest.TestCase):
     def test_real_countdown_sequence(self):
@@ -41,5 +42,25 @@ class ContinueTests(unittest.TestCase):
         g.mark_issued()
         for lives,hull in [(0,True),(3,False)]:
             with self.assertRaises(RuntimeError):g.resumed(lives=lives,hull_valid=hull)
+
+    def test_gameplay_resume_requires_three_increasing_verified_frames(self):
+        g=gate.ContinueGate()
+        for frame in range(3):g.observe(g.reference,frame)
+        g.mark_issued()
+        for frames in [[],[1,2],[1,1,2],[3,2,1]]:
+            with self.assertRaises(RuntimeError):g.resumed(lives=3,gameplay_frames=frames)
+        g.resumed(lives=3,gameplay_frames=[1,2,3])
+        self.assertFalse(g.issued)
+
+    def test_native_gameplay_resume_distinguishes_actual_mk3_from_menus(self):
+        refs={}
+        for name in ['title','fighter','arm','city']:
+            with Image.open(gate.REFERENCE.with_name(name+'.png')) as image:refs[name]=native_pixels(image)
+        for name in ['mk3-0015.png','mk3-0045.png','mk3-0120.png']:
+            with Image.open(gate.REFERENCE.with_name(name)) as image:
+                self.assertEqual('city',classify_native(native_pixels(image),refs,'native-stock')['state'])
+        for name in ['title.png','fighter.png','arm.png','terminal-0148.png','frame-0180.png']:
+            with Image.open(gate.REFERENCE.with_name(name)) as image:
+                self.assertNotEqual('city',classify_native(native_pixels(image),refs,'native-stock')['state'])
 
 if __name__=='__main__':unittest.main()

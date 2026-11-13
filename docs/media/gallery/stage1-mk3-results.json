@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "run_id": "mk3-authored-hd-v1",
+  "source_proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/robin-proof.json",
+    "sha256": "08f491842fa35c7f9b877d729b3bcbc4c049b3a54f32174b0ed56c1d829f18c9",
+    "bytes": 609730
+  },
+  "candidate": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-mk3-v2/candidate.json",
+    "sha256": "4b1fa35886894977e5e2b12582969a7c7f8f1fcbba10af1ce728a3bae1592c0e",
+    "bytes": 5313783
+  },
+  "native_validation": {
+    "keys": 1562,
+    "region_checks": 220,
+    "failures": 0,
+    "verifier_sha256": "dafbf98f0f7de8f5627ddd293f0244e8c729a6803bd10e6221f28dcb882a3489",
+    "candidate_sha256": "4b1fa35886894977e5e2b12582969a7c7f8f1fcbba10af1ce728a3bae1592c0e",
+    "exit_code": 0
+  },
+  "authored_entries": 729,
+  "pack_keys": 1562,
+  "controls": {
+    "craft": "Endymion FRS Mk.III",
+    "native_menus": true,
+    "new_menu_art_accepted": false,
+    "player_material": "stock; authored PNG colours",
+    "movement": "left_lane",
+    "fire": "Cross and Square",
+    "ram_writes": false,
+    "state_loads": false,
+    "timer_assistance": false,
+    "automatic_continue": false,
+    "rewind": false,
+    "turbo": false,
+    "source_capture": true,
+    "video": true,
+    "dense_gp0_frames": true,
+    "opaque_batch": true
+  },
+  "new_bindings": [
+    {
+      "key": "8FE8B060-21FDE894",
+      "source_key": "8FE8B060-21FDE894",
+      "png_sha256": "175097a8eb0b9c41fe734a4616095c5d696ba175c494998dc7b75d201648ec50",
+      "first_submission": {
+        "key": "8FE8B060-21FDE894",
+        "frame": 3534,
+        "replacement_size": [
+          1024,
+          1024
+        ],
+        "native_words": [
+          16,
+          64
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "upload",
+        "clut_xy": [
+          304,
+          495
+        ],
+        "uv_bounds": [
+          130,
+          14,
+          136,
+          25
+        ],
+        "xy": [
+          [
+            128,
+            124
+          ],
+          [
+            130,
+            121
+          ],
+          [
+            131,
+            126
+          ]
+        ],
+        "uv_vertices": [
+          [
+            136,
+            19
+          ],
+          [
+            131,
+            14
+          ],
+          [
+            130,
+            25
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    },
+    {
+      "key": "C6E8710B-21FDE894",
+      "source_key": "C6E8710B-21FDE894",
+      "png_sha256": "62a9ac67cc9c3c263907a37e9db28b532dc0d004b30b7d87dc9f32491e9b3369",
+      "first_submission": {
+        "key": "C6E8710B-21FDE894",
+        "frame": 3533,
+        "replacement_size": [
+          1024,
+          1024
+        ],
+        "native_words": [
+          16,
+          64
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "upload",
+        "clut_xy": [
+          304,
+          495
+        ],
+        "uv_bounds": [
+          194,
+          129,
+          254,
+          164
+        ],
+        "xy": [
+          [
+            103,
+            372
+          ],
+          [
+            107,
+            364
+          ],
+          [
+            115,
+            363
+          ]
+        ],
+        "uv_vertices": [
+          [
+            254,
+            164
+          ],
+          [
+            202,
+            154
+          ],
+          [
+            194,
+            129
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    },
+    {
+      "key": "B24C6DA2-E0AE221F",
+      "source_key": "B24C6DA2-E0AE221F",
+      "png_sha256": "5621adb6a4f25ef21a58ab7a31baeec0e98e1f36aed10304b04de581f2a9ca8c",
+      "first_submission": {
+        "key": "B24C6DA2-E0AE221F",
+        "frame": 7207,
+        "replacement_size": [
+          4096,
+          128
+        ],
+        "native_words": [
+          64,
+          8
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "upload",
+        "clut_xy": [
+          272,
+          510
+        ],
+        "uv_bounds": [
+          193,
+          64,
+          254,
+          71
+        ],
+        "xy": [
+          [
+            314,
+            382
+          ],
+          [
+            282,
+            382
+          ],
+          [
+            315,
+            379
+          ]
+        ],
+        "uv_vertices": [
+          [
+            254,
+            72
+          ],
+          [
+            193,
+            72
+          ],
+          [
+            254,
+            64
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    },
+    {
+      "key": "DB715733-E0AE221F",
+      "source_key": "DB715733-E0AE221F",
+      "png_sha256": "ad2d16de3acfb27c0e83a4c097f4631aadea27b6035df9edda4874843092cbd7",
+      "first_submission": {
+        "key": "DB715733-E0AE221F",
+        "frame": 8416,
+        "replacement_size": [
+          4096,
+          128
+        ],
+        "native_words": [
+          64,
+          8
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "upload",
+        "clut_xy": [
+          272,
+          510
+        ],
+        "uv_bounds": [
+          230,
+          117,
+          246,
+          119
+        ],
+        "xy": [
+          [
+            197,
+            388
+          ],
+          [
+            197,
+            387
+          ],
+          [
+            198,
+            386
+          ]
+        ],
+        "uv_vertices": [
+          [
+            246,
+            117
+          ],
+          [
+            230,
+            117
+          ],
+          [
+            238,
+            120
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    },
+    {
+      "key": "C1B4BAA3-E0AE221F",
+      "source_key": "34796C39-E0AE221F",
+      "png_sha256": "8554ea07e87d7dc149a82b2b772e26448f742f13417b4a63441e4c3f8098438a",
+      "first_submission": {
+        "key": "C1B4BAA3-E0AE221F",
+        "frame": 3760,
+        "replacement_size": [
+          1024,
+          1024
+        ],
+        "native_words": [
+          16,
+          64
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "exact_region",
+        "clut_xy": [
+          272,
+          510
+        ],
+        "uv_bounds": [
+          221,
+          77,
+          229,
+          98
+        ],
+        "xy": [
+          [
+            208,
+            56
+          ],
+          [
+            209,
+            51
+          ],
+          [
+            209,
+            57
+          ]
+        ],
+        "uv_vertices": [
+          [
+            229,
+            77
+          ],
+          [
+            229,
+            98
+          ],
+          [
+            221,
+            77
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    },
+    {
+      "key": "59471BC6-E0AE221F",
+      "source_key": "59471BC6-E0AE221F",
+      "png_sha256": "bc907254f9514400676c1ff9d12ed2ea746d4d8a1f7d5937639169f30550daf8",
+      "first_submission": {
+        "key": "59471BC6-E0AE221F",
+        "frame": 3785,
+        "replacement_size": [
+          4096,
+          128
+        ],
+        "native_words": [
+          64,
+          8
+        ],
+        "depth": 0,
+        "semi": -1,
+        "source_kind": "upload",
+        "clut_xy": [
+          272,
+          510
+        ],
+        "uv_bounds": [
+          201,
+          85,
+          211,
+          87
+        ],
+        "xy": [
+          [
+            228,
+            296
+          ],
+          [
+            228,
+            294
+          ],
+          [
+            235,
+            296
+          ]
+        ],
+        "uv_vertices": [
+          [
+            211,
+            85
+          ],
+          [
+            210,
+            88
+          ],
+          [
+            201,
+            85
+          ]
+        ],
+        "event": "replacement GL draw submitted",
+        "material_contract": "ein-material-v3",
+        "material_profile": "stock",
+        "material_channel": "stock",
+        "material_applied": false,
+        "material_strength": 0.0,
+        "detail_applied": false,
+        "detail_size": [
+          0,
+          0
+        ],
+        "detail_strength": 0.0,
+        "detail_scale": 0.0
+      }
+    }
+  ],
+  "first_occurrence_log": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/first-submissions.jsonl",
+    "sha256": "5abcd973929f3448b315ef17fc4cd7e21ac599a0aac9fa8b2274925c91092faf",
+    "bytes": 980027
+  },
+  "performance": {
+    "seconds": 179.99988439999288,
+    "guest_frames": 7796,
+    "guest_frames_per_second": 43.31113892648871,
+    "audio_starved_sample_frames_delta": 2367843,
+    "scope": "Whole observed interval with recording, source dumps, dense-frame queries and stills; not recorder-off pacing acceptance"
+  },
+  "outcome": {
+    "clean_exit": true,
+    "exit_code": 0,
+    "errors": [],
+    "remaining_lives": 2,
+    "stage_clear_verified": false
+  },
+  "video": {
+    "path": "docs/media/gallery/stage1-mk3-gameplay.mp4",
+    "sha256": "c84d7281cad7dcb911e1d8a710342c295b3ea7e49f548d85275f39e255ae9e27",
+    "bytes": 25463375,
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 960,
+          "avg_frame_rate": "6468/149",
+          "nb_frames": "1078"
+        }
+      ],
+      "format": {
+        "duration": "24.833333"
+      }
+    },
+    "source": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/robin-original.mp4",
+      "sha256": "8f76dde7a492f1fafe893c5bec435ec3a01b67e554c648d412f01be4df860bb7",
+      "bytes": 178394569
+    },
+    "contiguous_source_packets": 1078,
+    "source_first_packet": 250,
+    "source_start_pts_seconds": 7.233333,
+    "source_end_pts_seconds": 32.1,
+    "max_relative_timestamp_error_seconds": {
+      "pts_time": 1.0000000019161348e-06,
+      "dts_time": 1.0000000036924916e-06
+    },
+    "silent": true,
+    "retimed": false,
+    "interpolated": false,
+    "reencoded": false
+  },
+  "still": {
+    "path": "docs/media/gallery/stage1-mk3-hull.png",
+    "sha256": "824efe21b49d568c0aaa442658c705eb25fbbbb43e689ec5bcd1dd1618b68a06",
+    "bytes": 3687708,
+    "source_capture": {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/captures/robin-0015.json",
+      "sha256": "2a48280477580d17e2dee1c57c0ebe8d47ba22c3f116270ba98810b4e4a4cb25",
+      "bytes": 498
+    }
+  },
+  "dense_frames": [
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00003522.json",
+      "sha256": "2f7c7ea2650c0319aa80732fd9f708290a6445e9f433e67ef42fd7161c5d761b",
+      "bytes": 160542,
+      "frame": 3522,
+      "commands": 416,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00004103.json",
+      "sha256": "c96b44fdd42726feef6f834735261b18c9a6737cbe694a359c6065176f609685",
+      "bytes": 144746,
+      "frame": 4103,
+      "commands": 395,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00004833.json",
+      "sha256": "0966498868699048945044334fdc7185180bf2f03f4202f138d20b7658d60612",
+      "bytes": 128325,
+      "frame": 4833,
+      "commands": 329,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00005505.json",
+      "sha256": "9cfb6c75b518de1cc695e053afd25f49995660fe6cc489bf9375d3495f3444f6",
+      "bytes": 155054,
+      "frame": 5505,
+      "commands": 416,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00006107.json",
+      "sha256": "aa984de1ead7a64abcc836b72cef4fef5eeb2d99072e63e00c76d145c043d543",
+      "bytes": 177722,
+      "frame": 6107,
+      "commands": 469,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00006810.json",
+      "sha256": "89db4b63d713dc17d754b0a9b7dda216765e0729c4b462bd14eb6dd393e1149d",
+      "bytes": 156856,
+      "frame": 6810,
+      "commands": 424,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00007512.json",
+      "sha256": "72585016487bd9c9ca28188d690d164fdd6fb04247687adfdb382f5e616eebdd",
+      "bytes": 186445,
+      "frame": 7512,
+      "commands": 474,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00008035.json",
+      "sha256": "ba1044d575c6834aba8b0266af8287aaba717bcb2f9e3c5674b75f9aeae7c362",
+      "bytes": 240118,
+      "frame": 8035,
+      "commands": 646,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00008717.json",
+      "sha256": "2b5c2136d7a4d01d05b5d2c3df0c7ea0b8834a3334515c95ea88613fd3d5f035",
+      "bytes": 152650,
+      "frame": 8717,
+      "commands": 414,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00009314.json",
+      "sha256": "a3245f1f65b2f9f56ae9c42f8e5813471a8ca5d9de278ccb504d4198c9a07549",
+      "bytes": 123881,
+      "frame": 9314,
+      "commands": 325,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00010049.json",
+      "sha256": "c73fa87b096c8a279704cc06671ead10fbbdf5f90cc87a575faf5e80f746f15b",
+      "bytes": 170661,
+      "frame": 10049,
+      "commands": 444,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00010693.json",
+      "sha256": "af78da462fc1f664977bbeab9332d35f5554e1b1c2619f56385f34688c5f57c3",
+      "bytes": 127362,
+      "frame": 10693,
+      "commands": 353,
+      "maximum_words_per_command": 12
+    },
+    {
+      "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/mk3-authored-hd-v1/hd-on_rewind-off/observations/gpu-frame-00011318.json",
+      "sha256": "d3a23e1f4fac77de31ebc1a8097a029fb35fe2ddc25e1617d018f97ec7866a40",
+      "bytes": 208984,
+      "frame": 11318,
+      "commands": 560,
+      "maximum_words_per_command": 12
+    }
+  ],
+  "limitations": [
+    "All six positive submissions establish admission, not all poses, blend phases, UV seams or material-quality acceptance.",
+    "Dense GP0 rings are sequential with screenshots; ring limits and the12-word payload bound apply; not atomic or complete replay.",
+    "Retained native geometry, saturated palette phases and model-kit-like material appearance still need review.",
+    "No stage clear, boss-clear, all-weapon, audio, normal launcher, installation or full-remaster completion claim."
+  ]
+}

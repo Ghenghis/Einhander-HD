@@ -17,6 +17,14 @@ def read(path):return json.loads(path.read_text(encoding='utf-8'))
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
 def write(path,data):path.write_text(json.dumps(data,indent=2)+'\n',encoding='utf-8')
 def reference(path):return dict(path=path.relative_to(ROOT).as_posix(),sha256=sha(path),bytes=path.stat().st_size)
+def registered_key(row):
+    if not row.get('exact'):return row['key']
+    exact=row['exact'];w,h=exact['source_shape_words'];ppw=4>>exact['depth']
+    l,t,r,b=exact['uv'];words_path=Path(exact['source_words']['path']);clut_path=Path(exact['source_clut']['path'])
+    assert sha(words_path)==exact['source_words']['sha256'] and sha(clut_path)==exact['source_clut']['sha256']
+    words=words_path.read_bytes();clut=clut_path.read_bytes()
+    cropped=b''.join(words[(y*w+l//ppw)*2:(y*w+r//ppw)*2] for y in range(t,b))
+    return f'{zlib.crc32(cropped):08X}-{zlib.crc32(clut) if exact["depth"]<2 else 0:08X}'
 def probe(path,packets=False):
     command=['ffprobe','-v','error','-select_streams','v:0','-of','json']
     command+=['-show_packets','-show_data_hash','sha256','-show_entries','packet=pts_time,dts_time,duration_time,data_hash'] if packets else ['-show_entries','format=duration:stream=codec_name,width,height,avg_frame_rate,nb_frames']
@@ -40,13 +48,7 @@ def main():
     groups=defaultdict(lambda:dict(entries=0,submitted_entries=0))
     ledger=[]
     for row in entries:
-        key=row['key']
-        if row.get('exact'):
-            exact=row['exact'];w,h=exact['source_shape_words'];ppw=4>>exact['depth']
-            l,t,r,b=exact['uv'];words=Path(exact['source_words']['path']).read_bytes()
-            clut=Path(exact['source_clut']['path']).read_bytes()
-            cropped=b''.join(words[(y*w+l//ppw)*2:(y*w+r//ppw)*2] for y in range(t,b))
-            key=f'{zlib.crc32(cropped):08X}-{zlib.crc32(clut) if exact["depth"]<2 else 0:08X}'
+        key=registered_key(row)
         composed=next(x for x in candidate['files'] if x['name']==key+'.png')
         assert composed['input']==row,'Coverage must identify the actual composed registration'
         group=Path(row['manifest']['path']).parent.name;group_row=groups[group]

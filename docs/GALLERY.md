@@ -6,6 +6,10 @@ A look at the recompiled game, the facade and title experiments, and the complet
 
 ## City captures
 
+[Mk.III authored hull gameplay](STAGE1-MK3-RESULTS.md) adds a continuous actual
+clip and positive draw evidence for six new bindings. It is a component test,
+with survival assistance off, and does not establish stage clear or a release.
+
 [Latest Wave 2 gameplay results](STAGE1-WAVE2-RESULTS.md) include a continuous
 combat excerpt, updated HUD/effects, Continue and evaluation stills. Survival
 assistance was off; that attempt lost all lives and did not clear Stage 1.
