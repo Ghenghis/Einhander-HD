@@ -588,6 +588,16 @@ if(BUILD_TESTING)
         endforeach()
 
         # ---- known-failing guards: DISABLED, not de-registered ---------------
+        # Real loader and synthetic shards: exact-entry admission must preserve
+        # CRC checks, normal dispatch and the differential comparison budget.
+        add_test(
+            NAME overlay_exact_unmask_runtime
+            COMMAND ${Python3_EXECUTABLE}
+                    ${CMAKE_CURRENT_SOURCE_DIR}/../runtime/tests/test_overlay_exact_unmask_runtime.py
+                    --mode tree --cc ${CMAKE_C_COMPILER}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/..)
+        set_tests_properties(overlay_exact_unmask_runtime PROPERTIES TIMEOUT 120)
+
         # These three were previously left out of the list above with a comment
         # explaining that they FAIL and that wiring a red check would recreate
         # the problem that took CI off PRs. That reasoning is right; the remedy

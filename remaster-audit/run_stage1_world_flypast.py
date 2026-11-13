@@ -64,7 +64,7 @@ def prepare(args):
     config=SimpleNamespace(batch=args.batch,runtime=args.runtime,candidate=args.candidate,
         gpu_queries=0,world_sampling=args.world_sampling,opaque_batch=args.opaque_batch,emissive=args.emissive,
         cpu_profile=args.cpu_profile,runtime_perf=args.runtime_perf,filter_state_cache=args.filter_state_cache,keep_bracket=args.keep_bracket,supersampling=args.supersampling,rewind_fmv_interval=args.rewind_fmv_interval,guest_frames=0)
-    report=pacing.prepare('hd-on_rewind-'+('on' if args.rewind else 'off'),config)
+    report=pacing.prepare(('hd-on' if args.hd_pack_enabled else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off'),config)
     if args.route_profile:report['route_reference_profile']=args.route_profile
     directory=Path(report['evidence'])
     report['visual_profile']=dict(kind='assisted assembled-world fly-past',
@@ -72,6 +72,7 @@ def prepare(args):
         timer_only_assistance=True,lease_seconds=180,stage_clear_acceptance=False)
     report['visual_profile'].update(recorder_backend=args.recorder,capture_seconds=args.capture_seconds)
     report['visual_profile']['native_menus']=bool(args.native_menus)
+    report['visual_profile']['hd_pack_enabled']=bool(args.hd_pack_enabled)
     report['visual_profile'].update(emissive=bool(args.emissive),hires_stills=args.hires_stills)
     report['visual_profile'].update(record_video=not args.telemetry_only,source_capture=not args.telemetry_only,
         composed_stills=not args.telemetry_only,telemetry_only=args.telemetry_only,cpu_profile=bool(args.cpu_profile),runtime_perf=bool(args.runtime_perf))
@@ -90,7 +91,8 @@ def prepare(args):
     emit(dict(prepared=str(directory),verified_frozen_pngs=len(files)))
 
 def run(args):
-    directory=pacing.ROOT/args.batch/('hd-on_rewind-on' if args.rewind else 'hd-on_rewind-off')
+    label=('hd-on' if args.hd_pack_enabled else 'hd-off')+'_rewind-'+('on' if args.rewind else 'off')
+    directory=pacing.ROOT/args.batch/label
     report=pacing.base.read(directory/'candidate.json')
     if (directory/'world-flypast-proof.json').exists() or (directory/'launch-candidate.json').exists():
         raise ValueError('Fresh prepared run required')
@@ -108,9 +110,10 @@ def run(args):
         if report['visual_profile'].get('native_menus'):
             control=directory/'replacement-control.txt'
             if control.read_text()!='0\n':raise RuntimeError('Native-menu control changed before gameplay')
-            control.write_text('1\n')
+            enabled=report['pacing_profile']['hd_pack_enabled']
+            control.write_text('1\n' if enabled else '0\n')
             proof['replacement_enabled_after_native_menus']=dict(at_utc=ui.stamp(),
-                control=pacing.base.ref(control),menu_art_acceptance=False)
+                control=pacing.base.ref(control),enabled=enabled,menu_art_acceptance=False)
         def owned_identity(unused):
             # launch() already validated PID/path before observing title. The
             # retained Popen handle proves this same owned process is still live.
@@ -249,6 +252,8 @@ if __name__=='__main__':
     p.add_argument('--batch',required=True)
     p.add_argument('--candidate',type=Path)
     p.add_argument('--runtime',type=Path)
+    p.add_argument('--hd-pack-enabled',type=int,choices=[0,1],default=1,
+        help='Private same-runtime native-texture control; default keeps HD enabled')
     p.add_argument('--world-sampling',type=int,choices=[0,1],default=0)
     p.add_argument('--opaque-batch',type=int,choices=[0,1],default=0)
     p.add_argument('--emissive',type=int,choices=[0,1],default=0)

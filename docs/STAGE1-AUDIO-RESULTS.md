@@ -115,3 +115,29 @@ CRC matches and its qualification with 32 clean comparisons is retained. Only th
 qualified. A competing authoring job was reported early in that diagnostic;
 neither its speed nor its audio is accepted. Clean normal-settings pacing,
 ordinary combat, native FMV and audible acceptance remain required.
+
+The [current-host follow-up](media/gallery/stage1-current-host-audio-results.json)
+also fails. At normal preference2 with rewind on, the v40 cache-off run averaged
+38.2264fps with 2,051,486 output-starved sample frames; staging the separately
+qualified routine averaged 51.1439fps with 809,019. A subsequent control with the
+previous v37 executable averaged 47.6677fps with 1,159,599. All three closed with
+exit0, no recorded errors and closed debug ports. The v37 control initially ran
+near60fps and then slowed sharply, so attributing the whole slowdown to the new
+clock change is unsupported. HD draw wall cost was much higher in all three than
+in the earlier normal-settings series.
+
+This is one ordered series with different initial buffer fill and diverging
+guest-frame routes. Actual admission of the staged routine was not queried in
+this pacing pair; its earlier correctness qualification is separate. No causal
+speed gain or audio fix is accepted. A read-only GPU clock log during part of the
+v37 control recorded changing clock states; it does not prove a power-state cause.
+No driver settings or GPU clock locks were changed.
+
+Exact twelve-second callback PCM is available for
+[v40 cache off](media/gallery/stage1-v40-code-off-audio.wav),
+[v40 cache staged](media/gallery/stage1-v40-code-on-audio.wav) and
+[v37 current-host control](media/gallery/stage1-v37-current-host-audio.wav).
+These remain assisted no-fire gameplay diagnostics. Next: isolate HD rendering
+with a private native-texture control, observe host graphics state, and then
+repeat the bounded rendering changes. Ordinary combat, boss fire, FMV and
+process/device-output continuity remain open.
