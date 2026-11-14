@@ -1,0 +1,146 @@
+--- a/windows-x64/psxrecomp/runtime/src/gte.cpp
++++ b/windows-x64/psxrecomp/runtime/src/gte.cpp
+@@ -523,6 +523,44 @@
+ static GteRtpRec* s_gte_rtp_ring = nullptr;
+ static uint64_t   s_gte_rtp_seq  = 0;
+ 
++/* remix-provenance v1: identity of the transform in force for one projection
++ * (FNV-1a over RT, TR, H, OFX, OFY). Pins a view record to the ring record the
++ * same command writes after execute. */
++static uint32_t gte_view_xform_hash(const int16_t rt[3][3], const int32_t tr[3],
++                                    uint16_t h, int32_t ofx, int32_t ofy) {
++    uint32_t x = 2166136261u;
++    auto mix = [&x](uint32_t w) {
++        for (int i = 0; i < 4; i++) { x ^= (w >> (8 * i)) & 0xFFu; x *= 16777619u; }
++    };
++    for (int r = 0; r < 3; r++)
++        for (int c = 0; c < 3; c++) mix((uint32_t)(uint16_t)rt[r][c]);
++    for (int i = 0; i < 3; i++) mix((uint32_t)tr[i]);
++    mix(h);
++    mix((uint32_t)ofx);
++    mix((uint32_t)ofy);
++    return x;
++}
++
++/* 1 iff ring record `seq` was written and has not been overwritten since. The
++ * ring only exists in builds with debug tools (gte_execute records it). */
++extern "C" int gte_rtp_ring_seq_live(uint64_t seq) {
++    if (!s_gte_rtp_ring || seq >= s_gte_rtp_seq) return 0;
++    if (s_gte_rtp_seq - seq > GTE_RTP_RING_CAP) return 0;
++    return s_gte_rtp_ring[seq % GTE_RTP_RING_CAP].seq == (uint32_t)seq;
++}
++
++/* Model transform of a live ring record (row-major RT); 0 if not live. */
++extern "C" int gte_rtp_ring_get_xform(uint64_t seq, int16_t rt[9], int32_t tr[3],
++                                      uint32_t *frame, uint32_t *caller_ra) {
++    if (!gte_rtp_ring_seq_live(seq)) return 0;
++    const GteRtpRec *e = &s_gte_rtp_ring[seq % GTE_RTP_RING_CAP];
++    for (int i = 0; i < 9; i++) rt[i] = e->RT[i];
++    for (int i = 0; i < 3; i++) tr[i] = e->TR[i];
++    if (frame) *frame = e->frame;
++    if (caller_ra) *caller_ra = e->caller_ra;
++    return 1;
++}
++
+ /* Per-frame aggregate stats (retained ring over recent distinct frames). Lets a
+  * probe see the alternating flat/normal render pattern without shipping 84k
+  * projections/sec over JSON. nsat = projections whose newest output vertex
+@@ -561,6 +599,13 @@
+     e->SXY0=g->SXY[0]; e->SXY1=g->SXY[1]; e->SXY2=g->SXY[2];
+     e->SZ1=g->SZ[1]; e->SZ2=g->SZ[2]; e->SZ3=g->SZ[3];
+     e->FLAG=g->FLAG;
++    if (pgxp_view_payload()) {
++        const int16_t vv[3][3] = {{g->V0[0], g->V0[1], g->V0[2]},
++                                  {g->V1[0], g->V1[1], g->V1[2]},
++                                  {g->V2[0], g->V2[1], g->V2[2]}};
++        pgxp_view_commit_rtp(s_gte_rtp_seq, (uint8_t)(cmd & 0x3Fu), vv,
++                             gte_view_xform_hash(g->RT, g->TR, g->H, g->OFX, g->OFY));
++    }
+     s_gte_rtp_seq++;
+ 
+     /* classify */
+@@ -826,6 +871,13 @@
+     gte->MAC2 = static_cast<int32_t>(mac2 >> shift);
+     gte->MAC3 = static_cast<int32_t>(mac3 >> shift);
+ 
++    /* remix-provenance v1: read-only observations of the same values. */
++    const int32_t vw_ir_lo = lm ? 0 : -0x8000;
++    const bool vw_ir_sat = gte->MAC1 < vw_ir_lo || gte->MAC1 > 0x7FFF ||
++                           gte->MAC2 < vw_ir_lo || gte->MAC2 > 0x7FFF;
++    const int32_t vw_z12 = static_cast<int32_t>(mac3 >> 12);
++    const bool vw_sz_sat = vw_z12 < 0 || vw_z12 > 0xFFFF;
++    bool vw_dome = false;
+     gte->IR1 = gte->saturate_ir(gte->MAC1, 1, lm);
+     gte->IR2 = gte->saturate_ir(gte->MAC2, 2, lm);
+     // IR3 quirk (psx-spx / DuckStation): FLAG.22 from (mac3>>12) as if lm=0;
+@@ -882,6 +934,7 @@
+         }
+         if (sz >= s_ws_far_threshold) {
+             xterm = xterm * s_ws_dome_num / s_ws_dome_den;
++            vw_dome = true;
+             if (!s_gte_replay_sandbox) s_ws_sz_far++;
+         }
+     }
+@@ -897,8 +950,60 @@
+         const int64_t kLim = (int64_t)4096 << 16;
+         int64_t cx16 = sx16 < -kLim ? -kLim : (sx16 > kLim - 1 ? kLim - 1 : sx16);
+         int64_t cy16 = sy16 < -kLim ? -kLim : (sy16 > kLim - 1 ? kLim - 1 : sy16);
+-        pgxp_gte_push_sxy((int32_t)cx16, (int32_t)cy16, gte->SZ[3],
+-                          (uint32_t)gte->SXY[2]);
++        if (pgxp_view_payload()) {
++            /* remix-provenance v1: exact unshifted accumulators + the facts
++             * needed to know when native X/Y did not follow them. */
++            PgxpViewInput vin;
++            vin.mac[0] = mac1;
++            vin.mac[1] = mac2;
++            vin.mac[2] = mac3;
++            vin.v[0] = V[0];
++            vin.v[1] = V[1];
++            vin.v[2] = V[2];
++            vin.h = gte->H;
++            vin.ofx = gte->OFX;
++            vin.ofy = gte->OFY;
++            uint16_t vf = 0;
++            if (shift) vf |= PGXP_VIEW_SF;
++            if (lm) vf |= PGXP_VIEW_LM;
++            if (vw_ir_sat) vf |= PGXP_VIEW_IR_SAT;
++            if (vw_sz_sat) vf |= PGXP_VIEW_SZ_SAT;
++            if ((uint32_t)gte->SZ[3] * 2 <= (uint32_t)gte->H) vf |= PGXP_VIEW_DIV_OVF;
++            if (sx < -0x400 || sx > 0x3FF || sy < -0x400 || sy > 0x3FF)
++                vf |= PGXP_VIEW_XY_SAT;
++            if (cx16 != sx16 || cy16 != sy16) vf |= PGXP_VIEW_XY_CLAMP;
++            if (do_squash) vf |= PGXP_VIEW_WS_SQUASH;
++            if (vw_dome) vf |= PGXP_VIEW_DOME;
++            {
++                /* v2: per-axis 44-bit accumulator overflow and 32-bit MAC
++                 * register wrap (IR, and for axis 3 the >>12 SZ path, then
++                 * came from a wrapped value). */
++                const int64_t m44 = (int64_t)1 << 43;
++                const int64_t i32_max = 0x7FFFFFFFll, i32_min = -0x80000000ll;
++                const int64_t macs[3] = { mac1, mac2, mac3 };
++                for (int a = 0; a < 3; a++) {
++                    if (macs[a] >= m44 || macs[a] < -m44)
++                        vf |= (uint16_t)(PGXP_VIEW_MAC1_OVF44 << a);
++                    /* sf=1: this is also the SZ path (mac3 >> 12); sf=0: the
++                     * unshifted value wraps whenever its >>12 view would. */
++                    const int64_t r = macs[a] >> shift;
++                    if (r > i32_max || r < i32_min)
++                        vf |= (uint16_t)(PGXP_VIEW_MAC1_WRAP32 << a);
++                }
++            }
++            vin.flags = vf;
++            vin.lane = (V == gte->V0) ? 0 : (V == gte->V1) ? 1 : 2;
++            vin.cmd = (uint8_t)(instr & 0x3Fu);
++            vin.rtp_seq = s_gte_rtp_seq;   /* the record this command writes  */
++            vin.xform_hash = gte_view_xform_hash(gte->RT, gte->TR, gte->H,
++                                                 gte->OFX, gte->OFY);
++            vin.frame = (uint32_t)s_frame_count;
++            pgxp_gte_push_sxy_view((int32_t)cx16, (int32_t)cy16, gte->SZ[3],
++                                   (uint32_t)gte->SXY[2], &vin);
++        } else {
++            pgxp_gte_push_sxy((int32_t)cx16, (int32_t)cy16, gte->SZ[3],
++                              (uint32_t)gte->SXY[2]);
++        }
+     }
+     geom_note((uint32_t)gte->SXY[2], sx16, sy16);
+ 

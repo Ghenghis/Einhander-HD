@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-11-14T08:55:46.299575+00:00",
+  "ready_sha256": "43513d374d9b009bcb5feeaa24c4f2c71a9eba372336228f512e2f313ecddf2b",
+  "source_and_binary_pins_verified": true,
+  "canonical_bases_unchanged": true,
+  "runs": [
+    {
+      "name": "view_v2_test",
+      "exe_sha256": "432ec4e70900003a584ee5d5cc42aac1367c14ac2b273f3108373c79aa04f750",
+      "exit": 0,
+      "stdout_tail": [
+        "JSON:{\"id\":5,\"ok\":true,\"census\":1,\"view_payload\":1,\"pgxp_enabled\":1,\"geometry_correction\":0,\"texture_correction\":0,\"payload\":{\"produced\":65578,\"records_overwritten\":42,\"commit_ok\":65564,\"commit_mismatch\":0,\"lookups\":46,\"hits\":30,\"no_shadow\":8,\"no_source\":3,\"value_mismatch\":1,\"no_view\":1,\"evicted\":3,\"incoherent\":0,\"alloc_fail\":1,\"seq_wraps\":0,\"record_bytes\":80,\"alloc_bytes\":7340032},\"ring\":{\"cap\":4096,\"total\":0,\"alloc_fail\":1},\"triangles\":{\"prims\":0,\"all_hit\":0,\"partial\":0,\"none\":0,\"verts\":0,\"vert_hits\":0,\"hit_committed\":0,\"hit_ring_live\":0,\"hit_diverged\":0,\"all_hit_one_command\":0,\"miss\":{\"no_source\":0,\"disabled\":0,\"no_shadow\":0,\"value_mismatch\":0,\"no_view\":0,\"evicted\":0,\"incoherent\":0}},\"quads\":{\"prims\":0,\"all_hit\":0,\"partial\":0,\"none\":0,\"verts\":0,\"vert_hits\":0,\"hit_committed\":0,\"hit_ring_live\":0,\"hit_diverged\":0,\"all_hit_one_command\":0,\"miss\":{\"no_source\":0,\"disabled\":0,\"no_shadow\":0,\"value_mismatch\":0,\"no_view\":0,\"evicted\":0,\"incoherent\":0}},\"recent\":[]}",
+        "checks 58 failures 0"
+      ],
+      "failures": []
+    },
+    {
+      "name": "v1_test_on_v2_sources",
+      "exe_sha256": "97fee49053a97524ea25475b58f57c3c472015447449ff29ffdee8d38aa6bde2",
+      "exit": 0,
+      "stdout_tail": [
+        "view storage: record 80 B x 65536 + RAM tags 2 MiB = 7340032 B allocated",
+        "checks 137 failures 0 | produced 327721 commit_ok 327707 commit_mismatch 4 hits 23 evicted 1 no_view 2 value_mismatch 1 incoherent 0"
+      ],
+      "failures": []
+    },
+    {
+      "name": "pgxp_test_on_v2",
+      "exe_sha256": "a31abb2bf1c68efcf293413d8c0d403137fe7cfe032abec7574a90ed2a7b3193",
+      "exit": 0,
+      "stdout_tail": [
+        "test_pgxp: all checks passed"
+      ],
+      "failures": []
+    },
+    {
+      "name": "gte_register_access_test_on_v2",
+      "exe_sha256": "62a8682eb38e098c369a2d99a621cc525b687308777a34063b8bd4b03c2c2e49",
+      "exit": 0,
+      "stdout_tail": [
+        "PASS: canonical GTE register helpers match GTEState transfer oracle"
+      ],
+      "failures": []
+    }
+  ],
+  "all_four_pass": true,
+  "author_mutation_controls": {
+    "caught": 13,
+    "total": 13,
+    "repeated_by_root": false
+  },
+  "gpu_work": false,
+  "new_game_build": false,
+  "live_coverage": false,
+  "user_gpu_hold_unchanged": true,
+  "remaining_integration": "Private full-runtime build with correct header/link inputs; live PGXP hook-flavour coverage after user returnsGPU. Camera/object separation, scene submission/PBR/RT/DLSS remain unfinished."
+}
