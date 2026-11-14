@@ -1,0 +1,13 @@
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\sdk_probe.cpp:48:16: error: array type 'float[3]' is not assignable
+   48 |   v[0].position={-3,-2,8};v[1].position={0,2,8};v[2].position={3,-2,8};
+      |   ~~~~~~~~~~~~~^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\sdk_probe.cpp:48:40: error: array type 'float[3]' is not assignable
+   48 |   v[0].position={-3,-2,8};v[1].position={0,2,8};v[2].position={3,-2,8};
+      |                           ~~~~~~~~~~~~~^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\sdk_probe.cpp:48:62: error: array type 'float[3]' is not assignable
+   48 |   v[0].position={-3,-2,8};v[1].position={0,2,8};v[2].position={3,-2,8};
+      |                                                 ~~~~~~~~~~~~~^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\sdk_probe.cpp:49:25: error: array type 'float[3]' is not assignable
+   49 |   for(auto&x:v){x.normal={0,0,-1};x.color=0xFFFFFFFF;}
+      |                 ~~~~~~~~^
+4 errors generated.

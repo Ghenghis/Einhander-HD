@@ -1,5 +1,7 @@
 # Project continuity
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 November 13, 2026. The project now has persistent Claude instructions and a
 conditional Stop guard. Component handoffs leave the overall remaster active.
 
@@ -8,10 +10,7 @@ The launcher previously referenced missing `CLAUDE.md` and
 checks, quiet acknowledgements, task ownership, actual acceptance and durable
 continuation. The shared hook is `tools/coordination/claude-continuity-hook.mjs`.
 
-The active Claude desktop chat started in `D:/Games/Einhander`; shared mail and
-current acceptance are in `C:/github/Einhander`. Its local D project settings
-invoke the canonical C hook directly. Both project roots are explicitly accepted.
-No duplicate empty D mailbox is used to decide whether work remains.
+The saved Claude chat metadata retains its original D:/Games/Einhander project identity. All new work, shared mail, evidence and acceptance use C:/github/Einhander. D: being available again does not change the user's C:-only instruction. Older D: receipt paths are historical; no duplicate D mailbox determines whether work remains.
 
 The guard blocks a voluntary stop with unread actionable requests or unfinished
 work lacking a valid waiting checkpoint. Repeated Stop hooks do not bypass it.

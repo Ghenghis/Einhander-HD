@@ -1,6 +1,96 @@
 # Stage 1 completion status
 
+## Latest CPU verification — November 14, 2026
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
+**Latest resource instruction, verified in the user's crash-status chat:** the 3090Ti is reserved for Pizza Tycoon HD until **at least 07:00 Phoenix / 14:00 UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
+
+Root has now independently verified the recovered v5-r2 freeze:874 pins, 7,520 fixture checks and 14 GL-stub cases/352 checks pass; no GPU/game acceptance. All874 failed-predecessor hashes also remain unchanged, including263 all-zero files. Fsync/readback is a precaution; the crash/corruption cause remains unknown. Later-stage scope is concurrent: S2–S7 selected candidates 39/39/11/12/101/26 keys have 28 manifests reverified and concrete CPU whole-cell/fringe audits queued. None of the seven stages is fully accepted.
+
+November 14 current checkpoint: **Stage 1 and the full remaster remain incomplete**. [Actual reviewed scene/SDK/restart evidence](../remaster-audit/scene-texture-followup-20261114/README.md) supersedes historical next actions below. V66r3 compiles/links and passes 2,932 enabled / 6 disabled CPU checks, 14 exact-handler RPC cases plus foreign-thread control and 28 independent negative snapshot mutations. It has not run in-game. Modern matching SDK0.16.1 initializes its function table only; Startup/Submit/Present are not executed. The old-runtime GPU image/lifecycle control still fails. Ray tracing/DLSS in-game are unfinished.
+
+The user's 3090 Ti hour ended 12:44:30 UTC and reuse afterward is authorized; no owned game/probe is running. Windows restarted 12:49:22 UTC. Root found 90 zero-filled text files confined to unpublished frozen v5; all 990 published pins verify intact. Native Claude is actively recovering from intact originals into a new freeze; recovered CPU checkpoint verified; GPU/game acceptance pending. Distant signs/buildings, full texture coverage, detailed skins/selectors, HUD/menus, audio and seven-stage E2E remain open. Prior v61 live smoothness/audio acceptance remains failed; no new gameplay/audio test ran. [Codex handoff and current queue](../coordination/Codex-HANDOFF.md).
+
+November 14 update: [private power-profile results](STAGE1-POWER-PROFILE-RESULTS.md) show a better second run (50.8336 ms maximum, zero new starvation) with a remaining mini-boss hitch and no proven causal driver fix. The scoped preference is restored; no experimental runtime/art was installed. The [sign audit](STAGE1-SIGN-QUALITY-20261114.md) leaves green/pink overrides unaccepted. [Remix ingestion works](RTX-REMIX-SETUP-20261114.md), but no compatible game scene has been captured and no connected Remix project exists. These updates supersede the next-action wording in the dated notes below.
+
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
+
+Current [reboot/runtime and all seven-stage handoff](RUNTIME-CONTINUATION-20261113.md) includes the complete E2E open matrix and frozen source/evidence package. The v58 CPU phase diagnostic passes source/core checks and the full three-file build; its title GPU/API gates passed, but its first gameplay timing attempt lost focus after three seconds and was rejected/closed. Two observed-focus diagnostics are now complete: [actual r2/r3 results and replay data](STAGE1-FRAME-PHASE-RESULTS.md). They still fail: r2 maximum 204.7892 ms/+16,112 starved sample frames; r3 maximum 198.9995 ms/+3,214. r3 isolates a 175.224 ms small-texture wrapper delay near the mini-boss while its TexImage call takes 0.0213 ms. Focus differed and resource sampling has overhead; no causal improvement or installed fix is claimed. Narrow wrapper timing is next.
+
+The existing normal Play-HD binary, tested in a private copy with the installed
+964-PNG pack, 256 MB decode budget, scale 2 and rewind 50/15, passes the
+bounded boss timing check with only `PSX_DISPLAY_RING=0`: 350 consecutive
+application frame submissions, p95 17 ms, longest 21 ms, no interval over 25 ms,
+and zero new audio starvation across 120 seconds. Originals were re-hashed
+unchanged; user cards were never mounted. Normal Play-HD, material and Development launches now disable continuous
+forensic readback, with hashed rollback copies of the changed local files. No binary or artwork
+was replaced. The former material binding still failed with 15,378 starved
+output sample frames. A private saved-material test on the existing Play-HD
+runtime and its own cache then passed: 60.0072 fps, zero new gameplay
+starvation, 350 consecutive boss submissions and a longest interval of 20 ms.
+Live reads confirmed both selected profiles, exact keys and active detail maps.
+The local material receipt now selects that tested runtime, with rollback and
+shared-settings backups. The real frontend Play button now passes a private handoff check, with correct
+live material state and clean shutdown. Crimson, Gold and Neon shortcuts each
+passed title-state and five-second early-gameplay checks, without RAM writes or
+state loads. Source executables, settings, receipts, pack and caches re-hashed
+unchanged. These short functional checks do not establish full-stage appearance
+or pacing; the earlier two failed frontend harness attempts remain excluded. Existing cache shards and stages 2–7 remain unqualified.
+
+The larger frozen artwork candidate remains separate and still fails:
+39 boss uploads moved about 801 MiB, including 29 reuploads after eviction.
+A private bounded-retention experiment removed all reuploads and reduced boss
+traffic to 88 MiB, but had a 169 ms native VRAM upload-block stall. A repeat
+with extra passive timing still had a 94 ms boss gap. Neither candidate is
+installed. A same-binary buffered-upload comparison now pins one 58.27 ms stall to the
+raw VRAM `glTexSubImage2D` call. Buffering removed slow native-helper calls
+in that pair, but the full run still had a 184 ms gap and 703 starved sample
+frames (OFF: 85 ms maximum, zero starvation). Both 350-frame boss windows
+happened to have a 17 ms maximum. GPU pixel-equality/state-restore checks passed,
+and focus stayed active throughout both measurements. Different live input and
+handoff timing prevent a causal regression estimate. The prototype remains
+private and fails full smoothness; pauses outside the upload helper are still
+under investigation. The saved display pages alternate on every submission in
+both boss windows and across the 184 ms pause. This supports late delivery
+rather than repeated page submissions; it does not prove unique pixels or
+physical display visibility for every submitted frame. Unassisted full-stage and listening acceptance remain open.
+
+An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
+now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero
+new audio starvation over two minutes. The profiler and an independent parser
+agree: continuous diagnostic GPU readback took about 25.7% of the main thread
+samples in the fight. In a same-binary OFF/ON comparison, disabling that history
+measured 60.01 fight frames/s and zero starvation; re-enabling it measured 57.75
+and 9,482 starved output sample frames. Earlier recorder-OFF tests still had
+this forensic ring ON. An actual rebuilt default-unset runtime, without the
+new collision/CPS or lock-free audio objects, measured 59.99 fight frames/s
+and zero starvation with scale 2 and rewind depth 50/interval 15. One-shot
+screenshots still work. Only one gameplay rewind snapshot was stored; most
+rewind attempts were skipped as unsafe. These are assisted Stage 1 results:
+the authorized hold writes the existing invincibility-countdown byte only,
+with held fire and no stage jumps or state loads. Visible recording, unassisted
+normal-launch acceptance and stages 2–7 remain pending. The final hardened
+source build also averages about 60 in a recorded test with zero starvation,
+but its passive swap ring shows seven intervals over 25 ms (longest 43 ms).
+All 350 application frames were submitted once. Capture itself also missed
+frames: the video is not a complete 60-fps stream. Fully even presentation
+remains open. A repeat with the same final binary and no recorder submitted all
+350 boss frames but still had eight intervals over 25 ms (longest 40 ms). It
+averaged 60.00 fight frames/s, with zero boss starvation, but 310 sample frames
+starved outside the boss at gameplay second 26 (frame 4631). Late intervals
+again coincide with first-use
+texture uploads; per-upload timing is being added to test that lead. The
+recorder is therefore not required for the hitch. Normal-player results are
+listed above. These experimental binaries are not installed. Exact 12-second callback excerpts are available for
+[history OFF](media/gallery/stage1-display-history-off-boss.wav),
+[history ON](media/gallery/stage1-display-history-on-boss.wav), and the
+[rebuilt recorder-free runtime](media/gallery/stage1-display-history-v54-boss.wav).
+They retain the original PCM; source offsets and hashes are in the report. The
+[normal Play-HD excerpt](media/gallery/stage1-display-history-normal-playhd-boss.wav)
+is also retained; subjective listening acceptance is pending.
 
 The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
 completed with R4 and two leaf handlers qualified on the exact tested runtime.

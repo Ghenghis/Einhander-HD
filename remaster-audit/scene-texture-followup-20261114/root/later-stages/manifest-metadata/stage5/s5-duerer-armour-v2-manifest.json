@@ -1,0 +1,6870 @@
+{
+ "name": "s5-duerer-armour-v2",
+ "track": "w7-stage5 (claude-einhander lane-s5)",
+ "task": "w7-stage4 + w7-stage5 first art (coordinator request 2026-11-13, after EIN-STAGE4/5-SOURCE-REVIEW-20261113)",
+ "family": "s5-boss-duerer (armour pages)",
+ "status": "candidate",
+ "frozen_utc": "2026-11-13T23:24:17.310451+00:00",
+ "title": "Stage 5 boss SPKB-07 Ausf D Duerer v2, members 3/16 (448-576,0) + 3/17 (640-704,0): armour index masters with FX-contract regions, 8bpp pass-through, stage-5 swatches and a de-staired, glyph-locked '13'",
+ "import_rule": "predicted-static; import only after live capture: the stage-5 acquisition run must list every key of this deliverable as key-confirmed (byte-identical words and CLUT) in validate_predicted.py confirm, and validate_predicted.py gate must pass for the pack that installs it",
+ "key_status": "predicted-static; import only after live capture",
+ "supersedes": {
+  "revision": "s5-duerer-armour-v1",
+  "manifest_sha256": "070b170e6dd746bb28b52b08ea69e45a12f7a2f733f5ebbe6e67d1e210835305",
+  "why": "v1 rendered the FX sprites that share the armour pages (shock rings, bursts, flames, crater) with the tight armour contour, so their dithered fades became high-contrast dot patterns; v1 used Stage 1 swatches; v1 processed the 8bpp hull sub-images as 4bpp (striped 'pills'); the '13' diagonals were scalloped."
+ },
+ "sources": {
+  "kind": "shared immutable static export (exact-static disc strips, member-pure pages)",
+  "export_build": "2026-11-13T15:06:28Z",
+  "textures_json_sha256": "ded574f6ea713ee74201a0d16ebc238a6de08696b2233ab88d965de76d21fa8e",
+  "keys_json_sha256": "486a55ca3af40ef141433cf4081d6d08c132cd21575d060705690b9edfdba8ad",
+  "cluts_json_sha256": "38652bd766b842071ab01097ce35191aaf26b08f067a6418d73b39998540e58c",
+  "review": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage5/READINESS.md",
+  "palette_review_sha256": "16585a35d7f022703209b6bbcdf4c6a207e91937d28c6aad3e642ebf07dd0b93"
+ },
+ "gpu": "this build is CPU-only; its material swatches were generated earlier by lane-s5 in gpu_slot('lane-s5') runs (JuggernautXL v9 txt2img, ComfyUI 127.0.0.1:8188 core nodes) and frozen in w7-stage5/frozen/s5-swatches-v2; exact graphs + history are copied in comfy/",
+ "comfyui_graphs": [
+  "comfy/camo_paint_worn_a-graph.api.json",
+  "comfy/sandworn_steel_a-graph.api.json"
+ ],
+ "reused_generated_swatches": {
+  "note": "lane-s5 stage-5 JuggernautXL swatches (frozen s5-swatches-v2: camo_paint_worn_a, sandworn_steel_a) used as luminance detail only; graphs/history in comfy/",
+  "files_sha256": {
+   "camo_paint_worn_a-graph.api.json": "d237900d279bf6e80a00a468c447c8a8956d0638cd5e9551defee3f7a4f219b0",
+   "camo_paint_worn_a-history.json": "fb6ea0261bf6cbc768834999e32337c59dba580c66a64debfa6a4bf38e5c56f1",
+   "camo_paint_worn_a-tileable-1024.png": "a5fc08966c68f97aa39e4a7849c832267a3715d3e001f6f9981f7dbf7a162023",
+   "sandworn_steel_a-graph.api.json": "721845ade956be50dff7459da502df33edcf029f3ede58c4406b9d1a0313abdd",
+   "sandworn_steel_a-history.json": "e477ad9da16d5b711ab3b2e9f25245dcb29788e285b09110ad31098e077752fe",
+   "sandworn_steel_a-tileable-1024.png": "a4078ccece8777f3625a5cf26d3ea15f1b47f7acc35af9164b487b60fe4c1c57"
+  }
+ },
+ "method": "Duerer v2 (lane-s5). Armour base as v1: categorical soft-label index master at 16x (4096), tight contours (sigma 0.32 texel, power 6, no dither blending) so camouflage patches keep native extents; lost-texel cores; native index forced at every texel centre. Region overrides, in order: (1) FX contract boxes (shock rings, bursts, debris, flames, crater): tone-group soft labels where 'near' = same class under every renderable static CLUT of the page (colour distance ignored, because the native fades are high-contrast dithers), crisp 0.42/4, blend sigma 1.0 texel, dither window 0.15..0.4, no lost-texel cores, no material; (2) 8bpp hull sub-images read as 4bpp (alt8 detector: 1-texel nibble stripes, share > 0.35 per 8x8 block, closing 1): native pass-through (nearest labels), no material, NOT HD, pending an 8bpp-mode master after the capture; (3) '13' glyph boxes: glyph lock (no material on the numeral texels) and de-stair: per-index weights (1-a)*tight + a*smooth (sigma 0.7 texel), a = staircase-corner indicator of the glyph mask blurred 0.7 texel, withdrawn wherever any native texel would lose its own index as majority (native shape guard). Material: palette-independent logD at 8x: relief 0.12 from the review-CLUT luminance, luminance detail from the lane-s5 stage-5 JuggernautXL swatches camo_paint_worn_a (0.55) + sandworn_steel_a (0.45) (raw images, centre 60 %, random Hann-windowed patches, high-pass 48 px, band-limited 1.5 px), grime 0.03; zero-mean per native index over the material area. 2B4626A3 keeps the FX contract page-wide.",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale); page 2B4626A3: FX contract (continuous index if ramp, energy gate)",
+ "class_validation": {
+  "file": "native-class-validation.json",
+  "total_mismatches": 0,
+  "exports": 10,
+  "convention": "class at pixel floor((i+0.5)*scale) of every native texel == class(CLUT[native index]); class 0 = raw 0x0000, 255 = STP, 127 = opaque"
+ },
+ "alpha_channel": "categorical PSX classes (0 = raw 0x0000, 127 opaque, 255 STP), NOT opacity; exact at every native texel centre",
+ "pages": {
+  "1F11EE57": {
+   "member": "3/16",
+   "page_xy": [
+    448,
+    0
+   ],
+   "mode": "armour",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/1F11EE57.words.bin",
+    "sha256": "872801ce4ebe2f347d640465050df5d8ed5ea353fa62f9fc746aa3631905b13f",
+    "crc32": "1F11EE57",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "1F11EE57-DEECFC4B",
+     "clut_xy": [
+      96,
+      491
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/1F11EE57-DEECFC4B.png",
+      "sha256": "c8ec75340b85115fa48c795d1c5f2c7d7c6f70eecd424d487b18bcc0c52ca7ac",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/1F11EE57-DEECFC4B.png",
+      "sha256": "17049ec351479ac5d57f8780728ef7c57a23c5863be5c1c47b82f26e9d4c4edf",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/1F11EE57-DEECFC4B-review.png",
+      "sha256": "78daa58f9d9b1ecaaab1cb6584a3da7d2ec977250071e02b8473ac8cd85bdc73"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "1F11EE57-C50BDF9E",
+     "clut_xy": [
+      128,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-7BBA0389",
+     "clut_xy": [
+      96,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-C0F776F2",
+     "clut_xy": [
+      208,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-E1A31B6B",
+     "clut_xy": [
+      80,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-EB5816BA",
+     "clut_xy": [
+      48,
+      494
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-0ADAA698",
+     "clut_xy": [
+      208,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-10C06D42",
+     "clut_xy": [
+      176,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-FC3A5BDF",
+     "clut_xy": [
+      64,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-08A6C1FC",
+     "clut_xy": [
+      240,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-04F6077A",
+     "clut_xy": [
+      208,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-F46F4FE9",
+     "clut_xy": [
+      144,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-2C73C144",
+     "clut_xy": [
+      48,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-6348F3FD",
+     "clut_xy": [
+      208,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-31085B5F",
+     "clut_xy": [
+      240,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-E3CEDB8D",
+     "clut_xy": [
+      176,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-A9280CF2",
+     "clut_xy": [
+      64,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-B293260B",
+     "clut_xy": [
+      176,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-4CC3C8B7",
+     "clut_xy": [
+      160,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-20C0CF18",
+     "clut_xy": [
+      176,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-6FD67641",
+     "clut_xy": [
+      192,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-EA978E17",
+     "clut_xy": [
+      96,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-D786D485",
+     "clut_xy": [
+      224,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-05881CAE",
+     "clut_xy": [
+      192,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-F8FD1929",
+     "clut_xy": [
+      32,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-B0FB54E0",
+     "clut_xy": [
+      176,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-92620BF6",
+     "clut_xy": [
+      192,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-83C36441",
+     "clut_xy": [
+      0,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-553CB333",
+     "clut_xy": [
+      192,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-DBEC0F7A",
+     "clut_xy": [
+      208,
+      498
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-87711F26",
+     "clut_xy": [
+      176,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-F78CFB08",
+     "clut_xy": [
+      240,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-012AD42E",
+     "clut_xy": [
+      240,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-E8DD41A7",
+     "clut_xy": [
+      224,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-5551F764",
+     "clut_xy": [
+      176,
+      490
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-105461A4",
+     "clut_xy": [
+      64,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-717E5BFC",
+     "clut_xy": [
+      160,
+      491
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-645AA604",
+     "clut_xy": [
+      0,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-F055ACAD",
+     "clut_xy": [
+      288,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1F11EE57-D076735A",
+     "clut_xy": [
+      224,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-361A4661",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-3506D5F0",
+     "clut_xy": [
+      16,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1F11EE57-6CC564F5",
+     "clut_xy": [
+      32,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "1F11EE57-190A55AD",
+    "1F11EE57-F055ACAD"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     128,
+     499
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "1F11EE57-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.32,
+     6.0
+    ],
+    "blend_sigma": 0.9,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": true,
+    "near_pairs": 0,
+    "near_matrix_cluts": 45
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.12,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.0,
+    "swatch": [
+     [
+      "camo_paint_worn_a",
+      0.55
+     ],
+     [
+      "sandworn_steel_a",
+      0.45
+     ]
+    ],
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ]
+   },
+   "logD_p1_p99": [
+    -0.13671875,
+    0.08544921875
+   ],
+   "regions": [
+    {
+     "kind": "native-8bpp-pending",
+     "rule": {
+      "threshold": 0.35,
+      "closing": 1,
+      "detector": "alt8_mask"
+     },
+     "texels": 33088,
+     "blocks8": [
+      [
+       26,
+       1
+      ],
+      [
+       27,
+       1
+      ],
+      [
+       28,
+       1
+      ],
+      [
+       29,
+       1
+      ],
+      [
+       30,
+       1
+      ],
+      [
+       26,
+       2
+      ],
+      [
+       27,
+       2
+      ],
+      [
+       28,
+       2
+      ],
+      [
+       29,
+       2
+      ],
+      [
+       30,
+       2
+      ],
+      [
+       26,
+       3
+      ],
+      [
+       27,
+       3
+      ],
+      [
+       28,
+       3
+      ],
+      [
+       29,
+       3
+      ],
+      [
+       30,
+       3
+      ],
+      [
+       1,
+       10
+      ],
+      [
+       2,
+       10
+      ],
+      [
+       3,
+       10
+      ],
+      [
+       4,
+       10
+      ],
+      [
+       5,
+       10
+      ],
+      [
+       6,
+       10
+      ],
+      [
+       7,
+       10
+      ],
+      [
+       8,
+       10
+      ],
+      [
+       9,
+       10
+      ],
+      [
+       10,
+       10
+      ],
+      [
+       11,
+       10
+      ],
+      [
+       12,
+       10
+      ],
+      [
+       13,
+       10
+      ],
+      [
+       14,
+       10
+      ],
+      [
+       15,
+       10
+      ],
+      [
+       16,
+       10
+      ],
+      [
+       17,
+       10
+      ],
+      [
+       18,
+       10
+      ],
+      [
+       19,
+       10
+      ],
+      [
+       20,
+       10
+      ],
+      [
+       21,
+       10
+      ],
+      [
+       22,
+       10
+      ],
+      [
+       24,
+       10
+      ],
+      [
+       26,
+       10
+      ],
+      [
+       27,
+       10
+      ],
+      [
+       28,
+       10
+      ],
+      [
+       29,
+       10
+      ],
+      [
+       30,
+       10
+      ],
+      [
+       1,
+       11
+      ],
+      [
+       2,
+       11
+      ],
+      [
+       3,
+       11
+      ],
+      [
+       4,
+       11
+      ],
+      [
+       5,
+       11
+      ],
+      [
+       6,
+       11
+      ],
+      [
+       7,
+       11
+      ],
+      [
+       8,
+       11
+      ],
+      [
+       9,
+       11
+      ],
+      [
+       10,
+       11
+      ],
+      [
+       11,
+       11
+      ],
+      [
+       12,
+       11
+      ],
+      [
+       13,
+       11
+      ],
+      [
+       14,
+       11
+      ],
+      [
+       15,
+       11
+      ],
+      [
+       16,
+       11
+      ],
+      [
+       17,
+       11
+      ],
+      [
+       18,
+       11
+      ],
+      [
+       19,
+       11
+      ],
+      [
+       20,
+       11
+      ],
+      [
+       21,
+       11
+      ],
+      [
+       22,
+       11
+      ],
+      [
+       23,
+       11
+      ],
+      [
+       24,
+       11
+      ],
+      [
+       25,
+       11
+      ],
+      [
+       26,
+       11
+      ],
+      [
+       27,
+       11
+      ],
+      [
+       28,
+       11
+      ],
+      [
+       29,
+       11
+      ],
+      [
+       30,
+       11
+      ],
+      [
+       1,
+       12
+      ],
+      [
+       2,
+       12
+      ],
+      [
+       3,
+       12
+      ],
+      [
+       4,
+       12
+      ],
+      [
+       5,
+       12
+      ],
+      [
+       6,
+       12
+      ],
+      [
+       7,
+       12
+      ],
+      [
+       8,
+       12
+      ],
+      [
+       9,
+       12
+      ],
+      [
+       10,
+       12
+      ],
+      [
+       11,
+       12
+      ],
+      [
+       12,
+       12
+      ],
+      [
+       13,
+       12
+      ],
+      [
+       14,
+       12
+      ],
+      [
+       15,
+       12
+      ],
+      [
+       16,
+       12
+      ],
+      [
+       17,
+       12
+      ],
+      [
+       18,
+       12
+      ],
+      [
+       19,
+       12
+      ],
+      [
+       20,
+       12
+      ],
+      [
+       21,
+       12
+      ],
+      [
+       22,
+       12
+      ],
+      [
+       23,
+       12
+      ],
+      [
+       24,
+       12
+      ],
+      [
+       25,
+       12
+      ],
+      [
+       26,
+       12
+      ],
+      [
+       27,
+       12
+      ],
+      [
+       28,
+       12
+      ],
+      [
+       29,
+       12
+      ],
+      [
+       30,
+       12
+      ],
+      [
+       1,
+       13
+      ],
+      [
+       2,
+       13
+      ],
+      [
+       3,
+       13
+      ],
+      [
+       4,
+       13
+      ],
+      [
+       5,
+       13
+      ],
+      [
+       6,
+       13
+      ],
+      [
+       7,
+       13
+      ],
+      [
+       8,
+       13
+      ],
+      [
+       9,
+       13
+      ],
+      [
+       10,
+       13
+      ],
+      [
+       11,
+       13
+      ],
+      [
+       12,
+       13
+      ],
+      [
+       13,
+       13
+      ],
+      [
+       14,
+       13
+      ],
+      [
+       15,
+       13
+      ],
+      [
+       16,
+       13
+      ],
+      [
+       17,
+       13
+      ],
+      [
+       18,
+       13
+      ],
+      [
+       19,
+       13
+      ],
+      [
+       20,
+       13
+      ],
+      [
+       21,
+       13
+      ],
+      [
+       22,
+       13
+      ],
+      [
+       23,
+       13
+      ],
+      [
+       24,
+       13
+      ],
+      [
+       25,
+       13
+      ],
+      [
+       26,
+       13
+      ],
+      [
+       27,
+       13
+      ],
+      [
+       28,
+       13
+      ],
+      [
+       29,
+       13
+      ],
+      [
+       30,
+       13
+      ],
+      [
+       1,
+       14
+      ],
+      [
+       2,
+       14
+      ],
+      [
+       3,
+       14
+      ],
+      [
+       4,
+       14
+      ],
+      [
+       5,
+       14
+      ],
+      [
+       6,
+       14
+      ],
+      [
+       7,
+       14
+      ],
+      [
+       8,
+       14
+      ],
+      [
+       9,
+       14
+      ],
+      [
+       10,
+       14
+      ],
+      [
+       11,
+       14
+      ],
+      [
+       12,
+       14
+      ],
+      [
+       13,
+       14
+      ],
+      [
+       14,
+       14
+      ],
+      [
+       15,
+       14
+      ],
+      [
+       16,
+       14
+      ],
+      [
+       17,
+       14
+      ],
+      [
+       18,
+       14
+      ],
+      [
+       19,
+       14
+      ],
+      [
+       20,
+       14
+      ],
+      [
+       21,
+       14
+      ],
+      [
+       22,
+       14
+      ],
+      [
+       23,
+       14
+      ],
+      [
+       24,
+       14
+      ],
+      [
+       25,
+       14
+      ],
+      [
+       26,
+       14
+      ],
+      [
+       27,
+       14
+      ],
+      [
+       28,
+       14
+      ],
+      [
+       29,
+       14
+      ],
+      [
+       30,
+       14
+      ],
+      [
+       1,
+       15
+      ],
+      [
+       2,
+       15
+      ],
+      [
+       3,
+       15
+      ],
+      [
+       4,
+       15
+      ],
+      [
+       5,
+       15
+      ],
+      [
+       6,
+       15
+      ],
+      [
+       7,
+       15
+      ],
+      [
+       8,
+       15
+      ],
+      [
+       9,
+       15
+      ],
+      [
+       10,
+       15
+      ],
+      [
+       11,
+       15
+      ],
+      [
+       12,
+       15
+      ],
+      [
+       13,
+       15
+      ],
+      [
+       14,
+       15
+      ],
+      [
+       15,
+       15
+      ],
+      [
+       16,
+       15
+      ],
+      [
+       17,
+       15
+      ],
+      [
+       18,
+       15
+      ],
+      [
+       19,
+       15
+      ],
+      [
+       20,
+       15
+      ],
+      [
+       21,
+       15
+      ],
+      [
+       22,
+       15
+      ],
+      [
+       23,
+       15
+      ],
+      [
+       24,
+       15
+      ],
+      [
+       25,
+       15
+      ],
+      [
+       26,
+       15
+      ],
+      [
+       27,
+       15
+      ],
+      [
+       28,
+       15
+      ],
+      [
+       29,
+       15
+      ],
+      [
+       30,
+       15
+      ],
+      [
+       1,
+       16
+      ],
+      [
+       2,
+       16
+      ],
+      [
+       3,
+       16
+      ],
+      [
+       4,
+       16
+      ],
+      [
+       5,
+       16
+      ],
+      [
+       6,
+       16
+      ],
+      [
+       7,
+       16
+      ],
+      [
+       8,
+       16
+      ],
+      [
+       9,
+       16
+      ],
+      [
+       10,
+       16
+      ],
+      [
+       11,
+       16
+      ],
+      [
+       12,
+       16
+      ],
+      [
+       13,
+       16
+      ],
+      [
+       14,
+       16
+      ],
+      [
+       15,
+       16
+      ],
+      [
+       16,
+       16
+      ],
+      [
+       17,
+       16
+      ],
+      [
+       18,
+       16
+      ],
+      [
+       19,
+       16
+      ],
+      [
+       20,
+       16
+      ],
+      [
+       21,
+       16
+      ],
+      [
+       22,
+       16
+      ],
+      [
+       23,
+       16
+      ],
+      [
+       24,
+       16
+      ],
+      [
+       25,
+       16
+      ],
+      [
+       26,
+       16
+      ],
+      [
+       27,
+       16
+      ],
+      [
+       28,
+       16
+      ],
+      [
+       29,
+       16
+      ],
+      [
+       30,
+       16
+      ],
+      [
+       1,
+       17
+      ],
+      [
+       2,
+       17
+      ],
+      [
+       3,
+       17
+      ],
+      [
+       4,
+       17
+      ],
+      [
+       5,
+       17
+      ],
+      [
+       6,
+       17
+      ],
+      [
+       7,
+       17
+      ],
+      [
+       8,
+       17
+      ],
+      [
+       9,
+       17
+      ],
+      [
+       10,
+       17
+      ],
+      [
+       11,
+       17
+      ],
+      [
+       12,
+       17
+      ],
+      [
+       13,
+       17
+      ],
+      [
+       14,
+       17
+      ],
+      [
+       15,
+       17
+      ],
+      [
+       16,
+       17
+      ],
+      [
+       17,
+       17
+      ],
+      [
+       18,
+       17
+      ],
+      [
+       19,
+       17
+      ],
+      [
+       20,
+       17
+      ],
+      [
+       21,
+       17
+      ],
+      [
+       22,
+       17
+      ],
+      [
+       23,
+       17
+      ],
+      [
+       24,
+       17
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       26,
+       17
+      ],
+      [
+       27,
+       17
+      ],
+      [
+       28,
+       17
+      ],
+      [
+       29,
+       17
+      ],
+      [
+       30,
+       17
+      ],
+      [
+       1,
+       18
+      ],
+      [
+       2,
+       18
+      ],
+      [
+       3,
+       18
+      ],
+      [
+       4,
+       18
+      ],
+      [
+       5,
+       18
+      ],
+      [
+       6,
+       18
+      ],
+      [
+       7,
+       18
+      ],
+      [
+       8,
+       18
+      ],
+      [
+       9,
+       18
+      ],
+      [
+       10,
+       18
+      ],
+      [
+       11,
+       18
+      ],
+      [
+       12,
+       18
+      ],
+      [
+       13,
+       18
+      ],
+      [
+       14,
+       18
+      ],
+      [
+       15,
+       18
+      ],
+      [
+       16,
+       18
+      ],
+      [
+       17,
+       18
+      ],
+      [
+       18,
+       18
+      ],
+      [
+       19,
+       18
+      ],
+      [
+       20,
+       18
+      ],
+      [
+       21,
+       18
+      ],
+      [
+       22,
+       18
+      ],
+      [
+       23,
+       18
+      ],
+      [
+       24,
+       18
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       26,
+       18
+      ],
+      [
+       27,
+       18
+      ],
+      [
+       28,
+       18
+      ],
+      [
+       2,
+       19
+      ],
+      [
+       3,
+       19
+      ],
+      [
+       4,
+       19
+      ],
+      [
+       5,
+       19
+      ],
+      [
+       6,
+       19
+      ],
+      [
+       7,
+       19
+      ],
+      [
+       8,
+       19
+      ],
+      [
+       9,
+       19
+      ],
+      [
+       10,
+       19
+      ],
+      [
+       11,
+       19
+      ],
+      [
+       12,
+       19
+      ],
+      [
+       13,
+       19
+      ],
+      [
+       14,
+       19
+      ],
+      [
+       15,
+       19
+      ],
+      [
+       16,
+       19
+      ],
+      [
+       17,
+       19
+      ],
+      [
+       18,
+       19
+      ],
+      [
+       19,
+       19
+      ],
+      [
+       20,
+       19
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       22,
+       19
+      ],
+      [
+       23,
+       19
+      ],
+      [
+       24,
+       19
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       26,
+       19
+      ],
+      [
+       27,
+       19
+      ],
+      [
+       3,
+       20
+      ],
+      [
+       4,
+       20
+      ],
+      [
+       5,
+       20
+      ],
+      [
+       6,
+       20
+      ],
+      [
+       7,
+       20
+      ],
+      [
+       8,
+       20
+      ],
+      [
+       9,
+       20
+      ],
+      [
+       10,
+       20
+      ],
+      [
+       11,
+       20
+      ],
+      [
+       12,
+       20
+      ],
+      [
+       13,
+       20
+      ],
+      [
+       14,
+       20
+      ],
+      [
+       15,
+       20
+      ],
+      [
+       16,
+       20
+      ],
+      [
+       17,
+       20
+      ],
+      [
+       18,
+       20
+      ],
+      [
+       19,
+       20
+      ],
+      [
+       20,
+       20
+      ],
+      [
+       21,
+       20
+      ],
+      [
+       22,
+       20
+      ],
+      [
+       23,
+       20
+      ],
+      [
+       24,
+       20
+      ],
+      [
+       25,
+       20
+      ],
+      [
+       26,
+       20
+      ],
+      [
+       27,
+       20
+      ],
+      [
+       2,
+       21
+      ],
+      [
+       3,
+       21
+      ],
+      [
+       4,
+       21
+      ],
+      [
+       5,
+       21
+      ],
+      [
+       6,
+       21
+      ],
+      [
+       7,
+       21
+      ],
+      [
+       8,
+       21
+      ],
+      [
+       9,
+       21
+      ],
+      [
+       10,
+       21
+      ],
+      [
+       11,
+       21
+      ],
+      [
+       12,
+       21
+      ],
+      [
+       13,
+       21
+      ],
+      [
+       14,
+       21
+      ],
+      [
+       15,
+       21
+      ],
+      [
+       16,
+       21
+      ],
+      [
+       17,
+       21
+      ],
+      [
+       18,
+       21
+      ],
+      [
+       19,
+       21
+      ],
+      [
+       20,
+       21
+      ],
+      [
+       21,
+       21
+      ],
+      [
+       22,
+       21
+      ],
+      [
+       23,
+       21
+      ],
+      [
+       24,
+       21
+      ],
+      [
+       25,
+       21
+      ],
+      [
+       26,
+       21
+      ],
+      [
+       27,
+       21
+      ],
+      [
+       1,
+       22
+      ],
+      [
+       2,
+       22
+      ],
+      [
+       3,
+       22
+      ],
+      [
+       4,
+       22
+      ],
+      [
+       5,
+       22
+      ],
+      [
+       6,
+       22
+      ],
+      [
+       7,
+       22
+      ],
+      [
+       8,
+       22
+      ],
+      [
+       9,
+       22
+      ],
+      [
+       10,
+       22
+      ],
+      [
+       11,
+       22
+      ],
+      [
+       12,
+       22
+      ],
+      [
+       13,
+       22
+      ],
+      [
+       14,
+       22
+      ],
+      [
+       15,
+       22
+      ],
+      [
+       16,
+       22
+      ],
+      [
+       17,
+       22
+      ],
+      [
+       18,
+       22
+      ],
+      [
+       19,
+       22
+      ],
+      [
+       20,
+       22
+      ],
+      [
+       21,
+       22
+      ],
+      [
+       22,
+       22
+      ],
+      [
+       23,
+       22
+      ],
+      [
+       24,
+       22
+      ],
+      [
+       25,
+       22
+      ],
+      [
+       26,
+       22
+      ],
+      [
+       27,
+       22
+      ],
+      [
+       1,
+       23
+      ],
+      [
+       2,
+       23
+      ],
+      [
+       3,
+       23
+      ],
+      [
+       4,
+       23
+      ],
+      [
+       5,
+       23
+      ],
+      [
+       6,
+       23
+      ],
+      [
+       7,
+       23
+      ],
+      [
+       8,
+       23
+      ],
+      [
+       9,
+       23
+      ],
+      [
+       10,
+       23
+      ],
+      [
+       11,
+       23
+      ],
+      [
+       12,
+       23
+      ],
+      [
+       13,
+       23
+      ],
+      [
+       14,
+       23
+      ],
+      [
+       15,
+       23
+      ],
+      [
+       16,
+       23
+      ],
+      [
+       17,
+       23
+      ],
+      [
+       18,
+       23
+      ],
+      [
+       19,
+       23
+      ],
+      [
+       20,
+       23
+      ],
+      [
+       21,
+       23
+      ],
+      [
+       22,
+       23
+      ],
+      [
+       23,
+       23
+      ],
+      [
+       24,
+       23
+      ],
+      [
+       25,
+       23
+      ],
+      [
+       26,
+       23
+      ],
+      [
+       27,
+       23
+      ],
+      [
+       1,
+       24
+      ],
+      [
+       2,
+       24
+      ],
+      [
+       3,
+       24
+      ],
+      [
+       4,
+       24
+      ],
+      [
+       5,
+       24
+      ],
+      [
+       6,
+       24
+      ],
+      [
+       7,
+       24
+      ],
+      [
+       8,
+       24
+      ],
+      [
+       9,
+       24
+      ],
+      [
+       10,
+       24
+      ],
+      [
+       11,
+       24
+      ],
+      [
+       12,
+       24
+      ],
+      [
+       13,
+       24
+      ],
+      [
+       14,
+       24
+      ],
+      [
+       15,
+       24
+      ],
+      [
+       16,
+       24
+      ],
+      [
+       17,
+       24
+      ],
+      [
+       18,
+       24
+      ],
+      [
+       19,
+       24
+      ],
+      [
+       20,
+       24
+      ],
+      [
+       21,
+       24
+      ],
+      [
+       22,
+       24
+      ],
+      [
+       23,
+       24
+      ],
+      [
+       24,
+       24
+      ],
+      [
+       25,
+       24
+      ],
+      [
+       26,
+       24
+      ],
+      [
+       27,
+       24
+      ],
+      [
+       1,
+       25
+      ],
+      [
+       2,
+       25
+      ],
+      [
+       3,
+       25
+      ],
+      [
+       4,
+       25
+      ],
+      [
+       5,
+       25
+      ],
+      [
+       6,
+       25
+      ],
+      [
+       7,
+       25
+      ],
+      [
+       8,
+       25
+      ],
+      [
+       9,
+       25
+      ],
+      [
+       10,
+       25
+      ],
+      [
+       11,
+       25
+      ],
+      [
+       12,
+       25
+      ],
+      [
+       13,
+       25
+      ],
+      [
+       14,
+       25
+      ],
+      [
+       1,
+       26
+      ],
+      [
+       2,
+       26
+      ],
+      [
+       3,
+       26
+      ],
+      [
+       4,
+       26
+      ],
+      [
+       5,
+       26
+      ],
+      [
+       6,
+       26
+      ],
+      [
+       7,
+       26
+      ],
+      [
+       8,
+       26
+      ],
+      [
+       9,
+       26
+      ],
+      [
+       10,
+       26
+      ],
+      [
+       11,
+       26
+      ],
+      [
+       12,
+       26
+      ],
+      [
+       13,
+       26
+      ],
+      [
+       1,
+       27
+      ],
+      [
+       2,
+       27
+      ],
+      [
+       3,
+       27
+      ],
+      [
+       4,
+       27
+      ],
+      [
+       5,
+       27
+      ],
+      [
+       6,
+       27
+      ],
+      [
+       7,
+       27
+      ],
+      [
+       8,
+       27
+      ],
+      [
+       9,
+       27
+      ],
+      [
+       10,
+       27
+      ],
+      [
+       11,
+       27
+      ],
+      [
+       12,
+       27
+      ],
+      [
+       13,
+       27
+      ],
+      [
+       1,
+       28
+      ],
+      [
+       2,
+       28
+      ],
+      [
+       3,
+       28
+      ],
+      [
+       4,
+       28
+      ],
+      [
+       5,
+       28
+      ],
+      [
+       6,
+       28
+      ],
+      [
+       7,
+       28
+      ],
+      [
+       8,
+       28
+      ],
+      [
+       9,
+       28
+      ],
+      [
+       10,
+       28
+      ],
+      [
+       11,
+       28
+      ],
+      [
+       12,
+       28
+      ],
+      [
+       1,
+       29
+      ],
+      [
+       2,
+       29
+      ],
+      [
+       3,
+       29
+      ],
+      [
+       4,
+       29
+      ],
+      [
+       5,
+       29
+      ],
+      [
+       6,
+       29
+      ],
+      [
+       7,
+       29
+      ],
+      [
+       8,
+       29
+      ],
+      [
+       9,
+       29
+      ],
+      [
+       10,
+       29
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       13,
+       29
+      ],
+      [
+       1,
+       30
+      ],
+      [
+       2,
+       30
+      ],
+      [
+       3,
+       30
+      ],
+      [
+       4,
+       30
+      ],
+      [
+       5,
+       30
+      ],
+      [
+       6,
+       30
+      ],
+      [
+       7,
+       30
+      ],
+      [
+       8,
+       30
+      ],
+      [
+       9,
+       30
+      ],
+      [
+       10,
+       30
+      ],
+      [
+       11,
+       30
+      ],
+      [
+       12,
+       30
+      ],
+      [
+       13,
+       30
+      ]
+     ],
+     "note": "8bpp sub-image read as 4bpp: native pass-through, NOT HD; pending an 8bpp-mode master after the capture shows the 8bpp draws (texpage, 256-colour CLUT, key)"
+    }
+   ]
+  },
+  "2B4626A3": {
+   "member": "3/16",
+   "page_xy": [
+    512,
+    0
+   ],
+   "mode": "effect",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/2B4626A3.words.bin",
+    "sha256": "4d986133a0817617103ac0c4abc0e574160a9eec050c149a575c60b51fe0301c",
+    "crc32": "2B4626A3",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "2B4626A3-3FF2DBD5",
+     "clut_xy": [
+      128,
+      484
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/2B4626A3-3FF2DBD5.png",
+      "sha256": "218abafe1507dfee11b4e12ffa0d46986d041f5168acecac22db0a8d7468a736",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/2B4626A3-3FF2DBD5.png",
+      "sha256": "48e1548b4a62b0da5cb85002bfcb7f073c821384c8575e591a88bc291ea4ee4c",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": {
+      "2048": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0028,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9984,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9964,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9981,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9986,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9983,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9947,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9975,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9928,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9834,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9986,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9891,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9804,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0059,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0022,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       }
+      ],
+      "1024": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0028,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9984,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9964,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9981,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9983,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9947,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9975,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9927,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9833,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9986,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9804,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0059,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0022,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       }
+      ]
+     },
+     "review": {
+      "path": "review/2B4626A3-3FF2DBD5-review.png",
+      "sha256": "c6245ad9ccb8904de4d1cd85f92fc4612844c94932c02a4a0a702d4e5e95d720"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "2B4626A3-382D7BFF",
+     "clut_xy": [
+      144,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-F819AA88",
+     "clut_xy": [
+      240,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-264276C9",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-62027D2B",
+     "clut_xy": [
+      16,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-526CBC12",
+     "clut_xy": [
+      128,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-3091E9CA",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-656BE56D",
+     "clut_xy": [
+      160,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-3ADA9277",
+     "clut_xy": [
+      32,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-105461A4",
+     "clut_xy": [
+      64,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-02491337",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "2B4626A3-2C49B2AB",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "2B4626A3-CDB19517",
+     "clut_xy": [
+      32,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-B4B798B5",
+     "clut_xy": [
+      256,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "2B4626A3-CE4D993E",
+     "clut_xy": [
+      64,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-E505E02F",
+     "clut_xy": [
+      96,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "2B4626A3-1E4E0007",
+     "clut_xy": [
+      256,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    }
+   ],
+   "palette_hold_keys": [
+    "2B4626A3-02491337",
+    "2B4626A3-190A55AD",
+    "2B4626A3-1E4E0007",
+    "2B4626A3-2C49B2AB",
+    "2B4626A3-B4B798B5"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     256,
+     511
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "2B4626A3-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": true,
+    "near_pairs": 10,
+    "near_matrix_cluts": 19
+   },
+   "glow": {
+    "ramp_spearman_min": 0.635,
+    "opaque_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "transparency_consistent": true,
+    "used": "shape (palette is not a ramp: categorical soft labels)"
+   },
+   "material": null,
+   "logD_p1_p99": null,
+   "regions": []
+  },
+  "BFC445B0": {
+   "member": "3/16",
+   "page_xy": [
+    576,
+    0
+   ],
+   "mode": "armour",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/BFC445B0.words.bin",
+    "sha256": "9c0693756ae2f145558ef84c36247f08c4ca0d90dd5a2ea99ac3cbb5a8a9ead5",
+    "crc32": "BFC445B0",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "BFC445B0-A132B3B3",
+     "clut_xy": [
+      96,
+      493
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/BFC445B0-A132B3B3.png",
+      "sha256": "b9ee193e2d056866b42ee7c2171c6ab0f33c84cf0cdfd051cf4f1c1e1b425b67",
+      "centre_classes_stamped": 79,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/BFC445B0-A132B3B3.png",
+      "sha256": "e6d728b91da33845b04039f8d70bc2e7592e263bd378681457b43925f4124d57",
+      "centre_classes_stamped": 82,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/BFC445B0-A132B3B3-review.png",
+      "sha256": "0465cc8146b88b3e61f43eaad0f7a033e46ff642418a7cbaab7308407388c26f"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "BFC445B0-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-0ADAA698",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-4DC90157",
+     "clut_xy": [
+      0,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-361A4661",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-066C0B81",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-8808F70A",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-E7FB5B71",
+     "clut_xy": [
+      48,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BFC445B0-D786D485",
+     "clut_xy": [
+      224,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "BFC445B0-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.32,
+     6.0
+    ],
+    "blend_sigma": 0.9,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": true,
+    "near_pairs": 6,
+    "near_matrix_cluts": 10
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.12,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.0,
+    "swatch": [
+     [
+      "camo_paint_worn_a",
+      0.55
+     ],
+     [
+      "sandworn_steel_a",
+      0.45
+     ]
+    ],
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "exclude_boxes": [
+     [
+      192,
+      0,
+      256,
+      128
+     ]
+    ],
+    "exclude_index_boxes": [
+     [
+      138,
+      52,
+      178,
+      84,
+      0
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.16162109375,
+    0.09283447265625
+   ],
+   "regions": [
+    {
+     "kind": "fx",
+     "box": [
+      192,
+      0,
+      256,
+      128
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.4989973262032086,
+     "centre_labels_differing": 557
+    },
+    {
+     "kind": "native-8bpp-pending",
+     "rule": {
+      "threshold": 0.35,
+      "closing": 1,
+      "detector": "alt8_mask"
+     },
+     "texels": 10432,
+     "blocks8": [
+      [
+       1,
+       17
+      ],
+      [
+       2,
+       17
+      ],
+      [
+       3,
+       17
+      ],
+      [
+       4,
+       17
+      ],
+      [
+       6,
+       17
+      ],
+      [
+       7,
+       17
+      ],
+      [
+       8,
+       17
+      ],
+      [
+       9,
+       17
+      ],
+      [
+       10,
+       17
+      ],
+      [
+       11,
+       17
+      ],
+      [
+       12,
+       17
+      ],
+      [
+       13,
+       17
+      ],
+      [
+       14,
+       17
+      ],
+      [
+       15,
+       17
+      ],
+      [
+       16,
+       17
+      ],
+      [
+       17,
+       17
+      ],
+      [
+       18,
+       17
+      ],
+      [
+       19,
+       17
+      ],
+      [
+       20,
+       17
+      ],
+      [
+       21,
+       17
+      ],
+      [
+       22,
+       17
+      ],
+      [
+       23,
+       17
+      ],
+      [
+       24,
+       17
+      ],
+      [
+       25,
+       17
+      ],
+      [
+       1,
+       18
+      ],
+      [
+       2,
+       18
+      ],
+      [
+       3,
+       18
+      ],
+      [
+       4,
+       18
+      ],
+      [
+       5,
+       18
+      ],
+      [
+       6,
+       18
+      ],
+      [
+       7,
+       18
+      ],
+      [
+       8,
+       18
+      ],
+      [
+       9,
+       18
+      ],
+      [
+       10,
+       18
+      ],
+      [
+       11,
+       18
+      ],
+      [
+       12,
+       18
+      ],
+      [
+       13,
+       18
+      ],
+      [
+       14,
+       18
+      ],
+      [
+       15,
+       18
+      ],
+      [
+       16,
+       18
+      ],
+      [
+       17,
+       18
+      ],
+      [
+       18,
+       18
+      ],
+      [
+       19,
+       18
+      ],
+      [
+       20,
+       18
+      ],
+      [
+       21,
+       18
+      ],
+      [
+       22,
+       18
+      ],
+      [
+       23,
+       18
+      ],
+      [
+       24,
+       18
+      ],
+      [
+       25,
+       18
+      ],
+      [
+       1,
+       19
+      ],
+      [
+       2,
+       19
+      ],
+      [
+       3,
+       19
+      ],
+      [
+       4,
+       19
+      ],
+      [
+       5,
+       19
+      ],
+      [
+       6,
+       19
+      ],
+      [
+       7,
+       19
+      ],
+      [
+       8,
+       19
+      ],
+      [
+       9,
+       19
+      ],
+      [
+       10,
+       19
+      ],
+      [
+       11,
+       19
+      ],
+      [
+       12,
+       19
+      ],
+      [
+       13,
+       19
+      ],
+      [
+       14,
+       19
+      ],
+      [
+       15,
+       19
+      ],
+      [
+       16,
+       19
+      ],
+      [
+       17,
+       19
+      ],
+      [
+       18,
+       19
+      ],
+      [
+       19,
+       19
+      ],
+      [
+       20,
+       19
+      ],
+      [
+       21,
+       19
+      ],
+      [
+       22,
+       19
+      ],
+      [
+       23,
+       19
+      ],
+      [
+       24,
+       19
+      ],
+      [
+       25,
+       19
+      ],
+      [
+       1,
+       20
+      ],
+      [
+       2,
+       20
+      ],
+      [
+       3,
+       20
+      ],
+      [
+       4,
+       20
+      ],
+      [
+       5,
+       20
+      ],
+      [
+       6,
+       20
+      ],
+      [
+       7,
+       20
+      ],
+      [
+       8,
+       20
+      ],
+      [
+       9,
+       20
+      ],
+      [
+       10,
+       20
+      ],
+      [
+       11,
+       20
+      ],
+      [
+       12,
+       20
+      ],
+      [
+       13,
+       20
+      ],
+      [
+       14,
+       20
+      ],
+      [
+       15,
+       20
+      ],
+      [
+       16,
+       20
+      ],
+      [
+       17,
+       20
+      ],
+      [
+       18,
+       20
+      ],
+      [
+       19,
+       20
+      ],
+      [
+       20,
+       20
+      ],
+      [
+       21,
+       20
+      ],
+      [
+       22,
+       20
+      ],
+      [
+       23,
+       20
+      ],
+      [
+       24,
+       20
+      ],
+      [
+       25,
+       20
+      ],
+      [
+       1,
+       21
+      ],
+      [
+       2,
+       21
+      ],
+      [
+       3,
+       21
+      ],
+      [
+       4,
+       21
+      ],
+      [
+       5,
+       21
+      ],
+      [
+       6,
+       21
+      ],
+      [
+       7,
+       21
+      ],
+      [
+       8,
+       21
+      ],
+      [
+       9,
+       21
+      ],
+      [
+       10,
+       21
+      ],
+      [
+       1,
+       22
+      ],
+      [
+       2,
+       22
+      ],
+      [
+       3,
+       22
+      ],
+      [
+       4,
+       22
+      ],
+      [
+       5,
+       22
+      ],
+      [
+       6,
+       22
+      ],
+      [
+       7,
+       22
+      ],
+      [
+       8,
+       22
+      ],
+      [
+       9,
+       22
+      ],
+      [
+       1,
+       23
+      ],
+      [
+       2,
+       23
+      ],
+      [
+       3,
+       23
+      ],
+      [
+       4,
+       23
+      ],
+      [
+       5,
+       23
+      ],
+      [
+       6,
+       23
+      ],
+      [
+       7,
+       23
+      ],
+      [
+       8,
+       23
+      ],
+      [
+       9,
+       23
+      ],
+      [
+       1,
+       24
+      ],
+      [
+       2,
+       24
+      ],
+      [
+       3,
+       24
+      ],
+      [
+       4,
+       24
+      ],
+      [
+       5,
+       24
+      ],
+      [
+       6,
+       24
+      ],
+      [
+       7,
+       24
+      ],
+      [
+       8,
+       24
+      ],
+      [
+       9,
+       24
+      ],
+      [
+       1,
+       25
+      ],
+      [
+       2,
+       25
+      ],
+      [
+       3,
+       25
+      ],
+      [
+       4,
+       25
+      ],
+      [
+       5,
+       25
+      ],
+      [
+       6,
+       25
+      ],
+      [
+       7,
+       25
+      ],
+      [
+       8,
+       25
+      ],
+      [
+       9,
+       25
+      ],
+      [
+       1,
+       26
+      ],
+      [
+       2,
+       26
+      ],
+      [
+       3,
+       26
+      ],
+      [
+       4,
+       26
+      ],
+      [
+       5,
+       26
+      ],
+      [
+       6,
+       26
+      ],
+      [
+       7,
+       26
+      ],
+      [
+       8,
+       26
+      ],
+      [
+       9,
+       26
+      ],
+      [
+       1,
+       27
+      ],
+      [
+       2,
+       27
+      ],
+      [
+       3,
+       27
+      ],
+      [
+       4,
+       27
+      ],
+      [
+       5,
+       27
+      ],
+      [
+       6,
+       27
+      ],
+      [
+       7,
+       27
+      ],
+      [
+       8,
+       27
+      ],
+      [
+       9,
+       27
+      ]
+     ],
+     "note": "8bpp sub-image read as 4bpp: native pass-through, NOT HD; pending an 8bpp-mode master after the capture shows the 8bpp draws (texpage, 256-colour CLUT, key)"
+    },
+    {
+     "kind": "glyph-destair",
+     "box": [
+      138,
+      52,
+      178,
+      84
+     ],
+     "glyph_index": 0,
+     "staircase_corner_texels": 83,
+     "smooth_sigma": 0.7,
+     "reach": 0.7,
+     "crisp": [
+      0.32,
+      6.0
+     ],
+     "centre_labels_forced": 0,
+     "guard_withdrawn_texels": 4,
+     "guard_ok": true
+    }
+   ]
+  },
+  "1168CC84": {
+   "member": "3/17",
+   "page_xy": [
+    640,
+    0
+   ],
+   "mode": "armour",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/1168CC84.words.bin",
+    "sha256": "6131eb0693e362af2907b20a1b441697b802e5528882f73b6fb808806426ae0d",
+    "crc32": "1168CC84",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "1168CC84-51E8E21E",
+     "clut_xy": [
+      192,
+      482
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/1168CC84-51E8E21E.png",
+      "sha256": "97403660ffee8b23846035807fc21ae5ba3f4962581a6024451622409a6dc525",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/1168CC84-51E8E21E.png",
+      "sha256": "9454cb64c8f2ccb5494e21f7f875913f2434fc2a12638683af7086bf4c64c3f5",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/1168CC84-51E8E21E-review.png",
+      "sha256": "8b820015a9a406d14a8575058f75895ac2ca74676726f1635d3940fdda37c97b"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "1168CC84-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-5057F81A",
+     "clut_xy": [
+      224,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-71106D25",
+     "clut_xy": [
+      16,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-23202923",
+     "clut_xy": [
+      96,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-61D2EC30",
+     "clut_xy": [
+      176,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-5D430B8A",
+     "clut_xy": [
+      96,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-3CB10C0C",
+     "clut_xy": [
+      240,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-1A347828",
+     "clut_xy": [
+      144,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-DDCDB5A7",
+     "clut_xy": [
+      208,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-C739060A",
+     "clut_xy": [
+      64,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-C9FAF737",
+     "clut_xy": [
+      112,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-44E883FA",
+     "clut_xy": [
+      64,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-8097C274",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-F6D4E4CA",
+     "clut_xy": [
+      160,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-A345AE9E",
+     "clut_xy": [
+      128,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-69AC34C2",
+     "clut_xy": [
+      96,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-FAC936BC",
+     "clut_xy": [
+      160,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-30E98693",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-726A2440",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-3E221370",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-A1D2E835",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-C7A1F2F0",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-0F736F08",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1168CC84-47FBD679",
+     "clut_xy": [
+      32,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1168CC84-F78CFB08",
+     "clut_xy": [
+      240,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "1168CC84-30E98693",
+    "1168CC84-3E221370",
+    "1168CC84-47FBD679",
+    "1168CC84-726A2440",
+    "1168CC84-8097C274",
+    "1168CC84-BE3400E6"
+   ],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "1168CC84-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.32,
+     6.0
+    ],
+    "blend_sigma": 0.9,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": true,
+    "near_pairs": 0,
+    "near_matrix_cluts": 29
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.12,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.0,
+    "swatch": [
+     [
+      "camo_paint_worn_a",
+      0.55
+     ],
+     [
+      "sandworn_steel_a",
+      0.45
+     ]
+    ],
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "exclude_boxes": [
+     [
+      128,
+      204,
+      192,
+      256
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.186767578125,
+    0.09893798828125
+   ],
+   "regions": [
+    {
+     "kind": "fx",
+     "box": [
+      128,
+      204,
+      192,
+      256
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.4466765873015873,
+     "centre_labels_differing": 364
+    }
+   ]
+  },
+  "3D108041": {
+   "member": "3/17",
+   "page_xy": [
+    704,
+    0
+   ],
+   "mode": "armour",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/3D108041.words.bin",
+    "sha256": "98d32f3b357e7335d1e40628d29f32e0608bf4b54effc5faee8c7872b2c9c6ae",
+    "crc32": "3D108041",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "3D108041-51E8E21E",
+     "clut_xy": [
+      192,
+      482
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/3D108041-51E8E21E.png",
+      "sha256": "89c0642881d599e4c63d44ce1a46a3a9ee38d4ce6bc19c02420ff67c92d9e242",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/3D108041-51E8E21E.png",
+      "sha256": "a74dfc0e830eb988060571eb092b4e820bf21044f2adb4930c2b5389ff3a3b26",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/3D108041-51E8E21E-review.png",
+      "sha256": "8552a142000a359d06c89ce75f1508a9d3b454273e1f23e95fd66fca11d5aa96"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "3D108041-BB66E55A",
+     "clut_xy": [
+      16,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-E306B612",
+     "clut_xy": [
+      0,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "3D108041-8097C274",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "3D108041-6A8B1A18",
+     "clut_xy": [
+      80,
+      494
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-FAC936BC",
+     "clut_xy": [
+      48,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-E7FB5B71",
+     "clut_xy": [
+      48,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-DDCDB5A7",
+     "clut_xy": [
+      240,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-0DF30EDD",
+     "clut_xy": [
+      272,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "3D108041-3ADA9277",
+     "clut_xy": [
+      32,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-24FAE118",
+     "clut_xy": [
+      288,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "3D108041-9D752218",
+     "clut_xy": [
+      288,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "3D108041-2FCEEDA7",
+     "clut_xy": [
+      32,
+      509
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-105461A4",
+     "clut_xy": [
+      64,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "3D108041-3AAEBA2A",
+     "clut_xy": [
+      0,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "3D108041-0DF30EDD",
+    "3D108041-190A55AD",
+    "3D108041-24FAE118",
+    "3D108041-8097C274",
+    "3D108041-9D752218",
+    "3D108041-BE3400E6"
+   ],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "3D108041-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.32,
+     6.0
+    ],
+    "blend_sigma": 0.9,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": true,
+    "near_pairs": 0,
+    "near_matrix_cluts": 18
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.12,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.0,
+    "swatch": [
+     [
+      "camo_paint_worn_a",
+      0.55
+     ],
+     [
+      "sandworn_steel_a",
+      0.45
+     ]
+    ],
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "exclude_boxes": [
+     [
+      0,
+      0,
+      176,
+      80
+     ],
+     [
+      0,
+      80,
+      80,
+      176
+     ],
+     [
+      176,
+      0,
+      256,
+      112
+     ]
+    ],
+    "exclude_index_boxes": [
+     [
+      145,
+      180,
+      187,
+      227,
+      0
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.12890625,
+    0.08349609375
+   ],
+   "regions": [
+    {
+     "kind": "fx",
+     "box": [
+      0,
+      0,
+      176,
+      80
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.5037037037037037,
+     "centre_labels_differing": 1663
+    },
+    {
+     "kind": "fx",
+     "box": [
+      0,
+      80,
+      80,
+      176
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.5275869963369964,
+     "centre_labels_differing": 1223
+    },
+    {
+     "kind": "fx",
+     "box": [
+      176,
+      0,
+      256,
+      112
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.3967569786535304,
+     "centre_labels_differing": 1312
+    },
+    {
+     "kind": "native-8bpp-pending",
+     "rule": {
+      "threshold": 0.35,
+      "closing": 1,
+      "detector": "alt8_mask"
+     },
+     "texels": 9792,
+     "blocks8": [
+      [
+       1,
+       22
+      ],
+      [
+       2,
+       22
+      ],
+      [
+       3,
+       22
+      ],
+      [
+       4,
+       22
+      ],
+      [
+       5,
+       22
+      ],
+      [
+       6,
+       22
+      ],
+      [
+       7,
+       22
+      ],
+      [
+       8,
+       22
+      ],
+      [
+       9,
+       22
+      ],
+      [
+       10,
+       22
+      ],
+      [
+       11,
+       22
+      ],
+      [
+       12,
+       22
+      ],
+      [
+       13,
+       22
+      ],
+      [
+       14,
+       22
+      ],
+      [
+       15,
+       22
+      ],
+      [
+       16,
+       22
+      ],
+      [
+       17,
+       22
+      ],
+      [
+       1,
+       23
+      ],
+      [
+       2,
+       23
+      ],
+      [
+       3,
+       23
+      ],
+      [
+       4,
+       23
+      ],
+      [
+       5,
+       23
+      ],
+      [
+       6,
+       23
+      ],
+      [
+       7,
+       23
+      ],
+      [
+       8,
+       23
+      ],
+      [
+       9,
+       23
+      ],
+      [
+       10,
+       23
+      ],
+      [
+       11,
+       23
+      ],
+      [
+       12,
+       23
+      ],
+      [
+       13,
+       23
+      ],
+      [
+       14,
+       23
+      ],
+      [
+       15,
+       23
+      ],
+      [
+       16,
+       23
+      ],
+      [
+       17,
+       23
+      ],
+      [
+       1,
+       24
+      ],
+      [
+       2,
+       24
+      ],
+      [
+       3,
+       24
+      ],
+      [
+       4,
+       24
+      ],
+      [
+       5,
+       24
+      ],
+      [
+       6,
+       24
+      ],
+      [
+       7,
+       24
+      ],
+      [
+       8,
+       24
+      ],
+      [
+       9,
+       24
+      ],
+      [
+       10,
+       24
+      ],
+      [
+       11,
+       24
+      ],
+      [
+       12,
+       24
+      ],
+      [
+       13,
+       24
+      ],
+      [
+       14,
+       24
+      ],
+      [
+       15,
+       24
+      ],
+      [
+       16,
+       24
+      ],
+      [
+       17,
+       24
+      ],
+      [
+       1,
+       25
+      ],
+      [
+       2,
+       25
+      ],
+      [
+       3,
+       25
+      ],
+      [
+       4,
+       25
+      ],
+      [
+       5,
+       25
+      ],
+      [
+       6,
+       25
+      ],
+      [
+       7,
+       25
+      ],
+      [
+       8,
+       25
+      ],
+      [
+       9,
+       25
+      ],
+      [
+       10,
+       25
+      ],
+      [
+       11,
+       25
+      ],
+      [
+       12,
+       25
+      ],
+      [
+       13,
+       25
+      ],
+      [
+       14,
+       25
+      ],
+      [
+       15,
+       25
+      ],
+      [
+       16,
+       25
+      ],
+      [
+       17,
+       25
+      ],
+      [
+       1,
+       26
+      ],
+      [
+       2,
+       26
+      ],
+      [
+       3,
+       26
+      ],
+      [
+       4,
+       26
+      ],
+      [
+       5,
+       26
+      ],
+      [
+       6,
+       26
+      ],
+      [
+       7,
+       26
+      ],
+      [
+       8,
+       26
+      ],
+      [
+       9,
+       26
+      ],
+      [
+       10,
+       26
+      ],
+      [
+       11,
+       26
+      ],
+      [
+       12,
+       26
+      ],
+      [
+       13,
+       26
+      ],
+      [
+       14,
+       26
+      ],
+      [
+       15,
+       26
+      ],
+      [
+       16,
+       26
+      ],
+      [
+       17,
+       26
+      ],
+      [
+       1,
+       27
+      ],
+      [
+       2,
+       27
+      ],
+      [
+       3,
+       27
+      ],
+      [
+       4,
+       27
+      ],
+      [
+       5,
+       27
+      ],
+      [
+       6,
+       27
+      ],
+      [
+       7,
+       27
+      ],
+      [
+       8,
+       27
+      ],
+      [
+       9,
+       27
+      ],
+      [
+       10,
+       27
+      ],
+      [
+       11,
+       27
+      ],
+      [
+       12,
+       27
+      ],
+      [
+       13,
+       27
+      ],
+      [
+       14,
+       27
+      ],
+      [
+       15,
+       27
+      ],
+      [
+       16,
+       27
+      ],
+      [
+       17,
+       27
+      ],
+      [
+       1,
+       28
+      ],
+      [
+       2,
+       28
+      ],
+      [
+       3,
+       28
+      ],
+      [
+       4,
+       28
+      ],
+      [
+       5,
+       28
+      ],
+      [
+       6,
+       28
+      ],
+      [
+       7,
+       28
+      ],
+      [
+       8,
+       28
+      ],
+      [
+       9,
+       28
+      ],
+      [
+       10,
+       28
+      ],
+      [
+       11,
+       28
+      ],
+      [
+       12,
+       28
+      ],
+      [
+       13,
+       28
+      ],
+      [
+       14,
+       28
+      ],
+      [
+       15,
+       28
+      ],
+      [
+       16,
+       28
+      ],
+      [
+       17,
+       28
+      ],
+      [
+       1,
+       29
+      ],
+      [
+       2,
+       29
+      ],
+      [
+       3,
+       29
+      ],
+      [
+       4,
+       29
+      ],
+      [
+       5,
+       29
+      ],
+      [
+       6,
+       29
+      ],
+      [
+       7,
+       29
+      ],
+      [
+       8,
+       29
+      ],
+      [
+       9,
+       29
+      ],
+      [
+       10,
+       29
+      ],
+      [
+       11,
+       29
+      ],
+      [
+       12,
+       29
+      ],
+      [
+       13,
+       29
+      ],
+      [
+       14,
+       29
+      ],
+      [
+       15,
+       29
+      ],
+      [
+       16,
+       29
+      ],
+      [
+       17,
+       29
+      ],
+      [
+       1,
+       30
+      ],
+      [
+       2,
+       30
+      ],
+      [
+       3,
+       30
+      ],
+      [
+       4,
+       30
+      ],
+      [
+       5,
+       30
+      ],
+      [
+       6,
+       30
+      ],
+      [
+       7,
+       30
+      ],
+      [
+       8,
+       30
+      ],
+      [
+       9,
+       30
+      ],
+      [
+       10,
+       30
+      ],
+      [
+       11,
+       30
+      ],
+      [
+       12,
+       30
+      ],
+      [
+       13,
+       30
+      ],
+      [
+       14,
+       30
+      ],
+      [
+       15,
+       30
+      ],
+      [
+       16,
+       30
+      ],
+      [
+       17,
+       30
+      ]
+     ],
+     "note": "8bpp sub-image read as 4bpp: native pass-through, NOT HD; pending an 8bpp-mode master after the capture shows the 8bpp draws (texpage, 256-colour CLUT, key)"
+    },
+    {
+     "kind": "glyph-destair",
+     "box": [
+      145,
+      180,
+      187,
+      227
+     ],
+     "glyph_index": 0,
+     "staircase_corner_texels": 110,
+     "smooth_sigma": 0.7,
+     "reach": 0.7,
+     "crisp": [
+      0.32,
+      6.0
+     ],
+     "centre_labels_forced": 0,
+     "guard_withdrawn_texels": 7,
+     "guard_ok": true
+    }
+   ]
+  }
+ },
+ "builder_scripts": {
+  "build_w7.py": "e4f705572c4a4f7ec4948667d400ca2e508ab8b555ce2b1ceaac6d2f622735fe",
+  "freeze_w7.py": "7036a638eb8eada34eea83d6876a947781759d0327406ad27a789ab2997d576e",
+  "glyph_check.py": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+  "lowprio.py": "b361ad4e2df383a8c025632ecd427112e4373239ad2c651ab3442e5147c4acc0",
+  "s5-duerer-armour-v2.json": "8fc6fec64155e8d4b48cb87c653d3f17cfee9c1b73e1a3fb0ece851313cde05f",
+  "twinkle_sim.py": "d8bc0ad025b70623d8ec19d354e1cb6e53adfb0ebc5caa2458cbc56dacdcb6a1",
+  "verify_frozen.py": "b10b9f4b32061de3b29d65309208ee83c76e0f7176911ff8ebf2210d6bd006b3",
+  "w7lib.py": "99896867cdcccf9115e31a722001637408eaf525d4af6b40937f839c29c4250b"
+ },
+ "build_record": "build-record.json",
+ "honest_read": [
+  "FX regions (3D108041 shock rings, burst, debris; BFC445B0 flames; 1168CC84 crater) no longer form dot patterns: the dithered fades become smooth tone gradients. Motion SIMULATION (twinkle-sim.json, review/twinkle-SIMULATION.png; 24-frame fly-past, bilinear no-mip from runtime-2048, Fourier motion compensation): twinkle at 3 px per native texel (minified) rings 0.079 -> 0.016, burst 0.100 -> 0.033, debris 0.133 -> 0.064, crater 0.099 -> 0.033, flames 0.064 -> 0.055 (v1 -> v2; native nearest 0.12-0.34); at 9 px per texel all v2 FX regions are 0.004-0.013 (v1 0.013-0.021, native 0.07-0.19). Whole-sprite brightness pumping is unchanged and below 2.5 %.",
+  "The price: the FX sprites are soft. At 16x the rings and bursts read as blurred glow, not as crisp grainy explosions, and local contrast drops (debris bursts -40 %, rings -18 %). Where neighbouring indices are not dithered (beta 0) the crisp contour remains, so a few hard-edged chunks sit inside the soft fades.",
+  "The '13' keeps its native shape: every native texel keeps its own index as the majority of its area (0 stroke texels below 50 %, 0 spill onto other texels, 0 centre-label and 0 export-class mismatches). The staircase diagonals (the '1' flag, the top stroke of the '3', the rotated '13') are now straight edges instead of scallops. IoU against the nearest-neighbour native glyph drops from 0.986/0.981 (v1) to 0.976/0.964, by design, because the straight edge cuts the pixel steps; max boundary deviation 0.38 texel outward / 0.53 inward.",
+  "Not everything is de-staired: steep curves of the '3' bowl (1:3 and steeper steps) and the light drop-shadow strip beside the diagonal keep small scallops, and the native-shape guard withdrew the smoothing at 4-7 texels per glyph.",
+  "The numerals carry no material. Because the straight edge passes closer to some texel centres, the glyph colour at those texel centres deviates up to 15 levels at runtime-2048 and up to 44 at runtime-1024 (v1: 0-3); classes are exact.",
+  "Stage-5 swatches: camo_paint_worn_a + sandworn_steel_a replace the Stage 1 painted_steel/gunmetal swatches. Light paint now shows faint hairline cracks and grey spatter (reads as weathered, cracked paint); dark camouflage looks almost unchanged. The material-control plate twinkles the same as v1 (0.108 vs 0.109 at 3 px per texel), dominated by the camouflage edges, not by the swatch.",
+  "8bpp hull sub-images (1F11EE57 517 blocks, BFC445B0 163, 3D108041 153 blocks of 8x8 texels) are native pass-through: 1-texel stripes, nearest, no material, explicitly NOT HD. They are pending an 8bpp-mode master once a capture gives the 8bpp draws and their 256-colour CLUT. No 8bpp content was authored.",
+  "Unchanged from v1: camouflage patches keep exact extents; 1-texel outline lines along camouflage edges are still bead chains; 2B4626A3 missiles stay soft; several review CLUTs look like wrong pairings (crimson/cyan DEECFC4B, lavender/red A132B3B3)."
+ ],
+ "known_limits": [
+  "All keys are predicted-static (likely pairings); import only after the stage-5 run confirms each key (validate_predicted.py confirm + gate).",
+  "One render per page; 116 further static predicted keys render from the same masters later; palette-hold keys wait for AQ-05 phase lists.",
+  "FX regions: the master's texel-centre labels are not forced there (to avoid 1-px native dots in the fades); every export still stamps the native class at every texel centre (0 mismatches). Any re-render must go through w7lib.export_rgba.",
+  "The 8bpp detector (alt8_mask: horizontal nibble alternation > 0.35 per 8x8 block, vertical < half of it, components >= 4 blocks) is a heuristic; the masked blocks are listed in the manifest (regions.blocks8).",
+  "The twinkle numbers are a SIMULATION of a bilinear no-mip fly-past, not an in-game capture.",
+  "Armour relief still comes from the review CLUT's luminance; no per-surface realism rebuild (blocked on the AQ-03 stage look captures)."
+ ],
+ "integration_notes": {
+  "install": "do not install before the stage-5 acquisition run; then install only keys listed key-confirmed by validate_predicted.py confirm",
+  "runtime": "runtime-2048 (8 px/texel) recommended; runtime-1024 provided (glyph edge colours are softer there)",
+  "alpha": "PNG alpha = exact PSX classes (categorical), not opacity",
+  "index_path": "master/<TEX>-labels16.npz + <TEX>-logD8-f16.npy; render any CLUT with builder/w7lib.py render, then export_rgba (stamps classes)",
+  "glyph": "glyph-check.json + review/glyph-<TEX>.png; acceptance = 0 stroke texels below 0.5, 0 spill, 0 centre/export class mismatches",
+  "8bpp": "regions kind native-8bpp-pending: replace with an 8bpp-mode master after the L5 capture; do not ship these blocks as HD",
+  "supersedes": "s5-duerer-armour-v1 (v1 stays frozen and untouched)"
+ },
+ "reuse": null,
+ "shared_pages_referenced_not_built": null,
+ "glyph_check": {
+  "file": "glyph-check.json",
+  "glyphs": 2,
+  "min_iou_16x": 0.9636,
+  "max_outward_dev_texel": 0.375,
+  "max_inward_dev_texel": 0.53,
+  "glyph_texels_below_half": 0,
+  "nonglyph_texels_with_spill_ge_half": 0,
+  "centre_label_mismatch": 0,
+  "export_centre_class_mismatch": 0,
+  "reviews": [
+   "review/glyph-BFC445B0.png",
+   "review/glyph-3D108041.png"
+  ]
+ },
+ "files": {
+  "build-record.json": {
+   "sha256": "b95aa095b553f7d463d7c2dd44241e3b69eb4298436f604a0990c543730642cc",
+   "bytes": 106941
+  },
+  "builder/build_w7.py": {
+   "sha256": "e4f705572c4a4f7ec4948667d400ca2e508ab8b555ce2b1ceaac6d2f622735fe",
+   "bytes": 18348
+  },
+  "builder/freeze_w7.py": {
+   "sha256": "7036a638eb8eada34eea83d6876a947781759d0327406ad27a789ab2997d576e",
+   "bytes": 5716
+  },
+  "builder/glyph_check.py": {
+   "sha256": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+   "bytes": 8967
+  },
+  "builder/lowprio.py": {
+   "sha256": "b361ad4e2df383a8c025632ecd427112e4373239ad2c651ab3442e5147c4acc0",
+   "bytes": 789
+  },
+  "builder/s5-duerer-armour-v2.json": {
+   "sha256": "8fc6fec64155e8d4b48cb87c653d3f17cfee9c1b73e1a3fb0ece851313cde05f",
+   "bytes": 6662
+  },
+  "builder/twinkle_sim.py": {
+   "sha256": "d8bc0ad025b70623d8ec19d354e1cb6e53adfb0ebc5caa2458cbc56dacdcb6a1",
+   "bytes": 6369
+  },
+  "builder/verify_frozen.py": {
+   "sha256": "b10b9f4b32061de3b29d65309208ee83c76e0f7176911ff8ebf2210d6bd006b3",
+   "bytes": 5777
+  },
+  "builder/w7lib.py": {
+   "sha256": "99896867cdcccf9115e31a722001637408eaf525d4af6b40937f839c29c4250b",
+   "bytes": 35719
+  },
+  "comfy/camo_paint_worn_a-graph.api.json": {
+   "sha256": "d237900d279bf6e80a00a468c447c8a8956d0638cd5e9551defee3f7a4f219b0",
+   "bytes": 1664
+  },
+  "comfy/camo_paint_worn_a-history.json": {
+   "sha256": "fb6ea0261bf6cbc768834999e32337c59dba580c66a64debfa6a4bf38e5c56f1",
+   "bytes": 2844
+  },
+  "comfy/camo_paint_worn_a-tileable-1024.png": {
+   "sha256": "a5fc08966c68f97aa39e4a7849c832267a3715d3e001f6f9981f7dbf7a162023",
+   "bytes": 1819158
+  },
+  "comfy/sandworn_steel_a-graph.api.json": {
+   "sha256": "721845ade956be50dff7459da502df33edcf029f3ede58c4406b9d1a0313abdd",
+   "bytes": 1636
+  },
+  "comfy/sandworn_steel_a-history.json": {
+   "sha256": "e477ad9da16d5b711ab3b2e9f25245dcb29788e285b09110ad31098e077752fe",
+   "bytes": 2857
+  },
+  "comfy/sandworn_steel_a-tileable-1024.png": {
+   "sha256": "a4078ccece8777f3625a5cf26d3ea15f1b47f7acc35af9164b487b60fe4c1c57",
+   "bytes": 1192968
+  },
+  "glyph-check.json": {
+   "sha256": "b56e5d9a1555c3ade63e51ff98ff93ca109ecac08650515fdef834d2c0d1b3d8",
+   "bytes": 2872
+  },
+  "master/1168CC84-labels16.npz": {
+   "sha256": "7394f76c3a19fc1456600c05b0f05935dcf10fe290b1143f165296ac4df5bc2a",
+   "bytes": 3630174
+  },
+  "master/1168CC84-logD8-f16.npy": {
+   "sha256": "e695a12b94586e5f64cb87d1039b9b343efc0eab012a047d3cfbf0fe64169d0d",
+   "bytes": 8388736
+  },
+  "master/1168CC84-native-idx.npy": {
+   "sha256": "c137d392cd9db97a3fdad7d444b7f2cb60f8b9013d1f0ee413b3df0a15bf7338",
+   "bytes": 65664
+  },
+  "master/1F11EE57-labels16.npz": {
+   "sha256": "468ab73686933da854fecb5ebb6ff3af3c49faa18e7092ed01d21e45a80d17f3",
+   "bytes": 1903043
+  },
+  "master/1F11EE57-logD8-f16.npy": {
+   "sha256": "f159ee5cf02b315bde80a442c014ece8b6de8d24b8c611b82bc54a6483d5391a",
+   "bytes": 8388736
+  },
+  "master/1F11EE57-native-idx.npy": {
+   "sha256": "a5e806195e638dfc4c77ff5a4e929babf32597443b31a1fd4aeacbfce1a8f8cc",
+   "bytes": 65664
+  },
+  "master/2B4626A3-labels16.npz": {
+   "sha256": "72bbbd4c3b692256ee1bb7bcd063d66d9711817fa282e77241a8d0129e744272",
+   "bytes": 5688224
+  },
+  "master/2B4626A3-native-idx.npy": {
+   "sha256": "dc84e1d61cbe357f53188060f94c4723470d8167edd419b84d917774fa303be7",
+   "bytes": 65664
+  },
+  "master/3D108041-labels16.npz": {
+   "sha256": "6edba1a7389fb25f0b8668ea7c3c621643c680a2e0625d68e7bceff53917a9e0",
+   "bytes": 5904081
+  },
+  "master/3D108041-logD8-f16.npy": {
+   "sha256": "267d33b028f88f5a04d1ead4eee708e407993814dab5b3dc9e2f765e0e78b057",
+   "bytes": 8388736
+  },
+  "master/3D108041-native-idx.npy": {
+   "sha256": "d670fe53b4bede514ca2243127934947942ee036fdf329e85b31ef303f845693",
+   "bytes": 65664
+  },
+  "master/BFC445B0-labels16.npz": {
+   "sha256": "0922f2f5c814130dae1fc23e8ad63d6e43f75eb581923b726caafea9647282f8",
+   "bytes": 4199683
+  },
+  "master/BFC445B0-logD8-f16.npy": {
+   "sha256": "6d240a838f9d140e538dd7bbd6862f0227b5364d21499df1a8981ef714fd9167",
+   "bytes": 8388736
+  },
+  "master/BFC445B0-native-idx.npy": {
+   "sha256": "59e79514bbc8172c6ffa394141a6253920002f743a7abf721b4c290ca2e81946",
+   "bytes": 65664
+  },
+  "native-class-validation.json": {
+   "sha256": "f995fea4dea0b4a80c9043dfefb84b0725f56387950b410d712e3e94518cbf70",
+   "bytes": 2419
+  },
+  "review/1168CC84-51E8E21E-review.png": {
+   "sha256": "8b820015a9a406d14a8575058f75895ac2ca74676726f1635d3940fdda37c97b",
+   "bytes": 374352
+  },
+  "review/1F11EE57-DEECFC4B-review.png": {
+   "sha256": "78daa58f9d9b1ecaaab1cb6584a3da7d2ec977250071e02b8473ac8cd85bdc73",
+   "bytes": 370456
+  },
+  "review/2B4626A3-3FF2DBD5-review.png": {
+   "sha256": "c6245ad9ccb8904de4d1cd85f92fc4612844c94932c02a4a0a702d4e5e95d720",
+   "bytes": 188611
+  },
+  "review/3D108041-51E8E21E-review.png": {
+   "sha256": "8552a142000a359d06c89ce75f1508a9d3b454273e1f23e95fd66fca11d5aa96",
+   "bytes": 322460
+  },
+  "review/BFC445B0-A132B3B3-review.png": {
+   "sha256": "0465cc8146b88b3e61f43eaad0f7a033e46ff642418a7cbaab7308407388c26f",
+   "bytes": 347265
+  },
+  "review/glyph-3D108041.png": {
+   "sha256": "eef2ac02303b62450556be83b2ee179d2331728c3812c19bebc21a4d7c76d4ff",
+   "bytes": 212142
+  },
+  "review/glyph-BFC445B0.png": {
+   "sha256": "98f1e859d7dcebef5fc30ca06bf7b36a61e163b6ca510f917b81673148fc0e91",
+   "bytes": 96452
+  },
+  "review/twinkle-SIMULATION.png": {
+   "sha256": "1c2127dce3ab5c414d2be230373a07f35c5980e2e959bd81e2d1c62ed22abfd8",
+   "bytes": 1220092
+  },
+  "runtime-1024/1168CC84-51E8E21E.png": {
+   "sha256": "9454cb64c8f2ccb5494e21f7f875913f2434fc2a12638683af7086bf4c64c3f5",
+   "bytes": 489420
+  },
+  "runtime-1024/1F11EE57-DEECFC4B.png": {
+   "sha256": "17049ec351479ac5d57f8780728ef7c57a23c5863be5c1c47b82f26e9d4c4edf",
+   "bytes": 510889
+  },
+  "runtime-1024/2B4626A3-3FF2DBD5.png": {
+   "sha256": "48e1548b4a62b0da5cb85002bfcb7f073c821384c8575e591a88bc291ea4ee4c",
+   "bytes": 202261
+  },
+  "runtime-1024/3D108041-51E8E21E.png": {
+   "sha256": "a74dfc0e830eb988060571eb092b4e820bf21044f2adb4930c2b5389ff3a3b26",
+   "bytes": 365590
+  },
+  "runtime-1024/BFC445B0-A132B3B3.png": {
+   "sha256": "e6d728b91da33845b04039f8d70bc2e7592e263bd378681457b43925f4124d57",
+   "bytes": 584534
+  },
+  "runtime-2048/1168CC84-51E8E21E.png": {
+   "sha256": "97403660ffee8b23846035807fc21ae5ba3f4962581a6024451622409a6dc525",
+   "bytes": 1350983
+  },
+  "runtime-2048/1F11EE57-DEECFC4B.png": {
+   "sha256": "c8ec75340b85115fa48c795d1c5f2c7d7c6f70eecd424d487b18bcc0c52ca7ac",
+   "bytes": 1431735
+  },
+  "runtime-2048/2B4626A3-3FF2DBD5.png": {
+   "sha256": "218abafe1507dfee11b4e12ffa0d46986d041f5168acecac22db0a8d7468a736",
+   "bytes": 541569
+  },
+  "runtime-2048/3D108041-51E8E21E.png": {
+   "sha256": "89c0642881d599e4c63d44ce1a46a3a9ee38d4ce6bc19c02420ff67c92d9e242",
+   "bytes": 1029464
+  },
+  "runtime-2048/BFC445B0-A132B3B3.png": {
+   "sha256": "b9ee193e2d056866b42ee7c2171c6ab0f33c84cf0cdfd051cf4f1c1e1b425b67",
+   "bytes": 1662710
+  },
+  "twinkle-sim.json": {
+   "sha256": "dc97a978c8fd07a66697c7a3fa700f036d48ebe630b219a2f4b33b0372f30494",
+   "bytes": 6320
+  }
+ }
+}

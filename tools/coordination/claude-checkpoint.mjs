@@ -1,10 +1,11 @@
 // Write claude-einhander's continuity checkpoint (schema from coordination/CLAUDE-HANDOFF.md) before a waiting turn.
-// Usage: node tools/coordination/claude-checkpoint.mjs --session ID --monitor TASK_ID --wake ISO_UTC --tasks a,b --next "text"
-//        node tools/coordination/claude-checkpoint.mjs --user-stop "reason"   (explicit user stop/pause only)
+// Usage: node tools/coordination/claude-checkpoint.mjs --session ID [--owner REGISTERED_OWNER] --monitor TASK_ID --wake ISO_UTC --tasks a,b --next "text"
+//        node tools/coordination/claude-checkpoint.mjs --owner REGISTERED_OWNER --user-stop "reason"
+//        (explicit user stop/pause only; an actual registered --session ID also selects its owner)
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { read,writeJson } from './claude-continuity-hook.mjs';
+import { read,writeJson,sessionProfile } from './claude-continuity-hook.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 export function buildCheckpoint(previous, args, {now=Date.now(),maxWaitMinutes=30}={}) {
@@ -43,14 +44,19 @@ return state;
 
 export async function saveCheckpoint(base,args,{now=Date.now()}={}) {
 const dir=path.join(base,'.hermes3d_orchestrator','continuity');
-const file=path.join(dir,'claude-einhander.json');
+const option=name=>{const i=args.indexOf(name);return i<0?'':args[i+1]||'';};
+const explicitOwner=option('--owner');
+if(explicitOwner&&!/^claude-einhander(?:-[a-z0-9-]+)?$/.test(explicitOwner))throw Error('Invalid registered Claude owner');
+const profile=await sessionProfile(base,option('--session'),explicitOwner);
+if(!profile)throw Error('Session is not registered in the Claude roster; provide an actual registered --session or explicit --owner REGISTERED_OWNER');
+const file=path.join(dir,profile.owner+'.json');
 const previous=await read(file,{});
 const config=await read(path.join(base,'coordination/work-continuity.json'),{});
 const maxWaitMinutes=Number(config.max_wait_minutes)||30;
 const state=buildCheckpoint(previous,args,{now,maxWaitMinutes});
 await fs.mkdir(dir,{recursive:true});
 await writeJson(file,state);
-return {ok:true,file:file.replace(/\\/g,'/'),...state};
+return {ok:true,owner:profile.owner,file:file.replace(/\\/g,'/'),...state};
 }
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)){
   try{console.log(JSON.stringify(await saveCheckpoint(root,process.argv.slice(2))));}

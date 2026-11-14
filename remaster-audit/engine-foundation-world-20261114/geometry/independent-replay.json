@@ -1,0 +1,61 @@
+{
+  "at_utc": "2026-11-14T08:38:36.423644+00:00",
+  "ready_sha256": "d9afac8de6d4f29cbf4954aff0a3da20006e7d88ec4d43c86679906eccb62dfd",
+  "source_and_binary_pins_verified": true,
+  "runs": [
+    {
+      "name": "view_test_modified",
+      "exe_sha256": "c13120e5d3bc77ecebbd7e3258fd8224308a9af8aa1520cfd35c2a485ff25c74",
+      "exit": 0,
+      "stdout_tail": [
+        "view storage: record 80 B x 65536 + RAM tags 2 MiB = 7340032 B allocated",
+        "checks 137 failures 0 | produced 327721 commit_ok 327707 commit_mismatch 4 hits 23 evicted 1 no_view 2 value_mismatch 1 incoherent 0"
+      ],
+      "stderr_fail_lines": []
+    },
+    {
+      "name": "pgxp_test_canonical",
+      "exe_sha256": "c2c642f3a101277aa8c3446890bc2f6a4d65920ab236d98a41354a8d5d674a65",
+      "exit": 0,
+      "stdout_tail": [
+        "test_pgxp: all checks passed"
+      ],
+      "stderr_fail_lines": []
+    },
+    {
+      "name": "gte_register_access_test_canonical",
+      "exe_sha256": "247f53325ac7dda5313d5f87462c991c64105140c1c7ee4eafbe4df7a3e034c1",
+      "exit": 0,
+      "stdout_tail": [
+        "PASS: canonical GTE register helpers match GTEState transfer oracle"
+      ],
+      "stderr_fail_lines": []
+    },
+    {
+      "name": "pgxp_test_modified",
+      "exe_sha256": "2585505d628bb371948ef2dad0b1079247d94a6f78b857b6ce11c45458ec1330",
+      "exit": 0,
+      "stdout_tail": [
+        "test_pgxp: all checks passed"
+      ],
+      "stderr_fail_lines": []
+    },
+    {
+      "name": "gte_register_access_test_modified",
+      "exe_sha256": "068f14d44edb4720bc040513ab3fea7dd8acd0c2316488605a4b137ce5f042c6",
+      "exit": 0,
+      "stdout_tail": [
+        "PASS: canonical GTE register helpers match GTEState transfer oracle"
+      ],
+      "stderr_fail_lines": []
+    }
+  ],
+  "all_five_pass": true,
+  "new_compilation": false,
+  "mutations_repeated": false,
+  "scope": "Fresh execution of pinned full-source host test binaries. Not live gameplay, renderer integration, RT, DLSS or full project acceptance.",
+  "review_followups": [
+    "Collect with geometry and texture correction off without changing draw behavior.",
+    "Mark MAC overflow explicitly before treating a vertex as safe for scene reconstruction."
+  ]
+}

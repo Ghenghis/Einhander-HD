@@ -1,0 +1,104 @@
+{
+ "owner": "claude-einhander-s23",
+ "session_id": "local_8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+ "session_title": "Einhander Stages 2-3",
+ "checkpoint_utc": "2026-11-14T13:45:02.000Z",
+ "started_utc": "2026-11-14T13:27:10.912Z",
+ "phase": "working",
+ "pending_task_ids": [
+  "EIN-S2-WHOLE-CELL-20261114",
+  "EIN-S3-WHOLE-CELL-20261114"
+ ],
+ "claims": {
+  "EIN-S2-WHOLE-CELL-20261114": "2026-11-14T13:29:02.776Z",
+  "EIN-S3-WHOLE-CELL-20261114": "2026-11-14T13:29:03.897Z",
+  "queue_pick": {
+   "EIN-S2-WHOLE-CELL-20261114": "2026-11-14T13:35:34.803Z",
+   "EIN-S3-WHOLE-CELL-20261114": "2026-11-14T13:35:35.802Z"
+  }
+ },
+ "locks": [
+  "remaster-audit/parallel-stages-20261114/s23",
+  ".hermes3d_orchestrator/continuity/claude-einhander-s23.json"
+ ],
+ "inputs": {
+  "lane_readiness": {
+   "path": "remaster-audit/runtime-review/seven-stage-status-20261114/lane-readiness-20261114T131712Z.json",
+   "sha256": "07cd9358083107da96bc209dc1bfa8685820c1316f1455c146c31ac6fc2283b8"
+  }
+ },
+ "messages_sent": [
+  "msg_3cd56d0bd060dcd2",
+  "msg_9807ebd64ea84c4e",
+  "msg_2a6d79edaf8535c8",
+  "msg_f2e5b9af5b2ddc4e",
+  "msg_99a66e415325662b",
+  "msg_716295c553fcb396",
+  "msg_ea19dc5c02ac4d33",
+  "msg_1accb2edcee46280",
+  "msg_092e9f46ece5fc4f",
+  "msg_b4ebcfd17e833519"
+ ],
+ "messages_acked": [
+  "msg_98238d18be51ebb9",
+  "msg_686e1636eaff5220",
+  "msg_b2461cd9e1eb8b05",
+  "msg_6ef8f64f54f2ddcd",
+  "msg_18d5287c1991dba8",
+  "msg_fe74f7406eda74af",
+  "msg_3696c6e8e89286e5",
+  "msg_1f529150d8324a75",
+  "msg_373c628ae6761ac5",
+  "msg_581cb9bdf0f2df2c",
+  "msg_82fa62604c09f255",
+  "msg_c670bddcc5a54062",
+  "msg_77afdc96c7435ecd",
+  "msg_84ab731d7c48e0f1"
+ ],
+ "latest_outputs": {
+  "runs/selection-20261114T133254Z/selection-map.json": "f29ff130d3f2d087e95a90cfebe7892415cf480af3cc3718723f4594b7256250",
+  "runs/selection-20261114T133254Z/SELECTION-MAP.md": "bf741a14c1f37f7bf672868d086c79c5d4b805c6fa7552ba41fba771c120f711",
+  "runs/selection-20261114T133254Z/strict-join.json": "697cd133725c5161efe087433f92b97af90ad23d6a2b35b99ef4fb6957083324",
+  "tools/map_selection.py": "692d19850869bfd41628fe8e55d8b67be8274dd66194414676d9248eb2fdd953",
+  "tools/join_strict.py": "ff9199679cf1add654cd13dbc77122c02e4e5dda3f4085c03712caf5d3ca465b",
+  "runs/j1-20261114T134041Z/rows.jsonl": "6b2000316400ba80c5bb24e90075a4ef5e0779ac31ef0add07926f3864e2124b",
+  "runs/j1-20261114T134041Z/summary.json": "af4c65b1b4265e68c4cefd779e9264c2a6ccb90c1189a5e648042b2e9318698e",
+  "runs/j1-20261114T134041Z/fringe-summary.json": "0fe2cb32ebde88ce5e5c50ddb8b1c6ec000ccc00402b4af403852c568913f173",
+  "tools/j1_crosscheck.py": "32a4b50ca81c71a0f7347319efb794ed36a3a6f99130c5f036bc7ce08397d281",
+  "tools/s23lib.py": "6f4de451fea992c284c3aca6ab4ce86f2db4092cddf8f6764753f039df853967"
+ },
+ "resources": {
+  "gpu": "none (3090Ti user-reserved for Pizza Tycoon HD until explicit release)",
+  "heavy_cpu_slot": "J1 grant used and returned 13:43:38Z; J2/J3 await explicit grant"
+ },
+ "next_action": "Write S2/S3 capture request list (keys/CLUT/UV/state) from S2.md/S3.md + w7 addenda; await J2 grant; then run j2_s3_dither_hybrid.py into s23/proposals/.",
+ "continuation": {
+  "armed": false,
+  "monitor_task_id": null,
+  "next_wakeup_utc": null
+ },
+ "cli_session_id": "981b7d04-19b2-40aa-a1d4-7a90c912e441",
+ "output_root": "remaster-audit/parallel-stages-20261114/s23",
+ "reused_inputs": {
+  "original_claude_strict_audit": {
+   "path": "remaster-audit/claude-backlog/class-mip/later-stages-audit/runs/20261114T133157Z/result.json",
+   "sha256": "e28553ba28ed676bca68021efd364ac78a9da0fff76daeff565c87b8a62ca7a1"
+  }
+ },
+ "jobs": {
+  "J1": {
+   "state": "done",
+   "pid": 24640,
+   "start_utc": "2026-11-14T13:40:41.920Z",
+   "end_utc": "2026-11-14T13:43:38.716Z",
+   "result": "156/156 strict pass independently; all counters equal to DLL e28553ba"
+  },
+  "J2": {
+   "state": "script ready, NOT granted",
+   "tool": "tools/j2_s3_dither_hybrid.py"
+  },
+  "J3": {
+   "state": "not written, NOT granted"
+  }
+ }
+}

@@ -61,6 +61,8 @@ if (-not $bridgeReady) {
 
 Start-Process -FilePath "$workspaceUrl/#skins"
 if (-not $WebOnly) {
+    # Continuous GPU history is forensic-only; allow an explicit diagnostic 1.
+    if ([string]::IsNullOrEmpty($env:PSX_DISPLAY_RING)) { $env:PSX_DISPLAY_RING = '0' }
     $env:EIN_DEBUG_PORT = '4370'
     $env:EIN_DEV_URL = $workspaceUrl
     $env:PSXRECOMP_HD_TEXTURE_ROOT = $packPath

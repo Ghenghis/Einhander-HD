@@ -1,0 +1,358 @@
+{
+  "at_utc": "2026-11-14T11:59:48.333537+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-comment",
+        "-Wno-unused-parameter",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v64-scene-capture-r2\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\harness.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\scene_capture.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\scene_json.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\scene_runtime.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\runtime_glue.exe"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "enabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\runtime_glue.exe"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "disabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\runtime_glue.exe",
+        "off"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-r1\\runtime_glue.exe",
+        "off"
+      ],
+      "exit": 0
+    }
+  ],
+  "rpc_responses": [
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v1",
+      "mode": 1,
+      "frame": 0,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v1",
+      "mode": 2,
+      "frame": 0,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v1",
+      "mode": 4,
+      "frame": 101,
+      "count": 1,
+      "capacity": 1024,
+      "textured_seen": 1,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 1,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": true
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v1",
+      "record": {
+        "frame": 101,
+        "ordinal": 0,
+        "source": 4096,
+        "opcode": 36,
+        "geometry_qualified": true,
+        "nverts": 3,
+        "words": [
+          605172822,
+          2621460,
+          839911941,
+          3211291,
+          31788552,
+          3801122,
+          4619
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "material": {
+          "clut": 12816,
+          "tpage": 485,
+          "depth": 3,
+          "blend": 3,
+          "raw": 0,
+          "semi": 0,
+          "window": 703710,
+          "set_mask": 1,
+          "check_mask": 1
+        },
+        "draw_offset": [
+          -13,
+          21
+        ],
+        "draw_area": [
+          0,
+          0,
+          319,
+          239
+        ],
+        "vertices": [
+          {
+            "address": 4100,
+            "word": 2621460,
+            "rgb": 1193046,
+            "uv": [
+              5,
+              10
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000001",
+            "tag": 0,
+            "flags": 512,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              0,
+              0,
+              100
+            ],
+            "screen16": [
+              0,
+              0
+            ],
+            "packed": 2621460,
+            "mac": [
+              0,
+              0,
+              409600
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 0,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558208,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 4108,
+            "word": 3211291,
+            "rgb": 1193046,
+            "uv": [
+              8,
+              14
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000002",
+            "tag": 0,
+            "flags": 512,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              10,
+              15,
+              100
+            ],
+            "screen16": [
+              0,
+              0
+            ],
+            "packed": 3211291,
+            "mac": [
+              40960,
+              61440,
+              409600
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 0,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558212,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 4116,
+            "word": 3801122,
+            "rgb": 1193046,
+            "uv": [
+              11,
+              18
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000003",
+            "tag": 0,
+            "flags": 512,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              20,
+              0,
+              100
+            ],
+            "screen16": [
+              0,
+              0
+            ],
+            "packed": 3801122,
+            "mac": [
+              81920,
+              0,
+              409600
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 0,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558216,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 2
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v1",
+      "mode": 1,
+      "frame": 0,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false
+    }
+  ],
+  "actual_windows_adapter": true,
+  "exact_handler_sha256": "8184ec2956b08ea2abebedfefe42e2b2f96d1177d22b90e772ff6c56a423e5b3",
+  "gpu_executed": false,
+  "guest_executed": false,
+  "fixtures_only": true,
+  "user_gpu_hold_unchanged": true,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "sources": {
+    "exact_handler.inc": "8184ec2956b08ea2abebedfefe42e2b2f96d1177d22b90e772ff6c56a423e5b3",
+    "fixture_seed.cpp": "290566b9516c184dfb777598c8870f3953801ae7a6d603a549eba141e255ad85",
+    "harness.cpp": "ced649d0b94fce5676380db8bb461775c274bc3e790f9ad106334d10c8160a88",
+    "scene_capture.cpp": "558e05a71944a8821d5ef30bcf322a2c7aeab859568f534d423d3b79841d0abe",
+    "scene_capture.h": "2276caf9109e92cfcd6df31d6fd5ba987ac07b8d30752ef343da5df6d17bf0f4",
+    "scene_json.cpp": "c31f3ed1cf8138ab50f18ec154b4204e0ef07582a6f6fb2843d88a69ca7277f9",
+    "scene_runtime.cpp": "9b729ca6b3734dc4542cd8fcbf424c7d777b4727f1ee0c37b94f0117dda98e7d",
+    "scene_runtime.h": "05f32406eba8c8b7ccc901a338ecd8d0b68e98ecec6516c1aafbeb339106014e"
+  }
+}

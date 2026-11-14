@@ -1,0 +1,235 @@
+{
+  "proof_sha256": "8eee2ef48935dac8aa565b7a2492e26f66e6d4f73ec957d9151460776a8f6c56",
+  "game_exe_sha256": "c6e573f317e5faaa624612320c5468ed8e0158092b4e53e3a0357e607e325686",
+  "scope": "30s early Stage1 city, HDoff, rewindoff, scale2, visual PGXP corrections off, diagnostics on, initially empty own cache and autocompile off. No foreign executable cache, RAM writes or save states.",
+  "frames": [
+    3332,
+    3630,
+    3932,
+    4231,
+    4421,
+    4583,
+    4758
+  ],
+  "sample_seconds": [
+    0.0,
+    5.0,
+    10.001,
+    15.001,
+    20.001,
+    25.001,
+    30.0
+  ],
+  "triangles": {
+    "prims": 392060,
+    "all_hit": 388760,
+    "partial": 0,
+    "none": 3300,
+    "verts": 1176180,
+    "vert_hits": 1166280,
+    "hit_committed": 1166280,
+    "hit_ring_live": 1166280,
+    "hit_diverged": 0,
+    "all_hit_one_command": 230908,
+    "miss": {
+      "no_source": 0,
+      "disabled": 0,
+      "no_shadow": 9853,
+      "value_mismatch": 0,
+      "no_view": 47,
+      "evicted": 0,
+      "incoherent": 0
+    },
+    "lag": {
+      "0": 0,
+      "1": 1166280,
+      "2": 0,
+      "3plus": 0,
+      "future": 0,
+      "wrapped": 0
+    },
+    "hit_xform_match": 1166280,
+    "hit_flags": {
+      "xy_sat": 0,
+      "xy_clamp": 0,
+      "ir_sat": 0,
+      "div_ovf": 0,
+      "sz_sat": 0,
+      "ws_squash": 0,
+      "dome": 0,
+      "mac_ovf44": 0,
+      "mac_wrap32": 0
+    }
+  },
+  "quads": {
+    "prims": 176216,
+    "all_hit": 162168,
+    "partial": 0,
+    "none": 14048,
+    "verts": 704864,
+    "vert_hits": 648672,
+    "hit_committed": 648672,
+    "hit_ring_live": 648672,
+    "hit_diverged": 0,
+    "all_hit_one_command": 0,
+    "miss": {
+      "no_source": 0,
+      "disabled": 0,
+      "no_shadow": 55141,
+      "value_mismatch": 0,
+      "no_view": 1051,
+      "evicted": 0,
+      "incoherent": 0
+    },
+    "lag": {
+      "0": 0,
+      "1": 648672,
+      "2": 0,
+      "3plus": 0,
+      "future": 0,
+      "wrapped": 0
+    },
+    "hit_xform_match": 648672,
+    "hit_flags": {
+      "xy_sat": 0,
+      "xy_clamp": 0,
+      "ir_sat": 0,
+      "div_ovf": 0,
+      "sz_sat": 0,
+      "ws_squash": 0,
+      "dome": 0,
+      "mac_ovf44": 0,
+      "mac_wrap32": 0
+    }
+  },
+  "audio": {
+    "first": {
+      "id": 1,
+      "ok": true,
+      "taps": [
+        {
+          "name": "spu_out",
+          "frames": 2448285,
+          "nonzero": 940933,
+          "audible": 673986,
+          "peak": 29137,
+          "rate": 44100
+        },
+        {
+          "name": "cd_in",
+          "frames": 373968,
+          "nonzero": 373917,
+          "audible": 368646,
+          "peak": 28579,
+          "rate": 44100
+        },
+        {
+          "name": "host",
+          "frames": 2637600,
+          "nonzero": 1015963,
+          "audible": 725304,
+          "peak": 29134,
+          "rate": 48000
+        }
+      ],
+      "pump_calls": 3331,
+      "pump_skips": 0,
+      "underruns": 0,
+      "queue_hiwater": 280,
+      "queue_lowater": 0,
+      "mutes": 0,
+      "unmutes": 0,
+      "events_total": 9083,
+      "out": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 183.4,
+        "target_ms": 180.0,
+        "underruns": 0,
+        "overflow_drops": 32630,
+        "correction": 0.00021
+      }
+    },
+    "last": {
+      "id": 1,
+      "ok": true,
+      "taps": [
+        {
+          "name": "spu_out",
+          "frames": 3497130,
+          "nonzero": 1989698,
+          "audible": 1508453,
+          "peak": 29137,
+          "rate": 44100
+        },
+        {
+          "name": "cd_in",
+          "frames": 1161888,
+          "nonzero": 1161837,
+          "audible": 1155153,
+          "peak": 28579,
+          "rate": 44100
+        },
+        {
+          "name": "host",
+          "frames": 4078080,
+          "nonzero": 2233639,
+          "audible": 1700150,
+          "peak": 29134,
+          "rate": 48000
+        }
+      ],
+      "pump_calls": 4758,
+      "pump_skips": 0,
+      "underruns": 480,
+      "queue_hiwater": 280,
+      "queue_lowater": 0,
+      "mutes": 0,
+      "unmutes": 0,
+      "events_total": 13518,
+      "out": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 17.0,
+        "target_ms": 180.0,
+        "underruns": 287368,
+        "overflow_drops": 32630,
+        "correction": -0.01
+      }
+    },
+    "frontend_underrun_delta": 480,
+    "bridge_underrun_delta": 287368
+  },
+  "phase_scope": {
+    "rows": 2048,
+    "first_frame": 1,
+    "last_frame": 2048,
+    "truncated": 1,
+    "city_start": 3332,
+    "usable_for_city_timing": false,
+    "limitation": "RPC returned first2048 rows rather than the city window; no late-frame phase attribution can be made."
+  },
+  "errors": [],
+  "exit": 0,
+  "pid_gone": true,
+  "close": {
+    "pid": 17992,
+    "clear_input": {
+      "id": 1,
+      "ok": true
+    },
+    "quit_reply": {
+      "ok": false,
+      "err": "emu busy or frozen"
+    },
+    "port_closed": true
+  },
+  "acceptance": {
+    "diagnostic_route": true,
+    "smoothness_audio": false,
+    "full_stage_geometry_coverage": false,
+    "ray_traced_gameplay": false
+  }
+}

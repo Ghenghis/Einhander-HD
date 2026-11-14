@@ -1,0 +1,37 @@
+{
+  "started_utc": "2026-11-14T08:29:37.352514+00:00",
+  "gpu_work": false,
+  "below_normal": true,
+  "sequential": true,
+  "commands": [
+    {
+      "phase": "classes",
+      "args": [
+        "python",
+        "-X",
+        "utf8",
+        "-u",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\check_world_patch_classes.py"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "composition",
+      "args": [
+        "python",
+        "-X",
+        "utf8",
+        "-u",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-integration-plan-v1.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v1"
+      ],
+      "exit": 0
+    }
+  ],
+  "ended_utc": "2026-11-14T08:30:07.979028+00:00",
+  "candidate": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v1\\candidate.json",
+  "candidate_sha256": "92d9158fa500efaf8a7acf8f18233936979717fa0b83652f04d6af04abcbc4e9"
+}

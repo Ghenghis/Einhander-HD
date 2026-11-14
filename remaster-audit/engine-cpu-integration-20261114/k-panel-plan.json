@@ -1,0 +1,46 @@
+{
+  "parent": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v3\\candidate.json",
+    "sha256": "47a5dd57a831e49c2c83d63e78d54834db5f2813f2c46539f19151d268d2851c"
+  },
+  "entries": [
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-k-panel\\frozen\\95A3BCF8-K-panel-v1\\manifest.json",
+        "sha256": "08868b6592c7646552d4fc5c7a736e8cf2c3793f81e35d8991b59bc6829774c8"
+      },
+      "key": "95A3BCF8-723E222C",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-k-panel\\frozen\\95A3BCF8-K-panel-v1\\page2048\\95A3BCF8-723E222C.png",
+        "sha256": "791c01a86dbf12167dee22738de654043f4f548de59d0cb4dfa3a573423cc020"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\95A3BCF8-723E222C.words.bin",
+          "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+        },
+        "source_clut": {
+          "path": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\95A3BCF8-723E222C.clut.bin",
+          "sha256": "0046050957049372187619b2fe305cb307fb4afc80024cc4d2ac7536747db95a"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\95A3BCF8-723E222C.source.json",
+        "sha256": "aa30a16dccaad93b6c8bc15c86b7b9ae1e24d896d9294cc9bd20aced5405a8ac"
+      },
+      "integration_variant": "page2048",
+      "selected_set": "95A3BCF8-K-panel-v1",
+      "retained_limits": [
+        "panes inherit the native irregular window pattern; at 75 px on screen they read as lit window rows, not as detailed rooms",
+        "no mipmaps in the runtime: crisp pane frames can shimmer at small sizes while scrolling (renderer RB-08 mips would remove it)",
+        "not seen live; SIMULATION only"
+      ]
+    }
+  ],
+  "scope": "Private K-panel revision plus native class repair; no GPU, game or visual acceptance. Other pack classes under independent audit."
+}

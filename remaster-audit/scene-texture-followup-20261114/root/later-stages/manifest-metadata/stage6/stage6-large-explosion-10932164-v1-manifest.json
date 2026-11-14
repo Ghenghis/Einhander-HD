@@ -1,0 +1,800 @@
+{
+ "name": "stage6-large-explosion-10932164-v1",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "task": "stage 6 first art batch (coordinator 2026-11-13)",
+ "created_utc": "2026-11-13T16:07:09.726340+00:00",
+ "texture_crc": "10932164",
+ "provenance": "predicted-static (static-extraction/stages/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "page": {
+  "member": "4/5",
+  "vram_rect_words": [
+   704,
+   256,
+   64,
+   256
+  ],
+  "depth": 0,
+  "writers": [
+   "4/5",
+   "4/12"
+  ],
+  "texture_confidence": "likely",
+  "set": "member 4/5 version of VRAM 704,256 (shared page, byte-identical in stages 1-6). The other stage 6 writer of that VRAM is 4/12 (Hyperion transmission page 9E43A5C3, lettering batch, not authored here)",
+  "native_texels": [
+   256,
+   256
+  ]
+ },
+ "method": "Carry-over of the frozen Stage 1 deliverable (w2-effects/frozen/large-explosion-10932164-v2): the stage 6 words are byte-identical to the Stage 1 page, so no repaint. (a) Stage 1 CLUTs whose exact words exist in the stage 6 static CLUT data: frozen runtime files copied byte for byte and re-gated. (b) Plausible stage 6 predicted CLUTs: RGB = lerp of the frozen v2 field g (unchanged), A = cls_P[round f6], f6 = the frozen v1 class field re-enforced at ALL 15 thresholds inside the 4 sprite cells (any CLUT class-exact); RGB faded to the class-aware render within 1.25 texel of the cut; light energy locked per cell to 1 +- 0.05.",
+ "params": {
+  "energy_tol": 0.05,
+  "fade_tex": 1.25
+ },
+ "generation": null,
+ "cluts_delivered": [
+  "8E3D08E7",
+  "0386F43A",
+  "5F4DE3D3",
+  "66175427",
+  "AF93AEF2"
+ ],
+ "cluts_not_delivered": {
+  "0ADAA698": "all entries black (STP black adds nothing): invisible",
+  "190A55AD": "all 16 entries are 0x0000 (fully transparent)"
+ },
+ "index_master": {
+  "files": {
+   "master/10932164-class-f.npy": "051f96a853cfc4467f52615b4dbf78c2d7baf4291cabec4145e14cba6986aad0",
+   "master/10932164-rgb-g.npy": "bb03059e0850d956f9886798e56f8148051a49e067d6f80c923da5283d8a7197",
+   "master/10932164-explosion.json": "1efe5dbe7a505227ab73e2d84fccee49d29502ed3f859626904ad717db3d3390"
+  },
+  "any_clut_class_exact": {
+   "texels_checked": 64516,
+   "round_f_equals_native_index": 64516,
+   "any_clut_class_exact": true
+  },
+  "rule": "every 4bpp CLUT, predicted or runtime, renders from these masters; only plausible predicted CLUTs are exported"
+ },
+ "sources": {
+  "checks": {
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage6/textures/10932164.words.bin",
+    "sha256": "c5c990df16ba435f1e668975f2a9575c2fb9b5af72e89a962e40998f731f53bd",
+    "crc32": "10932164",
+    "crc_equals_tex": true,
+    "texture_confidence": "likely",
+    "member": "4/5",
+    "vram_rect_words": [
+     704,
+     256,
+     64,
+     256
+    ]
+   },
+   "cluts": {
+    "8E3D08E7": {
+     "crc32": "8E3D08E7",
+     "crc_equals_pal": true,
+     "words_hex": "3967d65a9452524a1042ce398c314a290821e71cc6188410630c42083f180080",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       160,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "copies": {
+   "10932164.words.bin": "c5c990df16ba435f1e668975f2a9575c2fb9b5af72e89a962e40998f731f53bd",
+   "10932164-8E3D08E7.clut.bin": "996497d2fc9f06063bf0e4db730de50aa71b75390eeb616e74442fed5eeb452d",
+   "bundle.json": "52affff2836ab2ec815907c5d08b49a3f73b45bd65e7d4b95fd33cb9209a3cbb"
+  }
+ },
+ "builder_scripts": {
+  "s6_build.py": "74c862832298d51f004d623485293c4531068932133b53090f364f225d65e6e9",
+  "s6lib.py": "42889c4957d29b666c38ba71c911a24244bf400a0fa27ec2355c60ac4a8d8d27",
+  "s6_source.py": "73e5024574d1fab37222bbc19ecc07d78985f843248450e10a42c30a807445d3",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213",
+  "w2_comfy.py": "3d2d64242394622d7e4400c0213e10cc4327079fe84148ddbdcb6a437e57417b"
+ },
+ "comfy_files": {},
+ "keys": [
+  {
+   "key": "10932164-8E3D08E7",
+   "clut": "8E3D08E7",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "cells": [
+    {
+     "cell": [
+      0,
+      0,
+      126,
+      126
+     ],
+     "energy_ratio_before": 1.0015,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0015,
+     "native_light": 832183.8
+    },
+    {
+     "cell": [
+      128,
+      0,
+      254,
+      126
+     ],
+     "energy_ratio_before": 1.0041,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0041,
+     "native_light": 1146655.5
+    },
+    {
+     "cell": [
+      0,
+      128,
+      126,
+      254
+     ],
+     "energy_ratio_before": 1.0026,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0026,
+     "native_light": 1038180.6
+    },
+    {
+     "cell": [
+      128,
+      128,
+      254,
+      254
+     ],
+     "energy_ratio_before": 0.9999,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9999,
+     "native_light": 718920.0
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-8E3D08E7.png",
+    "sha256": "0b11919073707ef8a5a263f9a368586f12556d8f546803c933c4f60d7a8ef1dc",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-8E3D08E7.png",
+    "sha256": "c9b922b17ae17e61f182f86f1a18e2d9739a0ba8d268616ac359b283b4d6cf19",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9999,
+    1.0041
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-0386F43A",
+   "clut": "0386F43A",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "Stage 1 frozen file reused byte for byte",
+   "stage1_clut_xy": [
+    112,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     112,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-0386F43A.png",
+    "sha256": "55228c4998c8172a47e705e9c90ce920f58694a970cc83c3e97af611d4cb30ae",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-0386F43A.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-0386F43A.png",
+    "sha256": "0549dd2798896eb689dc6bf617c7db4f6c2325667e26229ac0b067025b448a07",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-0386F43A.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-5F4DE3D3",
+   "clut": "5F4DE3D3",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "Stage 1 frozen file reused byte for byte",
+   "stage1_clut_xy": [
+    144,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     144,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-5F4DE3D3.png",
+    "sha256": "94a70ebe66396ec5758b9f6bf0a3d8408803b59c0e4d21da635e7cc6987be726",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-5F4DE3D3.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-5F4DE3D3.png",
+    "sha256": "90ef485283e5a8e0fdd9e21f109c020805e050536c3c6b923cc4eee881b51a2e",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-5F4DE3D3.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-66175427",
+   "clut": "66175427",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "Stage 1 frozen file reused byte for byte",
+   "stage1_clut_xy": [
+    96,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     96,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-66175427.png",
+    "sha256": "835902d21a51d0b2a622a86e01a0dbf87a6b5b9a7609cabd08e979f7ba788be5",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-66175427.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-66175427.png",
+    "sha256": "350d036c9ba0ca19810e3cea4696c66ec85944251ad0f3a8c00f4f0059ae7013",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-66175427.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-AF93AEF2",
+   "clut": "AF93AEF2",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "Stage 1 frozen file reused byte for byte",
+   "stage1_clut_xy": [
+    128,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     128,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-AF93AEF2.png",
+    "sha256": "b9d22931cfbb96f6293bdc40b19dd647b67369e354c8fc649811f84b7780d352",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-AF93AEF2.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-AF93AEF2.png",
+    "sha256": "455ef86f002fc3ed30b67645c5dc965d9fb35f560776d6955ab20aa40b92cfdc",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-AF93AEF2.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "review": [
+  "review/10932164-8E3D08E7-tile.png",
+  "review/10932164-8E3D08E7-close-16x.png",
+  "review/10932164-8E3D08E7-ingame-SIMULATION.png",
+  "review/10932164-0386F43A-tile.png",
+  "review/10932164-0386F43A-close-16x.png",
+  "review/10932164-0386F43A-ingame-SIMULATION.png",
+  "review/10932164-5F4DE3D3-tile.png",
+  "review/10932164-5F4DE3D3-close-16x.png",
+  "review/10932164-5F4DE3D3-ingame-SIMULATION.png",
+  "review/10932164-66175427-tile.png",
+  "review/10932164-66175427-close-16x.png",
+  "review/10932164-66175427-ingame-SIMULATION.png",
+  "review/10932164-AF93AEF2-tile.png",
+  "review/10932164-AF93AEF2-close-16x.png",
+  "review/10932164-AF93AEF2-ingame-SIMULATION.png"
+ ],
+ "review_note": "review sheets: native | HD tile, native | HD close crops at 16x, in-game size; every composite is a SIMULATION",
+ "known_limits": [
+  "The stage 6 CLUTs of this page are unknown. The Stage 1 explosion CLUT words also exist in the stage 6 static data (reused keys); the predicted stage 6 pairings at 160,511 are mostly blank or black.",
+  "Look is identical to the Stage 1 v2 candidate (same RGB field); acceptance of the Stage 1 candidate carries over.",
+  "Review composites are SIMULATIONS."
+ ],
+ "stage1_source": {
+  "manifest": "w2-effects/frozen/large-explosion-10932164-v2/manifest.json",
+  "stage1_v2_manifest_sha256": "e43e6c0c06e0855382f1e667f4055b643a2d09ce628211d149390f50d2b5b673",
+  "g_sha256": "bb03059e0850d956f9886798e56f8148051a49e067d6f80c923da5283d8a7197",
+  "f1_sha256": "a14e081bfde379ab56fabf91639640c40daca18554d8e3c69a666c0055bedbf9",
+  "f1_any_clut": {
+   "texels_checked": 64516,
+   "round_f_equals_native_index": 54301,
+   "any_clut_class_exact": false
+  },
+  "f6_any_clut": {
+   "texels_checked": 64516,
+   "round_f_equals_native_index": 64516,
+   "any_clut_class_exact": true
+  },
+  "hard_clamped_texels": 1,
+  "cells": [
+   [
+    0,
+    0,
+    126,
+    126
+   ],
+   [
+    128,
+    0,
+    254,
+    126
+   ],
+   [
+    0,
+    128,
+    126,
+    254
+   ],
+   [
+    128,
+    128,
+    254,
+    254
+   ]
+  ],
+  "stage1_idx_identical": true
+ },
+ "stage1_keys_checked": [
+  {
+   "key": "10932164-0386F43A",
+   "clut": "0386F43A",
+   "stage1_clut_xy": [
+    112,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     112,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-0386F43A.png",
+    "sha256": "55228c4998c8172a47e705e9c90ce920f58694a970cc83c3e97af611d4cb30ae",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-0386F43A.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-0386F43A.png",
+    "sha256": "0549dd2798896eb689dc6bf617c7db4f6c2325667e26229ac0b067025b448a07",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-0386F43A.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-5F4DE3D3",
+   "clut": "5F4DE3D3",
+   "stage1_clut_xy": [
+    144,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     144,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-5F4DE3D3.png",
+    "sha256": "94a70ebe66396ec5758b9f6bf0a3d8408803b59c0e4d21da635e7cc6987be726",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-5F4DE3D3.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-5F4DE3D3.png",
+    "sha256": "90ef485283e5a8e0fdd9e21f109c020805e050536c3c6b923cc4eee881b51a2e",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-5F4DE3D3.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-66175427",
+   "clut": "66175427",
+   "stage1_clut_xy": [
+    96,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     96,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-66175427.png",
+    "sha256": "835902d21a51d0b2a622a86e01a0dbf87a6b5b9a7609cabd08e979f7ba788be5",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-66175427.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-66175427.png",
+    "sha256": "350d036c9ba0ca19810e3cea4696c66ec85944251ad0f3a8c00f4f0059ae7013",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-66175427.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  },
+  {
+   "key": "10932164-AF93AEF2",
+   "clut": "AF93AEF2",
+   "stage1_clut_xy": [
+    128,
+    501
+   ],
+   "clut_crc_ok": true,
+   "stage6_static_positions": [
+    [
+     128,
+     501,
+     [
+      "(0, 14)"
+     ]
+    ]
+   ],
+   "reused": true,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/10932164-AF93AEF2.png",
+    "sha256": "b9d22931cfbb96f6293bdc40b19dd647b67369e354c8fc649811f84b7780d352",
+    "size": [
+     2048,
+     2048
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-2048/10932164-AF93AEF2.png"
+   },
+   "png_1024": {
+    "path": "runtime-1024/10932164-AF93AEF2.png",
+    "sha256": "455ef86f002fc3ed30b67645c5dc965d9fb35f560776d6955ab20aa40b92cfdc",
+    "size": [
+     1024,
+     1024
+    ],
+    "byte_identical_to_stage1": true,
+    "stage1_file": "C:/github/Einhander/remaster-audit/comfy-authoring/w2-effects/frozen/large-explosion-10932164-v2/runtime-1024/10932164-AF93AEF2.png"
+   },
+   "energy_ratio_range": [
+    0.982,
+    1.008
+   ],
+   "all_gates_pass": true
+  }
+ ]
+}

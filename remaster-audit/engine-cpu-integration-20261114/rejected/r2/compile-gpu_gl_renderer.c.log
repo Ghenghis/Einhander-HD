@@ -1,0 +1,17 @@
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\src\gpu_gl_renderer.c:2713:50: error: call to undeclared function 'hd_texture_pack_upload_index_incremental'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+ 2713 |     out->pack_upload_index_incremental=(uint64_t)hd_texture_pack_upload_index_incremental(s_hd_pack);
+      |                                                  ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\src\gpu_gl_renderer.c:2713:50: note: did you mean 'hd_texture_pack_upload_fragments'?
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\include/hd_texture_pack.h:245:5: note: 'hd_texture_pack_upload_fragments' declared here
+  245 | int hd_texture_pack_upload_fragments(const HdTexturePack* pack,
+      |     ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\src\gpu_gl_renderer.c:2714:35: error: no member named 'index_incremental' in 'HdTexturePackCostStats'
+ 2714 |     out->pack_index_incremental=c.index_incremental;out->pack_index_incremental_ns=c.index_incremental_ns;
+      |                                 ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\src\gpu_gl_renderer.c:2714:86: error: no member named 'index_incremental_ns' in 'HdTexturePackCostStats'
+ 2714 |     out->pack_index_incremental=c.index_incremental;out->pack_index_incremental_ns=c.index_incremental_ns;
+      |                                                                                    ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance-r2\src\gpu_gl_renderer.c:2715:38: error: no member named 'index_pointer_fixups' in 'HdTexturePackCostStats'
+ 2715 |     out->pack_index_pointer_fixups=c.index_pointer_fixups;
+      |                                    ~ ^
+4 errors generated.

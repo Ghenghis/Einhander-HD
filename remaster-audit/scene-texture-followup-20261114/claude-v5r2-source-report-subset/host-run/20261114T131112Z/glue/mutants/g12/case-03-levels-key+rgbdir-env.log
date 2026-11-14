@@ -1,0 +1,9 @@
+TIMING preload_total_ms 29.998 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 8 bytes 25781504
+TIMING draw_admit_ms 0.381 (cache lookup + level-0 hash + R1 + stub level uploads)
+TIMING draw_admit_ms_median 0.366 min 0.360 max 0.407 (21 fresh slots, warm)
+checks 38 failures 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g12\glue_harness.c:405: s_hdcm_class_dir_on && !s_hdcm_rgb_dir_on
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g12\glue_harness.c:407: s_hdcm_cache.bytes <= s_hdcm_cache.cap_bytes && s_hdcm_cache.bytes == s_hdcm_diag.preload_bytes
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g12\glue_harness.c:497: s_hdcm_diag.rejected[HDCM_E_NOFILE] == 1 && g_teximage == 0 && g_texparam == 0 && s4.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g12\glue_harness.c:514: rgbonly_untouched()

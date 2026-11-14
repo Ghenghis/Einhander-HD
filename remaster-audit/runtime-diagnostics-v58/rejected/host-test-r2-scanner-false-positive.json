@@ -1,0 +1,131 @@
+{
+  "below_normal": true,
+  "extracted": {
+    "chars": 7890,
+    "lines": 142
+  },
+  "symbol_scan": {
+    "names_checked": 57,
+    "collisions": {
+      "debug_server.c:1": 815,
+      "debug_server.c:first": 135,
+      "debug_server.c:free": 137,
+      "debug_server.c:from_frame": 16,
+      "debug_server.c:from_seq": 12,
+      "debug_server.c:id": 1145,
+      "debug_server.c:last": 35,
+      "debug_server.c:memset": 29,
+      "debug_server.c:n": 437,
+      "debug_server.c:now": 2,
+      "debug_server.c:pos": 844,
+      "debug_server.c:r": 195,
+      "debug_server.c:room": 13,
+      "debug_server.c:rows": 11,
+      "debug_server.c:scanned": 14,
+      "debug_server.c:send_fmt": 279,
+      "debug_server.c:seq": 322,
+      "debug_server.c:to_frame": 17,
+      "debug_server.c:total": 504,
+      "debug_server.c:w": 115,
+      "gpu_gl_renderer.c:1": 912,
+      "gpu_gl_renderer.c:first": 22,
+      "gpu_gl_renderer.c:free": 31,
+      "gpu_gl_renderer.c:id": 6,
+      "gpu_gl_renderer.c:last": 11,
+      "gpu_gl_renderer.c:memset": 19,
+      "gpu_gl_renderer.c:n": 536,
+      "gpu_gl_renderer.c:now": 22,
+      "gpu_gl_renderer.c:pos": 2,
+      "gpu_gl_renderer.c:r": 169,
+      "gpu_gl_renderer.c:rows": 17,
+      "gpu_gl_renderer.c:seq": 16,
+      "gpu_gl_renderer.c:total": 10,
+      "gpu_gl_renderer.c:w": 247,
+      "main.cpp:1": 1106,
+      "main.cpp:first": 64,
+      "main.cpp:free": 11,
+      "main.cpp:id": 51,
+      "main.cpp:last": 65,
+      "main.cpp:memset": 7,
+      "main.cpp:n": 532,
+      "main.cpp:now": 64,
+      "main.cpp:r": 23,
+      "main.cpp:room": 7,
+      "main.cpp:rows": 4,
+      "main.cpp:scanned": 2,
+      "main.cpp:seq": 16,
+      "main.cpp:total": 12,
+      "main.cpp:w": 52
+    },
+    "passed": false
+  },
+  "symbol_scan_control_detects_s_fp_ring": true,
+  "actual": {
+    "compile_cap8": {
+      "exit": 0,
+      "diagnostics": []
+    },
+    "main": {
+      "exit": 0,
+      "c_fails": [],
+      "json_fails": []
+    },
+    "disabled": {
+      "exit": 0,
+      "c_fails": [],
+      "ok": true
+    },
+    "unbound": {
+      "exit": 0,
+      "c_fails": [],
+      "ok": true
+    },
+    "passed": true
+  },
+  "default_capacity": {
+    "compile_exit": 0,
+    "exit": 0,
+    "c_fails": [],
+    "passed": true
+  },
+  "mutants": [
+    {
+      "name": "index: open-row write uses s_fpr_seq",
+      "caught": true
+    },
+    {
+      "name": "wrap: eviction bound off by one",
+      "caught": true
+    },
+    {
+      "name": "truncation flag dropped",
+      "caught": true
+    },
+    {
+      "name": "row budget too small",
+      "caught": true
+    },
+    {
+      "name": "owner guard removed",
+      "caught": true
+    },
+    {
+      "name": "debug_end not first-wins",
+      "caught": true
+    },
+    {
+      "name": "unclosed flag dropped",
+      "caught": true
+    },
+    {
+      "name": "multi-swap keeps last",
+      "caught": true
+    },
+    {
+      "name": "frame filter inverted",
+      "caught": true
+    }
+  ],
+  "all_mutants_caught": true,
+  "passed": false
+}

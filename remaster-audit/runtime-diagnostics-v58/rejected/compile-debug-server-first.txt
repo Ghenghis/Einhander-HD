@@ -1,0 +1,23 @@
+In file included from C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:28:
+C:\github\Einhander-wt\upload-index-hitch\windows-x64\psxrecomp\runtime\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:9458:25: error: redefinition of 's_fp_ring' with a different type: 'FramePhaseRecord[16384]' vs 'FpEntry[32768]'
+ 9458 | static FramePhaseRecord s_fp_ring[FRAME_PHASE_RING_CAP];
+      |                         ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:181:25: note: previous definition is here
+  181 | static PSX_BSS FpEntry  s_fp_ring[FP_RING_CAP];
+      |                         ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:9483:62: error: no member named 'flags' in 'FpEntry'
+ 9483 |             s_fp_ring[(s_fp_seq - 1) % FRAME_PHASE_RING_CAP].flags |= FP_FLAG_UNCLOSED;
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:9486:27: error: incompatible pointer types initializing 'FramePhaseRecord *' with an expression of type 'FpEntry *' [-Wincompatible-pointer-types]
+ 9486 |         FramePhaseRecord *r = &s_fp_ring[s_fp_seq % FRAME_PHASE_RING_CAP];
+      |                           ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:9497:23: error: incompatible pointer types initializing 'FramePhaseRecord *' with an expression of type 'FpEntry *' [-Wincompatible-pointer-types]
+ 9497 |     FramePhaseRecord *r = &s_fp_ring[(s_fp_seq - 1) % FRAME_PHASE_RING_CAP];
+      |                       ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v58-frame-phases\debug_server.c:9525:10: error: assigning to 'FramePhaseRecord' from incompatible type 'FpEntry'
+ 9525 |     *out = s_fp_ring[seq % FRAME_PHASE_RING_CAP];
+      |          ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning and 5 errors generated.

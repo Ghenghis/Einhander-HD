@@ -1,0 +1,7 @@
+TIMING preload_total_ms 24.141 (index + 2 RGB-only reads + verification + class sidecars, at init)
+PRELOAD rgbonly_ok 2 class_ok 8 bytes 25775072
+TIMING draw_admit_ms 6.723 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 5.956 min 5.789 max 6.962 (21 fresh slots, warm)
+checks 48 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g18\glue_harness.c:293: s_hdcm_diag.rgbonly_rejected[HDCM_E_HD_DIMS] == 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g18\glue_harness.c:294: s5.rgb_edges == 0 && g_teximage == 0 && g_texparam == 0

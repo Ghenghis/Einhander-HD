@@ -78,7 +78,7 @@ def prepare(label,args):
         spec["arguments"][spec["arguments"].index(flag)+1] = value
     spec.update(writable_state=str(state),user_cards_mounted=False,
                 settings_sha256=ui.sha(runtime / "settings.toml"))
-    spec["environment_overrides"].update(EIN_DEBUG_PORT="4376",PSX_REWIND="1" if rewind else "0",
+    spec["environment_overrides"].update(EIN_DEBUG_PORT="4376",PSX_DISPLAY_RING="0",PSX_REWIND="1" if rewind else "0",
         PSX_REWIND_DEPTH="50",PSX_REWIND_INTERVAL="15",PSX_REWIND_FMV_INTERVAL=str(getattr(args,'rewind_fmv_interval',4)),
         PSXRECOMP_HD_DUMP="",PSXRECOMP_HD_SOURCE_SIDECARS="",PSXRECOMP_HD_PROOF_LOG="",
         PSXRECOMP_HD_SOURCE_CACHE_KEYS="",
@@ -100,7 +100,7 @@ def prepare(label,args):
     report.update(evidence=str(directory),debug_port=4376,variant=label,
         route_reference_profile="hd" if hd else "native-stock",
         private_seed=receipt,pacing_profile=dict(hd_pack_enabled=hd,rewind_enabled=rewind,
-        source_sidecars=False,recorder=False,video_capture=False,ram_writes=False,
+        source_sidecars=False,display_history_ring=spec["environment_overrides"]["PSX_DISPLAY_RING"] == "1",recorder=False,video_capture=False,ram_writes=False,
         timer_assistance=False,gl_present_probe=False,gl_timer_queries=bool(args.gpu_queries),
         world_sampling=bool(args.world_sampling),runtime_build=base.ref(args.runtime.resolve()) if args.runtime else None,
         hd_cpu_profile=bool(getattr(args,'cpu_profile',0)),

@@ -1,0 +1,714 @@
+$ compile class_mip.c -> rc 0
+
+$ run test_class_mip.exe -> rc 0
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 0 (r4 0)
+METRIC f1b_disc_inset7px_displaced 0
+METRIC f1c_repair_passes 2 became_visible 83
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:133: r.r2_displaced_px > 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 489
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0
+
+$ compile mutant_class_mip.c -> rc 0
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\runs-v2b\20261114T100659Z\mutant_class_mip.c:66:97: warning: unused parameter 'metric' [-Wunused-parameter]
+   66 | static double rect_dist(double x, double y, double rx0, double ry0, double rx1, double ry1, int metric) {
+      |                                                                                                 ^
+1 warning generated.
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 119
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 16
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 3
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:459: got[k] == exp_r2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:459: got[k] == exp_r2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:465: got[0] > got[1] && got[2] > got[3] && got[0] > got[2] && got[2] > got[4] && got[4] == 4
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 16
+METRIC f7_r2_px bound=0.25 metric=1 4
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 16
+checks 7410 failures 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:459: got[k] == exp_r2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:459: got[k] == exp_r2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:459: got[k] == exp_r2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:465: got[0] > got[1] && got[2] > got[3] && got[0] > got[2] && got[2] > got[4] && got[4] == 4
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:471: cm_flags_ex(im, w, w, ncls, T, T, S, 0.5, 2, flag) == -1
+
+$ compile mutant_class_mip.c -> rc 0
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\runs-v2b\20261114T100659Z\mutant_class_mip.c:120:1: warning: non-void function does not return a value in all control paths [-Wreturn-type]
+  120 | }
+      | ^
+1 warning generated.
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 1 became_visible 80
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 9
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:70: r.r2_displaced_px >= 1 && r.r4_island_px >= 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:162: st.passes == 2 && st.residual_violations == 0 && st.visible_rgb_changed == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:165: px_a(im, w, 18, 10) == 127
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0
+
+$ compile mutant_class_mip.c -> rc 0
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\runs-v2b\20261114T100659Z\mutant_class_mip.c:108:23: warning: unused variable 'a' [-Wunused-variable]
+  108 |         const uint8_t a = rgba[(size_t)p * 4 + 3];
+      |                       ^
+1 warning generated.
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 1 became_visible 80
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 9
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:70: r.r2_displaced_px >= 1 && r.r4_island_px >= 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:162: st.passes == 2 && st.residual_violations == 0 && st.visible_rgb_changed == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:165: px_a(im, w, 18, 10) == 127
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:460: f7_count(flag, n, 4) == 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 1 became_visible 80
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:159: cm_repair(im, w, h, ncls, NULL, TW, TH, S, &st) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:162: st.passes == 2 && st.residual_violations == 0 && st.visible_rgb_changed == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:163: cm_validate(im, w, h, ncls, TW, TH, S, &r) == 0 && r.cells_bad == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:165: px_a(im, w, 18, 10) == 127
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 0
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 7
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:63: r.r1_centre_bad == 0 && r.pinhole_cells >= 1 && r.r3_uniform_bad_px == (uint64_t)(S * S - 1)
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:461: f7_count(flag, n, 16) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:461: f7_count(flag, n, 16) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:461: f7_count(flag, n, 16) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:461: f7_count(flag, n, 16) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:461: f7_count(flag, n, 16) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:75: st.visible_rgb_changed == 0 && st.became_visible == 4 && st.rgb_from_cell == 4 && st.became_cutout == 1
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 32
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 256 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 118
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:252: d <= fp * fp
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 4
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.000 min 119 energy_var -0.0
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 21
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.000 min 59 energy_var 0.0
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 12.340 min 30 energy_var 185250.4
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 21
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:248: visL >= 1
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 89.5
+METRIC f5_unfilled_build_level2_min_visible_luma 44.3
+METRIC f5_unfilled_build_level3_min_visible_luma 91.6
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 3
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:397: fabs(mnu - ref) < 1.0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:397: fabs(mnu - ref) < 1.0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:397: fabs(mnu - ref) < 1.0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 4850910.1
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 1335570.9
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 72916.7
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 24.2 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:410: fabs(mn[2] - ref) < 1.0
+
+$ compile mutant_class_mip.c -> rc 0
+
+$ run mutant.exe -> rc 1
+METRIC f1_clean_r5_fringe_px 48
+METRIC f1_pinhole_cells 1
+METRIC f1b_disc_inset0_violations 0
+METRIC f1b_disc_inset2px_violations 6 (r4 0)
+METRIC f1b_disc_inset7px_displaced 505
+METRIC f1c_repair_passes 2 became_visible 90
+METRIC f2_worst_cell_coverage_error_px 12
+METRIC f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_4x_proposed_count_var 720.621 min 118 energy_var 10818234.5
+METRIC f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_8x_proposed_count_var 1001.688 min 0 energy_var 15037709.0
+METRIC f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f2_minify_12x_proposed_count_var 119.496 min 0 energy_var 1793920.2
+METRIC f3_seam_max_blue_leak proposed 0 naive 82 (of 190)
+METRIC f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0
+METRIC f5_unfilled_build_level1_min_visible_luma 179.1
+METRIC f5_unfilled_build_level2_min_visible_luma 179.1
+METRIC f5_unfilled_build_level3_min_visible_luma 179.1
+METRIC f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)
+METRIC f7_r2_px bound=0.25 metric=0 119
+METRIC f7_r2_px bound=0.25 metric=1 116
+METRIC f7_r2_px bound=0.50 metric=0 16
+METRIC f7_r2_px bound=0.50 metric=1 4
+METRIC f7_r2_px bound=1.00 metric=0 4
+checks 7410 failures 5
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:266: vc1 < vc0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:265: mn1 > 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:266: vc1 < vc0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:265: mn1 > 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\proto-v2b\test_class_mip.c:266: vc1 < vc0

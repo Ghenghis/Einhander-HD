@@ -1,0 +1,6 @@
+TIMING preload_total_ms 21.460 (index + 2 RGB-only reads + verification + class sidecars, at init)
+PRELOAD rgbonly_ok 2 class_ok 8 bytes 25775072
+TIMING draw_admit_ms 7.023 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 6.104 min 5.903 max 7.943 (21 fresh slots, warm)
+checks 48 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g02\glue_harness.c:247: g_u[LOC_CLASS] == 0 && g_u[LOC_RGB] == 0 && g_min == -7

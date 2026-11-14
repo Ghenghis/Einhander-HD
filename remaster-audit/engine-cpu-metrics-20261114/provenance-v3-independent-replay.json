@@ -1,0 +1,63 @@
+{
+  "at_utc": "2026-11-14T09:30:01.627833+00:00",
+  "ready_sha256": "4d4b2016e08a084f14550cf99c22001f965834d207831c17155be370e8432590",
+  "source_and_binary_pins_verified": true,
+  "v2_and_canonical_bases_unchanged": true,
+  "runs": [
+    {
+      "name": "view_v3_test",
+      "sha256": "369a751bf519382f94c4eec82f65ec237b8f4bfe0752bf9b241e3454b6243c1b",
+      "exit": 0,
+      "stdout_tail": [
+        "JSON:{\"id\":5,\"ok\":true,\"census\":1,\"view_payload\":1,\"pgxp_enabled\":1,\"geometry_correction\":0,\"texture_correction\":0,\"payload\":{\"produced\":65596,\"records_overwritten\":60,\"commit_ok\":65570,\"commit_mismatch\":0,\"lookups\":80,\"hits\":64,\"no_shadow\":8,\"no_source\":3,\"value_mismatch\":1,\"no_view\":1,\"evicted\":3,\"incoherent\":0,\"alloc_fail\":1,\"seq_wraps\":0,\"record_bytes\":80,\"alloc_bytes\":7340032},\"ring\":{\"cap\":4096,\"total\":0,\"alloc_fail\":1},\"triangles\":{\"prims\":0,\"all_hit\":0,\"partial\":0,\"none\":0,\"verts\":0,\"vert_hits\":0,\"hit_committed\":0,\"hit_ring_live\":0,\"hit_diverged\":0,\"all_hit_one_command\":0,\"miss\":{\"no_source\":0,\"disabled\":0,\"no_shadow\":0,\"value_mismatch\":0,\"no_view\":0,\"evicted\":0,\"incoherent\":0},\"lag\":{\"0\":0,\"1\":0,\"2\":0,\"3plus\":0,\"future\":0,\"wrapped\":0},\"hit_xform_match\":0,\"hit_flags\":{\"xy_sat\":0,\"xy_clamp\":0,\"ir_sat\":0,\"div_ovf\":0,\"sz_sat\":0,\"ws_squash\":0,\"dome\":0,\"mac_ovf44\":0,\"mac_wrap32\":0}},\"quads\":{\"prims\":0,\"all_hit\":0,\"partial\":0,\"none\":0,\"verts\":0,\"vert_hits\":0,\"hit_committed\":0,\"hit_ring_live\":0,\"hit_diverged\":0,\"all_hit_one_command\":0,\"miss\":{\"no_source\":0,\"disabled\":0,\"no_shadow\":0,\"value_mismatch\":0,\"no_view\":0,\"evicted\":0,\"incoherent\":0},\"lag\":{\"0\":0,\"1\":0,\"2\":0,\"3plus\":0,\"future\":0,\"wrapped\":0},\"hit_xform_match\":0,\"hit_flags\":{\"xy_sat\":0,\"xy_clamp\":0,\"ir_sat\":0,\"div_ovf\":0,\"sz_sat\":0,\"ws_squash\":0,\"dome\":0,\"mac_ovf44\":0,\"mac_wrap32\":0}},\"recent\":[]}",
+        "checks 74 failures 0"
+      ],
+      "failures": [],
+      "tcp_errors": []
+    },
+    {
+      "name": "v1_test_on_v3_sources",
+      "sha256": "2f675cf2ec2de8c04065d9281c9ad231d03a63a9bbf03a4459f2a56e65747a65",
+      "exit": 0,
+      "stdout_tail": [
+        "view storage: record 80 B x 65536 + RAM tags 2 MiB = 7340032 B allocated",
+        "checks 137 failures 0 | produced 327721 commit_ok 327707 commit_mismatch 4 hits 23 evicted 1 no_view 2 value_mismatch 1 incoherent 0"
+      ],
+      "failures": [],
+      "tcp_errors": []
+    },
+    {
+      "name": "pgxp_test_on_v3",
+      "sha256": "94721b5288f1d669a91b7b556343b29ac3142ca91277172f532a535b105d2230",
+      "exit": 0,
+      "stdout_tail": [
+        "test_pgxp: all checks passed"
+      ],
+      "failures": [],
+      "tcp_errors": []
+    },
+    {
+      "name": "gte_register_access_test_on_v3",
+      "sha256": "1fa5951683a45d3a3ee1a9b9f714a41d70e3bf190886bca79f2a62253148eac2",
+      "exit": 0,
+      "stdout_tail": [
+        "PASS: canonical GTE register helpers match GTEState transfer oracle"
+      ],
+      "failures": [],
+      "tcp_errors": []
+    }
+  ],
+  "all_four_pass": true,
+  "author_mutants": {
+    "caught": 19,
+    "total": 19,
+    "root_repeated": false
+  },
+  "one_logical_cpu": [
+    15
+  ],
+  "below_normal": true,
+  "gpu_work": false,
+  "game_executed": false,
+  "user_gpu_hold_unchanged": true
+}

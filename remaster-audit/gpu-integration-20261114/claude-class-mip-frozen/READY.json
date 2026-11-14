@@ -1,0 +1,39 @@
+{
+ "name": "class-mip-v2b-breakdown-v1",
+ "owner": "claude-einhander",
+ "frozen_utc": "2026-11-14T10:39:41.410339+00:00",
+ "status": "PRIVATE analysis + prototype; nothing composed; not live-tested; no GPU used",
+ "contents": {
+  "docs": [
+   "DESIGN.md",
+   "DESIGN-V2.md",
+   "RENDERER-PROPOSAL.md",
+   "BREAKDOWN-V2.md"
+  ],
+  "tools": [
+   "breakdown_v2b.py",
+   "review_breakdown.py",
+   "shift_audit.py",
+   "run_class_mip_v2b.py"
+  ],
+  "proto": "proto-v2b (proto-v2 rules + cm_flags_ex)",
+  "runs": {
+   "runs-v2b/20261114T100659Z": "fixtures: pass, 7410 checks, 16/16 mutants",
+   "runs-breakdown-v2b/20261114T102254Z": "corrected drawn-error breakdown; default policy == runs-f6-v2 exactly",
+   "reviews-breakdown/20261114T103414Z": "14 review sheets (hash-verified)",
+   "runs-shift/20261114T103545Z": "registration-shift audit (40 pages; FFT == direct at d=0)"
+  }
+ },
+ "key_results": {
+  "fixtures": "7410 checks, 0 failures, 16/16 mutants",
+  "world_v4_visible_transparency_px": 1583169,
+  "world_v4_visible_transparency_keys": 241,
+  "world_v4_visible_blend_px": 12929,
+  "world_v4_mask_bit_only_px": 211124,
+  "rise_82831823_visible_px": 1415381,
+  "crosscheck_vs_runs_f6_v2": "equal (all groups)",
+  "shift_audit": "no clean registration offset; shape changes"
+ },
+ "sha256sums": "306b0b6bf089f4bd4cc6c8a6cec1cead5133016b7eb1111f4fb69ba31adac640",
+ "files": 44
+}

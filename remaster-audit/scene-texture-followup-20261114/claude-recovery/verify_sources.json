@@ -1,0 +1,96 @@
+{
+ "1_result_sha_matches_index": true,
+ "1_verdict": "pass",
+ "2_inputs_mismatch": {},
+ "3_working_vs_run3_inputs": {
+  "class_mip.c": {
+   "working_equals_run3_input": true
+  },
+  "class_mip.h": {
+   "working_equals_run3_input": true
+  },
+  "DESIGN-V4.md": {
+   "working_equals_run3_input": true
+  },
+  "DESIGN-V5.md": {
+   "working_equals_run3_input": true
+  },
+  "glue_harness.c": {
+   "working_equals_run3_input": true
+  },
+  "hd_class_mips.inc": {
+   "working_equals_run3_input": true
+  },
+  "hdcm_tool.c": {
+   "working_equals_run3_input": true
+  },
+  "make_patch.py": {
+   "working_equals_run3_input": true
+  },
+  "run_host.py": {
+   "working_equals_run3_input": true
+  },
+  "test_hd_class_mips.c": {
+   "working_equals_run3_input": true
+  }
+ },
+ "5_selftest_build_files": {
+  "build_selftest.py": true,
+  "gl_selftest_classmips.c": true,
+  "gl_selftest_classmips.exe": true,
+  "hd_class_mips.inc": true,
+  "HD_FS.frag": true,
+  "TEX_VS.vert": true
+ },
+ "3_working_vs_selftest_copies": {
+  "gl_selftest_classmips.c": true,
+  "build_selftest.py": true,
+  "hd_class_mips.inc": true
+ },
+ "4_class_sidecars_ok": [
+  8,
+  8
+ ],
+ "4_rgb_sidecars_ok": [
+  136,
+  136
+ ],
+ "6_text_files_with_nul": [],
+ "7_working_text_sizes": {
+  "freeze_version.py": {
+   "bytes": 6225,
+   "nul": 0,
+   "lines": 101
+  },
+  "build_selftest.py": {
+   "bytes": 6558,
+   "nul": 0,
+   "lines": 103
+  },
+  "FAILED-RUNS.md": {
+   "bytes": 4301,
+   "nul": 0,
+   "lines": 17
+  },
+  "DESIGN-V5.md": {
+   "bytes": 12188,
+   "nul": 0,
+   "lines": 204
+  },
+  "census_rgb_edges.py": {
+   "bytes": 6463,
+   "nul": 0,
+   "lines": 123
+  },
+  "ab_targets.py": {
+   "bytes": 10526,
+   "nul": 0,
+   "lines": 186
+  },
+  "gl_selftest_classmips.c": {
+   "bytes": 27630,
+   "nul": 0,
+   "lines": 525
+  }
+ }
+}

@@ -1,0 +1,76 @@
+{
+ "normal-r4b": {
+  "leg": "normal-r4b",
+  "started_utc": "2026-11-14T07:03:46.197577+00:00",
+  "arguments": [
+   "C:/Python314/python.exe",
+   "-u",
+   "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\run_frame_phases.py",
+   "--batch",
+   "display58-power-normal-r4b",
+   "--rewind",
+   "1",
+   "--run-prepared"
+  ],
+  "profile_ui_observation": {
+   "selected_program": "Einhander_HD_PowerProbe.exe",
+   "power_management": "Global - Normal",
+   "observed_via": "NVIDIA App > Graphics > Program Settings; screenshot verified private program heading and Power Management Mode Global - Normal",
+   "user_approved_temporary_test_and_restore": true,
+   "global_settings_changed": false,
+   "other_program_settings_changed": false
+  },
+  "gpu_arguments": [
+   "nvidia-smi",
+   "--id=0",
+   "--query-gpu=timestamp,index,pstate,clocks.current.graphics,clocks.current.memory,memory.used,memory.total,utilization.gpu",
+   "--format=csv",
+   "--loop-ms=1000"
+  ],
+  "executable_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+  "cpu_process_sampler": false,
+  "runner_pid": 27108,
+  "ended_utc": "2026-11-14T07:06:58.242956+00:00",
+  "runner_exit": 0,
+  "initial_cache_sha256": "5d516ec289bc2320f0738a7c583ccdfb59711921f095bb33fcdbaf398a4aac0c",
+  "initial_cache_entries": 4405,
+  "source_receipt_sha256": "2487134bec4460a5c4d884742730b0d049ed00245d95ebf0bdeb501861c75f00"
+ },
+ "maximum-r5b": {
+  "leg": "maximum-r5b",
+  "started_utc": "2026-11-14T07:07:56.707408+00:00",
+  "arguments": [
+   "C:/Python314/python.exe",
+   "-u",
+   "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\run_frame_phases.py",
+   "--batch",
+   "display58-power-maximum-r5b",
+   "--rewind",
+   "1",
+   "--run-prepared"
+  ],
+  "profile_ui_observation": {
+   "selected_program": "Einhander_HD_PowerProbe.exe",
+   "power_management": "Prefer maximum performance",
+   "observed_via": "NVIDIA App > Graphics > Program Settings; verified private program heading Einhander_HD_PowerProbe.exe and button Power Management Mode Prefer maximum performance (957/958)",
+   "user_approved_temporary_test_and_restore": true,
+   "global_settings_changed": false,
+   "other_program_settings_changed": false
+  },
+  "gpu_arguments": [
+   "nvidia-smi",
+   "--id=0",
+   "--query-gpu=timestamp,index,pstate,clocks.current.graphics,clocks.current.memory,memory.used,memory.total,utilization.gpu",
+   "--format=csv",
+   "--loop-ms=1000"
+  ],
+  "executable_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+  "cpu_process_sampler": false,
+  "runner_pid": 23736,
+  "ended_utc": "2026-11-14T07:11:09.887560+00:00",
+  "runner_exit": 0,
+  "initial_cache_sha256": "5d516ec289bc2320f0738a7c583ccdfb59711921f095bb33fcdbaf398a4aac0c",
+  "initial_cache_entries": 4405,
+  "source_receipt_sha256": "82b39f0890e192f1c62d56cfc4759d29b33f720abb8850edff4984c9a864fd81"
+ }
+}

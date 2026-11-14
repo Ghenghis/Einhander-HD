@@ -1,5 +1,7 @@
 # Claude remaining work
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](../docs/RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 Updated November 13, 2026. The user requires substantial continuous work through
 actual end-to-end completion. This is an execution backlog, not a completion claim.
 Read the Hermes queue as `claude-einhander`, claim the highest eligible item,

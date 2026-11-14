@@ -1,0 +1,132 @@
+{
+ "scope": "Completed observed-focus diagnostics; not a stutter/audio fix or release acceptance",
+ "original_frozen_diagnostic_package_unchanged": true,
+ "runs": {
+  "r2": {
+   "source_proof_sha256": "7eff86734d9a7f63fbdfe3cd73ada9cb1eca1a9a4a374b9864704bc949bb577c",
+   "source_local_batch": "display58-phases-observed-r2",
+   "extracted_observations_sha256": "9864797b4229364a16ebe0b3d1e19a9dad53cc74d7834b52d0f0277e81746b7a",
+   "valid_pairs_independently_checked": 7175,
+   "measured_frame_bracket": [
+    3044,
+    10218
+   ],
+   "owned_exit": 0,
+   "port_closed": true,
+   "focus_true_samples": 0,
+   "observation_count": 121
+  },
+  "r3": {
+   "source_proof_sha256": "f8d58c217d8af6c37ce678b5595d212c332321ee2f66b348b073d7c7020da471",
+   "source_local_batch": "display58-phases-resource-r3",
+   "extracted_observations_sha256": "963e3893fe4e3a2dd905d25c41610c4f387512496cd64ce421fd7237b7d2d343",
+   "valid_pairs_independently_checked": 7198,
+   "measured_frame_bracket": [
+    3046,
+    10243
+   ],
+   "owned_exit": 0,
+   "port_closed": true,
+   "focus_true_samples": 21,
+   "observation_count": 121
+  }
+ },
+ "files": [
+  {
+   "path": "analysis-contract.json",
+   "bytes": 1173,
+   "sha256": "045308be3d2ec63cb90da49fea84cd7baca7c22ef045af84ed46c39df37db6c7"
+  },
+  {
+   "path": "analyze_frame_phases.py",
+   "bytes": 7112,
+   "sha256": "424955a7140f5d07f133c0916261e5fca1b3154551245cf713510e7d2d7c701d"
+  },
+  {
+   "path": "correlate_audio_stalls.py",
+   "bytes": 4056,
+   "sha256": "049d623a7a136984535cf270bc5f7a96e59b14dd5c22c977d98dd43dfe7aa8c0"
+  },
+  {
+   "path": "correlate_swap_uploads.py",
+   "bytes": 3496,
+   "sha256": "fa8d55b256c693cb2b9dfefdbc08799041dc110cd5c289857f913342232535ed"
+  },
+  {
+   "path": "gpu0-memory.csv",
+   "bytes": 12742,
+   "sha256": "86741a29660d12a981d50545fbda74026236b390acf5b5377a1072187f9cc15d"
+  },
+  {
+   "path": "host-cpu-observations.jsonl",
+   "bytes": 80381,
+   "sha256": "23acf4d7ca7fa7792da43da1cce1dc870b3b79d5306d62f39bf98931a460977c"
+  },
+  {
+   "path": "prepare-r3.json",
+   "bytes": 5051,
+   "sha256": "1cea02c215730789ce9798886b95d193affa41273da066b7cd8d8a15cb961865"
+  },
+  {
+   "path": "r2-analysis.json",
+   "bytes": 7456,
+   "sha256": "f95ba684b44538d80c780dc35983af938f8e7381ea9d5a41f2e50fb8424f973b"
+  },
+  {
+   "path": "r2-audio.json",
+   "bytes": 26716,
+   "sha256": "918466f72b4c4a9446411259cdb7584d905bd76f56f2e56992693ec22b1d8209"
+  },
+  {
+   "path": "r2-observations.json",
+   "bytes": 2899101,
+   "sha256": "9864797b4229364a16ebe0b3d1e19a9dad53cc74d7834b52d0f0277e81746b7a"
+  },
+  {
+   "path": "r2-uploads.json",
+   "bytes": 9035,
+   "sha256": "38d3ce4a82052a9f729d402e3162a35bb377eea062c71cdec80a2364639edf61"
+  },
+  {
+   "path": "r3-analysis.json",
+   "bytes": 7577,
+   "sha256": "bb870ff1ed31bb12fd390af85a7f3a30ecbdf8dfb80f01d19fa86c6eb835912b"
+  },
+  {
+   "path": "r3-audio.json",
+   "bytes": 26733,
+   "sha256": "925f5723b6fc437fa82dadb490f91324f82a1b57550c871b4f26c6141a1149a8"
+  },
+  {
+   "path": "r3-launch.json",
+   "bytes": 1014,
+   "sha256": "eee82d68ec31b0ddd128d06af9d3de89f2eb322fdde72fdd797721318bd22726"
+  },
+  {
+   "path": "r3-observations.json",
+   "bytes": 2905706,
+   "sha256": "963e3893fe4e3a2dd905d25c41610c4f387512496cd64ce421fd7237b7d2d343"
+  },
+  {
+   "path": "r3-uploads.json",
+   "bytes": 9048,
+   "sha256": "c38eec547c189570715ded46380b78f8890b87203bfa139a28e5084b847d8398"
+  },
+  {
+   "path": "README.md",
+   "bytes": 2584,
+   "sha256": "625d2dd70247dc56a2e145ff8f5e979e51b701a9587a50f01447cf711e08b8b1"
+  },
+  {
+   "path": "test_analyze_frame_phases.py",
+   "bytes": 3183,
+   "sha256": "5b966e2bf4fc9c9ff2167659010bcfa4371f406a74668ca52250be71c539294f"
+  },
+  {
+   "path": "verify_results.py",
+   "bytes": 2536,
+   "sha256": "b334eea45bfc37e369c772909df284b4f607902bd00faad46d3c1f534387d824"
+  }
+ ],
+ "public_audio_scope_metadata_corrected": "Focus counts and open-cycle binning scope; original numeric analysis unchanged"
+}

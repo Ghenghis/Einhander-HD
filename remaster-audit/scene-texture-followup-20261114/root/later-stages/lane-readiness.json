@@ -1,0 +1,385 @@
+{
+  "observed_utc": "2026-11-14T13:17:12.795248+00:00",
+  "stages": [
+    {
+      "stage": 2,
+      "candidate_keys": 39,
+      "runtime_pngs": 78,
+      "candidate_selection": {
+        "phase_prep_v2": 8,
+        "sky_ground_retained_v2": 1,
+        "sky_ground_v3": 3,
+        "train_cars_v4": 20,
+        "opening_fx_v2": 2,
+        "opening_fx_v3": 1,
+        "opening_fx_retained_v1": 4
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-prep-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-prep-v2\\manifest.json",
+          "manifest_sha256": "4d3c33969637c393d2bd2cfda81969633bd66f62d53ebed2302cffa029a84db9",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-sky-ground-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-sky-ground-v2\\manifest.json",
+          "manifest_sha256": "10caeb225b12ce68f23656e6c9c3599970dbf70d9dda262de3252c97c552df1d",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-sky-ground-v3",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-sky-ground-v3\\manifest.json",
+          "manifest_sha256": "c3c7c41ed8a1209af9dcb82662e3154f32a819b5813e924c9cf88caa39fcc7d0",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-train-cars-v4",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-train-cars-v4\\manifest.json",
+          "manifest_sha256": "28821a39c2cd59704d4e276ff2f2e0b7fbc1d0c6c5cfb8737f8a6129fafcdeb2",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v1\\manifest.json",
+          "manifest_sha256": "304090d81ba9248841d5d3439d1a7ca6ab3bb349363a7cb5cf96c3c8e66cc7ab",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v2\\manifest.json",
+          "manifest_sha256": "33b18cbbebea36fd5bed7a307710cdfe1c7e748d1a41726ac1bc4a348c681421",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v3",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage2\\frozen\\stage2-opening-fx-v3\\manifest.json",
+          "manifest_sha256": "66805d2004ffeffefe321455d9cf5f225f837ddc7530a130a17b2815d8ebe139",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "Live source/CLUT confirmation",
+        "Full-rate draw/UV logs",
+        "Train/ground fly-past and shimmer",
+        "Mechanical shape and integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s2 (historical assignment; active model not verified)",
+      "independently_ready_work": "Review retained train/ground/FX selections and reconcile phase keys. Prepare strict whole-cell class audit; preserve v2/v3 smoke alternatives and native mission text.",
+      "source_acquisition_task": "STOCK-S2-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S2.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    },
+    {
+      "stage": 3,
+      "candidate_keys": 39,
+      "runtime_pngs": 78,
+      "candidate_selection": {
+        "machinery_and_walls": 25,
+        "signage_props": 14
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-machinery-walls-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-machinery-walls-v1\\manifest.json",
+          "manifest_sha256": "184e8ad8558826ca75177d3e05293d279d4aa6b28eb4eab2a6c6050ba58cd1e0",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-signage-props-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-signage-props-v1\\manifest.json",
+          "manifest_sha256": "d1b212e91777310f25fa433227cfb1333d8ba838a5de1e7ed98239748b675282",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-machinery-walls-material-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage3\\frozen\\stage3-machinery-walls-material-v1\\manifest.json",
+          "manifest_sha256": "a0adb43980521d0f605390a0236b09bb22d5d8399ef98982bd0c6946e121bdfa",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "Live palette/UV and wall motion",
+        "Material choice",
+        "Integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s3 (historical assignment; active model not verified)",
+      "independently_ready_work": "Review documented dither/blob defects in E49BC3F1/AA5DBEF2. Prepare a new isolated repair proposal and strict class audit; do not ship the documented rejected cells.",
+      "source_acquisition_task": "STOCK-S3-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S3.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    },
+    {
+      "stage": 4,
+      "candidate_keys": 11,
+      "runtime_pngs": 22,
+      "candidate_selection": {
+        "world": 6,
+        "enemies": 3,
+        "effects": 2
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-world-2-13-v3",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-world-2-13-v3\\manifest.json",
+          "manifest_sha256": "0d80d6867ab9e2b91e194f961f7c129f1f8795be6ba5d98ab78ce7311c678bfc",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-enemies-2-13-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-enemies-2-13-v2\\manifest.json",
+          "manifest_sha256": "3a0e7aeb1265d44f60db51ea08cb679a8383235b33a493c4caa0766c447907db",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-effects-2-13-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-effects-2-13-v2\\manifest.json",
+          "manifest_sha256": "0d056a66ac4d59fbeef78020d1703c9a123a05264a59aa73ea0ed41419645faa",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-effects-2-13-v3",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage4\\frozen\\s4-effects-2-13-v3\\manifest.json",
+          "manifest_sha256": "53dd01ed5d6edaaf7eac148bc2331c428ab5e87f9aa45128280917753c7a4bce",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "Shared05E1881C panorama not built",
+        "Live palette/UV/motion/realism",
+        "Deferred static-source scope",
+        "Integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s4 (historical assignment; active model not verified)",
+      "independently_ready_work": "Reconcile shared 05E1881C source ownership with Stage5; inventory the deferred233 static keys and the world/effects look alternatives. Prepare strict class audit.",
+      "source_acquisition_task": "STOCK-S4-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S4.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    },
+    {
+      "stage": 5,
+      "candidate_keys": 12,
+      "runtime_pngs": 24,
+      "candidate_selection": {
+        "world": 5,
+        "duerer_armour": 5,
+        "effects": 2
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\manifest.json",
+          "manifest_sha256": "d6f088ef96e5284b9c23f674033c7d19203f953a1023b2b4bfa353c6670d16dc",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\manifest.json",
+          "manifest_sha256": "4d25b6210835ea27537e0f5a075a3787bbb8e5ef10eca08172d1f04dec889ed8",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1\\manifest.json",
+          "manifest_sha256": "ab0920be08d31d18e3223bc70c8c8b8475fadf67d2a41265f214142db25eaa16",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "Shared panorama",
+        "Three8bpp regions",
+        "Live palette/UV/motion",
+        "Integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s5 (historical assignment; active model not verified)",
+      "independently_ready_work": "Separate three likely8bpp Duerer subregions from4bpp assumptions; map exact capture fields. Reconcile shared panorama and245 deferred static keys. Prepare strict class audit.",
+      "source_acquisition_task": "STOCK-S5-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S5.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    },
+    {
+      "stage": 6,
+      "candidate_keys": 101,
+      "runtime_pngs": 202,
+      "candidate_selection": {
+        "batch2": 83,
+        "initial_explosion": 5,
+        "initial_bolts": 3,
+        "initial_camouflage": 6,
+        "initial_smoke": 4
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-camo-craft-CB07BBCB-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-camo-craft-CB07BBCB-v1\\manifest.json",
+          "manifest_sha256": "59c8403ba3e3692d857b70fe38230819aecabd31e60d70c3f820aba7c615a09b",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\manifest.json",
+          "manifest_sha256": "753ed0451e1ad4ac382b2b051cda9ea712c7824ab471148ddf83afeca3467395",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\manifest.json",
+          "manifest_sha256": "d8575928205762ab387d990f37e82d7d02d37ab1713de8191bbeb755b116b7b1",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\manifest.json",
+          "manifest_sha256": "f3e99295240e0e0ff334c168d1d15a42fc37f9efe5c88a550384fe1494e385aa",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram320-0-43C26C42-61A869E5-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram320-0-43C26C42-61A869E5-v1\\manifest.json",
+          "manifest_sha256": "ad2a5d560476fd7f75fab4d6da48580577b9979cbb91bfa59d93468b8eb38946",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram384-0-8F498326-fx-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram384-0-8F498326-fx-v2\\manifest.json",
+          "manifest_sha256": "034501318cca081a0226a6a5363029690e762696c18a26d65d0efaae9a23e85b",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram448-0-03F5CF11-A5969BC9-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram448-0-03F5CF11-A5969BC9-v1\\manifest.json",
+          "manifest_sha256": "4fc87e9b04c02f993a3488910223e0f544a568c6f1c09017f302b866abc3dbc7",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram704-0-20961255-fx-v2",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram704-0-20961255-fx-v2\\manifest.json",
+          "manifest_sha256": "b26dd7aba70f7adb89d0c81c98e70f2f8833a75f493fd203cd7f9597c893ce2a",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "GP0 hull part masks",
+        "Residency and ordered animation",
+        "Live source/CLUT confirmation",
+        "Separate timer-failure outcome",
+        "Integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s6 (historical assignment; active model not verified)",
+      "independently_ready_work": "Keep101-key manifest total (83+18), preserve failed43C26C42 revision, reconcile replacement passes and GP0 part-mask requests. Prepare strict class audit.",
+      "source_acquisition_task": "STOCK-S6-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S6-appendix.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    },
+    {
+      "stage": 7,
+      "candidate_keys": 26,
+      "runtime_pngs": 52,
+      "candidate_selection": {
+        "fleet_parts": 22,
+        "backdrop": 2,
+        "planet_pairings": 2
+      },
+      "candidate_folders": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-fleet-parts-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-fleet-parts-v1\\manifest.json",
+          "manifest_sha256": "9513758ef388861f97b4578984e3dc73d3305c5223a31d8adf033f2985bc1ddf",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-space-backdrop-30BB2999-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-space-backdrop-30BB2999-v1\\manifest.json",
+          "manifest_sha256": "fe7129c59135c6b7cf39bd2eb294b0e162aa57fa9f81758ac5af7bc5d5e92798",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        },
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-planet-limb-v1",
+          "manifest": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage7\\frozen\\stage7-planet-limb-v1\\manifest.json",
+          "manifest_sha256": "c438aa5f445ad52f24a3fde357daca733975eff8a757bb5bfaf5459206ef4c23",
+          "manifest_status": "candidate",
+          "note": "Relevant retained candidate/alternative; per-key selection rules apply, do not add all folder totals."
+        }
+      ],
+      "provenance": "candidate_predicted_static",
+      "missing_coverage": [
+        "Confirm inferred planet pairing",
+        "Live source/CLUT identity",
+        "Keyed exports for masters",
+        "Destruction/transmission/motion",
+        "Integration"
+      ],
+      "assigned_lane_in_ledger": "lane-s7 (historical assignment; active model not verified)",
+      "independently_ready_work": "Reconcile C4FDEDD2-EAD968A1 inferred pairing, five export-less masters and14 dense-kanji fallbacks. Prepare source request and strict class audit before admission.",
+      "source_acquisition_task": "STOCK-S7-SOURCE-CONFIRM",
+      "source_gate": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S7.md",
+      "source_gate_rule": "Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.",
+      "art_gate_rule": "Review all required content and strict native class/ownership checks, integrate a new pinned pack, then live A/B/motion and gameplay/audio acceptance.",
+      "live_stage_accepted": false,
+      "installed_complete": false
+    }
+  ],
+  "inventory_source": {
+    "path": "C:\\github\\Einhander\\docs\\media\\gallery\\artwork-inventory-results.json",
+    "sha256": "ddcd425b1781fad0da9492ae4dbc969bca4d9318a74a606a259e0eb40c9cade8",
+    "inventory_snapshot": "2026-11-14T05:08:17.004Z"
+  },
+  "queue_correction": [
+    "Keep later-stage source acquisition concurrent with Stage1 improvements; finalStage1 HD quality is not a prerequisite for stock capture.",
+    "Require a concrete owner, next output, source blocker and admission gate for each later-stage lane.",
+    "Use shared GPU windows and sequential heavy CPU work. Claimed tasks/ledger names alone do not prove active model workers."
+  ],
+  "important_limits": [
+    "Manifest hashes were checked now; no PNG decode, per-image hashing or fresh pixel acceptance test was run.",
+    "Older zero-mismatch reports often validate native cell centres. No fresh strict whole-cell pass is claimed for later stages.",
+    "Candidate counts are selected metadata, not complete per-stage requirement denominators or completion percentages.",
+    "Stage4/6 effects and Stage3 material folders are alternatives/replacements, not additive unique-key counts."
+  ]
+}

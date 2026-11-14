@@ -1,0 +1,39 @@
+{
+  "started_utc": "2026-11-14T08:50:18.364597+00:00",
+  "gpu_work": false,
+  "below_normal": true,
+  "sequential": true,
+  "commands": [
+    {
+      "phase": "classes",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\check_world_patch_classes.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-final-bindings-plan-v1.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-final-class-check.json"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "composition",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-final-bindings-plan-v1.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v3"
+      ],
+      "exit": 0
+    }
+  ],
+  "ended_utc": "2026-11-14T08:50:28.511983+00:00",
+  "user_gpu_hold_unchanged": true,
+  "candidate": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v3\\candidate.json"
+}

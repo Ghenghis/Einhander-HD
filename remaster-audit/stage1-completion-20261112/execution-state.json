@@ -1,0 +1,900 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-11-14T13:59:11.233342+00:00",
+  "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
+  "full_remaster_complete": false,
+  "stage1_complete": false,
+  "latest_verified_component": {
+    "id": "CPU-only modern GL probe, native session hooks and stage defect audits",
+    "status": "CPU checks pass; texture failures explicitly retained; no GPU/game acceptance",
+    "evidence": "remaster-audit/cpu-session-interop-20261114/README.md",
+    "github_commit_scope": "Current PR branch source/report checkpoint; exact publication hash is recorded in delivery receipts and PR body"
+  },
+  "remaining": [
+    {
+      "id": "T0-runtime",
+      "requirements": [
+        "Measured root causes",
+        "Sustained guest cadence",
+        "Audio underruns measured and resolved",
+        "Efficient decode/upload/cache and palette-family admission",
+        "World filtering verified in motion"
+      ]
+    },
+    {
+      "id": "T1-T3-environment",
+      "requirements": [
+        "Sky and skyline source mapping",
+        "Remaining building surfaces",
+        "Green atlas objects/windows/towers",
+        "Searchlights/beacons/wall lamps",
+        "Road/tunnel/highway/roof surfaces"
+      ]
+    },
+    {
+      "id": "T4-signs",
+      "requirements": [
+        "Missing palette phases",
+        "Remaining boards/illustrations",
+        "Unresolved source cells",
+        "Readable native-faithful glyphs"
+      ]
+    },
+    {
+      "id": "T6-player",
+      "requirements": [
+        "All player hulls",
+        "All gunpods equip/fire/drop",
+        "Native UV/alpha-preserving actual textures, not concept sheets",
+        "Muzzle/engine effects"
+      ]
+    },
+    {
+      "id": "T7-T8-enemies",
+      "requirements": [
+        "Greif/Uhu/fighter textures",
+        "Drache phases/death",
+        "Post-Drache sources/actors",
+        "Explosions/smoke and other effects"
+      ]
+    },
+    {
+      "id": "T9-interface",
+      "requirements": [
+        "Title typography regressions",
+        "Logo occurrence mapping",
+        "Remaining HUD transitions",
+        "Pause/Continue/GameOver/results/save and selection states",
+        "Warnings/banners/popups"
+      ]
+    },
+    {
+      "id": "T5-coverage",
+      "requirements": [
+        "Source pixels for previously unarchived drawn keys",
+        "Full stage through boss and stage clear",
+        "Other hulls/pods and relevant alternate states"
+      ]
+    },
+    {
+      "id": "release",
+      "requirements": [
+        "One reconciled frozen pack",
+        "Versioned install and rollback",
+        "Production launcher defaults",
+        "Cold-boot to stage-clear plus separate GameOver leg",
+        "Recorded frame/audio/drawn-key/visual acceptance",
+        "User-facing ready-to-play build"
+      ]
+    },
+    {
+      "id": "later-stages",
+      "requirements": [
+        "Repeat source census, authoring, integration and full-run acceptance beyond Stage1",
+        "Unlock/end-state coverage and final full-game release"
+      ]
+    }
+  ],
+  "coordination": {
+    "claude_art_tracks": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T6",
+      "T7",
+      "T9"
+    ],
+    "codex_tracks": [
+      "T0",
+      "source-registration",
+      "indexed-HD-runtime",
+      "integration",
+      "T5",
+      "install-and-acceptance"
+    ],
+    "gpu_reservation": "remaster-audit/comfy-authoring/GPU-RESERVED"
+  },
+  "evidence_policy": "Prepared art, loaded PNG counts and source/draw matches are not visual or whole-game acceptance; assisted coverage is labeled separately from unassisted pacing and E2E.",
+  "latest_github_commit": "ac7ec6440ae7c0584611c2f6f88409616fd6a5d4",
+  "new_verified_components": {
+    "alternate_craft_reference_acquisition": "Nine actual native images; MkII/MkIII/Astraea observed; no alternate confirmation or RAM writes",
+    "route_and_gpu_guard_unit_checks": 30,
+    "v16_gl_parity": "680/682 checks,0 failures; native region/watchdog/freeze/hull checks pass",
+    "v16_results": "remaster-audit/dev-center-evidence/stage1-completion-20261112/opaque-batch-v16-summary.json",
+    "mk3_native_sources": {
+      "run": "mk3-native-sources-v1",
+      "verified_pairs": 890,
+      "rejected_incomplete": [
+        "B24C6DA2-E0AE221F",
+        "DB715733-E0AE221F"
+      ],
+      "end": "Continue; no stage clear",
+      "handoff_to_art": true
+    },
+    "hardware_recorder": {
+      "run": "mk3-native-sources-v1",
+      "encoder": "NVENC H264",
+      "capture": "Owned HWND Windows gfxcapture",
+      "seconds": 11.983008,
+      "frames": 644,
+      "dimensions": [
+        1280,
+        960
+      ],
+      "silent": true,
+      "retimed": false,
+      "performance_acceptance": false
+    },
+    "astraea_native_sources": {
+      "run": "astraea-native-sources-v2",
+      "verified_pairs": 900,
+      "rejected_incomplete": [
+        "B24C6DA2-E0AE221F"
+      ],
+      "end": "Continue and Total Evaluation, no stage clear",
+      "handoff_to_art": true
+    },
+    "targeted_strip_recovery": {
+      "run": "mk3-targeted-strips-v1",
+      "runtime": "sampling-build-v17",
+      "verified_keys": [
+        "DB715733-E0AE221F",
+        "B24C6DA2-E0AE221F"
+      ],
+      "complete_words_each": 512,
+      "independent_png_decode": true,
+      "no_ram_or_state_writes": true,
+      "passed_cpu_policy_checks": 14,
+      "gl_checks": [
+        684,
+        686
+      ]
+    }
+  },
+  "latest_user_priority": "Extreme stuttering/jittering and broken audio; substantial continuous Claude workload and full E2E completion",
+  "claude_current_workload": {
+    "durable_claimed_tasks": 12,
+    "active_tracks_reported": 9,
+    "checklist": "remaster-audit/claude-backlog/CHECKLIST.md",
+    "claims_are_not_completed": true
+  },
+  "active_runtime_experiment": {
+    "batch": "v43-rewind-r1",
+    "state": "completed; owned process exit0, errors[], port closed",
+    "runtime": "sampling-build-v43-rewind",
+    "executable_sha256": "5f8ab5548614682eb1158c591e3838085f4f0b99d617af01a62eab4e6aa3ea4f",
+    "guest_fps": 55.752795017482434,
+    "starved_sample_frames": 367648,
+    "movie_frames": 0,
+    "stored_snapshots": 1,
+    "unsafe_capture_refusals": 2731,
+    "audio_accepted": false,
+    "production_installed": false
+  },
+  "normal_settings_gap": {
+    "normal_supersampling": 2,
+    "private_visual_supersampling": 9,
+    "normal_rewind_depth": 50,
+    "normal_rewind_interval": 15,
+    "private_rewind_depth": 0,
+    "comparison_pending": true
+  },
+  "normal_settings_controls": {
+    "runtime": "sampling-build-v37-keep-bracket",
+    "keep_bracket": false,
+    "filter_cache": false,
+    "supersampling": 2,
+    "rewind_on4": {
+      "batch": "normal2-rewind-on-v2",
+      "fps": 59.7899933406942,
+      "starved_output_sample_frames": 10640,
+      "xa_active_rows": 112,
+      "depth24": false,
+      "mdec_decode_count": 21,
+      "gl_readbacks_delta": 1,
+      "closed_exit": 0,
+      "errors": []
+    },
+    "next": [
+      "normal2-rewind-cadence15-v2/hd-on_rewind-on",
+      "normal2-rewind-off-v2/hd-on_rewind-off"
+    ],
+    "failed_excluded": "normal2-rewind-on-v1:scale2HUDreferencegatefailed;gameplayvisuallyobserved;allfailedprocessesclosed"
+  },
+  "latest_audio_diagnostics": {
+    "audio_resolved": false,
+    "production_installed": false,
+    "native_texture_control_fps": 60.00830657002108,
+    "native_texture_control_starved": 0,
+    "focused_batch_off_fps": 49.434600177348734,
+    "focused_batch_off_starved": 960215,
+    "focused_batch_on_fps": 55.86186203404439,
+    "focused_batch_on_starved": 351434,
+    "process_loopback_integrity_pass": true,
+    "process_loopback_seconds": 10,
+    "process_loopback_silence_candidates": 8,
+    "report": "docs/media/gallery/stage1-batching-audio-results.json",
+    "configuration_correction": "Earlier normal2 controls had opaque batching1; recent v40 controls initially used0. Cross-series host/core regression attribution was unsupported."
+  },
+  "computer_use_rule": {
+    "verify_hidden_windows": true,
+    "check_minimized_project_windows": true,
+    "trust_dialog_currently_visible": false,
+    "claude_accessibility_was_stale": true,
+    "use_fresh_screenshots_when_tree_disagrees": true,
+    "no_agent_ui_switches_during_pacing": true
+  },
+  "v41_retention_pair": {
+    "off_fps": 50.28613456,
+    "off_starved_frames": 894319,
+    "on_fps": 46.96803923,
+    "on_starved_frames": 1207145,
+    "on_kept_gap_leaks": 0,
+    "whole_pacing_improvement_accepted": false,
+    "on_nvml_log_available": false
+  },
+  "cps_unit_review": {
+    "independent_rerun_exit": 0,
+    "matrix": "AS REQUIRED",
+    "integrated": false,
+    "remaining": "Preserve original virtual PC in emitter miss path; remove shadow alias rewrite; test real escape cleanup"
+  },
+  "latest_pushed_commit": "4b22a396d75888162a3c57dc68c1107de05ae0d4",
+  "remote_verified": true,
+  "handoff_html": "docs/handbook/handoff.html",
+  "devin_onboarding": {
+    "connector_commit": "ab6d0e29379f886c7025c7299fbc5a126c8233c6",
+    "native_configuration_installed": true,
+    "policy_tests_passed": 5,
+    "real_mcp_smoke_passed": true,
+    "actual_app_worker_loaded": true,
+    "model_inbox_acknowledged": false,
+    "handoff": "coordination/DEVIN-HANDOFF.md",
+    "restriction": "read-only synchronization and review",
+    "user_hold": true,
+    "hold_reason": "User must be home to approve Devin actions; no prompts or task activation until reactivated"
+  },
+  "in_flight_external_work": [
+    "CPS virtual-PC and real escape revision",
+    "SYS-primary isolated worktree",
+    "exact-region invalidation counters/index (not integrated)",
+    "Stage1 art/source delivery and static later-stage extraction"
+  ],
+  "resource_markers": "GPU-RESERVED held for bounded v49 correctness; CPU-QUIET absent",
+  "current_continuation": {
+    "latest_results_commit": "4c9ee27133d0e6205ae303441455bef5e50e57cf",
+    "sys_actual_result": "docs/media/gallery/stage1-sys-runtime-results.json",
+    "sys_build_sha256": "a15d253b942324445a3048bf8dd787a97fff8f290d1caf79b3f9855c919c8ce7",
+    "sys_native_on_fps": 53.48850531270816,
+    "sys_native_on_starved": 576066,
+    "sys_first_divergence": 1049,
+    "sys_first_input_frames": [
+      1895,
+      1896
+    ],
+    "sys_promoted": false,
+    "audio_resolved": false,
+    "full_remaster_complete": false,
+    "gpu": "Recovered after reboot; RTX3090Ti driver621.14, actual GL fixtures passed; cause of prior loss unknown",
+    "gpu_reservation": "Released21:17:23Z; all root-owned game processes exit0 and debugportsclosed",
+    "batch_candidate_worktree": "C:/github/Einhander-wt/batch-attrib",
+    "batch_candidate_commit": "dda9e6a9f1ce5c2c83ae03619f6455432d0461d3",
+    "batch_v47_executable_sha256": "821a3f569cd7287f93b6bc91e12e01d44d966ef004772d0956e53fb1e9febfbc",
+    "batch_gpu_tests": "NOT RUN; guard refused before GL init; candidate isolated, main source restored",
+    "inbox_priority_hook_tests": "10/10 pass; urgent before routine, user-stop semantics retained",
+    "real_inbox_probe": {
+      "message": "msg_701eb4119f505060",
+      "received_lag_ms": 202,
+      "watcher_exit": 0,
+      "proves_claude_model_wake": false
+    },
+    "all_stage_readiness_reports_complete": true,
+    "art_in_progress": [
+      2,
+      4,
+      5,
+      6,
+      7
+    ],
+    "devin": "User hold; do not activate",
+    "next": [
+      "Obtain current Claude agent/receiver IDs and continue all seven stages",
+      "Profile shared frame9300\u20139560 hitch with guest/pacer/driver/buffer attribution",
+      "Counterbalance live run order before attributing small observed average change",
+      "Test incremental upload-index alone; put shared generation fence before either return before combining memo",
+      "Review isolated SYS patch with remaining warmC0/combat/later-game checks before promotion"
+    ],
+    "latest_main_commit": "4c9ee27133d0e6205ae303441455bef5e50e57cf",
+    "watcher_fix_commit": "9ab3ece",
+    "checkpoint_fix_commit": "4a3b7f5",
+    "continuity_tests_passed": 20,
+    "actual_monitor_30min_expiry_observed": true,
+    "watcher_rearmed_after_expiry": true,
+    "primary_completion_receiver_task": null,
+    "idle_wake_P3": "PASSED once: actual Stop before nonce, exact model ACK and re-arm checkpoint; no indefinite availability claim",
+    "gpu_recovery": "GPUlost; CUA alsofaileddevice-suspended; rootrebootapprovalpending; peerreportsdirectuserrebootorder",
+    "root_reboot_executed": false,
+    "renderer_candidate_safe_branch": "codex/hd-batch-attrib",
+    "renderer_candidate_commit": "dda9e6a9f1ce5c2c83ae03619f6455432d0461d3",
+    "main_renderer_untested_changes": false,
+    "root_background_game_processes": [],
+    "after_reboot": [
+      "Read docs/CONTINUATION-AFTER-REBOOT.html if present and currentGitstatus",
+      "Verify GPUhealth before anyGL/game/CUDA work; preserveoutage reservation untilverified",
+      "Re-arm provider-owned primary once1500 receiver and actualIDs; no reuseoldtaskIDs",
+      "Complete isolatedP3idlewake/modelack/rearm proof",
+      "Review SYSparity-1049 CPUtrace and virtual-PC restoration beforepromotion",
+      "Run v47 GL fixtures from isolatedcandidate before actualfiringperf tests"
+    ],
+    "post_reboot": {
+      "gpu_recovered": true,
+      "driver": "621.14",
+      "renderer_gl_checks": 40186,
+      "renderer_gl_failures": 0,
+      "renderer_live_firing": "Pending manual quiet ACK and direct process-check repair",
+      "sys_parity": {
+        "candidate_sha256": "9064019f8a6389747ca7d993f1cfa8ea4fd2c9178a8571e1be150159235759ff",
+        "frames_matched": 1100,
+        "stores_each": 177057,
+        "store_cycle_differences": 0,
+        "regression_control_rejected": true,
+        "source_worktree_unchanged": true,
+        "proof_path": "C:/github/Einhander/remaster-audit/runtime-review/sys-primary-implementation/parity-1049/codex-trampoline-20261113T205037Z/PROOF.json",
+        "promotion": false
+      },
+      "claude_model_response": "No fresh model response yet; UI reopened to New session, user controls window",
+      "old_receiver_ids_invalid": true,
+      "source_candidates_isolated": true,
+      "production_installed": false,
+      "process_preflight": {
+        "tests_passed": 46,
+        "real_seed_smoke_seconds": 0.3355,
+        "fresh_pair_prepared": true,
+        "keys_each": 1669,
+        "game_launched": false
+      },
+      "blocked_include": "D:/Games/Einhander/windows-x64/build-ss8c/_deps/psx_libchdr-src/include metadata blocks; removed unused include only from isolated compile recipe",
+      "storage": {
+        "D_root_unresponsive": false,
+        "system_disk_153_events": 30,
+        "volume_disk_correlation_proven": false,
+        "diagnostic_worker_pending_kernel_exit": 31068,
+        "no_repairs": true,
+        "user_reported_recovery": true,
+        "project_path_stat_seconds": 7.9e-05
+      },
+      "firing": {
+        "off_fps": 59.44518323523474,
+        "on_fps": 59.78331078876499,
+        "off_starved_output_sample_frames": 34764,
+        "on_starved_output_sample_frames": 15637,
+        "on_additional_merges": 0,
+        "measured_hitch_guest_frames": [
+          9300,
+          9560
+        ],
+        "audio_resolved": false,
+        "performance_acceptance": false,
+        "actual_media_published": true,
+        "github_commit": "4c9ee27133d0e6205ae303441455bef5e50e57cf"
+      },
+      "p3": {
+        "actual_idle_stop_observed": true,
+        "nonce_model_ack": true,
+        "replacement_checkpoint_verified": true,
+        "proof": "remaster-audit/dev-center-evidence/stage1-completion-20261112/recovery-inbox-p3-20261113/proof.json",
+        "indefinite_availability_proven": false
+      },
+      "art_lanes": "Coordinator active and release acknowledged; waiting for concrete new-agent IDs, do not infer all lanes already running"
+    },
+    "obsolete_primary_completion_receiver_task": "bm8tjvhac",
+    "last_verified_receiver": "b3xjerdo1 (used by later handoff; coordinator must report its current replacement)"
+  },
+  "root_game_process": {
+    "pid": 20724,
+    "run": "display54-boss-present-r1",
+    "driver_session": 31310,
+    "controller_session": 9437,
+    "scope": "Separate recorded visual confirmation and passive swap metadata; capture overhead present"
+  },
+  "claude_recovery": {
+    "session": "d776c598-c07f-4a8d-a952-9eafc59a733a",
+    "receiver": "b7m3k1klq",
+    "native_worker": "runtime-native-r4r5",
+    "art_audio_held_for_timing": true
+  },
+  "latest_native_collision": {
+    "report": "docs/media/gallery/stage1-native51-results.json",
+    "stutter_fixed": false,
+    "audio_fixed": false,
+    "hitch_fps": [
+      55.65563852839495,
+      56.01812298314751
+    ],
+    "starved": [
+      22864,
+      17262
+    ],
+    "stage1_complete": false
+  },
+  "current_host_profile": {
+    "status": "Actual trace complete, independent stack check identifies forensic GPU readback; Claude second parser checking",
+    "owned_pid": 26488,
+    "frame_bracket": [
+      8801,
+      10011
+    ],
+    "controller_source_sha256": "25af94830cff40fa4ae46105a60d2921e16455b7826c215c4cb4ee271f0e1c31",
+    "capture_sha256": "2f38a46488fb3bcd9cf02544da5a0d33589ecca80d02c975c7d0a1dba81592d2",
+    "trace": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/host-cpu-profile-v51/boss.etl",
+    "gpu_cpu_markers_released": true
+  },
+  "display_history_findings": {
+    "same_binary_pair_summary": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/host-cpu-profile-v51/display-pair-summary.json",
+    "off_hitch_fps": 60.009838184328615,
+    "off_starved": 0,
+    "on_hitch_fps": 57.746494210336486,
+    "on_starved": 9482,
+    "default_off_source_worktree": "C:/github/Einhander-wt/display-history-opt-in",
+    "rebuilt_runtime_sha256": "32701297ad76c29c05d04314109c4cacce612fc1c347a28a00cd50f8dbc51ae1",
+    "next_candidate": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/display53-default-rewind-on-r1/hd-on_rewind-on/candidate.json",
+    "next_scope": "Actual default unset, normal scale2, rewind depth50 interval15, no new collision/CPS/audio objects; bounded assisted route",
+    "normal_acceptance": false,
+    "full_remaster_complete": false,
+    "default53_hitch_fps": 59.991919945410785,
+    "default53_starved": 0,
+    "default53_rewind_snapshot_delta": 1,
+    "default53_one_shot_pass": true,
+    "media53_guest_fps": 60.003583614024855,
+    "media53_starved": 0,
+    "media53_video_frames": 1670,
+    "media53_video_seconds": 30,
+    "media53_video_p95_gap_ms": 33.333,
+    "media53_video_not_full60fps": true,
+    "final_source_runtime54_sha256": "2704d0738e2e501ed6222bd562290563b753016c9fb76a27a1b244a5268a6519",
+    "source_tests": "19 passed, including actual C gate across13 inputs; normal material environment assertion added, its suite pending",
+    "source_branch": "codex/display-history-opt-in",
+    "source_worktree": "C:/github/Einhander-wt/display-history-opt-in",
+    "normal_launch_fix_applied": false,
+    "normal_test_preparer": "Claude source-only task, pending review",
+    "next": "Collect v54 passive gl_present_ring to distinguish true present intervals from WGC capture gaps; then actual installed normal-binary tests and source/media publication"
+  },
+  "nvml_context_discrepancy": {
+    "system32_exec_command": "Enumerates both GPUs and reports normal clock/power/utilization",
+    "node_child_process": "Same absolute binary returns255 NVML Unknown Error",
+    "gpu_outage_established": false,
+    "device_changes": false
+  },
+  "latest_update_utc": "2026-11-14T03:51:36.286Z",
+  "current_run": null,
+  "normal_player_results": {
+    "play_hd": {
+      "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+      "events": 350,
+      "unique": 350,
+      "sequence_gaps": 0,
+      "frame_gaps": 0,
+      "p50": 17,
+      "p95": 17,
+      "p99": 18,
+      "max": 21,
+      "late": [],
+      "starved": 0,
+      "observed_fps": 60.002622307183515
+    },
+    "material": {
+      "events": 350,
+      "unique": 350,
+      "frame_gaps": 0,
+      "seq_gaps": 0,
+      "p50": 17,
+      "p95": 21,
+      "p99": 24,
+      "max": 28,
+      "late": [
+        {
+          "frame": 9372,
+          "ms": 26
+        },
+        {
+          "frame": 9428,
+          "ms": 28
+        }
+      ],
+      "starved": 15378,
+      "observed_fps": 59.72473379500422,
+      "exit": 0,
+      "port_closed": true,
+      "errors": []
+    },
+    "local_launch_readback_hotfix": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/application-receipt.json",
+    "github_commit": "ae38d45b8cbed673fc77b05d3f6b753f16c9bee4"
+  },
+  "latest_upload_diagnostic": {
+    "batch": "display55-upload-ledger-r1",
+    "exit": 0,
+    "events": 1030,
+    "unique_keys": 778,
+    "reuploads": 252,
+    "boss_reuploads": 29,
+    "boss_upload_MiB": 800.625,
+    "peak_base_MiB": 2058.25,
+    "next_private_runtime": {
+      "directory": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v56-gpu-cache",
+      "sha256": "9b5ff8275faeeef8c06d14d574b279eaf6ba61e37f9004feed9ec2f9535ed479",
+      "config": {
+        "PSXRECOMP_HD_GPU_CACHE_MB": "5120"
+      },
+      "status": "built/prepared/not run"
+    }
+  },
+  "frontend_result": {
+    "batch": "normal-material-frontend-r3",
+    "exit": 0,
+    "port_closed": true,
+    "native_title_gate": 0,
+    "errors": [],
+    "only_private_settings_disc_path_canonicalized": true
+  },
+  "latest_latency_repeat": {
+    "batch": "display56-latency-r1",
+    "boss_max_ms": 94,
+    "starved_gameplay": 9898,
+    "accepted": false,
+    "limitation": "Before-paced includes guest work and cannot isolate pacing."
+  },
+  "functional_profiles": [
+    {
+      "batch": "material-title-crimson-r1",
+      "exit": 0,
+      "errors": [],
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-gold-r1",
+      "exit": 0,
+      "errors": [],
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-neon-r1",
+      "exit": 0,
+      "errors": [],
+      "originals_unchanged": true
+    }
+  ],
+  "v57_off": {
+    "batch": "display57-pbo-off-r3",
+    "boss_max_ms": 17,
+    "boss_frames": 350,
+    "gameplay_max_ms": 85,
+    "new_starved_sample_frames": 0,
+    "focus_all": true,
+    "gpu_selftest_pass": true,
+    "full_smoothness": false
+  },
+  "latest_upload_stream_comparison": {
+    "summary": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v57-native-upload/comparison-summary.json",
+    "off_boss_max_ms": 17,
+    "on_boss_max_ms": 17,
+    "off_whole_max_ms": 85,
+    "on_whole_max_ms": 184,
+    "on_new_starved_sample_frames": 703,
+    "full_smoothness": false,
+    "installed": false,
+    "github_commit": "7211c90"
+  },
+  "next": "Claude received final published handoff message msg_b55969e683c617fc; read canonical handoff, acknowledge, coordinate fresh quiet and run authorized bounded observed-focus v58 phase diagnostic, then analyze/publish actual result and continue all7stage work.",
+  "phase_diagnostic": {
+    "state": "built_checked_handoff_prepared_observed_run_not_executed",
+    "folder": "C:/github/Einhander/remaster-audit/runtime-review/frame-phase-ring",
+    "draft_build_recipe": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v58-frame-phases/build.py",
+    "parent_sha256": "efde4724c391bed59393e16573e5831999848fb261e9dad5ca88061f3d75656d",
+    "main_source_sha256": "f4ecc89c69b394ca3c334fdfd54958bf496f5573c03a54c5c79cb96892c67b9c",
+    "no_live_jobs": true,
+    "review_requirements": [
+      "raw9QPCstamps in reply",
+      "foreign swap hook guard without shared data races",
+      "query current open row expected; require measured rowsclosed",
+      "frame IDs post-debug global, seq separate",
+      "exact swap inside GLswapwithOSD; no pace behaviorchange"
+    ],
+    "next_steps": [
+      "wait final Claude handoff/host+syntax proof",
+      "review final hashes and build3TUs sequential below normal using v58build.py",
+      "add phase API title check + posttiming paging to v58runner",
+      "prepare one120s PBOON phase1 frozenpack diagnostic; preserve same flags",
+      "fresh manual Claude quiet ACK + GPUreservation; no concurrent jobs",
+      "use stdout handoff wakeup promptly then Skyobserve/activate current game before timing",
+      "analyze swap-begin periods using saved analysis-contract, not current swap for endingpre-swap gap",
+      "publish actual results and keep7stage acceptance open"
+    ],
+    "executable_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+    "batch": "display58-phases-pbo-on-r1",
+    "first_rejected_build": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v58-frame-phases/first-build-rejected",
+    "rejected_attempt": {
+      "batch": "display58-phases-pbo-on-r1",
+      "reason": "keyboard focus lost after3s",
+      "exit": 0,
+      "port_closed": true,
+      "title_gates_passed": true,
+      "timing_accepted": false
+    },
+    "next_batch": "display58-phases-observed-r2",
+    "foreground_question": "User authorized retry/continuation through Claude; no further permission response needed. Observe-only mode remains diagnostic, not foreground acceptance.",
+    "strict_gate_preserved": true
+  },
+  "material_receipt_current_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+  "github_head": "b90142f458fc9810dd0941fe131168e8a5d5380f",
+  "latest_documentation": "docs/RUNTIME-CONTINUATION-20261113.md",
+  "package": "remaster-audit/scene-texture-followup-20261114",
+  "e2e_complete": false,
+  "resources_reserved": false,
+  "artwork_documentation": {
+    "commit": "acc593c5c66b9c4aeb3e1a28ea14ad08c2d0fc49",
+    "path": "docs/ARTWORK-STATUS-20261113.md",
+    "results": "docs/media/gallery/artwork-inventory-results.json",
+    "metadata_census": "docs/media/gallery/artwork-frozen-inventory-snapshot.json",
+    "retained_sets": 263,
+    "png_file_paths": 11106,
+    "unknown_total_required_assets": true,
+    "gpu_per_file_provenance_count": null,
+    "source_receipts_verified": 19,
+    "doc_check": {
+      "documents": 47,
+      "json_reports": 63,
+      "local_links": 859,
+      "issues": 0
+    }
+  },
+  "runtime_continuation_owner": "codex-einhander",
+  "historical_active_work_before_20261114_1311": {
+    "id": "mini-boss-native-hot-routines",
+    "state": "Native collision OFF completed normally; ON timing run active with3qualified entries",
+    "worktree": "C:/github/Einhander-wt/cps-unit-hitch",
+    "runtime": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v51-cps-return/build.json",
+    "sha256": "15b2c37bfcfa3763857374e5947b7629655259f7ba2528d750dd0a41d5006761",
+    "source_guards_unchanged": true,
+    "comparison_contract_corrected": true,
+    "branch_plus_one_review_pending": true,
+    "required_boss_window": [
+      8800,
+      9650
+    ],
+    "native48_pair": "docs/media/gallery/stage1-native48-performance-results.json",
+    "stutter_fixed": false,
+    "audio_fixed": false,
+    "production_installed": false,
+    "entry_only_r4_boss_checks": 3468,
+    "continuation_qualification_complete": false,
+    "replay_abort_regression": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native-replay-abort-regression/results.json",
+    "last_live_run": {
+      "batch": "native50-393d8-qual",
+      "accepted": false,
+      "boss_shadow_calls": 3518,
+      "boss_rejection": "SHDIFF_SETUP17",
+      "audit_failed": true,
+      "game_pid_absent": true,
+      "port_closed": true
+    },
+    "continuation_gate_tests": 13,
+    "public_validation_results": "docs/media/gallery/stage1-cps-unit-validation-results.json",
+    "current_batch": "native51-collision-on-r1",
+    "new_part_b_cache": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native50-partb-cache/build.json",
+    "final_leaf_cache": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native51-leaf-cache/build.json",
+    "command_receipt_tests": 16,
+    "return_seam_integrated": true,
+    "audio_worktree": "C:/github/Einhander-wt/audio-ring-min",
+    "audio_patch_held_for_stats_race": false,
+    "qualified_handler_proofs": [
+      "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native51-b6328-qual/hd-on_rewind-off/loaded-code/code-capture-proof.json",
+      "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native51-b6ec8-qual/hd-on_rewind-off/loaded-code/code-capture-proof.json",
+      "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/native51-r4-qual/hd-on_rewind-off/loaded-code/code-capture-proof.json"
+    ],
+    "combined_regression_summary": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/combined-cps-v51-regression/reviewed-summary.json",
+    "audio_runtime": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v52-audio-ring/build.json",
+    "audio_runtime_sha256": "b4f42f806d9611242537c4f95c8b8d988f776a505771ccf00e3ac4ea74706c79",
+    "cpu_quiet": true,
+    "current_owned_game": {
+      "pid": 24632,
+      "executable": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\native51-collision-on-r1\\hd-on_rewind-off\\runtime\\Einhander_Recompiled.exe",
+      "debug_port": 4376,
+      "at_utc": "2026-11-14T01:00:02.663970+00:00"
+    },
+    "audio_manual_quiet_ack": {
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v52-audio-ring/manual-quiet-ack.json",
+      "sha256": "288165c82533e36725b44ffad60b8875ada67e6f7327b05d73a112ec90f52a00"
+    },
+    "native_runtime": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v51-cps-return/build.json",
+    "audio_pair_results": "docs/media/gallery/stage1-audio52-results.json",
+    "native_manual_quiet_ack": {
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v51-cps-return/manual-quiet-ack-pair.json",
+      "sha256": "cea124f1a6c82b4aba8a650256628adc54c921b8043db3362834242bb844218f"
+    },
+    "r5_accepted": false
+  },
+  "active_work": {
+    "id": "EIN-CODEX-CONTINUITY-20261114",
+    "state": "CPU-only recovery verification passed; shared engine/texture/seven-stage preparation and actual-results publication continue while user holds3090Ti until explicit release",
+    "worktree": "C:/github/Einhander",
+    "publication_worktree": "C:/github/Einhander-wt/display-history-opt-in",
+    "owner": "codex-einhander",
+    "claude_owner": "claude-einhander",
+    "current_owned_game": null,
+    "owned_probe_inventory": [],
+    "inventory_utc": "2026-11-14T13:11:41.627516+00:00",
+    "gpu_work_active": false,
+    "stutter_fixed": false,
+    "audio_fixed": false,
+    "production_installed": false,
+    "runtime": "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v66-reviewed-scene-r3/build.json",
+    "sha256": "51ec32e3fdf4fc7567e807bce7106576a51e0c39ae73e65cb0599c33bd6a5a98",
+    "runtime_executed": false,
+    "clean_full_source_rebuild": false,
+    "scene_capture_schema": "gp0-scene-v3",
+    "host_checks": {
+      "enabled": 2932,
+      "disabled": 6,
+      "failures": 0,
+      "rpc_cases": 14,
+      "foreign_thread_control": true,
+      "independent_negative_mutations": 28
+    },
+    "sdk_modern_table_only_passed": true,
+    "sdk_modern_startup_submit_present_executed": false,
+    "ray_tracing_in_game": false,
+    "dlss_in_game": false,
+    "restart_recovery": {
+      "boot_utc": "2026-11-14T12:49:22.109931+00:00",
+      "root_checked_text_files": 5066,
+      "root_all_zero_text_files": 90,
+      "root_affected_freeze": "renderer-v61-classmip-v5",
+      "failed_freeze_preserved": true,
+      "prior_published_pins_verified": 990,
+      "prior_pin_errors": 0,
+      "new_freeze_accepted": false,
+      "cause_established": false,
+      "new_freeze_cpu_accepted": true,
+      "new_freeze_pins_verified": 874,
+      "root_old_failed_pins_verified": 874,
+      "old_all_zero_files": 263,
+      "gpu_game_accepted": false
+    },
+    "next_steps": [
+      "Continue v6/RISE CPU implementation and transfer later-stage audits after actual new native session joins",
+      "Keep published packet immutable; record new scene/SDK/art results in a new packet and current docs",
+      "Implement matching modern SDK Submit/Present interop lifecycle on CPU before GPU qualification",
+      "Qualify v66 real scene capture with bounded private route and correct phase bounds",
+      "Complete RISE/far-background art and full skin/HUD/menu/audio/seven-stage acceptance"
+    ],
+    "later_stage_lane": {
+      "scope": "S2\u2013S7 CPU strict whole-cell/fringe audit queued concurrently with shared engine and Stage1 work; not six active authors",
+      "owner": "Three actual native Claude workers: s23, s45, s67; original Claude owns Stage1/shared runtime",
+      "selected_key_counts": {
+        "2": 39,
+        "3": 39,
+        "4": 11,
+        "5": 12,
+        "6": 101,
+        "7": 26
+      },
+      "candidate_manifests_verified": 28,
+      "fully_accepted_stages": 0,
+      "planned_owners": [
+        "claude-einhander-s23",
+        "claude-einhander-s45",
+        "claude-einhander-s67"
+      ],
+      "actual_owners": [
+        "claude-einhander-s23",
+        "claude-einhander-s45",
+        "claude-einhander-s67"
+      ]
+    },
+    "user_3090_hold_previous": {
+      "started_utc": "2026-11-14T11:44:30Z",
+      "expires_utc": "2026-11-14T12:44:30Z",
+      "elapsed": true,
+      "reuse_after_hour_authorized": true,
+      "rtx3060_permitted": true
+    },
+    "user_3090_hold": {
+      "owner": "user-external-project",
+      "at_utc": "2026-11-14T13:20:06.4978831Z",
+      "gpu": "RTX3090Ti",
+      "project": "Pizza Tycoon HD",
+      "earliest_release_utc": "2026-11-14T14:00:00Z",
+      "earliest_release_local": "2026-11-14 07:00 America/Phoenix",
+      "expires_utc": null,
+      "requires_explicit_user_release": true,
+      "user_authorized_3090_return_after_expiry": false,
+      "source_chat": "01a1da2a-6273-7051-92a9-fc914070d84e",
+      "scope": "Latest direct user instruction: 3090 Ti in use for Pizza Tycoon HD until 07:00 Phoenix at least. Block all Einhander GPU/game/SDK/Comfy/AudioSR work on3090Ti until explicit user release. No automatic expiry at07:00. Continue CPU-only work; leave the other Claude session and unrelated project processes untouched."
+    }
+  },
+  "documentation_publication_previous": {
+    "commit": "9efda268c419549fbfb0273899578f25e1cbbdb8",
+    "branch": "codex/display-history-opt-in",
+    "pr": "https://github.com/Ghenghis/Einhander-HD/pull/1",
+    "canonical_handoff": "docs/RUNTIME-CONTINUATION-20261113.md",
+    "package": "remaster-audit/runtime-diagnostics-v58",
+    "package_hash_files": 63,
+    "documentation_pages": 46,
+    "json_reports": 61,
+    "local_links": 847,
+    "issues": 0,
+    "full_e2e_complete": false
+  },
+  "documentation_publication": {
+    "status": "Source/evidence checkpoint pushed and remote-verified; PR remains draft/open",
+    "commit": "b90142f458fc9810dd0941fe131168e8a5d5380f",
+    "branch": "codex/display-history-opt-in",
+    "pr": "https://github.com/Ghenghis/Einhander-HD/pull/1",
+    "canonical_handoff": "coordination/Codex-HANDOFF.md",
+    "package": "remaster-audit/scene-texture-followup-20261114",
+    "package_hash_files": 1064,
+    "historical_and_new_pins_verified": 2054,
+    "documentation_pages": 55,
+    "json_reports": 88,
+    "local_links": 963,
+    "issues": 0,
+    "full_e2e_complete": false
+  },
+  "cpu_session_interop": {
+    "packet": "remaster-audit/cpu-session-interop-20261114",
+    "stage_totals": {
+      "S6 selected": {
+        "keys": 101,
+        "files": 202,
+        "strict_pass": 178,
+        "primary_pass": 178,
+        "errors": 0,
+        "sha_ok": 202
+      },
+      "S7 selected": {
+        "keys": 26,
+        "files": 52,
+        "strict_pass": 52,
+        "primary_pass": 52,
+        "errors": 0,
+        "sha_ok": 52
+      },
+      "S6 alternate": {
+        "keys": 14,
+        "files": 28,
+        "strict_pass": 20,
+        "primary_pass": 20,
+        "errors": 0,
+        "sha_ok": 28
+      }
+    },
+    "hook_tests": 18,
+    "probe_cpu_tests": 14,
+    "image_oracle_controls": 8,
+    "source_draw_tests": 13,
+    "gpu_run": false,
+    "game_run": false,
+    "project_complete": false
+  }
+}

@@ -1,0 +1,36 @@
+
+# Frozen diagnostic evidence is byte-hashed; preserve original line endings.
+remaster-audit/runtime-diagnostics-v58/** -text -whitespace
+
+# Preserve the exact metadata-only artwork census and its producing script.
+docs/media/gallery/artwork-frozen-inventory-snapshot.json -text -whitespace
+remaster-audit/art_inventory_snapshot.py -text -whitespace
+remaster-audit/runtime-results-v58/** -text -whitespace
+remaster-audit/runtime-power-pair-v58/** -text -whitespace
+
+remaster-audit/runtime-sign-live-v58/** -text -whitespace
+
+remaster-audit/remix-sdk-qualification-20261114/** -text -whitespace
+remaster-audit/world-sign-census-20261114/** -text -whitespace
+
+windows-x64/Play-HD.cmd -text -whitespace
+
+remaster-audit/engine-foundation-world-20261114/** -text -whitespace
+
+remaster-audit/world-cpu-completion-20261114/** -text -whitespace
+
+remaster-audit/engine-provenance-v2-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-integration-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-review-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-metrics-20261114/** -text -whitespace
+remaster-audit/gpu-integration-20261114/** -text -whitespace
+remaster-audit/gpu-shader-followup-20261114/** -text -whitespace
+
+remaster-audit/cpu-hour-integration-20261114/** -text -whitespace
+
+/remaster-audit/scene-texture-followup-20261114/** -text -whitespace
+
+/remaster-audit/cpu-session-interop-20261114/** -text -whitespace

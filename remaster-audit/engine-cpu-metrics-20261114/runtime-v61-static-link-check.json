@@ -1,0 +1,59 @@
+{
+  "at_utc": "2026-11-14T09:30:54.855651+00:00",
+  "executable_sha256": "c6e573f317e5faaa624612320c5468ed8e0158092b4e53e3a0357e607e325686",
+  "tool": {
+    "path": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\llvm-nm.exe",
+    "sha256": "6c15f026fa817713c0223864811adc68bcacdd0e668926b7a4373f4e583993aa"
+  },
+  "command": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\llvm-nm.exe",
+    "--defined-only",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\Einhander_Recompiled.exe"
+  ],
+  "exit": 0,
+  "required_symbols": {
+    "pgxp_set_view_payload": [
+      "1401a80f0 T pgxp_set_view_payload"
+    ],
+    "gpu_view_census_set": [
+      "14004d660 T gpu_view_census_set"
+    ],
+    "pgxp_view_census_prim": [
+      "1400014f0 T pgxp_view_census_prim"
+    ],
+    "pgxp_view_census_recent": [
+      "140001960 T pgxp_view_census_recent"
+    ],
+    "gte_rtp_ring_seq_live": [
+      "14019d690 T gte_rtp_ring_seq_live"
+    ],
+    "pgxp_get_precise_vertex_view_ex": [
+      "1401a82b0 T pgxp_get_precise_vertex_view_ex"
+    ],
+    "handle_pgxp_view": [
+      "1400be250 t handle_pgxp_view"
+    ],
+    "gte_rtp_ring_get_projection": [
+      "14019dad0 T gte_rtp_ring_get_projection"
+    ],
+    "gte_rtp_ring_xform_hash": [
+      "14019d7c0 T gte_rtp_ring_xform_hash"
+    ]
+  },
+  "preserved_phase_symbols": [
+    "1400b12c0 T debug_server_frame_phase_enabled",
+    "1400b1570 T debug_server_frame_phase_get",
+    "1400b1310 T debug_server_frame_phase_init_owner",
+    "1400b1390 T debug_server_frame_phase_mark",
+    "1400b1560 T debug_server_frame_phase_total",
+    "1400c2630 t handle_frame_phase_ring"
+  ],
+  "linked_inputs_verified": 152,
+  "replaced_parent_objects": 5,
+  "new_census_object": true,
+  "header_snapshot_hashes_verified": 143,
+  "parent_debug_code_preserved": true,
+  "gpu_work": false,
+  "game_executed": false,
+  "scope": "Static complete executable and link-input checks only; no startup, rendering, gameplay, live coverage or performance acceptance."
+}

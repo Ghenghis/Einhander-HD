@@ -8580,7 +8580,7 @@ static void handle_get_snapshots(int id, const char *json)
  * the old "screenshot" inline-hex-row variant streamed h+1 response lines
  * per request, which violated the one-request/one-response protocol and
  * poisoned every client connection that used it. */
-/* ---- Always-on display ring ----------------------------------------------
+/* ---- Opt-in display ring ----------------------------------------------
  * The last DISP_RING_CAP vblanks' display areas, raw 15-bit VRAM halfwords,
  * captured in debug_server_record_frame (ring-buffer rule: continuous
  * capture, observers query a window after the fact). Purpose: FRAME-EXACT
@@ -8612,18 +8612,22 @@ typedef struct {
 static PSX_BSS DispRingEntry s_disp_ring[DISP_RING_CAP];
 static uint16_t     *s_disp_ring_px = NULL;   /* one block for all entries */
 
-static void disp_ring_capture(void)
+static int disp_ring_capture_enabled(void)
 {
-    /* Full-VRAM GL readback is intentionally expensive and can perturb the
-     * performance issue being measured. Keep the forensic ring default-on, but
-     * allow a controlled acceptance run to disable continuous capture while
-     * retaining the TCP server and one-shot screenshot command. */
     static int enabled = -1;
     if (enabled < 0) {
         const char *e = getenv("PSX_DISPLAY_RING");
-        enabled = (!e || !*e || *e != '0') ? 1 : 0;
+        enabled = (e && strcmp(e, "1") == 0) ? 1 : 0;
     }
-    if (!enabled) return;
+    return enabled;
+}
+
+static void disp_ring_capture(void)
+{
+    /* Full-VRAM forensic readback synchronizes with the GPU every frame.
+     * Normal gameplay leaves it off; PSX_DISPLAY_RING=1 opts in before
+     * launch. Frame counters and one-shot screenshots remain available. */
+    if (!disp_ring_capture_enabled()) return;
     if (!s_disp_ring_px) {
         size_t per  = (size_t)DISP_RING_MAX_W * DISP_RING_MAX_H;
         size_t vram = (size_t)1024 * 512;
@@ -8679,6 +8683,10 @@ static void handle_display_ring_aux(int id, const char *json)
     if (!json_get_str(json, "path", path, sizeof(path))) {
         send_err(id, "missing path"); return;
     }
+    if (!disp_ring_capture_enabled()) {
+        send_err(id, "display ring disabled; launch with PSX_DISPLAY_RING=1");
+        return;
+    }
     if (!s_disp_ring_px) { send_err(id, "display ring not started"); return; }
     DispRingEntry *e = &s_disp_ring[(uint32_t)((uint64_t)f % DISP_RING_CAP)];
     if (!e->valid || e->frame != (uint32_t)f) {
@@ -8704,9 +8712,9 @@ static void handle_display_ring_stats(int id, const char *json)
         if (n == 0 || f > newest) newest = f;
         n++;
     }
-    send_fmt("{\"id\":%d,\"ok\":true,\"capacity\":%d,\"valid\":%d,"
+    send_fmt("{\"id\":%d,\"ok\":true,\"capacity\":%d,\"enabled\":%d,\"valid\":%d,"
              "\"oldest_frame\":%u,\"newest_frame\":%u}",
-             id, DISP_RING_CAP, n, oldest, newest);
+             id, DISP_RING_CAP, disp_ring_capture_enabled(), n, oldest, newest);
 }
 
 static void handle_display_ring_get(int id, const char *json)
@@ -8716,6 +8724,10 @@ static void handle_display_ring_get(int id, const char *json)
     char path[512];
     if (!json_get_str(json, "path", path, sizeof(path))) {
         send_err(id, "missing path"); return;
+    }
+    if (!disp_ring_capture_enabled()) {
+        send_err(id, "display ring disabled; launch with PSX_DISPLAY_RING=1");
+        return;
     }
     if (!s_disp_ring_px) { send_err(id, "display ring not started"); return; }
     DispRingEntry *e = &s_disp_ring[(uint32_t)((uint64_t)f % DISP_RING_CAP)];
@@ -14597,7 +14609,7 @@ void debug_server_record_frame(void)
     /* Last function */
     strcpy(r->last_func, "(no tracking)");
 
-    /* Always-on display ring: raw display-area pixels for THIS frame number
+    /* Opt-in display ring: raw display-area pixels for THIS frame number
      * (pre-increment, matching what the `frame` command reports right now). */
     disp_ring_capture();
 

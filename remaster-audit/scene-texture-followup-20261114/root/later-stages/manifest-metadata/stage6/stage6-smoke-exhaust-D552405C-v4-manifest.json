@@ -1,0 +1,1451 @@
+{
+ "name": "stage6-smoke-exhaust-D552405C-v4",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "lane": "lane-s6",
+ "created_utc": "2026-11-13T22:27:15.547017+00:00",
+ "task": "D552405C gas-detail pass (redesign after v2/v3 FAILED; GPU-RESUME item 1)",
+ "texture_crc": "D552405C",
+ "provenance": "predicted-static (static-extraction/stages/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "supersedes_for_review": "frozen/stage6-smoke-exhaust-D552405C-v1 (kept; same class plane and keys)",
+ "page": {
+  "member": "4/6",
+  "vram_rect_words": [
+   320,
+   256,
+   64,
+   256
+  ],
+  "writers": [
+   "4/6"
+  ],
+  "texture_confidence": "exact-static",
+  "set": "set A (member 4/6), single writer of VRAM 320,256: exact-static page"
+ },
+ "method": "FX contract of v1 (A = cls_P[round f], f = v1 class field enforced at all 15 thresholds; energy lock 1 +- 0.05 per sprite region; RGB faded to the class-aware render within 1.25 texel of the cut) with a NEW RGB field g = native B-spline F0 + SDXL gas detail: JuggernautXL img2img (denoise 0.8, cfg 6, 32 steps, dpmpp_2m karras) on the 9 frozen v1 guides with a gas-only prompt (rocket / nozzle / cone / hot-spot words in the negative); inverse guide ramp; band-pass 1.5..10 px (<= 1.25 texel, no sub-texel content), clipped at 2.5 std, gain 1.3, weighted by native silhouette x texture activity x not-no-AI-rect x not-dark; raised-cosine tile blend; detail soft-limited (tanh) inside palette zones derived from the delivered CLUTs (splits where any entry jumps > 100 RGB: 0 | 1-6 | 7-13 | 14), bounds at the zone entries so the palette lerp never mixes a red core with the blue ramp; inner zones x0.5.",
+ "params": {
+  "gen": {
+   "denoise": 0.8,
+   "steps": 32,
+   "cfg": 6.0,
+   "sampler": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed0": 6400
+  },
+  "merge": {
+   "band_px": [
+    1.5,
+    10.0
+   ],
+   "gain": 1.3,
+   "edge_dilate_tex": 1,
+   "edge_feather_tex": 0.6,
+   "plateau_feather_tex": 1.0,
+   "max_over": 1.5,
+   "clip_std": 2.5
+  },
+  "inner_gain": 0.5,
+  "zone_jump": 100.0,
+  "tiles": [
+   [
+    0,
+    0
+   ],
+   [
+    64,
+    0
+   ],
+   [
+    128,
+    0
+   ],
+   [
+    0,
+    64
+   ],
+   [
+    64,
+    64
+   ],
+   [
+    128,
+    64
+   ],
+   [
+    0,
+    128
+   ],
+   [
+    64,
+    128
+   ],
+   [
+    128,
+    128
+   ]
+  ],
+  "no_ai_rects": [
+   [
+    204,
+    120,
+    255,
+    143
+   ],
+   [
+    174,
+    143,
+    193,
+    192
+   ],
+   [
+    197,
+    153,
+    233,
+    182
+   ],
+   [
+    126,
+    216,
+    157,
+    223
+   ],
+   [
+    190,
+    230,
+    255,
+    255
+   ]
+  ]
+ },
+ "generation": {
+  "model": "juggernautXL_v9.safetensors (ComfyUI 0.3.76, core nodes, 127.0.0.1:8188)",
+  "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+  "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+  "per_tile": {
+   "0": {
+    "seed": 6400,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t0.png",
+    "guide_sha256": "6c3138afd7d3662f82fb02a16980f0c032d16db6220c4d216febd7060c7216ab",
+    "ai_sha256": "35b2012d420785ae4dad4e4abfa101db2d95b7f8796a6c89fab1b2b653a40ca8",
+    "graph": "t0-graph.api.json",
+    "history": "t0-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t0.png",
+    "started_utc": "2026-11-13T21:57:23.538733+00:00",
+    "seconds": 19.8,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "1": {
+    "seed": 6401,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t1.png",
+    "guide_sha256": "861150873730ea019baa6ab79de1768889906dacdc067dcab626e589bfd32ad7",
+    "ai_sha256": "33ceb2e0bc2aae543e06567003560e957de764fe2ef05f84bb14baaf940d38da",
+    "graph": "t1-graph.api.json",
+    "history": "t1-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t1.png",
+    "started_utc": "2026-11-13T21:57:43.317840+00:00",
+    "seconds": 10.0,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "2": {
+    "seed": 6402,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t2.png",
+    "guide_sha256": "0d58e98d2450eac6b0ada2a080752eeef9f663585da6787be63819d7350716ea",
+    "ai_sha256": "fd55005c5d2ed1f8eb3de9170a9471724943a4ffd686b70b409edb42ff8c59ed",
+    "graph": "t2-graph.api.json",
+    "history": "t2-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t2.png",
+    "started_utc": "2026-11-13T21:57:53.333397+00:00",
+    "seconds": 9.5,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "3": {
+    "seed": 6403,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t3.png",
+    "guide_sha256": "082110a92f5bde2d0d1760998f24bbffbd5568ecd3231eb2499e522fc15bb217",
+    "ai_sha256": "6a5cf88ea4c57d5344ad736a5eefae2e83aa0e6ede83b5af8b14876aec7ef858",
+    "graph": "t3-graph.api.json",
+    "history": "t3-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t3.png",
+    "started_utc": "2026-11-13T21:58:02.792232+00:00",
+    "seconds": 9.3,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "4": {
+    "seed": 6404,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t4.png",
+    "guide_sha256": "39a97b42e06d945636e35c74087e4a74f6b071441ff0198281351ddf20f97e9e",
+    "ai_sha256": "7e0964f37fdc14c2b23b5b60bd4c861179aa71e1e256ba0ee999a1bd1cb9753a",
+    "graph": "t4-graph.api.json",
+    "history": "t4-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t4.png",
+    "started_utc": "2026-11-13T21:58:12.098661+00:00",
+    "seconds": 9.3,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "5": {
+    "seed": 6405,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t5.png",
+    "guide_sha256": "b81d2c99963314a16d1575c6b6b3e35395abd2c30562da4375f31910f6e52c22",
+    "ai_sha256": "2f078690cd0f002417b2a262ebdde2b3c32fe54bbabc54c67676c24b146e4524",
+    "graph": "t5-graph.api.json",
+    "history": "t5-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t5.png",
+    "started_utc": "2026-11-13T21:58:28.504254+00:00",
+    "seconds": 18.7,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "6": {
+    "seed": 6406,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t6.png",
+    "guide_sha256": "95a972e70134c0bd10eea346dfa8ed0516bf48d807c81f94f0359303b290f54d",
+    "ai_sha256": "932b4c42df9c625eb57325d61bfa4f7979f690b61edeedfd8c54c637b1a5af5e",
+    "graph": "t6-graph.api.json",
+    "history": "t6-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t6.png",
+    "started_utc": "2026-11-13T21:58:47.205694+00:00",
+    "seconds": 9.3,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "7": {
+    "seed": 6407,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t7.png",
+    "guide_sha256": "d88fdc9489340d4a8b14453465d47761dce51ce19c936a5bff3b1dd30cb7f29c",
+    "ai_sha256": "37a07f11d99611cf89fc99a2f61dc2551a85db0c58975791959a5be0f82ff467",
+    "graph": "t7-graph.api.json",
+    "history": "t7-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t7.png",
+    "started_utc": "2026-11-13T21:58:56.536891+00:00",
+    "seconds": 9.3,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   },
+   "8": {
+    "seed": 6408,
+    "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+    "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+    "ckpt": "juggernautXL_v9.safetensors",
+    "guide": "../ai/guide-t8.png",
+    "guide_sha256": "65cfe678928b8eb3933404a4590bc093789729a35822d1bac69536357311299a",
+    "ai_sha256": "62ec92109dc6282bdff8d889ca8aa3cdeaa12b3cbc2be29556ed28c544003122",
+    "graph": "t8-graph.api.json",
+    "history": "t8-history.json",
+    "uploaded_as": "claude-authoring/w7-stage6/D552405C-t8.png",
+    "started_utc": "2026-11-13T21:59:05.861362+00:00",
+    "seconds": 9.3,
+    "denoise": 0.8,
+    "steps": 32,
+    "cfg": 6.0,
+    "sampler": "dpmpp_2m",
+    "scheduler": "karras"
+   }
+  },
+  "graphs_and_history": "comfy/t<i>-graph.api.json, comfy/t<i>-history.json",
+  "gpu_slots": [
+   "lane-s6 21:57:23-21:58:21Z tiles 0-4",
+   "lane-s6 21:58:28-21:59:15Z tiles 5-8"
+  ],
+  "nvidia_smi": "healthy (comfy/gpu-health.jsonl)"
+ },
+ "cluts_delivered": [
+  "92AC1558",
+  "98C90B96",
+  "5E251958",
+  "C12DB7DC"
+ ],
+ "cluts_not_delivered": {
+  "4DD7BC40": "background index 15 visible (opaque colour [24, 0, 0]): implausible pairing",
+  "4E1463AC": "background index 15 visible (STP colour [32, 0, 128]): implausible pairing",
+  "74C6D53A": "background index 15 visible (STP colour [72, 32, 136]): implausible pairing",
+  "0ADAA698": "all entries black (STP black adds nothing): invisible",
+  "AB139F82": "background index 15 visible (opaque colour [128, 128, 128]): implausible pairing",
+  "190A55AD": "all 16 entries are 0x0000 (fully transparent)"
+ },
+ "index_master": {
+  "files": {
+   "master/D552405C-class-f.npy": "8c974d7948b2630130e3a622b2043e95c92caff926f148eff6cff441cc42766d",
+   "master/D552405C-class-f.json": "1ea945dbf86f90cd2d085eacd895b1e3c2ec10d48f6b178c251d6f018bf099b2",
+   "master/D552405C-F0.npy": "a2477fb2e99e9a1ef488e9d89a6fa49eeaa6807d4e5db0b043937ba8697edc12",
+   "master/D552405C-rgb-g.npy": "242f70f67d0e293c9c75a0a95950cf66089edefdc7945a7b0b1fc8a12c800d47",
+   "master/D552405C-buildg.json": "192b57d2b195d8881c213247ecb98a872f28e01085d560efd18c88ea5451b6a3"
+  },
+  "any_clut_class_exact": {
+   "texels_checked": 45168,
+   "round_f_equals_native_index": 45168,
+   "any_clut_class_exact": true
+  },
+  "rule": "class plane = v1 class field (any CLUT class-exact); g is the RGB field for every CLUT"
+ },
+ "sources": {
+  "checks": {
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage6/textures/D552405C.words.bin",
+    "sha256": "4ef9247dfd6c38b6801e8a1853cbd6aeaad7c7bccb60045d643971f9bbbb2467",
+    "crc32": "D552405C",
+    "crc_equals_tex": true,
+    "texture_confidence": "exact-static",
+    "member": "4/6",
+    "vram_rect_words": [
+     320,
+     256,
+     64,
+     256
+    ]
+   },
+   "cluts": {
+    "92AC1558": {
+     "crc32": "92AC1558",
+     "crc_equals_pal": true,
+     "words_hex": "1f0048410739e630a52884206318fd63985b5453f04aab42473a033242080000",
+     "clut_xy": [
+      96,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       96,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      },
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "98C90B96": {
+     "crc32": "98C90B96",
+     "crc_equals_pal": true,
+     "words_hex": "ffffd4df72d731cfefcaadc24cbe0ab6c9ad87a946a1e498a394618c20880000",
+     "clut_xy": [
+      128,
+      510
+     ],
+     "clut_xy_all": [
+      [
+       128,
+       510
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "5E251958": {
+     "crc32": "5E251958",
+     "crc_equals_pal": true,
+     "words_hex": "1f0048410739e630a52884206318ea636857074f8642253aa42d432542080000",
+     "clut_xy": [
+      112,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       112,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      },
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "C12DB7DC": {
+     "crc32": "C12DB7DC",
+     "crc_equals_pal": true,
+     "words_hex": "405300cbc0c680c240ba20b6e0b1a0ad60a540a1009dc0948090408c20880000",
+     "clut_xy": [
+      272,
+      504
+     ],
+     "clut_xy_all": [
+      [
+       272,
+       504
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(0, 14)",
+       "common": true,
+       "record": [
+        256,
+        484,
+        64,
+        28
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "copies": {
+   "D552405C.words.bin": "4ef9247dfd6c38b6801e8a1853cbd6aeaad7c7bccb60045d643971f9bbbb2467",
+   "D552405C-92AC1558.clut.bin": "469c5439c35400bf67fec7cdb20e0581aebfe11eadce8712de49f93771a29215",
+   "D552405C-98C90B96.clut.bin": "8b292508381f72d031ac037a9131c2f007de9a36492ec77c62e5715510ca33fb",
+   "D552405C-5E251958.clut.bin": "3cc68392423c8f899867223b9fe95e50951dc533a60de01063b0fbe174b2751e",
+   "D552405C-C12DB7DC.clut.bin": "0d9bd0a8d713390198c556029e6fbe26e087ce5b8c50b5c53526bb9550a579b3",
+   "bundle.json": "e975b88e9c566b0eefd228c1e622ea2dd99e83d8092e3fa03c191f5132daa101"
+  }
+ },
+ "builder_scripts": {
+  "s6_d55v4.py": "d2e9bb4b3ee2e6052d0982c3494776e10b8e4889bf9a19b8fcf80ca99d8a5618",
+  "s6_build.py": "df209addad1f3f169cd9afd102991e73b92db6190083235ef5bfc9ed80c55e0f",
+  "s6lib.py": "e826967604aa831ff02f6d8a64c0182d63d647b6f3c6d5f3176c9df475577438",
+  "s6_source.py": "6159748ec454005da659755b10e188bcc242e0b366c620ccecc62d689ca67810",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213",
+  "w2_comfy.py": "fe447ec3626edbc8b9fb953d6124df5b9d7f298f76945e7d3d0f447a0920e927",
+  "s6_motion.py": "d925562b99f022b224fe166e73222e54d6ae1ff3d912e499c806e526c18f0b66",
+  "s6_freeze_v4.py": "1d8a668ed87ddb1c85fbed377bbf353e758a01bbe78f50cf9f559b1afda60e87"
+ },
+ "comfy_files": {
+  "comfy/guide-t0.png": "6c3138afd7d3662f82fb02a16980f0c032d16db6220c4d216febd7060c7216ab",
+  "comfy/guide-t1.png": "861150873730ea019baa6ab79de1768889906dacdc067dcab626e589bfd32ad7",
+  "comfy/guide-t2.png": "0d58e98d2450eac6b0ada2a080752eeef9f663585da6787be63819d7350716ea",
+  "comfy/guide-t3.png": "082110a92f5bde2d0d1760998f24bbffbd5568ecd3231eb2499e522fc15bb217",
+  "comfy/guide-t4.png": "39a97b42e06d945636e35c74087e4a74f6b071441ff0198281351ddf20f97e9e",
+  "comfy/guide-t5.png": "b81d2c99963314a16d1575c6b6b3e35395abd2c30562da4375f31910f6e52c22",
+  "comfy/guide-t6.png": "95a972e70134c0bd10eea346dfa8ed0516bf48d807c81f94f0359303b290f54d",
+  "comfy/guide-t7.png": "d88fdc9489340d4a8b14453465d47761dce51ce19c936a5bff3b1dd30cb7f29c",
+  "comfy/guide-t8.png": "65cfe678928b8eb3933404a4590bc093789729a35822d1bac69536357311299a",
+  "comfy/layout.json": "bf5884340a4b36b807360e7b1f5caafc8b09fa630c651415c26c22a85bca09c3",
+  "comfy/buildg-v4.json": "192b57d2b195d8881c213247ecb98a872f28e01085d560efd18c88ea5451b6a3",
+  "comfy/gen.json": "ab91f6e04821defcc01306b0a2756df84eceb5b63339f2c9d6b38364636cd6f9",
+  "comfy/gpu-health.jsonl": "df25d13d76babd460f34191ddb8aa165e9ace1d342e5bc472d064db7a7433c72",
+  "comfy/t0-ai.png": "35b2012d420785ae4dad4e4abfa101db2d95b7f8796a6c89fab1b2b653a40ca8",
+  "comfy/t0-graph.api.json": "50f003fe7c53c96a4f5d9f5bdeb8c074b22f3e6895b9e804a053f890a8d1a831",
+  "comfy/t0-history.json": "d0e372c13608eec4595ff2d147ac900d01cb22d85dd23de594c8cec9118008e6",
+  "comfy/t1-ai.png": "33ceb2e0bc2aae543e06567003560e957de764fe2ef05f84bb14baaf940d38da",
+  "comfy/t1-graph.api.json": "17613b03ec17c2acabf2cf2d553014754d3ef259471248b006eb6c230cf227e9",
+  "comfy/t1-history.json": "ba7ff384189e660b9b187a7cd4fba115ea02d758c3846d0df8e395aa993cb886",
+  "comfy/t2-ai.png": "fd55005c5d2ed1f8eb3de9170a9471724943a4ffd686b70b409edb42ff8c59ed",
+  "comfy/t2-graph.api.json": "41b602a1927a82913a30490347bd4ed8cde35cfc22975493a6700d23e5e3cf8b",
+  "comfy/t2-history.json": "a79cbbacab689901b6e7e18667a9c283e8d774687ddbe2f9a4396033063db78e",
+  "comfy/t3-ai.png": "6a5cf88ea4c57d5344ad736a5eefae2e83aa0e6ede83b5af8b14876aec7ef858",
+  "comfy/t3-graph.api.json": "77e48da6b7ef634ae573f8de7f5d4afd46ae7a739e41f0ad36a03d36bdeeee06",
+  "comfy/t3-history.json": "14d31ee0eba530b214041f36c2705f4aa1d94d197f44d3c93278926532083502",
+  "comfy/t4-ai.png": "7e0964f37fdc14c2b23b5b60bd4c861179aa71e1e256ba0ee999a1bd1cb9753a",
+  "comfy/t4-graph.api.json": "a4c160a3bc2aed6f393fa55281b5ed7ce8920adaf27f100c97480c69711c44e7",
+  "comfy/t4-history.json": "d527eb2f707bd5f072cb5bd7a2557c94b0df008c8d330ca91965ed81e3b82179",
+  "comfy/t5-ai.png": "2f078690cd0f002417b2a262ebdde2b3c32fe54bbabc54c67676c24b146e4524",
+  "comfy/t5-graph.api.json": "66f5124504e8e509e711f81b22f9889f5040363a8ed85ea22369ef348525b544",
+  "comfy/t5-history.json": "00d2add6cd689b4b700aa093171916ca48e5f636d2bc6d756ddbdb449bc6f361",
+  "comfy/t6-ai.png": "932b4c42df9c625eb57325d61bfa4f7979f690b61edeedfd8c54c637b1a5af5e",
+  "comfy/t6-graph.api.json": "c15331be1a679d5436143ad61d548123cc9ebf36beef5777a8b4814535b3a367",
+  "comfy/t6-history.json": "f506bd63d5f1f1596a8755c0acc9416f074d0198ec803266b024711ab82f03c5",
+  "comfy/t7-ai.png": "37a07f11d99611cf89fc99a2f61dc2551a85db0c58975791959a5be0f82ff467",
+  "comfy/t7-graph.api.json": "a4ce063dfeefc49b39338738263f1b8eef6413fcd88c38257709a603a7c42c19",
+  "comfy/t7-history.json": "1f83516c6b1e29a24137eee944f25452c5979eefcf86e7000f23b561dc1601b4",
+  "comfy/t8-ai.png": "62ec92109dc6282bdff8d889ca8aa3cdeaa12b3cbc2be29556ed28c544003122",
+  "comfy/t8-graph.api.json": "76d360777942489a3afcfcf18b54fc85a3a69e30b170ff92db28547ff1fffa1b",
+  "comfy/t8-history.json": "db85af0d0da3f39ca7c542843b0f727c4a7d71548301683479d1e153b6ee82af"
+ },
+ "keys": [
+  {
+   "key": "D552405C-92AC1558",
+   "clut": "92AC1558",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 1.0013,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0013,
+     "native_light": 1158577.5
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.71,
+     "scale_applied": 1.4085,
+     "energy_ratio": 1.0,
+     "native_light": 279.6
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 1.0222,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0222,
+     "native_light": 217619.5
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 1.0166,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0166,
+     "native_light": 234885.5
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 1.0154,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0154,
+     "native_light": 254988.4
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 1.026,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.026,
+     "native_light": 237650.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 1.01,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.01,
+     "native_light": 193024.2
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 1.1151,
+     "scale_applied": 0.8967,
+     "energy_ratio": 1.0,
+     "native_light": 47628.6
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.0191,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0191,
+     "native_light": 121355.3
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 1.0394,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0394,
+     "native_light": 34588.9
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 0.9982,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9982,
+     "native_light": 317960.8
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 1.0913,
+     "scale_applied": 0.9163,
+     "energy_ratio": 1.0,
+     "native_light": 4443.7
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 1.0356,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0356,
+     "native_light": 129073.8
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 1.0594,
+     "scale_applied": 0.9439,
+     "energy_ratio": 1.0,
+     "native_light": 379389.3
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 1.0961,
+     "scale_applied": 0.9123,
+     "energy_ratio": 1.0,
+     "native_light": 64346.7
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 1.0148,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0148,
+     "native_light": 112119.1
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 1.0388,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0388,
+     "native_light": 34568.1
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 0.9137,
+     "scale_applied": 1.0944,
+     "energy_ratio": 1.0,
+     "native_light": 320.0
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 1.0013,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0013,
+     "native_light": 62559.7
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 1.0802,
+     "scale_applied": 0.9258,
+     "energy_ratio": 1.0,
+     "native_light": 11806.3
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 1.0645,
+     "scale_applied": 0.9394,
+     "energy_ratio": 1.0,
+     "native_light": 109306.1
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 0.9922,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9922,
+     "native_light": 268675.8
+    },
+    {
+     "cell": 23,
+     "energy_ratio_before": 1.0017,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0017,
+     "native_light": 88802.6
+    },
+    {
+     "cell": 24,
+     "energy_ratio_before": 1.0746,
+     "scale_applied": 0.9306,
+     "energy_ratio": 1.0,
+     "native_light": 48673.7
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/D552405C-92AC1558.png",
+    "sha256": "564ad4f711bc3d9d2cfdd2077576234127658dcc0d3487f5d9dcd32e5225a767",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/D552405C-92AC1558.png",
+    "sha256": "c51bae01bd78c4ed245736feff425601acef72eb303face657791c1df8b3f610",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9922,
+    1.0394
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "D552405C-98C90B96",
+   "clut": "98C90B96",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 0.9992,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9992,
+     "native_light": 1169377.4
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.8058,
+     "scale_applied": 1.2409,
+     "energy_ratio": 1.0,
+     "native_light": 96.2
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 1.007,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.007,
+     "native_light": 155549.2
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 1.0109,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0109,
+     "native_light": 164998.1
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 1.0042,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0042,
+     "native_light": 171957.7
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 1.0056,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0056,
+     "native_light": 167169.7
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 1.0058,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0058,
+     "native_light": 145907.8
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 0.979,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.979,
+     "native_light": 107537.5
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.0057,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0057,
+     "native_light": 94470.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 0.9939,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9939,
+     "native_light": 15333.1
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 1.0004,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0004,
+     "native_light": 269145.1
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 0.8597,
+     "scale_applied": 1.1632,
+     "energy_ratio": 1.0,
+     "native_light": 2068.3
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 1.0045,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0045,
+     "native_light": 85855.7
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 0.9918,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9918,
+     "native_light": 415096.1
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 0.9793,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9793,
+     "native_light": 110912.7
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 0.9851,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9851,
+     "native_light": 48202.7
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 0.9802,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9802,
+     "native_light": 62895.3
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 0.9137,
+     "scale_applied": 1.0944,
+     "energy_ratio": 1.0,
+     "native_light": 137.5
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 0.9906,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9906,
+     "native_light": 51778.3
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 0.9348,
+     "scale_applied": 1.0698,
+     "energy_ratio": 1.0,
+     "native_light": 5263.3
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 1.0035,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0035,
+     "native_light": 107924.0
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 0.9909,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9909,
+     "native_light": 243242.6
+    },
+    {
+     "cell": 23,
+     "energy_ratio_before": 1.0105,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0105,
+     "native_light": 87998.0
+    },
+    {
+     "cell": 24,
+     "energy_ratio_before": 1.0072,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0072,
+     "native_light": 54346.7
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/D552405C-98C90B96.png",
+    "sha256": "372c511a38195687c2cf237157e53176e7aec6dfe9df126d49a40fb7ece112eb",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/D552405C-98C90B96.png",
+    "sha256": "493294e00a9f0760919181d379a2671195883cbc1db460d48e1dd9429a4845e6",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.979,
+    1.0109
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "D552405C-5E251958",
+   "clut": "5E251958",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 1.0007,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0007,
+     "native_light": 966739.8
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.7671,
+     "scale_applied": 1.3036,
+     "energy_ratio": 1.0,
+     "native_light": 243.5
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 1.0249,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0249,
+     "native_light": 173893.5
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 1.0199,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0199,
+     "native_light": 189233.4
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 1.017,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.017,
+     "native_light": 205324.8
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 1.0282,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0282,
+     "native_light": 192164.3
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 1.0128,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0128,
+     "native_light": 152998.4
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 1.0828,
+     "scale_applied": 0.9235,
+     "energy_ratio": 1.0,
+     "native_light": 43330.4
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.0212,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0212,
+     "native_light": 96415.7
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 1.012,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.012,
+     "native_light": 28964.9
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 0.9995,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9995,
+     "native_light": 254572.8
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 0.9877,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9877,
+     "native_light": 3907.5
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 1.0296,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0296,
+     "native_light": 103433.2
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 1.0589,
+     "scale_applied": 0.9443,
+     "energy_ratio": 1.0,
+     "native_light": 312138.9
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 1.0847,
+     "scale_applied": 0.9219,
+     "energy_ratio": 1.0,
+     "native_light": 56158.7
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 0.9993,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9993,
+     "native_light": 91572.0
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 1.0385,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0385,
+     "native_light": 30155.2
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 0.9137,
+     "scale_applied": 1.0944,
+     "energy_ratio": 1.0,
+     "native_light": 320.0
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 0.9977,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9977,
+     "native_light": 50185.7
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 1.0067,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0067,
+     "native_light": 9995.9
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 1.069,
+     "scale_applied": 0.9354,
+     "energy_ratio": 1.0,
+     "native_light": 89369.7
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 0.99,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.99,
+     "native_light": 229417.4
+    },
+    {
+     "cell": 23,
+     "energy_ratio_before": 1.009,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.009,
+     "native_light": 73458.3
+    },
+    {
+     "cell": 24,
+     "energy_ratio_before": 1.0766,
+     "scale_applied": 0.9288,
+     "energy_ratio": 1.0,
+     "native_light": 40597.4
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/D552405C-5E251958.png",
+    "sha256": "44dfb8f57ed95bb872c165baaeee6935a9f23fc32465b6b34a4ad063dc94349f",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/D552405C-5E251958.png",
+    "sha256": "6f31ac51d0cc3958d9fd6c0e4c55885e49ad45bb08d95f2a0022fad2cce1765f",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9877,
+    1.0385
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "D552405C-C12DB7DC",
+   "clut": "C12DB7DC",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 0.9987,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9987,
+     "native_light": 801375.8
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.8461,
+     "scale_applied": 1.1819,
+     "energy_ratio": 1.0,
+     "native_light": 88.8
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 1.014,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.014,
+     "native_light": 106336.8
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 1.0194,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0194,
+     "native_light": 112582.6
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 1.0124,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0124,
+     "native_light": 117276.2
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 1.0134,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0134,
+     "native_light": 114228.3
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 1.0117,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0117,
+     "native_light": 99628.1
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 0.9828,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9828,
+     "native_light": 70314.6
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.0105,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0105,
+     "native_light": 64377.7
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 0.9796,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9796,
+     "native_light": 10863.4
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 1.0003,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0003,
+     "native_light": 182995.3
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 0.8767,
+     "scale_applied": 1.1406,
+     "energy_ratio": 1.0,
+     "native_light": 1530.3
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 0.9983,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9983,
+     "native_light": 59725.8
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 1.0002,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0002,
+     "native_light": 280008.6
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 0.9844,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9844,
+     "native_light": 73728.7
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 0.9801,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9801,
+     "native_light": 33993.6
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 0.9899,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9899,
+     "native_light": 42031.0
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 0.9137,
+     "scale_applied": 1.0944,
+     "energy_ratio": 1.0,
+     "native_light": 137.5
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 0.9979,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9979,
+     "native_light": 35423.7
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 0.9187,
+     "scale_applied": 1.0885,
+     "energy_ratio": 1.0,
+     "native_light": 3779.4
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 1.0062,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0062,
+     "native_light": 73871.1
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 0.9929,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9929,
+     "native_light": 166904.2
+    },
+    {
+     "cell": 23,
+     "energy_ratio_before": 1.0144,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0144,
+     "native_light": 60032.4
+    },
+    {
+     "cell": 24,
+     "energy_ratio_before": 1.0115,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0115,
+     "native_light": 37113.9
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/D552405C-C12DB7DC.png",
+    "sha256": "53c2b1c8a61c330b36532f649ad960621c5bdc48e0308229a644a56b694cc7d0",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/D552405C-C12DB7DC.png",
+    "sha256": "132a4396119b35b11938c29dabc1580233ec8bd957c633370bcd70562003379f",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9796,
+    1.0194
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "review": [
+  "review/D552405C-92AC1558-tile.png",
+  "review/D552405C-92AC1558-close-16x.png",
+  "review/D552405C-92AC1558-ingame-SIMULATION.png",
+  "review/D552405C-98C90B96-tile.png",
+  "review/D552405C-98C90B96-close-16x.png",
+  "review/D552405C-98C90B96-ingame-SIMULATION.png",
+  "review/D552405C-5E251958-tile.png",
+  "review/D552405C-5E251958-close-16x.png",
+  "review/D552405C-5E251958-ingame-SIMULATION.png",
+  "review/D552405C-C12DB7DC-tile.png",
+  "review/D552405C-C12DB7DC-close-16x.png",
+  "review/D552405C-C12DB7DC-ingame-SIMULATION.png",
+  "review/D552405C-92AC1558-native-v1-v4c-compare.png",
+  "review/D552405C-5E251958-native-v1-v4c-compare.png",
+  "review/D552405C-92AC1558-motion-SIMULATION-frames.png",
+  "review/D552405C-92AC1558-motion-SIMULATION.json",
+  "review/D552405C-92AC1558-motion-SIMULATION.mp4",
+  "review/D552405C-C12DB7DC-motion-SIMULATION-frames.png",
+  "review/D552405C-C12DB7DC-motion-SIMULATION.json",
+  "review/D552405C-C12DB7DC-motion-SIMULATION.mp4"
+ ],
+ "motion_verdict": "Holds in motion (SIMULATION, bilinear, no mips, assumed 40 and 16 native px quads, page-order cells): halo filaments are temporally coherent (no sparkle or crawl in consecutive frames); mean |dL| between frames of one held cell: opaque 92AC1558 stock 11.27 / v1 9.50 / v4c 10.63; additive C12DB7DC stock 3.73 / v1 3.12 / v4c 3.77; additive at 16 px quads stock 8.33 / v1 7.07 / v4c 8.03 - v4c stays at or below stock nearest; the increase over v1 is added detail drifting, not aliasing.",
+ "review_note": "native | v1 | v4c compare sheets, tile / close / in-game sheets, motion video: every one a SIMULATION",
+ "known_limits": [
+  "Predicted-static: the CLUTs the game uses for this page are unknown; zone splits come from the delivered predicted CLUTs (a runtime CLUT with other jumps would get the zone-limited detail of these).",
+  "The detail is SDXL smoke texture inside the native shapes, not a simulation of these exact plumes; overlapping tiles were generated independently (raised-cosine blend).",
+  "Thin bright filaments (~3 px at 2048) are the shimmer risk; judged on the motion SIMULATION only (assumed 40 native px quads, page-order animation: capture CR-S6-4).",
+  "Sprite identity (thruster exhaust trails, smoke and fire puffs) is visual only."
+ ]
+}

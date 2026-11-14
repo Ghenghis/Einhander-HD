@@ -1,0 +1,138 @@
+{
+ "rows": 7195,
+ "rows_in_measured_bracket": 7191,
+ "measured_frames": [
+  3057,
+  10247
+ ],
+ "valid_pairs": 7191,
+ "valid_coverage": 1.0,
+ "invalid_reasons": {
+  "no_prev_row_in_pages": 1,
+  "outside_measured_bracket": 3
+ },
+ "qpc_frequency": 10000000,
+ "period_ms_quantiles": {
+  "0.5": 16.6665,
+  "0.9": 16.6725,
+  "0.99": 18.4895,
+  "0.999": 47.2252,
+  "1.0": 93.2445
+ },
+ "periods_over_ms": {
+  "20": 56,
+  "25": 29,
+  "33.4": 17,
+  "50": 6,
+  "100": 0
+ },
+ "share_of_total_time": {
+  "prev_swap": 0.005333508148369529,
+  "prev_post": 3.590967570740165e-05,
+  "outside": 0.5100290801452508,
+  "housekeeping": 0.0001474389330792237,
+  "pre_pace": 0.009405546533055194,
+  "pace": 0.47290796853896716,
+  "present_prep": 0.002140548025570623
+ },
+ "worst": [
+  {
+   "frame": 3063,
+   "seq": 3062,
+   "prev_swap": 82.6902,
+   "prev_post": 0.004200000000000001,
+   "outside": 10.302200000000001,
+   "housekeeping": 0.013900000000000001,
+   "pre_pace": 0.21610000000000001,
+   "pace": 0.0004,
+   "present_prep": 0.0175,
+   "period": 93.2445,
+   "dominant": "prev_swap",
+   "dominant_ms": 82.6902
+  },
+  {
+   "frame": 3065,
+   "seq": 3064,
+   "prev_swap": 60.6724,
+   "prev_post": 0.0036000000000000003,
+   "outside": 6.4535,
+   "housekeeping": 0.0158,
+   "pre_pace": 0.2096,
+   "pace": 0.0004,
+   "present_prep": 0.0217,
+   "period": 67.37700000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 60.6724
+  },
+  {
+   "frame": 8164,
+   "seq": 8163,
+   "prev_swap": 0.6415000000000001,
+   "prev_post": 0.0012000000000000001,
+   "outside": 58.232,
+   "housekeeping": 0.02,
+   "pre_pace": 0.3271,
+   "pace": 0.0007,
+   "present_prep": 0.0488,
+   "period": 59.271300000000004,
+   "dominant": "outside",
+   "dominant_ms": 58.232
+  },
+  {
+   "frame": 3069,
+   "seq": 3068,
+   "prev_swap": 0.12290000000000001,
+   "prev_post": 0.0008,
+   "outside": 55.379400000000004,
+   "housekeeping": 0.002,
+   "pre_pace": 0.2393,
+   "pace": 0.0004,
+   "present_prep": 0.0309,
+   "period": 55.7757,
+   "dominant": "outside",
+   "dominant_ms": 55.379400000000004
+  },
+  {
+   "frame": 3072,
+   "seq": 3071,
+   "prev_swap": 0.0376,
+   "prev_post": 0.0006000000000000001,
+   "outside": 8.4247,
+   "housekeeping": 0.0117,
+   "pre_pace": 0.2015,
+   "pace": 7.969200000000001,
+   "present_prep": 34.6433,
+   "period": 51.2886,
+   "dominant": "present_prep",
+   "dominant_ms": 34.6433
+  }
+ ],
+ "scope": "CPU wall timestamps locate time; they do not prove busy CPU vs OS scheduling or GPU backlog. outside = guest plus other work between vblank callbacks, not pure emulation.",
+ "present_ring_dt_for_worst": [
+  {
+   "frame": 3063,
+   "phase_period_ms": 93.245,
+   "present_ring_dt_ms": 93
+  },
+  {
+   "frame": 3065,
+   "phase_period_ms": 67.377,
+   "present_ring_dt_ms": 68
+  },
+  {
+   "frame": 8164,
+   "phase_period_ms": 59.271,
+   "present_ring_dt_ms": 60
+  },
+  {
+   "frame": 3069,
+   "phase_period_ms": 55.776,
+   "present_ring_dt_ms": 56
+  },
+  {
+   "frame": 3072,
+   "phase_period_ms": 51.289,
+   "present_ring_dt_ms": 17
+  }
+ ]
+}

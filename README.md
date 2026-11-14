@@ -8,6 +8,8 @@ Source-aware textures · photographic material studies · 2160p game captures
 
 [Gallery](docs/GALLERY.md) · [Comparisons](docs/COMPARISONS.md) · [Developer guide](docs/DEVELOPMENT.md) · [Restoration plan](remaster-audit/REMASTER_COMPLETION_PLAN.md)
 
+[Skin Factory and in-game menu gaps](docs/SKIN-FACTORY-MENU-GAPS.md)
+
 [Engineering handbook and current handoff](docs/handbook/index.html) · [Master action plan](docs/MASTER-ACTION-PLAN.html)
 
 ![Development preview](https://img.shields.io/badge/status-development_preview-d79b42?style=flat-square)
@@ -19,6 +21,12 @@ Source-aware textures · photographic material studies · 2160p game captures
 <sub>Actual 1280 × 960 game video, 52.77 seconds. Continuous entry to exit; no firing; timer-only assistance disclosed. Facade bracket 60.00 guest frames/s; full recording 59.43 with audio starvation. Full-stage and release acceptance remain open. <a href="docs/STAGE1-EMISSIVE-RESULTS.md">Results and limits →</a></sub>
 
 </div>
+
+> **Current runtime and seven-stage handoff:** [verified results, remaining E2E gates and continuation](docs/RUNTIME-CONTINUATION-20261113.md). The larger artwork still has measured pauses/audio starvation; the remaster is incomplete.
+
+[Artwork inventory: produced files, current candidates, verification, remaining work and locations](docs/ARTWORK-STATUS-20261113.md).
+
+[Completed frame-phase and audio diagnostics: actual failures, measurements and replay data](docs/STAGE1-FRAME-PHASE-RESULTS.md).
 
 ## The direction
 
@@ -134,3 +142,5 @@ Built on modified inline copies of [psxrecomp](https://github.com/mstan/psxrecom
 PSXRecomp retains its [PolyForm Noncommercial 1.0.0 license](windows-x64/psxrecomp/LICENSE); recomp-ui retains its [MIT license](windows-x64/recomp-ui/LICENSE). Vendored libraries, fonts and OpenBIOS retain their notices and pins. No new blanket license is declared for the whole repository.
 
 Einhänder and its original artwork belong to their respective rights holders. This is an independent fan restoration. The DuckStation video and IceBullet texture work are credited as an external reference. Project image-generation and local authoring contributions are identified in the gallery provenance.
+
+Current November 14 continuation: [private power-profile results](docs/STAGE1-POWER-PROFILE-RESULTS.md), [green/pink sign quality](docs/STAGE1-SIGN-QUALITY-20261114.md), and [RTX Remix setup and actual conversion](docs/RTX-REMIX-SETUP-20261114.md). Gameplay/visual acceptance and live Remix integration remain incomplete.

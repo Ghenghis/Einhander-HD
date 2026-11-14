@@ -1,0 +1,152 @@
+{
+  "at_utc": "2026-11-14T12:18:51.999558+00:00",
+  "passed": true,
+  "positive": {
+    "passed": true,
+    "errors": [],
+    "advisories": [
+      "record 0: reserved depth; no material binding acceptance"
+    ],
+    "records": 1,
+    "geometry_qualified": 1,
+    "ideal_projection_error_max_px": 0.0,
+    "projection_error_is_diagnostic": true,
+    "live_ring_revalidated": false,
+    "world_camera_factorization": false,
+    "sdk_materials_or_rendering_accepted": false
+  },
+  "negative_cases": [
+    {
+      "name": "unknown schema",
+      "errors": [
+        "schema"
+      ]
+    },
+    {
+      "name": "partial capture",
+      "errors": [
+        "complete interval"
+      ]
+    },
+    {
+      "name": "overflow",
+      "errors": [
+        "overflow/malformed"
+      ]
+    },
+    {
+      "name": "counter",
+      "errors": [
+        "record count"
+      ]
+    },
+    {
+      "name": "bad topology",
+      "errors": [
+        "record 0 topology"
+      ]
+    },
+    {
+      "name": "source mismatch",
+      "errors": [
+        "record 0 vertex 0 source"
+      ]
+    },
+    {
+      "name": "packet mismatch",
+      "errors": [
+        "record 0 vertex 0 view word"
+      ]
+    },
+    {
+      "name": "UV mismatch",
+      "errors": [
+        "record 0 vertex 0 UV"
+      ]
+    },
+    {
+      "name": "RGB mismatch",
+      "errors": [
+        "record 0 vertex 0 RGB"
+      ]
+    },
+    {
+      "name": "CLUT mismatch",
+      "errors": [
+        "record 0 texture identity"
+      ]
+    },
+    {
+      "name": "future provenance",
+      "errors": [
+        "record 0 vertex 0 age"
+      ]
+    },
+    {
+      "name": "old provenance",
+      "errors": [
+        "record 0 vertex 0 age"
+      ]
+    },
+    {
+      "name": "negative frame",
+      "errors": [
+        "record 0 vertex 0 source frame range"
+      ]
+    },
+    {
+      "name": "uncommitted",
+      "errors": [
+        "record 0 vertex 0 commit/divergence flags"
+      ]
+    },
+    {
+      "name": "divergence",
+      "errors": [
+        "record 0 vertex 0 commit/divergence flags"
+      ]
+    },
+    {
+      "name": "lane",
+      "errors": [
+        "record 0 vertex 0 projection command"
+      ]
+    },
+    {
+      "name": "hash",
+      "errors": [
+        "record 0 vertex 0 independent transform hash"
+      ]
+    },
+    {
+      "name": "MAC",
+      "errors": [
+        "record 0 vertex 0 independent MAC"
+      ]
+    },
+    {
+      "name": "missing fields",
+      "errors": [
+        "record 0: invalid fields 'address'",
+        "qualified count"
+      ]
+    },
+    {
+      "name": "qualified contradiction",
+      "errors": [
+        "record 0 qualified result",
+        "qualified count"
+      ]
+    }
+  ],
+  "negative_cases_caught": 20,
+  "wrap_positive": true,
+  "gpu_executed": false,
+  "source_sha256": "353cc9620a4e9475408083c50c92d220a1b2367d6b8196f4922616ef7a208149",
+  "input_record_sha256": "20f27bec061376865e21f2c61b422d0df61ecd525ef391cbfd37b205fd5c3a54",
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "scope": "Independent Python packet/MAC/hash consistency; fixture JSON emitted by C++ collector. Not live capture or renderer qualification."
+}

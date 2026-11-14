@@ -1,0 +1,87 @@
+{
+  "started_utc": "2026-11-14T08:10:53.764683+00:00",
+  "errors": [
+    "Native route gate timed out: fighter-mk2; last=unknown; evidence=C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\visible-material-review-r1\\hd-on_rewind-on\\native-facade-route-20261114-081138-335902\\route-proof.json"
+  ],
+  "captures": [],
+  "material_states": [],
+  "ram_writes": false,
+  "state_loads": false,
+  "performance_acceptance": false,
+  "full_skin_acceptance": false,
+  "production_installed": false,
+  "scope": "30s native/HD and mapped material visible review; no newPBR or remasteredconceptgeometry",
+  "material_at_title": {
+    "id": 1,
+    "ok": true,
+    "contract": "ein-material-v3",
+    "live_palette": true,
+    "ready": true,
+    "opengl_ready": true,
+    "hd_ready": true,
+    "renderer": "opengl",
+    "applied": false,
+    "generation": 0,
+    "frame": 2030,
+    "apply_scope": "color_only_next_draw",
+    "detail_changes": "next_launch_only",
+    "diagnostic_scope_supported": true,
+    "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+    "diagnostic_max_keys_per_channel": 128,
+    "diagnostic_key_validation": "registered_exact_pack_entry_not_render_proof",
+    "player": {
+      "profile": "stock",
+      "strength_percent": 0,
+      "key_count": 4,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+    },
+    "enemy": {
+      "profile": "stock",
+      "strength_percent": 0,
+      "key_count": 6,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+    },
+    "supported_profiles": [
+      "stock",
+      "aurora-teal",
+      "solar-orange",
+      "ultraviolet-violet",
+      "glacier-blue",
+      "crimson-red",
+      "toxic-lime",
+      "gold-obsidian",
+      "pearl-magenta",
+      "aurora-gilt",
+      "crimson-regalia",
+      "glacier-gilt",
+      "neon-circuit",
+      "ultraviolet-grid",
+      "reactor-lime"
+    ]
+  },
+  "input_released": {
+    "id": 1,
+    "ok": true
+  },
+  "close": {
+    "pid": 32264,
+    "clear_input": {
+      "id": 1,
+      "ok": true
+    },
+    "quit_reply": {
+      "ok": false,
+      "err": "emu busy or frozen"
+    },
+    "port_closed": true
+  },
+  "exit": 0,
+  "forbidden_mutations": [],
+  "ended_utc": "2026-11-14T08:12:44.683914+00:00"
+}

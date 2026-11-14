@@ -1,0 +1,271 @@
+{
+ "rows": 7191,
+ "rows_in_measured_bracket": 7187,
+ "measured_frames": [
+  3061,
+  10247
+ ],
+ "valid_pairs": 7187,
+ "valid_coverage": 1.0,
+ "invalid_reasons": {
+  "no_prev_row_in_pages": 1,
+  "outside_measured_bracket": 3
+ },
+ "qpc_frequency": 10000000,
+ "period_ms_quantiles": {
+  "0.5": 16.666600000000003,
+  "0.9": 16.6717,
+  "0.99": 18.469900000000003,
+  "0.999": 46.0397,
+  "1.0": 230.0131
+ },
+ "periods_over_ms": {
+  "20": 49,
+  "25": 22,
+  "33.4": 10,
+  "50": 7,
+  "100": 3
+ },
+ "share_of_total_time": {
+  "prev_swap": 0.007132479497103729,
+  "prev_post": 3.170600907016033e-05,
+  "outside": 0.5204091007866402,
+  "housekeeping": 0.00014242619949915422,
+  "pre_pace": 0.011510608834718338,
+  "pace": 0.4595033799113185,
+  "present_prep": 0.0012702987616500052
+ },
+ "worst": [
+  {
+   "frame": 6125,
+   "seq": 6124,
+   "prev_swap": 0.02,
+   "prev_post": 0.0004,
+   "outside": 6.012700000000001,
+   "housekeeping": 0.0008,
+   "pre_pace": 223.93980000000002,
+   "pace": 0.0008,
+   "present_prep": 0.0386,
+   "period": 230.0131,
+   "dominant": "pre_pace",
+   "dominant_ms": 223.93980000000002
+  },
+  {
+   "frame": 5363,
+   "seq": 5362,
+   "prev_swap": 192.19240000000002,
+   "prev_post": 0.004200000000000001,
+   "outside": 17.214100000000002,
+   "housekeeping": 0.0019,
+   "pre_pace": 0.22080000000000002,
+   "pace": 0.0005,
+   "present_prep": 0.020900000000000002,
+   "period": 209.65480000000002,
+   "dominant": "prev_swap",
+   "dominant_ms": 192.19240000000002
+  },
+  {
+   "frame": 6126,
+   "seq": 6125,
+   "prev_swap": 0.0499,
+   "prev_post": 0.001,
+   "outside": 181.6985,
+   "housekeeping": 0.0092,
+   "pre_pace": 0.131,
+   "pace": 0.00030000000000000003,
+   "present_prep": 0.0196,
+   "period": 181.9095,
+   "dominant": "outside",
+   "dominant_ms": 181.6985
+  },
+  {
+   "frame": 6933,
+   "seq": 6932,
+   "prev_swap": 92.55930000000001,
+   "prev_post": 0.0011,
+   "outside": 6.892200000000001,
+   "housekeeping": 0.001,
+   "pre_pace": 0.131,
+   "pace": 0.0002,
+   "present_prep": 0.016,
+   "period": 99.6008,
+   "dominant": "prev_swap",
+   "dominant_ms": 92.55930000000001
+  },
+  {
+   "frame": 8363,
+   "seq": 8362,
+   "prev_swap": 73.73910000000001,
+   "prev_post": 0.003,
+   "outside": 7.3144,
+   "housekeeping": 0.0019,
+   "pre_pace": 0.1471,
+   "pace": 0.0016,
+   "present_prep": 0.0264,
+   "period": 81.2335,
+   "dominant": "prev_swap",
+   "dominant_ms": 73.73910000000001
+  },
+  {
+   "frame": 5655,
+   "seq": 5654,
+   "prev_swap": 54.895300000000006,
+   "prev_post": 0.0026000000000000003,
+   "outside": 11.5014,
+   "housekeeping": 0.002,
+   "pre_pace": 0.1673,
+   "pace": 0.0004,
+   "present_prep": 0.019,
+   "period": 66.58800000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 54.895300000000006
+  },
+  {
+   "frame": 9008,
+   "seq": 9007,
+   "prev_swap": 53.7561,
+   "prev_post": 0.0016,
+   "outside": 10.1925,
+   "housekeeping": 0.0092,
+   "pre_pace": 0.1699,
+   "pace": 0.0002,
+   "present_prep": 0.0224,
+   "period": 64.1519,
+   "dominant": "prev_swap",
+   "dominant_ms": 53.7561
+  },
+  {
+   "frame": 5367,
+   "seq": 5366,
+   "prev_swap": 38.079100000000004,
+   "prev_post": 0.0017000000000000001,
+   "outside": 7.763800000000001,
+   "housekeeping": 0.0011,
+   "pre_pace": 0.1754,
+   "pace": 0.00030000000000000003,
+   "present_prep": 0.0183,
+   "period": 46.0397,
+   "dominant": "prev_swap",
+   "dominant_ms": 38.079100000000004
+  },
+  {
+   "frame": 7987,
+   "seq": 7986,
+   "prev_swap": 0.0275,
+   "prev_post": 0.0007,
+   "outside": 10.4346,
+   "housekeeping": 0.0009000000000000001,
+   "pre_pace": 34.4819,
+   "pace": 0.0015,
+   "present_prep": 0.0256,
+   "period": 44.9727,
+   "dominant": "pre_pace",
+   "dominant_ms": 34.4819
+  },
+  {
+   "frame": 8064,
+   "seq": 8063,
+   "prev_swap": 0.092,
+   "prev_post": 0.0019,
+   "outside": 39.4679,
+   "housekeeping": 0.008,
+   "pre_pace": 2.7859000000000003,
+   "pace": 0.0018000000000000002,
+   "present_prep": 0.10890000000000001,
+   "period": 42.4664,
+   "dominant": "outside",
+   "dominant_ms": 39.4679
+  },
+  {
+   "frame": 3672,
+   "seq": 3671,
+   "prev_swap": 0.023,
+   "prev_post": 0.0004,
+   "outside": 32.994800000000005,
+   "housekeeping": 0.0006000000000000001,
+   "pre_pace": 0.1253,
+   "pace": 0.0002,
+   "present_prep": 0.018600000000000002,
+   "period": 33.1629,
+   "dominant": "outside",
+   "dominant_ms": 32.994800000000005
+  },
+  {
+   "frame": 8061,
+   "seq": 8060,
+   "prev_swap": 0.0682,
+   "prev_post": 0.0025,
+   "outside": 31.6624,
+   "housekeeping": 0.0076,
+   "pre_pace": 0.6493,
+   "pace": 0.0023,
+   "present_prep": 0.14550000000000002,
+   "period": 32.537800000000004,
+   "dominant": "outside",
+   "dominant_ms": 31.6624
+  }
+ ],
+ "scope": "CPU wall timestamps locate time; they do not prove busy CPU vs OS scheduling or GPU backlog. outside = guest plus other work between vblank callbacks, not pure emulation.",
+ "present_ring_dt_for_worst": [
+  {
+   "frame": 6125,
+   "phase_period_ms": 230.013,
+   "present_ring_dt_ms": 230
+  },
+  {
+   "frame": 5363,
+   "phase_period_ms": 209.655,
+   "present_ring_dt_ms": 209
+  },
+  {
+   "frame": 6126,
+   "phase_period_ms": 181.91,
+   "present_ring_dt_ms": 182
+  },
+  {
+   "frame": 6933,
+   "phase_period_ms": 99.601,
+   "present_ring_dt_ms": 99
+  },
+  {
+   "frame": 8363,
+   "phase_period_ms": 81.234,
+   "present_ring_dt_ms": 81
+  },
+  {
+   "frame": 5655,
+   "phase_period_ms": 66.588,
+   "present_ring_dt_ms": 67
+  },
+  {
+   "frame": 9008,
+   "phase_period_ms": 64.152,
+   "present_ring_dt_ms": 64
+  },
+  {
+   "frame": 5367,
+   "phase_period_ms": 46.04,
+   "present_ring_dt_ms": 46
+  },
+  {
+   "frame": 7987,
+   "phase_period_ms": 44.973,
+   "present_ring_dt_ms": 45
+  },
+  {
+   "frame": 8064,
+   "phase_period_ms": 42.466,
+   "present_ring_dt_ms": 42
+  },
+  {
+   "frame": 3672,
+   "phase_period_ms": 33.163,
+   "present_ring_dt_ms": 34
+  },
+  {
+   "frame": 8061,
+   "phase_period_ms": 32.538,
+   "present_ring_dt_ms": 33
+  }
+ ]
+}

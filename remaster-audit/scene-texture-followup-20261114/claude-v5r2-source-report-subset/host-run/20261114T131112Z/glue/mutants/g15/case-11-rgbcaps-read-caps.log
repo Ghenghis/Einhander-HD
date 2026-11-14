@@ -1,0 +1,7 @@
+TIMING preload_total_ms 4.951 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 5.884 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 5.957 min 5.684 max 7.106 (21 fresh slots, warm)
+checks 39 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g15\glue_harness.c:226: g_teximage == 0 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g15\glue_harness.c:263: s_hdcm_diag.rgbonly_admitted == 2 && (int)slot.rgb_edges == EXPECT_CUT && g_teximage == 0 && g_texparam == 0

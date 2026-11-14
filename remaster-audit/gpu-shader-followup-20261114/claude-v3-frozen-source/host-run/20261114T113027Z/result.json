@@ -1,0 +1,1167 @@
+{
+ "run": "20261114T113027Z",
+ "pin": {
+  "priority": "16384",
+  "affinity": [
+   15
+  ]
+ },
+ "inputs": {
+  "class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+  "class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+  "DESIGN-V3.md": "4cac3024776af1d111ddc2e94441846d7ab05f145ce5c57aad5a21f1cd074144",
+  "glue_harness.c": "36907935f4ee3e6339bca3869675d310b9a05a81ad74e66f78351939991316e8",
+  "hd_class_mips.inc": "721bc33b8bdd1703adc75a5627a145d5c2130987b30c429568e16bed64b6a0e4",
+  "hdcm_tool.c": "bd1dd228034e46c8b9d0a44d23a95e257b1474990579dbb2b7e552eba9e8c3b6",
+  "make_patch.py": "b2560a3f35754595895480644483505b67d990823b064922a9efbd8fe190e2f6",
+  "run_host.py": "3283436372162c5395575d559951688f16b4774ca21cdc8bbe292a0a835b8026",
+  "test_hd_class_mips.c": "712487516f032d32fd4f017cda1d68a797eda715e46f4829ffdb0958630c7845"
+ },
+ "steps": {
+  "1-fixtures": {
+   "compile_rc": 0,
+   "compile_s": 0.594,
+   "warnings": 0,
+   "run_rc": 0,
+   "run_s": 0.051,
+   "checks": 6182,
+   "failures": 0,
+   "metrics": [
+    "METRIC equivalence_levels_differing 0"
+   ],
+   "hash_vectors_match_python": true
+  },
+  "2-mutants": {
+   "mutants": [
+    {
+     "label": "builder follows the HD centre, not the native map",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m00\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "M3 coverage floor instead of round",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m01\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "M3 never-empty removed",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m02\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "STP tie no longer follows the native class",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m03\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "R5 fill seeds in reverse scan order",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m04\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "row stride ignored by the builder",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m05\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "M4 native level removed",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m06\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "tie toward the edge instead of the centre",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m07\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "M2 RGB averages cutout children",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m08\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "level cutout RGB not filled",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m09\\test_hd_class_mips.c:73: same"
+    },
+    {
+     "label": "L bound removed (shift before bounds)",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m10\\test_hd_class_mips.c:308: hdcm_build_level(im, 64, 16, 16, n, 2, 2, 8, 4, dst, "
+    },
+    {
+     "label": "hash ignores the row stride",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m11\\test_hd_class_mips.c:113: hdcm_hash64(tight, 64, 64, 3) == hdcm_hash64(pad, 72,"
+    },
+    {
+     "label": "hash drops the row tail",
+     "caught": true,
+     "by": "hash vectors",
+     "first_failure": ""
+    },
+    {
+     "label": "parse skips the self-hash",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m13\\test_hd_class_mips.c:213: rc == (HDCM_E_SELFHASH)"
+    },
+    {
+     "label": "parse accepts an unverified R1 flag",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m14\\test_hd_class_mips.c:219: rc == (HDCM_E_FLAGS)"
+    },
+    {
+     "label": "parse accepts non-class native values",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m15\\test_hd_class_mips.c:220: rc == (HDCM_E_CLASS)"
+    },
+    {
+     "label": "parse skips the per-level hash",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m16\\test_hd_class_mips.c:221: rc == (HDCM_E_LEVELHASH)"
+    },
+    {
+     "label": "parse accepts non-class level alpha",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m17\\test_hd_class_mips.c:230: hdcm_sidecar2_parse(bad, len, &bp) == HDCM_E_LEVELDAT"
+    },
+    {
+     "label": "parse skips the M4 last-level check",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m18\\test_hd_class_mips.c:237: hdcm_sidecar2_parse(bad, len, &bp) == HDCM_E_LEVELDAT"
+    },
+    {
+     "label": "parse accepts a wrong level-byte total",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m19\\test_hd_class_mips.c:245: hdcm_sidecar2_parse(bad, bl, &bp) == HDCM_E_SIZE"
+    },
+    {
+     "label": "admission skips the level-0 hash",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m20\\test_hd_class_mips.c:222: rc == (HDCM_E_LEVEL0)"
+    },
+    {
+     "label": "admission skips the runtime R1 re-check",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m21\\test_hd_class_mips.c:258: hdcm_sidecar_admit(&bp, 0x95A3BCF8u, 0x60245B3Au, NW,"
+    },
+    {
+     "label": "upload verification result ignored",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m22\\test_hd_class_mips.c:181: rc == HDCM_E_GL"
+    },
+    {
+     "label": "level counted before its upload is verified",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m23\\test_hd_class_mips.c:182: up == fail_at - 1 && bytes == ok_bytes"
+    },
+    {
+     "label": "cache ignores the byte cap",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m24\\test_hd_class_mips.c:272: k < 3 ? rc == HDCM_OK : rc == HDCM_E_ALLOC"
+    },
+    {
+     "label": "cache accepts duplicates",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m25\\test_hd_class_mips.c:290: hdcm_cache_add(&c3, 0x95A3BCF8u, 0x60245B3Au, b2, len"
+    },
+    {
+     "label": "cache accepts a file whose key differs from the index",
+     "caught": true,
+     "by": "test",
+     "first_failure": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\mutants\\m26\\test_hd_class_mips.c:291: hdcm_cache_add(&c3, 0x95A3BCF8u, 0x07A9568Du, b3, len"
+    }
+   ],
+   "caught": "27/27"
+  },
+  "3-real": {
+   "tool_dll_rc": 0,
+   "proto_dll_rc": 0,
+   "pages": [
+    {
+     "label": "11CFE2E3-0E09E912",
+     "key": "11CFE2E3-0E09E912",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\11CFE2E3-0E09E912.png",
+     "png_sha256": "b77cc9c41ec894830fb11beebc9cbce5b139d1016697adb00d2536873ae00f4f",
+     "size": [
+      1024,
+      512
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+     "native": [
+      64,
+      32
+     ],
+     "scale": 16,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 12.35,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 4,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "E360C964-C1B5906C",
+     "key": "E360C964-C1B5906C",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\E360C964-C1B5906C.png",
+     "png_sha256": "d6c726ada05015c7ab8701777054663da2415cde12d5c899b9c05522b758794b",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 62.26,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "31214B41-73AF4FAA",
+     "key": "31214B41-73AF4FAA",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\31214B41-73AF4FAA.png",
+     "png_sha256": "dfabb82227344455d3442b659636f25fd5a6d4b60175c80ece6dabb6f9d19271",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 61.53,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "67DC56D7-96998A63",
+     "key": "67DC56D7-96998A63",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\67DC56D7-96998A63.png",
+     "png_sha256": "c9c17e7d3a54c3220220d1805cd82e486b04f97b2c35255f646386c31c235894",
+     "size": [
+      1024,
+      768
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+     "native": [
+      64,
+      48
+     ],
+     "scale": 16,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 18.6,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 4,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "327E6D9E-5039A9C5",
+     "key": "327E6D9E-5039A9C5",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\327E6D9E-5039A9C5.png",
+     "png_sha256": "95de7850b7315229fbc27a12b4ca175b82c74a4e2595a757eb64ee539b142cdd",
+     "size": [
+      1024,
+      512
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+     "native": [
+      64,
+      32
+     ],
+     "scale": 16,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 12.61,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 4,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "E360C964-DF4F533F",
+     "key": "E360C964-DF4F533F",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\E360C964-DF4F533F.png",
+     "png_sha256": "7602a1fef884f4ecd830898ef92a95656dbed2e961046c08ed0131cce55cc21a",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 48.94,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "73BF9877-803A474F",
+     "key": "73BF9877-803A474F",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\73BF9877-803A474F.png",
+     "png_sha256": "710a7af18ef0870e1c2edc6be1663d6a37456f03c515133cad1d5ec8f060ae69",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 56.76,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "A34295C8-FBCA4A8A",
+     "key": "A34295C8-FBCA4A8A",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\A34295C8-FBCA4A8A.png",
+     "png_sha256": "d8b8693bc5709d5ac7995067740ec5d915ed9494055b3c5b1f585b8b2694fc78",
+     "size": [
+      768,
+      1024
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+     "native": [
+      48,
+      64
+     ],
+     "scale": 16,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 17.36,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 4,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "95A3BCF8-60245B3A",
+     "key": "95A3BCF8-60245B3A",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\95A3BCF8-60245B3A.png",
+     "png_sha256": "1f7436c2878452cf161d798c944b5802327e4f9ac351ec17418e9b59afb04391",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 63.54,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "95A3BCF8-07A9568D",
+     "key": "95A3BCF8-07A9568D",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\95A3BCF8-07A9568D.png",
+     "png_sha256": "aa2a6f0cb2013689bff55ea7afec6c3537c0fc24bf9cc039cd686b461796b851",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "PASS",
+     "offline_build_ms_all_levels": 63.94,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "82831823-06BDD2F5",
+     "key": "82831823-06BDD2F5",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\82831823-06BDD2F5.png",
+     "png_sha256": "da1c72445c500c1e7fcd3759eaeca3a117811874e8ad2eaa1b6e8f78cccdf037",
+     "size": [
+      1024,
+      512
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+     "native": [
+      64,
+      32
+     ],
+     "scale": 16,
+     "r1_centre_vs_native_cells": 295,
+     "breakdown_status": "VIOLATION",
+     "offline_build_ms_all_levels": 11.72,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 4,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "K panel page2048",
+     "key": "95A3BCF8-723E222C",
+     "group": "k-panel-page2048",
+     "png": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-k-panel\\frozen\\95A3BCF8-K-panel-v1\\page2048\\95A3BCF8-723E222C.png",
+     "png_sha256": "791c01a86dbf12167dee22738de654043f4f548de59d0cb4dfa3a573423cc020",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 0,
+     "breakdown_status": "VIOLATION",
+     "offline_build_ms_all_levels": 61.96,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    },
+    {
+     "label": "95A3 397FBE8A",
+     "key": "95A3BCF8-397FBE8A",
+     "group": "pack",
+     "png": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack\\einhander-texture-replacements\\95A3BCF8-397FBE8A.png",
+     "png_sha256": "b0c419bbbb48c324ccb0f055c8b83421d52afc1be01df06730d0634e126d2eaa",
+     "size": [
+      2048,
+      2048
+     ],
+     "stb_rc": 0,
+     "stb_equals_pil": true,
+     "native_source": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements",
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "r1_centre_vs_native_cells": 4601,
+     "breakdown_status": "VIOLATION",
+     "offline_build_ms_all_levels": 57.26,
+     "levels": [
+      {
+       "L": 1,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 2,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      },
+      {
+       "L": 3,
+       "equal": true,
+       "proto_rc": 0,
+       "port_rc": 0
+      }
+     ],
+     "all_equal": true
+    }
+   ]
+  },
+  "4-sidecars": {
+   "sidecars": [
+    {
+     "key": "11CFE2E3-0E09E912",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\11CFE2E3-0E09E912.hdcm",
+     "sha256": "37f041fc3709e71cc44c6e92ad5b86c1691f4b7842c7392522f65080a751ab42",
+     "bytes": 698480,
+     "native": [
+      64,
+      32
+     ],
+     "scale": 16,
+     "levels": 4,
+     "level0_hash": "517879eed5874b5a",
+     "round_trip": "OK",
+     "preload_verify_ms": 0.452,
+     "draw_thread_admit_ms": 0.373,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "E360C964-C1B5906C",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\E360C964-C1B5906C.hdcm",
+     "sha256": "0dfd6976fed87f4fc4b9334f30610cfb59460bfa3cfa1ea18692ef3f93f7c882",
+     "bytes": 5570672,
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "levels": 3,
+     "level0_hash": "d1fc13359de22899",
+     "round_trip": "OK",
+     "preload_verify_ms": 3.482,
+     "draw_thread_admit_ms": 3.088,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "31214B41-73AF4FAA",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\31214B41-73AF4FAA.hdcm",
+     "sha256": "2f5779010fe1f7775d6faded466036c9c9211be0c2c2d951c7344fe67402ee1b",
+     "bytes": 5570672,
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "levels": 3,
+     "level0_hash": "f94bd5ec8ddabfb0",
+     "round_trip": "OK",
+     "preload_verify_ms": 3.593,
+     "draw_thread_admit_ms": 3.101,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "67DC56D7-96998A63",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\67DC56D7-96998A63.hdcm",
+     "sha256": "d75fdc19305ddd6dad3ada70dd2e8fb4831e6f0f4cce5ba0707cf3940a6dea0f",
+     "bytes": 1047664,
+     "native": [
+      64,
+      48
+     ],
+     "scale": 16,
+     "levels": 4,
+     "level0_hash": "361b4605fbd6f1da",
+     "round_trip": "OK",
+     "preload_verify_ms": 0.611,
+     "draw_thread_admit_ms": 0.553,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "327E6D9E-5039A9C5",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\327E6D9E-5039A9C5.hdcm",
+     "sha256": "9f0e1b27ca9f2fe5c9b0d7550b232e076e935d9fe2eeba003ba25d6331981953",
+     "bytes": 698480,
+     "native": [
+      64,
+      32
+     ],
+     "scale": 16,
+     "levels": 4,
+     "level0_hash": "c514f5bf65671117",
+     "round_trip": "OK",
+     "preload_verify_ms": 0.488,
+     "draw_thread_admit_ms": 0.379,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "E360C964-DF4F533F",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\E360C964-DF4F533F.hdcm",
+     "sha256": "f2f360fb7f8ba41c29a18ed48acd5b3181631109fa821e9f8874a467f0571f34",
+     "bytes": 5570672,
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "levels": 3,
+     "level0_hash": "1df04dae00c3bc52",
+     "round_trip": "OK",
+     "preload_verify_ms": 3.229,
+     "draw_thread_admit_ms": 3.545,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "73BF9877-803A474F",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\73BF9877-803A474F.hdcm",
+     "sha256": "123a82c5a673d4ab033d0e245825c6effe6b795eca4cb944a39bbc5e25dfa111",
+     "bytes": 5570672,
+     "native": [
+      256,
+      256
+     ],
+     "scale": 8,
+     "levels": 3,
+     "level0_hash": "7ae4c1f28f3aaa06",
+     "round_trip": "OK",
+     "preload_verify_ms": 3.522,
+     "draw_thread_admit_ms": 3.06,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    },
+    {
+     "key": "A34295C8-FBCA4A8A",
+     "written": true,
+     "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T113027Z\\sidecars\\A34295C8-FBCA4A8A.hdcm",
+     "sha256": "128e0e6460f16224e0757f0cb80d7be6339c7272da208ace2ac33d506c705625",
+     "bytes": 1047664,
+     "native": [
+      48,
+      64
+     ],
+     "scale": 16,
+     "levels": 4,
+     "level0_hash": "4e1a9048f80d800e",
+     "round_trip": "OK",
+     "preload_verify_ms": 0.595,
+     "draw_thread_admit_ms": 0.56,
+     "prepared_bytes_equal_builder": true,
+     "in_index": true
+    }
+   ],
+   "index": [
+    "11CFE2E3-0E09E912",
+    "E360C964-C1B5906C",
+    "31214B41-73AF4FAA",
+    "67DC56D7-96998A63",
+    "327E6D9E-5039A9C5",
+    "E360C964-DF4F533F",
+    "73BF9877-803A474F",
+    "A34295C8-FBCA4A8A"
+   ],
+   "index_bytes": 25774976,
+   "negatives": {
+    "o_green_sidecar_vs_pink_pixels": "LEVEL0",
+    "o_green_sidecar_for_pink_key": "KEY",
+    "rise_offline": "REFUSED: R1 centre vs native mismatches 295",
+    "rise_falsely_flagged_admission": "R1"
+   }
+  },
+  "5-glue": {
+   "compile_rc": 0,
+   "warnings": 0,
+   "glue_sha256": "257ff680dea1a67eb67de9f8bb3161166cf43f24e7d7a0797e97211a66f5ca8b",
+   "key": "11CFE2E3-0E09E912",
+   "off_rc": 0,
+   "off_checks": "checks 2 failures 0",
+   "on_rc": 0,
+   "on_checks": "checks 28 failures 0",
+   "preload_line": "PRELOAD ok 8 bytes 25774976",
+   "timing": [
+    "TIMING preload_total_ms 38.399 (index + file reads + full verification of every listed sidecar, at init)",
+    "TIMING draw_admit_ms 0.972 (cache lookup + level-0 hash + R1 + 4 stub uploads; real GL upload time is GPU-measured)"
+   ],
+   "first_failure": null
+  },
+  "6-patch": {
+   "v61_src": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gpu_gl_renderer.c",
+   "v61_sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1",
+   "pinned": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1",
+   "ok": true,
+   "receipts": [
+    {
+     "name": "gl-defines",
+     "anchor_sha256": "8f59035435de0341bddc602ace10eccd8bfd74dfb0bfb5d121cae4712e55cce9",
+     "inserted_sha256": "0ae1bf3d58709e58c03841cb823821caf0264687d12127e9382a2332095ef401",
+     "inserted_lines": 6,
+     "line": 123,
+     "anchor_count": 1
+    },
+    {
+     "name": "hd-fs-uniform",
+     "anchor_sha256": "3bbbfd0440a0fb8de07e8db0263ed654b4d64f9a2810e2ca734db348aa5fdd88",
+     "inserted_sha256": "18cf44dc01ed75ba756cdf3152436b3f629ca08bcb5e2f63a7b68156f1d026a1",
+     "inserted_lines": 1,
+     "line": 1361,
+     "anchor_count": 1
+    },
+    {
+     "name": "hd-fs-class",
+     "anchor_sha256": "9ce1b58d3dd6f67d706e52f37525df502c0e9be71891341dd4360584caf54f28",
+     "inserted_sha256": "f369d58b7d05774689c6b963f9c1611ab0e100969fa63e60607841774bb1fd2b",
+     "inserted_lines": 13,
+     "line": 1420,
+     "anchor_count": 1
+    },
+    {
+     "name": "slot-field",
+     "anchor_sha256": "807e634bb726f0b485f74bfd5b11b41d32411099288432960e7fd8d2b2d2af1a",
+     "inserted_sha256": "8a87bd5fff67fc7a7bc17f0aeef39745519aa60bca9a8d7d36ff2fff3624f7b1",
+     "inserted_lines": 1,
+     "line": 3473,
+     "anchor_count": 1
+    },
+    {
+     "name": "uniform-var",
+     "anchor_sha256": "ea58aa829a295576d48e43b7226ecb406f31c2ab8f19e5d0197bff363c3d10ee",
+     "inserted_sha256": "42fb5c8f28d100f618ff8f6b964fe91411fd38ba1abbf493d03376a1b88e2d59",
+     "inserted_lines": 1,
+     "line": 3547,
+     "anchor_count": 1
+    },
+    {
+     "name": "glue",
+     "anchor_sha256": "09b0fccd26d186d5031dbbbc0856a25394aee9f9117266144f79ed797530f1a1",
+     "inserted_sha256": "257ff680dea1a67eb67de9f8bb3161166cf43f24e7d7a0797e97211a66f5ca8b",
+     "inserted_lines": 153,
+     "line": 3703,
+     "anchor_count": 1
+    },
+    {
+     "name": "hd-fs-rgb",
+     "anchor_sha256": "05be6c571659e408b100e9a889ac99276d55ff67cc2a57f9e1799fd29e225b45",
+     "inserted_sha256": "1dd9a7c93c318aced66e2c90471478fd1b89ef88475a74da6d62d94b9877cb3f",
+     "inserted_lines": 2,
+     "line": 1458,
+     "anchor_count": 1
+    },
+    {
+     "name": "draw-build",
+     "anchor_sha256": "bf2f5bcf5aca05b5f0780622496645933d90240e2cd0cbbc9531ddf8c05c6eb7",
+     "inserted_sha256": "74b53e033b8e13bbff6982151450e59aee240f3114ff59abdeaedea6935b5484",
+     "inserted_lines": 2,
+     "line": 4525,
+     "anchor_count": 1
+    },
+    {
+     "name": "preload-proto",
+     "anchor_sha256": "3614eeb739b7b56b5ef00d05b7fba205e6cd9230cd0c7ee4863e7d5bb79f4528",
+     "inserted_sha256": "f81d19f4fe3b1d25e80a1750edeeaa531f232f7279ac324fb4ed39335c012f87",
+     "inserted_lines": 1,
+     "line": 3609,
+     "anchor_count": 1
+    },
+    {
+     "name": "preload-call",
+     "anchor_sha256": "28498821ab3001ae003a62f8fd8db863156ac48b008d21a10e40d279038bdddf",
+     "inserted_sha256": "f62c67ff71e21ffb107d5b06ee8499f509a69fadcf533cafd16de2d2af44d43c",
+     "inserted_lines": 1,
+     "line": 3615,
+     "anchor_count": 1
+    },
+    {
+     "name": "draw-uniform",
+     "anchor_sha256": "f4821e0be35b1bf30df9ae32c6c98dc6e738d9fde828d4cea01ddca4fa027474",
+     "inserted_sha256": "98d3672ac2c314255102a808a5a4ea347ec2073a1445b4520e7b39e65e61b0d1",
+     "inserted_lines": 1,
+     "line": 4533,
+     "anchor_count": 1
+    },
+    {
+     "name": "base-sampling",
+     "anchor_sha256": "9f481221617436e26c47d3bd6afc8ab6812971502fa1e8965c6098d92e70667c",
+     "inserted_sha256": "46af4222e06d3399e5f06aac5a5f499303a76880c8ad2fcc7ece7a46678cb0e3",
+     "inserted_lines": 2,
+     "line": 4538,
+     "anchor_count": 1
+    },
+    {
+     "name": "uniform-location",
+     "anchor_sha256": "7dbd193629594d904473dfd0666889a26188d05763572533d4ae50222cd3ecfe",
+     "inserted_sha256": "f8aa765ca35010fee1b42b6ac2a94431470098c7943150ac85a207fba2e7ad4e",
+     "inserted_lines": 1,
+     "line": 5422,
+     "anchor_count": 1
+    }
+   ],
+   "patched_sha256": "d7b0fa963ce97850dfc30774df5a4c9a14a6c31e66af15f47ce83c1914cb5aaf",
+   "lines_in": 6992,
+   "lines_out": 7177,
+   "pure_addition": true,
+   "crlf_preserved": true
+  },
+  "7-compile": {
+   "control": {
+    "rc": 0,
+    "seconds": 1.684,
+    "warnings": 0,
+    "warning_kinds": [],
+    "obj_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a"
+   },
+   "patched": {
+    "rc": 0,
+    "seconds": 1.716,
+    "warnings": 0,
+    "warning_kinds": [],
+    "obj_sha256": "d72c98db4fc488a393f50d3b419793e95f454293e5cb5a7e334df3264879ea5f"
+   },
+   "new_warning_kinds": [],
+   "builder_in_patched_tu": false,
+   "glue_in_patched_tu": true
+  },
+  "8-glsl": {
+   "control": {
+    "rc": 0,
+    "frag_sha256": "14b36c8e54e54f8a451cb81ab77e342fb3751259e79a7d4703efec675fdea5b6",
+    "lines": 149,
+    "errors": 0,
+    "has_class_levels": false,
+    "output": ""
+   },
+   "patched": {
+    "rc": 0,
+    "frag_sha256": "c40013d2b95399c721b85d8352a9cd836fdfd4fc75d864b2a616f560ecc17652",
+    "lines": 165,
+    "errors": 0,
+    "has_class_levels": true,
+    "output": ""
+   }
+  }
+ },
+ "admit_list": [
+  "11CFE2E3-0E09E912",
+  "E360C964-C1B5906C",
+  "31214B41-73AF4FAA",
+  "67DC56D7-96998A63",
+  "327E6D9E-5039A9C5",
+  "E360C964-DF4F533F",
+  "73BF9877-803A474F",
+  "A34295C8-FBCA4A8A"
+ ],
+ "stb_image": {
+  "path": "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\third_party\\stb_image.h",
+  "sha256": "866095d4107665b4f2ac84e5aa25c7b4bd2f89c5408348c87fdec8891661cace",
+  "pinned": "866095d4107665b4f2ac84e5aa25c7b4bd2f89c5408348c87fdec8891661cace"
+ },
+ "ab_result_sha256": "e909ae5e80a8c59bd12649d82433faa4bf42cf254d9481367422e0760f0d982c",
+ "checks": {
+  "fixtures": true,
+  "mutants": true,
+  "real": true,
+  "sidecars": true,
+  "glue": true,
+  "patch": true,
+  "compile": true,
+  "glsl": true
+ },
+ "verdict": "pass"
+}

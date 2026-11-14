@@ -1,0 +1,117 @@
+--- a/windows-x64/psxrecomp/runtime/src/debug_server.c
++++ b/windows-x64/psxrecomp/runtime/src/debug_server.c
+@@ -5333,6 +5333,106 @@
+              (unsigned long long)ps.swc2_stores);
+ }
+ 
++/* pgxp_view — opt-in 3D view-provenance census (remix-provenance v2, private).
++ *   {"cmd":"pgxp_view"}               state + payload stats + per-primitive census
++ *   {"cmd":"pgxp_view","census":1|0}  arm / disarm. Arming enables the PGXP
++ *       transport for collection WITHOUT geometry or texture correction (draws
++ *       unchanged); disarming re-derives it from the user's own modes.
++ *   {"cmd":"pgxp_view","reset":1}     zero the census counters
++ *   {"cmd":"pgxp_view","recent":N}    N (<= 64) newest primitive records
++ * Free-running totals: sample twice and diff for a per-window rate. */
++static void handle_pgxp_view(int id, const char *json)
++{
++    static const char *const kMiss[PGXP_VIEW_MISS_COUNT] = {
++        "none", "no_source", "disabled", "no_shadow", "value_mismatch",
++        "no_view", "evicted", "incoherent" };
++    int census = json_get_int(json, "census", -1);
++    if (census >= 0)
++        gpu_view_census_set(census != 0);
++    if (json_get_int(json, "reset", 0) != 0)
++        pgxp_view_census_reset();
++    int recent = json_get_int(json, "recent", 0);
++    if (recent < 0) recent = 0;
++    if (recent > 64) recent = 64;
++
++    PgxpViewStats vs;
++    pgxp_get_view_stats(&vs);
++    PgxpViewCensus c;
++    pgxp_view_census_get(&c);
++
++    char buf[32768];
++    int n = 0;
++#define PV_APPEND(...)                                                         \
++    do {                                                                       \
++        if (n >= 0 && (size_t)n < sizeof(buf))                                 \
++            n += snprintf(buf + n, sizeof(buf) - (size_t)n, __VA_ARGS__);      \
++    } while (0)
++    PV_APPEND("{\"id\":%d,\"ok\":true,\"census\":%d,\"view_payload\":%d,"
++              "\"pgxp_enabled\":%d,\"geometry_correction\":%d,"
++              "\"texture_correction\":%d,",
++              id, gpu_view_census_enabled(), pgxp_view_payload(), pgxp_enabled(),
++              gte_geometry_correction_enabled(), gpu_texture_correction_enabled());
++    PV_APPEND("\"payload\":{\"produced\":%llu,\"records_overwritten\":%llu,"
++              "\"commit_ok\":%llu,\"commit_mismatch\":%llu,\"lookups\":%llu,"
++              "\"hits\":%llu,\"no_shadow\":%llu,\"no_source\":%llu,"
++              "\"value_mismatch\":%llu,\"no_view\":%llu,\"evicted\":%llu,"
++              "\"incoherent\":%llu,\"alloc_fail\":%llu,\"seq_wraps\":%llu,"
++              "\"record_bytes\":%llu,\"alloc_bytes\":%llu},",
++              (unsigned long long)vs.produced, (unsigned long long)vs.records_overwritten,
++              (unsigned long long)vs.commit_ok, (unsigned long long)vs.commit_mismatch,
++              (unsigned long long)vs.lookups, (unsigned long long)vs.hits,
++              (unsigned long long)vs.no_shadow, (unsigned long long)vs.no_source,
++              (unsigned long long)vs.value_mismatch, (unsigned long long)vs.no_view,
++              (unsigned long long)vs.evicted, (unsigned long long)vs.incoherent,
++              (unsigned long long)vs.alloc_fail, (unsigned long long)vs.seq_wraps,
++              (unsigned long long)vs.record_bytes, (unsigned long long)vs.alloc_bytes);
++    PV_APPEND("\"ring\":{\"cap\":%u,\"total\":%llu,\"alloc_fail\":%llu},",
++              (unsigned)c.ring_cap, (unsigned long long)c.ring_total,
++              (unsigned long long)c.ring_alloc_fail);
++    for (int k = 0; k < 2; k++) {
++        const PgxpViewCensusKind *q = &c.kind[k];
++        PV_APPEND("\"%s\":{\"prims\":%llu,\"all_hit\":%llu,\"partial\":%llu,"
++                  "\"none\":%llu,\"verts\":%llu,\"vert_hits\":%llu,"
++                  "\"hit_committed\":%llu,\"hit_ring_live\":%llu,"
++                  "\"hit_diverged\":%llu,\"all_hit_one_command\":%llu,\"miss\":{",
++                  k == PGXP_VIEW_CENSUS_TRI ? "triangles" : "quads",
++                  (unsigned long long)q->prims, (unsigned long long)q->all_hit,
++                  (unsigned long long)q->partial, (unsigned long long)q->none,
++                  (unsigned long long)q->verts, (unsigned long long)q->vert_hits,
++                  (unsigned long long)q->hit_committed,
++                  (unsigned long long)q->hit_ring_live,
++                  (unsigned long long)q->hit_diverged,
++                  (unsigned long long)q->all_hit_one_command);
++        for (int r = 1; r < PGXP_VIEW_MISS_COUNT; r++)
++            PV_APPEND("%s\"%s\":%llu", r == 1 ? "" : ",", kMiss[r],
++                      (unsigned long long)q->miss[r]);
++        PV_APPEND("}},");
++    }
++    PgxpViewCensusPrim rec[64];
++    int got = pgxp_view_census_recent(rec, recent);
++    PV_APPEND("\"recent\":[");
++    for (int i = 0; i < got; i++) {
++        const PgxpViewCensusPrim *p = &rec[i];
++        PV_APPEND("%s{\"frame\":%u,\"kind\":\"%s\",\"hits\":%u,\"v\":[",
++                  i == 0 ? "" : ",", (unsigned)p->frame,
++                  p->kind == PGXP_VIEW_CENSUS_TRI ? "tri" : "quad", (unsigned)p->hits);
++        for (int v = 0; v < p->nverts && v < 4; v++) {
++            const int r = p->reason[v] < PGXP_VIEW_MISS_COUNT ? p->reason[v] : 0;
++            PV_APPEND("%s{\"r\":\"%s\",\"lane\":%u,\"tag\":%u,\"vz\":%d}",
++                      v == 0 ? "" : ",", kMiss[r], (unsigned)p->lane[v],
++                      (unsigned)p->tag[v], (int)p->vz[v]);
++        }
++        PV_APPEND("]}");
++    }
++    PV_APPEND("]}");
++#undef PV_APPEND
++    if (n < 0 || (size_t)n >= sizeof(buf)) {
++        send_err(id, "pgxp_view reply too large");
++        return;
++    }
++    send_fmt("%s", buf);
++}
++
+ /* pgxp — live-tune the value-propagation engine for one-toggle isolation runs
+  * without a rebuild: {"cmd":"pgxp","cpu_mode":0|1,"tolerance":F}. Fields are
+  * optional; the reply echoes the resulting state (same shape as
+@@ -13659,6 +13759,7 @@
+     { "research_capture",  handle_research_capture },
+     { "geom_correction",   handle_geom_correction },
+     { "pgxp",              handle_pgxp },
++    { "pgxp_view",         handle_pgxp_view },
+     { "ws_aspect_cone_site", handle_ws_aspect_cone_site },
+     { "ws_margin",         handle_ws_margin },
+     { "ws_hud_mode",       handle_ws_hud_mode },

@@ -1,0 +1,869 @@
+{
+ "name": "stage6-vram384-0-8F498326-fx-v2",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "lane": "lane-s6",
+ "created_utc": "2026-11-13T23:47:21.861673+00:00",
+ "task": "D552405C v4 gas-detail method on the batch 2 effect sprites (coordinator chunk 2026-11-13)",
+ "provenance": "predicted-static (static-extraction/stages-v4/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "texture_crc": "8F498326",
+ "vram_page": "384,0",
+ "set": "A (member 4/6)",
+ "supersedes": {
+  "folder": "frozen/stage6-vram384-0-8F498326-F07625EE-v1",
+  "keys": [
+   "8F498326-870A1255",
+   "8F498326-847D772B",
+   "8F498326-899D7E1D",
+   "8F498326-0344ADB9",
+   "8F498326-31689705",
+   "8F498326-0F04A907",
+   "8F498326-4CAF3E0F"
+  ],
+  "note": "only this texture's keys; the other set of that VRAM page stays in v1 unchanged"
+ },
+ "method": "(keeps the frozen batch 2 v1 exactly except inside the effect masks):\n  - class plane (PNG alpha) byte-identical to the frozen v1 runtime files at 2048 and 1024 -> every native texel centre keeps its\n    class for every delivered CLUT (gated);\n  - RGB_v2 = RGB_v1 + [lerp_P(F0 + D) - lerp_P(F0)] on visible pixels, F0 = native B-spline index field, D = v4 gas detail:\n    SDXL img2img (gas-only prompt, denoise 0.8) on neutral-ramp guides of the effect sprites only (black elsewhere), inverse ramp,\n    band-pass 1.5..10 px, clip 2.5 std, gain 1.3, weight = effect mask x texture activity x not-dark, raised-cosine tile blend,\n    soft-limited (tanh) inside palette zones split where any delivered CLUT of the texture jumps > 100 RGB, bounds at the zone\n    entries, zones not touching the transparent end x0.5;\n  - light energy of every effect sprite region locked to v1 within +-4 % (scalar on the delta).\nusage: python s6_fxv4.py prep | gen TEX i [i ...] | gen-all | build TEX | export TEX | motion TEX | freeze TEX",
+ "effect_sprites": {
+  "rects": [
+   [
+    0,
+    125,
+    99,
+    216
+   ]
+  ],
+  "min_component_texels": 60,
+  "excluded": "hull / icon parts; on 43C26C42 also the radial glow ring and the scattered debris (not gas)"
+ },
+ "params": {
+  "gen": {
+   "denoise": 0.8,
+   "steps": 32,
+   "cfg": 6.0,
+   "sampler": "dpmpp_2m",
+   "scheduler": "karras",
+   "seed0": 6400
+  },
+  "merge": {
+   "band_px": [
+    1.5,
+    10.0
+   ],
+   "gain": 1.3,
+   "edge_dilate_tex": 1,
+   "edge_feather_tex": 0.6,
+   "plateau_feather_tex": 1.0,
+   "max_over": 1.5,
+   "clip_std": 2.5
+  },
+  "inner_gain": 0.5,
+  "zone_jump": 100.0,
+  "energy_lock_vs_v1": 0.04,
+  "tiles": [
+   [
+    0,
+    110
+   ]
+  ]
+ },
+ "generation": {
+  "model": "juggernautXL_v9.safetensors (ComfyUI core nodes, 127.0.0.1:8188)",
+  "prompt": "macro photograph of turbulent smoke and glowing gas clouds on a pure black background, billowing volumetric smoke with fine wispy filaments and curling eddies, soft layered density, natural light falloff, monochrome, sharp focus, highly detailed",
+  "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, sparks, debris, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, colour, color, rocket, nozzle, engine, exhaust nozzle, flame cone, jet, missile, point light, bright dot, hot spot, glowing tip, spark, candle, torch, fire, sun, planet, eye, face, swirl pattern, spiral",
+  "per_tile": {
+   "0": {
+    "tex": "8F498326",
+    "tile": 0,
+    "origin": [
+     0,
+     110
+    ],
+    "size": 128,
+    "scale": 8,
+    "seed": 6520,
+    "guide": "guide-t0.png",
+    "guide_sha256": "f4b9440a395b5db28094fda92c831d7d935fe31a8f5e6032e58787e0fff07d72",
+    "upload_as": "claude-authoring/w7-stage6/8F498326-fx-t0.png",
+    "graph": "t0-graph.ready.json",
+    "ai_sha256": "8516079e34892c7082be07cb6e0834750bff604ca915f7ba8dbee0a90f51c706",
+    "graph_submitted": "t0-graph.api.json",
+    "history": "t0-history.json",
+    "started_utc": "2026-11-13T23:26:59.982776+00:00",
+    "seconds": 10.3,
+    "gpu_slot": {
+     "owner": "lane-s6",
+     "acquired_utc": "2026-11-13T23:23:19.029613+00:00"
+    }
+   }
+  }
+ },
+ "index_master": {
+  "files": {
+   "master/8F498326-F0.npy": "45ad370b9cdd28c9e37a3d6a06f748fd06d3614f9fcbe36c4bae558b45f6588b",
+   "master/8F498326-Fz.npy": "618f5f1a24f6d99b366d6cab39bd2aa5d17f0ae5430ae1eecb45df3bd50d2de8",
+   "master/8F498326-detail-D.npy": "989a77b78f0e7cb3bf3c648720995fb4ec5a3bc3e4483440c909afef8cd17cf4",
+   "master/8F498326-effect-mask.npy": "0c1156dabde300a79ffb215f31879816c0b8d7c6d30b8d8c9506108d52be5591",
+   "master/8F498326-build.json": "3f14dbd34680b40600256616aac2530fdbaa4f16328538d11ea922b6db488222",
+   "master/8F498326-prep.json": "a7ddc8293cb9d6f670daaddaa1844cf30540dd3d470fc35b748ab96a51b1a4ae"
+  },
+  "class_plane_and_rgb_base": "frozen/stage6-vram384-0-8F498326-F07625EE-v1 runtime files (alpha byte-identical; hull master {'master/8F498326-hull-master.npz': '95671038149b7755d42c9708b12d644d168a821cf44d64f197a4e93416a06455', 'master/8F498326-hull.json': '2d07d7edcb28593ebb3bd037212fe0da417cc9930e102eb2e82ed5360155bc99'})"
+ },
+ "sources": {
+  "checks": {
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage6/textures/8F498326.words.bin",
+    "sha256": "c8e755faab4142ac53954c8264190d9d58da6d8c176989a64773a3dd0887a04e",
+    "crc32": "8F498326",
+    "crc_equals_tex": true,
+    "texture_confidence": "likely",
+    "member": "4/6",
+    "vram_rect_words": [
+     384,
+     0,
+     64,
+     256
+    ]
+   },
+   "cluts": {
+    "870A1255": {
+     "crc32": "870A1255",
+     "crc_equals_pal": true,
+     "words_hex": "94521042ef3dad356b2d4a2929250821e71cc618a5148410630c420821042104",
+     "clut_xy": [
+      48,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       48,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "847D772B": {
+     "crc32": "847D772B",
+     "crc_equals_pal": true,
+     "words_hex": "e0631042ef3dad356b2d4a2929250821e71cc618a51484101f0c4e0838040080",
+     "clut_xy": [
+      32,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       32,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "899D7E1D": {
+     "crc32": "899D7E1D",
+     "crc_equals_pal": true,
+     "words_hex": "0e000d000c000b000a0009000800070006000500040003000200010000800080",
+     "clut_xy": [
+      0,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       0,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "0344ADB9": {
+     "crc32": "0344ADB9",
+     "crc_equals_pal": true,
+     "words_hex": "ff7f8d4a4c422b3e0a3aea35a931882d67254721061de518c414a41018630080",
+     "clut_xy": [
+      64,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       64,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "31689705": {
+     "crc32": "31689705",
+     "crc_equals_pal": true,
+     "words_hex": "ff7f7d461c3abb2d5a21f914980c3600330030002d002a002700240418630080",
+     "clut_xy": [
+      80,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       80,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "0F04A907": {
+     "crc32": "0F04A907",
+     "crc_equals_pal": true,
+     "words_hex": "fffbffefdedfddcbbbaf9a9f7993588b158bf48290822c82a9812581a2802080",
+     "clut_xy": [
+      48,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       48,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "4CAF3E0F": {
+     "crc32": "4CAF3E0F",
+     "crc_equals_pal": true,
+     "words_hex": "f562b35a7256504e0f46cd41ac396a35492d0829c620a51cdf0179145f100000",
+     "clut_xy": [
+      224,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       224,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "copies": {
+   "8F498326.words.bin": "c8e755faab4142ac53954c8264190d9d58da6d8c176989a64773a3dd0887a04e",
+   "8F498326-870A1255.clut.bin": "d2affda5724c351aa51d85e93b66c8c5b9e6491876827056f62b44b2c8401b9c",
+   "8F498326-847D772B.clut.bin": "af2b08a5ef98fb6695bccfb66bf25bd5a200c3cf0ebc2577f4c07f79497f456c",
+   "8F498326-899D7E1D.clut.bin": "6eef9db18bfa17eda4db973130573bc6f61ec925ffc57234916d99a6d50b7162",
+   "8F498326-0344ADB9.clut.bin": "269d7c1c73ed5da340b6091ffaf2838e7a49b441d8f1f25dbf37e13e199e2844",
+   "8F498326-31689705.clut.bin": "b0d13c24e53730b15da926ee103845f34353bc990b4549db09f252847f661fb4",
+   "8F498326-0F04A907.clut.bin": "5a7a3c74a6fdecf8404947ee8d6da70ae07da9f97de0c2e6fcfdffe766e8508c",
+   "8F498326-4CAF3E0F.clut.bin": "6a973c24beee6a29a5e8af4a49d71a17e24aa46ab7ea9c908a33fdc4f3e8d192",
+   "8F498326-bundle.json": "bc7f9f4cee5e099f183dbbbea8b1420260cafa7eeb1a5fd99c519dea26a5a7da"
+  }
+ },
+ "comfy_files": {
+  "comfy/gen.json": "cf1e36c3cff54e1c286ce4132c74302fbca2cbaec2c50bcb5daa6aca99f5bdc4",
+  "comfy/guide-t0.png": "f4b9440a395b5db28094fda92c831d7d935fe31a8f5e6032e58787e0fff07d72",
+  "comfy/t0-ai.png": "8516079e34892c7082be07cb6e0834750bff604ca915f7ba8dbee0a90f51c706",
+  "comfy/t0-graph.api.json": "0ea50f8bf9befe35c9d6fa257603bd9462c784359631f0086829a01544f0d170",
+  "comfy/t0-graph.ready.json": "0ea50f8bf9befe35c9d6fa257603bd9462c784359631f0086829a01544f0d170",
+  "comfy/t0-history.json": "74fac1bfb83afbc4cd85dd7278819a7a83473761d9f3b44d097aa8e7c5f4a118"
+ },
+ "builder_scripts": {
+  "s6_fxv4.py": "94622f92bd22aaae17ac3d53f217fcd0b116989ad81893caf51e2eca93278b72",
+  "s6_d55v4.py": "d2e9bb4b3ee2e6052d0982c3494776e10b8e4889bf9a19b8fcf80ca99d8a5618",
+  "s6_build.py": "df209addad1f3f169cd9afd102991e73b92db6190083235ef5bfc9ed80c55e0f",
+  "s6lib.py": "e826967604aa831ff02f6d8a64c0182d63d647b6f3c6d5f3176c9df475577438",
+  "s6_source.py": "6159748ec454005da659755b10e188bcc242e0b366c620ccecc62d689ca67810",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213",
+  "w2_comfy.py": "fe447ec3626edbc8b9fb953d6124df5b9d7f298f76945e7d3d0f447a0920e927",
+  "s6_motion.py": "a4e352904a8f1e61b3cd8475ea64d79993547854c0ee1863fe56079b93b77728"
+ },
+ "keys": [
+  {
+   "key": "8F498326-870A1255",
+   "clut": "870A1255",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0334
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0304
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0335
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0304,
+    1.0335
+   ],
+   "pixels_changed_2048": 199150,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-870A1255.png",
+    "sha256": "2e8e56007049276560326404c7fe1a94a42eae581be25287169c22144ac628d1",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-870A1255.png",
+    "sha256": "663d14b9262bb807b5999e6ef7ab4f82bdb45d166c3432b287c3f3be1b6a57a6",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-847D772B",
+   "clut": "847D772B",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.03
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0257
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.03
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0257,
+    1.03
+   ],
+   "pixels_changed_2048": 199169,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-847D772B.png",
+    "sha256": "59932ca88592c38487e49b8011429b4c2f3cd50cc5142ef74a23654688313d41",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-847D772B.png",
+    "sha256": "3df78fcfd0ee004cda915a71df19f5467e982c335d2ae6e7a8282ece5333b525",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-899D7E1D",
+   "clut": "899D7E1D",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0335
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0312
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0341
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0312,
+    1.0341
+   ],
+   "pixels_changed_2048": 197501,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-899D7E1D.png",
+    "sha256": "292e423dbff3525c8a791c807ff6bc2d1c7ed6928f75a373209832dccbc2615c",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-899D7E1D.png",
+    "sha256": "c07c5c62de14428ad31674073cc3183e2fbc82d87493c55477e5e23239d3e228",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-0344ADB9",
+   "clut": "0344ADB9",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0243
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0217
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0238
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0217,
+    1.0243
+   ],
+   "pixels_changed_2048": 202058,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-0344ADB9.png",
+    "sha256": "0a5a86bb5e9209ad77a45268b4742ab92ee79215f7c1c4f051bff2647c29d86d",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-0344ADB9.png",
+    "sha256": "4a77a2982b655d7895c4651cd3f2b3a85a77833ab5d6ee0cf1a507685a81f5ef",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-31689705",
+   "clut": "31689705",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 0.7362,
+     "energy_ratio_vs_v1": 1.04
+    },
+    {
+     "region": 2,
+     "delta_scale": 0.9701,
+     "energy_ratio_vs_v1": 1.04
+    },
+    {
+     "region": 3,
+     "delta_scale": 0.7668,
+     "energy_ratio_vs_v1": 1.04
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.04,
+    1.04
+   ],
+   "pixels_changed_2048": 210645,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-31689705.png",
+    "sha256": "c2637f0a5db24635ee11984b61424e052f2bd948d9fc37fc8be02270023cfa1e",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-31689705.png",
+    "sha256": "a4d1d39653fb2e70352b4de395560756dd4819e13de16cbaa1bfe5ce0d9f4df6",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-0F04A907",
+   "clut": "0F04A907",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0138
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0149
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0153
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0138,
+    1.0153
+   ],
+   "pixels_changed_2048": 212776,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-0F04A907.png",
+    "sha256": "55093b9909b85401e8e2441e7d4626698ccaaf2974225f8b9f839f8c9aeff5e7",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-0F04A907.png",
+    "sha256": "ab82a41b1125de538f09689922e5cb0c977fe9ce3fe1caac658b257aa7795d16",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "8F498326-4CAF3E0F",
+   "clut": "4CAF3E0F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "regions": [
+    {
+     "region": 1,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0263
+    },
+    {
+     "region": 2,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0238
+    },
+    {
+     "region": 3,
+     "delta_scale": 1.0,
+     "energy_ratio_vs_v1": 1.0275
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0,
+     "class_plane_identical_to_v1": true,
+     "outside_effect_identical_to_v1": true
+    }
+   },
+   "energy_ratio_vs_v1_range": [
+    1.0238,
+    1.0275
+   ],
+   "pixels_changed_2048": 205783,
+   "png_2048": {
+    "path": "runtime-2048/8F498326-4CAF3E0F.png",
+    "sha256": "26f49b14c7e032fe1098c65c3350e1dfc412603f497ec1eb77282a62e9a2fd2f",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/8F498326-4CAF3E0F.png",
+    "sha256": "bf5e0ef05b019ee5bea32ca643cd79137c5c1f468ae9f7c6cf014af216dcc955",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "class_check": {
+  "rule": "alpha byte-identical to v1 at 2048 and 1024 + class at the 2x2 px straddling every native texel centre == native class",
+  "size_checks": 14,
+  "size_checks_with_zero_mismatches": 14
+ },
+ "motion_verdict": "Holds in motion (SIMULATION, bilinear, no mips, page-order plume cells): consecutive frames coherent. Mean |dL| between frames of one held cell at 80 / 40 / 20 native px quads: stock 0.563 / 1.158 / 2.310, v1 0.493 / 1.039 / 2.024, v2 0.696 / 1.343 / 2.549; v2/stock 1.24 / 1.16 / 1.10 FALLS as the sprite is minified (resolved detail, not aliasing; band floor 3 px).",
+ "review": [
+  "review/8F498326-847D772B-native-v1-v2-compare-SIMULATION.png",
+  "review/8F498326-870A1255-motion-q20-SIMULATION-frames.png",
+  "review/8F498326-870A1255-motion-q20-SIMULATION.json",
+  "review/8F498326-870A1255-motion-q20-SIMULATION.mp4",
+  "review/8F498326-870A1255-motion-q80-SIMULATION-frames.png",
+  "review/8F498326-870A1255-motion-q80-SIMULATION.json",
+  "review/8F498326-870A1255-motion-q80-SIMULATION.mp4",
+  "review/8F498326-870A1255-motion-SIMULATION-frames.png",
+  "review/8F498326-870A1255-motion-SIMULATION.json",
+  "review/8F498326-870A1255-motion-SIMULATION.mp4",
+  "review/8F498326-870A1255-native-v1-v2-compare-SIMULATION.png",
+  "review/review.json"
+ ],
+ "review_note": "native | v1 | v2 crops and in-game panels, motion video: every one a SIMULATION",
+ "known_limits": [
+  "Predicted-static: CLUTs and set A/B residency unknown until capture (CR-S6-1/2); zone splits come from the delivered predicted CLUTs.",
+  "The detail is SDXL smoke texture inside the native shapes, not these exact plumes; the native silhouettes, contours and classes are unchanged.",
+  "Motion judged on SIMULATION only (assumed 40 native px quads, page-order animation: CR-S6-4)."
+ ]
+}

@@ -1,0 +1,188 @@
+{
+ "name": "renderer-v61-classmip-v4",
+ "owner": "claude-einhander",
+ "supersedes": "extends frozen v3 (kept unchanged); v1 superseded, v2 rejected performance design",
+ "frozen_utc": "2026-11-14T11:45:11.377571+00:00",
+ "status": "PRIVATE; default OFF; patched COPY of the frozen v61 renderer only; NOT linked, NOT run, NO GPU used by claude; root owns link/live/GPU/GitHub",
+ "v61_input": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gpu_gl_renderer.c",
+  "sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1"
+ },
+ "patched_tu": {
+  "path": "host-run/20261114T114326Z/patched/gpu_gl_renderer.c",
+  "sha256": "b41b7ab5843ce1a6d4710cc010be6d44f3127a77ce660cc2527eb98e6cd0cb16",
+  "lines": 7236,
+  "insertions": [
+   "gl-defines",
+   "hd-fs-uniform",
+   "hd-fs-rgb-helper",
+   "hd-fs-rgb-edges",
+   "hd-fs-class",
+   "slot-field",
+   "uniform-var",
+   "glue",
+   "hd-fs-rgb",
+   "draw-build",
+   "preload-proto",
+   "preload-call",
+   "draw-uniform",
+   "base-sampling",
+   "uniform-location"
+  ],
+  "include_sha256": "9959e754f9103805ffe6c8a94c252d4283402642d50f2e2fa0acd613cd9177c5",
+  "obj_sha256": "6d4c486f8b48f957675f8b12a43aeb11c8c140b87c7046b82c3bff95589046e7",
+  "control_obj_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a",
+  "new_warning_kinds": [],
+  "builder_in_runtime_tu": false
+ },
+ "admission": {
+  "index": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "31214B41-73AF4FAA",
+   "67DC56D7-96998A63",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F",
+   "A34295C8-FBCA4A8A"
+  ],
+  "bytes": 25774976,
+  "negatives": {
+   "o_green_sidecar_vs_pink_pixels": "LEVEL0",
+   "o_green_sidecar_for_pink_key": "KEY",
+   "rise_offline": "REFUSED: R1 centre vs native mismatches 295",
+   "rise_falsely_flagged_admission": "R1"
+  }
+ },
+ "host": {
+  "run": "20261114T114326Z",
+  "verdict": "pass",
+  "checks": {
+   "fixtures": true,
+   "mutants": true,
+   "real": true,
+   "sidecars": true,
+   "glue": true,
+   "patch": true,
+   "compile": true,
+   "glsl": true
+  },
+  "result_sha256": "32c1380c9d6a611f126eaa47308212125f3caeec43b30300732f5c283a9746a0",
+  "fixture_checks": 6185,
+  "mutants": "28/28",
+  "glue_cases": [
+   {
+    "mode": "off",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 2 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 2 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "on",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 33 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 31.192 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.649 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.643 min 0.642 max 0.709 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "levels",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 32 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 29.349 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.650 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.647 min 0.640 max 1.124 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 25 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 29.955 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.655 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 0.655 min 0.644 max 0.935 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "opaque",
+    "rc": 0,
+    "checks": "checks 25 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 13.702 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 5.365 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 5.247 min 5.168 max 6.602 (21 fresh slots, warm)"
+    ]
+   }
+  ],
+  "glue_mutants": "8/8",
+  "tool_timing_ms": {
+   "11CFE2E3-0E09E912": {
+    "preload_verify": 0.529,
+    "draw_admit": 0.38
+   },
+   "E360C964-C1B5906C": {
+    "preload_verify": 6.365,
+    "draw_admit": 6.939
+   },
+   "31214B41-73AF4FAA": {
+    "preload_verify": 4.771,
+    "draw_admit": 4.12
+   },
+   "67DC56D7-96998A63": {
+    "preload_verify": 0.981,
+    "draw_admit": 0.765
+   },
+   "327E6D9E-5039A9C5": {
+    "preload_verify": 0.518,
+    "draw_admit": 0.532
+   },
+   "E360C964-DF4F533F": {
+    "preload_verify": 3.5,
+    "draw_admit": 3.089
+   },
+   "73BF9877-803A474F": {
+    "preload_verify": 3.926,
+    "draw_admit": 3.158
+   },
+   "A34295C8-FBCA4A8A": {
+    "preload_verify": 0.708,
+    "draw_admit": 0.564
+   }
+  }
+ },
+ "selftest": {
+  "run": "20261114T114459Z",
+  "exe": "selftest/20261114T114459Z/gl_selftest_classmips.exe",
+  "sha256": "ec42e24853847f3b914af989ab6d8b947972b72e68c861be766f73e16449234f",
+  "compile_rc": 0,
+  "readme": "selftest/20261114T114459Z/README-ROOT.md",
+  "run_by": "root on GPU only after the user explicitly returns the 3090; NOT run by claude"
+ },
+ "known_limits": [
+  "first-use upload of prepared levels is GPU work on the draw thread (2048^2: 5.25 MiB); GPU time measured by the selftest, not yet run (user holds the GPU)",
+  "draw-thread admit (level-0 hash + R1, -O3 tool): ~0.4-0.6 ms 1024-class, ~3.1-3.2 ms 2048^2 per key, once per slot upload; preload at GL init ~30 ms for 8 sidecars/25.8 MB (harness, warm)",
+  "RGB edges: isotropic 4-tap visible bilinear replaces anisotropic RGB taps on edge fragments (lod<1, cutout tap in footprint); up to 8 texelFetch + 1 textureLod per such fragment, only for has-cutout sidecar keys in filter mode",
+  "class LOD uses the isotropic max rule; m > s minification aliases as native (beyond-native coverage policy not included)",
+  "admission = 8 explicit sidecar keys only; region O excluded (fully opaque, no benefit: runs-ab/20261114T111427Z)",
+  "counters only via gl_renderer_class_mips_counters(); no TCP verb (root's debug server)"
+ ],
+ "failed_runs": "docs/FAILED-RUNS.md - every failure kept in place",
+ "sha256sums": "f60c41b365e7cc6a49cbf11b4ac4df16e87e0183e0784df3b3386fd9cecc689f",
+ "files": 306
+}

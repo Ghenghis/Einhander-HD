@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import {stopDecision,handle,inbox,pendingWork,read,writeJson} from './claude-continuity-hook.mjs';
+import {stopDecision,handle,inbox,pendingWork,read,writeJson,sessionProfile} from './claude-continuity-hook.mjs';
 const now=Date.now(),input={session_id:'test-session'},config={status:'active',max_wait_minutes:30};
 const decide=(overrides={})=>stopDecision({config,state:null,completion:{full_remaster_complete:false},mail:[],input,now,...overrides});
 test('unfinished work blocks voluntary stop and repeat hook does not silently abandon it',()=>{
@@ -81,6 +81,44 @@ test('real file hook reads mailbox, ignores acknowledgement chatter and throttle
   }finally{
     const target=await fs.realpath(root),tempRoot=await fs.realpath(os.tmpdir());
     assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-continuity-'));
+    await fs.rm(target,{recursive:true,force:true});
+  }
+});
+
+test('registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases',async()=>{
+  const base=await fs.mkdtemp(path.join(os.tmpdir(),'ein-session-routing-'));
+  try{
+    await fs.mkdir(path.join(base,'coordination'));
+    await writeJson(path.join(base,'coordination/work-continuity.json'),{...config,owner:'claude-einhander',completion_state:'completion.json'});
+    await writeJson(path.join(base,'coordination/CLAUDE-SESSIONS-20261114.json'),{sessions:[
+      {owner:'claude-einhander',session_id:'main-desktop'},
+      {owner:'claude-einhander-s45',session_id:'worker-desktop',cli_session_id:'worker-cli'}]});
+    const privateDir=path.join(base,'.hermes3d_orchestrator/continuity');await fs.mkdir(privateDir,{recursive:true});
+    const state={...waiting,session_id:'local_worker-desktop',checkpoint_utc:new Date().toISOString(),continuation:{...waiting.continuation,next_wakeup_utc:new Date(Date.now()+300000).toISOString()}};
+    await writeJson(path.join(privateDir,'claude-einhander-s45.json'),state);
+    for(const [owner,id,body] of [['claude-einhander','msg_main','MAIN-PRIVATE'],['claude-einhander-s45','msg_worker','WORKER-OWN']]){
+      const dir=path.join(base,'.hermes3d_orchestrator/inbox',owner);await fs.mkdir(dir,{recursive:true});
+      await writeJson(path.join(dir,id+'.json'),{id,status:'unread',body});
+    }
+    const workerInput={session_id:'worker-cli',cwd:path.join(base,'.claude/worktrees/worker'),hook_event_name:'SessionStart'};
+    const result=await handle(workerInput,base);
+    assert.match(result.hookSpecificOutput.additionalContext,/owner=claude-einhander-s45/);
+    assert.match(result.hookSpecificOutput.additionalContext,/WORKER-OWN/);
+    assert.doesNotMatch(result.hookSpecificOutput.additionalContext,/MAIN-PRIVATE/);
+    await writeJson(path.join(base,'.hermes3d_orchestrator/inbox/claude-einhander-s45/msg_worker.json'),{id:'msg_worker',status:'done'});
+    assert.deepEqual(await handle({...workerInput,hook_event_name:'Stop'},base),{});
+    assert.equal((await inbox(base,'claude-einhander')).length,1);
+    const unknown=await handle({...workerInput,session_id:'unregistered',hook_event_name:'Stop'},base);
+    assert.equal(unknown.decision,'block');assert.match(unknown.reason,/not mapped/);
+    assert.doesNotMatch(unknown.reason,/MAIN-PRIVATE/);
+    await assert.rejects(sessionProfile(base,'worker-cli','claude-einhander'),/does not belong/);
+    const roster=await read(path.join(base,'coordination/CLAUDE-SESSIONS-20261114.json'));
+    roster.sessions.push({owner:'claude-einhander-s67',session_id:'worker-cli'});
+    await writeJson(path.join(base,'coordination/CLAUDE-SESSIONS-20261114.json'),roster);
+    await assert.rejects(sessionProfile(base,'worker-cli'),/more than once/);
+  }finally{
+    const target=await fs.realpath(base),tempRoot=await fs.realpath(os.tmpdir());
+    assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-session-routing-'));
     await fs.rm(target,{recursive:true,force:true});
   }
 });

@@ -1,0 +1,4312 @@
+{
+ "name": "stage3-machinery-walls-material-v1",
+ "title": "Stage 3 machinery walls: generated material layering over the v1 categorical keys",
+ "track": "w7-stage3",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 Stage 3 capture)",
+ "created_at_utc": "2026-11-13T21:45:43.532138+00:00",
+ "method": "W7-STAGE3 material layering (lane-s3) on the frozen machinery-wall keys (facade-v3 s2c_material_layering method,\nadapted to CLUT-indexed atlas pages).\n\nInput: frozen/stage3-machinery-walls-v1 (categorical index-master renders, exact native colours, exact classes) and the\ngenerated tileable swatches in swatches/ (s3_swatches.py, JuggernautXL txt2img, luminance only).\nMaterial maps (CLUT-free, per page, deterministic from the swatches and the inferred cells):\n  * every inferred cell gets its own crop of each swatch, made periodic over the cell bbox (offset cross-fade), so a cell\n    that the game tiles side by side has no material seam; swatch scale 1:1 at 8 px/texel (1024 px = 128 texels/repeat,\n    the facade-v3 world scale);\n  * bands: high-pass = blur(fine_sigma) - blur(hp_sigma) (fine wear, scratches; nothing below fine_sigma, so no\n    sub-texel shimmer), low-pass = blur(lp_sigma) (mottling), wrap-around filtering inside the cell period.\nPer key (CLUT-specific weights from the key's own rendered colour, recomputed for any CLUT):\n  log factor = (1 - w_light) * [ (1 - w_paint) * steel(hp, lp) + w_paint * chipped_paint(hp, lp) - grime ]\n  w_light: bright saturated or very bright colours (lamps, LEDs, indicator lights) get no material;\n  w_paint: saturated paint (hazard stripes, red/orange paint) gets the chipped-paint swatch, neutral steel the steel one;\n  grime: oily-grime low-pass, plus darkening in recesses (pixels darker than their 1.5-texel surround: cavity term).\nPer cell the material factor is energy-locked (mean visible luminance equals the v1 render, 0.98-1.02), RGB only; the\nalpha (class) channel is untouched, then forced and validated at every native texel centre on export (s3master.export).\nNothing is invented: no geometry, glyph, colour or text is added; generated imagery enters only as luminance detail.\nusage: python -I s3_material.py [freeze]      -> staging/ or frozen/stage3-machinery-walls-material-v1",
+ "supersedes": null,
+ "base": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/frozen/stage3-machinery-walls-v1",
+  "manifest_sha256": "184e8ad8558826ca75177d3e05293d279d4aa6b28eb4eab2a6c6050ba58cd1e0",
+  "files_sha256_sha256": "7c7f63834c4594dd29a96d7606d3f30b0053dccb2f7784cc3f2ae8ad2382d65a"
+ },
+ "params": {
+  "repeat_px": 1024,
+  "fine_sigma_px": 2.0,
+  "hp_sigma_px": 12.0,
+  "lp_sigma_px": 40.0,
+  "band_frac": 0.25,
+  "cavity_sigma_tex": 1.5,
+  "cavity_depth": 0.1,
+  "steel": {
+   "swatch": "oily_grime",
+   "hp": 0.11,
+   "lp": 0.07
+  },
+  "paint": {
+   "swatch": "chipped_paint",
+   "hp": 0.08,
+   "lp": 0.06
+  },
+  "grime": {
+   "swatch": "oily_grime",
+   "lp": 0.08,
+   "cavity": 0.1
+  },
+  "light_lum": [
+   0.6,
+   0.82
+  ],
+  "light_sat": [
+   0.35,
+   0.6
+  ],
+  "light_lum_any": [
+   0.88,
+   0.97
+  ],
+  "paint_sat": [
+   0.22,
+   0.45
+  ],
+  "energy_band": [
+   0.98,
+   1.02
+  ],
+  "seed": "lane-s3-material-v1"
+ },
+ "swatches": {
+  "oily_grime": {
+   "raw": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/oily_grime-raw.png",
+   "raw_sha256": "a6b442c8f8de2e2af67f3bb251b652d0e676c1b1438372a98e796366056dbf36",
+   "tiling": "separable offset cross-fade, band 256 px (s3_swatches.make_tileable)",
+   "band_norms": {
+    "hp_std": 0.029306896030902863,
+    "lp_mean": 0.282260537147522,
+    "lp_std": 0.024434475228190422
+   },
+   "job": {
+    "name": "oily_grime",
+    "prompt_id": "63677e61-a8d7-4c40-b324-64348500700a",
+    "seed": 2026111323,
+    "prompt": "flat orthographic photo texture of grimy dark machine metal surface, oil stains, soot, dust and faint water marks, soft mottled dirt, evenly lit, no shadows, no objects, high detail",
+    "negative": "text, letters, numbers, logo, watermark, signage, perspective, objects, bolts, rivets, panels, seams, grid, pattern, people, shadows, vignette, frame, border, blurry, lowres, cartoon, painting",
+    "model": "juggernautXL_v9.safetensors",
+    "steps": 32,
+    "cfg": 5.5,
+    "sampler": "dpmpp_2m karras",
+    "size": [
+     1024,
+     1024
+    ],
+    "seconds": 9.5,
+    "status": "success",
+    "raw_sha256": "a6b442c8f8de2e2af67f3bb251b652d0e676c1b1438372a98e796366056dbf36",
+    "tileable_sha256": "f32f09d92fdb608af6a9df6a88c6905277b1a99216372327e016466666332833",
+    "comfy_output": {
+     "filename": "ComfyUI_temp_pdibe_00003_.png",
+     "subfolder": "",
+     "type": "temp"
+    }
+   }
+  },
+  "chipped_paint": {
+   "raw": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/chipped_paint-raw.png",
+   "raw_sha256": "205322f8a0d39210ba1d4bbc1694d8b94fd1123186ac5ce4b72aa30c02ba381e",
+   "tiling": "separable offset cross-fade, band 256 px (s3_swatches.make_tileable)",
+   "band_norms": {
+    "hp_std": 0.024754652753472328,
+    "lp_mean": 0.3250470459461212,
+    "lp_std": 0.021897345781326294
+   },
+   "job": {
+    "name": "chipped_paint",
+    "prompt_id": "1d6caf0a-0e47-4aee-a438-9a0bc2a2cb95",
+    "seed": 2026111322,
+    "prompt": "flat orthographic photo texture of worn enamel painted metal, small paint chips showing dark bare steel, fine scratches, dirt in the scratches, evenly lit, no shadows, no objects, high detail",
+    "negative": "text, letters, numbers, logo, watermark, signage, perspective, objects, bolts, rivets, panels, seams, grid, pattern, people, shadows, vignette, frame, border, blurry, lowres, cartoon, painting",
+    "model": "juggernautXL_v9.safetensors",
+    "steps": 32,
+    "cfg": 5.5,
+    "sampler": "dpmpp_2m karras",
+    "size": [
+     1024,
+     1024
+    ],
+    "seconds": 9.4,
+    "status": "success",
+    "raw_sha256": "205322f8a0d39210ba1d4bbc1694d8b94fd1123186ac5ce4b72aa30c02ba381e",
+    "tileable_sha256": "7a1dd3d3a2fe7a46d147495171101a1d3b17253d53139e063ca6261994e54c80",
+    "comfy_output": {
+     "filename": "ComfyUI_temp_pdibe_00002_.png",
+     "subfolder": "",
+     "type": "temp"
+    }
+   }
+  }
+ },
+ "comfyui": {
+  "url": "http://127.0.0.1:8188",
+  "model": "juggernautXL_v9.safetensors",
+  "graphs": {
+   "oily_grime": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/oily_grime-graph.api.json",
+   "chipped_paint": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/chipped_paint-graph.api.json"
+  },
+  "history": {
+   "oily_grime": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/oily_grime-history.json",
+   "chipped_paint": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/swatches/chipped_paint-history.json"
+  },
+  "history_sha256": {
+   "oily_grime": "3f7285f061a7fc00418d03d86615ddc9ab13544ba4db02dfa799dde732a873e9",
+   "chipped_paint": "7594bafe35876750914cf6c7251a626f506a1cbb23ab5e5b8e82f22f693d5145"
+  }
+ },
+ "generated_imagery": "luminance-only material detail from the swatches above; no colour, shape, glyph or text from the model",
+ "live_evidence": null,
+ "pages": {
+  "B53A4C57": {
+   "cells": [
+    {
+     "cell": 1,
+     "bbox_texels": [
+      0,
+      0,
+      64,
+      64
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       212,
+       576
+      ],
+      "paint": [
+       337,
+       712
+      ],
+      "grime": [
+       587,
+       821
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 2,
+     "bbox_texels": [
+      64,
+      0,
+      96,
+      128
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       494,
+       625
+      ],
+      "paint": [
+       410,
+       709
+      ],
+      "grime": [
+       31,
+       426
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 3,
+     "bbox_texels": [
+      96,
+      0,
+      256,
+      192
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       765,
+       791
+      ],
+      "paint": [
+       617,
+       392
+      ],
+      "grime": [
+       941,
+       281
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 4,
+     "bbox_texels": [
+      0,
+      64,
+      256,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       980,
+       884
+      ],
+      "paint": [
+       817,
+       743
+      ],
+      "grime": [
+       127,
+       419
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 5,
+     "bbox_texels": [
+      96,
+      128,
+      128,
+      192
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       331,
+       593
+      ],
+      "paint": [
+       179,
+       1001
+      ],
+      "grime": [
+       470,
+       379
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 6,
+     "bbox_texels": [
+      128,
+      128,
+      160,
+      192
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       151,
+       878
+      ],
+      "paint": [
+       258,
+       878
+      ],
+      "grime": [
+       827,
+       149
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 7,
+     "bbox_texels": [
+      160,
+      128,
+      224,
+      192
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       906,
+       149
+      ],
+      "paint": [
+       372,
+       959
+      ],
+      "grime": [
+       755,
+       781
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 8,
+     "bbox_texels": [
+      128,
+      224,
+      160,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       719,
+       264
+      ],
+      "paint": [
+       226,
+       788
+      ],
+      "grime": [
+       762,
+       398
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 9,
+     "bbox_texels": [
+      160,
+      224,
+      224,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       330,
+       5
+      ],
+      "paint": [
+       818,
+       173
+      ],
+      "grime": [
+       201,
+       17
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    },
+    {
+     "cell": 10,
+     "bbox_texels": [
+      224,
+      224,
+      256,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       26,
+       769
+      ],
+      "paint": [
+       130,
+       67
+      ],
+      "grime": [
+       9,
+       225
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    }
+   ],
+   "base_master": {
+    "path": "master/B53A4C57-index-master-8x.npz",
+    "sha256": "cd4831a37a15f3d4a1695099bb06b0198471ba8d6d031605dd42bdf0ca9c32b2"
+   }
+  },
+  "59B55BC8": {
+   "cells": [
+    {
+     "cell": 1,
+     "bbox_texels": [
+      0,
+      0,
+      256,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       534,
+       134
+      ],
+      "paint": [
+       85,
+       122
+      ],
+      "grime": [
+       926,
+       417
+      ]
+     },
+     "periodic": "exact repeat"
+    }
+   ],
+   "base_master": {
+    "path": "master/59B55BC8-index-master-8x.npz",
+    "sha256": "a9f33f08124ad45a978fa3fb54f598de6ca329ee62173122951f6888a1657175"
+   }
+  },
+  "66A350AA": {
+   "cells": [
+    {
+     "cell": 1,
+     "bbox_texels": [
+      0,
+      0,
+      256,
+      256
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       622,
+       929
+      ],
+      "paint": [
+       750,
+       230
+      ],
+      "grime": [
+       465,
+       491
+      ]
+     },
+     "periodic": "exact repeat"
+    },
+    {
+     "cell": 2,
+     "bbox_texels": [
+      192,
+      128,
+      256,
+      192
+     ],
+     "swatch_offsets_px": {
+      "steel": [
+       53,
+       623
+      ],
+      "paint": [
+       940,
+       615
+      ],
+      "grime": [
+       245,
+       16
+      ]
+     },
+     "periodic": "offset cross-fade over the cell bbox"
+    }
+   ],
+   "base_master": {
+    "path": "master/66A350AA-index-master-8x.npz",
+    "sha256": "7721235c638ceabbf5476121b76ea6a896dba15c208c5a107d4ff2d98cb445e8"
+   }
+  }
+ },
+ "keys": {
+  "B53A4C57-0584767D": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "0584767D",
+    "words_hex": "00000000d0420000000000000822000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     80,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      80,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.079,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-0584767D.png",
+     "sha256": "38c0ef29bf73e5b02b113043cfadcadf98682a2d8af95ea751a13a965e4d3290",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-0584767D.png",
+     "sha256": "b44bfecbdcdfc9896c33eb161d46b3cef677baa1f16fecd41367c51c3ba5a8e8",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-0584767D.png",
+     "sha256": "41d608ea84f583d6fdc35dfe52370fd97b6b4db99de84897e21c8aaa11a13cad",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-0584767D.png",
+     "sha256": "0700a06d59d1bb67dfb57462eb9a898b10947bfd8116b867b07ab5b8dc9501d1",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9787,
+     "lock_gain": 1.0217,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 1.0052,
+     "lock_gain": 0.9948,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9854,
+     "lock_gain": 1.0149,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9961,
+     "lock_gain": 1.0039,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9859,
+     "lock_gain": 1.0143,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9949,
+     "lock_gain": 1.0051,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0064,
+     "lock_gain": 0.9936,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9822,
+     "lock_gain": 1.0181,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.008,
+     "lock_gain": 0.9921,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9674,
+     "lock_gain": 1.0337,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 3.0,
+    "p95_abs": 10.0
+   }
+  },
+  "B53A4C57-114545DB": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "114545DB",
+    "words_hex": "0000000000000100000000000000010000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     96,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 23,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      96,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.083,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-114545DB.png",
+     "sha256": "67e78b44c95de78a8c74f963153ad94efe6759174a0b03927a89a5182acca2c0",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-114545DB.png",
+     "sha256": "4046009471996c99bd130abc93fe062c1ddbe9743d8340af9db1ceb823c162eb",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-114545DB.png",
+     "sha256": "41c98110a1e66d038752a4a4e47877d395f802d7c08af5906497c87a426ea23b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-114545DB.png",
+     "sha256": "7ada0df5ec76c18f57ae890fa6ca1225c5990646cb8713e9215aa3b28672e87b",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9781,
+     "lock_gain": 1.0224,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9946,
+     "lock_gain": 1.0055,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9984,
+     "lock_gain": 1.0016,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9873,
+     "lock_gain": 1.0128,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0191,
+     "lock_gain": 0.9813,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 1.0023,
+     "lock_gain": 0.9977,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.009,
+     "lock_gain": 0.9911,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9792,
+     "lock_gain": 1.0213,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0203,
+     "lock_gain": 0.9801,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9919,
+     "lock_gain": 1.0081,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 0.0,
+    "p95_abs": 0.0
+   }
+  },
+  "B53A4C57-16F284C3": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "16F284C3",
+    "words_hex": "396715041f213146ce396b2d29250821e71cc6188410630c132e6f21eb146708",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 108,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-16F284C3.png",
+     "sha256": "75fc4609577307bfd9fad426b3529bdfd3837965da84c94296c0222e5404629f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-16F284C3.png",
+     "sha256": "5a16949eca7890b0a05b8fc626455b82df1fa5158734896c597602e59be09df0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-16F284C3.png",
+     "sha256": "2d7510546666b646fcd901fb4a1f0ca4ccde089fe0a48694f5e43a766fe05033",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-16F284C3.png",
+     "sha256": "2684fbfbd5feb6bb1752e2819c7eb36fc9683eec643c92e6f118d6566407d9f4",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9478,
+     "lock_gain": 1.0551,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9816,
+     "lock_gain": 1.0187,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9849,
+     "lock_gain": 1.0154,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.985,
+     "lock_gain": 1.0152,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9752,
+     "lock_gain": 1.0254,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9919,
+     "lock_gain": 1.0081,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9996,
+     "lock_gain": 1.0004,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9844,
+     "lock_gain": 1.0159,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0004,
+     "lock_gain": 0.9996,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9652,
+     "lock_gain": 1.0361,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 11.0
+   }
+  },
+  "B53A4C57-1E925EC8": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "1E925EC8",
+    "words_hex": "0000210400000000000021040000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     64,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      64,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.065,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-1E925EC8.png",
+     "sha256": "9f921283c77126f26ec859148bf5a0a765f1aee22c0a165912459a3eaa76785e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-1E925EC8.png",
+     "sha256": "bed6192763900a807ab417fe339afd6d2ffd0d0ae413655e9c074ed117def99e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-1E925EC8.png",
+     "sha256": "c7fc9a8d72498493569cda65b895fa1a4ab8a74007c92e520ba183b4d82c2e14",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-1E925EC8.png",
+     "sha256": "67166bf39482ea4352c23657444b722ea00f4076148848c44d4ef7e50b91b943",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9598,
+     "lock_gain": 1.0418,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 1.0205,
+     "lock_gain": 0.9799,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9952,
+     "lock_gain": 1.0049,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 1.0011,
+     "lock_gain": 0.9989,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9703,
+     "lock_gain": 1.0306,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9884,
+     "lock_gain": 1.0118,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0116,
+     "lock_gain": 0.9885,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 1.0117,
+     "lock_gain": 0.9884,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0071,
+     "lock_gain": 0.9929,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9553,
+     "lock_gain": 1.0468,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 0.0,
+    "p95_abs": 1.0
+   }
+  },
+  "B53A4C57-322D3997": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "322D3997",
+    "words_hex": "cd358b2d49252821e618c514830c620829290821e71cc618a5148410bb16f201",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     489
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 125,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-322D3997.png",
+     "sha256": "e1cf26c32be60320f3edaa5b7e79dbf67432afbe370f009bc6b9fae7baa51ad5",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-322D3997.png",
+     "sha256": "b22997dfdec307408aedf5560cf257368a95ece1c043b2dc815536d5da34098d",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-322D3997.png",
+     "sha256": "8fc9b9fc3ed3bd0cf33f0a58d0beb327af40af4fbe2ab781b5b0558b8e116797",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-322D3997.png",
+     "sha256": "1e0bd3023cff0e67d3c3d381613a9a32fa01ab002a24d4487319ad5aac565ede",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9495,
+     "lock_gain": 1.0532,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9924,
+     "lock_gain": 1.0076,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9888,
+     "lock_gain": 1.0114,
+     "energy_ratio": 0.9999
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9877,
+     "lock_gain": 1.0125,
+     "energy_ratio": 0.9999
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9544,
+     "lock_gain": 1.0477,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 1.0002,
+     "lock_gain": 0.9998,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9971,
+     "lock_gain": 1.0029,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9864,
+     "lock_gain": 1.0138,
+     "energy_ratio": 0.9997
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0025,
+     "lock_gain": 0.9975,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9654,
+     "lock_gain": 1.0358,
+     "energy_ratio": 0.9999
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 7.0
+   }
+  },
+  "B53A4C57-4C904F50": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "4C904F50",
+    "words_hex": "ffffdf47fe823c8279811681b480928071804e802c8009800680048003800080",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     492
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 89,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "common"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-4C904F50.png",
+     "sha256": "da61e6b442d75e12502eec893f2d50f01bb7f20621c76ed117fe15059fb4249c",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-4C904F50.png",
+     "sha256": "22bd28df72bdfe01e269cc921a8c890b5439cccef7bba1cc2193e6883e2668ed",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-4C904F50.png",
+     "sha256": "bb6fd2c7950af23448340098b01938c04e707e6289e1b09c8ed8bb035cf049b7",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-4C904F50.png",
+     "sha256": "69c064b72c158b615e092b375fbfaadd7f9eba047f6d13b37f164a16958c03a4",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9693,
+     "lock_gain": 1.0317,
+     "energy_ratio": 0.9999
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9843,
+     "lock_gain": 1.0159,
+     "energy_ratio": 0.9999
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9874,
+     "lock_gain": 1.0128,
+     "energy_ratio": 0.9975
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9954,
+     "lock_gain": 1.0046,
+     "energy_ratio": 0.9963
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0,
+     "lock_gain": 1.0,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9966,
+     "lock_gain": 1.0034,
+     "energy_ratio": 0.9987
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9977,
+     "lock_gain": 1.0023,
+     "energy_ratio": 0.9998
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9754,
+     "lock_gain": 1.0253,
+     "energy_ratio": 0.9937
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0004,
+     "lock_gain": 0.9996,
+     "energy_ratio": 1.0004
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9959,
+     "lock_gain": 1.0041,
+     "energy_ratio": 0.9963
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 9.0
+   }
+  },
+  "B53A4C57-558EE0EC": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "558EE0EC",
+    "words_hex": "0000000000000000210400000000000021040000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     488
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     224,
+     488,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 21,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      224,
+      488,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.11,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-558EE0EC.png",
+     "sha256": "a8ee5df888e683dbb89a25166e795bc5a67480656f6168cfba12f5d873169f59",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-558EE0EC.png",
+     "sha256": "be38bbab758439593fb413caac79ad9fdc20062fb6426f76875b762222de0740",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-558EE0EC.png",
+     "sha256": "5d8b0aa9a786729d2b05c088497653a5f55399773009f2f3e8c321ea9bebdf95",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-558EE0EC.png",
+     "sha256": "b3988edb7d0644cf315f712d530b4469528e11bc95249c4c781f28bc6f5940e5",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9543,
+     "lock_gain": 1.0479,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 1.005,
+     "lock_gain": 0.9951,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9934,
+     "lock_gain": 1.0066,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 1.0023,
+     "lock_gain": 0.9977,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9572,
+     "lock_gain": 1.0447,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 1.0227,
+     "lock_gain": 0.9778,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0046,
+     "lock_gain": 0.9954,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 1.0073,
+     "lock_gain": 0.9927,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 0.9979,
+     "lock_gain": 1.0021,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.96,
+     "lock_gain": 1.0417,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 0.0,
+    "p95_abs": 1.0
+   }
+  },
+  "B53A4C57-5626D039": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "5626D039",
+    "words_hex": "945231461042ef3dce39ad358c316b2d4a2929250821c6188410420821042104",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 20,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-5626D039.png",
+     "sha256": "e0efaae3f76daf9c8191748bd0c2884f185ffa99c9b7faf20eba30bc6f1ddd91",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-5626D039.png",
+     "sha256": "2072896057be27a87304f600815529636d0ffbea039044c1a144f7f61410e6ca",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-5626D039.png",
+     "sha256": "759c55a2ef72b8a80d763248a374da6d3f6bb4e30eecebfbe65cde23f2ee2215",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-5626D039.png",
+     "sha256": "a590e666bbaa3dd4d9a78b18850aad1bd66f1b4c3fef230e1e1445c53287158c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9486,
+     "lock_gain": 1.0542,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9906,
+     "lock_gain": 1.0095,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9874,
+     "lock_gain": 1.0128,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9888,
+     "lock_gain": 1.0113,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9583,
+     "lock_gain": 1.0436,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9899,
+     "lock_gain": 1.0102,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0038,
+     "lock_gain": 0.9963,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 1.0032,
+     "lock_gain": 0.9968,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0008,
+     "lock_gain": 0.9992,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9631,
+     "lock_gain": 1.0383,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 9.0
+   }
+  },
+  "B53A4C57-680BF5CF": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "680BF5CF",
+    "words_hex": "84188418a51cc620e7240829292d4a314a316b358c39ad3dce41ef45104a314e",
+    "kind": "static",
+    "vram_xy": [
+     48,
+     497
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 28,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-680BF5CF.png",
+     "sha256": "169df8bfbf41edb870f0b811802a2078feffb72db7e6f3254216e2ee63c01813",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-680BF5CF.png",
+     "sha256": "212af0d776c6220e25c78466e33cbf7f695988fec71dd81bc9a999b1098dce61",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-680BF5CF.png",
+     "sha256": "f6445e878df37ca6d1076817ed2063306c3ba3ec55af70a860ac10ab26a71a66",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-680BF5CF.png",
+     "sha256": "31eb4872b575ed7c19c35c9961ec5b05eb70162126da14c53416044d8fe2d028",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9507,
+     "lock_gain": 1.0519,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9944,
+     "lock_gain": 1.0057,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9855,
+     "lock_gain": 1.0147,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9928,
+     "lock_gain": 1.0072,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9566,
+     "lock_gain": 1.0454,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9998,
+     "lock_gain": 1.0002,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9965,
+     "lock_gain": 1.0035,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9992,
+     "lock_gain": 1.0008,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 0.9986,
+     "lock_gain": 1.0014,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9687,
+     "lock_gain": 1.0323,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 9.0
+   }
+  },
+  "B53A4C57-77620CF9": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "77620CF9",
+    "words_hex": "00000000000017000000000000000c0000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     96,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 23,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      96,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.083,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-77620CF9.png",
+     "sha256": "80fdefd2f65ecce09c3160b20f214c503ab5268f0fdea54954aef68a7d1cfcd8",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-77620CF9.png",
+     "sha256": "772dba1e6a4f6279d3093fbbd1f24dba475428346407f04fc1c51bbeb9d2b346",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-77620CF9.png",
+     "sha256": "6b2465a27dd9d769d5d80217522f24b52eeefbda08ebaafe803ad751cc1e3a1f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-77620CF9.png",
+     "sha256": "22148e7a92dc460e1c326447b9394a1a96ac1e39538b7c65741134dc2f8e5b51",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9778,
+     "lock_gain": 1.0227,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9941,
+     "lock_gain": 1.0059,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9952,
+     "lock_gain": 1.0049,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.986,
+     "lock_gain": 1.0142,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0178,
+     "lock_gain": 0.9825,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 1.0019,
+     "lock_gain": 0.9981,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0074,
+     "lock_gain": 0.9927,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9789,
+     "lock_gain": 1.0215,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0188,
+     "lock_gain": 0.9816,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9874,
+     "lock_gain": 1.0128,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 8.0
+   }
+  },
+  "B53A4C57-A02A0ECB": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "A02A0ECB",
+    "words_hex": "524a1e00ff630500e00c6229a22de235223e6246c24a0253425b8263e36b0000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 70,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.835,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-A02A0ECB.png",
+     "sha256": "b78b9ec7b79523c75ad6a54f48170a802634bbd4faeddf9c9ed6b8ccadcf7c35",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-A02A0ECB.png",
+     "sha256": "9e93e284513852102b9c910b2fd7f2cbeda8a38aa5fa3c661c4bea5284cf188c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-A02A0ECB.png",
+     "sha256": "703de43cc720ad9bc878d0d225b873d02b7960126bfddc1814ab4c81905752b2",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-A02A0ECB.png",
+     "sha256": "a394385440beead653f8fd39916d026514b3330f15fdf54244bc975d8e95feb1",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9674,
+     "lock_gain": 1.0337,
+     "energy_ratio": 0.9998
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9849,
+     "lock_gain": 1.0153,
+     "energy_ratio": 0.9991
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9841,
+     "lock_gain": 1.0162,
+     "energy_ratio": 0.9964
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9852,
+     "lock_gain": 1.0151,
+     "energy_ratio": 0.9984
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0022,
+     "lock_gain": 0.9978,
+     "energy_ratio": 1.0003
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9893,
+     "lock_gain": 1.0108,
+     "energy_ratio": 0.9961
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9951,
+     "lock_gain": 1.0049,
+     "energy_ratio": 0.9992
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9697,
+     "lock_gain": 1.0312,
+     "energy_ratio": 0.9946
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0012,
+     "lock_gain": 0.9988,
+     "energy_ratio": 1.0001
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9701,
+     "lock_gain": 1.0309,
+     "energy_ratio": 0.9984
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 3.0,
+    "p95_abs": 11.0
+   }
+  },
+  "B53A4C57-D9B206FA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "D9B206FA",
+    "words_hex": "0000000021040000000000002104000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     80,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      80,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.079,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-D9B206FA.png",
+     "sha256": "c4af33d452ae6e1b48b2d593bc3a1b60f28a33aaf6ef944202e81806fba68aff",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-D9B206FA.png",
+     "sha256": "a95ca1f545373164fd2d129760a506e7aa87cf9baa8881187326396345e26f6e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-D9B206FA.png",
+     "sha256": "70656c6b89f21a557b4a86905b5c15df35f63b5cde620ef5070a81d9706cea84",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-D9B206FA.png",
+     "sha256": "b36d3a8664817518d94e2aaae2c8b8c9ce0e43ea2c9eb953b7f0a53565616145",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9585,
+     "lock_gain": 1.0433,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 1.0112,
+     "lock_gain": 0.989,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9952,
+     "lock_gain": 1.0048,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 1.0006,
+     "lock_gain": 0.9994,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 0.9712,
+     "lock_gain": 1.0296,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9871,
+     "lock_gain": 1.013,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.009,
+     "lock_gain": 0.991,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 1.011,
+     "lock_gain": 0.9891,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0012,
+     "lock_gain": 0.9988,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.959,
+     "lock_gain": 1.0428,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 0.0,
+    "p95_abs": 1.0
+   }
+  },
+  "B53A4C57-EB67ADAA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "EB67ADAA",
+    "words_hex": "5f837c82ba811581b1808f806d804b8029802780068004800380028001800000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     492
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 31,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "common"
+   },
+   "visible_fraction": 0.835,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-EB67ADAA.png",
+     "sha256": "3ba07875ea06ca45ebe00433bdd7c3600ca1c2ed1ebf9302ed46d171bdb6121a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-EB67ADAA.png",
+     "sha256": "00b8e89fc7d5d5207a9932d70615d164a8ea38916105941a5ca9bf3c1d13287c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-EB67ADAA.png",
+     "sha256": "3863239cfb3a05117395e4fb24442456c4e9514f13196a73838994921dfc0679",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-EB67ADAA.png",
+     "sha256": "b09ce984dceb08fca366ff12e18957bba6637e97f7b05402c73a6b3883b1e5ab",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9723,
+     "lock_gain": 1.0285,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9868,
+     "lock_gain": 1.0133,
+     "energy_ratio": 0.9999
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9875,
+     "lock_gain": 1.0127,
+     "energy_ratio": 0.9987
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9957,
+     "lock_gain": 1.0043,
+     "energy_ratio": 0.9966
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0043,
+     "lock_gain": 0.9957,
+     "energy_ratio": 1.0004
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9964,
+     "lock_gain": 1.0036,
+     "energy_ratio": 0.9988
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0008,
+     "lock_gain": 0.9992,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.972,
+     "lock_gain": 1.0288,
+     "energy_ratio": 0.9959
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0015,
+     "lock_gain": 0.9985,
+     "energy_ratio": 1.0012
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9976,
+     "lock_gain": 1.0024,
+     "energy_ratio": 0.9979
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 7.0
+   }
+  },
+  "B53A4C57-F63AB6BA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "F63AB6BA",
+    "words_hex": "0000000000000000f72a0000000000004d0d0000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     488
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     224,
+     488,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 21,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      224,
+      488,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.11,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-F63AB6BA.png",
+     "sha256": "d8f9b850216b6a517c363472ad18ae86ecbc6ced65a4079e3a360b51c72fb026",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-F63AB6BA.png",
+     "sha256": "f110ed150748e3ea38a54f4863745dada65115d0b3c6067134ee65f677424c90",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-F63AB6BA.png",
+     "sha256": "c19539ffca6807fc3c31457b455e05bb1da1b0d88598b33fbfe14912ea57f4f6",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-F63AB6BA.png",
+     "sha256": "ba2669c9af87b6ae8e1d9e42e22d486ebeafa405e3cf917bbbd3962f567cc384",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9774,
+     "lock_gain": 1.0231,
+     "energy_ratio": 0.9964
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 1.001,
+     "lock_gain": 0.999,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.9884,
+     "lock_gain": 1.0117,
+     "energy_ratio": 0.9976
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9886,
+     "lock_gain": 1.0116,
+     "energy_ratio": 0.9972
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0151,
+     "lock_gain": 0.9851,
+     "energy_ratio": 1.0033
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 1.0005,
+     "lock_gain": 0.9995,
+     "energy_ratio": 1.0002
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 0.9975,
+     "lock_gain": 1.0025,
+     "energy_ratio": 0.9996
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9781,
+     "lock_gain": 1.0224,
+     "energy_ratio": 0.9961
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0146,
+     "lock_gain": 0.9856,
+     "energy_ratio": 1.0044
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9976,
+     "lock_gain": 1.0024,
+     "energy_ratio": 0.9993
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 7.0
+   }
+  },
+  "B53A4C57-FFF96EC9": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "FFF96EC9",
+    "words_hex": "0000e741000000000000c3550000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     64,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      64,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.065,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-FFF96EC9.png",
+     "sha256": "ac79317ecde0be8e6fe7c4db0ab3ebf63ef581085a33166189fdacb97fef0083",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-FFF96EC9.png",
+     "sha256": "51c49eb77d19d25b8281628c902f100a46ffaaa045299ac25a2efe84bea1f65b",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-FFF96EC9.png",
+     "sha256": "2d245a5b26b1eed2d187e1bf2d0f02595f62efef45c28b75cc078d4c7078140a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-FFF96EC9.png",
+     "sha256": "062faa1bffa5f104f6b447f7600465cf429d397d1fdf46d15144eb6d3bd267bc",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.979,
+     "lock_gain": 1.0214,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9813,
+     "lock_gain": 1.0191,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before_lock": 0.991,
+     "lock_gain": 1.0091,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before_lock": 0.9848,
+     "lock_gain": 1.0155,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before_lock": 1.0112,
+     "lock_gain": 0.989,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before_lock": 0.9975,
+     "lock_gain": 1.0025,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before_lock": 1.0083,
+     "lock_gain": 0.9918,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before_lock": 0.9744,
+     "lock_gain": 1.0263,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before_lock": 1.0232,
+     "lock_gain": 0.9773,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before_lock": 0.9904,
+     "lock_gain": 1.0096,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 3.0,
+    "p95_abs": 10.0
+   }
+  },
+  "59B55BC8-89C297ED": {
+   "tex": "59B55BC8",
+   "clut": {
+    "crc32": "89C297ED",
+    "words_hex": "ce3dad396b314a2d29290825e720c61ca51884146310ee16e7150025c01c8014",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 100,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "b09808812aba4854fe734acc2def83fde34b064428e54e2a6cf126f4728cfff5",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-89C297ED.png",
+     "sha256": "8a1d3a27631f7bb09f3299e65c483925af50e82a3991ed1de13823266945d968",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "a249886acc262a3a8607c292ea2a6246a30fc9462f9d7d4c8002ee305944f882",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-89C297ED.png",
+     "sha256": "b3140ad2ddfe2f28452cab557d47ea89d7d6973404d2ce886810a1c8655d7856",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9873,
+     "lock_gain": 1.0129,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 6.0
+   }
+  },
+  "59B55BC8-F41BCBCE": {
+   "tex": "59B55BC8",
+   "clut": {
+    "crc32": "F41BCBCE",
+    "words_hex": "ce3dad396b314a2d29290825e720c61ca51884146310ee18ab10680ce9007001",
+    "kind": "static",
+    "vram_xy": [
+     192,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 114,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-F41BCBCE.png",
+     "sha256": "162a70416b8bd6b3722b2445d892ceaee356fa114cb809bc6c08993b1b13ea37",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-F41BCBCE.png",
+     "sha256": "09c16f52c0db081e0a035d916d9e16e3d836aedd5ed7b3e3bfc998a8bb4e4076",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-F41BCBCE.png",
+     "sha256": "6bfbbeb1fca2c97b63791235c867163d227fe16687e1bd2c4622453a34f423a3",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-F41BCBCE.png",
+     "sha256": "05d7932569e99a42caee7a8ee673ce2bb97c0df437c3121906651da4a461d136",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9874,
+     "lock_gain": 1.0128,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 6.0
+   }
+  },
+  "66A350AA-31A4CB98": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "31A4CB98",
+    "words_hex": "fa0093004c00050094523146ce396b2d29250821e71cc618a5148410630c2104",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 51,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-31A4CB98.png",
+     "sha256": "8229e8316118ec36c03a98dd878f56a7545277622b1ab54a46ffb877e7b1c4f2",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-31A4CB98.png",
+     "sha256": "d3424a63a374127b62b9b8bbbbc46455003245cf3d6cf070bd4bf5ecb323e4ea",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-31A4CB98.png",
+     "sha256": "85f9acad297ccbb2ae1e90aca96211e582d92e2b40ed0a8ccb2c7b1176d4c210",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-31A4CB98.png",
+     "sha256": "e2ad4b233c6f5bcec7d08e8d4e937444a1c2650b140e67a2b8355ec7d681f8ad",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9829,
+     "lock_gain": 1.0174,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9798,
+     "lock_gain": 1.0206,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 9.0
+   }
+  },
+  "66A350AA-37F29357": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "37F29357",
+    "words_hex": "d936132a4d1da71094525246ee396b2d29250821e71cc618a5148410830c2104",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 49,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-37F29357.png",
+     "sha256": "4f926d4f628098ef78a5a17474f5b15a155944ec894d5375c9c2441c3b3e8c1d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-37F29357.png",
+     "sha256": "b7aea61d1b803375d874a3ac915c4756d5e6436223db614e96e1c7c9aaa66249",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-37F29357.png",
+     "sha256": "7544f4dceb54eaa427e297ff156dab05b616138f2c66c43d85c9676d7a92a98b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-37F29357.png",
+     "sha256": "dc289413389eb3bc9c056a822cd080e86648964b26cd7a6d106bbba9fd0e7798",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9809,
+     "lock_gain": 1.0194,
+     "energy_ratio": 0.9998
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9864,
+     "lock_gain": 1.0138,
+     "energy_ratio": 0.9979
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 9.0
+   }
+  },
+  "66A350AA-553101F0": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "553101F0",
+    "words_hex": "6b2d0821c618a5148410630c630c42082104d60d930994908cb1e0831f800080",
+    "kind": "static",
+    "vram_xy": [
+     112,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 40,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-553101F0.png",
+     "sha256": "10cd48e0061374cbaced706697bff033015721b87ace0b5ac727a789c92b2c19",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-553101F0.png",
+     "sha256": "aba66fbc5f8cffc7e1669ae2f978600d3bfb74ab45c593816c880057c3f4fdc6",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-553101F0.png",
+     "sha256": "7ff97a51a1750f8df7a287c28f7d0878f5fdc57ef1c797dcb32adaac303448ff",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-553101F0.png",
+     "sha256": "e01b8d317350908e5234e24cf559d89a7dfc278beb7aa659ff820212fb605b10",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9868,
+     "lock_gain": 1.0134,
+     "energy_ratio": 0.9991
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9737,
+     "lock_gain": 1.027,
+     "energy_ratio": 0.9994
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 10.0
+   }
+  },
+  "66A350AA-66C9758A": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "66C9758A",
+    "words_hex": "103ead358c316b2d4b294a25e71ca5148510630c93094208d6092104941031c6",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 63,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-66C9758A.png",
+     "sha256": "672384d2ec5ca5bb7b5f81de53ae716c06dc798eeb107b3314d586526203341b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-66C9758A.png",
+     "sha256": "a379e727ea9466181e8d09259583559392eb414a3495660ad54ab18455014511",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-66C9758A.png",
+     "sha256": "d8fe45a0fbcaf488d196bb339c94a1f408612ad559e14ad4475aaddc8b0f3875",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-66C9758A.png",
+     "sha256": "58cb284ee0e01b9cc7176b105308f5f0fc363dd7fdbede3fa490640b45cb90a0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9832,
+     "lock_gain": 1.0171,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9641,
+     "lock_gain": 1.0373,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 10.0
+   }
+  },
+  "66A350AA-A91A16A0": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "A91A16A0",
+    "words_hex": "1042ce398c316b2d29250821e71cc618a5148410840c630c4208420021049452",
+    "kind": "static",
+    "vram_xy": [
+     48,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 42,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-A91A16A0.png",
+     "sha256": "53b5723c9814ac8c9904d5bdb6ac867c4ac357d45d4d1fe30342a6a90b1c8884",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-A91A16A0.png",
+     "sha256": "e13a050f08d76c1c5f3e1bb7734cb318d58a1d0d80e7ea431c47041524f8d098",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-A91A16A0.png",
+     "sha256": "027f1a2e3be68461af4cc731479d86ed00f39a51552243a15bf92a76f5402d9d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-A91A16A0.png",
+     "sha256": "ad7019c21da59efa485aac784662aac96a6ab6689fecb28a85d3e738c1b4ea78",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9816,
+     "lock_gain": 1.0188,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9626,
+     "lock_gain": 1.0389,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 9.0
+   }
+  },
+  "66A350AA-C822BCCF": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "C822BCCF",
+    "words_hex": "d6099605b21d9601911d74092a1ded084208040003008dad8490008000800080",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 55,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C822BCCF.png",
+     "sha256": "4032228bb79544c01aca5124dd19b8ad8da914b74f1a1c6ea9d5821df3741fce",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C822BCCF.png",
+     "sha256": "76dc8ca7eba79a599cea02d331a7d2fed6f908b7e8406a7de2c08800d02bcfc0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C822BCCF.png",
+     "sha256": "32c6b92a8aa78d8c8ee7ce51c454a17a6a8d32a510e5984890858a9d375f6651",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C822BCCF.png",
+     "sha256": "6277746a73c58cd301def3370506a1f9b8c9911a1af58c0afa51f96d0ca6be72",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9875,
+     "lock_gain": 1.0127,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9918,
+     "lock_gain": 1.0082,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 8.0
+   }
+  },
+  "66A350AA-C984F8E7": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "C984F8E7",
+    "words_hex": "1c00190017001500120010000e000b0009000700000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     486
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.555,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C984F8E7.png",
+     "sha256": "6e23ffb08110c4aecfc9c61b867b45db5a67c4a79baccf3a5f3301db78b1034e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C984F8E7.png",
+     "sha256": "dd68cd8e87b17f5d3124cc7d45b0f7d4dc0e325dda447c8023f9134ef9faf5f2",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C984F8E7.png",
+     "sha256": "89b63bdff1734403097acf3cede1350b64ff26e959b8bc54e13c152fe145a514",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C984F8E7.png",
+     "sha256": "8e5eec3632179d2e9acfe4830d8c9f9ee2190384284be8a35b55c6eb6011be06",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9874,
+     "lock_gain": 1.0127,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9921,
+     "lock_gain": 1.008,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 2.0,
+    "p95_abs": 10.0
+   }
+  },
+  "66A350AA-FCA3E805": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "FCA3E805",
+    "words_hex": "ad35d609e71c85108410630c42084208420821048d2d1480efbd31c694d20080",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 20,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "base_files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-FCA3E805.png",
+     "sha256": "eb32ca7c470e0d2395e17585e50056d083b20017de547eee337893a99136041d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-FCA3E805.png",
+     "sha256": "72324055be7107cfae5e3cd55c9ea1845de73c01d1f9cbcd872f9898f7af3546",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-FCA3E805.png",
+     "sha256": "b2f167294df59cb447fec3c4bf0a285eb60350093b2d0ba3a9a48ee26ced99b0",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-FCA3E805.png",
+     "sha256": "95f917888333ff37707903a0076d4666cd14265cbb7de662e094981ad381427c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cell_energy": [
+    {
+     "cell": 1,
+     "energy_ratio_before_lock": 0.9888,
+     "lock_gain": 1.0113,
+     "energy_ratio": 1.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before_lock": 0.9702,
+     "lock_gain": 1.0307,
+     "energy_ratio": 1.0
+    }
+   ],
+   "centre_rgb_vs_native": {
+    "median_abs": 1.0,
+    "p95_abs": 10.0
+   }
+  }
+ },
+ "review": {
+  "sheets": [
+   "review/v1-vs-material-01.png",
+   "review/v1-vs-material-02.png",
+   "review/v1-vs-material-03.png",
+   "review/v1-vs-material-04.png",
+   "review/v1-vs-material-05.png",
+   "review/v1-vs-material-06.png"
+  ],
+  "alias_simulation": {
+   "B53A4C57-16F284C3": {
+    "rect": [
+     64,
+     44,
+     128,
+     108
+    ],
+    "native_nearest": {
+     "0.5": 1.522,
+     "0.33": 8.142
+    },
+    "v1": {
+     "0.5": 0.521,
+     "0.33": 6.545
+    },
+    "material": {
+     "0.5": 0.584,
+     "0.33": 7.046
+    }
+   },
+   "B53A4C57-322D3997": {
+    "rect": [
+     64,
+     44,
+     128,
+     108
+    ],
+    "native_nearest": {
+     "0.5": 1.168,
+     "0.33": 7.026
+    },
+    "v1": {
+     "0.5": 0.409,
+     "0.33": 5.828
+    },
+    "material": {
+     "0.5": 0.466,
+     "0.33": 6.316
+    }
+   },
+   "59B55BC8-89C297ED": {
+    "rect": [
+     92,
+     48,
+     156,
+     112
+    ],
+    "native_nearest": {
+     "0.5": 0.593,
+     "0.33": 3.298
+    },
+    "v1": {
+     "0.5": 0.21,
+     "0.33": 2.81
+    },
+    "material": {
+     "0.5": 0.258,
+     "0.33": 3.193
+    }
+   },
+   "59B55BC8-F41BCBCE": {
+    "rect": [
+     92,
+     48,
+     156,
+     112
+    ],
+    "native_nearest": {
+     "0.5": 0.584,
+     "0.33": 3.195
+    },
+    "v1": {
+     "0.5": 0.207,
+     "0.33": 2.71
+    },
+    "material": {
+     "0.5": 0.255,
+     "0.33": 3.095
+    }
+   },
+   "66A350AA-66C9758A": {
+    "rect": [
+     160,
+     0,
+     224,
+     64
+    ],
+    "native_nearest": {
+     "0.5": 1.998,
+     "0.33": 11.575
+    },
+    "v1": {
+     "0.5": 0.668,
+     "0.33": 9.731
+    },
+    "material": {
+     "0.5": 0.727,
+     "0.33": 10.241
+    }
+   },
+   "66A350AA-C822BCCF": {
+    "rect": [
+     160,
+     0,
+     224,
+     64
+    ],
+    "native_nearest": {
+     "0.5": 1.229,
+     "0.33": 7.033
+    },
+    "v1": {
+     "0.5": 0.419,
+     "0.33": 5.923
+    },
+    "material": {
+     "0.5": 0.446,
+     "0.33": 6.172
+    }
+   }
+  },
+  "note": "native | v1 categorical | material: full page at 2 px/texel, a 12x crop and a 64x64 window at 9 screen px per texel (2160-line in-game size) labelled SIMULATION. alias_simulation: no-mip bilinear vs area-filtered reference, mean abs luminance error over 8 sub-pixel shifts at 0.5x and 0.33x minification (SIMULATION; higher = more shimmer in motion). No live frame exists for Stage 3."
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words]; every export re-read",
+  "files": 50,
+  "mismatches": 0
+ },
+ "builder": {
+  "s3_material.py": "99205f1b4489501710ae71bdf95a4fdd949a600c49864737bbdb4901ea864220",
+  "s3_swatches.py": "f113b320a1ee6d8fd5fea532ab4ea50dc4f90eed7d49b438cbafed0f195020e2",
+  "s3master.py": "8166aa31ca2ccc70375bd90069894dc28e5b8fd37b58381835c6c452aabed0a6",
+  "s3lib.py": "b55ac06cc90cb1bfa79e1213e416f24c2f5e5627a84aa2b741cb492c63800937"
+ },
+ "material_master": "material/ holds the swatches, graphs and ComfyUI history; with params + per-cell placement (pages.*.cells) and builder-snapshot/s3_material.py.txt the CLUT-free maps rebuild exactly",
+ "known_limits": [
+  "predicted keys only (no Stage 3 capture); see the base manifest",
+  "material is periodic per INFERRED cell: where one inferred cell is really several drawn rects, a rect that the game tiles can show a faint material seam; rebuild per real UV rect after AQ-03 (CPU only, deterministic)",
+  "paint/steel/light weights come from each key's rendered colour, so a mispaired CLUT gets material for its own colours",
+  "the dithering and line-beading of the v1 categorical base are unchanged underneath the material"
+ ],
+ "honest_read": "Inspected the staging sheets v1-vs-material 01-06 (2026-11-13, lane-s3). What it does: large flat panels lose some of the v1 \"smooth plastic\" look. They get faint oily mottling, fine pitting, and darker recesses from the cavity term. Red and orange paint gets a faint crackle and mottle (from the chipped_paint swatch). Lights and indicator colours stay clean. Brightness is held per cell (energy 0.994-1.004). Colours stay on-palette in hue; texel-centre RGB moves by a median of 2 levels (p95 at most 11). Classes are exact (50 files, 0 mismatches). Honest limits: (1) at the 9 px/texel in-game SIMULATION the change is small, and on busy greeble areas it reads partly as grain/noise rather than as material. (2) The grain is uniform: it does not follow the forms beyond the cavity darkening. (3) It cannot fix what the v1 base gets wrong: rounded shapes, beaded 1-texel lines and blob-smoothed dither all stay. (4) Motion SIMULATION (no-mip bilinear vs area reference): shimmer error is 8-23 % higher than v1 at 0.5x and 5-14 % higher at 0.33x. It is still 50-65 % lower than the stock nearest texture at 0.5x and 5-12 % lower at 0.33x. Verdict: a modest improvement over v1 on flat panels and an improvement over stock, not a true HD surface. Offered as an alternative candidate to v1 (supersedes nothing). Pick v1 or this one after a live look."
+}

@@ -1,0 +1,294 @@
+{
+ "name": "renderer-v61-classmip-v5-r2",
+ "owner": "claude-einhander",
+ "supersedes": "frozen/renderer-v61-classmip-v5 (DAMAGED by the 12:49:22Z restart: 263/874 files all-NUL, kept unchanged; see docs/DAMAGED-renderer-v61-classmip-v5.json). Extends frozen v4 (READY 93a97669), which stays unchanged.",
+ "frozen_utc": "2026-11-14T13:14:10.986176+00:00",
+ "status": "PRIVATE; default OFF; patched COPY of the frozen v61 renderer only; NOT linked, NOT run, NO GPU used by claude; root owns link/live/GPU/GitHub",
+ "v61_input": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gpu_gl_renderer.c",
+  "sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1"
+ },
+ "patched_tu": {
+  "path": "host-run/20261114T131112Z/patched/gpu_gl_renderer.c",
+  "sha256": "6eaca7f762d1b3d7999a923911ed6a98377e163d94ab8df0f407d15a87c0517b",
+  "lines": 7307,
+  "insertions": [
+   "gl-defines",
+   "hd-fs-uniform",
+   "hd-fs-rgb-helper",
+   "hd-fs-rgb-edges",
+   "hd-fs-class",
+   "slot-field",
+   "uniform-var",
+   "glue",
+   "hd-fs-rgb",
+   "draw-build",
+   "preload-proto",
+   "preload-call",
+   "draw-uniform",
+   "base-sampling",
+   "uniform-location"
+  ],
+  "include_sha256": "c228fc0f7977ca5fabe8d281f47f5491c1e40a0c54e2682bf19b91d13891e820",
+  "obj_sha256": "20da0845db2cd1beb4d2d375b3025d8ee01b24618f5d5a207cf07a927aef21ac",
+  "control_obj_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a",
+  "new_warning_kinds": [],
+  "builder_in_runtime_tu": false
+ },
+ "admission": {
+  "index": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "31214B41-73AF4FAA",
+   "67DC56D7-96998A63",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F",
+   "A34295C8-FBCA4A8A"
+  ],
+  "bytes": 25774976,
+  "negatives": {
+   "o_green_sidecar_vs_pink_pixels": "LEVEL0",
+   "o_green_sidecar_for_pink_key": "KEY",
+   "rise_offline": "REFUSED: R1 centre vs native mismatches 295",
+   "rise_falsely_flagged_admission": "R1"
+  }
+ },
+ "rgbonly": {
+  "dir": "host-run/20261114T131112Z/sidecars-rgb",
+  "listed": 136,
+  "written": 136,
+  "in_index": 136,
+  "has_cutout": 136,
+  "harness_key": "BDAE4156-E21112A6",
+  "overlap_with_class_admit": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F"
+  ],
+  "negatives": {
+   "false_opaque_claim": "CUTOUT",
+   "changed_pixel": "LEVEL0",
+   "wrong_key": "KEY",
+   "opaque_true_claim": "OK",
+   "false_has_cutout_claim": "CUTOUT"
+  },
+  "index_sha256": "e2975baa2f54dce28b1dd5d819c3495bf0b18a686599f58936f706ecdd603ab7"
+ },
+ "host": {
+  "run": "20261114T131112Z",
+  "verdict": "pass",
+  "checks": {
+   "fixtures": true,
+   "mutants": true,
+   "real": true,
+   "sidecars": true,
+   "rgbonly": true,
+   "glue": true,
+   "patch": true,
+   "compile": true,
+   "glsl": true
+  },
+  "result_sha256": "fe3d8864270e18618a5eee98796b6c98f7541181881c75cbb766466c0ea5f3de",
+  "fixture_checks": 7520,
+  "mutants": "52/52",
+  "glue_cases": [
+   {
+    "mode": "off",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 4 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 4 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "on",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 39 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 27.805 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.385 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.362 min 0.359 max 0.415 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "levels",
+    "control": "key+rgbdir-env",
+    "rc": 0,
+    "checks": "checks 38 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 22.338 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.391 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.372 min 0.365 max 1.550 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 30 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 22.505 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.383 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 0.368 min 0.362 max 0.441 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "opaque",
+    "rc": 0,
+    "checks": "checks 30 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 16.617 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 3.194 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 3.043 min 2.989 max 3.382 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "badenv",
+    "control": "rgb-true",
+    "rc": 0,
+    "checks": "checks 4 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "rgb-emptydir",
+    "rc": 0,
+    "checks": "checks 4 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "levels-rgbdir-only",
+    "rc": 0,
+    "checks": "checks 4 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "rgbdir",
+    "control": "census-list",
+    "rc": 0,
+    "checks": "checks 38 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 22.414 (index + 136 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 8.172 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 7.062 min 6.142 max 8.265 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbfalse",
+    "control": "false-opaque",
+    "rc": 0,
+    "checks": "checks 33 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 16.430 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 0.000 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbcaps",
+    "control": "read-caps",
+    "rc": 0,
+    "checks": "checks 39 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 46.968 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 6.214 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 5.948 min 5.681 max 6.831 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "both",
+    "control": "class+rgb",
+    "rc": 0,
+    "checks": "checks 48 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 29.727 (index + 2 RGB-only reads + verification + class sidecars, at init)",
+     "TIMING draw_admit_ms 6.831 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 5.992 min 5.705 max 6.106 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbopaque",
+    "control": "opaque-bypass",
+    "rc": 0,
+    "checks": "checks 37 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 5.939 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 1.593 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 1.355 min 1.348 max 1.494 (21 fresh slots, warm)"
+    ]
+   }
+  ],
+  "glue_mutants": "20/20",
+  "tool_timing_ms": {
+   "11CFE2E3-0E09E912": {
+    "preload_verify": 0.498,
+    "draw_admit": 0.379
+   },
+   "E360C964-C1B5906C": {
+    "preload_verify": 3.535,
+    "draw_admit": 3.088
+   },
+   "31214B41-73AF4FAA": {
+    "preload_verify": 3.275,
+    "draw_admit": 2.97
+   },
+   "67DC56D7-96998A63": {
+    "preload_verify": 0.747,
+    "draw_admit": 0.581
+   },
+   "327E6D9E-5039A9C5": {
+    "preload_verify": 0.509,
+    "draw_admit": 0.373
+   },
+   "E360C964-DF4F533F": {
+    "preload_verify": 2.963,
+    "draw_admit": 3.003
+   },
+   "73BF9877-803A474F": {
+    "preload_verify": 3.527,
+    "draw_admit": 2.988
+   },
+   "A34295C8-FBCA4A8A": {
+    "preload_verify": 0.74,
+    "draw_admit": 0.572
+   }
+  }
+ },
+ "selftest": {
+  "run": "20261114T131351Z",
+  "exe": "selftest/20261114T131351Z/gl_selftest_classmips.exe",
+  "sha256": "a7258d97369c588b2884d5b1d8b6e1ed3f99a3dadc2720df766c24e4119897e8",
+  "compile_rc": 0,
+  "readme": "selftest/20261114T131351Z/README-ROOT.md",
+  "run_by": "root on GPU only after the user explicitly returns the 3090; NOT run by claude"
+ },
+ "known_limits": [
+  "First-build draw-thread identity check for listed RGB-only keys (replay run, cold admit median): 4096^2 6.6 ms (7 keys), 2048^2 1.2 ms (46 keys), all smaller pages <= 0.4 ms; once per texture build, not per draw. Root-approved v6 moves the identity into the pack decode worker (ABI-stable accessor).",
+  "Live qualification is root's: listed keys whose live upload derives other native dims, or whose decode differs, are rejected and counted (rgbonly_rejected[]) and keep the original v61 path.",
+  "RGB edges change only edge-fragment RGB; failed-R1 art (e.g. RISE 82831823) remains an art defect.",
+  "5 of the 136 listed keys also hold class sidecars (11CFE2E3-0E09E912, E360C964-C1B5906C, 327E6D9E-5039A9C5, E360C964-DF4F533F, 73BF9877-803A474F): class authority wins for them.",
+  "The GL self-test build has 8 -Wunused-function warnings (shared .inc helpers it does not call: 4 class as in v4, 4 RGB-only). HD_FS is byte-identical to v4 (sha 20e83599...). The self-test exe hash differs between builds (PE link timestamp); its sources/shaders are identical to selftest/20261114T124348Z.",
+  "Recovery replay: runs/20261114T131112Z reproduces run 3 (runs/20261114T124104Z) exactly: same inputs, byte-identical sidecars, identical patched TU and -O3 object. Superseded passing runs 20261114T122214Z and 20261114T123131Z kept; see FAILED-RUNS.md."
+ ],
+ "failed_runs": "docs/FAILED-RUNS.md - every failure kept in place",
+ "sha256sums": "bb270f8c91891ab9bc72a698624817057400417ce667444caccd43eb649848a5",
+ "files": 874,
+ "durability": {
+  "fsync_files": 875,
+  "fsync_source_files": 849,
+  "read_back_verified": 874,
+  "note": "every file flushed (FlushFileBuffers) and re-hashed against SHA256SUMS before READY"
+ }
+}

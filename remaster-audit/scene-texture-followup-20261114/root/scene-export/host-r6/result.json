@@ -1,0 +1,69 @@
+{
+  "at_utc": "2026-11-14T12:24:30.463115+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-comment",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\scene_capture.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\scene_json.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r6\\scene_capture_test.exe"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "label": "enabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r6\\scene_capture_test.exe"
+      ],
+      "exit": 0,
+      "output": "checks 2920 failures 0 record_bytes 752 bounded_storage 770048"
+    },
+    {
+      "label": "disabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r6\\scene_capture_test.exe",
+        "disabled"
+      ],
+      "exit": 0,
+      "output": "checks 6 failures 0"
+    }
+  ],
+  "gpu_executed": false,
+  "gl_context": false,
+  "user_gpu_hold_unchanged": true,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "sources": {
+    "audit_scene_snapshot.py": "353cc9620a4e9475408083c50c92d220a1b2367d6b8196f4922616ef7a208149",
+    "prepare_v2_tests.py": "87f1014038d9e7238f0ac50d4e5f8d2ed9bd617a3cf4a4da6a2425c3a48c021c",
+    "prepare_v65_glue.py": "8696113fc7a428949c889f24ce55e436d4d0d678d14841633b63793cfadc3139",
+    "prepare_v65_glue_rejected_r1.py": "d087037680b2877b0a9163791fb09cf2e25956d589dc29bed18b74710b0ad83d",
+    "prepare_v66_tests.py": "70ca69f1543ab5ac429a3fa9b4d7f65be8432788c55263d823a71eef582555aa",
+    "run_host.py": "f8897f846f4b50758000cca624d574d012cec518dfa732abc412dd07b8c17ed7",
+    "run_runtime_glue.py": "61c2a5ad9ae8298b56f8aeef75b10d5c3a16ec221d2b904326210f6aefc7f9c2",
+    "run_runtime_glue_v65.py": "55d6887b8c8f18844f7e4f621aa80e46ad67ca67accbbd06ea1c837059121a55",
+    "scene_capture.cpp": "22da31e49a0838e5afa00861d468471bd1f658856c037f70c47b3c94520585f3",
+    "scene_capture.h": "6ad632d7ffdf50a7a15e7d7102b7d0874b82bb46260a185fdea6aadbed185882",
+    "scene_json.cpp": "dbd88670525f295dd03d4b3260d295595cce9efe230ce09e5bcbc37e0b661e5c",
+    "scene_runtime.cpp": "15ef716e7c73ce3509d11292bc2f720b11029cbe890aecda0c6d6612a345e577",
+    "scene_runtime.h": "6ddedc789b76254f865217c9e4e0eec7bba498cc039397178c7cec4ea5d41544",
+    "test_scene_capture.cpp": "6b57a5b22435d982147d0b10de72d20524a9d40ac54399e4ddde1b04f311a81f",
+    "test_snapshot_audit.py": "23fbbfca21be7acc2851364bae3944449e8502ca7eb1c36f1c5f347d1e25939d"
+  },
+  "pgxp_header_sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+}
