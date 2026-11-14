@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T21:47:02.737260+00:00",
+  "updated_at_utc": "2026-11-14T22:12:31.293516+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,8 +912,8 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 32088,
-    "bound_end_utc": "2026-11-14T22:14:16.961Z",
+    "pid": 10620,
+    "bound_end_utc": "2026-11-14T22:39:43.145Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -1066,6 +1066,29 @@
     "later_metadata_cleanup_pass": true,
     "real_sdl": false,
     "pcm_identity": false,
+    "listening": false,
+    "gpu_run": false,
+    "game_run": false,
+    "installed": false,
+    "live_accepted": false
+  },
+  "cpu_engine_builds_actual": {
+    "evidence": "docs/CPU-ENGINE-BUILDS-ACTUAL-20261114.md",
+    "v69_executable_sha256": "f1ccb34dc0d06ba945fd822c9e807fe14b452b0d61584b731dcd4163f27759e5",
+    "v69_private_compile_link_pass": true,
+    "v69_elapsed_s": 9.884,
+    "v69_peak_job_memory_bytes": 199749632,
+    "changed_objects": 2,
+    "retained_link_inputs": 153,
+    "pcm_pairs_equal": 7,
+    "pr7_compile_link_pass": true,
+    "pr7_cpu_checks_passed": 65,
+    "pr7_guard_exit": 77,
+    "t1_compile_exit": 1,
+    "t1_checks_executed": 0,
+    "stripe_visual_admitted": false,
+    "j10_two_key_provisional_only": true,
+    "real_sdl_device": false,
     "listening": false,
     "gpu_run": false,
     "game_run": false,

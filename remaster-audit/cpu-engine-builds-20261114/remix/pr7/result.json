@@ -1,0 +1,128 @@
+{
+ "tool": "build_r7_cpu.r1.py",
+ "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp",
+ "source_sha256": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05",
+ "header_sha256": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c",
+ "builder_sha256": "b0e08a6a71b7cab97e3deab5860aaa017bbe7d2d8ff3dcf90c1b424ab924f69e",
+ "cpu": 13,
+ "started_utc": "2026-11-14T22:03:09.686400+00:00",
+ "gpu_executed": false,
+ "dll_loaded": false,
+ "steps": [
+  {
+   "label": "syntax",
+   "args": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-missing-field-initializers",
+    "-I",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+    "-fsyntax-only",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp"
+   ],
+   "pid": 45152,
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "timed_out": false,
+   "exit": 0,
+   "seconds": 1.169,
+   "output": "",
+   "passed": true
+  },
+  {
+   "label": "compile-object",
+   "args": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-missing-field-initializers",
+    "-I",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+    "-O0",
+    "-c",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-2200\\20261114T220309Z\\probe.obj"
+   ],
+   "pid": 45584,
+   "expected_exit": 0,
+   "cap_seconds": 60,
+   "timed_out": false,
+   "exit": 0,
+   "seconds": 1.4,
+   "output": "",
+   "passed": true
+  },
+  {
+   "label": "link",
+   "args": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-2200\\20261114T220309Z\\probe.obj",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-2200\\20261114T220309Z\\sdk-modern-gl-r7.exe",
+    "-luser32",
+    "-lgdi32",
+    "-lopengl32"
+   ],
+   "pid": 44432,
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "timed_out": false,
+   "exit": 0,
+   "seconds": 0.167,
+   "output": "",
+   "passed": true
+  },
+  {
+   "label": "cpu-contract",
+   "args": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-2200\\20261114T220309Z\\sdk-modern-gl-r7.exe",
+    "--cpu-contract"
+   ],
+   "pid": 45740,
+   "expected_exit": 0,
+   "cap_seconds": 10,
+   "timed_out": false,
+   "exit": 0,
+   "seconds": 0.141,
+   "output": "{\"cpu_contract_checks\":65,\"passed\":true,\"revision\":\"r7\",\"dll_loaded\":false,\"gl_context\":false}\n",
+   "contract": {
+    "cpu_contract_checks": 65,
+    "passed": true,
+    "revision": "r7",
+    "dll_loaded": false,
+    "gl_context": false
+   },
+   "passed": true
+  },
+  {
+   "label": "guard-contract",
+   "args": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-2200\\20261114T220309Z\\sdk-modern-gl-r7.exe",
+    "--guard-contract"
+   ],
+   "pid": 5080,
+   "expected_exit": 77,
+   "cap_seconds": 10,
+   "timed_out": false,
+   "exit": 77,
+   "seconds": 0.105,
+   "output": "{\"reservation_exists\":false,\"owned_execution_lease\":false,\"gpu_started\":false,\"dll_loaded\":false}\n",
+   "guard": {
+    "reservation_exists": false,
+    "owned_execution_lease": false,
+    "gpu_started": false,
+    "dll_loaded": false
+   },
+   "passed": true
+  }
+ ],
+ "passed": true,
+ "exe_sha256": "eb28476c13d3d5cb07a9444de9c36c5b405e83790c5670ae000c6bbdf5c8435e",
+ "ended_utc": "2026-11-14T22:03:12.679813+00:00"
+}

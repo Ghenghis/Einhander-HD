@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-11-14T21:47:41.013Z",
-  "base_head_before_documentation_commit": "2d6ab12db758e1cafacbbe114947eefd5b425d37",
+  "generated_at_utc": "2026-11-14T22:13:57.820Z",
+  "base_head_before_documentation_commit": "09dd729bcec624dc94520da893cdb59ea2e9ff66",
   "verifier": {
     "path": "remaster-audit/verify_documentation.mjs",
     "sha256": "050c5f183e1bacab6875eda9ccbf3408b6de07fdc5905cfca9ba2ca5991fd666"
@@ -23,9 +23,9 @@
     ],
     "e2e_gameplay_acceptance": "pending; no performance, audio, whole-stage or seven-stage completion claim"
   },
-  "document_count": 77,
+  "document_count": 78,
   "json_count": 97,
-  "local_links_checked": 1123,
+  "local_links_checked": 1129,
   "external_urls_not_fetched": [
     "https://code.claude.com/docs/en/hooks#stop",
     "https://docs.omniverse.nvidia.com/kit/docs/rtx_remix/latest/docs/gettingstarted/learning-toolkitsetup.html",
@@ -41,7 +41,10 @@
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-wave3-astraea-gameplay.mp4",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4",
+    "https://github.com/NVIDIA-RTX/Streamline/blob/main/docs/ProgrammingGuideDLSS.md",
+    "https://github.com/NVIDIA-RTX/Streamline/blob/main/docs/ProgrammingGuideDLSS_G.md",
     "https://github.com/NVIDIAGameWorks/dxvk-remix/blob/42b54bbe2a9280f7720e5b64415c78aa3e15224f/documentation/RemixSDK.md",
+    "https://github.com/baldurk/renderdoc/blob/v1.x/README.md",
     "https://github.com/libretro-thumbnails/libretro-thumbnails",
     "https://github.com/mstan/psxrecomp",
     "https://github.com/mstan/recomp-ui",
@@ -72,9 +75,9 @@
     {
       "path": "coordination/CLAUDE-SESSIONS-20261114.json",
       "bytes": 17988,
-      "working_tree_sha256": "6aa3c5766f72e23ac86936f24e78306bd425ce88add812638fbef3227abb09c3",
-      "git_index_blob": "e99c4396414107390334512e875f7b61a9b77827",
-      "git_index_sha256": "6c16a19a60254c7ee0ec059ab0c2ab39a1bb6e01f76b54193fc85823d1358f4e",
+      "working_tree_sha256": "ece47a1a64ccdf2fc74b48f1bbda574c4beaeb6eb5ab4b044dc2aa63149ece7b",
+      "git_index_blob": "1621236ae335a580590c6eae0a7162ee9ba956f1",
+      "git_index_sha256": "129b3d61f7ecb9ed309503f1285f02c391667f04f9a1f118810efd866dc26d0b",
       "git_index_bytes": 17676
     },
     {
@@ -111,11 +114,11 @@
     },
     {
       "path": "coordination/Codex-HANDOFF.md",
-      "bytes": 7638,
-      "working_tree_sha256": "5d0cae7fa92f6c5778e800b023ce615f329f77705fc0c538bef259b873c6f383",
-      "git_index_blob": "9a7ea65c7b37f9cbfee03ed944ba5d5fbe084151",
-      "git_index_sha256": "5d0cae7fa92f6c5778e800b023ce615f329f77705fc0c538bef259b873c6f383",
-      "git_index_bytes": 7638
+      "bytes": 5838,
+      "working_tree_sha256": "8101d04e021189c5ea04b74eed4400c5bec2c5d06cd08ead180127fa71b93930",
+      "git_index_blob": "291faabb055bacfd90876075b46fc2b83e7feb63",
+      "git_index_sha256": "8101d04e021189c5ea04b74eed4400c5bec2c5d06cd08ead180127fa71b93930",
+      "git_index_bytes": 5838
     },
     {
       "path": "coordination/Codex-WORK-QUEUE-HISTORY-20261114T1838.md",
@@ -143,11 +146,11 @@
     },
     {
       "path": "coordination/Codex-WORK-QUEUE.md",
-      "bytes": 2891,
-      "working_tree_sha256": "b59d7833a4f9918ff33ce440d177a9a00de074d692c998c6bf409791c8c761b1",
-      "git_index_blob": "9dc940e93798e29e1f06da1cb138e1b2617ee3ae",
-      "git_index_sha256": "b59d7833a4f9918ff33ce440d177a9a00de074d692c998c6bf409791c8c761b1",
-      "git_index_bytes": 2891
+      "bytes": 2422,
+      "working_tree_sha256": "ca2446b70f95f265f16a6f5e4da4e550e949facb5917b9fda5f37a1d5a8622d6",
+      "git_index_blob": "86f08da9b006332932f764953ae2746b4527b37f",
+      "git_index_sha256": "ca2446b70f95f265f16a6f5e4da4e550e949facb5917b9fda5f37a1d5a8622d6",
+      "git_index_bytes": 2422
     },
     {
       "path": "coordination/DEVIN-HANDOFF.md",
@@ -167,11 +170,11 @@
     },
     {
       "path": "docs/4K-REMIX-IMPLEMENTATION-PLAN.md",
-      "bytes": 34732,
-      "working_tree_sha256": "7d4c64ac391534b051dae04c2bc440531fcd906ff0c91ef625fd3207a021428d",
-      "git_index_blob": "071524bdee4678f3ff6c83ee1fe94f700afe54d2",
-      "git_index_sha256": "7d4c64ac391534b051dae04c2bc440531fcd906ff0c91ef625fd3207a021428d",
-      "git_index_bytes": 34732
+      "bytes": 35054,
+      "working_tree_sha256": "348d04500e9cc13beb9d0e73adbf823943137a2ea103af871a19f9bdf9b6fdcc",
+      "git_index_blob": "7783262ec1eb76cc1e350474b5900baed2557e27",
+      "git_index_sha256": "348d04500e9cc13beb9d0e73adbf823943137a2ea103af871a19f9bdf9b6fdcc",
+      "git_index_bytes": 35054
     },
     {
       "path": "docs/ARTWORK-STATUS-20261113.md",
@@ -204,6 +207,14 @@
       "git_index_blob": "e36eba8fffd07f194224f04453ad46e262b4f0ae",
       "git_index_sha256": "407add7a04eb66a9c8247f48bea5a9afe503d544d06086ebf44f77def0e03d61",
       "git_index_bytes": 6389
+    },
+    {
+      "path": "docs/CPU-ENGINE-BUILDS-ACTUAL-20261114.md",
+      "bytes": 9730,
+      "working_tree_sha256": "705b4a85d3fbb05a40fd478cb285b206cce231940a94efed066f279c9443f26c",
+      "git_index_blob": "fe91c6d3a127ff87ffa2040e9a24a8d8905a21a4",
+      "git_index_sha256": "705b4a85d3fbb05a40fd478cb285b206cce231940a94efed066f279c9443f26c",
+      "git_index_bytes": 9730
     },
     {
       "path": "docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md",
@@ -1055,19 +1066,19 @@
     },
     {
       "path": "docs/RTX-REMIX-SETUP-20261114.md",
-      "bytes": 33454,
-      "working_tree_sha256": "b06cbccd1c91d180289440bfd07cc6ff1f80f3815b7cc9ac7278a8611e3649fc",
-      "git_index_blob": "0d9ebceb8588a509190d9bae420704819f82949e",
-      "git_index_sha256": "b06cbccd1c91d180289440bfd07cc6ff1f80f3815b7cc9ac7278a8611e3649fc",
-      "git_index_bytes": 33454
+      "bytes": 33776,
+      "working_tree_sha256": "7eba8251c4a8fee7f18b48904454de6a35dad0b9ae44bf03c27af528d7020d7a",
+      "git_index_blob": "90afd13bd748b05db2975f2632325dea337b9b05",
+      "git_index_sha256": "7eba8251c4a8fee7f18b48904454de6a35dad0b9ae44bf03c27af528d7020d7a",
+      "git_index_bytes": 33776
     },
     {
       "path": "docs/RUNTIME-CONTINUATION-20261113.md",
-      "bytes": 47501,
-      "working_tree_sha256": "4b0c728a5a8bfb8df858b4301e400061e520f172b9babe11e68f3176fa86ed83",
-      "git_index_blob": "d2412a61f72e027493e792850c4dfa9de53fcf9a",
-      "git_index_sha256": "4b0c728a5a8bfb8df858b4301e400061e520f172b9babe11e68f3176fa86ed83",
-      "git_index_bytes": 47501
+      "bytes": 47823,
+      "working_tree_sha256": "445412a9289827c420eb68049929789e680d03f80fb8668f740c219fa6623c1e",
+      "git_index_blob": "fdb587c40a8cd25f592e746aaf6a21861311af0d",
+      "git_index_sha256": "445412a9289827c420eb68049929789e680d03f80fb8668f740c219fa6623c1e",
+      "git_index_bytes": 47823
     },
     {
       "path": "docs/SHARED-GPU-RESULTS-20261114.md",
@@ -1095,11 +1106,11 @@
     },
     {
       "path": "docs/STAGE1-COMPLETION-STATUS.md",
-      "bytes": 45538,
-      "working_tree_sha256": "ea591e4f2a02014f194369863539bd3b05a37a71bc1d96840104e560ce1519a9",
-      "git_index_blob": "e84b1de6e3eee7873f9748df8c3e18008ae46f39",
-      "git_index_sha256": "ea591e4f2a02014f194369863539bd3b05a37a71bc1d96840104e560ce1519a9",
-      "git_index_bytes": 45538
+      "bytes": 45860,
+      "working_tree_sha256": "5836903784f8e0a2f662f174eb3d3568dcd38538b2cd72216ed56fb51d50cad8",
+      "git_index_blob": "be152c1194551212dcf0b601a4673a212a843cfc",
+      "git_index_sha256": "5836903784f8e0a2f662f174eb3d3568dcd38538b2cd72216ed56fb51d50cad8",
+      "git_index_bytes": 45860
     },
     {
       "path": "docs/STAGE1-CONTROLLER-RESULTS.md",

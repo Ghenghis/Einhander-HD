@@ -1,0 +1,113 @@
+{
+ "tool": "build_t1_fixture.r2.py",
+ "builder_sha256": "b0423d8a00118c570ebac06831a5bfd08e432548415f9f5e705959b361018844",
+ "cpu": 13,
+ "out": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z",
+ "started_utc": "2026-11-14T21:58:37.959547+00:00",
+ "gl_used": false,
+ "sdk_used": false,
+ "steps": [
+  {
+   "label": "extract",
+   "block_sha256": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+   "v61_equals_canonical": true,
+   "normalization": "raw pin, then CRLF->LF, then anchors",
+   "raw_sha256": {
+    "gte_v61.cpp": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849",
+    "gte_canonical.cpp": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0"
+   },
+   "passed": true
+  },
+  {
+   "label": "compile",
+   "argv": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z\\executed-test.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z\\test-t1.exe"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "pid": 38468,
+   "creation_unix": 1794693518.093288,
+   "exit": 1,
+   "timed_out": false,
+   "seconds": 0.201,
+   "passed": false,
+   "output_tail": "In file included from C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z\\executed-test.cpp:10:\nC:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\runs\\t1-r1-2157\\20261114T215837Z/pgxp.h:85:30: error: '/*' within block comment [-Werror,-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\n1 error generated.\n"
+  }
+ ],
+ "passed": false,
+ "exception": null,
+ "envelope_required": {
+  "path": "remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py",
+  "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+  "options": [
+   "--cpu",
+   "15",
+   "--timeout",
+   "120",
+   "--max-job-mib",
+   "1024",
+   "--no-window"
+  ],
+  "verified_by_this_driver": false
+ },
+ "inputs": {
+  "pgxp.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\include\\pgxp.h",
+   "sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47"
+  },
+  "gte_v61.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gte.cpp",
+   "sha256": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849"
+  },
+  "gte_canonical.cpp": {
+   "path": "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\gte.cpp",
+   "sha256": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0"
+  },
+  "remix_t1_reproject.r1.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\remix_t1_reproject.r1.h",
+   "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795"
+  },
+  "test_t1_reproject.r1.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\test_t1_reproject.r1.cpp",
+   "sha256": "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94"
+  }
+ },
+ "executed_copies": {
+  "gte_divide_extracted.inc": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+  "pgxp.h": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+  "remix_t1_reproject.r1.h": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+  "executed-test.cpp": "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94"
+ },
+ "toolchain": {
+  "invoked": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+  "invoked_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "files": {
+   "clang++.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang++.exe",
+    "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+   },
+   "clang-22.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang-22.exe",
+    "sha256": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+   },
+   "libclang-cpp.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libclang-cpp.dll",
+    "sha256": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+   },
+   "libLLVM-22.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libLLVM-22.dll",
+    "sha256": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+   }
+  }
+ },
+ "ended_utc": "2026-11-14T21:58:38.297465+00:00"
+}

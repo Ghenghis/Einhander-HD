@@ -1,0 +1,131 @@
+{
+ "run": "20261114T215354Z",
+ "owner": "claude-einhander-s45",
+ "tool_sha256": "df5dcc3a3636f21c5026703ae1fab92ca6155622f597349bd9201fb59d10dcbf",
+ "mode": "9B8107D2-8F297232",
+ "roi_half_open": [
+  72,
+  64,
+  100,
+  72
+ ],
+ "stripe": [
+  0,
+  15
+ ],
+ "donor_max_tex": 1.5,
+ "status": "OK: candidate preview (copies); native-class audit passed; NOT a quality/look acceptance; not installed, not admitted",
+ "stage_reached": "write",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "scipy": "1.17.1",
+  "pillow": "12.3.0"
+ },
+ "pins": {
+  "dll": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.dll",
+   "sha256": "ede9a8f1d9847bb534f26d894bc15b2054fa4123aae12f82157cd1e4b5bf524e",
+   "ok": true
+  },
+  "dll_c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.c",
+   "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+   "ok": true
+  },
+  "dll_h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.h",
+   "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+   "ok": true
+  },
+  "dll_c_copy": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.c",
+   "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+   "ok": true
+  },
+  "epx": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w4-signs-hud\\frozen\\hud-lives-glyphs-832p256-w4-v1\\builder-snapshot\\epx.py.txt",
+   "sha256": "86831043dfa0dfa6be91ad2f636519ab529366ce68771eb77b408d88f1506e08",
+   "ok": true
+  },
+  "words": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\fullgame-prep\\static-extraction\\stages\\stage4\\textures\\9B8107D2.words.bin",
+   "sha256": "ac97a2970ebedc45ea049fe4209a1ccbf100efbc5f18879f171ad291ec645816",
+   "ok": true
+  },
+  "png_2048": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\s4-world-ext-9B8107D2-v1-s45\\runtime-2048\\9B8107D2-8F297232.png",
+   "sha256": "ad3355a83c67f74b95389129ef20cac9884eab05877a3377ebdc59db9c88ae0a",
+   "ok": true
+  },
+  "png_1024": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\s4-world-ext-9B8107D2-v1-s45\\runtime-1024\\9B8107D2-8F297232.png",
+   "sha256": "283077e52487b6e05baa233fec1f4e2aa9f1e7458ab416de328d73361e3784cd",
+   "ok": true
+  }
+ },
+ "files": {
+  "2048": {
+   "input": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\s4-world-ext-9B8107D2-v1-s45\\runtime-2048\\9B8107D2-8F297232.png",
+   "stats": {
+    "changed_px": 307,
+    "target_px": 307,
+    "fallback_unchanged": 0,
+    "donor_dist_px_max": 4.0,
+    "donor_dist_px_mean": 2.45,
+    "protected_px_in_roi": 2368
+   },
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0
+   },
+   "output": "9B8107D2-8F297232-2048-diagbands-r2.png",
+   "output_sha256": "49b04ce509e468fd54e35ee8a46fbe9a0b1180b8630797a4efdb5a0442b85ae1",
+   "review": {
+    "path": "review\\9B8107D2-8F297232-2048-roi.png",
+    "sha256": "089827e913c631b4efbbd170188aee1975d7fab47c4de2c1876c77475126d58f"
+   }
+  },
+  "1024": {
+   "input": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\s4-world-ext-9B8107D2-v1-s45\\runtime-1024\\9B8107D2-8F297232.png",
+   "stats": {
+    "changed_px": 77,
+    "target_px": 77,
+    "fallback_unchanged": 0,
+    "donor_dist_px_max": 3.0,
+    "donor_dist_px_mean": 2.17,
+    "protected_px_in_roi": 592
+   },
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0
+   },
+   "output": "9B8107D2-8F297232-1024-diagbands-r2.png",
+   "output_sha256": "6e37e2163f55d920ad0b114275097134c67b03d137cb70e4a0b3d6e269882b04",
+   "review": {
+    "path": "review\\9B8107D2-8F297232-1024-roi.png",
+    "sha256": "d9f043712f46670b6aeb64385b8b220f9e09fb049e6647641aa26da0a7ce9264"
+   }
+  }
+ }
+}

@@ -1,0 +1,1043 @@
+{
+ "run": "20261114T215719Z",
+ "owner": "claude-einhander-ui",
+ "task": "EIN-MENU-HUD-20261114",
+ "job": "J-S1 r6 MEASURE-ONLY (r5 + shared mask/count functions + direct mask controls)",
+ "status": "measurement only; no art written; 1AD90FC9 x3 w4 runtime-2048; main decides next",
+ "tool_sha256": "299581670cb4d718f4c8cf07920195cf5b48857f030d7b33f1005912ed400030",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "scipy": "1.17.1",
+  "pillow": "12.3.0"
+ },
+ "selftest": {
+  "enclosed_dot_qualifies": true,
+  "dot_touching_counter_rejected": true,
+  "shared_bad_ring_vetoes_both": true,
+  "border_rejected": true,
+  "oversize_rejected": true,
+  "dim_ring_rejected": true,
+  "no_candidates_noop": true
+ },
+ "mask_controls": {
+  "thin_stroke_native_interior_empty": true,
+  "thin_stroke_hd_interior_positive": true,
+  "solid3x3_one_interior_eight_contour": true,
+  "ring_counter_stays_nonglyph": true,
+  "ring_counter_excluded_from_hd_interior": true,
+  "halfopen_touch_is_not_overlap": true,
+  "one_texel_overlap_detected": true,
+  "alpha0_and_dark_counted_separately": true
+ },
+ "summary_sha256": "e124d0e814d2d7b9d503c7df36df1a6aba62cc18e6a9483f6ab2a7e0fa092a1b",
+ "expected": [
+  {
+   "key": "1AD90FC9-4315989E.png",
+   "authored": "C:/github/Einhander/remaster-audit/comfy-authoring/w4-menus/frozen/menu-class-exact-v1/runtime-2048/1AD90FC9-4315989E.png",
+   "authored_sha256": "9e05ff74765ebe05be046f582e42dee6864c6be740847a031b4dc1178b222560",
+   "authored_ihdr": [
+    2048,
+    2048
+   ],
+   "snap": "C:/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-4315989E.png",
+   "snap_sha256": "dd5b4c97d272c9702b724be10534d3a192331ef9035c0ab67466c001fde1098a",
+   "snap_ihdr": [
+    2048,
+    2048
+   ],
+   "words": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.words.bin",
+   "words_sha256": "32861a1726c1ee0be1b76bbdd65040f95106084d0d361b883ab4f3df77ce2fc8",
+   "words_crc": "1AD90FC9",
+   "words_len": 32768,
+   "meta": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.source.json",
+   "meta_sha256": "15dab1ad9dc24a31900a9b7036a02c9aefb5c6956f2705477a667a45cf7e8037",
+   "meta_geom": [
+    64,
+    256,
+    0
+   ],
+   "clut": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-4315989E.clut.bin",
+   "clut_sha256": "0e6962d7d9fe6b052732d62144e26b04d96db6e144c35ed53b8720f2c3358657",
+   "clut_crc": "4315989E",
+   "clut_len": 32
+  },
+  {
+   "key": "1AD90FC9-02491337.png",
+   "authored": "C:/github/Einhander/remaster-audit/comfy-authoring/w4-menus/frozen/menu-class-exact-v1/runtime-2048/1AD90FC9-02491337.png",
+   "authored_sha256": "3eae507320ef8345010a2f096b3e039f9a8fdd599df38b9343071a3fd340dbb2",
+   "authored_ihdr": [
+    2048,
+    2048
+   ],
+   "snap": "C:/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-02491337.png",
+   "snap_sha256": "a3035801bbab95c92dcd3d0adbef31a85086dcdbb029c9a31cd21ef0f9fcb7e3",
+   "snap_ihdr": [
+    2048,
+    2048
+   ],
+   "words": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.words.bin",
+   "words_sha256": "32861a1726c1ee0be1b76bbdd65040f95106084d0d361b883ab4f3df77ce2fc8",
+   "words_crc": "1AD90FC9",
+   "words_len": 32768,
+   "meta": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.source.json",
+   "meta_sha256": "15dab1ad9dc24a31900a9b7036a02c9aefb5c6956f2705477a667a45cf7e8037",
+   "meta_geom": [
+    64,
+    256,
+    0
+   ],
+   "clut": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.clut.bin",
+   "clut_sha256": "3b2c7aaef20d4f9368dd6d479773cb9cb4915624a39fd9a849d25031769a806b",
+   "clut_crc": "02491337",
+   "clut_len": 32
+  },
+  {
+   "key": "1AD90FC9-79902A90.png",
+   "authored": "C:/github/Einhander/remaster-audit/comfy-authoring/w4-menus/frozen/menu-class-exact-v1/runtime-2048/1AD90FC9-79902A90.png",
+   "authored_sha256": "d67b4c1959165d887aa01db9ecf63e46ff3f83a71f36f200d3e51be12fe1e26e",
+   "authored_ihdr": [
+    2048,
+    2048
+   ],
+   "snap": "C:/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-79902A90.png",
+   "snap_sha256": "3e4f462464a796fee468ab1b12ecfacdc8600b18343b9fe4dc52138e0488a9e7",
+   "snap_ihdr": [
+    2048,
+    2048
+   ],
+   "words": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.words.bin",
+   "words_sha256": "32861a1726c1ee0be1b76bbdd65040f95106084d0d361b883ab4f3df77ce2fc8",
+   "words_crc": "1AD90FC9",
+   "words_len": 32768,
+   "meta": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-02491337.source.json",
+   "meta_sha256": "15dab1ad9dc24a31900a9b7036a02c9aefb5c6956f2705477a667a45cf7e8037",
+   "meta_geom": [
+    64,
+    256,
+    0
+   ],
+   "clut": "C:/github/REMASTER_STAGING/stage1_remaster/page-source/stock/einhander-texture-replacements/1AD90FC9-79902A90.clut.bin",
+   "clut_sha256": "ae941bea285cc8fcbb8ddd189766d81bd0dfae2f459836561bafabc9bba72d76",
+   "clut_crc": "79902A90",
+   "clut_len": 32
+  }
+ ],
+ "text_rois": {
+  "A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68": [
+   128,
+   0,
+   212,
+   68
+  ],
+  "B_spec_left_30mm_to_RAIL": [
+   0,
+   58,
+   124,
+   158
+  ],
+  "C_bold_header_BLADE_to_WASP": [
+   0,
+   0,
+   124,
+   48
+  ]
+ },
+ "exclude": {
+  "selene_emblem": [
+   128,
+   86,
+   216,
+   152
+  ],
+  "eye_emblem": [
+   74,
+   158,
+   168,
+   240
+  ],
+  "pad_icons": [
+   212,
+   40,
+   256,
+   80
+  ],
+  "digits_stage_select": [
+   0,
+   160,
+   74,
+   216
+  ]
+ },
+ "thresholds": {
+  "glyph": 180.0,
+  "dark": 140.0,
+  "bright": 200.0,
+  "ring": 0.9,
+  "max_speck": 64
+ },
+ "rows": [
+  {
+   "key": "1AD90FC9-4315989E.png",
+   "rois": {
+    "A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68": {
+     "roi_texels": [
+      128,
+      0,
+      212,
+      68
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 449,
+       "authored": {
+        "pixels": 28736,
+        "alpha0_px": 1464,
+        "dark_visible_px": 758,
+        "bright_visible_px": 25877
+       },
+       "snap_native": {
+        "pixels": 28736,
+        "alpha0_px": 1409,
+        "dark_visible_px": 758,
+        "bright_visible_px": 25932
+       }
+      },
+      "counter_background": {
+       "texels": 5263,
+       "authored": {
+        "pixels": 336832,
+        "alpha0_px": 263784,
+        "dark_visible_px": 8094,
+        "bright_visible_px": 60801
+       },
+       "snap_native": {
+        "pixels": 336832,
+        "alpha0_px": 254283,
+        "dark_visible_px": 17401,
+        "bright_visible_px": 60596
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 10784,
+        "alpha0_px": 4,
+        "dark_visible_px": 1,
+        "bright_visible_px": 10761
+       },
+       "snap_native": {
+        "pixels": 10784,
+        "alpha0_px": 4,
+        "dark_visible_px": 1,
+        "bright_visible_px": 10761
+       }
+      }
+     },
+     "scope_note": "partial text scope: stops above the bold AstraeaFGA line",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__1x.png",
+      "sha256": "81d5323dc55b7f7b8f9a1ecda11c38cd9f72be066a66cc19130a20500d6acc0b",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__3x.png",
+      "sha256": "ae68da6706c46de3cfa3a19f79c75812ae4b1c46adab62c15ddc4d3abc0d9b88",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     }
+    },
+    "B_spec_left_30mm_to_RAIL": {
+     "roi_texels": [
+      0,
+      58,
+      124,
+      158
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1133,
+       "authored": {
+        "pixels": 72512,
+        "alpha0_px": 4022,
+        "dark_visible_px": 2019,
+        "bright_visible_px": 65018
+       },
+       "snap_native": {
+        "pixels": 72512,
+        "alpha0_px": 3643,
+        "dark_visible_px": 2019,
+        "bright_visible_px": 65397
+       }
+      },
+      "counter_background": {
+       "texels": 11267,
+       "authored": {
+        "pixels": 721088,
+        "alpha0_px": 573645,
+        "dark_visible_px": 16633,
+        "bright_visible_px": 122907
+       },
+       "snap_native": {
+        "pixels": 721088,
+        "alpha0_px": 554824,
+        "dark_visible_px": 35199,
+        "bright_visible_px": 122623
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 25984,
+        "alpha0_px": 28,
+        "dark_visible_px": 28,
+        "bright_visible_px": 25887
+       },
+       "snap_native": {
+        "pixels": 25984,
+        "alpha0_px": 6,
+        "dark_visible_px": 28,
+        "bright_visible_px": 25909
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__B_spec_left_30mm_to_RAIL__1x.png",
+      "sha256": "13f7d959db95fe1f82825b0031f38f360e6afb3cc16a5051696cdec2376351b6",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__B_spec_left_30mm_to_RAIL__3x.png",
+      "sha256": "8ffcd15074fc56a530e78fcc14a27d840d86173c10621edafe0912ddbc42fb42",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     }
+    },
+    "C_bold_header_BLADE_to_WASP": {
+     "roi_texels": [
+      0,
+      0,
+      124,
+      48
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1206,
+       "authored": {
+        "pixels": 77184,
+        "alpha0_px": 2056,
+        "dark_visible_px": 877,
+        "bright_visible_px": 73161
+       },
+       "snap_native": {
+        "pixels": 77184,
+        "alpha0_px": 1935,
+        "dark_visible_px": 877,
+        "bright_visible_px": 73282
+       }
+      },
+      "counter_background": {
+       "texels": 4746,
+       "authored": {
+        "pixels": 303744,
+        "alpha0_px": 236662,
+        "dark_visible_px": 7285,
+        "bright_visible_px": 56350
+       },
+       "snap_native": {
+        "pixels": 303744,
+        "alpha0_px": 228132,
+        "dark_visible_px": 15308,
+        "bright_visible_px": 56328
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 35536,
+        "alpha0_px": 10,
+        "dark_visible_px": 6,
+        "bright_visible_px": 35506
+       },
+       "snap_native": {
+        "pixels": 35536,
+        "alpha0_px": 2,
+        "dark_visible_px": 6,
+        "bright_visible_px": 35514
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__C_bold_header_BLADE_to_WASP__1x.png",
+      "sha256": "d339f36e09e2733eafa2fd548d5b0b88cc4f8f10b92718092bf8dfcc4fda565f",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-4315989E__C_bold_header_BLADE_to_WASP__3x.png",
+      "sha256": "e3e45aaa0bf7ddfe4b09da94c4e5644d9ee3cf7adaa52bb6a31bfeed9a8f41fa",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     }
+    }
+   }
+  },
+  {
+   "key": "1AD90FC9-02491337.png",
+   "rois": {
+    "A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68": {
+     "roi_texels": [
+      128,
+      0,
+      212,
+      68
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 892,
+       "authored": {
+        "pixels": 57088,
+        "alpha0_px": 6870,
+        "dark_visible_px": 1733,
+        "bright_visible_px": 46392
+       },
+       "snap_native": {
+        "pixels": 57088,
+        "alpha0_px": 6422,
+        "dark_visible_px": 1733,
+        "bright_visible_px": 46449
+       }
+      },
+      "counter_background": {
+       "texels": 4820,
+       "authored": {
+        "pixels": 308480,
+        "alpha0_px": 257654,
+        "dark_visible_px": 6119,
+        "bright_visible_px": 41106
+       },
+       "snap_native": {
+        "pixels": 308480,
+        "alpha0_px": 244046,
+        "dark_visible_px": 19648,
+        "bright_visible_px": 41021
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 24528,
+        "alpha0_px": 96,
+        "dark_visible_px": 128,
+        "bright_visible_px": 23601
+       },
+       "snap_native": {
+        "pixels": 24528,
+        "alpha0_px": 88,
+        "dark_visible_px": 128,
+        "bright_visible_px": 23601
+       }
+      }
+     },
+     "scope_note": "partial text scope: stops above the bold AstraeaFGA line",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__1x.png",
+      "sha256": "30286cf90cc74081f8573768f4fdfcc805a6643159a3cc2b7634ca2329ed03e1",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__3x.png",
+      "sha256": "cf0efd0017349b68f6052cf68ba1027266a51ea3c37b08713bd35dda93aba2f3",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     }
+    },
+    "B_spec_left_30mm_to_RAIL": {
+     "roi_texels": [
+      0,
+      58,
+      124,
+      158
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1800,
+       "authored": {
+        "pixels": 115200,
+        "alpha0_px": 11963,
+        "dark_visible_px": 3091,
+        "bright_visible_px": 96606
+       },
+       "snap_native": {
+        "pixels": 115200,
+        "alpha0_px": 11011,
+        "dark_visible_px": 3091,
+        "bright_visible_px": 97045
+       }
+      },
+      "counter_background": {
+       "texels": 10600,
+       "authored": {
+        "pixels": 678400,
+        "alpha0_px": 563916,
+        "dark_visible_px": 13601,
+        "bright_visible_px": 93086
+       },
+       "snap_native": {
+        "pixels": 678400,
+        "alpha0_px": 536095,
+        "dark_visible_px": 41213,
+        "bright_visible_px": 92993
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 48416,
+        "alpha0_px": 319,
+        "dark_visible_px": 224,
+        "bright_visible_px": 46861
+       },
+       "snap_native": {
+        "pixels": 48416,
+        "alpha0_px": 240,
+        "dark_visible_px": 224,
+        "bright_visible_px": 46884
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__B_spec_left_30mm_to_RAIL__1x.png",
+      "sha256": "20fb1d606764496f4d4b4bb9e9d29a559f87b9991df01de3b960ab48779c7845",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__B_spec_left_30mm_to_RAIL__3x.png",
+      "sha256": "bc419eeddf13b5f52b7a950f8b3877c4bc4178566b06ba0952997f9d7feba116",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     }
+    },
+    "C_bold_header_BLADE_to_WASP": {
+     "roi_texels": [
+      0,
+      0,
+      124,
+      48
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1562,
+       "authored": {
+        "pixels": 99968,
+        "alpha0_px": 6261,
+        "dark_visible_px": 1186,
+        "bright_visible_px": 90063
+       },
+       "snap_native": {
+        "pixels": 99968,
+        "alpha0_px": 5686,
+        "dark_visible_px": 1186,
+        "bright_visible_px": 90191
+       }
+      },
+      "counter_background": {
+       "texels": 4390,
+       "authored": {
+        "pixels": 280960,
+        "alpha0_px": 231759,
+        "dark_visible_px": 5982,
+        "bright_visible_px": 40235
+       },
+       "snap_native": {
+        "pixels": 280960,
+        "alpha0_px": 221304,
+        "dark_visible_px": 16347,
+        "bright_visible_px": 40216
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 52672,
+        "alpha0_px": 163,
+        "dark_visible_px": 89,
+        "bright_visible_px": 51812
+       },
+       "snap_native": {
+        "pixels": 52672,
+        "alpha0_px": 94,
+        "dark_visible_px": 89,
+        "bright_visible_px": 51821
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__C_bold_header_BLADE_to_WASP__1x.png",
+      "sha256": "789b33ccb8b1b90e982c6c0784f38dac49299b1f583840905005f739819f9dbd",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-02491337__C_bold_header_BLADE_to_WASP__3x.png",
+      "sha256": "034d7a7086daa68f3430b0956092583c15fc0ffe6ff009dc5b21afbcf5cb2c11",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     }
+    }
+   }
+  },
+  {
+   "key": "1AD90FC9-79902A90.png",
+   "rois": {
+    "A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68": {
+     "roi_texels": [
+      128,
+      0,
+      212,
+      68
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 892,
+       "authored": {
+        "pixels": 57088,
+        "alpha0_px": 6870,
+        "dark_visible_px": 1725,
+        "bright_visible_px": 46392
+       },
+       "snap_native": {
+        "pixels": 57088,
+        "alpha0_px": 6422,
+        "dark_visible_px": 1725,
+        "bright_visible_px": 46449
+       }
+      },
+      "counter_background": {
+       "texels": 4820,
+       "authored": {
+        "pixels": 308480,
+        "alpha0_px": 257654,
+        "dark_visible_px": 6005,
+        "bright_visible_px": 41109
+       },
+       "snap_native": {
+        "pixels": 308480,
+        "alpha0_px": 244046,
+        "dark_visible_px": 19318,
+        "bright_visible_px": 41024
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 24528,
+        "alpha0_px": 96,
+        "dark_visible_px": 128,
+        "bright_visible_px": 23601
+       },
+       "snap_native": {
+        "pixels": 24528,
+        "alpha0_px": 88,
+        "dark_visible_px": 128,
+        "bright_visible_px": 23601
+       }
+      }
+     },
+     "scope_note": "partial text scope: stops above the bold AstraeaFGA line",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__1x.png",
+      "sha256": "9c4a7c400cc3b5f50e3e6d5970f57ee4cdde7c4ce43a64632cde698966127ac2",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68__3x.png",
+      "sha256": "5e63ba3823a45e3833c47b2c6c6d848037bf60a2c57aebd599436653d62438f1",
+      "crop_texels": [
+       128,
+       0,
+       160,
+       12
+      ]
+     }
+    },
+    "B_spec_left_30mm_to_RAIL": {
+     "roi_texels": [
+      0,
+      58,
+      124,
+      158
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1800,
+       "authored": {
+        "pixels": 115200,
+        "alpha0_px": 11963,
+        "dark_visible_px": 3082,
+        "bright_visible_px": 96606
+       },
+       "snap_native": {
+        "pixels": 115200,
+        "alpha0_px": 11011,
+        "dark_visible_px": 3082,
+        "bright_visible_px": 97045
+       }
+      },
+      "counter_background": {
+       "texels": 10600,
+       "authored": {
+        "pixels": 678400,
+        "alpha0_px": 563916,
+        "dark_visible_px": 13269,
+        "bright_visible_px": 93093
+       },
+       "snap_native": {
+        "pixels": 678400,
+        "alpha0_px": 536095,
+        "dark_visible_px": 39961,
+        "bright_visible_px": 93000
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 48416,
+        "alpha0_px": 319,
+        "dark_visible_px": 224,
+        "bright_visible_px": 46861
+       },
+       "snap_native": {
+        "pixels": 48416,
+        "alpha0_px": 240,
+        "dark_visible_px": 224,
+        "bright_visible_px": 46884
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__B_spec_left_30mm_to_RAIL__1x.png",
+      "sha256": "071fd96bf33197a74d9e4996dfa47590ca15545f6f630a35dedf16f4b32b9cac",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__B_spec_left_30mm_to_RAIL__3x.png",
+      "sha256": "2e99b524a67a5c9bbbf05cbe597561caf25fa313aaef17ac31d659660f47b8af",
+      "crop_texels": [
+       0,
+       58,
+       32,
+       70
+      ]
+     }
+    },
+    "C_bold_header_BLADE_to_WASP": {
+     "roi_texels": [
+      0,
+      0,
+      124,
+      48
+     ],
+     "masks": {
+      "stroke_interior": {
+       "texels": 0,
+       "authored": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       },
+       "snap_native": {
+        "pixels": 0,
+        "alpha0_px": 0,
+        "dark_visible_px": 0,
+        "bright_visible_px": 0
+       }
+      },
+      "stroke_contour": {
+       "texels": 1562,
+       "authored": {
+        "pixels": 99968,
+        "alpha0_px": 6261,
+        "dark_visible_px": 1185,
+        "bright_visible_px": 90063
+       },
+       "snap_native": {
+        "pixels": 99968,
+        "alpha0_px": 5686,
+        "dark_visible_px": 1185,
+        "bright_visible_px": 90191
+       }
+      },
+      "counter_background": {
+       "texels": 4390,
+       "authored": {
+        "pixels": 280960,
+        "alpha0_px": 231759,
+        "dark_visible_px": 5831,
+        "bright_visible_px": 40238
+       },
+       "snap_native": {
+        "pixels": 280960,
+        "alpha0_px": 221304,
+        "dark_visible_px": 15783,
+        "bright_visible_px": 40219
+       }
+      },
+      "hd_interior_quarter_texel": {
+       "erosion_px": 2,
+       "texels": null,
+       "authored": {
+        "pixels": 52672,
+        "alpha0_px": 163,
+        "dark_visible_px": 89,
+        "bright_visible_px": 51812
+       },
+       "snap_native": {
+        "pixels": 52672,
+        "alpha0_px": 94,
+        "dark_visible_px": 89,
+        "bright_visible_px": 51821
+       }
+      }
+     },
+     "scope_note": "full block",
+     "native_interior_empty": true,
+     "interior_note": "native 8-neighbour interior is EMPTY (1-texel-thin font): all text is contour; zero interior counts are NOT evidence of clean strokes",
+     "review_1x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__C_bold_header_BLADE_to_WASP__1x.png",
+      "sha256": "349ac98ca854ac2548d287d4bb67ca906a2e318305c7bcf5c6cc4e2ec4d189a4",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     },
+     "review_3x": {
+      "path": "review/runtime-2048__1AD90FC9-79902A90__C_bold_header_BLADE_to_WASP__3x.png",
+      "sha256": "16fdadc15d421ee97cd2eb1cd8aa24797f73f6d0651e37dde167ad3495c2ae74",
+      "crop_texels": [
+       0,
+       0,
+       32,
+       12
+      ]
+     }
+    }
+   }
+  }
+ ],
+ "seconds": 6.9
+}

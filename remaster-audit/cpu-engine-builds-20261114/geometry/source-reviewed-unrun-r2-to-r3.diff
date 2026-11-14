@@ -1,0 +1,59 @@
+--- build_t1_fixture.r2.py
++++ build_t1_fixture.r3.py
+@@ -1,6 +1,12 @@
+-"""CPU-only fixture driver r2 for the T1 reprojection oracle r1 (claude-einhander; drivers r0 ef0471c4 and r1 a66173d6
++"""CPU-only fixture driver r3 for the T1 reprojection oracle r1 (claude-einhander; drivers r0 ef0471c4 and r1 a66173d6
+ are superseded and must not be run: both pinned gte.cpp files are CRLF, so r0/r1's exact LF anchors found nothing).
+-r2 change only: each gte.cpp is pin-checked on its RAW bytes first, then CRLF is normalized to LF (a stray CR fails),
++r3 change only (root msg_bc27e6c1 / coordinator msg_3ef6e827, crash-check msg_ae46b96a): the granted r2 (b0423d8a) run
++t1-r1-2157 failed to compile because the pinned native pgxp.h (1f50599f) line 85 contains "*x16/*y16", a '/*' inside a
++block comment (-Wcomment under -Werror). r3 executes a DERIVED pgxp.h: on the raw pinned bytes, exactly one pinned,
++comment-only replacement at byte offset 3986, "*x16/*y16" (9 bytes) -> "*x16 and *y16" (13 bytes); CRLF untouched; the
++token must occur exactly once and at that offset; the derived bytes must hash to PGXP_DERIVED_SHA. The original stays
++pinned, unmodified and recorded; warnings stay strict (no -isystem, no -Wno-*). The divide block is unchanged.
++r2 change (kept): each gte.cpp is pin-checked on its RAW bytes first, then CRLF is normalized to LF (a stray CR fails),
+ then the anchors and extraction run; the result records raw sha and normalized block sha. BLOCK_SHA is the LF block.
+ Run ONLY under a grant naming
+ the CPU, inside the required outer envelope
+@@ -38,6 +44,10 @@
+                                  "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94"),
+ }
+ BLOCK_SHA = "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef"
++PGXP_DELTA_OFFSET = 3986
++PGXP_DELTA_OLD = b"*x16/*y16"
++PGXP_DELTA_NEW = b"*x16 and *y16"
++PGXP_DERIVED_SHA = "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52"
+ CC = Path("C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe")
+ TOOLCHAIN = {
+     "clang++.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+@@ -74,6 +84,16 @@
+     return "\n".join(lines[starts[0]:end + 1]) + "\n"
+ 
+ 
++def derive_pgxp(raw):
++    # Called only after the raw-byte pin check. One comment-only byte replacement; nothing else changes.
++    if raw.count(PGXP_DELTA_OLD) != 1 or raw.find(PGXP_DELTA_OLD) != PGXP_DELTA_OFFSET:
++        raise ValueError("pgxp.h comment token not unique at the pinned offset")
++    derived = raw[:PGXP_DELTA_OFFSET] + PGXP_DELTA_NEW + raw[PGXP_DELTA_OFFSET + len(PGXP_DELTA_OLD):]
++    if sha(derived) != PGXP_DERIVED_SHA:
++        raise ValueError("derived pgxp.h sha mismatch")
++    return derived
++
++
+ def write_exact(path, data):
+     with open(path, "xb") as f:
+         f.write(data)
+@@ -150,7 +170,12 @@
+         rows.append(ext)
+         if not ext["passed"]:
+             return 1
+-        copies = {"gte_divide_extracted.inc": b61.encode("utf-8"), "pgxp.h": data["pgxp.h"],
++        derived_pgxp = derive_pgxp(data["pgxp.h"])
++        result["pgxp_derivation"] = dict(original_sha256=sha(data["pgxp.h"]), derived_sha256=sha(derived_pgxp),
++                                         offset=PGXP_DELTA_OFFSET, old=PGXP_DELTA_OLD.decode("ascii"),
++                                         new=PGXP_DELTA_NEW.decode("ascii"),
++                                         original_bytes=len(data["pgxp.h"]), derived_bytes=len(derived_pgxp))
++        copies = {"gte_divide_extracted.inc": b61.encode("utf-8"), "pgxp.h": derived_pgxp,
+                   "remix_t1_reproject.r1.h": data["remix_t1_reproject.r1.h"],
+                   "executed-test.cpp": data["test_t1_reproject.r1.cpp"]}
+         result["executed_copies"] = {n: write_exact(out / n, blob) for n, blob in copies.items()}

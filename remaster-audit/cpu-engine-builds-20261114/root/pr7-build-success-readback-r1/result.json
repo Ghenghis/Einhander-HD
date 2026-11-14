@@ -1,0 +1,59 @@
+{
+  "at_utc": "2026-11-14T22:05:05.635132+00:00",
+  "metadata_readback_pass": true,
+  "actual_build_and_cpu_contract_pass": true,
+  "envelope_sha256": "75c12ec84059943dd919c72c7be71a404776b0dd8f572980c1121c06c70b4b28",
+  "result_sha256": "2cbb9e220705e8bc1b07214d6680e87a915fec08650d7227385530bcb081cea0",
+  "object_sha256": "d818d4aa7614e5d678fcbda52d6ae2f89c938c00aacc2c9dbf2230dc6553a0bc",
+  "executable_sha256": "eb28476c13d3d5cb07a9444de9c36c5b405e83790c5670ae000c6bbdf5c8435e",
+  "cpu_checks_passed": 65,
+  "guard_exit": 77,
+  "inputs": [
+    {
+      "path": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-probe-r5/build_r7_cpu.r1.py",
+      "sha256": "b0e08a6a71b7cab97e3deab5860aaa017bbe7d2d8ff3dcf90c1b424ab924f69e"
+    },
+    {
+      "path": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-probe-r5/sdk_modern_gl_probe.r7.cpp",
+      "sha256": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05"
+    },
+    {
+      "path": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-probe-r5/runs/PR7-1-2200/20261114T220309Z/executed-source.cpp",
+      "sha256": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05"
+    },
+    {
+      "path": "remaster-audit/runtime-review/gpu-texture-remix-20261114/sdk-release-header/remix_c.h",
+      "sha256": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c"
+    },
+    {
+      "path": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-probe-r5/runs/PR7-1-2200-runner/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36"
+    }
+  ],
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 41076,
+      "creation_unix": 1794693788.396514,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 30728,
+      "creation_unix": 1794693789.5269227,
+      "identity_absent": true
+    }
+  ],
+  "elapsed_s": 3.158,
+  "peak_job_memory_bytes": 118841344,
+  "compiled_source": "original pinned path, not archived copy",
+  "subchild_creation_times": "not recorded by original builder; no fabricated values",
+  "toolchain_rehashed_by_readback": false,
+  "fixture_replayed": false,
+  "gpu_run": false,
+  "game_run": false,
+  "dll_loaded": false,
+  "gl_context_created": false,
+  "rendered_image_accepted": false,
+  "installed": false
+}

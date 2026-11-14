@@ -1,0 +1,58 @@
+{
+  "at_utc": "2026-11-14T22:06:03.072864+00:00",
+  "readback_pass": true,
+  "actual_reproduction_pass": true,
+  "manifest_sha256": "af6fa0329b243e7d9e490431069ac8c0c6edba5107206da94dfe134db1e84b0c",
+  "envelope_sha256": "6fb75a3c7e1a911cecc93af711721a98a36f01c3b277e4080223749de1be1789",
+  "peer_review_sha256": "cfea4796a51902be3c0fd9db68bb45bdbe94d3d0230f42363d3ba715a6a85ca3",
+  "peer_rehashed_dependencies": 1201,
+  "peer_rehashed_retained_link_inputs": 153,
+  "objects": [
+    {
+      "label": "main",
+      "sha256": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3",
+      "closure_count": 1142,
+      "depfile_sha256": "0ca3f0ba454eb847da442106c1691c8ec528f62e84d637e10d8b2fb8df1ba79a"
+    },
+    {
+      "label": "debug",
+      "sha256": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6",
+      "closure_count": 403,
+      "depfile_sha256": "2f368dadbdad9b3aa67e802138d0103445e0d018986e8f4ac6fbb588fda6bc4b"
+    }
+  ],
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 43708,
+      "creation_unix": 1794693700.3469653,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 2660,
+      "creation_unix": 1794693701.489126,
+      "identity_absent": true
+    },
+    {
+      "label": "repro:main",
+      "pid": 45904,
+      "creation_unix": 1794693701.7612944,
+      "identity_absent": true
+    },
+    {
+      "label": "repro:debug",
+      "pid": 3648,
+      "creation_unix": 1794693707.604198,
+      "identity_absent": true
+    }
+  ],
+  "provenance_deviation": "Repro fa5 watchdog ran in place after prehash, not from copied watchdog despite grant wording. Actual Job receipt retained; no copied-wrapper claim. BUILD grant must specify verified exclusive copied fa5 watchdog.",
+  "full_dependency_rehash_repeated_by_root": false,
+  "build_phase_started_by_root": false,
+  "compiler_or_fixture_replayed": false,
+  "game_run": false,
+  "gpu_run": false,
+  "real_device_or_listening_tested": false,
+  "installed": false
+}

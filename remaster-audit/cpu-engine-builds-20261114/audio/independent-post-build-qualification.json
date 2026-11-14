@@ -1,0 +1,288 @@
+{
+  "observed_utc": "2026-11-14T22:09:49.071224+00:00",
+  "qualification": "PASS: actual two-TU private compile/link only; no runtime/audio qualification",
+  "manifest_sha256": "e6ab30e9c9c03697b3c4dcd64a253d232cd0de1d1fbc9bc73d5c7880748de8b4",
+  "envelope_sha256": "ebc0b8118730f2cab5e9d54769dd7786d5379205e8884659b6ce481d5b2193d6",
+  "driver_sha256": "45a73ed13b58cbbff8f3164260c7d0f735736206c4a7223bd27f45ad72161003",
+  "input_checks": [
+    {
+      "name": "repro_manifest",
+      "actual": "af6fa0329b243e7d9e490431069ac8c0c6edba5107206da94dfe134db1e84b0c",
+      "expected": "af6fa0329b243e7d9e490431069ac8c0c6edba5107206da94dfe134db1e84b0c"
+    },
+    {
+      "name": "v68_build_json",
+      "actual": "21944d697b27b6715edcf8a4ad67c76c2527b5bf5a3aa729b981fc34702af70e",
+      "expected": "21944d697b27b6715edcf8a4ad67c76c2527b5bf5a3aa729b981fc34702af70e"
+    },
+    {
+      "name": "v68_rsp",
+      "actual": "c2b737c691b83aac0b0ab6bf6fecb853eba52f51f04827b8009ef2c9d3952130",
+      "expected": "c2b737c691b83aac0b0ab6bf6fecb853eba52f51f04827b8009ef2c9d3952130"
+    },
+    {
+      "name": "v68_exe",
+      "actual": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa",
+      "expected": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa"
+    },
+    {
+      "name": "v58_build_json",
+      "actual": "7f4640f683571af20cc0430cb9fe816fbead89847800a3a73971d9110381c3c7",
+      "expected": "7f4640f683571af20cc0430cb9fe816fbead89847800a3a73971d9110381c3c7"
+    },
+    {
+      "name": "v67_build_json",
+      "actual": "85deaaf3f4870259b190a929675fae706897f91f1dc3e16b3d94d8f3752d6108",
+      "expected": "85deaaf3f4870259b190a929675fae706897f91f1dc3e16b3d94d8f3752d6108"
+    },
+    {
+      "name": "v58_main_cpp",
+      "actual": "5c94d2dd17f52338515ac52df4f8fde04b4eb269ee49ba6bc42b6924bc6523c0",
+      "expected": "5c94d2dd17f52338515ac52df4f8fde04b4eb269ee49ba6bc42b6924bc6523c0"
+    },
+    {
+      "name": "v67_debug_server_c",
+      "actual": "10e31f8dc50cdf451776f18e4b468f95bb2c97d33f50816d9b9d193557af2eba",
+      "expected": "10e31f8dc50cdf451776f18e4b468f95bb2c97d33f50816d9b9d193557af2eba"
+    },
+    {
+      "name": "v58_main_obj",
+      "actual": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3",
+      "expected": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3"
+    },
+    {
+      "name": "v67_debug_obj",
+      "actual": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6",
+      "expected": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6"
+    },
+    {
+      "name": "combined_main_cpp",
+      "actual": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36",
+      "expected": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36"
+    },
+    {
+      "name": "combined_debug_c",
+      "actual": "b50aef2a4de7ef8ceb621ffc681d072699f88cc5247357a435ebe405cebc0185",
+      "expected": "b50aef2a4de7ef8ceb621ffc681d072699f88cc5247357a435ebe405cebc0185"
+    },
+    {
+      "name": "combined_header",
+      "actual": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "expected": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    {
+      "name": "tool:clang.exe",
+      "actual": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+    },
+    {
+      "name": "tool:clang++.exe",
+      "actual": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+    },
+    {
+      "name": "tool:clang-22.exe",
+      "actual": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
+      "expected": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+    },
+    {
+      "name": "tool:libclang-cpp.dll",
+      "actual": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
+      "expected": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+    },
+    {
+      "name": "tool:libLLVM-22.dll",
+      "actual": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+      "expected": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+    },
+    {
+      "name": "combined_main_cpp_copy",
+      "actual": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36",
+      "expected": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36"
+    },
+    {
+      "name": "combined_debug_c_copy",
+      "actual": "b50aef2a4de7ef8ceb621ffc681d072699f88cc5247357a435ebe405cebc0185",
+      "expected": "b50aef2a4de7ef8ceb621ffc681d072699f88cc5247357a435ebe405cebc0185"
+    },
+    {
+      "name": "combined_header_copy",
+      "actual": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "expected": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    {
+      "name": "driver",
+      "actual": "45a73ed13b58cbbff8f3164260c7d0f735736206c4a7223bd27f45ad72161003",
+      "expected": "45a73ed13b58cbbff8f3164260c7d0f735736206c4a7223bd27f45ad72161003"
+    },
+    {
+      "name": "copied_watchdog",
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206-runner\\executed-watchdog.py",
+      "actual": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "expected": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36"
+    }
+  ],
+  "pin_mismatches": [],
+  "closure_current_unique": 1201,
+  "closure_current_mismatches": [],
+  "closure_deltas": {
+    "main": {
+      "old_count": 1142,
+      "new_count": 1142,
+      "only_old": [
+        "c:\\github\\einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src\\recomp_audio_drc.h",
+        "c:\\github\\einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\main.cpp"
+      ],
+      "only_new": [
+        "c:\\github\\einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\include\\recomp_audio_drc.h",
+        "c:\\github\\einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\main.cpp"
+      ],
+      "changed_shared": []
+    },
+    "debug": {
+      "old_count": 403,
+      "new_count": 403,
+      "only_old": [
+        "c:\\github\\einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\src\\debug_server.c"
+      ],
+      "only_new": [
+        "c:\\github\\einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\debug_server.c"
+      ],
+      "changed_shared": []
+    }
+  },
+  "objects": {
+    "main": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\main.cpp.obj",
+      "actual": "286af211733afe820d221f6bcc5fa56f4bc0f563a2c626e0de446f6e167f77c9",
+      "recorded": "286af211733afe820d221f6bcc5fa56f4bc0f563a2c626e0de446f6e167f77c9",
+      "baseline": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3",
+      "changed": true,
+      "depfile_actual": "07d4a5769bb3a53f96fd9901ba077ed53ea6e94b5bbf4d0635c1a8878c34f3bf",
+      "depfile_expected": "07d4a5769bb3a53f96fd9901ba077ed53ea6e94b5bbf4d0635c1a8878c34f3bf"
+    },
+    "debug": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\debug_server.c.obj",
+      "actual": "dc75afc26f599ac93d20d877122312c0054900e85d9c3a9569a61d9c3c87a37f",
+      "recorded": "dc75afc26f599ac93d20d877122312c0054900e85d9c3a9569a61d9c3c87a37f",
+      "baseline": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6",
+      "changed": true,
+      "depfile_actual": "939b9cd139336fdb885bb3e0abfc944f74552894cfd4ab5d9e711831fe23acd8",
+      "depfile_expected": "939b9cd139336fdb885bb3e0abfc944f74552894cfd4ab5d9e711831fe23acd8"
+    }
+  },
+  "retained_link_inputs": {
+    "count": 153,
+    "mismatches": []
+  },
+  "response_file_exact_only_two_object_replacements": true,
+  "private_executable": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\Einhander_Recompiled.exe",
+    "actual_sha256": "f1ccb34dc0d06ba945fd822c9e807fe14b452b0d61584b731dcd4163f27759e5",
+    "recorded_sha256": "f1ccb34dc0d06ba945fd822c9e807fe14b452b0d61584b731dcd4163f27759e5",
+    "bytes": 21468672
+  },
+  "actual_children": [
+    {
+      "step": "build:main",
+      "pid": 35856,
+      "creation_unix": 1794694039.776132,
+      "rc": 0,
+      "elapsed_s": 5.743,
+      "timed_out": false,
+      "stderr": "In file included from C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\main.cpp:36:\r\nC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\r\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\r\n      |                              ^\r\n1 warning generated.\r\n"
+    },
+    {
+      "step": "build:debug",
+      "pid": 38544,
+      "creation_unix": 1794694046.044772,
+      "rc": 0,
+      "elapsed_s": 2.702,
+      "timed_out": false,
+      "stderr": "In file included from C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\debug_server.c:28:\r\nC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\r\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\r\n      |                              ^\r\n1 warning generated.\r\n"
+    },
+    {
+      "step": "build:link",
+      "pid": 14756,
+      "creation_unix": 1794694048.978242,
+      "rc": 0,
+      "elapsed_s": 0.364,
+      "timed_out": false,
+      "stderr": ""
+    }
+  ],
+  "envelope": {
+    "start_utc": "2026-11-14T22:07:19.486941+00:00",
+    "end_utc": "2026-11-14T22:07:29.374385+00:00",
+    "rc": 0,
+    "child_exit_code": 0,
+    "elapsed_s": 9.884,
+    "cpu": 15,
+    "priority": 16384,
+    "job_limits_readback": {
+      "limit_flags": 8752,
+      "affinity_mask": 32768,
+      "priority_class": 16384,
+      "job_memory_limit": 1073741824,
+      "peak_job_memory": 0,
+      "peak_process_memory": 0
+    },
+    "child_readback_before_resume": {
+      "cpu_affinity": [
+        15
+      ],
+      "priority": 16384
+    },
+    "job": {
+      "active": 0,
+      "total": 12,
+      "terminated": 0,
+      "user_s": 6.890625,
+      "kernel_s": 1.953125
+    },
+    "tree_absent": true,
+    "timeout_killed": false,
+    "peak_job_memory_bytes": 199749632
+  },
+  "current_known_identity_checks": [
+    {
+      "pid": 43784,
+      "expected_creation": 1794694038.3602352,
+      "old_identity_absent": true,
+      "numeric_pid_absent": true
+    },
+    {
+      "pid": 8180,
+      "expected_creation": 1794694039.4815824,
+      "old_identity_absent": true,
+      "numeric_pid_absent": true
+    },
+    {
+      "pid": 35856,
+      "expected_creation": 1794694039.776132,
+      "old_identity_absent": true,
+      "numeric_pid_absent": true
+    },
+    {
+      "pid": 38544,
+      "expected_creation": 1794694046.044772,
+      "old_identity_absent": true,
+      "numeric_pid_absent": true
+    },
+    {
+      "pid": 14756,
+      "expected_creation": 1794694048.978242,
+      "old_identity_absent": true,
+      "numeric_pid_absent": true
+    }
+  ],
+  "copied_watchdog_provenance": "Actual retained runner copy hash matches fa5. Envelope records child argv, not its own wrapper script argv; independent confirmation of the wrapper launch path requires the coordinator literal launch history. The report verifies the copy itself and does not claim that envelope alone proves its execution. Repro in-place provenance deviation remains separate historical evidence.",
+  "scope_limits": [
+    "Exactly two full translation units recompiled;153 retained link inputs reused, not a full-source rebuild.",
+    "Source driver prehash then executes compiler by mutable path; disclosed TOCTOU limit remains.",
+    "Only inherited pgxp.h nested-comment warnings; no link warnings/errors.",
+    "No game/device/audio/GPU launch in this compile/link command, no install/publication; source notes, device locking/lifecycle, real PCM/listening and performance acceptance remain open.",
+    "Envelope descendant list omits creation times; fresh independent old-identity absence is established for wrapper,driver,and3recordedcompiler/linkchildren, with final Job active0/treeabsence receipt for remaining descendants."
+  ],
+  "reviewer_executions": 0
+}
