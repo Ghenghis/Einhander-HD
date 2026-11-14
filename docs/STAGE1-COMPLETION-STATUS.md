@@ -2,6 +2,30 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The [minimal audio-ring comparison](media/gallery/stage1-audio52-results.json)
+is now measured in one quiet OFF/ON pair using the same executable. Overall
+cadence was 59.7810/59.8977 guest frames/s. The exact 350-frame fight window
+improved from 55.57 to 57.71, with guest work 5604.242/5378.785 ms.
+Starved output sample frames fell from 16,927 to 10,645; both still fail. Every
+measured starvation increment falls inside the respective boss observation
+bracket. ON reported zero lap hazards, coalesced replays and inexact replays.
+Initial buffer fill differed (140/110 ms), live input timing differed, and the
+lock-free path includes a faster byte-identical tap loop. This is an observed
+pair, not a causal estimate or resolved stutter. The unchanged callback excerpts
+are available for [OFF](media/gallery/stage1-audio52-off-hitch.wav) and
+[ON](media/gallery/stage1-audio52-on-hitch.wav). The route used held fire,
+the disclosed timer aid, scale 2 and rewind OFF; no recorder, shadow, source
+collection or measurement screenshots. Nothing is installed.
+Separately, the rebuilt guarded native runtime qualified the two collision
+leaves with 4,205 and 17,434 clean comparisons, zero divergences/skips and normal
+shutdowns. B61A4 remains rejected: 368,054 clean entry returns do not cover its
+unobserved call/continuation paths, and 19 checks were skipped. Collision-loop
+qualification is continuing. The merged CPU suite passes 207 case verdicts;
+its strict metric equality check still reports the intended failed-replay
+cycle difference 847→511 caused by the new bounded abort. Live reference state
+and clock remain equal. The original failed strict comparison is retained.
+
+
 The [index-only experiment](media/gallery/stage1-index48-results.json) removed
 95,019 full rebuilds but did not fix the mini-boss hitch or audio starvation.
 The 350-frame hitch interval still took about 6.9 seconds; most wall time was

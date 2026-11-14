@@ -1,0 +1,254 @@
+{
+  "date": "2026-11-13",
+  "scope": "One ordered same-binary OFF/ON audio-ring experiment; no new native collision shards; not release or whole-game acceptance",
+  "runtime_sha256": "b4f42f806d9611242537c4f95c8b8d988f776a505771ccf00e3ac4ea74706c79",
+  "patch_sha256": "32d622a333ca0ee5eea426d5499a2bb198fb4607d1e65e8c486962edb0896972",
+  "manual_quiet_ack_sha256": "288165c82533e36725b44ffad60b8875ada67e6f7327b05d73a112ec90f52a00",
+  "normal_clock": true,
+  "supersampling": 2,
+  "rewind_enabled": false,
+  "held_fire": true,
+  "timer_assistance": true,
+  "recorder": false,
+  "source_capture": false,
+  "measurement_screenshots": false,
+  "shadow_comparisons": false,
+  "cpu_runtime_telemetry": true,
+  "production_installed": false,
+  "stutter_fixed": false,
+  "audio_fixed": false,
+  "runs": [
+    {
+      "mode": "OFF",
+      "batch": "audio52-off-r1",
+      "candidate_sha256": "794a9533b21446e0aa524b2fdadd274a8796504d15f8a18817642bbbdfdeb712",
+      "proof_sha256": "c81a7018bb78a62d60e68bfe950103c10a1f51ee8139478b6e0405d0a1191743",
+      "seconds": 119.9712040000004,
+      "guest_frames": 7172,
+      "fps": 59.781012116874116,
+      "starved_output_sample_frames": 16927,
+      "measured_overflow_drops": 0,
+      "initial_fill_ms": 140,
+      "final_fill_ms": 168.9,
+      "hitch_bench": {
+        "window": "9250:9600",
+        "frames": 350,
+        "wall_ms": 6298.842,
+        "guest_work_ms": 5604.242,
+        "pacer_ms": 533.815,
+        "autocapture_main_ms": 0.109,
+        "provider_poll_ms": 0.074,
+        "dirty_insns": 39239184,
+        "dirty_dispatches": 253960,
+        "overlay_native": 162784,
+        "overlay_interp": 271325,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "hitch_fps": 55.565769073108996,
+      "guest_work_ms_per_hitch_frame": 16.01212,
+      "worst_five_second_interval": {
+        "fps": 53.99925157037132,
+        "first_frame": 9153,
+        "last_frame": 9423,
+        "seconds": 5.0000693000001775
+      },
+      "hitch_audio_observation_bracket": {
+        "mode": "OFF",
+        "left_frame": 9214,
+        "right_frame": 9606,
+        "starved": 16927,
+        "host_begin": 7434240,
+        "host_end": 7763520,
+        "center_frame": 9423,
+        "center_host": 7626240
+      },
+      "lockfree_health": null,
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "command_audit": {
+        "timer_write_requests": 551,
+        "successful_timer_writes": 551,
+        "forbidden_mutations": []
+      },
+      "measured_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      }
+    },
+    {
+      "mode": "ON",
+      "batch": "audio52-on-r1",
+      "candidate_sha256": "2f3b1268c097222f501ed7358916c0c4f1f6ee949804c9a53996f53623abb427",
+      "proof_sha256": "7b11ea58cfc5ff729fc8fc8cf7c706cf78b46396c9d47d1d95d767189ff8de88",
+      "seconds": 119.97115480000048,
+      "guest_frames": 7186,
+      "fps": 59.89773135033599,
+      "starved_output_sample_frames": 10645,
+      "measured_overflow_drops": 0,
+      "initial_fill_ms": 110,
+      "final_fill_ms": 196,
+      "hitch_bench": {
+        "window": "9250:9600",
+        "frames": 350,
+        "wall_ms": 6064.601,
+        "guest_work_ms": 5378.785,
+        "pacer_ms": 609.277,
+        "autocapture_main_ms": 0.107,
+        "provider_poll_ms": 0.074,
+        "dirty_insns": 39903456,
+        "dirty_dispatches": 254784,
+        "overlay_native": 165571,
+        "overlay_interp": 272498,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "hitch_fps": 57.711958297009154,
+      "guest_work_ms_per_hitch_frame": 15.367957142857142,
+      "worst_five_second_interval": {
+        "fps": 56.60162673075315,
+        "first_frame": 9221,
+        "last_frame": 9504,
+        "seconds": 4.999856299999919
+      },
+      "hitch_audio_observation_bracket": {
+        "mode": "ON",
+        "left_frame": 9221,
+        "right_frame": 9628,
+        "starved": 10645,
+        "host_begin": 7430400,
+        "host_end": 7763040,
+        "center_frame": 9401,
+        "center_host": 7569120
+      },
+      "lockfree_health": {
+        "lap_hazards": 0,
+        "replay_coalesced": 0,
+        "replay_inexact": 0
+      },
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "command_audit": {
+        "timer_write_requests": 566,
+        "successful_timer_writes": 566,
+        "forbidden_mutations": []
+      },
+      "measured_load": {
+        "video": false,
+        "source_capture": false,
+        "composed_stills": false,
+        "timer_assistance": true
+      }
+    }
+  ],
+  "causal_limits": [
+    "One ordered OFF then ON pair; no counterbalancing.",
+    "Initial fill differed:140ms OFF and110ms ON.",
+    "Same controller route, but actual menu input timing and first gameplay frames differed; not identical-frame replay.",
+    "Atomic telemetry values are individually valid and can lag one callback; the fields are not one atomic snapshot.",
+    "Lock-free mode also uses the byte-identical faster tap loop; it is not an isolation of mutex cost alone.",
+    "CPU/runtime telemetry was enabled. No recorder, source collection or measurement screenshot polling.",
+    "Timer-only survival assistance and rewind OFF; not normal-settings, unassisted or stage-clear acceptance."
+  ],
+  "audio_excerpts": [
+    {
+      "path": "docs/media/gallery/stage1-audio52-off-hitch.wav",
+      "sha256": "b0f03ead7ffae174a360f31cef888aafa5292bb7794aaf303fc311ad8c8350e3",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-audio52-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "ae1db1adc5e9a1910333363e194517a5e69edc6bfd63923768a43d09884ae1c8",
+      "source_offset_sample_frame": 1925760,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "0a3a08802e784e9a9a48773eeb0efab665a0f84f3e2855563ed86d25b402887b",
+      "output_pcm_sha256": "0a3a08802e784e9a9a48773eeb0efab665a0f84f3e2855563ed86d25b402887b",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9423,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
+    },
+    {
+      "path": "docs/media/gallery/stage1-audio52-on-hitch.wav",
+      "sha256": "5ef24302fc956ce086143b096fd6ef23094255dae352e28c9f5d158f86c1b924",
+      "bytes": 2304044,
+      "rate": 48000,
+      "channels": 2,
+      "seconds": 12,
+      "category": "actual_game_callback_pcm",
+      "status": "Actual measured hitch excerpt; audio still fails",
+      "result_manifest": "docs/media/gallery/stage1-audio52-results.json",
+      "processing": "Exact contiguous PCM slice; no resampling, retiming, fades, level changes or added audio",
+      "source_callback_sha256": "2a2265f3606af13e6fefbe86f4fd2122f0b6e548311e3fed4334d17eda1ca832",
+      "source_offset_sample_frame": 1870080,
+      "copied_sample_frames": 576000,
+      "source_pcm_slice_sha256": "42217f8f66e4b43fa7c1fa4007898b932382f4df84867314ba0144901620d1de",
+      "output_pcm_sha256": "42217f8f66e4b43fa7c1fa4007898b932382f4df84867314ba0144901620d1de",
+      "pcm_byte_slice_equal": true,
+      "center_observed_guest_frame": 9401,
+      "source_type": "Owned game callback ring; not a hardware loopback or synchronized video"
+    }
+  ],
+  "remaining": [
+    "The measured boss window still misses the 60 fps display cadence.",
+    "Both modes still accumulate real output starvation.",
+    "Complete collision-loop qualification and test a separate native-code performance pair.",
+    "Full-stage and seven-stage integration/acceptance remain incomplete."
+  ],
+  "related_native_work": {
+    "same_native_runtime_sha256": "15b2c37bfcfa3763857374e5947b7629655259f7ba2528d750dd0a41d5006761",
+    "qualified_leaf_clean_comparisons": {
+      "0x000B6328": 4205,
+      "0x000B6EC8": 17434
+    },
+    "leaf_divergences": 0,
+    "leaf_skips": 0,
+    "nonleaf_B61A4_accepted": false,
+    "nonleaf_reason": "368054 clean entry-return comparisons,19 skipped checks; no call or B630C continuation comparisons. Remains excluded.",
+    "combined_cpu_suite": {
+      "cases_per_variant": 69,
+      "variants": 3,
+      "case_verdicts_passed": 207,
+      "original_runner_exit": 1,
+      "strict_metric_equality": false,
+      "sole_difference": {
+        "case": "MUT_3A998_PKT",
+        "field": "failed native replay cycle count",
+        "before": 847,
+        "after": 511,
+        "reason": "Bounded replay abort stops at the first safe block after the intentionally wrong store",
+        "trace_kind_both": 2,
+        "live_state_matches_reference": true,
+        "live_clock_matches_reference": true
+      },
+      "original_case_expectations_changed": false,
+      "only_additive_record_fields_excluded": [
+        "unit_pc",
+        "setup",
+        "bad_entry_pc"
+      ],
+      "results_md_sha256": "447c197cc1ff8e01d95b70d498ec4daa011e0eac154ff988af8cee1f35fed7b5",
+      "source_integration_sha256": "3b6fb7c2307c8bd21adc3b91f41a5f0ccd6ef5eae69f6f3a4a64d8dbeabe6f40",
+      "scope": "CPU-only regression: real interpreter/loader/memory/clock and generated native DLLs; device/debug/GTE stubs; not full-game acceptance"
+    }
+  }
+}
