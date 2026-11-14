@@ -2,6 +2,20 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
+completed with R4 and two leaf handlers qualified on the exact tested runtime.
+The 350-frame fight window measured 55.66/56.02 frames/s with native code
+OFF/ON; interpreted instructions fell from 38.54 to 36.46 million. Total
+starved output sample frames were 22,864/17,262, with zero measured overflow
+drops. Both still fail. This was one quiet ordered pair with the same binary,
+held fire, timer assistance, scale 2 and rewind OFF. No recorder, shadow, source
+collection or measurement screenshots ran. Initial buffer fill and input timing
+differed. R4 passed all four required call/return units with 50,534 clean checks,
+including 39,240 in the fight, with zero divergence or skips. R5 and B61A4 remain
+excluded for missing required paths. No new R1/R2 aliases or lock-free audio
+were included. The small gain does not explain enough of the hitch; host CPU
+sampling is being prepared. Nothing is installed.
+
 The [minimal audio-ring comparison](media/gallery/stage1-audio52-results.json)
 is now measured in one quiet OFF/ON pair using the same executable. Overall
 cadence was 59.7810/59.8977 guest frames/s. The exact 350-frame fight window
@@ -20,7 +34,7 @@ Separately, the rebuilt guarded native runtime qualified the two collision
 leaves with 4,205 and 17,434 clean comparisons, zero divergences/skips and normal
 shutdowns. B61A4 remains rejected: 368,054 clean entry returns do not cover its
 unobserved call/continuation paths, and 19 checks were skipped. Collision-loop
-qualification is continuing. The merged CPU suite passes 207 case verdicts;
+qualification completed for R4; R5 remains excluded. The merged CPU suite passes 207 case verdicts;
 its strict metric equality check still reports the intended failed-replay
 cycle difference 847→511 caused by the new bounded abort. Live reference state
 and clock remain equal. The original failed strict comparison is retained.

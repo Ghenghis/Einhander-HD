@@ -1,0 +1,194 @@
+{
+  "date": "2026-11-13",
+  "scope": "One ordered same-binary collision-native OFF/ON pair; no new R1/R2 resident aliases or lock-free audio; not release acceptance",
+  "runtime_sha256": "15b2c37bfcfa3763857374e5947b7629655259f7ba2528d750dd0a41d5006761",
+  "manual_quiet_ack_sha256": "cea124f1a6c82b4aba8a650256628adc54c921b8043db3362834242bb844218f",
+  "normal_clock": true,
+  "supersampling": 2,
+  "rewind_enabled": false,
+  "held_fire": true,
+  "timer_assistance": true,
+  "recorder": false,
+  "source_capture": false,
+  "measurement_screenshots": false,
+  "shadow_comparisons": false,
+  "cpu_runtime_telemetry": true,
+  "production_installed": false,
+  "stutter_fixed": false,
+  "audio_fixed": false,
+  "runs": [
+    {
+      "mode": "OFF",
+      "seconds": 119.98164730000008,
+      "guest_frames": 7159,
+      "fps": 59.667458824763074,
+      "starved": 22864,
+      "drops": 0,
+      "initial_fill": 130.5,
+      "final_fill": 170.5,
+      "hitch_fps": 55.65563852839495,
+      "bench": {
+        "window": "9250:9600",
+        "frames": 350,
+        "wall_ms": 6288.671,
+        "guest_work_ms": 5717.783,
+        "pacer_ms": 431.575,
+        "autocapture_main_ms": 0.082,
+        "provider_poll_ms": 0.062,
+        "dirty_insns": 38539660,
+        "dirty_dispatches": 276432,
+        "overlay_native": 217357,
+        "overlay_interp": 290624,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "batch": "native51-collision-off-r1",
+      "candidate_sha256": "16cd6f5be22b74ef108f2dcbeb0a631f55ce494a661fb2f8f7700b56585c4e08",
+      "proof_sha256": "f8cb4d27361a94b118535f5a5256017e18dbd08a798c281bc09dcd3f10a45198",
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "command_audit": {
+        "timer_write_requests": 580,
+        "successful_timer_writes": 580,
+        "forbidden_mutations": []
+      }
+    },
+    {
+      "mode": "ON",
+      "seconds": 119.97925289999876,
+      "guest_frames": 7175,
+      "fps": 59.80200598498705,
+      "starved": 17262,
+      "drops": 0,
+      "initial_fill": 127.1,
+      "final_fill": 168.4,
+      "hitch_fps": 56.01812298314751,
+      "bench": {
+        "window": "9250:9600",
+        "frames": 350,
+        "wall_ms": 6247.978,
+        "guest_work_ms": 5601.627,
+        "pacer_ms": 506.312,
+        "autocapture_main_ms": 0.08,
+        "provider_poll_ms": 0.063,
+        "dirty_insns": 36461938,
+        "dirty_dispatches": 286094,
+        "overlay_native": 237796,
+        "overlay_interp": 300270,
+        "overlay_loads": 0,
+        "overlay_invalidations": 0,
+        "overlay_unregistered": 0,
+        "overlay_stale": 0,
+        "overlay_revalidations": 0,
+        "capture_triggers": 0,
+        "capture_overlays": 0,
+        "capture_last_dispatch_delta": 0
+      },
+      "qualified_after": {
+        "0x000B6328": {
+          "id": 1,
+          "ok": true,
+          "candidates": [
+            {
+              "index": 625,
+              "addr": "0x000B6328",
+              "state": 0,
+              "nranges": 1,
+              "crc": "0x7671E4AD",
+              "live": "0x7671E4AD",
+              "match": 1,
+              "val_gen": 0,
+              "gen": 0,
+              "dll": 56,
+              "diff_passes": 0,
+              "device_touch": 0,
+              "units_promotable": 0
+            }
+          ]
+        },
+        "0x000B6EC8": {
+          "id": 1,
+          "ok": true,
+          "candidates": [
+            {
+              "index": 624,
+              "addr": "0x000B6EC8",
+              "state": 0,
+              "nranges": 1,
+              "crc": "0x6CBB6D40",
+              "live": "0x6CBB6D40",
+              "match": 1,
+              "val_gen": 0,
+              "gen": 0,
+              "dll": 55,
+              "diff_passes": 0,
+              "device_touch": 0,
+              "units_promotable": 0
+            }
+          ]
+        },
+        "0x000B5C08": {
+          "id": 1,
+          "ok": true,
+          "candidates": [
+            {
+              "index": 561,
+              "addr": "0x000B5C08",
+              "state": 0,
+              "nranges": 1,
+              "crc": "0x50C1B94B",
+              "live": "0x50C1B94B",
+              "match": 1,
+              "val_gen": 0,
+              "gen": 0,
+              "dll": 40,
+              "diff_passes": 0,
+              "device_touch": 0,
+              "units_promotable": 0
+            }
+          ]
+        }
+      },
+      "batch": "native51-collision-on-r1",
+      "candidate_sha256": "5769edaed62bc740ab346b50b26661d3f7c296cad3b180f92cb9c9f233804b38",
+      "proof_sha256": "3a6be2d3b7135bc7e8111a60c45b42ef5747651f351a4cbbee760d25d14c97e8",
+      "owned_process_exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "command_audit": {
+        "timer_write_requests": 565,
+        "successful_timer_writes": 565,
+        "forbidden_mutations": []
+      }
+    }
+  ],
+  "qualified_entries": [
+    "0x000B6328",
+    "0x000B6EC8",
+    "0x000B5C08"
+  ],
+  "rejected_entries": [
+    {
+      "address": "0x000B61A4",
+      "reason": "Missing call and continuation paths despite 368054 clean entry returns; 19 skips"
+    },
+    {
+      "address": "0x000B5EB8",
+      "reason": "Missing call and continuation paths; remains interpreted"
+    }
+  ],
+  "causal_limits": [
+    "One ordered pair, no counterbalanced repetition.",
+    "Initial fill differed:130.5ms OFF and127.1ms ON.",
+    "Same controller route, not identical-input deterministic replay.",
+    "Timer aid, held fire, rewind OFF and CPU telemetry; not unassisted normal-settings acceptance."
+  ],
+  "interpretation": "The native collision changes reduce interpreted work but do not account for enough of the boss hitch. Both runs still slow down and starve audio. Host CPU profiling is the next diagnostic."
+}
