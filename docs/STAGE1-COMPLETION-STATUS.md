@@ -15,9 +15,12 @@ runtime and its own cache then passed: 60.0072 fps, zero new gameplay
 starvation, 350 consecutive boss submissions and a longest interval of 20 ms.
 Live reads confirmed both selected profiles, exact keys and active detail maps.
 The local material receipt now selects that tested runtime, with rollback and
-shared-settings backups. All three additional shortcut configurations pass
-receipt checks; their other profile pairs and the real frontend path have not
-yet been tested live. Existing cache shards and stages 2–7 remain unqualified.
+shared-settings backups. The real frontend Play button now passes a private handoff check, with correct
+live material state and clean shutdown. Crimson, Gold and Neon shortcuts each
+passed title-state and five-second early-gameplay checks, without RAM writes or
+state loads. Source executables, settings, receipts, pack and caches re-hashed
+unchanged. These short functional checks do not establish full-stage appearance
+or pacing; the earlier two failed frontend harness attempts remain excluded. Existing cache shards and stages 2–7 remain unqualified.
 
 The larger frozen artwork candidate remains separate and still fails:
 39 boss uploads moved about 801 MiB, including 29 reuploads after eviction.

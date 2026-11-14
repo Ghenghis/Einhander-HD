@@ -5337,5 +5337,87 @@
       "includes": "Texture binding, pixel-store state and two native VRAM glTexSubImage2D calls; exact call responsible not yet isolated.",
       "not_a_qualifying_cause": "No claim that pacing or texture data volume alone caused it. Native-call timing and gated buffered-upload experiment are next."
     }
-  }
+  },
+  "normal_frontend": {
+    "batch": "normal-material-frontend-r3",
+    "passed": true,
+    "exit": 0,
+    "port_closed": true,
+    "settings_semantic_change": "private disc.path cue to bin canonicalization only; CLI cue applied last",
+    "originals_unchanged": true,
+    "prior_failed_attempts": [
+      "r1 nonexistent UI helper",
+      "r2 private directory ownership guard rejected close; preserved and force-cleaned owned process"
+    ],
+    "performance_acceptance": false,
+    "full_stage_acceptance": false
+  },
+  "material_profile_smokes": [
+    {
+      "batch": "material-title-crimson-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "aurora-teal",
+      "enemy": "crimson-red",
+      "capture": {
+        "at_utc": "2026-11-14T04:02:52.585802+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-crimson-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "01cd8d4ae1ded3ced9f6127045e9b7b43ff13023ec79d270ded10accb49ff76f",
+        "frame_before": 3356,
+        "frame_after": 3361,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-gold-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "aurora-teal",
+      "enemy": "gold-obsidian",
+      "capture": {
+        "at_utc": "2026-11-14T04:03:56.105382+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-gold-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "fb68ed5aa0c2d0a0774aa0a8672e94d50c993191523696c4fa1e77c66b006e0f",
+        "frame_before": 3364,
+        "frame_after": 3369,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-neon-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "neon-circuit",
+      "enemy": "ultraviolet-grid",
+      "capture": {
+        "at_utc": "2026-11-14T04:04:59.601776+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-neon-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "18e5938d268ee2624c87e32181698296bd92e76533a828d9b52d40431601914c",
+        "frame_before": 3340,
+        "frame_after": 3348,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    }
+  ]
 }
