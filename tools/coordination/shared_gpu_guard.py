@@ -3,7 +3,7 @@
 This is coordination, not OS authorization. Live tokens stay out of receipts.
 """
 from pathlib import Path
-import datetime,json,os,subprocess,uuid
+import datetime,json,os,subprocess,tempfile
 
 ROOT=Path(__file__).resolve().parents[2]
 STATE=ROOT/'.hermes3d_orchestrator/shared-gpu/state.json'
@@ -39,11 +39,14 @@ def broker_action(action,token,output,**fields):
     if action not in ('check','start'):raise ValueError('Launcher may only check or register an actual runner')
     script=ROOT/'tools/coordination/shared-gpu.mjs'
     if '--no-flush' not in script.read_text():raise RuntimeError('Broker lacks bounded no-flush launcher support')
-    private=Path(output)/('shared-'+action+'-'+uuid.uuid4().hex+'.private')
-    with private.open('x',encoding='utf8') as stream:
-        json.dump(dict(token=token,**fields),stream);stream.flush();os.fsync(stream.fileno())
-    args=['node',str(script),action,'--owner',OWNER,'--file',str(private),'--no-flush']
-    x=subprocess.run(args,capture_output=True,text=True,timeout=8,creationflags=0x08004000)
-    if x.returncode:raise RuntimeError('Shared GPU '+action+' refused: '+x.stderr[-500:])
-    first,_=json.JSONDecoder().raw_decode(x.stdout.lstrip())
+    # Fenced arguments are transient and never belong in an evidence packet.
+    # TemporaryDirectory removes them on success, refusal and timeout.
+    with tempfile.TemporaryDirectory(prefix='einhander-gpu-') as temporary:
+        private=Path(temporary)/'broker.private'
+        with private.open('x',encoding='utf8') as stream:
+            json.dump(dict(token=token,**fields),stream);stream.flush();os.fsync(stream.fileno())
+        args=['node',str(script),action,'--owner',OWNER,'--file',str(private),'--no-flush']
+        x=subprocess.run(args,capture_output=True,text=True,timeout=8,creationflags=0x08004000)
+        if x.returncode:raise RuntimeError('Shared GPU '+action+' refused')
+        first,_=json.JSONDecoder().raw_decode(x.stdout.lstrip())
     return dict(action=action,exit=x.returncode,allowed=first.get('allowed'),committed=first.get('ok'),event_id=first.get('event',{}).get('id'),scope='Live token/private broker arguments intentionally omitted')

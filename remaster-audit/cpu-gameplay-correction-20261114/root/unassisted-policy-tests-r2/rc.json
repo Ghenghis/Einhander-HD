@@ -1,0 +1,48 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-B",
+  "C:\\github\\Einhander\\remaster-audit\\test_stage1_unassisted_review.py"
+ ],
+ "cwd": "C:\\github\\Einhander",
+ "wrapper_pid": 25684,
+ "wrapper_create_time": 1794678778.862156,
+ "cpu": 11,
+ "affinity": [
+  11
+ ],
+ "priority": 16384,
+ "timeout_s": 30.0,
+ "rc": 1,
+ "created_utc": "2026-11-14T17:52:59.012332+00:00",
+ "precheck": {
+  "system_cpu_pct": 27.7,
+  "free_gib": 70.34,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T17:53:00.017401+00:00"
+ },
+ "child_pid": 20472,
+ "child_create_time": 1794678780.018499,
+ "job_assigned_before_resume": true,
+ "start_utc": "2026-11-14T17:53:00.024257+00:00",
+ "child_exit_code": 1,
+ "timeout_killed": false,
+ "elapsed_s": 0.452,
+ "end_utc": "2026-11-14T17:53:00.477766+00:00",
+ "job": {
+  "active": 0,
+  "total": 1,
+  "terminated": 0,
+  "user_s": 0.203125,
+  "kernel_s": 0.125
+ },
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 1
+}

@@ -1,5 +1,11 @@
 # Codex durable work queue
 
+## CPU-only continuation and corrected menu claims —17:55 UTC
+
+The user3090Ti hold lasts conservatively until18:37:05UTC, then a fresh broker grant is still required. Twelve CPU policy controls pass (0.496s child, empty tree); no game/GPU/audio or live acceptance. Independent readback INVALIDATES the old72/72 and118/118 menu file summaries because scale variants overwrote the same output paths. Old evidence remains preserved; a new exclusive-write v5 rebuild is pending actual results. [Verified results, source and remaining gates](../docs/CPU-GAMEPLAY-PREPARATION-20261114.md).
+
+The earlier1699-entry world-pack admission is a separate valid component; all seven-stage/release acceptance remains open. Actual metadata monitor39432 is bounded to18:25:12.652UTC and proves metadata monitoring only. Older dated claims below are historical and superseded where this correction applies.
+
 ## Combined ROI candidate admitted —17:26 UTC
 
 The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).

@@ -1,0 +1,82 @@
+{
+  "at_utc": "2026-11-14T17:53:00.492047+00:00",
+  "outer_exit": 1,
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-B",
+    "-I",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\region-o-roi-composition-r1\\run_rc2.py",
+    "--out",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\unassisted-policy-tests-r2\\rc.json",
+    "--cpu",
+    "11",
+    "--timeout",
+    "30",
+    "--max-cpu",
+    "60",
+    "--min-free-gib",
+    "16",
+    "--",
+    "C:\\Python314\\python.exe",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\test_stage1_unassisted_review.py"
+  ],
+  "pins": {
+    "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py": "6463d4f95c6af98533dee9aca8a6cd57bcce05b9c8ecfd9481f662497e3a913d",
+    "C:\\github\\Einhander\\remaster-audit\\test_stage1_unassisted_review.py": "d6f54b9d57de65389f25bcf4c5ef9823bd570966c1b576ba3ad15b9d8ecaf4be",
+    "C:\\github\\Einhander\\remaster-audit\\unassisted_command_guard.py": "243dcd880db4f360540263dd4f6ee997f4757a8feabdaa43b36573922d00f93b",
+    "C:\\github\\Einhander\\tools\\coordination\\shared_gpu_guard.py": "cb767d1f5cf4c1795eb46d369a558bdfedf33c9e51b529123893c53c47685ac7",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\region-o-roi-composition-r1\\run_rc2.py": "cd3988af06cd348cdef0c9a14e6a87a180b5aea09bb6207eeeb9d3d80a4ea9dd"
+  },
+  "guard_receipt": {
+    "tool": "run_rc2.py",
+    "revision": "r1",
+    "cmd": [
+      "C:\\Python314\\python.exe",
+      "-B",
+      "C:\\github\\Einhander\\remaster-audit\\test_stage1_unassisted_review.py"
+    ],
+    "cwd": "C:\\github\\Einhander",
+    "wrapper_pid": 25684,
+    "wrapper_create_time": 1794678778.862156,
+    "cpu": 11,
+    "affinity": [
+      11
+    ],
+    "priority": 16384,
+    "timeout_s": 30.0,
+    "rc": 1,
+    "created_utc": "2026-11-14T17:52:59.012332+00:00",
+    "precheck": {
+      "system_cpu_pct": 27.7,
+      "free_gib": 70.34,
+      "max_cpu": 60.0,
+      "min_free_gib": 16.0,
+      "at_utc": "2026-11-14T17:53:00.017401+00:00"
+    },
+    "child_pid": 20472,
+    "child_create_time": 1794678780.018499,
+    "job_assigned_before_resume": true,
+    "start_utc": "2026-11-14T17:53:00.024257+00:00",
+    "child_exit_code": 1,
+    "timeout_killed": false,
+    "elapsed_s": 0.452,
+    "end_utc": "2026-11-14T17:53:00.477766+00:00",
+    "job": {
+      "active": 0,
+      "total": 1,
+      "terminated": 0,
+      "user_s": 0.203125,
+      "kernel_s": 0.125
+    },
+    "descendants_seen": [],
+    "descendants_left": [],
+    "child_absent": true,
+    "job_empty": true,
+    "tree_absent": true,
+    "wrapper_exit": 1
+  },
+  "gpu_run": false,
+  "game_run": false,
+  "broker_mutation": false
+}

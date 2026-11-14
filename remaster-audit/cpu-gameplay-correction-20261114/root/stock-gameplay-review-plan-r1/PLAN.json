@@ -1,0 +1,167 @@
+{
+  "schema": "einhander-stock-gameplay-review-plan-v1",
+  "created_utc": "2026-11-14T17:44:56.846799+00:00",
+  "state": "CPU preparation only; live execution NOT RUN",
+  "gpu_run": false,
+  "game_run": false,
+  "audio_run": false,
+  "inputs": {
+    "runtime": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\Einhander_Recompiled.exe",
+      "sha256": "8bc3ac3daedcbb08790905c228d1dc7b052bd5ed52d3bb739c02009ec86bb772"
+    },
+    "build_receipt": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\build.json",
+      "sha256": "85deaaf3f4870259b190a929675fae706897f91f1dc3e16b3d94d8f3752d6108"
+    },
+    "candidate": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-mijpq-roi-r1\\candidate.json",
+      "sha256": "903bd84a6be19fdef2b6d19293121515035b68c61b7d0ff67f4ff7cf38b30b20"
+    },
+    "runner": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py",
+      "sha256": "d4475b12bc804489858540b4c73733f6104fb5a6f569c427722a332537206cb0"
+    },
+    "tests": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\test_stage1_unassisted_review.py",
+      "sha256": "b05d4440bb7decd795c702db0a2c349dce2515416c72b428ddcdbd763ae5e9d6"
+    },
+    "user_hold": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\user-cpu-only-hold-20261114T173705Z.json",
+      "sha256": "86d7157d64bd599823bb40c50a28d480a062eb8d6616000673da5d99878fc370"
+    }
+  },
+  "texture_entries": 1699,
+  "full_png_hash_replay_this_step": false,
+  "prior_full_readback": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\mijpq-roi-candidate-verification-r1\\result.json",
+    "sha256": "299be5ac4206f133953515b09c8eb3bd7e735fec5260d0a06c5182e4c4e50d9c"
+  },
+  "runtime_limit": "Retained parent objects; not a clean full-source build. Never run in-game yet.",
+  "preparation_command": [
+    "python",
+    "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py",
+    "--batch",
+    "v67-unassisted-r1",
+    "--candidate",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-mijpq-roi-r1\\candidate.json",
+    "--runtime",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\build.json",
+    "--capture-seconds",
+    "60",
+    "--supersampling",
+    "2",
+    "--cpu-profile",
+    "1",
+    "--telemetry-only",
+    "--native-menus",
+    "--prepare-only"
+  ],
+  "preparation_executed": false,
+  "execution_command": [
+    "python",
+    "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py",
+    "--batch",
+    "v67-unassisted-r1",
+    "--capture-seconds",
+    "60",
+    "--supersampling",
+    "2",
+    "--telemetry-only",
+    "--run-prepared"
+  ],
+  "prerequisites": [
+    "Independent source review and CPU refusal tests",
+    "Actual isolated runtime/cache/card staging, then validate every prepared PNG and settings hash",
+    "User hold elapsed; fresh broker grant and exact token required, never elapsed-time takeover",
+    "Fresh CPU below60%, free RAM at least16GiB; all heavy native workers quiet",
+    "Independent exact-PID/creation-time watchdog and real adapter verification before launch",
+    "Private GPU reservation markers, ports4373-4378 unused; leave installed port4370 untouched"
+  ],
+  "route": {
+    "renderer": "stock OpenGL; Remix disabled",
+    "ordinary_menu_input": true,
+    "stage_warps": false,
+    "state_loads": false,
+    "ram_writes": false,
+    "timer_assistance": false,
+    "rewind": false,
+    "turbo": false,
+    "display_history": false,
+    "render_scale": 2,
+    "default_experimental_features": false,
+    "focus": "Brief owned-window handoff required; unfocused samples are diagnostic only"
+  },
+  "passes": [
+    {
+      "id": "qualification",
+      "cap_seconds": 30,
+      "purpose": "Confirm exact v67 process, GL upload restoration, 98-value adapter and owned cleanup; separate from timing",
+      "implemented_in_runner": false
+    },
+    {
+      "id": "unassisted-timing",
+      "cap_measurement_seconds": 60,
+      "total_watchdog_seconds": 210,
+      "video": false,
+      "source_recording": false,
+      "screenshots": false,
+      "ram_writes": false,
+      "purpose": "Audio counters, CPU frame-phase sequence and focus through normal early Stage1",
+      "caveat": "Native death or transition ends scope. This does not guarantee reaching the mini-boss."
+    },
+    {
+      "id": "mini-boss-timing",
+      "cap_measurement_seconds": 120,
+      "total_watchdog_seconds": 270,
+      "purpose": "Separate later run if normal play reaches the mini-boss; correlate actual frame/sequence brackets",
+      "caveat": "No matched-state or fix claim without actual matching evidence. Assisted alternatives require explicit labeling."
+    },
+    {
+      "id": "texture-source-review",
+      "cap_measurement_seconds": 60,
+      "total_watchdog_seconds": 210,
+      "purpose": "Separate short native/HD captures around O/M/I/J/P/Q and distant green/pink sign draws",
+      "blocker": "Recorder F3 mark-row reserve leak must be reproduced/fixed or a reviewed runner guard used.",
+      "recorder_load_disclosed": true
+    }
+  ],
+  "audio": {
+    "counters": "before/after starvation, underflow and queue statistics with frame/time correlation",
+    "audible_review": "Separate bounded owned callback/process-output capture after measurement; no shared desktop audio",
+    "unproven": [
+      "Synchronized video/audio",
+      "Remastered audio quality",
+      "No audible defect",
+      "Full-stage acceptance"
+    ]
+  },
+  "later_stages": {
+    "policy": "Separate stock-first ordinary-play captures; no claim that a60-second Stage1 run reaches later stages.",
+    "s23": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\capture\\S23-CAPTURE-TRIGGERS.md",
+      "sha256": "5f53299797456ff6a2c9be2da5d103bd9aff52d720fd48c109d87a142b789245"
+    },
+    "s45": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\capture\\20261114T174241Z\\addendum.json",
+      "sha256": "cc7ce558357972413b9c3c519a2f61a18d7f04a8a6e8bcd71408acda3d4c28b9"
+    },
+    "s67": "T6 CB07BBCB/hull UV+CLUT identity; T7 fleet87C91293/675828CE/D887C7F4 with actual CLUT coordinates and screenshot marks"
+  },
+  "cleanup": [
+    "Release input; stop only owned capture workers; request quit; wait on retained process handle",
+    "On deadline, terminate only exact retained owned process tree; preserve failure and exit code",
+    "Verify process absence and private debug port closure; then explicitly release fenced broker grant"
+  ],
+  "acceptance_open": [
+    "Live look/motion",
+    "Mini-boss stutter",
+    "Audio quality",
+    "4K performance/fidelity",
+    "Realistic skins/selectors",
+    "All seven stages",
+    "Working Remix images and Shutdown",
+    "In-game ray tracing/DLSS",
+    "Installed release"
+  ]
+}

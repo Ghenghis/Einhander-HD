@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T17:29:21.196066+00:00",
+  "updated_at_utc": "2026-11-14T17:56:19.973021+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -905,21 +905,29 @@
     "project_complete": false
   },
   "latest_resource_policy": {
-    "gpu_user_project_hold": true,
-    "modern_gpu_test_started": false,
-    "requires_explicit_user_release": false,
-    "hold_sha256": "91c25dccc9956aa77ac2a24935b2bb6f11e82371700d114cf841fbfa04626796",
-    "handoff_receipt": "remaster-audit/runtime-review/gpu-texture-remix-20261114/user-gpu-handback-20261114T1438/result.json",
-    "broker_revision": 3,
-    "broker_owner": null,
-    "broker_explicit_release_utc": "2026-11-14T14:56:05Z",
-    "legacy_marker_pending_reconciliation": true,
-    "new_start_requires_coordinator_grant": true
+    "user_3090_released": false,
+    "reserved_until_utc": "2026-11-14T18:37:05Z",
+    "root_gpu_run": false,
+    "fresh_grant_still_required": true
   },
   "actual_monitor": {
-    "pid": 42612,
-    "bound_end_utc": "2026-11-14T17:58:03.357Z",
+    "pid": 39432,
+    "bound_end_utc": "2026-11-14T18:25:12.652Z",
     "watcher_only": true,
     "proves_model_activity": false
+  },
+  "latest_cpu_policy": {
+    "tests": 12,
+    "passed": true,
+    "evidence": "remaster-audit/cpu-gameplay-correction-20261114/README.md",
+    "live_qualified": false
+  },
+  "menu_batch_file_admission": {
+    "status": "INVALIDATED: scale output collisions",
+    "old_summaries": [
+      "5ef7b279",
+      "b0421159"
+    ],
+    "rebuild": "pending actual verified v5 result"
   }
 }

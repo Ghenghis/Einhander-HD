@@ -6,7 +6,7 @@
   "project_root": "C:/github/Einhander",
   "target_claude_sessions": 6,
   "rationale": "Six registered native Claude sessions with distinct Stage1/shared-runtime, S2/3, S4/5, S6/7, HUD/UI and verification support ownership. At most two heavy CPU jobs globally, BelowNormal/single CPU, main owns GPU/integration/publication.",
-  "gpu_policy": "Modern private3090Ti probe actually ran16:33UTC and FAILED blank geometry/Shutdown deadline. Owned processes absent, nonce markers removed and explicit shared release16:35:17 revision10. Root CPU-only diagnosis; future GPU starts require current fenced grant/resource gate, never elapsed-time takeover.",
+  "gpu_policy": "CPU-only; user3090Ti hold through at least18:37:05UTC; later fresh broker/source/resource gates required.",
   "unrelated_sessions": "Leave Pizza Tycoon HD and all unrelated Claude sessions/processes untouched.",
   "sessions": [
     {
@@ -265,7 +265,7 @@
     "A mail watcher does not prove model activity or guarantee resumption while the computer/app is off."
   ],
   "project_complete": false,
-  "updated_utc": "2026-11-14T17:29:21.196066+00:00",
+  "updated_utc": "2026-11-14T17:56:19.973021+00:00",
   "monitoring_handoff": {
     "owner": "codex-einhander",
     "accepted_message_id": "msg_7b8737f92c0ecbba",
@@ -303,8 +303,8 @@
     }
   ],
   "actual_monitor": {
-    "pid": 42612,
-    "bound_end_utc": "2026-11-14T17:58:03.357Z",
+    "pid": 39432,
+    "bound_end_utc": "2026-11-14T18:25:12.652Z",
     "watcher_only": true,
     "proves_model_activity": false
   },

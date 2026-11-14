@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-11-14T05:00:35.343Z",
-  "base_head_before_documentation_commit": "fe58554459e7432d0f3660404f97bd34f2957cac",
+  "generated_at_utc": "2026-11-14T17:58:29.115Z",
+  "base_head_before_documentation_commit": "aabc787e31a4f3da061c25e4765d178a83249e09",
   "verifier": {
     "path": "remaster-audit/verify_documentation.mjs",
     "sha256": "050c5f183e1bacab6875eda9ccbf3408b6de07fdc5905cfca9ba2ca5991fd666"
@@ -23,11 +23,14 @@
     ],
     "e2e_gameplay_acceptance": "pending; no performance, audio, whole-stage or seven-stage completion claim"
   },
-  "document_count": 46,
-  "json_count": 61,
-  "local_links_checked": 847,
+  "document_count": 62,
+  "json_count": 97,
+  "local_links_checked": 1037,
   "external_urls_not_fetched": [
     "https://code.claude.com/docs/en/hooks#stop",
+    "https://docs.omniverse.nvidia.com/kit/docs/rtx_remix/latest/docs/gettingstarted/learning-toolkitsetup.html",
+    "https://docs.omniverse.nvidia.com/kit/docs/rtx_remix/latest/docs/howto/learning-ingestion.html",
+    "https://docs.omniverse.nvidia.com/kit/docs/rtx_remix/latest/docs/introduction/intro-compatibility.html",
     "https://github.com/Ghenghis/Einhander-HD/pull/1",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-entry.mp4",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/h24-fly-past-later.mp4",
@@ -38,6 +41,7 @@
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-lit-facade-fly-past.mp4",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-wave3-astraea-gameplay.mp4",
     "https://github.com/Ghenghis/Einhander-HD/raw/refs/heads/main/docs/media/gallery/stage1-world-facade-fly-past.mp4",
+    "https://github.com/NVIDIAGameWorks/dxvk-remix/blob/42b54bbe2a9280f7720e5b64415c78aa3e15224f/documentation/RemixSDK.md",
     "https://github.com/libretro-thumbnails/libretro-thumbnails",
     "https://github.com/mstan/psxrecomp",
     "https://github.com/mstan/recomp-ui",
@@ -45,6 +49,7 @@
     "https://img.shields.io/badge/active_platform-Windows_x64-548bb9?style=flat-square",
     "https://img.shields.io/badge/composition-4%3A3-657b86?style=flat-square",
     "https://img.shields.io/badge/status-development_preview-d79b42?style=flat-square",
+    "https://www.nvidia.com/en-us/geforce/technologies/dlss/",
     "https://www.youtube.com/watch?v=vpgemmHly3Q"
   ],
   "files": [
@@ -65,12 +70,36 @@
       "git_index_bytes": 2948
     },
     {
+      "path": "coordination/CLAUDE-SESSIONS-20261114.json",
+      "bytes": 18043,
+      "working_tree_sha256": "e5a9963ad5e55b1d04db9f8289172a21fea1bdeb6b18eb3a5a502643c8464b24",
+      "git_index_blob": "8817e8594db432e971c1742cd0a4e1506a38efe5",
+      "git_index_sha256": "c148e8461d6f2b60036ed8531abb5c24b5cbbf9e4ee3b95c08fb0a848b4fd7eb",
+      "git_index_bytes": 17731
+    },
+    {
       "path": "coordination/CLAUDE-WORK-QUEUE.md",
       "bytes": 5282,
       "working_tree_sha256": "3f7e933c5dddd896d1dcf8423b5ea5e8cce85a7b7f70d38855d14e8cfcf17787",
       "git_index_blob": "5b6d46de054b0d25ddf3ab821fbce87064c4ccd5",
       "git_index_sha256": "20e79bd3ccd20897320542d3ce9f26bf8ec0f434d4b3f1c919761c014d661f8d",
       "git_index_bytes": 5211
+    },
+    {
+      "path": "coordination/Codex-HANDOFF.md",
+      "bytes": 20751,
+      "working_tree_sha256": "ec7b0d2cfa3652830061e10411fbe7804cb15526d4b7d4a67348dd78f79bd236",
+      "git_index_blob": "bbcd4135f538761059ce4423d603bc4da09451b4",
+      "git_index_sha256": "ec7b0d2cfa3652830061e10411fbe7804cb15526d4b7d4a67348dd78f79bd236",
+      "git_index_bytes": 20751
+    },
+    {
+      "path": "coordination/Codex-WORK-QUEUE.md",
+      "bytes": 16895,
+      "working_tree_sha256": "6d93c70a27fc91ee564af8f8651a02079e8180b5c64ee2b98a491b18f3c1674d",
+      "git_index_blob": "6980647fb869915899e2a31f7c0d88562bd1963d",
+      "git_index_sha256": "6d93c70a27fc91ee564af8f8651a02079e8180b5c64ee2b98a491b18f3c1674d",
+      "git_index_bytes": 16895
     },
     {
       "path": "coordination/DEVIN-HANDOFF.md",
@@ -89,6 +118,22 @@
       "git_index_bytes": 354
     },
     {
+      "path": "docs/4K-REMIX-IMPLEMENTATION-PLAN.md",
+      "bytes": 31856,
+      "working_tree_sha256": "6e485554e088548daa0c092608739187edbb973a2cfdfa510f680ec2237c654c",
+      "git_index_blob": "98ceb226a2269c2ff42b5d05556ff907064a9f28",
+      "git_index_sha256": "6e485554e088548daa0c092608739187edbb973a2cfdfa510f680ec2237c654c",
+      "git_index_bytes": 31856
+    },
+    {
+      "path": "docs/ARTWORK-STATUS-20261113.md",
+      "bytes": 13564,
+      "working_tree_sha256": "68c207792f426952d82cdb16646513fcddeb211eb0574c7a2f438c27be3887fe",
+      "git_index_blob": "07ed48340070a7c3518e1478afd46a19c4e231eb",
+      "git_index_sha256": "4b727fd32463b7d61660d909d93543687bc7bfff242fb499399f37744170eb06",
+      "git_index_bytes": 13486
+    },
+    {
       "path": "docs/COMPARISONS.md",
       "bytes": 7230,
       "working_tree_sha256": "3330d7941d0cf107fc0df4e764fc0f50b85b967d2a75bbcd9b24700a1004e589",
@@ -103,6 +148,30 @@
       "git_index_blob": "9bd3525bb1c677fe82e2357ff317e83f534a8e5c",
       "git_index_sha256": "406a4a52cb299c0d5326998f2e296d8c802ca578e83983f046f9b3bfe663f708",
       "git_index_bytes": 3633
+    },
+    {
+      "path": "docs/CPU-GAMEPLAY-PREPARATION-20261114.md",
+      "bytes": 1563,
+      "working_tree_sha256": "518e521fa9c63100acaa8edf7d811a7b83affc1c69f37c7aea67185f33180a60",
+      "git_index_blob": "7357b0b23f6c2ca2b859ddeb3b2e229c025d305b",
+      "git_index_sha256": "518e521fa9c63100acaa8edf7d811a7b83affc1c69f37c7aea67185f33180a60",
+      "git_index_bytes": 1563
+    },
+    {
+      "path": "docs/DECODE-WORKER-RESULTS-20261114.md",
+      "bytes": 1523,
+      "working_tree_sha256": "df1e4d4fdb0900af3d3c0ef9099a05f5437199982b6d6d867bfab0e7aea15e27",
+      "git_index_blob": "37b63a4fbee835bf4addd980c78c46d6c34c4825",
+      "git_index_sha256": "df1e4d4fdb0900af3d3c0ef9099a05f5437199982b6d6d867bfab0e7aea15e27",
+      "git_index_bytes": 1523
+    },
+    {
+      "path": "docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md",
+      "bytes": 1136,
+      "working_tree_sha256": "039fbe75b2420bf5025d9bd791ff8b49c324dfb6910cf144fd09905b42b2e0da",
+      "git_index_blob": "fc868bc4bb17da66dee25f41bc400c8954cb5f19",
+      "git_index_sha256": "039fbe75b2420bf5025d9bd791ff8b49c324dfb6910cf144fd09905b42b2e0da",
+      "git_index_bytes": 1136
     },
     {
       "path": "docs/DEVELOPMENT.md",
@@ -225,6 +294,118 @@
       "git_index_bytes": 25629
     },
     {
+      "path": "docs/media/gallery/artwork-documentation-verification-results.json",
+      "bytes": 45791,
+      "working_tree_sha256": "a26d2d99636b9378dc4b0facbf4edd82ce351b7c4b901799d18d5348ae13dccd",
+      "git_index_blob": "914e58b7aad9469765f7c1b16f5593f12e8ba4b3",
+      "git_index_sha256": "a26d2d99636b9378dc4b0facbf4edd82ce351b7c4b901799d18d5348ae13dccd",
+      "git_index_bytes": 45791
+    },
+    {
+      "path": "docs/media/gallery/artwork-frozen-inventory-snapshot.json",
+      "bytes": 222068,
+      "working_tree_sha256": "5e007cd6745d77538cd6e12e51041e5df6866cfc206ceae8fe62ae5ac8472a55",
+      "git_index_blob": "31be06eb674af69199fed59dd434b09c3b32cc97",
+      "git_index_sha256": "5e007cd6745d77538cd6e12e51041e5df6866cfc206ceae8fe62ae5ac8472a55",
+      "git_index_bytes": 222068
+    },
+    {
+      "path": "docs/media/gallery/artwork-inventory-results.json",
+      "bytes": 18263,
+      "working_tree_sha256": "ddcd425b1781fad0da9492ae4dbc969bca4d9318a74a606a259e0eb40c9cade8",
+      "git_index_blob": "7a51cb7ce58e24d416a8bb035c582a66db4356ff",
+      "git_index_sha256": "ddcd425b1781fad0da9492ae4dbc969bca4d9318a74a606a259e0eb40c9cade8",
+      "git_index_bytes": 18263
+    },
+    {
+      "path": "docs/media/gallery/cpu-hour-documentation-verification-results.json",
+      "bytes": 58251,
+      "working_tree_sha256": "1056c3cc7700c18682ad1b8888ed79a00a59dbb3de42b410f95226e9b828bef9",
+      "git_index_blob": "14fd83db09517909456a030a30f7e5e180abbeaf",
+      "git_index_sha256": "1056c3cc7700c18682ad1b8888ed79a00a59dbb3de42b410f95226e9b828bef9",
+      "git_index_bytes": 58251
+    },
+    {
+      "path": "docs/media/gallery/cpu-integration-documentation-verification-results.json",
+      "bytes": 56167,
+      "working_tree_sha256": "f8ec8047d92602e9c34063dfebd21086c92fb042c3266a82159254cc07747a16",
+      "git_index_blob": "6a823bc0d09807b4292999e788d5cc800df6e16b",
+      "git_index_sha256": "f8ec8047d92602e9c34063dfebd21086c92fb042c3266a82159254cc07747a16",
+      "git_index_bytes": 56167
+    },
+    {
+      "path": "docs/media/gallery/cpu-metrics-documentation-verification-results.json",
+      "bytes": 57000,
+      "working_tree_sha256": "af0bbefad4f76fc9bca751973422aefca17bac3ce4fbffb0973585eca8643251",
+      "git_index_blob": "746a021f7aea5a77d810a1a1f6a9ced656ad0b25",
+      "git_index_sha256": "af0bbefad4f76fc9bca751973422aefca17bac3ce4fbffb0973585eca8643251",
+      "git_index_bytes": 57000
+    },
+    {
+      "path": "docs/media/gallery/cpu-review-documentation-verification-results.json",
+      "bytes": 56585,
+      "working_tree_sha256": "8e32a82c43d8f435cb131cab913fda46c05746de1a20017a055762acd0eaf60e",
+      "git_index_blob": "ca126741b5f61148038ebfe36cf2b728c8b9c797",
+      "git_index_sha256": "8e32a82c43d8f435cb131cab913fda46c05746de1a20017a055762acd0eaf60e",
+      "git_index_bytes": 56585
+    },
+    {
+      "path": "docs/media/gallery/cpu-session-documentation-verification-results.json",
+      "bytes": 59822,
+      "working_tree_sha256": "6ff363dadb4efde4716f32d58568618237b7b7c259a3ce32d850820797b3fe49",
+      "git_index_blob": "1f2b0476871bb85e25254213e687e65b7360e828",
+      "git_index_sha256": "6ff363dadb4efde4716f32d58568618237b7b7c259a3ce32d850820797b3fe49",
+      "git_index_bytes": 59822
+    },
+    {
+      "path": "docs/media/gallery/decode-worker-documentation-verification-results.json",
+      "bytes": 61410,
+      "working_tree_sha256": "a9a89f876726f411c63d1f2df081516c332965f23f2a398399d8d178c34bbfd3",
+      "git_index_blob": "6e885d1c548678a4fa54614499fb1d13b48cd73d",
+      "git_index_sha256": "a9a89f876726f411c63d1f2df081516c332965f23f2a398399d8d178c34bbfd3",
+      "git_index_bytes": 61410
+    },
+    {
+      "path": "docs/media/gallery/engine-skin-world-verification-results.json",
+      "bytes": 54562,
+      "working_tree_sha256": "e0a90a57d75feba5027f25abdb596f99abc03089e14366753710af5eee885003",
+      "git_index_blob": "c075ac18973247cc12fcd99d1e33fb2deb42d5b0",
+      "git_index_sha256": "e0a90a57d75feba5027f25abdb596f99abc03089e14366753710af5eee885003",
+      "git_index_bytes": 54562
+    },
+    {
+      "path": "docs/media/gallery/frontend-tracker-documentation-verification-results.json",
+      "bytes": 62212,
+      "working_tree_sha256": "d2c5469af3c0a54dce9489a4a47c93fd5729e7d08ab3e31830dcec3675c2efe6",
+      "git_index_blob": "2328a7d4ad3eb809c34830624ad98bd55271c9f2",
+      "git_index_sha256": "d2c5469af3c0a54dce9489a4a47c93fd5729e7d08ab3e31830dcec3675c2efe6",
+      "git_index_bytes": 62212
+    },
+    {
+      "path": "docs/media/gallery/full-4k-scope-verification-results.json",
+      "bytes": 52449,
+      "working_tree_sha256": "bd74d9150e1d310605ea378580b77c6756b711c086f7aec727e6c55dcaa95490",
+      "git_index_blob": "492af6277a21f7d55125b1dd46d51d813a923bf4",
+      "git_index_sha256": "bd74d9150e1d310605ea378580b77c6756b711c086f7aec727e6c55dcaa95490",
+      "git_index_bytes": 52449
+    },
+    {
+      "path": "docs/media/gallery/gpu-integration-documentation-verification-results.json",
+      "bytes": 57413,
+      "working_tree_sha256": "07c8615326a432c958f7c5c4d7e32ef68267e064c60de074cb2caf38f7087272",
+      "git_index_blob": "3f8a2160f751cced2e0b0d0e731d3bddc04ec892",
+      "git_index_sha256": "07c8615326a432c958f7c5c4d7e32ef68267e064c60de074cb2caf38f7087272",
+      "git_index_bytes": 57413
+    },
+    {
+      "path": "docs/media/gallery/gpu-shader-followup-documentation-verification-results.json",
+      "bytes": 57830,
+      "working_tree_sha256": "cee17888dd4535bc42ee5b7f851ab494ed48d1e7c7ddbebe89d60cdd224f2b17",
+      "git_index_blob": "94fe4d0b57cdb16b592da437b5cf168cbc740e65",
+      "git_index_sha256": "cee17888dd4535bc42ee5b7f851ab494ed48d1e7c7ddbebe89d60cdd224f2b17",
+      "git_index_bytes": 57830
+    },
+    {
       "path": "docs/media/gallery/h24-fullpass-results.json",
       "bytes": 6911,
       "working_tree_sha256": "86d0c962bd63e0889f6b9d15beff2f252a3543cf7cba73340ac07f336b11ba79",
@@ -249,12 +430,140 @@
       "git_index_bytes": 10500
     },
     {
+      "path": "docs/media/gallery/hd-saved-entry-gameplay-results.json",
+      "bytes": 38989,
+      "working_tree_sha256": "ccb8d20421cc4c0019f3519705bcefd0fcfb6d84623a92c82ac429afebe928ac",
+      "git_index_blob": "2ab7a20c94d0260a05f3d69252aba2b62f8c8dc9",
+      "git_index_sha256": "8cbaa235e45014a1522834147fee958730f53155298998c5ed1e6ccc0835d5c8",
+      "git_index_bytes": 37740
+    },
+    {
+      "path": "docs/media/gallery/menu-documentation-verification-results.json",
+      "bytes": 46571,
+      "working_tree_sha256": "8ccc3473fb84ed07d048792e7d80e369a2c70869cce9a39767a59b0279bd7cf5",
+      "git_index_blob": "152a617c0f77172535a20c1827d581c70161b191",
+      "git_index_sha256": "8ccc3473fb84ed07d048792e7d80e369a2c70869cce9a39767a59b0279bd7cf5",
+      "git_index_bytes": 46571
+    },
+    {
+      "path": "docs/media/gallery/modern-remix-gpu-documentation-verification-results.json",
+      "bytes": 63394,
+      "working_tree_sha256": "4fa963e37b0144b9a3828ac5901c15f75d8e3e9c1173fcf5d5ed0bb555c63909",
+      "git_index_blob": "b90963f7c56c10f00575166d89df50d5926fb0f1",
+      "git_index_sha256": "4fa963e37b0144b9a3828ac5901c15f75d8e3e9c1173fcf5d5ed0bb555c63909",
+      "git_index_bytes": 63394
+    },
+    {
+      "path": "docs/media/gallery/post-recovery-documentation-verification-results.json",
+      "bytes": 47352,
+      "working_tree_sha256": "340ab7258d5fc03c827b8583c9eedf3c7be040d787e19f1c106c1fc140a3859e",
+      "git_index_blob": "7496e6ba4a8a9c8d99e8eecda11f95216034874f",
+      "git_index_sha256": "340ab7258d5fc03c827b8583c9eedf3c7be040d787e19f1c106c1fc140a3859e",
+      "git_index_bytes": 47352
+    },
+    {
+      "path": "docs/media/gallery/power-remix-documentation-verification-results.json",
+      "bytes": 50398,
+      "working_tree_sha256": "77961f5a55d548426ea6a16bec9d369156c21ab553d01e8779599492b0be43a2",
+      "git_index_blob": "f80e5d41806960a16ab109206a63ba485516ff0f",
+      "git_index_sha256": "77961f5a55d548426ea6a16bec9d369156c21ab553d01e8779599492b0be43a2",
+      "git_index_bytes": 50398
+    },
+    {
+      "path": "docs/media/gallery/provenance-v2-verification-results.json",
+      "bytes": 55766,
+      "working_tree_sha256": "2b5e45177c2757f0306671e5edaada094518a2f6b6bb8e939054025cdeb0c4ba",
+      "git_index_blob": "a0ab6334bcb3d3238c4249184da2880994d1e749",
+      "git_index_sha256": "2b5e45177c2757f0306671e5edaada094518a2f6b6bb8e939054025cdeb0c4ba",
+      "git_index_bytes": 55766
+    },
+    {
       "path": "docs/media/gallery/provenance.json",
       "bytes": 105413,
       "working_tree_sha256": "48c30662735daf7ede8b7cdea4a0614691d4071faf885db4329c18992c21533c",
       "git_index_blob": "1f74aca013eced38ebf26c3d74b56c605a2bf90a",
       "git_index_sha256": "37f33694756db47fcc65ea8faaaec9b3f758c2ce809f50bf4388cd209ece71d1",
       "git_index_bytes": 102950
+    },
+    {
+      "path": "docs/media/gallery/publication-byte-integrity-results.json",
+      "bytes": 2997,
+      "working_tree_sha256": "4b3b90a01850b9bdfc7c49ce08d176b39444975a005a998343de5ba49bfc37a7",
+      "git_index_blob": "7c2556c0302b461413b4ed88257b9987fe25a36e",
+      "git_index_sha256": "bb1fdd70e8a4d38350d608b5f51695ccd2cf7d190e5471a19e9419d0acf80fa2",
+      "git_index_bytes": 2925
+    },
+    {
+      "path": "docs/media/gallery/remix-ingestion-results.json",
+      "bytes": 4689,
+      "working_tree_sha256": "75ef50f57fa202abdba2a02ca48c2d6b415ca8c725a95c196b3ff5dc070f4964",
+      "git_index_blob": "c784035172d6e745fa2a8b765378ce1b6a6da609",
+      "git_index_sha256": "5eece9da085ba04e8cc0dd575e952d4c1c63272025a72d7c35dd43ff03db7728",
+      "git_index_bytes": 4556
+    },
+    {
+      "path": "docs/media/gallery/remix-recipe-documentation-verification-results.json",
+      "bytes": 50811,
+      "working_tree_sha256": "92f774d87777ad1cf7aa28eda6da33b3ff5e88397331ac61075c7c53d8641edf",
+      "git_index_blob": "27ce42a38efbba7b4e7e96998ecf635256d9fcd1",
+      "git_index_sha256": "92f774d87777ad1cf7aa28eda6da33b3ff5e88397331ac61075c7c53d8641edf",
+      "git_index_bytes": 50811
+    },
+    {
+      "path": "docs/media/gallery/roi-menu-documentation-verification-results.json",
+      "bytes": 64193,
+      "working_tree_sha256": "c0412b882feab1197960be2c11597ec39d07e3a13c9c4f4b8c0e8c24d36ed163",
+      "git_index_blob": "56967f688a05eb0caca40bcf5b2d22cee9905585",
+      "git_index_sha256": "c0412b882feab1197960be2c11597ec39d07e3a13c9c4f4b8c0e8c24d36ed163",
+      "git_index_bytes": 64193
+    },
+    {
+      "path": "docs/media/gallery/roi-native-documentation-verification-results.json",
+      "bytes": 64979,
+      "working_tree_sha256": "c300d8698bb092a3581b1c5cad669a55d4118f5aac37ee7631cff280bb1134a8",
+      "git_index_blob": "6d08f7c352c28c5684446b6df848c3d4a6fd55d9",
+      "git_index_sha256": "c300d8698bb092a3581b1c5cad669a55d4118f5aac37ee7631cff280bb1134a8",
+      "git_index_bytes": 64979
+    },
+    {
+      "path": "docs/media/gallery/scene-followup-documentation-verification-results.json",
+      "bytes": 59406,
+      "working_tree_sha256": "74200b8ee421682aa8dd2e05e53f56891f01f2773f75a2efc96cb90077ec400c",
+      "git_index_blob": "a4eb57ccb013425780d99ec95ab5e38a442ef187",
+      "git_index_sha256": "74200b8ee421682aa8dd2e05e53f56891f01f2773f75a2efc96cb90077ec400c",
+      "git_index_bytes": 59406
+    },
+    {
+      "path": "docs/media/gallery/sign-census-progress-results.json",
+      "bytes": 2603,
+      "working_tree_sha256": "eb1233e55873227ff25689f0ce8309bf99c103f96a7252ba0f2532d6b2560719",
+      "git_index_blob": "a3a38c49e259395f01aacd15e83ce3251df502ce",
+      "git_index_sha256": "4f79e2406c57e143a4ea0970b248cca0e294cee437498c4c99cbda691ae455a3",
+      "git_index_bytes": 2536
+    },
+    {
+      "path": "docs/media/gallery/sign-crisp-v2-live-results.json",
+      "bytes": 6097,
+      "working_tree_sha256": "9c059e22c4f8c58f6623c5cf4ad88f490050897674b93b54d90fe4b68b31b644",
+      "git_index_blob": "e94d8cb933549c68721f520117d74b43dfefc546",
+      "git_index_sha256": "cf810154ef5fcab22485dd8f0a410602e0460c4c3f4767f617518ecc8ce977fd",
+      "git_index_bytes": 5871
+    },
+    {
+      "path": "docs/media/gallery/sign-quality-audit-results.json",
+      "bytes": 1935,
+      "working_tree_sha256": "2d6191639ddcdace70e3f42a8504f1a77cecd7bbc626d6f415c89fd8edecae91",
+      "git_index_blob": "daf6875b689789ddf679ad13284b53d9de4d48e2",
+      "git_index_sha256": "7d0f26f3a908ae0d718600469ffc13acbe550c47547fcdddecc654d09832456b",
+      "git_index_bytes": 1887
+    },
+    {
+      "path": "docs/media/gallery/skin-launch-delivery-results.json",
+      "bytes": 2073,
+      "working_tree_sha256": "b1da6f834422da9d4ca4c45723deff731a6da4112cafbb4574b62f39e528e890",
+      "git_index_blob": "60a6dfa02d6f1120cd8384cfecb6f7cda64660f5",
+      "git_index_sha256": "3c8c52edfb69065e4d68545694422f4cc4dd1bf550499f995d22fffc8b447196",
+      "git_index_bytes": 2019
     },
     {
       "path": "docs/media/gallery/stage1-assembled-facade-results.json",
@@ -561,6 +870,54 @@
       "git_index_bytes": 50742
     },
     {
+      "path": "docs/media/gallery/texture-composer-documentation-verification-results.json",
+      "bytes": 60613,
+      "working_tree_sha256": "1ca11567ad631cfa5de818a273b5d821ce6f30e6653a49b439c8938594d86db8",
+      "git_index_blob": "b0e1f8abc333986613b07685c437a714cc1af819",
+      "git_index_sha256": "1ca11567ad631cfa5de818a273b5d821ce6f30e6653a49b439c8938594d86db8",
+      "git_index_bytes": 60613
+    },
+    {
+      "path": "docs/media/gallery/visible-material-rejected-attempt.json",
+      "bytes": 2633,
+      "working_tree_sha256": "e559668d618959f3cfa1774dd518095d5a19579a728fbe5ef422bf307ac337d4",
+      "git_index_blob": "22ecd54e038062a085094afd48d9f37a987da371",
+      "git_index_sha256": "2fc0aad9699bfa45244de4e68ce0ecb68fb56abec16f5e30b2510756ab886fd6",
+      "git_index_bytes": 2546
+    },
+    {
+      "path": "docs/media/gallery/visible-material-review-results.json",
+      "bytes": 50718,
+      "working_tree_sha256": "126a31aeec6693e4abb1b54eb77f308f95ea9123cfe71d2d401fce1819c4a664",
+      "git_index_blob": "cba2764b0f377298017d3f0abd8366c453a0fe35",
+      "git_index_sha256": "424a94a86e59cce6ebcf8a64e44c9c9c388ad5ab318ff063ca974f9d4b25a090",
+      "git_index_bytes": 49105
+    },
+    {
+      "path": "docs/media/gallery/world-cpu-verification-results.json",
+      "bytes": 55369,
+      "working_tree_sha256": "e68b9b2bc8bc1c128af66848d48f00a35228e04009568e9724ab5de87473e459",
+      "git_index_blob": "d3b1cb66e674b55e1065fc1d829acd081dfe3045",
+      "git_index_sha256": "e68b9b2bc8bc1c128af66848d48f00a35228e04009568e9724ab5de87473e459",
+      "git_index_bytes": 55369
+    },
+    {
+      "path": "docs/media/gallery/world-engine-verification-results.json",
+      "bytes": 54969,
+      "working_tree_sha256": "ee41f474d5b41ef1472893847a92ef9ab05f53b626717b0aac60b66eb7237437",
+      "git_index_blob": "6bd706fa6887eab486fa15b19de34c908f431b98",
+      "git_index_sha256": "ee41f474d5b41ef1472893847a92ef9ab05f53b626717b0aac60b66eb7237437",
+      "git_index_bytes": 54969
+    },
+    {
+      "path": "docs/MODERN-REMIX-GPU-RESULT-20261114.md",
+      "bytes": 853,
+      "working_tree_sha256": "243007b62f5725c5a4c5bca19a2420da49627e057f3a73da113ec1c84b1a1778",
+      "git_index_blob": "178e792570b409b468e1e86a88a2a63d92510967",
+      "git_index_sha256": "243007b62f5725c5a4c5bca19a2420da49627e057f3a73da113ec1c84b1a1778",
+      "git_index_bytes": 853
+    },
+    {
       "path": "docs/REMAINING-WORK.md",
       "bytes": 4871,
       "working_tree_sha256": "657739bacb9038c9c60fabed79a2cf63722314d4ecbe3ac75a7f30dedcf08520",
@@ -569,12 +926,52 @@
       "git_index_bytes": 4814
     },
     {
+      "path": "docs/ROI-COMPOSITION-RESULTS-20261114.md",
+      "bytes": 3107,
+      "working_tree_sha256": "f460e670edf280153b52406b3788c94df4c359c23434b6f386ecc78b3c0a53f8",
+      "git_index_blob": "6b4b00be71339895d9d70493c22abc4e9b573071",
+      "git_index_sha256": "f460e670edf280153b52406b3788c94df4c359c23434b6f386ecc78b3c0a53f8",
+      "git_index_bytes": 3107
+    },
+    {
+      "path": "docs/ROI-NATIVE-ADMISSION-20261114.md",
+      "bytes": 921,
+      "working_tree_sha256": "f472ccbf1882ca105e55d98160cef54d3189244da6f0d570d5797a975d4ea658",
+      "git_index_blob": "59af6b5f2fbca54573cd8b70711dac61246390f4",
+      "git_index_sha256": "f472ccbf1882ca105e55d98160cef54d3189244da6f0d570d5797a975d4ea658",
+      "git_index_bytes": 921
+    },
+    {
+      "path": "docs/RTX-REMIX-SETUP-20261114.md",
+      "bytes": 28167,
+      "working_tree_sha256": "1ca29141a8d31a6152443247daf6f9c1f74eb00c6870c8ecc9142f6bbed4fcc4",
+      "git_index_blob": "521caf0491d1bfac9983db08f7da312ad01cc959",
+      "git_index_sha256": "1ca29141a8d31a6152443247daf6f9c1f74eb00c6870c8ecc9142f6bbed4fcc4",
+      "git_index_bytes": 28167
+    },
+    {
       "path": "docs/RUNTIME-CONTINUATION-20261113.md",
-      "bytes": 13351,
-      "working_tree_sha256": "4d326eeeb49628bbf95ced0af6483559f32a8e1f3a1a2f3c7682a1545902e01d",
-      "git_index_blob": "cca839b9243dd51aece7c38da001d0948066c626",
-      "git_index_sha256": "4d326eeeb49628bbf95ced0af6483559f32a8e1f3a1a2f3c7682a1545902e01d",
-      "git_index_bytes": 13351
+      "bytes": 42214,
+      "working_tree_sha256": "60d063fee357f2dd424f48b052772e5cc29c5457d0e5f665e778169a0343c8ce",
+      "git_index_blob": "b72bf120276e11a55cf617c9d7c9c46bff58740b",
+      "git_index_sha256": "60d063fee357f2dd424f48b052772e5cc29c5457d0e5f665e778169a0343c8ce",
+      "git_index_bytes": 42214
+    },
+    {
+      "path": "docs/SHARED-GPU-RESULTS-20261114.md",
+      "bytes": 2589,
+      "working_tree_sha256": "c27d0afab3d4f28e1f46bba1f221c57346f1d2527fb7b8edecce06dafca6a632",
+      "git_index_blob": "9917490df1844fc69bf9ebb20514c7d30efd9596",
+      "git_index_sha256": "c27d0afab3d4f28e1f46bba1f221c57346f1d2527fb7b8edecce06dafca6a632",
+      "git_index_bytes": 2589
+    },
+    {
+      "path": "docs/SKIN-FACTORY-MENU-GAPS.md",
+      "bytes": 8718,
+      "working_tree_sha256": "45b4e4ce71ab76697f8ed5fe98ddd1c1490eedee1f9f024c710dd30ecf4d29d9",
+      "git_index_blob": "461bfe69952e032a7ed991fe719462c37775c4aa",
+      "git_index_sha256": "45b4e4ce71ab76697f8ed5fe98ddd1c1490eedee1f9f024c710dd30ecf4d29d9",
+      "git_index_bytes": 8718
     },
     {
       "path": "docs/STAGE1-AUDIO-RESULTS.md",
@@ -586,11 +983,11 @@
     },
     {
       "path": "docs/STAGE1-COMPLETION-STATUS.md",
-      "bytes": 26970,
-      "working_tree_sha256": "9352faa5f33be4c267ad1a7f0f0b4d9cdb0ab94762c10818b73f5c5b6ecb24af",
-      "git_index_blob": "4071baff581aa8cc32f8cd22e4fef4eee4aafe4c",
-      "git_index_sha256": "9352faa5f33be4c267ad1a7f0f0b4d9cdb0ab94762c10818b73f5c5b6ecb24af",
-      "git_index_bytes": 26970
+      "bytes": 40251,
+      "working_tree_sha256": "1c6db8bcd660da69848726ffc677e0c2550b98bae6dd957015c4a9b011f8b69e",
+      "git_index_blob": "8fe6ad770bf77582ef157c935ebed17a0e579e49",
+      "git_index_sha256": "1c6db8bcd660da69848726ffc677e0c2550b98bae6dd957015c4a9b011f8b69e",
+      "git_index_bytes": 40251
     },
     {
       "path": "docs/STAGE1-CONTROLLER-RESULTS.md",
@@ -609,6 +1006,14 @@
       "git_index_bytes": 6255
     },
     {
+      "path": "docs/STAGE1-FRAME-PHASE-RESULTS.md",
+      "bytes": 6650,
+      "working_tree_sha256": "fd0abed9878096fb6aa4706eb8fcaf7bcc3b431b5e7f278fede79eb079f26ae1",
+      "git_index_blob": "b4144337024c91c16c5fb5976dfa3b2446553cd4",
+      "git_index_sha256": "fd0abed9878096fb6aa4706eb8fcaf7bcc3b431b5e7f278fede79eb079f26ae1",
+      "git_index_bytes": 6650
+    },
+    {
       "path": "docs/STAGE1-MK3-RESULTS.md",
       "bytes": 2886,
       "working_tree_sha256": "f46136b1ad1d6f23c9d11e73d0b90bb0e1e7478b02a84b2fb56a1e5960b3679d",
@@ -617,12 +1022,28 @@
       "git_index_bytes": 2840
     },
     {
+      "path": "docs/STAGE1-POWER-PROFILE-RESULTS.md",
+      "bytes": 5907,
+      "working_tree_sha256": "bb46ca5d2ca96d787d93e34194bac3b81bdb84d2394406fce889bba39fb1c7fd",
+      "git_index_blob": "1b4cb7b321b45b6bd12df2c4e6c75661eef98509",
+      "git_index_sha256": "bb46ca5d2ca96d787d93e34194bac3b81bdb84d2394406fce889bba39fb1c7fd",
+      "git_index_bytes": 5907
+    },
+    {
       "path": "docs/STAGE1-RUNTIME-RESULTS.md",
       "bytes": 4080,
       "working_tree_sha256": "c3b24771dcd114d8aeeb6eee125461e237e014d8b0539ace6f6d30b26101ebcc",
       "git_index_blob": "2cd65c845272124f5120a0b80cff3757433ce281",
       "git_index_sha256": "985ea30b41ecd39ac6f2743b449487c711942b65eb406505862c1aab82eda54a",
       "git_index_bytes": 4015
+    },
+    {
+      "path": "docs/STAGE1-SIGN-QUALITY-20261114.md",
+      "bytes": 26706,
+      "working_tree_sha256": "fd69776c9c21ce3da22a0c5a59d277ea6692d4cb4db637b4ce3028b9973d9559",
+      "git_index_blob": "1d789c97242e5ceb1acbeaf7dc56c622a743d78b",
+      "git_index_sha256": "fd69776c9c21ce3da22a0c5a59d277ea6692d4cb4db637b4ce3028b9973d9559",
+      "git_index_bytes": 26706
     },
     {
       "path": "docs/STAGE1-UI-RESULTS.md",
@@ -650,11 +1071,11 @@
     },
     {
       "path": "README.md",
-      "bytes": 10981,
-      "working_tree_sha256": "477fa5b570135e5c4fd800c5e4e836386c7ac8473166ea6f142303952597bc4e",
-      "git_index_blob": "e087d8508e2ee34a15a84ff40fc75b0b82a02b97",
-      "git_index_sha256": "e250e8eb56705ea68e842a542538c1396518a42db8b8bc7fc2ed8c41bc2ee71e",
-      "git_index_bytes": 10845
+      "bytes": 11650,
+      "working_tree_sha256": "c306f966f300102d1396d681f07f34e1499e3f14bf0826924dd810e2a303d3b1",
+      "git_index_blob": "60e65cf4e3bb58fc41a5456dc11e859a8a5b81cb",
+      "git_index_sha256": "b6a19f70c9acc9259c71d28464898f27ec3ae5a5be81b3954fd5a8125bd9bd9c",
+      "git_index_bytes": 11504
     },
     {
       "path": "remaster-audit/REMASTER_COMPLETION_PLAN.md",
