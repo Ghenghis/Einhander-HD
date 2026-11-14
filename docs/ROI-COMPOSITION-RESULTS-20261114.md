@@ -1,0 +1,7 @@
+# Region-only texture composition — actual CPU results
+
+Two far-building corrections are composed into a new private 1,699-page comparison pack. Independent readback confirms 1,697 unchanged PNGs; both changed pages retain their original alpha and every pixel outside the approved region. The composer binds the rectangle and artifact baseline to a pinned manifest, preserving newer parent artwork. Seven unit cases, twenty negative cases and an actual CLI fixture pass. [Source, process results, independent verification and limits](../remaster-audit/roi-menu-results-20261114/README.md).
+
+The scoped menu census now checks all 261 selected files, with only 19 primary passes. Numeric class-valid repairs can still fail visual review: the white-blotch label repair is rejected. The timeout-profile validator has author and independent 72/72 passes, while a timeout remains rejected as a stage clear. These are component results; live captures, menu interactions and gameplay acceptance remain incomplete.
+
+No GPU, game, audio or installation ran in this checkpoint. The earlier modern Remix probe remains a failure. M/I/J/P/Q frozen repairs are verified as private candidates. Their eight-ROI composition, remaining fidelity work and engine/skin/HUD/audio/seven-stage acceptance continue separately. Root prepared exact source copies after reported native usage limits, without running those freeze jobs at this checkpoint.

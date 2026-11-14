@@ -1,0 +1,53 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-B",
+  "-I",
+  "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+  "--plan",
+  "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\region-o-roi-plan-r1.json",
+  "--output",
+  "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-o-roi-r1"
+ ],
+ "cwd": "C:\\github\\Einhander",
+ "wrapper_pid": 33776,
+ "wrapper_create_time": 1794675619.7635179,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 120.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T17:00:19.939185+00:00",
+ "precheck": {
+  "system_cpu_pct": 40.2,
+  "free_gib": 72.21,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T17:00:20.945760+00:00"
+ },
+ "child_pid": 41396,
+ "child_create_time": 1794675620.9471085,
+ "job_assigned_before_resume": true,
+ "start_utc": "2026-11-14T17:00:20.960054+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 9.36,
+ "end_utc": "2026-11-14T17:00:30.321596+00:00",
+ "job": {
+  "active": 0,
+  "total": 1,
+  "terminated": 0,
+  "user_s": 4.296875,
+  "kernel_s": 2.265625
+ },
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

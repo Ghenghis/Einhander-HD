@@ -1,19 +1,19 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T16:38:39.389385+00:00",
+  "updated_at_utc": "2026-11-14T17:11:37.503397+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "Modern Remix private GPU qualification failed",
-    "evidence": "remaster-audit/modern-remix-gpu-result-20261114/README.md",
-    "gpu_run": true,
-    "passed": false,
+    "id": "Region-O private ROI composition and scoped UI/validator results",
+    "evidence": "remaster-audit/roi-menu-results-20261114/README.md",
+    "composition_passed": true,
+    "total_pages": 1699,
+    "unchanged_pages": 1697,
+    "gpu_run": false,
     "game_run": false,
     "audio_run": false,
-    "clean_shutdown": false,
-    "owned_processes_absent": true,
-    "shared_grant_explicitly_released": true,
+    "installed": false,
     "live_acceptance": false
   },
   "remaining": [
@@ -916,8 +916,9 @@
     "new_start_requires_coordinator_grant": true
   },
   "actual_monitor": {
-    "pid": 37252,
-    "bound_end_utc": "2026-11-14T17:06:21.828Z",
+    "pid": 38020,
+    "bound_end_utc": "2026-11-14T17:33:42.232Z",
+    "verified_utc": "2026-11-14T17:11:37.450027+00:00",
     "watcher_only": true,
     "proves_model_activity": false
   }

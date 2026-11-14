@@ -1,0 +1,100 @@
+{
+ "passed": true,
+ "gates": [
+  "readback_equals_written",
+  "outside_roi_identical_to_parent",
+  "centre_alpha_equals_native_class",
+  "alpha_uniform_per_block",
+  "opaque_rgb_identical_to_parent",
+  "transparent_alpha_zero",
+  "transparent_rgb_uniform_per_block"
+ ],
+ "checks": {
+  "95A3BCF8-397FBE8A": {
+   "readback_equals_written": true,
+   "outside_roi_identical_to_parent": true,
+   "centre_alpha_equals_native_class": true,
+   "alpha_uniform_per_block": true,
+   "opaque_rgb_identical_to_parent": true,
+   "transparent_alpha_zero": true,
+   "transparent_rgb_uniform_per_block": true
+  }
+ },
+ "keys": {
+  "95A3BCF8-397FBE8A": {
+   "gates": {
+    "readback_equals_written": true,
+    "outside_roi_identical_to_parent": true,
+    "centre_alpha_equals_native_class": true,
+    "alpha_uniform_per_block": true,
+    "opaque_rgb_identical_to_parent": true,
+    "transparent_alpha_zero": true,
+    "transparent_rgb_uniform_per_block": true
+   },
+   "details": {
+    "roi_alpha": {
+     "texels": 1024,
+     "transparent_texels": 576,
+     "opaque_texels": 448,
+     "centre_class_mismatches": 0,
+     "transparent_texels_not_zero_at_centre": 0,
+     "opaque_texels_wrong_at_centre": 0,
+     "mismatch_native_to_centre_alpha": {},
+     "nonuniform_alpha_blocks": 0,
+     "nonuniform_alpha_blocks_transparent": 0,
+     "nonuniform_alpha_blocks_opaque": 0
+    },
+    "outside_pixels": 4128768,
+    "outside_differing_pixels": 0,
+    "opaque_rgb_differing_pixels": 0,
+    "revealed_opaque_pixels": 5,
+    "transparent_nonzero_alpha_pixels": 0,
+    "transparent_nonuniform_rgb_blocks": 0,
+    "readback_differing_pixels": 0,
+    "roi_rgb_changed_pixels_vs_parent": 30660,
+    "roi_alpha_changed_pixels_vs_parent": 31063
+   },
+   "edge_fill": {
+    "texels": 1024,
+    "opaque": 448,
+    "transparent": 576,
+    "reached": 576,
+    "unreachable": 0,
+    "max_depth": 7,
+    "depth_histogram": {
+     "1": 136,
+     "2": 132,
+     "3": 112,
+     "4": 76,
+     "5": 62,
+     "6": 46,
+     "7": 12
+    },
+    "roi_mean_opaque_rgb": [
+     160.424,
+     107.318,
+     70.832
+    ],
+    "revealed_opaque_pixels": 5,
+    "revealed_opaque_blocks_without_visible_pixels": 0,
+    "revealed_fallback": "native palette colour",
+    "depth1_current_block_mean_luma": 34.001,
+    "depth1_new_fill_luma": 64.658
+   },
+   "current_roi_alpha": {
+    "texels": 1024,
+    "transparent_texels": 576,
+    "opaque_texels": 448,
+    "centre_class_mismatches": 434,
+    "transparent_texels_not_zero_at_centre": 434,
+    "opaque_texels_wrong_at_centre": 0,
+    "mismatch_native_to_centre_alpha": {
+     "0->127": 434
+    },
+    "nonuniform_alpha_blocks": 140,
+    "nonuniform_alpha_blocks_transparent": 138,
+    "nonuniform_alpha_blocks_opaque": 2
+   }
+  }
+ }
+}

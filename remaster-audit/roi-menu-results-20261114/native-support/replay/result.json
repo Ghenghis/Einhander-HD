@@ -1,0 +1,127 @@
+{
+ "schema": "support-timeout-r5-replay-v1",
+ "task": "EIN-SUPPORT-TIMEOUT-VERIFY-20261114",
+ "owner": "claude-einhander-support",
+ "runner_sha256": "39602cf4084ca8ea15413779660bebf1df95f5c56ab4d49661c4918e33385b7e",
+ "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+ "src": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/tooling/timeout-profile",
+ "out": "C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/replay-r5-20261114T170028Z",
+ "caps": {
+  "seconds": 60,
+  "job_memory_bytes": 536870912,
+  "cpu_gate_percent": 60.0,
+  "free_gate_bytes": 17179869184,
+  "affinity_hex": "2000"
+ },
+ "pins_before": {
+  "validate_timeout_leg.py": "c671cc01168fdd1759dfd9b2b8109801de14dc893bb96bd0566a245e3234c1cd",
+  "test_timeout_leg.py": "656960b8ad2d17ba12806447551ccea1310527d20dc15bf933accddccf272738",
+  "canonical": "b5952fae2f7687ed057cd93bda8b894412093d4612a21f127b171f303d32d0d1"
+ },
+ "pin_mismatch": [],
+ "gate": {
+  "utc": "2026-11-14T17:00:30.079977+00:00",
+  "cpu_percent": 24.32,
+  "free_phys_bytes": 77244268544,
+  "passed": true
+ },
+ "command": [
+  "C:\\Python314\\python.exe",
+  "-B",
+  "-I",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/tooling/timeout-profile\\test_timeout_leg.py",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\replay-r5-20261114T170028Z\\work"
+ ],
+ "child": {
+  "pid": 8592,
+  "start_utc": "2026-11-14T17:00:30.080941+00:00",
+  "creation_utc": "2026-11-14T17:00:30.082032+00:00",
+  "job_assigned": true,
+  "priority": "BELOW_NORMAL",
+  "end_utc": "2026-11-14T17:00:54.203190+00:00",
+  "elapsed_s": 24.122,
+  "exit": 0,
+  "timed_out": false,
+  "job": {
+   "total_processes": 73,
+   "active_processes": 0,
+   "terminated_processes": 0,
+   "cpu_user_s": 13.375,
+   "cpu_kernel_s": 5.359375,
+   "peak_job_memory_bytes": 67436544,
+   "peak_process_memory_bytes": 46735360
+  }
+ },
+ "suite": {
+  "cases": 72,
+  "passed": 72,
+  "all_ok": true,
+  "failed_cases": [],
+  "r5_cases": 17,
+  "cofailures": [
+   {
+    "case": "r2 observed narration outside capture span",
+    "expect": "O",
+    "failing": [
+     "NA",
+     "O"
+    ]
+   },
+   {
+    "case": "r2 timer expiry outside capture span",
+    "expect": "O",
+    "failing": [
+     "O",
+     "RS",
+     "TX"
+    ]
+   },
+   {
+    "case": "r2 residency frame before expiry",
+    "expect": "RS",
+    "failing": [
+     "O",
+     "RS"
+    ]
+   },
+   {
+    "case": "r2 ambiguous 704,256 residency",
+    "expect": "RS",
+    "failing": [
+     "K",
+     "RS"
+    ]
+   },
+   {
+    "case": "r2 non-object JSON rows",
+    "expect": "K",
+    "failing": [
+     "K",
+     "O"
+    ]
+   }
+  ]
+ },
+ "xt_control": {
+  "case": "canonical validator on the timeout leg",
+  "expect": "fails X and T",
+  "rc": 1,
+  "failing": [
+   "F",
+   "L",
+   "M",
+   "S",
+   "T",
+   "X"
+  ],
+  "ok": true
+ },
+ "pins_after": {
+  "validate_timeout_leg.py": "c671cc01168fdd1759dfd9b2b8109801de14dc893bb96bd0566a245e3234c1cd",
+  "test_timeout_leg.py": "656960b8ad2d17ba12806447551ccea1310527d20dc15bf933accddccf272738",
+  "canonical": "b5952fae2f7687ed057cd93bda8b894412093d4612a21f127b171f303d32d0d1"
+ },
+ "src_unchanged": true,
+ "exit": 0,
+ "finished_utc": "2026-11-14T17:00:54.228444+00:00"
+}

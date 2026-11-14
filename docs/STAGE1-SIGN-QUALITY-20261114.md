@@ -1,5 +1,11 @@
 # Green and pink sign quality — November 14, 2026
 
+## Verified region-O integration —17:02 UTC
+
+The private O ROI composition passes: 1,699 page hashes checked, 1,697 unchanged PNGs, two size-neutral corrected pages with identical alpha and all outside-region pixels retained. Composer source and a real CLI fixture are checked; runtime admission/live motion remain pending. The scoped menu census finds only 19/261 primary passes and preserves visual repair failures. Timeout validation passes 72/72 in author and independent runs, without establishing a stage clear. [Actual results and unfinished work](../docs/ROI-COMPOSITION-RESULTS-20261114.md).
+
+No new GPU/game/audio run or installation. M/I/J/P/Q freezes are verified; eight-ROI composition remains pending after a prestart runner-pin refusal. The P/Q late-start violation is preserved. The failed modern Remix GPU result is preserved. Metadata monitor PID38020 is bounded to17:33:42.232 UTC and proves monitoring only. Earlier dated paragraphs below are historical.
+
 ## Actual modern GPU result —16:35UTC
 
 The private modern Remix probe ran on3090Ti and FAILED: three identical outputs with zero expected triangle pixels; Shutdown exceeded its15-second deadline, child exit30/40.159s, wrapper exit1/41.681s. Startup/frame return codes and the initial GL readback pass do not establish rendering. Both processes are absent, markers removed and shared grant explicitly released revision10. [Actual evidence and remaining work](../docs/MODERN-REMIX-GPU-RESULT-20261114.md).

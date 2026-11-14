@@ -1,0 +1,59 @@
+--- /c/github/Einhander/remaster-audit/parallel-stages-20261114/s45/tools/s45_grant_launch.ps1	2026-11-14 09:01:08.194103500 -0700
++++ /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/tools/ui_grant_launch.ps1	2026-11-14 09:26:46.308322500 -0700
+@@ -1,12 +1,15 @@
+ <#
+-s45 granted-job launcher (claude-einhander-s45). ONE attempt per grant; never retries.
++claude-einhander-ui granted-job launcher, adapted from s45 tools/s45_grant_launch.ps1 (sha256 c7f9448f...).
++Changes vs s45: base/cwd, receipts and logs are the registered ui output (receipts\, logs\); -Affinity has no default
++(pass the mask the grant names); receipts carry owner and derived_from. Preflight, spawn, caps and exit codes unchanged.
++ONE attempt per grant; never retries.
+ Preflight runs IMMEDIATELY before spawn, in this order: grant start deadline (GrantUtc + StartWindowSec), tool sha256, CPU load
+ < 60 %, free RAM > 16 GiB, log file absent. Any failure writes a DECLINE receipt (reason, values) and exits 3 without spawning;
+ a declined grant is reported and needs a fresh grant (no retry here).
+ On spawn: cmd /c start "" /b /wait /belownormal /affinity <mask> python -I -B <tool> <args>, threads env = 1, polls the python
+ child's working set every 200 ms (kill tree above MemCapMB), kills the tree at CapSec. Writes a receipt JSON with cmd/python PID,
+ python creation time, start/end UTC, wall, numerical outer exit, killed flag, peak working set, matching python processes left.
+-All output via Write-Host (no function return values). Writes receipts ONLY under s45/menu-hud/receipts/.
++All output via Write-Host (no function return values). Writes receipts ONLY under <ui output>\receipts\, logs under <ui output>\logs\.
+ #>
+ param(
+   [Parameter(Mandatory)] [string] $Name,
+@@ -18,22 +21,23 @@
+   [int] $StartWindowSec = 120,
+   [int] $CapSec = 30,
+   [int] $MemCapMB = 512,
+-  [string] $Affinity = '2000'
++  [Parameter(Mandatory)] [string] $Affinity
+ )
+ $ErrorActionPreference = 'Stop'
+-$s45 = 'C:\github\Einhander\remaster-audit\parallel-stages-20261114\s45'
+-$rdir = "$s45\menu-hud\receipts"
++$base = 'C:\github\Einhander\.claude\worktrees\xenodochial-snyder-093665\remaster-audit\claude-einhander-ui'
++$rdir = "$base\receipts"
+ New-Item -ItemType Directory -Force $rdir | Out-Null
++New-Item -ItemType Directory -Force "$base\logs" | Out-Null
+ $stamp = (Get-Date).ToUniversalTime().ToString('yyyyMMddTHHmmssZ')
+ $receipt = "$rdir\$Name-$stamp.json"
+-$log = "$s45\menu-hud\$Name.log"
++$log = "$base\logs\$Name.log"
+ $match = [IO.Path]::GetFileName($Tool)
+ $grant = [datetime]::Parse($GrantUtc).ToUniversalTime()
+-$r = [ordered]@{ name = $Name; grant_msg = $GrantMsg; grant_utc = $grant.ToString('o'); start_window_s = $StartWindowSec; tool = $Tool; tool_args = $ToolArgs; cap_s = $CapSec; mem_cap_mib = $MemCapMB; affinity_mask = $Affinity }
++$r = [ordered]@{ owner = 'claude-einhander-ui'; derived_from = 's45 tools/s45_grant_launch.ps1 c7f9448fb3cd612a656d3aa4cf051728345038930824d8d6d62814647e159a5a'; name = $Name; grant_msg = $GrantMsg; grant_utc = $grant.ToString('o'); start_window_s = $StartWindowSec; tool = $Tool; tool_args = $ToolArgs; cap_s = $CapSec; mem_cap_mib = $MemCapMB; affinity_mask = $Affinity }
+ # ---- preflight, immediately before spawn ----
+ $now = (Get-Date).ToUniversalTime()
+ $age = ($now - $grant).TotalSeconds
+-$sha = (Get-FileHash "$s45\$Tool" -Algorithm SHA256).Hash.ToLower()
++$sha = (Get-FileHash "$base\$Tool" -Algorithm SHA256).Hash.ToLower()
+ $cpu = (Get-CimInstance Win32_Processor | Measure-Object -Property LoadPercentage -Average).Average
+ $freeGiB = [math]::Round((Get-CimInstance Win32_OperatingSystem).FreePhysicalMemory / 1MB, 2)
+ $r.preflight = [ordered]@{ utc = $now.ToString('o'); seconds_since_grant = [math]::Round($age, 2); tool_sha256 = $sha; cpu_pct = $cpu; free_gib = $freeGiB; log_exists = (Test-Path $log) }
+@@ -52,7 +56,7 @@
+ # ---- spawn ----
+ $env:OMP_NUM_THREADS = '1'; $env:OPENBLAS_NUM_THREADS = '1'; $env:MKL_NUM_THREADS = '1'; $env:NUMEXPR_NUM_THREADS = '1'
+ $start = (Get-Date).ToUniversalTime()
+-$p = Start-Process cmd.exe -ArgumentList '/c', ("start `"`" /b /wait /belownormal /affinity $Affinity python -I -B $Tool $ToolArgs") -WorkingDirectory $s45 -NoNewWindow -PassThru -RedirectStandardOutput $log -RedirectStandardError "$log.err"
++$p = Start-Process cmd.exe -ArgumentList '/c', ("start `"`" /b /wait /belownormal /affinity $Affinity python -I -B $Tool $ToolArgs") -WorkingDirectory $base -NoNewWindow -PassThru -RedirectStandardOutput $log -RedirectStandardError "$log.err"
+ $py = $null; $peak = 0; $killed = $false; $killReason = $null
+ $sw = [Diagnostics.Stopwatch]::StartNew()
+ while (-not $p.HasExited -and $sw.ElapsedMilliseconds -lt ($CapSec * 1000)) {

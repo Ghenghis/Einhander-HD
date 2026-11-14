@@ -68,6 +68,58 @@ def apply_cutout_rgb_fill(image,function):
     changed=int(np.any(before[:,:,:3]!=after[:,:,:3],axis=2).sum())
     return Image.fromarray(after),dict(applied=True,rgb_pixels_changed=changed,alpha_unchanged=True,visible_rgb_unchanged=True)
 
+def apply_roi_overlay(parent,authored,policy):
+    """Replace one native half-open rectangle; preserve the latest parent's other pixels."""
+    if not isinstance(policy,dict) or set(policy)!={'native_size','uv'}:
+        raise ValueError('ROI overlay needs exactly native_size and uv')
+    native=policy['native_size'];uv=policy['uv']
+    if not isinstance(native,list) or len(native)!=2 or not isinstance(uv,list) or len(uv)!=4:
+        raise ValueError('Malformed native ROI geometry')
+    if any(type(v) is not int for v in [*native,*uv]):
+        raise ValueError('Native ROI coordinates must be integers')
+    nw,nh=native;l,t,right,bottom=uv
+    if not (1<=nw<=4096 and 1<=nh<=4096 and 0<=l<right<=nw and 0<=t<bottom<=nh):
+        raise ValueError('Native ROI is empty or outside its page')
+    if parent.mode!='RGBA' or authored.mode!='RGBA':
+        raise ValueError('ROI overlay requires native RGBA inputs')
+    if parent.size!=authored.size or not (1<=parent.width<=4096 and 1<=parent.height<=4096):
+        raise ValueError('ROI overlay requires identical supported page dimensions')
+    if parent.width%nw or parent.height%nh or parent.width//nw!=parent.height//nh:
+        raise ValueError('ROI overlay needs one integer native scale')
+    scale=parent.width//nw
+    if scale<1:raise ValueError('ROI overlay cannot downscale native data')
+    box=(l*scale,t*scale,right*scale,bottom*scale)
+    before=np.array(parent.convert('RGBA'),copy=True)
+    after=before.copy();patch=np.asarray(authored.convert('RGBA'))
+    x0,y0,x1,y1=box
+    after[y0:y1,x0:x1]=patch[y0:y1,x0:x1]
+    outside=np.ones(before.shape[:2],dtype=bool);outside[y0:y1,x0:x1]=False
+    if not np.array_equal(after[outside],before[outside]):
+        raise ValueError('ROI overlay changed an outside pixel')
+    return Image.fromarray(after),dict(native_size=native,uv_half_open=uv,pixel_box=list(box),
+        outside_rgba_identical=True,outside_pixels=int(outside.sum()),
+        roi_pixels_changed=int(np.any(after[y0:y1,x0:x1]!=before[y0:y1,x0:x1],axis=2).sum()))
+
+
+def validate_roi_artifact(metadata,key,policy,authored):
+    """Bind a frozen ROI and its delta to its pinned baseline, not a newer parent."""
+    region=metadata.get('region','')
+    match=re.search(r'\buv\s*\[(\d+),(\d+)\]-\[(\d+),(\d+)\]\s+half-open\b',region)
+    if not match or list(map(int,match.groups()))!=policy['uv']:
+        raise ValueError('ROI differs from frozen manifest region')
+    baseline=metadata.get('keys',{}).get(key,{}).get('live')
+    if not isinstance(baseline,dict):raise ValueError('ROI artifact has no pinned original baseline')
+    with Image.open(pinned(baseline)) as old:
+        # Reuse the exact geometry/mode checks without accepting unbound coordinates.
+        _,geometry=apply_roi_overlay(old,authored,policy)
+        x0,y0,x1,y1=geometry['pixel_box']
+        before=np.asarray(old);patch=np.asarray(authored)
+        outside=np.ones(before.shape[:2],dtype=bool);outside[y0:y1,x0:x1]=False
+        if not np.array_equal(before[outside],patch[outside]):
+            raise ValueError('Frozen artwork changes pixels outside its declared ROI baseline')
+    return dict(manifest_region=region,original_baseline=baseline,authored_outside_baseline_identical=True)
+
+
 def verified_native_source(source,key):
     words=pinned(source['source_words']).read_bytes();clut=pinned(source['source_clut']).read_bytes()
     w,h=source['source_shape_words'];depth=source['depth']
@@ -98,6 +150,9 @@ def main():
         if row.get('emissive'):pinned(row['emissive'])
         if row.get('alpha'):pinned(row['alpha'])
         if row.get('source_handoff'):pinned(row['source_handoff'])
+        if row.get('roi_overlay') is not None:
+            if any(row.get(k) is not None for k in ('exact','image_uv','alpha','emissive')) or fill:
+                raise ValueError('ROI overlay cannot mix cropping, alpha/mask replacement or whole-page RGB fill')
         if not KEY.fullmatch(row['key']):raise ValueError('Invalid exact key')
         if row.get('native_source'):verified_native_source(row['native_source'],row['key'])
         declared=metadata.get('keys',{})
@@ -162,7 +217,7 @@ def main():
                 clut_sha256=hashlib.sha256(clut).hexdigest(),source_words=row['exact']['source_words'])
         if key in chosen:raise ValueError('Conflicting plan entries for '+key)
         chosen.add(key)
-        name=key+'.png';target=replacements/name;previous=ledger.get(name);encoded=None;reuse=False
+        name=key+'.png';target=replacements/name;previous=ledger.get(name);encoded=None;reuse=False;overlay_result=None
         with Image.open(image_path) as opened:
             image=opened.convert('RGBA')
             if row.get('image_uv'):
@@ -191,6 +246,15 @@ def main():
             if fill:
                 image,fill_result=apply_cutout_rgb_fill(image,fill[1])
                 fill_rows.append(dict(key=key,**fill_result))
+            if row.get('roi_overlay') is not None:
+                if not previous:raise ValueError('ROI overlay needs an existing pinned parent page')
+                metadata=manifest_refs[str(Path(row['manifest']['path']).resolve())]['metadata']
+                binding=validate_roi_artifact(metadata,key,row['roi_overlay'],image)
+                with Image.open(target) as old:
+                    image,overlay_result=apply_roi_overlay(old,image,row['roi_overlay'])
+                overlay_result.update(binding)
+                classes=np.unique(np.asarray(image.getchannel('A')))
+                if not set(classes).issubset({0,127,255}):raise ValueError('ROI overlay parent has noncategorical alpha')
             # Validate and transform every input first. Reuse the parent's
             # already-pinned encoded PNG only after comparing all final RGBA
             # pixels; changed builders or inputs cannot bypass validation.
@@ -217,7 +281,8 @@ def main():
         ledger[name]=dict(name=name,composed_path=str(target),sha256=sha(target),dimensions=[width,height],
             bytes=target.stat().st_size,origin='frozen artwork candidate',input=row,
             previous_sha256=previous['sha256'] if previous else None,source_proof=source_proof,
-            alpha_classes=classes.tolist(),pixel_equal_parent_png_reused=reuse,live_verified=False)
+            alpha_classes=classes.tolist(),pixel_equal_parent_png_reused=reuse,
+            roi_overlay=overlay_result,live_verified=False)
     atomic(exact_file,('\n'.join(exact_lines)+'\n').encode())
     report=copy.deepcopy(parent)
     report.update(evidence=str(out),variant=out.name,files=sorted(ledger.values(),key=lambda row:row['name']),

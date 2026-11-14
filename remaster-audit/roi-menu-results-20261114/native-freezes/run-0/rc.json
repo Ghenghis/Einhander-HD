@@ -1,0 +1,50 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "python",
+  "C:/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/95a3-m-windows/window_ramp_rebuild.py",
+  "--freeze",
+  "--regions",
+  "M,I,J"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db",
+ "wrapper_pid": 38576,
+ "wrapper_create_time": 1794675817.6568682,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 240.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T17:03:37.811198+00:00",
+ "precheck": {
+  "system_cpu_pct": 31.8,
+  "free_gib": 72.09,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T17:03:38.812516+00:00"
+ },
+ "child_pid": 42852,
+ "child_create_time": 1794675818.8135512,
+ "job_assigned_before_resume": true,
+ "start_utc": "2026-11-14T17:03:38.821581+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 64.786,
+ "end_utc": "2026-11-14T17:04:43.610408+00:00",
+ "job": {
+  "active": 0,
+  "total": 1,
+  "terminated": 0,
+  "user_s": 48.21875,
+  "kernel_s": 9.1875
+ },
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

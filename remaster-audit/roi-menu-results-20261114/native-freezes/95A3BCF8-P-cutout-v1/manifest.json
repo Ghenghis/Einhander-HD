@@ -1,0 +1,168 @@
+{
+ "name": "95A3BCF8-P-cutout-v1",
+ "status": "candidate (private; not integrated, not live-tested)",
+ "owner": "claude-einhander",
+ "region": "P_antenna_tower uv [240,112]-[256,176] half-open (t3-green-lights/regions.json)",
+ "gpu": "none: CPU-only alpha class restore; opaque RGB copied from the parent, no generated imagery",
+ "why": "atlas 95A3BCF8 is a 4-bit native page. P_antenna_tower is drawn only with palette 397FBE8A and Q_ladder_and_tank\nonly with palette 79B18A47 (t3-green-lights draw-census). In both palettes CLUT entry 15 is raw 0x0000, the only\ntransparent entry; every other entry is opaque (class 127, no STP). The live parent pages (frozen-w3-lit-v1) came\nfrom a smoothed float index field, so index 15 rounded to 14 at many cut-out texels. Those texels are opaque\n(alpha 127) with dark RGB where the native art is see-through.",
+ "method": "(ROI = region bbox x 8 px):\n  * ALPHA = the native class of each texel (0 transparent, 127 opaque), uniform per 8x8 block, inside the ROI only.\n    Classes outside {0, 127}, or a transparent set other than exactly CLUT entry 15 (by palettes.json and by the raw\n    stock CLUT words), are refused.\n  * Opaque texels keep the parent RGB exactly for every pixel the parent showed. Nothing is re-authored. Pixels the\n    parent hid (alpha 0) inside an opaque texel take the mean of the block's visible pixels, or the native colour.\n  * Transparent texels get an edge-fill RGB, so bilinear filtering at cut-out edges shows no dark fringe. A texel's\n    colour is the mean RGB of its 8x8 parent block. A layer-synchronous breadth-first dilation over the ROI texel\n    grid starts at the opaque texels; each transparent texel takes the mean of its 4-neighbours assigned in earlier\n    layers. Texels unreachable within the ROI take the ROI's mean opaque colour. Each block is filled uniformly\n    (rounded to 8 bits).\n  * Every pixel outside the ROI is byte-identical to the parent.",
+ "bindings": "indices-256 equals the decoded stock words (all 16,384 valid, 4-bit, low nibble\nfirst); the raw CLUT decodes to palettes.json; region bboxes equal regions.json; the draw census binds each key to\nits region only, with uv_union inside the bbox; each parent is RGBA 2048x2048. --freeze also requires the parent\nsha256 prefix recorded below.",
+ "params": {
+  "px_per_texel": 8,
+  "transparent_entry": 15,
+  "classes_allowed": [
+   0,
+   127
+  ],
+  "gates": [
+   "readback_equals_written",
+   "outside_roi_identical_to_parent",
+   "centre_alpha_equals_native_class",
+   "alpha_uniform_per_block",
+   "opaque_rgb_identical_to_parent",
+   "transparent_alpha_zero",
+   "transparent_rgb_uniform_per_block"
+  ]
+ },
+ "keys": {
+  "95A3BCF8-397FBE8A": {
+   "region": "P_antenna_tower",
+   "bbox": [
+    240,
+    112,
+    256,
+    176
+   ],
+   "census": {
+    "region_draws": 54,
+    "draws": 54,
+    "uv_union": [
+     240,
+     112,
+     255,
+     175
+    ],
+    "semi": {
+     "-1": 54
+    },
+    "max_quad_area": 2619
+   },
+   "parent": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-397FBE8A.png",
+    "sha256": "b0c419bbbb48c324ccb0f055c8b83421d52afc1be01df06730d0634e126d2eaa",
+    "mode": "RGBA",
+    "shape": [
+     2048,
+     2048,
+     4
+    ]
+   },
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-397FBE8A.png",
+    "sha256": "b0c419bbbb48c324ccb0f055c8b83421d52afc1be01df06730d0634e126d2eaa"
+   },
+   "native": {
+    "words": 16384,
+    "words_valid": 16384,
+    "indices_equal_indices256": true,
+    "clut_raw_hex": [
+     "43FF",
+     "5BBF",
+     "535F",
+     "3B5F",
+     "3ADE",
+     "3679",
+     "2E3D",
+     "25B8",
+     "1DB5",
+     "1954",
+     "1931",
+     "1510",
+     "10AE",
+     "10CB",
+     "0847",
+     "0000"
+    ],
+    "frame": 11315,
+    "clut_xy": [
+     144,
+     491
+    ],
+    "files": {
+     "words.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-397FBE8A.words.bin",
+      "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+     },
+     "valid.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-397FBE8A.valid.bin",
+      "sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f"
+     },
+     "clut.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-397FBE8A.clut.bin",
+      "sha256": "fe2884fb658d1d1e7af425a327edae0e68a247c06a205363b4deb5e69b4834c3"
+     },
+     "source.json": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-397FBE8A.source.json",
+      "sha256": "a6c699aa5df806c12a199feb75003179970acbf8c633f03b70826e8e33e82b2f"
+     }
+    }
+   },
+   "classes": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    0
+   ]
+  }
+ },
+ "validation_passed": true,
+ "integration": "ROI-only: overlay the region ROI (RGBA) of page2048 onto the same parent page; every other pixel is the parent's, byte for byte.",
+ "known_limits": [
+  "alpha follows the native CLUT class per texel (0 or 127); opaque RGB the parent showed is unchanged; pixels the parent hid (alpha 0) inside opaque texels are filled from that block's visible pixels",
+  "the edge-fill RGB under alpha 0 is never shown directly; it only affects bilinear samples at cut-out edges",
+  "Q bbox [0,128,48,192] overlaps the R_tall_cylinder bbox in u 44..47; the 79B18A47 page is drawn only by Q (draw census), so the ROI is replaced on that page only",
+  "SIMULATION only: not integrated, not seen live"
+ ],
+ "sources": {
+  "indices": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\indices-256.npy",
+   "sha256": "5da75af150796f75fce5e35f3838e25921df9b089e10d3fbab908dbb42bbbb19"
+  },
+  "palettes": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\palettes.json",
+   "sha256": "47ee9709fc3390bf765623bbf67ddf09dcecf83f41f76653f960ed7256ebd680"
+  },
+  "regions": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\regions.json",
+   "sha256": "52aa9d2509c14fd633b6fc373a2f6f12ca44d377fb44b9fa65c9a302cfbac075"
+  },
+  "census": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\draw-census.json",
+   "sha256": "a698ca0f5cc5a92031d6fe1561334b9a5f825634ea93e73beeeff8b91daf2218"
+  },
+  "builder": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cutouts\\cutout_class_restore.py",
+   "sha256": "ab470e13065c5286b4238eada456b566e3650f603606bc8814b1a02953da14e3"
+  }
+ },
+ "pin": {
+  "priority": 16384,
+  "affinity": [
+   15
+  ],
+  "threads_env": "1"
+ },
+ "built_utc": "2026-11-14T17:10:21.798700+00:00"
+}
