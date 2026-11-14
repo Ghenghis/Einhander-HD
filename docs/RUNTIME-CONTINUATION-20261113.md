@@ -1,5 +1,7 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+The follow-up [CPU review packet](../remaster-audit/engine-cpu-review-20261114/README.md) preserves Claude's independent mesh review and root's revised adapter: **71 host checks pass** with transform-hash and command/lane validation. Strict world-v3 class audit: 1,182 pass, **299 mismatch**, 218 lack a qualifying native source in the audit; 142,550 mismatching native centres. Root's 13 audit controls and source-hash/complete-word proof checks pass. These are explicit inherited defects, not full-pack acceptance; some older prepared fixes only stamp centre pixels. GPU/game hold remains in force. Claude's new census v3 work is in progress, not yet a delivered test result.
+
 ## Current work — November 14, after world integration and engine host checks
 
 CPU-only continuation: the complete private v60-r3 executable now compiles/links with the v2 provenance/census and preserved frame diagnostics (152 pinned inputs, 143 private headers). It has not been launched and is not a clean full-source rebuild. A separate SDK-layout mesh staging prototype passes 48 host checks; it is not linked into the game or submitted to Remix. Sources, exact success/failure recipes/logs and limitations are in the [CPU integration checkpoint](../remaster-audit/engine-cpu-integration-20261114/README.md). Runtime coverage, camera/object separation, real scene/material submission, ray tracing, DLSS and live acceptance remain pending. No GPU/game work ran; the user's GPU hold remains active.

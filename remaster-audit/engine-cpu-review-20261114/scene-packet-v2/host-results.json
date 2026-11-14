@@ -1,0 +1,57 @@
+{
+  "started_utc": "2026-11-14T09:21:59.468123+00:00",
+  "gpu_work": false,
+  "game_executed": false,
+  "sdk_calls": false,
+  "logical_cpu_affinity": [
+    15
+  ],
+  "priority_class": 16384,
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "commands": [
+    {
+      "label": "compile",
+      "arguments": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\remix_mesh_packet.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\test_remix_mesh_packet.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\mesh_packet_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 1.389,
+      "peak_sampled_rss_bytes": 4718592,
+      "stdout": "In file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\remix_mesh_packet.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2/remix_mesh_packet.h:3:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\remix_mesh_packet.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2/remix_mesh_packet.h:4:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]\n 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };\n      |                                                                    ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1049 |     remixapi_Interface remixInterface = { 0 };\n      |                                             ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1078 |     remixapi_Interface nullInterface = { 0 };\n      |                                            ^\n4 warnings generated.\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\test_remix_mesh_packet.cpp:2:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2/remix_mesh_packet.h:3:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\test_remix_mesh_packet.cpp:2:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2/remix_mesh_packet.h:4:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]\n 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };\n      |                                                                    ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1049 |     remixapi_Interface remixInterface = { 0 };\n      |                                             ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1078 |     remixapi_Interface nullInterface = { 0 };\n      |                                            ^\n4 warnings generated.\n"
+    },
+    {
+      "label": "host-test",
+      "arguments": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\scene-packet-v2\\mesh_packet_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 0.05,
+      "peak_sampled_rss_bytes": 2555904,
+      "stdout": "checks 71 failures 0\n"
+    }
+  ],
+  "source_hashes": {
+    "remix_mesh_packet.cpp": "7181e77b88fd386c42641fe0d8b285a870851acdeefbfaecba17e5b1490f170f",
+    "remix_mesh_packet.h": "4d615edbc61a3f816b2c1813e95ffe131102b004825b22d39274e6b145cff4b2",
+    "run_host_checks.py": "9823054a76630ea44de2da0539cf20cc772dc2dc4de9bd1b62505b5145a24f9e",
+    "test_remix_mesh_packet.cpp": "ad0d60a907fe44a9e3ff8a0f2a637a7a6d8cf89831947b8d7b458789a91118f5"
+  },
+  "header_pins": {
+    "pgxp.h": "a9b658729d4f60f5d7b2a58e68c449a3c303b7e4f8d789db81e908b53c84108e",
+    "remix_c.h": "a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d"
+  },
+  "executable_sha256": "495319b165ede4d68b67b3ddf5eedd2be640d100872c9dcdbce827e84f79b198",
+  "ended_utc": "2026-11-14T09:22:00.927910+00:00",
+  "passed": true,
+  "user_gpu_hold_unchanged": true,
+  "scope": "CPU resource-packet construction against official SDK layout using explicit host fixtures. No game integration, real material allocation, camera/world reconstruction, SDK renderer call, rendering or GPU test."
+}

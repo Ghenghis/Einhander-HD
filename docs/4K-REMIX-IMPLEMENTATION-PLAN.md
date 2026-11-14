@@ -1,5 +1,7 @@
 # Full 4K remaster and RTX Remix implementation
 
+The follow-up [CPU review packet](../remaster-audit/engine-cpu-review-20261114/README.md) preserves Claude's independent mesh review and root's revised adapter: **71 host checks pass** with transform-hash and command/lane validation. Strict world-v3 class audit: 1,182 pass, **299 mismatch**, 218 lack a qualifying native source in the audit; 142,550 mismatching native centres. Root's 13 audit controls and source-hash/complete-word proof checks pass. These are explicit inherited defects, not full-pack acceptance; some older prepared fixes only stamp centre pixels. GPU/game hold remains in force. Claude's new census v3 work is in progress, not yet a delivered test result.
+
 Updated November 14, 2026. The full remaster is incomplete. Full visual coverage has not been established. The authorized scope includes engine development and end-to-end Remix integration, all seven stages and all world layers. Five revised sign candidates are one small part of that scope.
 
 ## Verified implementation state
