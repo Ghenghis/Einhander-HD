@@ -65,13 +65,22 @@ export async function inbox(base,owner){
   return rows.sort((a,b)=>(rank[b.priority]??2)-(rank[a.priority]??2)||
     String(b.created_utc).localeCompare(String(a.created_utc)));
 }
+// Project queue producers use exact owners. Hermes interprets patterns as
+// regexes, so new producers should anchor them; a bare primary owner can also
+// match sibling workers there. Accept both the legacy literal and its exact
+// anchored spelling without evaluating arbitrary regexes in the local hook.
+export function exactOwnerPatternMatches(pattern,owner){
+  if(typeof pattern!=='string'||typeof owner!=='string'||!owner)return false;
+  const escaped=owner.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return pattern===owner||pattern==='^'+escaped+'$';
+}
 export async function pendingWork(base,owner){
   const directory=inside(base,'.hermes3d_orchestrator/tasks/pending');let names;
   try{names=await fs.readdir(directory);}catch(e){if(e.code==='ENOENT')return [];throw e;}
   const rows=[];
   for(const name of names.filter(x=>/^[a-zA-Z0-9_-]+\.json$/.test(x))){
     const task=await read(path.join(directory,name),null);
-    if(task&&task.target_owner_pattern===owner&&!task.blocked_reason&&!task.claimed_by)rows.push(task);
+    if(task&&exactOwnerPatternMatches(task.target_owner_pattern,owner)&&!task.blocked_reason&&!task.claimed_by)rows.push(task);
   }
   return rows.sort((a,b)=>(b.priority||0)-(a.priority||0));
 }

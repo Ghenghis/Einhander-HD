@@ -1,0 +1,341 @@
+{
+ "tool": "build_t2_fixture.r4.py",
+ "builder_sha256": "7b39f6a48dce6e8f02ed35788ab9886951a30d21398b6e6f4dea4ba3750d1636",
+ "cpu": 15,
+ "out": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z",
+ "started_utc": "2026-11-14T22:29:08.299751+00:00",
+ "gl_used": false,
+ "sdk_used": false,
+ "steps": [
+  {
+   "label": "extract",
+   "normalization": "raw pin, then CRLF->LF bytes, then anchors",
+   "blocks": {
+    "sign_extend": {
+     "source": "gpu.c",
+     "first_line": 3269,
+     "lines": 4,
+     "sha256": "97dd1b03dd35e010d69d310aab285a17e87c06691221a05356b35d97973c1940",
+     "pinned": "97dd1b03dd35e010d69d310aab285a17e87c06691221a05356b35d97973c1940",
+     "passed": true
+    },
+    "parse_vertex": {
+     "source": "gpu.c",
+     "first_line": 3277,
+     "lines": 4,
+     "sha256": "971000ac2c1fe5e0d6cd33d460988ae9f40a3491298d6b37eb7b2c81bb624949",
+     "pinned": "971000ac2c1fe5e0d6cd33d460988ae9f40a3491298d6b37eb7b2c81bb624949",
+     "passed": true
+    },
+    "word_count": {
+     "source": "gpu.c",
+     "first_line": 4570,
+     "lines": 85,
+     "sha256": "c5f6fa67dfb83120d0c8a902258f33db4a9523bb1376743b51d681aa18040598",
+     "pinned": "c5f6fa67dfb83120d0c8a902258f33db4a9523bb1376743b51d681aa18040598",
+     "passed": true
+    },
+    "fill": {
+     "source": "gpu.c",
+     "first_line": 4287,
+     "lines": 4,
+     "sha256": "e47c795b35adedcc0fd38a456427e4a4be5721b9d3a588376a0a5103f78a965f",
+     "pinned": "e47c795b35adedcc0fd38a456427e4a4be5721b9d3a588376a0a5103f78a965f",
+     "passed": true
+    },
+    "copy": {
+     "source": "gpu.c",
+     "first_line": 5274,
+     "lines": 8,
+     "sha256": "fc758e038ad110ceae00c9a55cf6d0fa425dfc6781d10cf8db56619778c3a790",
+     "pinned": "fc758e038ad110ceae00c9a55cf6d0fa425dfc6781d10cf8db56619778c3a790",
+     "passed": true
+    },
+    "cpu_to_vram": {
+     "source": "gpu.c",
+     "first_line": 4450,
+     "lines": 8,
+     "sha256": "1998ffd79b8e6d4007cf22e9070dd741c83f26f11f231412c59353612ce9d152",
+     "pinned": "1998ffd79b8e6d4007cf22e9070dd741c83f26f11f231412c59353612ce9d152",
+     "passed": true
+    },
+    "vram_to_cpu": {
+     "source": "gpu.c",
+     "first_line": 4539,
+     "lines": 7,
+     "sha256": "6d11eb6299945a63f950fcae1b459ea90ef607ebf10ec743cc27ce82b2c32fa4",
+     "pinned": "6d11eb6299945a63f950fcae1b459ea90ef607ebf10ec743cc27ce82b2c32fa4",
+     "passed": true
+    },
+    "mono_rect_size": {
+     "source": "gpu.c",
+     "first_line": 4110,
+     "lines": 4,
+     "sha256": "7e56cc9f946ea3c505e3cd1bf1aa23a99684ab7338a37f8b0c204bad9eaff672",
+     "pinned": "7e56cc9f946ea3c505e3cd1bf1aa23a99684ab7338a37f8b0c204bad9eaff672",
+     "passed": true
+    },
+    "textured_rect_size": {
+     "source": "gpu.c",
+     "first_line": 4144,
+     "lines": 4,
+     "sha256": "c7d973123942f91019d94d75e8d5395ee5d05833789afe142fc2b30e573ccef6",
+     "pinned": "c7d973123942f91019d94d75e8d5395ee5d05833789afe142fc2b30e573ccef6",
+     "passed": true
+    },
+    "clut": {
+     "source": "gpu.c",
+     "first_line": 3833,
+     "lines": 2,
+     "sha256": "ce195f2af16b2d5fc19cf4d94890f5adc49ac42dc3ff93bba7b4e8719abbf029",
+     "pinned": "ce195f2af16b2d5fc19cf4d94890f5adc49ac42dc3ff93bba7b4e8719abbf029",
+     "passed": true
+    },
+    "poly_tpage": {
+     "source": "gpu.c",
+     "first_line": 3837,
+     "lines": 1,
+     "sha256": "89e95d52143777686c79e545f5c4a2461e310951077bf4814509ffb56649d868",
+     "pinned": "89e95d52143777686c79e545f5c4a2461e310951077bf4814509ffb56649d868",
+     "passed": true
+    },
+    "page": {
+     "source": "gpu_gl_renderer.c",
+     "first_line": 2527,
+     "lines": 3,
+     "sha256": "648c6a2a2a82359b187f3b0e3adb9e82cc2e43bdb28245846b9c2c65506f70b1",
+     "pinned": "648c6a2a2a82359b187f3b0e3adb9e82cc2e43bdb28245846b9c2c65506f70b1",
+     "passed": true
+    }
+   },
+   "divide_block": {
+    "sha256": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+    "v61_equals_canonical": true
+   },
+   "pgxp_derivation": {
+    "original_sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+    "derived_sha256": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+    "offset": 3986,
+    "old": "*x16/*y16",
+    "new": "*x16 and *y16",
+    "original_bytes": 19084,
+    "derived_bytes": 19088
+   },
+   "passed": true
+  },
+  {
+   "label": "compile-unit",
+   "argv": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\executed-test-unit.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\test-t2r4-unit.exe"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "pid": 12680,
+   "creation_unix": 1794695348.4847412,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 1.048,
+   "passed": true,
+   "output_tail": ""
+  },
+  {
+   "label": "run-unit",
+   "argv": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\test-t2r4-unit.exe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\fixture-unit.json"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 10,
+   "pid": 33000,
+   "creation_unix": 1794695349.5592225,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 0.09,
+   "passed": true,
+   "output_tail": "{\"fixture\":\"t2\",\"revision\":\"r4\",\"checks\":55,\"failures\":0,\"passed\":true}\n",
+   "fixture": {
+    "fixture": "t2",
+    "revision": "r4",
+    "checks": 55,
+    "failures": 0,
+    "passed": true,
+    "gl_used": false,
+    "sdk_used": false
+   }
+  },
+  {
+   "label": "compile-integ",
+   "argv": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\executed-test-integ.cpp",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\scene_ledger.r0.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\test-t2r4-integ.exe"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "pid": 43284,
+   "creation_unix": 1794695349.631019,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 0.67,
+   "passed": true,
+   "output_tail": ""
+  },
+  {
+   "label": "run-integ",
+   "argv": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\test-t2r4-integ.exe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r4-run1\\20261114T222908Z\\fixture-integ.json"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 10,
+   "pid": 45860,
+   "creation_unix": 1794695350.322428,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 0.078,
+   "passed": true,
+   "output_tail": "{\"fixture\":\"t2r4_ledger\",\"revision\":\"r4\",\"checks\":21,\"failures\":0,\"passed\":true}\n",
+   "fixture": {
+    "fixture": "t2r4_ledger",
+    "revision": "r4",
+    "checks": 21,
+    "failures": 0,
+    "passed": true,
+    "gl_used": false,
+    "sdk_used": false
+   }
+  }
+ ],
+ "passed": true,
+ "exception": null,
+ "envelope_required": {
+  "path": "remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py",
+  "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+  "options": [
+   "--cpu",
+   "15",
+   "--timeout",
+   "120",
+   "--max-job-mib",
+   "1024",
+   "--no-window"
+  ],
+  "verified_by_this_driver": false
+ },
+ "inputs": {
+  "pgxp.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\include\\pgxp.h",
+   "sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47"
+  },
+  "gte_v61.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gte.cpp",
+   "sha256": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849"
+  },
+  "gte_canonical.cpp": {
+   "path": "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\gte.cpp",
+   "sha256": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0"
+  },
+  "remix_t1_reproject.r1.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\remix_t1_reproject.r1.h",
+   "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795"
+  },
+  "scene_capture.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\src\\scene_capture.h",
+   "sha256": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8"
+  },
+  "remix_t2.r3.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\remix_t2.r3.h",
+   "sha256": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b"
+  },
+  "remix_t2.r4.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r4\\remix_t2.r4.h",
+   "sha256": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96"
+  },
+  "test_t2.r4.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r4\\test_t2.r4.cpp",
+   "sha256": "6a5aec97ee7beb46b4ae67a367bf4e2adf90e783ec1d78651dea97df71230771"
+  },
+  "test_t2r4_ledger.r4.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r4\\test_t2r4_ledger.r4.cpp",
+   "sha256": "74c4ab408009d656bd2f502af7ae3f78d3b7694bd44116b27c1d0d7510e7a34d"
+  },
+  "scene_ledger.r0.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r0\\scene_ledger.r0.h",
+   "sha256": "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc"
+  },
+  "scene_ledger.r0.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r0\\scene_ledger.r0.cpp",
+   "sha256": "9614a6a81bd2175418a68551044601cba85c1621e6a91d2c3dcba2b4e88be62c"
+  },
+  "scene_ledger_t2.r0.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r0\\scene_ledger_t2.r0.h",
+   "sha256": "94bc9c245e3f2c003119fd57fdaf49de959d37799bbe870ba1c8528017dd39c8"
+  },
+  "gpu.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\src\\gpu.c",
+   "sha256": "3d8b5d3e23c42a22fe1cecbe1287a286f2f4305147d67cb1039bdef96f628689"
+  },
+  "gpu_gl_renderer.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\src\\gpu_gl_renderer.c",
+   "sha256": "b41b7ab5843ce1a6d4710cc010be6d44f3127a77ce660cc2527eb98e6cd0cb16"
+  }
+ },
+ "executed_copies": {
+  "scene_ledger_native_unpack.inc": "a9b1eaa343f4d6853f31a78d12faa817ac4564df3a7922db31891430eb534b00",
+  "scene_ledger.r0.h": "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc",
+  "scene_ledger.r0.cpp": "9614a6a81bd2175418a68551044601cba85c1621e6a91d2c3dcba2b4e88be62c",
+  "scene_ledger_t2.r0.h": "94bc9c245e3f2c003119fd57fdaf49de959d37799bbe870ba1c8528017dd39c8",
+  "gte_divide_extracted.inc": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+  "pgxp.h": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+  "remix_t1_reproject.r1.h": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+  "scene_capture.h": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+  "remix_t2.r3.h": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+  "remix_t2.r4.h": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96",
+  "executed-test-unit.cpp": "6a5aec97ee7beb46b4ae67a367bf4e2adf90e783ec1d78651dea97df71230771",
+  "executed-test-integ.cpp": "74c4ab408009d656bd2f502af7ae3f78d3b7694bd44116b27c1d0d7510e7a34d"
+ },
+ "toolchain": {
+  "invoked": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+  "invoked_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "files": {
+   "clang++.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang++.exe",
+    "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+   },
+   "clang-22.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang-22.exe",
+    "sha256": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+   },
+   "libclang-cpp.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libclang-cpp.dll",
+    "sha256": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+   },
+   "libLLVM-22.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libLLVM-22.dll",
+    "sha256": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+   }
+  }
+ },
+ "exe_sha256": {
+  "unit": "d844fc13b7d0822f3b34b7511360c147c5bc60be9574375705c77feeda9c49c6",
+  "integ": "bfa45a278ffe58af49003e09968ecf8d69680af8d57db656c255a4ba488a2370"
+ },
+ "ended_utc": "2026-11-14T22:29:10.383271+00:00"
+}

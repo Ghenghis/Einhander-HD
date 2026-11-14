@@ -1,0 +1,14 @@
+start 2026-11-14T22:41:44.4680736Z (prior pre-launch failure preserved as controls-2243-runner.prelaunch-failed-20261114T224118Z; nothing was launched there)
+pin fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36 C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/watchdog/run_rc2_envelope_r1.py
+pin 5e88fb9e33a7a774210011c44e7de2a5042b2b78a85d0d4ca9873890f5431371 C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/controls_binding_r1.py
+pin 05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/unassisted_command_guard_adapter_r1.py
+pin 9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/owned_gl_adapter_observation_audited_r1.py
+pin 9e6ca8159a2f471fcbbde996464a6ba2eb6a51846c44567eefdb6e5cceaa2240 C:/github/Einhander/remaster-audit/unassisted_command_guard.py
+pin c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08 C:/github/Einhander/remaster-audit/gl_adapter_identity_guard.py
+watchdog copy sha fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36
+precheck(info) cpu_load=15 free_gib=57.76 (authoritative gate is the envelope --max-cpu 60 / --min-free-gib 16)
+spawn 2026-11-14T22:41:46.1474605Z argv=C:/Python314/python.exe -I -B C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243-runner/executed-watchdog.py --out C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243-envelope.json --cpu 14 --timeout 60 --max-job-mib 256 --no-window --max-cpu 60 --min-free-gib 16 -- C:/Python314/python.exe -I -B C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/controls_binding_r1.py --out C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243 --cpu 14
+wrapper priority set BelowNormal
+wrapper pid=34924 start=2026-11-14T22:41:46.1530748Z
+end 2026-11-14T22:41:49.8870596Z wrapper_rc=0 (no retry)
+wrapper_identity_absent_after_handle_release=True

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T22:12:31.293516+00:00",
+  "updated_at_utc": "2026-11-14T22:47:56.382558+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,8 +912,8 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 10620,
-    "bound_end_utc": "2026-11-14T22:39:43.145Z",
+    "pid": 44440,
+    "bound_end_utc": "2026-11-14T23:06:29.812Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -1094,5 +1094,23 @@
     "game_run": false,
     "installed": false,
     "live_accepted": false
+  },
+  "cpu_transport_actual": {
+    "evidence": "docs/CPU-TRANSPORT-ACTUAL-20261114.md",
+    "private_menu_build_pass": true,
+    "private_menu_executable_sha256": "37c137e8af8c53d141d53623f9dafa8ce59555cc6a365152098fa49f1be4d9cc",
+    "t1_checks_passed": 36,
+    "t2_unit_checks_passed": 55,
+    "t2_ledger_checks_passed": 21,
+    "continuity_tests_passed": 12,
+    "binding_controls_passed": 41,
+    "owned_loopback_probe_exit": 5,
+    "owned_loopback_probe_qualified": false,
+    "stripe_fixture_cases_passed": 16,
+    "settings_conditions_passed": 7,
+    "game_run": false,
+    "gpu_run": false,
+    "installed": false,
+    "live_qualified": false
   }
 }

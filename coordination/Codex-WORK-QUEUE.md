@@ -1,20 +1,21 @@
 # Einhander active queue — November 14, 2026
 
-Current actual build result: [private v69 audio integration, PR7 CPU build and retained failures](../docs/CPU-ENGINE-BUILDS-ACTUAL-20261114.md). v69f1ccb34d compiled/linked, not launched/installed; PR7CPU65/guard77PASS, noGL/DLL/GPU. T1compileFAIL/0of36run; stripepreviewrejected. Earlier entries below retain their dated scope.
+Latest actual CPU results: [private menu build, transport checks and retained diagnostic limits](../docs/CPU-TRANSPORT-ACTUAL-20261114.md). P1+v69 compiled/linked37c137e8, not launched/installed; T1 36 and T2 55+21 checks passed. Loopback probe5 remains inconclusive. Earlier entries below preserve their dated scope.
 
-Read [current handoff](Codex-HANDOFF.md) and actual Hermes inbox. ACTIVE/INCOMPLETE; C:only; shared coordinator controls grants; root has no heavy/GPU job.
+Current private update 2026-11-14T22:25:38.413569+00:00: T1r3 actual36/0 CPU-only, peer pins/cleanup verified; original failure retained. S23 actual71/390 index closed without dither repair after coordinator crop review;319 keys and Stage3 outside scope. Root full new T2r4 layer/driver/55+21 controls SOURCE-CLEAR/UNRUN; bindingr1 SOURCE-CLEAR41 pure controls/UNRUN; ownedstubr2 SOURCE-CLEAR/UNRUN. P1 closed-menu bug corrected and exact v69 merge independently source-clear; ALL keymap-header consumers must be rebuilt in forthcoming recipe. New v69 runtime-acceptance packet received for source review. These later facts supersede the historical UNRUN/pending lines below. Latest published467bbe35/PR remains unchanged and dated honestly. No root GPU/game/heavy job. Details: `remaster-audit/runtime-review/gpu-texture-remix-20261114/transport-menu-source-review-r1/result.json`.
 
-- [x] Publish09dd729/PR1 exact readback;60newpacket+3canonicalpins,77docs/97JSON/1123refs/0issues integrityonly.
-- [x] ActualaudioDr2two helper builds/runsPASS/6.723s/89.2MiB; originalreceipt/source/knownidentityreadbackPASS.
-- [x] PRIVATE actualPCMDr5sevenPCM/legacycounterequalPASS/1.391s/88.9MiB; root14PCMhashes+6sources/6knownidentitiesabsent; samegrantnotduplicated. Needsnextmeaningfulpublicationbundle.
-- [x] Collector74syntheticPASS; preserveoriginal949parentlauncherFAIL andlatermetadata cleanupPASS. No74rerun.
-- [ ] S67privatev69actualSDLmain/header/debug integration+source-pinnedbuilddriver; rootreviewthenfreshCPUgrant; realdevice/lifecycle/listening/performance remainseparate.
-- [ ] PrimaryT2r4 exactVRAMpolicy/transportedset/lateinvalidationtoken/ownererrors; ledger99+14/nativeextraction/glue rootreview. T1r136/T2r382/observer36/GLidentity15UNRUN, awaitfreshgrants.
-- [ ] Supportauditedbindingr1/ownedstubr2corrections; source review beforepurefixture/realOSprobe. Canonicalcollectorunwired.
-- [ ] Rootskin-targetr1fullheader/diff/catalog/fixture review; trustedadmission/alpha/namedroles/generation/selectors/realisticart stillopen.
-- [ ] S23J10CPU12/S45stripeCPU13grantedpreviewsactualreceipts/coordinatorlook; no fullbatch/admission; stipplemasks/UItext/cage/worldgaps remainopen.
-- [ ] UIactualstatus/menuhooks sourceplanning, exactGLprofile/backendreceipt, normalgameownedprocess/adapter/focus/progression; GPUcurrentlyungranted.
-- [ ] CurrentPCM+sourcecorrections/nextactualresult Gitbundle; no metadata-onlypublicationloop.
-- [ ] Allsevenstages/graphics/RT/DLSS/skins/HUD/menus/options/outcomes/install/rollback acceptance.
+Read [current handoff](Codex-HANDOFF.md) and actual Hermes inbox. ACTIVE/INCOMPLETE. Ownercodex-einhander/taskEIN-CODEX-CONTINUITY-20261114. C:only; coordinatorgrantsallheavy/GPUwork; rootnoheavyjob.
 
-KeepWindowsusable. Fresh exactCPUgrant/immediateC60/free16/oneCPU/BelowNormal/wholeJob; no retry. Actualinbox/durablequeue checks duringboundedwaits; monitor is not modelactivity. Previous state preserved inprivate-continuity-history.
+- [x] Publish467bbe35/PRexactconnectorreadback;76newpacket+3canonicalpins/78docs97JSON1129refs0issues integrityonly.
+- [x] Actualprivatev69two-TUcompile/linkf1ccb34dPASS9.884s/190.5MiB, originalobjectsreproduced, peer1201deps/153retainedinputs/rootsource-linkresponse-identityreadbackPASS. No launch/device/install.
+- [x] Dr2coherentgetter/pumpfixturesPASS;Dr5sevenPCM/legacycounterpairsPASS, rootall14PCMhasheschecked. NotSDL/listening/performance.
+- [x] PR7syntax/object/link/65CPU/guard77PASS3.158s;originalsource/archive/missingctimelimitsandstraycallseparated.
+- [x] T1originalcompileFAIL/0checks preserved;sourceclearpreciseprivatecommentderivedr3,UNRUN.
+- [ ] ROOT ACTIVE: ownedstubr2ed43/06f7 fullsource/diffreview; auditedbindingr1whenfrozen. Canonicalcollectorunwired/realOSunqualified.
+- [ ] FreshT1r3grant/actual36check result;primaryT2r4policy/lateepoch/G4/material/composition. No oldgrantretry.
+- [ ] S23finite71keyditherindexf372source review, futurecheapgrant;S45directionawarestripecorrection;UIoneROI-Bprotectedcorrectionmap. No falsepositive/blanketRGB/alpha/globalbatch/admission.
+- [ ] UIprivateF6Playercoloroverlayproposal review+exactv69merge/CPUcompile, laterownedvisualtest. Realisticart/roles/selectorsstillmissing.
+- [ ] Actualv69device/lifecycle/audio_stats/listening/framepacing,ownednormalgameadapter/focus/progression onlywhenGPUscopegranted;normalgameaffinity.
+- [ ] Allsevenstages/options/outcomes/backgrounds/signs/buildings/HUD/menus/skins/RT/DLSS/install/rollback acceptance.
+
+KeepWindowsusable. Drainnativeandrootdurablequeues; no genericuserreapprovalforalready-authorizedsourcework. Boundedinboxwaits<=30s; metadatawatcher is not modelactivity/wakeproof. HistorypreservedunderN/private-continuity-history.

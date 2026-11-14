@@ -1,0 +1,60 @@
+{
+ "run": "20261114T223836Z",
+ "owner": "claude-einhander-s45",
+ "tool_sha256": "76adfdc710077299c3c044826ed78f908d904a3fed0bcbfe9949477acd46a381",
+ "mode": "fixtures",
+ "roi_half_open": [
+  72,
+  64,
+  100,
+  72
+ ],
+ "band_half_open": [
+  76,
+  65,
+  100,
+  72
+ ],
+ "params": {
+  "a_o": 0.9,
+  "a_d": 0.2,
+  "link_max_tex": 2.5,
+  "slope_tol": 0.35,
+  "straight_frac": 0.6,
+  "centre_margin_tex": 0.125,
+  "edge_band_tex": 0.75,
+  "donor_max_tex": 2.0,
+  "feather_tex": 0.5,
+  "supersample": 4
+ },
+ "status": "FIXTURES OK",
+ "stage_reached": "fixtures",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "scipy": "1.17.1",
+  "pillow": "12.3.0"
+ },
+ "pins": {
+  "dll": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.dll",
+   "sha256": "ede9a8f1d9847bb534f26d894bc15b2054fa4123aae12f82157cd1e4b5bf524e",
+   "ok": true
+  },
+  "dll_c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.c",
+   "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+   "ok": true
+  },
+  "dll_h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.h",
+   "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+   "ok": true
+  },
+  "dll_c_copy": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.c",
+   "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+   "ok": true
+  }
+ }
+}

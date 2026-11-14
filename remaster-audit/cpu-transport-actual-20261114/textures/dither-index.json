@@ -1,0 +1,5158 @@
+{
+ "owner": "claude-einhander-s23",
+ "tool": "dither_index.py",
+ "self_sha256": "f372b42d2a5966fb2baa65f9bf9ca43ea494a0810b8bb576cd069a987722beaa",
+ "started_utc": "2026-11-14T22:16:36.839252+00:00",
+ "pid": 34128,
+ "affinity": "12",
+ "code_pins": {
+  "s23lib": "e26b2fbe0f5632c121e254e284be68eace8b54f5425cb785b9f53d9504a972b7",
+  "stipple_cells_r2": "1d8b80bcdcb42451309fa02fe4b73c69978bc7427f8232df27a7a8988cd2b1fb"
+ },
+ "data_pins": {
+  "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures.json": "fd2ec38057af96c69b3f7924faca1898d1c86672d8c2902ce1ec2b77ce6d7eeb",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/cluts.json": "4f861e86ec603c88410790c4f64b632e7c092d83aeb216302319d4fc3a25dfa4",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/fullstage-20261114T182734Z/fullstage-coverage.json": "5555d17ce7f56e9b97a05c4b0559969379632e0da7683e32151448af2847b3a6"
+ },
+ "positive_min_D": 16,
+ "status": "INDEX (private research; detector hits for visual judgement; not admission, no repair)",
+ "keys": {
+  "01A3019A-ED451A47": {
+   "draws": 12,
+   "page_xy": [
+    448,
+    0
+   ],
+   "words_rect": [
+    448,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     64,
+     191,
+     111
+    ],
+    [
+     128,
+     128,
+     191,
+     175
+    ],
+    [
+     128,
+     176,
+     191,
+     223
+    ],
+    [
+     64,
+     176,
+     127,
+     223
+    ],
+    [
+     0,
+     128,
+     63,
+     175
+    ],
+    [
+     0,
+     176,
+     63,
+     223
+    ],
+    [
+     64,
+     128,
+     127,
+     175
+    ]
+   ],
+   "allowed_texels": 20727,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 5,
+    "raw_class": 0,
+    "raw_union": 5,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 4,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "0A43BDBC-D4D43BA5": {
+   "draws": 20,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    8,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     24,
+     3,
+     32,
+     8
+    ],
+    [
+     36,
+     3,
+     40,
+     8
+    ],
+    [
+     32,
+     3,
+     40,
+     8
+    ],
+    [
+     31,
+     3,
+     36,
+     8
+    ],
+    [
+     36,
+     3,
+     39,
+     8
+    ]
+   ],
+   "allowed_texels": 80,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-8FD3DE52": {
+   "draws": 5,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     193,
+     65,
+     256,
+     96
+    ],
+    [
+     192,
+     65,
+     256,
+     96
+    ],
+    [
+     192,
+     96,
+     256,
+     128
+    ],
+    [
+     192,
+     96,
+     255,
+     128
+    ],
+    [
+     192,
+     64,
+     256,
+     96
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 3,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 0,
+    "raw_union": 100,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 98,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 3,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-B692B4C2": {
+   "draws": 3,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     128,
+     256,
+     192
+    ],
+    [
+     192,
+     129,
+     256,
+     192
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 0,
+    "raw_union": 100,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 100,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-BE954EE4": {
+   "draws": 3,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     0,
+     64,
+     63
+    ],
+    [
+     64,
+     64,
+     128,
+     128
+    ],
+    [
+     63,
+     0,
+     128,
+     63
+    ]
+   ],
+   "allowed_texels": 12160,
+   "raw_detector_in_allowed": 40,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 0,
+    "raw_union": 100,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 61,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 40,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-CDBFF4CE": {
+   "draws": 5,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     64,
+     128,
+     128,
+     159
+    ],
+    [
+     64,
+     128,
+     127,
+     160
+    ],
+    [
+     64,
+     128,
+     127,
+     159
+    ],
+    [
+     0,
+     128,
+     64,
+     192
+    ]
+   ],
+   "allowed_texels": 6143,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 0,
+    "raw_union": 100,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 101,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-E8247720": {
+   "draws": 5,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     193,
+     0,
+     256,
+     64
+    ],
+    [
+     192,
+     0,
+     256,
+     64
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 22,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     219,
+     20,
+     221,
+     23
+    ]
+   },
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 0,
+    "raw_union": 100,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 79,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 18,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "0F01F0FA-F11578EE": {
+   "draws": 3,
+   "page_xy": [
+    768,
+    0
+   ],
+   "words_rect": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     128,
+     192,
+     191
+    ],
+    [
+     128,
+     128,
+     192,
+     192
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 100,
+    "raw_class": 8,
+    "raw_union": 101,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 102,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1328EA4F-7C2D834A": {
+   "draws": 7,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    128,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     152,
+     0,
+     159,
+     6
+    ]
+   ],
+   "allowed_texels": 42,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "14D7810C-D4D43BA5": {
+   "draws": 1,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    0,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     7,
+     0,
+     48,
+     5
+    ]
+   ],
+   "allowed_texels": 205,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 2,
+    "raw_class": 0,
+    "raw_union": 2,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 2,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-0A8C366F": {
+   "draws": 7,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     80,
+     32,
+     128,
+     64
+    ],
+    [
+     64,
+     17,
+     128,
+     32
+    ],
+    [
+     80,
+     32,
+     127,
+     64
+    ],
+    [
+     0,
+     0,
+     64,
+     64
+    ]
+   ],
+   "allowed_texels": 6592,
+   "raw_detector_in_allowed": 2,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 0,
+    "raw_union": 17,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 15,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 2,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-0E52E513": {
+   "draws": 8,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     32,
+     192,
+     64
+    ],
+    [
+     128,
+     0,
+     192,
+     32
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 0,
+    "raw_union": 17,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 17,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-34F92FE6": {
+   "draws": 8,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     225,
+     32,
+     240,
+     47
+    ],
+    [
+     224,
+     32,
+     240,
+     47
+    ],
+    [
+     225,
+     0,
+     256,
+     32
+    ]
+   ],
+   "allowed_texels": 1232,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 0,
+    "raw_union": 17,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 17,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-A537C5E8": {
+   "draws": 7,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     64,
+     192,
+     81
+    ],
+    [
+     129,
+     64,
+     192,
+     82
+    ],
+    [
+     128,
+     64,
+     192,
+     81
+    ],
+    [
+     128,
+     64,
+     192,
+     82
+    ]
+   ],
+   "allowed_texels": 1152,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 8,
+    "raw_union": 25,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 25,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-B4827EFC": {
+   "draws": 12,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     64,
+     128,
+     128,
+     160
+    ],
+    [
+     64,
+     96,
+     128,
+     128
+    ],
+    [
+     64,
+     96,
+     127,
+     128
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 10,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     118,
+     152,
+     120,
+     155
+    ]
+   },
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 0,
+    "raw_union": 17,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 7,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 6,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "1BC35EBE-F954F9F4": {
+   "draws": 8,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     208,
+     16,
+     224,
+     32
+    ],
+    [
+     208,
+     16,
+     223,
+     32
+    ],
+    [
+     209,
+     16,
+     224,
+     32
+    ]
+   ],
+   "allowed_texels": 256,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 17,
+    "raw_class": 0,
+    "raw_union": 17,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 17,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "261A9F2A-C7A4ADB7": {
+   "draws": 16,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    16,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     64,
+     0,
+     127,
+     8
+    ]
+   ],
+   "allowed_texels": 504,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "264C5A76-3DB60323": {
+   "draws": 2,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    56,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     64,
+     0,
+     119,
+     6
+    ],
+    [
+     76,
+     0,
+     100,
+     6
+    ]
+   ],
+   "allowed_texels": 330,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 2,
+    "raw_class": 0,
+    "raw_union": 2,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 2,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "28127931-7C2D834A": {
+   "draws": 13,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     132,
+     185,
+     160,
+     199
+    ],
+    [
+     62,
+     180,
+     78,
+     200
+    ],
+    [
+     1,
+     152,
+     16,
+     162
+    ],
+    [
+     111,
+     185,
+     132,
+     199
+    ]
+   ],
+   "allowed_texels": 1156,
+   "raw_detector_in_allowed": 3,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 28,
+    "raw_class": 18,
+    "raw_union": 45,
+    "closing_added": 1,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 43,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 3,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "28127931-C7A4ADB7": {
+   "draws": 32,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     117,
+     31,
+     124,
+     39
+    ],
+    [
+     117,
+     31,
+     123,
+     39
+    ],
+    [
+     3,
+     5,
+     61,
+     9
+    ],
+    [
+     61,
+     74,
+     75,
+     86
+    ],
+    [
+     67,
+     31,
+     118,
+     48
+    ],
+    [
+     1,
+     27,
+     55,
+     43
+    ],
+    [
+     3,
+     5,
+     60,
+     9
+    ],
+    [
+     71,
+     69,
+     109,
+     95
+    ],
+    [
+     61,
+     74,
+     74,
+     86
+    ],
+    [
+     37,
+     95,
+     122,
+     115
+    ]
+   ],
+   "allowed_texels": 4819,
+   "raw_detector_in_allowed": 4,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 28,
+    "raw_class": 0,
+    "raw_union": 28,
+    "closing_added": 1,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 25,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 4,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "2E54C06C-3DB60323": {
+   "draws": 1,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     65,
+     0,
+     127,
+     6
+    ]
+   ],
+   "allowed_texels": 372,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 4,
+    "raw_class": 0,
+    "raw_union": 4,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 4,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "2E670984-86558368": {
+   "draws": 1,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    408,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     162,
+     0,
+     167,
+     1
+    ]
+   ],
+   "allowed_texels": 5,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "complete_live_source",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "3A2DF5B0-C7A4ADB7": {
+   "draws": 12,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    0,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     38,
+     1,
+     48,
+     5
+    ]
+   ],
+   "allowed_texels": 40,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "3DD37B6B-3C1DB4B6": {
+   "draws": 66,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     193,
+     193,
+     204,
+     216
+    ],
+    [
+     1,
+     193,
+     62,
+     243
+    ],
+    [
+     193,
+     193,
+     204,
+     215
+    ],
+    [
+     65,
+     200,
+     127,
+     219
+    ],
+    [
+     65,
+     193,
+     127,
+     212
+    ],
+    [
+     93,
+     220,
+     127,
+     243
+    ],
+    [
+     193,
+     218,
+     218,
+     238
+    ],
+    [
+     194,
+     218,
+     218,
+     238
+    ],
+    [
+     39,
+     147,
+     50,
+     168
+    ],
+    [
+     65,
+     200,
+     126,
+     219
+    ],
+    [
+     206,
+     193,
+     230,
+     210
+    ],
+    [
+     193,
+     193,
+     203,
+     215
+    ],
+    [
+     12,
+     152,
+     38,
+     191
+    ],
+    [
+     65,
+     219,
+     92,
+     233
+    ],
+    [
+     1,
+     194,
+     62,
+     243
+    ],
+    [
+     238,
+     218,
+     255,
+     237
+    ],
+    [
+     193,
+     218,
+     217,
+     238
+    ],
+    [
+     66,
+     219,
+     92,
+     233
+    ],
+    [
+     39,
+     147,
+     50,
+     169
+    ],
+    [
+     66,
+     193,
+     127,
+     212
+    ]
+   ],
+   "allowed_texels": 8562,
+   "raw_detector_in_allowed": 13,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 0,
+    "raw_union": 32,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 19,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 13,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "3DD37B6B-86558368": {
+   "draws": 42,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     142,
+     158,
+     148,
+     188
+    ],
+    [
+     187,
+     23,
+     244,
+     39
+    ],
+    [
+     186,
+     38,
+     244,
+     53
+    ],
+    [
+     165,
+     32,
+     179,
+     61
+    ],
+    [
+     196,
+     52,
+     233,
+     60
+    ],
+    [
+     141,
+     158,
+     150,
+     188
+    ],
+    [
+     136,
+     144,
+     151,
+     188
+    ],
+    [
+     144,
+     158,
+     148,
+     188
+    ],
+    [
+     130,
+     129,
+     133,
+     188
+    ],
+    [
+     186,
+     30,
+     243,
+     42
+    ],
+    [
+     145,
+     158,
+     148,
+     188
+    ],
+    [
+     141,
+     159,
+     150,
+     188
+    ],
+    [
+     186,
+     23,
+     244,
+     39
+    ],
+    [
+     164,
+     146,
+     166,
+     154
+    ],
+    [
+     165,
+     32,
+     179,
+     60
+    ],
+    [
+     186,
+     41,
+     244,
+     53
+    ]
+   ],
+   "allowed_texels": 3258,
+   "raw_detector_in_allowed": 4,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 0,
+    "raw_union": 32,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 28,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 4,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "3DD37B6B-AFAD5A36": {
+   "draws": 41,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     24,
+     59,
+     47
+    ],
+    [
+     0,
+     96,
+     59,
+     119
+    ],
+    [
+     0,
+     48,
+     59,
+     71
+    ],
+    [
+     60,
+     24,
+     119,
+     47
+    ],
+    [
+     0,
+     0,
+     59,
+     23
+    ],
+    [
+     60,
+     0,
+     119,
+     23
+    ],
+    [
+     60,
+     48,
+     119,
+     71
+    ],
+    [
+     60,
+     72,
+     119,
+     95
+    ],
+    [
+     0,
+     72,
+     59,
+     95
+    ]
+   ],
+   "allowed_texels": 12213,
+   "raw_detector_in_allowed": 4,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 0,
+    "raw_union": 32,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 28,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 4,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1",
+    "w7-stage2/stage2-opening-fx-v2",
+    "w7-stage2/stage2-opening-fx-v3"
+   ],
+   "silhouette_control": false
+  },
+  "3DD37B6B-B949240B": {
+   "draws": 21,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     202,
+     149,
+     242,
+     167
+    ],
+    [
+     203,
+     149,
+     243,
+     167
+    ],
+    [
+     200,
+     149,
+     254,
+     168
+    ],
+    [
+     202,
+     149,
+     243,
+     167
+    ],
+    [
+     202,
+     150,
+     242,
+     167
+    ]
+   ],
+   "allowed_texels": 1026,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 0,
+    "raw_union": 32,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 32,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "3DD37B6B-BE3400E6": {
+   "draws": 43,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     225,
+     163,
+     247
+    ],
+    [
+     167,
+     225,
+     177,
+     247
+    ],
+    [
+     167,
+     225,
+     177,
+     246
+    ],
+    [
+     187,
+     66,
+     211,
+     94
+    ],
+    [
+     129,
+     225,
+     163,
+     246
+    ],
+    [
+     185,
+     66,
+     208,
+     94
+    ],
+    [
+     186,
+     97,
+     207,
+     125
+    ]
+   ],
+   "allowed_texels": 2284,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 0,
+    "raw_union": 32,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 32,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-prep-v1",
+    "w7-stage2/stage2-prep-v2"
+   ],
+   "silhouette_control": false
+  },
+  "3DD37B6B-FAC936BC": {
+   "draws": 30,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     193,
+     155,
+     206
+    ],
+    [
+     129,
+     193,
+     154,
+     206
+    ],
+    [
+     130,
+     193,
+     155,
+     206
+    ],
+    [
+     130,
+     193,
+     155,
+     205
+    ],
+    [
+     129,
+     193,
+     154,
+     205
+    ]
+   ],
+   "allowed_texels": 338,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 32,
+    "raw_class": 4,
+    "raw_union": 33,
+    "closing_added": 2,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 33,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "4915FBCF-056E3BD0": {
+   "draws": 1,
+   "page_xy": [
+    384,
+    256
+   ],
+   "words_rect": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     128,
+     191,
+     191
+    ]
+   ],
+   "allowed_texels": 3969,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 46,
+    "raw_class": 1,
+    "raw_union": 47,
+    "closing_added": 7,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 5,
+    "removed_by_allowed": 52,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1",
+    "w7-stage2/stage2-opening-fx-v2"
+   ],
+   "silhouette_control": false
+  },
+  "4915FBCF-3A9D7113": {
+   "draws": 27,
+   "page_xy": [
+    384,
+    256
+   ],
+   "words_rect": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     1,
+     128,
+     33,
+     148
+    ],
+    [
+     52,
+     131,
+     65,
+     151
+    ],
+    [
+     0,
+     128,
+     34,
+     154
+    ],
+    [
+     46,
+     131,
+     58,
+     153
+    ],
+    [
+     68,
+     134,
+     81,
+     159
+    ],
+    [
+     37,
+     128,
+     59,
+     165
+    ],
+    [
+     15,
+     130,
+     34,
+     190
+    ],
+    [
+     75,
+     168,
+     88,
+     188
+    ],
+    [
+     36,
+     128,
+     125,
+     191
+    ],
+    [
+     52,
+     154,
+     58,
+     191
+    ],
+    [
+     36,
+     129,
+     49,
+     148
+    ],
+    [
+     33,
+     129,
+     41,
+     148
+    ],
+    [
+     33,
+     129,
+     41,
+     147
+    ],
+    [
+     8,
+     147,
+     16,
+     189
+    ],
+    [
+     87,
+     168,
+     98,
+     186
+    ]
+   ],
+   "allowed_texels": 7458,
+   "raw_detector_in_allowed": 17,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     50,
+     147,
+     52,
+     150
+    ]
+   },
+   "stats": {
+    "raw_index": 46,
+    "raw_class": 2,
+    "raw_union": 46,
+    "closing_added": 7,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 5,
+    "removed_by_allowed": 32,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 15,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1"
+   ],
+   "silhouette_control": false
+  },
+  "4915FBCF-ADB1BC56": {
+   "draws": 3,
+   "page_xy": [
+    384,
+    256
+   ],
+   "words_rect": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     223,
+     54,
+     255
+    ],
+    [
+     0,
+     192,
+     54,
+     224
+    ],
+    [
+     64,
+     193,
+     126,
+     225
+    ]
+   ],
+   "allowed_texels": 5386,
+   "raw_detector_in_allowed": 2,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 46,
+    "raw_class": 4,
+    "raw_union": 49,
+    "closing_added": 7,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 5,
+    "removed_by_allowed": 52,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 2,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1"
+   ],
+   "silhouette_control": false
+  },
+  "4915FBCF-B949240B": {
+   "draws": 2,
+   "page_xy": [
+    384,
+    256
+   ],
+   "words_rect": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     171,
+     118,
+     210,
+     127
+    ],
+    [
+     161,
+     105,
+     221,
+     119
+    ]
+   ],
+   "allowed_texels": 1152,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 46,
+    "raw_class": 0,
+    "raw_union": 46,
+    "closing_added": 7,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 5,
+    "removed_by_allowed": 51,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1"
+   ],
+   "silhouette_control": false
+  },
+  "4EC9441C-D4D43BA5": {
+   "draws": 26,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    16,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     13,
+     4,
+     19,
+     7
+    ],
+    [
+     50,
+     1,
+     54,
+     5
+    ],
+    [
+     50,
+     1,
+     54,
+     4
+    ],
+    [
+     50,
+     1,
+     53,
+     5
+    ],
+    [
+     5,
+     0,
+     11,
+     3
+    ],
+    [
+     54,
+     4,
+     60,
+     8
+    ],
+    [
+     44,
+     1,
+     61,
+     8
+    ],
+    [
+     50,
+     1,
+     57,
+     5
+    ],
+    [
+     13,
+     4,
+     19,
+     6
+    ],
+    [
+     10,
+     0,
+     16,
+     3
+    ]
+   ],
+   "allowed_texels": 170,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 5,
+    "raw_class": 0,
+    "raw_union": 5,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 4,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "65560E82-0677FB7C": {
+   "draws": 136,
+   "page_xy": [
+    640,
+    0
+   ],
+   "words_rect": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     128,
+     191,
+     192
+    ],
+    [
+     0,
+     0,
+     31,
+     64
+    ],
+    [
+     128,
+     128,
+     192,
+     192
+    ],
+    [
+     0,
+     0,
+     64,
+     64
+    ],
+    [
+     0,
+     0,
+     32,
+     64
+    ],
+    [
+     0,
+     0,
+     63,
+     64
+    ],
+    [
+     0,
+     1,
+     64,
+     64
+    ],
+    [
+     1,
+     0,
+     64,
+     64
+    ]
+   ],
+   "allowed_texels": 8192,
+   "raw_detector_in_allowed": 108,
+   "D_texels": 20,
+   "D_components": 5,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     32,
+     2,
+     34,
+     5
+    ]
+   },
+   "stats": {
+    "raw_index": 174,
+    "raw_class": 2,
+    "raw_union": 176,
+    "closing_added": 16,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 3,
+    "closing_added_kept": 13,
+    "removed_by_allowed": 70,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 99,
+    "final": 20,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "predicted_static",
+   "authored": [
+    "t1-sky/drache-mountains-sea-C21DE94A-v1",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "65560E82-2F05FF2B": {
+   "draws": 138,
+   "page_xy": [
+    640,
+    0
+   ],
+   "words_rect": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     0,
+     207,
+     15
+    ],
+    [
+     64,
+     32,
+     191,
+     63
+    ],
+    [
+     64,
+     0,
+     191,
+     31
+    ]
+   ],
+   "allowed_texels": 8099,
+   "raw_detector_in_allowed": 8,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 174,
+    "raw_class": 9,
+    "raw_union": 174,
+    "closing_added": 16,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 3,
+    "closing_added_kept": 13,
+    "removed_by_allowed": 179,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 8,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "unassigned",
+   "source_state": "imported_pack",
+   "authored": [
+    "t1-sky/drache-mountains-sea-C21DE94A-v1",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "65560E82-83E366BC": {
+   "draws": 69,
+   "page_xy": [
+    640,
+    0
+   ],
+   "words_rect": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     216,
+     77,
+     225,
+     92
+    ],
+    [
+     216,
+     77,
+     225,
+     91
+    ],
+    [
+     128,
+     112,
+     254,
+     125
+    ],
+    [
+     216,
+     78,
+     225,
+     92
+    ],
+    [
+     161,
+     66,
+     173,
+     85
+    ],
+    [
+     208,
+     73,
+     223,
+     92
+    ]
+   ],
+   "allowed_texels": 2181,
+   "raw_detector_in_allowed": 3,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 174,
+    "raw_class": 0,
+    "raw_union": 174,
+    "closing_added": 16,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 3,
+    "closing_added_kept": 13,
+    "removed_by_allowed": 183,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 4,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-sky-ground-v1",
+    "w7-stage2/stage2-sky-ground-v2"
+   ],
+   "silhouette_control": false
+  },
+  "65560E82-F4C335D5": {
+   "draws": 75,
+   "page_xy": [
+    640,
+    0
+   ],
+   "words_rect": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     64,
+     112,
+     128,
+     255
+    ],
+    [
+     0,
+     112,
+     64,
+     255
+    ],
+    [
+     0,
+     64,
+     64,
+     112
+    ],
+    [
+     64,
+     64,
+     128,
+     112
+    ],
+    [
+     64,
+     112,
+     127,
+     255
+    ]
+   ],
+   "allowed_texels": 24448,
+   "raw_detector_in_allowed": 38,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     57,
+     103,
+     60,
+     105
+    ]
+   },
+   "stats": {
+    "raw_index": 174,
+    "raw_class": 0,
+    "raw_union": 174,
+    "closing_added": 16,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 3,
+    "closing_added_kept": 13,
+    "removed_by_allowed": 148,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 35,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "unassigned",
+   "source_state": "imported_pack",
+   "authored": [
+    "t1-sky/night-cloud-sky-page640-v1",
+    "w2-polish/night-cloud-sky-page640-v2",
+    "w2-polish/night-cloud-sky-page640-v3"
+   ],
+   "silhouette_control": false
+  },
+  "67FE2062-3491C85F": {
+   "draws": 1,
+   "page_xy": [
+    320,
+    0
+   ],
+   "words_rect": [
+    320,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     128,
+     191,
+     191
+    ]
+   ],
+   "allowed_texels": 3969,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 142,
+    "raw_class": 6,
+    "raw_union": 142,
+    "closing_added": 28,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 8,
+    "closing_added_kept": 20,
+    "removed_by_allowed": 162,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "67FE2062-60765D0D": {
+   "draws": 2,
+   "page_xy": [
+    320,
+    0
+   ],
+   "words_rect": [
+    320,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     88,
+     63,
+     151
+    ],
+    [
+     0,
+     152,
+     63,
+     215
+    ]
+   ],
+   "allowed_texels": 7938,
+   "raw_detector_in_allowed": 3,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 142,
+    "raw_class": 6,
+    "raw_union": 142,
+    "closing_added": 28,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 8,
+    "closing_added_kept": 20,
+    "removed_by_allowed": 159,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 3,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "67FE2062-E20E2023": {
+   "draws": 1,
+   "page_xy": [
+    320,
+    0
+   ],
+   "words_rect": [
+    320,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     0,
+     191,
+     63
+    ]
+   ],
+   "allowed_texels": 3969,
+   "raw_detector_in_allowed": 3,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 142,
+    "raw_class": 6,
+    "raw_union": 142,
+    "closing_added": 28,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 8,
+    "closing_added_kept": 20,
+    "removed_by_allowed": 159,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 3,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "6AE78470-95905651": {
+   "draws": 10,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     160,
+     192,
+     192
+    ],
+    [
+     128,
+     160,
+     192,
+     192
+    ],
+    [
+     192,
+     164,
+     224,
+     192
+    ],
+    [
+     192,
+     165,
+     224,
+     181
+    ],
+    [
+     192,
+     164,
+     224,
+     181
+    ],
+    [
+     129,
+     128,
+     192,
+     159
+    ]
+   ],
+   "allowed_texels": 4897,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 185,
+    "raw_class": 0,
+    "raw_union": 185,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 3,
+    "removed_by_allowed": 188,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-sky-ground-v1",
+    "w7-stage2/stage2-sky-ground-v2",
+    "w7-stage2/stage2-sky-ground-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6AE78470-BE14F28C": {
+   "draws": 5,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     192,
+     256,
+     224
+    ],
+    [
+     193,
+     192,
+     256,
+     224
+    ],
+    [
+     193,
+     192,
+     256,
+     223
+    ]
+   ],
+   "allowed_texels": 2048,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 185,
+    "raw_class": 17,
+    "raw_union": 192,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 3,
+    "removed_by_allowed": 195,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-sky-ground-v1",
+    "w7-stage2/stage2-sky-ground-v2",
+    "w7-stage2/stage2-sky-ground-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6AE78470-D4D43BA5": {
+   "draws": 53,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     48,
+     16,
+     59,
+     25
+    ],
+    [
+     25,
+     16,
+     35,
+     26
+    ],
+    [
+     0,
+     12,
+     63,
+     27
+    ],
+    [
+     0,
+     48,
+     77,
+     60
+    ],
+    [
+     17,
+     15,
+     27,
+     26
+    ],
+    [
+     10,
+     22,
+     21,
+     32
+    ],
+    [
+     24,
+     14,
+     63,
+     19
+    ],
+    [
+     51,
+     12,
+     58,
+     18
+    ],
+    [
+     37,
+     47,
+     79,
+     62
+    ],
+    [
+     25,
+     20,
+     48,
+     33
+    ],
+    [
+     32,
+     12,
+     44,
+     20
+    ],
+    [
+     35,
+     18,
+     46,
+     26
+    ],
+    [
+     4,
+     27,
+     60,
+     47
+    ],
+    [
+     40,
+     18,
+     56,
+     30
+    ],
+    [
+     0,
+     19,
+     10,
+     27
+    ],
+    [
+     44,
+     19,
+     62,
+     45
+    ],
+    [
+     23,
+     12,
+     63,
+     26
+    ],
+    [
+     19,
+     12,
+     47,
+     45
+    ],
+    [
+     3,
+     20,
+     39,
+     31
+    ],
+    [
+     43,
+     16,
+     52,
+     25
+    ],
+    [
+     25,
+     17,
+     44,
+     27
+    ]
+   ],
+   "allowed_texels": 3179,
+   "raw_detector_in_allowed": 18,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 185,
+    "raw_class": 0,
+    "raw_union": 185,
+    "closing_added": 3,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 3,
+    "removed_by_allowed": 169,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 19,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-sky-ground-v1",
+    "w7-stage2/stage2-sky-ground-v2",
+    "w7-stage2/stage2-sky-ground-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-01E11FC0": {
+   "draws": 7,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     224,
+     192,
+     256,
+     225
+    ],
+    [
+     225,
+     211,
+     256,
+     237
+    ],
+    [
+     224,
+     211,
+     256,
+     237
+    ]
+   ],
+   "allowed_texels": 1440,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 27,
+    "raw_union": 87,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 89,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-1930C7FD": {
+   "draws": 10,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     168,
+     224,
+     192
+    ],
+    [
+     192,
+     128,
+     255,
+     160
+    ],
+    [
+     128,
+     128,
+     192,
+     160
+    ],
+    [
+     192,
+     128,
+     256,
+     160
+    ]
+   ],
+   "allowed_texels": 4864,
+   "raw_detector_in_allowed": 2,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 0,
+    "raw_union": 73,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 73,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 2,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-413E2F28": {
+   "draws": 9,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     96,
+     224,
+     128,
+     240
+    ],
+    [
+     0,
+     192,
+     64,
+     256
+    ]
+   ],
+   "allowed_texels": 4608,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 16,
+    "raw_union": 89,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 91,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-58B6A90A": {
+   "draws": 10,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     64,
+     96,
+     128,
+     128
+    ],
+    [
+     0,
+     0,
+     64,
+     64
+    ],
+    [
+     65,
+     96,
+     128,
+     128
+    ],
+    [
+     64,
+     64,
+     127,
+     96
+    ]
+   ],
+   "allowed_texels": 8160,
+   "raw_detector_in_allowed": 12,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     116,
+     104,
+     119,
+     106
+    ]
+   },
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 0,
+    "raw_union": 73,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 62,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 9,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-706102D6": {
+   "draws": 9,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     64,
+     256,
+     96
+    ],
+    [
+     128,
+     64,
+     192,
+     128
+    ],
+    [
+     192,
+     64,
+     255,
+     96
+    ],
+    [
+     224,
+     96,
+     256,
+     128
+    ]
+   ],
+   "allowed_texels": 7168,
+   "raw_detector_in_allowed": 4,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 0,
+    "raw_union": 73,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 71,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 4,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-96F7C884": {
+   "draws": 8,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     160,
+     64,
+     192
+    ],
+    [
+     64,
+     160,
+     128,
+     179
+    ],
+    [
+     64,
+     160,
+     128,
+     182
+    ],
+    [
+     64,
+     160,
+     128,
+     178
+    ]
+   ],
+   "allowed_texels": 3456,
+   "raw_detector_in_allowed": 6,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 0,
+    "raw_union": 73,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 69,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 6,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-A318595A": {
+   "draws": 8,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     128,
+     224,
+     160,
+     256
+    ],
+    [
+     129,
+     224,
+     160,
+     255
+    ],
+    [
+     129,
+     224,
+     160,
+     256
+    ],
+    [
+     160,
+     224,
+     191,
+     256
+    ]
+   ],
+   "allowed_texels": 2016,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 14,
+    "raw_union": 87,
+    "closing_added": 6,
+    "closing_added_rejected_line": 4,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 88,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "6C5AC447-C0539880": {
+   "draws": 4,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     0,
+     256,
+     55
+    ],
+    [
+     128,
+     41,
+     192,
+     64
+    ],
+    [
+     192,
+     0,
+     255,
+     55
+    ]
+   ],
+   "allowed_texels": 4992,
+   "raw_detector_in_allowed": 13,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 73,
+    "raw_class": 0,
+    "raw_union": 73,
+    "closing_added": 5,
+    "closing_added_rejected_line": 3,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 2,
+    "removed_by_allowed": 62,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 13,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-train-cars-v1",
+    "w7-stage2/stage2-train-cars-v2",
+    "w7-stage2/stage2-train-cars-v3"
+   ],
+   "silhouette_control": false
+  },
+  "721C46B1-86558368": {
+   "draws": 20,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    400,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     166,
+     3,
+     167,
+     7
+    ],
+    [
+     163,
+     7,
+     167,
+     8
+    ],
+    [
+     166,
+     3,
+     167,
+     8
+    ],
+    [
+     162,
+     3,
+     163,
+     8
+    ],
+    [
+     162,
+     3,
+     166,
+     8
+    ],
+    [
+     162,
+     7,
+     167,
+     8
+    ],
+    [
+     162,
+     7,
+     163,
+     8
+    ],
+    [
+     163,
+     2,
+     165,
+     6
+    ],
+    [
+     163,
+     2,
+     166,
+     6
+    ]
+   ],
+   "allowed_texels": 28,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 1,
+    "raw_class": 0,
+    "raw_union": 1,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 1,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "7A844A1C-82F2BF67": {
+   "draws": 1,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    376,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     6,
+     6,
+     8,
+     8
+    ]
+   ],
+   "allowed_texels": 4,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "845C7839-C7A4ADB7": {
+   "draws": 15,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    56,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     3,
+     0,
+     63,
+     3
+    ],
+    [
+     3,
+     0,
+     62,
+     3
+    ]
+   ],
+   "allowed_texels": 180,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "87F01A0F-0674FCB1": {
+   "draws": 3,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     0,
+     0,
+     64,
+     63
+    ],
+    [
+     0,
+     0,
+     19,
+     63
+    ],
+    [
+     0,
+     0,
+     64,
+     64
+    ]
+   ],
+   "allowed_texels": 4096,
+   "raw_detector_in_allowed": 19,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 88,
+    "raw_class": 0,
+    "raw_union": 88,
+    "closing_added": 10,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 1,
+    "closing_added_kept": 8,
+    "removed_by_allowed": 76,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 20,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "87F01A0F-3DB60323": {
+   "draws": 4,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     71,
+     53,
+     126,
+     62
+    ],
+    [
+     64,
+     22,
+     126,
+     53
+    ],
+    [
+     64,
+     26,
+     127,
+     54
+    ],
+    [
+     64,
+     13,
+     126,
+     30
+    ]
+   ],
+   "allowed_texels": 3010,
+   "raw_detector_in_allowed": 19,
+   "D_texels": 8,
+   "D_components": 2,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     99,
+     28,
+     101,
+     31
+    ]
+   },
+   "stats": {
+    "raw_index": 88,
+    "raw_class": 7,
+    "raw_union": 94,
+    "closing_added": 10,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 1,
+    "closing_added_kept": 8,
+    "removed_by_allowed": 81,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 13,
+    "final": 8,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "87F01A0F-D1B4140B": {
+   "draws": 2,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     130,
+     192,
+     143,
+     207
+    ],
+    [
+     128,
+     192,
+     142,
+     256
+    ]
+   ],
+   "allowed_texels": 911,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 88,
+    "raw_class": 1,
+    "raw_union": 88,
+    "closing_added": 10,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 1,
+    "closing_added_kept": 8,
+    "removed_by_allowed": 95,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": false
+  },
+  "87F01A0F-D9554B55": {
+   "draws": 51,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     64,
+     256,
+     126
+    ],
+    [
+     129,
+     0,
+     256,
+     62
+    ],
+    [
+     1,
+     192,
+     128,
+     254
+    ],
+    [
+     1,
+     64,
+     128,
+     126
+    ],
+    [
+     129,
+     128,
+     256,
+     190
+    ],
+    [
+     129,
+     128,
+     256,
+     191
+    ],
+    [
+     1,
+     128,
+     128,
+     190
+    ],
+    [
+     1,
+     128,
+     128,
+     191
+    ],
+    [
+     1,
+     64,
+     128,
+     127
+    ],
+    [
+     129,
+     64,
+     256,
+     127
+    ],
+    [
+     129,
+     0,
+     256,
+     63
+    ],
+    [
+     0,
+     128,
+     128,
+     191
+    ],
+    [
+     128,
+     64,
+     256,
+     127
+    ]
+   ],
+   "allowed_texels": 48005,
+   "raw_detector_in_allowed": 47,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     136,
+     107,
+     139,
+     109
+    ]
+   },
+   "stats": {
+    "raw_index": 88,
+    "raw_class": 1,
+    "raw_union": 88,
+    "closing_added": 10,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 1,
+    "closing_added_kept": 8,
+    "removed_by_allowed": 44,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 48,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": true
+  },
+  "8D419ACF-86558368": {
+   "draws": 20,
+   "page_xy": [
+    320,
+    256
+   ],
+   "words_rect": [
+    320,
+    384,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     155,
+     1,
+     159,
+     8
+    ],
+    [
+     141,
+     1,
+     151,
+     8
+    ],
+    [
+     140,
+     1,
+     151,
+     8
+    ],
+    [
+     139,
+     1,
+     151,
+     8
+    ],
+    [
+     154,
+     1,
+     158,
+     8
+    ],
+    [
+     155,
+     1,
+     159,
+     7
+    ]
+   ],
+   "allowed_texels": 119,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "A246F34C-C7A4ADB7": {
+   "draws": 5,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    104,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     48,
+     0,
+     62,
+     6
+    ]
+   ],
+   "allowed_texels": 84,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 1,
+    "raw_class": 0,
+    "raw_union": 1,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "A9E17803-413E2F28": {
+   "draws": 3,
+   "page_xy": [
+    512,
+    0
+   ],
+   "words_rect": [
+    512,
+    224,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     96,
+     0,
+     128,
+     6
+    ]
+   ],
+   "allowed_texels": 192,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "AD934A7E-1C1AA6DC": {
+   "draws": 1,
+   "page_xy": [
+    448,
+    256
+   ],
+   "words_rect": [
+    448,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     216,
+     192,
+     232,
+     255
+    ]
+   ],
+   "allowed_texels": 1008,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 66,
+    "raw_class": 0,
+    "raw_union": 66,
+    "closing_added": 7,
+    "closing_added_rejected_line": 4,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 67,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-prep-v1",
+    "w7-stage2/stage2-prep-v2"
+   ],
+   "silhouette_control": false
+  },
+  "AD934A7E-B949240B": {
+   "draws": 20,
+   "page_xy": [
+    448,
+    256
+   ],
+   "words_rect": [
+    448,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     130,
+     193,
+     135,
+     218
+    ],
+    [
+     130,
+     193,
+     135,
+     217
+    ]
+   ],
+   "allowed_texels": 125,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 66,
+    "raw_class": 0,
+    "raw_union": 66,
+    "closing_added": 7,
+    "closing_added_rejected_line": 4,
+    "closing_added_rejected_support": 2,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 67,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1"
+   ],
+   "silhouette_control": false
+  },
+  "AD934A7E-FC338604": {
+   "draws": 9,
+   "page_xy": [
+    448,
+    256
+   ],
+   "words_rect": [
+    448,
+    256,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     192,
+     0,
+     247,
+     183
+    ],
+    [
+     0,
+     80,
+     55,
+     247
+    ],
+    [
+     0,
+     0,
+     15,
+     23
+    ],
+    [
+     72,
+     0,
+     127,
+     183
+    ]
+   ],
+   "allowed_texels": 29660,
+   "raw_detector_in_allowed": 36,
+   "D_texels": 5,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 5,
+    "rect": [
+     28,
+     204,
+     31,
+     207
+    ]
+   },
+   "stats": {
+    "raw_index": 66,
+    "raw_class": 52,
+    "raw_union": 90,
+    "closing_added": 11,
+    "closing_added_rejected_line": 4,
+    "closing_added_rejected_support": 6,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 55,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 31,
+    "final": 5,
+    "min_component": 4
+   },
+   "family": "effects (stage-specific)",
+   "source_state": "live_drawn",
+   "authored": [
+    "w7-stage2/stage2-opening-fx-v1",
+    "w7-stage2/stage2-opening-fx-v2"
+   ],
+   "silhouette_control": false
+  },
+  "C4E1B9FC-D4D43BA5": {
+   "draws": 5,
+   "page_xy": [
+    704,
+    0
+   ],
+   "words_rect": [
+    704,
+    32,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     38,
+     0,
+     57,
+     7
+    ]
+   ],
+   "allowed_texels": 133,
+   "raw_detector_in_allowed": 1,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 1,
+    "raw_class": 0,
+    "raw_union": 1,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 1,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "C651BAC7-34F92FE6": {
+   "draws": 8,
+   "page_xy": [
+    576,
+    0
+   ],
+   "words_rect": [
+    576,
+    32,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     241,
+     0,
+     256,
+     8
+    ],
+    [
+     240,
+     0,
+     256,
+     8
+    ]
+   ],
+   "allowed_texels": 128,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "complete_live_source",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "E78A1563-C7A4ADB7": {
+   "draws": 17,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    24,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     114,
+     3,
+     121,
+     7
+    ]
+   ],
+   "allowed_texels": 28,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "F3DE28B1-C7A4ADB7": {
+   "draws": 18,
+   "page_xy": [
+    896,
+    0
+   ],
+   "words_rect": [
+    896,
+    48,
+    64,
+    8
+   ],
+   "source_kind": "strip",
+   "allowed_rects": [
+    [
+     54,
+     4,
+     60,
+     8
+    ],
+    [
+     64,
+     0,
+     127,
+     7
+    ],
+    [
+     54,
+     4,
+     61,
+     8
+    ]
+   ],
+   "allowed_texels": 469,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 0,
+    "raw_class": 0,
+    "raw_union": 0,
+    "closing_added": 0,
+    "closing_added_rejected_line": 0,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 0,
+    "removed_by_allowed": 0,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "pack/base",
+    "candidate/frozen-actors-v1",
+    "candidate/frozen-mk3-v2"
+   ],
+   "silhouette_control": false
+  },
+  "F47289DC-1FAF9865": {
+   "draws": 8,
+   "page_xy": [
+    384,
+    0
+   ],
+   "words_rect": [
+    384,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     129,
+     147,
+     190
+    ],
+    [
+     149,
+     129,
+     167,
+     190
+    ],
+    [
+     169,
+     171,
+     187,
+     187
+    ],
+    [
+     129,
+     129,
+     146,
+     189
+    ],
+    [
+     129,
+     129,
+     146,
+     190
+    ],
+    [
+     169,
+     149,
+     187,
+     165
+    ]
+   ],
+   "allowed_texels": 2772,
+   "raw_detector_in_allowed": 11,
+   "D_texels": 9,
+   "D_components": 2,
+   "largest_component": {
+    "texels": 5,
+    "rect": [
+     153,
+     147,
+     156,
+     150
+    ]
+   },
+   "stats": {
+    "raw_index": 24,
+    "raw_class": 0,
+    "raw_union": 24,
+    "closing_added": 2,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 14,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 2,
+    "final": 9,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  },
+  "F47289DC-E75EB4DD": {
+   "draws": 8,
+   "page_xy": [
+    384,
+    0
+   ],
+   "words_rect": [
+    384,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     87,
+     135,
+     104,
+     173
+    ],
+    [
+     66,
+     150,
+     84,
+     189
+    ],
+    [
+     66,
+     150,
+     83,
+     189
+    ],
+    [
+     87,
+     135,
+     105,
+     174
+    ],
+    [
+     66,
+     150,
+     82,
+     188
+    ]
+   ],
+   "allowed_texels": 1404,
+   "raw_detector_in_allowed": 0,
+   "D_texels": 0,
+   "D_components": 0,
+   "largest_component": null,
+   "stats": {
+    "raw_index": 24,
+    "raw_class": 0,
+    "raw_union": 24,
+    "closing_added": 2,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 0,
+    "closing_added_kept": 1,
+    "removed_by_allowed": 25,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 0,
+    "final": 0,
+    "min_component": 4
+   },
+   "family": "enemies / vehicles",
+   "source_state": "live_drawn",
+   "authored": [],
+   "silhouette_control": false
+  }
+ },
+ "skipped": {},
+ "third_party": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "pillow": "12.3.0",
+  "scipy": "1.17.1"
+ },
+ "ranking": {
+  "positives": [
+   "65560E82-0677FB7C"
+  ],
+  "clean_controls_by_draws": [
+   "3DD37B6B-BE3400E6",
+   "3DD37B6B-FAC936BC",
+   "3DD37B6B-B949240B",
+   "0A43BDBC-D4D43BA5",
+   "721C46B1-86558368",
+   "8D419ACF-86558368",
+   "AD934A7E-B949240B",
+   "F3DE28B1-C7A4ADB7",
+   "E78A1563-C7A4ADB7",
+   "261A9F2A-C7A4ADB7"
+  ],
+  "silhouette_control": "87F01A0F-D9554B55",
+  "silhouette_control_row": {
+   "draws": 51,
+   "page_xy": [
+    832,
+    0
+   ],
+   "words_rect": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "source_kind": "page",
+   "allowed_rects": [
+    [
+     129,
+     64,
+     256,
+     126
+    ],
+    [
+     129,
+     0,
+     256,
+     62
+    ],
+    [
+     1,
+     192,
+     128,
+     254
+    ],
+    [
+     1,
+     64,
+     128,
+     126
+    ],
+    [
+     129,
+     128,
+     256,
+     190
+    ],
+    [
+     129,
+     128,
+     256,
+     191
+    ],
+    [
+     1,
+     128,
+     128,
+     190
+    ],
+    [
+     1,
+     128,
+     128,
+     191
+    ],
+    [
+     1,
+     64,
+     128,
+     127
+    ],
+    [
+     129,
+     64,
+     256,
+     127
+    ],
+    [
+     129,
+     0,
+     256,
+     63
+    ],
+    [
+     0,
+     128,
+     128,
+     191
+    ],
+    [
+     128,
+     64,
+     256,
+     127
+    ]
+   ],
+   "allowed_texels": 48005,
+   "raw_detector_in_allowed": 47,
+   "D_texels": 4,
+   "D_components": 1,
+   "largest_component": {
+    "texels": 4,
+    "rect": [
+     136,
+     107,
+     139,
+     109
+    ]
+   },
+   "stats": {
+    "raw_index": 88,
+    "raw_class": 1,
+    "raw_union": 88,
+    "closing_added": 10,
+    "closing_added_rejected_line": 1,
+    "closing_added_rejected_support": 1,
+    "closing_added_kept": 8,
+    "removed_by_allowed": 44,
+    "removed_by_protected": 0,
+    "dropped_small_components_texels": 48,
+    "final": 4,
+    "min_component": 4
+   },
+   "family": "world/background",
+   "source_state": "live_drawn",
+   "authored": [
+    "s23-proposal/s2-drawn-j9-20261114T171215Z"
+   ],
+   "silhouette_control": true
+  }
+ },
+ "crops": [
+  {
+   "key": "65560E82-0677FB7C",
+   "texel_rect": [
+    17,
+    0,
+    49,
+    32
+   ],
+   "path": "crop-65560E82-0677FB7C.png",
+   "sha256": "035a0ffe4b7af6fd167760e7daba7d51f5e3cce2a141ac5665a220896f052df1",
+   "panels": "native 8x (cutout magenta) | native 8x with D texels tinted green"
+  }
+ ],
+ "summary": {
+  "indexed": 71,
+  "skipped": 0,
+  "positives": 1,
+  "clean_controls": 35
+ },
+ "ok": true,
+ "exit_code": 0,
+ "seconds": 1.25,
+ "finished_utc": "2026-11-14T22:16:38.082934+00:00"
+}

@@ -1,0 +1,590 @@
+{
+  "at_utc": "2026-11-14T22:47:56.382558+00:00",
+  "sources": [
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/compile.log",
+      "published": "geometry/t1-actual/compile.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/executed-test.cpp",
+      "published": "geometry/t1-actual/executed-test.cpp",
+      "sha256": "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94",
+      "bytes": 9842
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/fixture-result.json",
+      "published": "geometry/t1-actual/fixture-result.json",
+      "sha256": "34ea2df8e33e9bb01181de46247c9d934469955940759241f4b0df865e647833",
+      "bytes": 127
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/gte_divide_extracted.inc",
+      "published": "geometry/t1-actual/gte_divide_extracted.inc",
+      "sha256": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+      "bytes": 1757
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/pgxp.h",
+      "published": "geometry/t1-actual/pgxp.h",
+      "sha256": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+      "bytes": 19088
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/remix_t1_reproject.r1.h",
+      "published": "geometry/t1-actual/remix_t1_reproject.r1.h",
+      "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+      "bytes": 6649
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/result.json",
+      "published": "geometry/t1-actual/result.json",
+      "sha256": "334d36f88e6afb6f77d13e4e724557dc4080da7b21e06255fe09008559c36e08",
+      "bytes": 6455
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217/20261114T221522Z/run.log",
+      "published": "geometry/t1-actual/run.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1-r3-2217-envelope.json",
+      "published": "geometry/t1-envelope.json",
+      "sha256": "390dfccc9ad99d7556e002bef51b785c4971ee17edd2d73b9033163c30f5a963",
+      "bytes": 2462
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t1/build_t1_fixture.r3.py",
+      "published": "geometry/build_t1_fixture.r3.py",
+      "sha256": "4f90ca936759ef9e0d3fb46f0c3e6876f79501da7f3da2463b3ee9b342b54b04",
+      "bytes": 12483
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/compile-integ.log",
+      "published": "geometry/t2r4-actual/compile-integ.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/compile-unit.log",
+      "published": "geometry/t2r4-actual/compile-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/executed-test-integ.cpp",
+      "published": "geometry/t2r4-actual/executed-test-integ.cpp",
+      "sha256": "74c4ab408009d656bd2f502af7ae3f78d3b7694bd44116b27c1d0d7510e7a34d",
+      "bytes": 12815
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/executed-test-unit.cpp",
+      "published": "geometry/t2r4-actual/executed-test-unit.cpp",
+      "sha256": "6a5aec97ee7beb46b4ae67a367bf4e2adf90e783ec1d78651dea97df71230771",
+      "bytes": 18021
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/fixture-integ.json",
+      "published": "geometry/t2r4-actual/fixture-integ.json",
+      "sha256": "9d81f77c2bc075336bee62edc6bba0ffbde8f5f0d13b55c10fa5a5befa77ba53",
+      "bytes": 114
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/fixture-unit.json",
+      "published": "geometry/t2r4-actual/fixture-unit.json",
+      "sha256": "88ab9d0fdd7e284e3d39eda8ad7b8fac336611698fa913dfecc7d94d8ce99cb5",
+      "bytes": 105
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/gte_divide_extracted.inc",
+      "published": "geometry/t2r4-actual/gte_divide_extracted.inc",
+      "sha256": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+      "bytes": 1757
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/pgxp.h",
+      "published": "geometry/t2r4-actual/pgxp.h",
+      "sha256": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+      "bytes": 19088
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/remix_t1_reproject.r1.h",
+      "published": "geometry/t2r4-actual/remix_t1_reproject.r1.h",
+      "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+      "bytes": 6649
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/remix_t2.r3.h",
+      "published": "geometry/t2r4-actual/remix_t2.r3.h",
+      "sha256": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+      "bytes": 29214
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/remix_t2.r4.h",
+      "published": "geometry/t2r4-actual/remix_t2.r4.h",
+      "sha256": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96",
+      "bytes": 14010
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/result.json",
+      "published": "geometry/t2r4-actual/result.json",
+      "sha256": "e847019d72d6ba8cde20111a49581f46d41e0b2a921a844a8a5dda4ef806d540",
+      "bytes": 15350
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/run-integ.log",
+      "published": "geometry/t2r4-actual/run-integ.log",
+      "sha256": "2849339a2ca83bd26f9cb3ea6ff61e84ff90d2974e8181aa531cab985608f462",
+      "bytes": 82
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/run-unit.log",
+      "published": "geometry/t2r4-actual/run-unit.log",
+      "sha256": "1c8162e90e7605fa639e494a2b51da6210205fb3231fbc2ca08df32508b266bf",
+      "bytes": 73
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/scene_capture.h",
+      "published": "geometry/t2r4-actual/scene_capture.h",
+      "sha256": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+      "bytes": 4001
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/scene_ledger.r0.cpp",
+      "published": "geometry/t2r4-actual/scene_ledger.r0.cpp",
+      "sha256": "9614a6a81bd2175418a68551044601cba85c1621e6a91d2c3dcba2b4e88be62c",
+      "bytes": 23411
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/scene_ledger.r0.h",
+      "published": "geometry/t2r4-actual/scene_ledger.r0.h",
+      "sha256": "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc",
+      "bytes": 8934
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/scene_ledger_native_unpack.inc",
+      "published": "geometry/t2r4-actual/scene_ledger_native_unpack.inc",
+      "sha256": "a9b1eaa343f4d6853f31a78d12faa817ac4564df3a7922db31891430eb534b00",
+      "bytes": 9801
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1/20261114T222908Z/scene_ledger_t2.r0.h",
+      "published": "geometry/t2r4-actual/scene_ledger_t2.r0.h",
+      "sha256": "94bc9c245e3f2c003119fd57fdaf49de959d37799bbe870ba1c8528017dd39c8",
+      "bytes": 2994
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r4-run1-envelope.json",
+      "published": "geometry/t2r4-envelope.json",
+      "sha256": "c34c9d228100cde13b07772db1eeda5945ecc216b44a4231b6df7e78a4e39b82",
+      "bytes": 2437
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r4/build_t2_fixture.r4.py",
+      "published": "geometry/build_t2_fixture.r4.py",
+      "sha256": "7b39f6a48dce6e8f02ed35788ab9886951a30d21398b6e6f4dea4ba3750d1636",
+      "bytes": 22512
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r4/T2-R4-PROVENANCE-POLICY-r4-20261114.md",
+      "published": "geometry/source-review.md",
+      "sha256": "48a4ba6ed845fa8a40ea024fbbe21c83ca4b34680f63d68b87ee06aeb2651872",
+      "bytes": 7308
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/manifest.json",
+      "published": "menu/manifest.json",
+      "sha256": "e34ca075064dfa594652a8361fa0842c75569b7c2375b853e4ff05eda39882fa",
+      "bytes": 294684
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/P1-build-2240-envelope.json",
+      "published": "menu/envelope.json",
+      "sha256": "890e84e08534a5ae6b1af384f9a4d597f46bf7d361916b66626ff7a61663b4f8",
+      "bytes": 2496
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/src/host_keymap.c",
+      "published": "menu/executed-source/host_keymap.c",
+      "sha256": "8c81f0c65100ba1aa10ac8f84f25027ff4298a56a05013fb874e1fe09345ac96",
+      "bytes": 11028
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/src/main.cpp",
+      "published": "menu/executed-source/main.cpp",
+      "sha256": "d8abf287ee313e15b8dbe01837b1a217ef13f57d290e51d2d47947671c82e144",
+      "bytes": 709308
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/include/host_keymap.h",
+      "published": "menu/executed-include/host_keymap.h",
+      "sha256": "ba28065153423cc39640832ef169143794a14f9babe69adc3616923da8dcbf0f",
+      "bytes": 1944
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/obj/host_keymap.c.obj.d",
+      "published": "menu/depfiles/host_keymap.c.obj.d",
+      "sha256": "21d6a30328696713d99750a3e04b9865716f7c0e184102a985737a2640a1c062",
+      "bytes": 12855
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/obj/main.cpp.obj.d",
+      "published": "menu/depfiles/main.cpp.obj.d",
+      "sha256": "477c7304f89d7498db329ffc6e1d288aeeb5f80c1da3202c00a40cd948560b82",
+      "bytes": 131458
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/builds/p1-v69-2240/Einhander_Recompiled.p1.rsp",
+      "published": "menu/link.rsp",
+      "sha256": "604a7e9f48dab434289870004e6759d7e59f7daa440734ac771008d854f64393",
+      "bytes": 12799
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/proposals/p1-player-color/build/build_p1_v69_r3.py",
+      "published": "menu/build_p1_v69_r3.py",
+      "sha256": "5f713865c62ed3cb899df775206c588a121172f64ff28dd9444da7b20267bda7",
+      "bytes": 21855
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/proposals/p1-player-color/build/retained-inputs.v69.tsv",
+      "published": "menu/retained-inputs.v69.tsv",
+      "sha256": "d9eb77e020cc36a45b5c533869a938b2a82839826fbe2634a408579b503de757",
+      "bytes": 21829
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/proposals/p1-player-color/build/HOST-KEYMAP-CONSUMER-CENSUS.md",
+      "published": "menu/HOST-KEYMAP-CONSUMER-CENSUS.md",
+      "sha256": "abecf4c6a2989eab358c5ed0a75040c9efc9a24ce91b8e2ebb868b04ac854c92",
+      "bytes": 3217
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/proposals/p1-player-color/build/BUILD-RECEIPT-p1-v69-2240.md",
+      "published": "menu/BUILD-RECEIPT-p1-v69-2240.md",
+      "sha256": "97c1da1f6bca8061a255f9679a160d5c4f93edba39ebdd3c797acf2dceb1a821",
+      "bytes": 3923
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/proposals/p1-player-color/build/LIVE-CHECK-PLAN-p1-v69-2240.md",
+      "published": "menu/LIVE-CHECK-PLAN-p1-v69-2240.md",
+      "sha256": "a18fdd5ba490ada733952707b8dec4fc2718f27330fb583e1146be6a3cf83c3b",
+      "bytes": 3800
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-tests-2233/result.json",
+      "published": "continuity/actual/result.json",
+      "sha256": "37bcc26c80d618d5a074886bada3c26b5e4bf4891a981df058bcd27693f46575",
+      "bytes": 2166
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-tests-2233/test.tap",
+      "published": "continuity/actual/test.tap",
+      "sha256": "6aa2bb67a1a0a2090e19a74b25e14021ad3adf2c6ae109e06b29981e01ae00bc",
+      "bytes": 2625
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-tests-2233/claude-continuity-hook.mjs",
+      "published": "continuity/actual/claude-continuity-hook.mjs",
+      "sha256": "7ee73f38ee77cf7179e5b9111a5ad79af12a604de4e0dc93cabcaa03bd566ca4",
+      "bytes": 10947
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-tests-2233/test-claude-continuity.mjs",
+      "published": "continuity/actual/test-claude-continuity.mjs",
+      "sha256": "8a30a019b6cec425c47d2ab472b5dfff9f7ec70c25ffc37e6f099473dad7b367",
+      "bytes": 11876
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-2233-envelope.json",
+      "published": "continuity/envelope.json",
+      "sha256": "a02ebcb35d2a572ce7233b8951c293259351d9a1eeea41fd99f7ed14b796df2f",
+      "bytes": 2299
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/run_exact_owner_continuity_r1.py",
+      "published": "continuity/run_exact_owner_continuity_r1.py",
+      "sha256": "ebd9cf8116b34f47d3ac072c49f7580923601b087ab99418e9c4ea9c0069dd3b",
+      "bytes": 4278
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/controls_binding_r1.py",
+      "published": "adapter/pure-controls-source/controls_binding_r1.py",
+      "sha256": "5e88fb9e33a7a774210011c44e7de2a5042b2b78a85d0d4ca9873890f5431371",
+      "bytes": 35603
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/unassisted_command_guard_adapter_r1.py",
+      "published": "adapter/pure-controls-source/unassisted_command_guard_adapter_r1.py",
+      "sha256": "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee",
+      "bytes": 20713
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/owned_gl_adapter_observation_audited_r1.py",
+      "published": "adapter/pure-controls-source/owned_gl_adapter_observation_audited_r1.py",
+      "sha256": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c",
+      "bytes": 22883
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/ADAPTER-BINDING-R1-20261114.md",
+      "published": "adapter/pure-controls-source/ADAPTER-BINDING-R1-20261114.md",
+      "sha256": "5709a6b61b045f930fc19b3fd7e16b8920d470a8e91fbaf2bb6412cc71b15fd4",
+      "bytes": 4976
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243/result.json",
+      "published": "adapter/A-result.json",
+      "sha256": "764c42c03ec9b4aff49d581bfec78887e9cacb7ffd712967102be728ddd84fec",
+      "bytes": 10271
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243-envelope.json",
+      "published": "adapter/A-envelope.json",
+      "sha256": "1609122d86dd6fd16701d58912eb4a8fae41b4c22f0b92d458e27334bfcb0843",
+      "bytes": 2330
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243-runner.prelaunch-failed-20261114T224118Z/sequence-log.txt",
+      "published": "adapter/A-preserved-prelaunch-failure.txt",
+      "sha256": "3fe3f5e18ba25f10f206c383307c637b4e019492802249902c5dde1f36068d3c",
+      "bytes": 36
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/RUN-RECEIPTS-A-B-20261114.md",
+      "published": "adapter/owner-provenance.md",
+      "sha256": "3183a9e08f1cebbcf00ce714ed01c7788a3984d1bf5ddb39ade90a34573f7e62",
+      "bytes": 5072
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/result.json",
+      "published": "adapter/B-actual/result.json",
+      "sha256": "a21b1dc921f34d461509628c9d75df30c9cba8cc71480f2cba79aaedd8caf86b",
+      "bytes": 75642
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/executed-probe.py",
+      "published": "adapter/B-actual/executed-probe.py",
+      "sha256": "06f7a44a75766ee106ec39088358a7a9dcb4ae1c691b14032465ea551dd5a535",
+      "bytes": 37195
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/executed-stub.py",
+      "published": "adapter/B-actual/executed-stub.py",
+      "sha256": "ed43bda03d4843e74e6342f17a025bc1b97b54b10d503656cfc39cf5eefcf881",
+      "bytes": 7814
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/stub1.jsonl",
+      "published": "adapter/B-actual/stub1.jsonl",
+      "sha256": "f13ad35cb2a13779d208591dd7a2eef465628b95819cc64cf62790b1b01b150e",
+      "bytes": 9544
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/stub2.jsonl",
+      "published": "adapter/B-actual/stub2.jsonl",
+      "sha256": "07d88e53645abe9de2bed85ebc5fc1fe69f2c51efd8972d148c1b3a42aa0c762",
+      "bytes": 252
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/stub1.stderr",
+      "published": "adapter/B-actual/stub1.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244/stub2.stderr",
+      "published": "adapter/B-actual/stub2.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244-envelope.json",
+      "published": "adapter/B-envelope.json",
+      "sha256": "84b91fd7e73e10f62c8fd9f022b5380ccb2819e6febd9b74009abc3113f341cd",
+      "bytes": 2366
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/tools/s45_diag_bands_r3.py",
+      "published": "textures/s45-fixtures-source.py",
+      "sha256": "76adfdc710077299c3c044826ed78f908d904a3fed0bcbfe9949477acd46a381",
+      "bytes": 46119
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/repairs/20261114T223836Z-diagbands-r3-fixtures/receipt.json",
+      "published": "textures/s45-fixtures/receipt.json",
+      "sha256": "d94445ae0e590bcc9db9425c1a6e892044ad15c2fcf6f395e11f15e04fcff13e",
+      "bytes": 1728
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/repairs/20261114T223836Z-diagbands-r3-fixtures/fixtures-receipt.json",
+      "published": "textures/s45-fixtures/fixtures-receipt.json",
+      "sha256": "681e255c38ffe6e071faf8fceadcf2b4839d73cb0fa8c4fa6ae32e16d4b6b5e1",
+      "bytes": 14534
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/runs/diagbands-r3-fixtures-envelope.json",
+      "published": "textures/s45-envelope.json",
+      "sha256": "fbb37c291d62965d1e07d106a1ec8cf07ba14a281da326ed1168b3b1fd95133f",
+      "bytes": 2133
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/tools/pilot_stage_onekey_r1.py",
+      "published": "textures/settings-selftest-source.py",
+      "sha256": "0b4e0c16c0d8b58605023c4941175acbc42b3d9f05096a227fd4f9190098d540",
+      "bytes": 19010
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/stager-selftest-2246/SELFTEST.json",
+      "published": "textures/settings-selftest.json",
+      "sha256": "cca53c7de3763277d96f7aeabb281fbf26ad9cb2e950167db3703a38d18d28e0",
+      "bytes": 616
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/stselftest-2246-envelope.json",
+      "published": "textures/settings-envelope.json",
+      "sha256": "eed607658a2ed219f9453e65a7639e8c339b16f250fed7e8bea0822d065f11fd",
+      "bytes": 2218
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/dither-index-2218/dither-index.json",
+      "published": "textures/dither-index.json",
+      "sha256": "313aa4fa7628e59661788be27a0381d6afdf48a63a3d50fa444d592c72ae8828",
+      "bytes": 87799
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/dindex-2218-envelope.json",
+      "published": "textures/dither-envelope.json",
+      "sha256": "5e42e5286a796512a69bd96140c57dc5f8ec7b6412e8ab8298aa16a9e5bec9bc",
+      "bytes": 2207
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/pilot/packet-j10-2key-20261114T222238Z/pilot-packet.json",
+      "published": "textures/unlaunched-j10-pilot-proposal.json",
+      "sha256": "7b90e36ed0d61a9d9c72a54f1ff4768b0ddcb501b639839ce62780ab48987986",
+      "bytes": 9937
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/transport-menu-source-review-r1/result.json",
+      "published": "root/transport-menu-source-review-r1/result.json",
+      "sha256": "e52853ab7289478b44d8edb6c5cbde7217b0ff05467f1d60449042ce58508ac0",
+      "bytes": 4752
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/t2r4-actual-readback-r1/result.json",
+      "published": "root/t2r4-actual-readback-r1/result.json",
+      "sha256": "35b1f045533f3fd670de2e5806896c155188e4bd047cc7af85b4eca5f628fc1c",
+      "bytes": 7163
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-actual-readback-r1/claude-continuity-hook.mjs.numstat.txt",
+      "published": "root/exact-owner-actual-readback-r1/claude-continuity-hook.mjs.numstat.txt",
+      "sha256": "64ecf3cfbdc3e7c13f9a8a2e030fc2b15e925a13c7e3b51c65acef4849deb42f",
+      "bytes": 182
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-actual-readback-r1/result.json",
+      "published": "root/exact-owner-actual-readback-r1/result.json",
+      "sha256": "a0a26baf90dbb47463c7b2456f72e916a6bc25a367d6a932388b89581d069947",
+      "bytes": 2268
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-actual-readback-r1/test-claude-continuity.mjs.numstat.txt",
+      "published": "root/exact-owner-actual-readback-r1/test-claude-continuity.mjs.numstat.txt",
+      "sha256": "5f4e51d06354b7482dd252d94eafad6a3cd17fb90c840c7d03b471f5c62b08e5",
+      "bytes": 182
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/p1-r3-source-qualification-r1/result.json",
+      "published": "root/p1-r3-source-qualification-r1/result.json",
+      "sha256": "5de96ccc62afe081ab618f6acb084004e696fa60bb2523f787eb7c15e9b4b6ac",
+      "bytes": 910
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/p1-build-actual-readback-r1/result.json",
+      "published": "root/p1-build-actual-readback-r1/result.json",
+      "sha256": "422b27cc03901ed97b489e710ec43579b6988be8c8c244f8526cff3ea1de8348",
+      "bytes": 2027
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/support-ab-actual-readback-r1/result.json",
+      "published": "root/support-ab-actual-readback-r1/result.json",
+      "sha256": "e00e5090ad3994de54ef4d05582ca1d772f87c415b206c7847023e345b1c9e44",
+      "bytes": 3196
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/texture-fixture-actual-readback-r1/result.json",
+      "published": "root/texture-fixture-actual-readback-r1/result.json",
+      "sha256": "ca2337ff220ff11473495d45595eaba82b6d78cfba25021c30534d88603eb682",
+      "bytes": 1749
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_t2r4_actual_r1.py",
+      "published": "root/readback_t2r4_actual_r1.py",
+      "sha256": "02a3f0f8920f929d6afd7895b3dbed7b394ab9abe4f233b0b8a6d02fb6b59945",
+      "bytes": 5297
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_exact_owner_r1.py",
+      "published": "root/readback_exact_owner_r1.py",
+      "sha256": "ca186e107453e5d98fa2279e35a0181fef4057d56b36afabd231c9ad810efb68",
+      "bytes": 3727
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/qualify_p1_recipe_r3_metadata.py",
+      "published": "root/qualify_p1_recipe_r3_metadata.py",
+      "sha256": "c5fd25a01e23c0ea023a5474ef51ca6f91d3578115b219213c7f14fa3210873e",
+      "bytes": 3308
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_p1_private_build_r1.py",
+      "published": "root/readback_p1_private_build_r1.py",
+      "sha256": "623b0e58a95f1d76248813ddacf7168d7c16fd9bb9c680c79f4783d789324f39",
+      "bytes": 6359
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_support_actual_r1.py",
+      "published": "root/readback_support_actual_r1.py",
+      "sha256": "de5291b7398e5d5886bcc8e255ff3814384fbee810153abd9bc283d72efbd954",
+      "bytes": 4552
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_texture_fixtures_r1.py",
+      "published": "root/readback_texture_fixtures_r1.py",
+      "sha256": "1c75874f9549e9da113de3fb6a83f83d5e1f8d2558c6ddefdcd71864c93b8b65",
+      "bytes": 3577
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/exact-owner-2233-runner/executed-watchdog.py",
+      "published": "qualified-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/PROVENANCE-A-B-20261114.sha256.txt",
+      "published": "adapter/all-private-output-provenance.txt",
+      "sha256": "1ab350ad96abcd78d4d744fbd77f2a1cf93f92b24aa777d80f18e37ce6e6cb28",
+      "bytes": 39566
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-2243-runner/sequence-log.txt",
+      "published": "adapter/A-launch-sequence.txt",
+      "sha256": "719bcf9b07732dfff9ba99182a61fd088fe8fb132b843f176e102c9b1a6af684",
+      "bytes": 2471
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244-runner/sequence-log.txt",
+      "published": "adapter/B-launch-sequence.txt",
+      "sha256": "bda8a9721e10e6ed121a2ad483f57597f7256c9e97e71ef203931366d8b8f0b3",
+      "bytes": 2159
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/runs/diagbands-r3-fixtures-runner/sequence-log.txt",
+      "published": "textures/s45-launch-sequence.txt",
+      "sha256": "0bd7162e6effe18d05b8d6691a8258e6ea15ddebcf2ca6d6006cdc4b605c0845",
+      "bytes": 443
+    }
+  ],
+  "game_run": false,
+  "gpu_run": false,
+  "installed": false
+}

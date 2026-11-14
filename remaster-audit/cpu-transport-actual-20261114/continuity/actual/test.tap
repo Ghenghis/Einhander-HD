@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+ok 1 - unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+  ---
+  duration_ms: 0.9161
+  type: 'test'
+  ...
+# Subtest: explicit user pause permits stop even with unread work
+ok 2 - explicit user pause permits stop even with unread work
+  ---
+  duration_ms: 1.163
+  type: 'test'
+  ...
+# Subtest: component completion cannot claim full project completion
+ok 3 - component completion cannot claim full project completion
+  ---
+  duration_ms: 0.1229
+  type: 'test'
+  ...
+# Subtest: actual overall completion plus complete registry permits stop
+ok 4 - actual overall completion plus complete registry permits stop
+  ---
+  duration_ms: 0.1132
+  type: 'test'
+  ...
+# Subtest: exact queue owner patterns recognize anchored owners and isolate sibling workers
+ok 5 - exact queue owner patterns recognize anchored owners and isolate sibling workers
+  ---
+  duration_ms: 0.2136
+  type: 'test'
+  ...
+# Subtest: fresh checkpoint with bounded armed continuation permits a waiting turn
+ok 6 - fresh checkpoint with bounded armed continuation permits a waiting turn
+  ---
+  duration_ms: 0.1149
+  type: 'test'
+  ...
+# Subtest: unread actionable mail prevents a waiting turn until handled
+ok 7 - unread actionable mail prevents a waiting turn until handled
+  ---
+  duration_ms: 0.1145
+  type: 'test'
+  ...
+# Subtest: eligible durable work prevents waiting even with a valid continuation
+ok 8 - eligible durable work prevents waiting even with a valid continuation
+  ---
+  duration_ms: 0.1885
+  type: 'test'
+  ...
+# Subtest: missing/expired/wrong-session continuation blocks stop
+ok 9 - missing/expired/wrong-session continuation blocks stop
+  ---
+  duration_ms: 0.71
+  type: 'test'
+  ...
+# Subtest: older urgent blockers stay visible ahead of a burst of routine notes
+ok 10 - older urgent blockers stay visible ahead of a burst of routine notes
+  ---
+  duration_ms: 69.821
+  type: 'test'
+  ...
+# Subtest: real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+ok 11 - real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+  ---
+  duration_ms: 483.4924
+  type: 'test'
+  ...
+# Subtest: registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+ok 12 - registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+  ---
+  duration_ms: 69.1609
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 708.5417

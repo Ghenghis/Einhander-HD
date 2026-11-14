@@ -1,5 +1,7 @@
 # Actual private audio build and Remix CPU probe — November 14, 2026
 
+Latest actual CPU results: [private menu build, transport checks and retained diagnostic limits](CPU-TRANSPORT-ACTUAL-20261114.md). P1+v69 compiled/linked37c137e8, not launched/installed; T1 36 and T2 55+21 checks passed. Loopback probe5 remains inconclusive. Earlier entries below preserve their dated scope.
+
 The proposed audio telemetry is now compiled and linked into a **private v69
 executable**. The corrected Remix probe also builds and passes its CPU controls.
 Neither result establishes working in-game audio, Remix rendering or an installed

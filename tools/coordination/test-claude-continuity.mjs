@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import {stopDecision,handle,inbox,pendingWork,read,writeJson,sessionProfile} from './claude-continuity-hook.mjs';
+import {stopDecision,handle,inbox,pendingWork,read,writeJson,sessionProfile,exactOwnerPatternMatches} from './claude-continuity-hook.mjs';
 const now=Date.now(),input={session_id:'test-session'},config={status:'active',max_wait_minutes:30};
 const decide=(overrides={})=>stopDecision({config,state:null,completion:{full_remaster_complete:false},mail:[],input,now,...overrides});
 test('unfinished work blocks voluntary stop and repeat hook does not silently abandon it',()=>{
@@ -13,6 +13,17 @@ test('explicit user pause permits stop even with unread work',()=>assert.deepEqu
 test('component completion cannot claim full project completion',()=>assert.equal(decide({config:{...config,status:'complete'}}).decision,'block'));
 test('actual overall completion plus complete registry permits stop',()=>assert.deepEqual(decide({config:{...config,status:'complete'},completion:{full_remaster_complete:true}}),{}));
 const waiting={session_id:input.session_id,phase:'waiting',checkpoint_utc:new Date(now-1000).toISOString(),pending_task_ids:['art-gap-census'],next_action:'Read result and continue',continuation:{armed:true,monitor_task_id:'actual-client-monitor',next_wakeup_utc:new Date(now+300000).toISOString()}};
+
+test('exact queue owner patterns recognize anchored owners and isolate sibling workers',()=>{
+  const owners=['claude-einhander','claude-einhander-ui','claude-einhander-s23'];
+  for(const target of owners)for(const owner of owners){
+    assert.equal(exactOwnerPatternMatches(target,owner),target===owner);
+    assert.equal(exactOwnerPatternMatches('^'+target+'$',owner),target===owner);
+  }
+  assert.equal(exactOwnerPatternMatches('^owner\\.name$','owner.name'),true);
+  for(const bad of [null,{},'', '^claude-einhander', 'claude-einhander$',
+    '^claude-einhander.*$', '(', '(a+)+$'])assert.equal(exactOwnerPatternMatches(bad,'claude-einhander'),false);
+});
 test('fresh checkpoint with bounded armed continuation permits a waiting turn',()=>assert.deepEqual(decide({state:waiting}),{}));
 test('unread actionable mail prevents a waiting turn until handled',()=>assert.equal(decide({state:waiting,mail:[{id:'msg_action'}]}).decision,'block'));
 test('eligible durable work prevents waiting even with a valid continuation',()=>{
@@ -61,11 +72,16 @@ test('real file hook reads mailbox, ignores acknowledgement chatter and throttle
     assert.deepEqual(await handle({...input,cwd:path.dirname(root),hook_event_name:'Stop'},root),{});
     const pending=path.join(root,'.hermes3d_orchestrator/tasks/pending');await fs.mkdir(pending,{recursive:true});
     for(const row of [{task_id:'mine',target_owner_pattern:'claude-einhander',priority:100},
+      {task_id:'mine-anchored',target_owner_pattern:'^claude-einhander$',priority:90},
+      {task_id:'worker-only',target_owner_pattern:'^claude-einhander-ui$',priority:200},
       {task_id:'other',target_owner_pattern:'codex-einhander'},
       {task_id:'blocked',target_owner_pattern:'claude-einhander',blocked_reason:'Exact missing native palette'},
       {task_id:'claimed',target_owner_pattern:'claude-einhander',claimed_by:'claude-einhander'}])
       await fs.writeFile(path.join(pending,row.task_id+'.json'),JSON.stringify(row));
-    assert.deepEqual((await pendingWork(root,'claude-einhander')).map(t=>t.task_id),['mine']);
+    const ownQueue=await pendingWork(root,'claude-einhander');
+    assert.deepEqual(ownQueue.map(t=>t.task_id),['mine','mine-anchored']);
+    assert.deepEqual((await pendingWork(root,'claude-einhander-ui')).map(t=>t.task_id),['worker-only']);
+    assert.equal(decide({state:waiting,queued:ownQueue.filter(t=>t.task_id==='mine-anchored')}).decision,'block');
     const racing=path.join(root,'concurrent-state.json');await writeJson(racing,{valid:true});
     const concurrent=await Promise.allSettled(Array.from({length:24},async(_,i)=>{
       await writeJson(racing,{valid:true,index:i});assert.equal((await read(racing,{})).valid,true);

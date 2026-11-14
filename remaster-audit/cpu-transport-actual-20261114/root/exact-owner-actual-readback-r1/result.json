@@ -1,0 +1,59 @@
+{
+  "at_utc": "2026-11-14T22:34:17.053131+00:00",
+  "metadata_readback_pass": true,
+  "result_sha256": "37bcc26c80d618d5a074886bada3c26b5e4bf4891a981df058bcd27693f46575",
+  "envelope_sha256": "a02ebcb35d2a572ce7233b8951c293259351d9a1eeea41fd99f7ed14b796df2f",
+  "tap_sha256": "6aa2bb67a1a0a2090e19a74b25e14021ad3adf2c6ae109e06b29981e01ae00bc",
+  "tests": 12,
+  "passed": 12,
+  "failed": 0,
+  "skipped": 0,
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 46740,
+      "creation_unix": 1794695568.4382093,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 30420,
+      "creation_unix": 1794695569.55829,
+      "identity_absent": true
+    },
+    {
+      "label": "node",
+      "pid": 36152,
+      "creation_unix": 1794695569.827657,
+      "identity_absent": true
+    }
+  ],
+  "elapsed_s": 1.065,
+  "peak_job_memory_bytes": 120098816,
+  "node_hash_at_execution": {
+    "path": "C:\\Program Files\\nodejs\\node.exe",
+    "sha256": "5cba0ea928508c65ddadefc0681d2fb6d95f1f3beea4428f04397631140ee8e5",
+    "pin_recorded_at_execution": true,
+    "independently_preapproved_pin": false
+  },
+  "node_binary_rehashed_by_readback": false,
+  "copied_scripts": {
+    "claude-continuity-hook.mjs": {
+      "original": "C:\\github\\Einhander\\tools\\coordination\\claude-continuity-hook.mjs",
+      "copied": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233\\claude-continuity-hook.mjs",
+      "sha256": "7ee73f38ee77cf7179e5b9111a5ad79af12a604de4e0dc93cabcaa03bd566ca4"
+    },
+    "test-claude-continuity.mjs": {
+      "original": "C:\\github\\Einhander\\tools\\coordination\\test-claude-continuity.mjs",
+      "copied": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233\\test-claude-continuity.mjs",
+      "sha256": "8a30a019b6cec425c47d2ab472b5dfff9f7ec70c25ffc37e6f099473dad7b367"
+    }
+  },
+  "test_replayed": false,
+  "gpu_used": false,
+  "game_launched": false,
+  "native_sessions_invoked": false,
+  "arbitrary_regex_supported": false,
+  "legacy_bare_owner_remains_ambiguous_in_hermes": true,
+  "future_producers_require_anchored_exact_owners": true
+}
