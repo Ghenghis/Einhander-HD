@@ -1,0 +1,44 @@
+--- a/windows-x64/psxrecomp/runtime/src/hd_research_renderer.h
++++ b/windows-x64/psxrecomp/runtime/src/hd_research_renderer.h
+@@ -5,6 +5,11 @@
+ #include "hd_research_filter.h"
+ static GlResearchLimits s_hd_research_source_filter;
+ static uint64_t s_hd_research_source_filter_skips;
++/* F3 (support proposal EIN-SUPPORT-F3-REPRO-20261114): each future mark needs one JSON record and at most 768 bytes
++ * (its line is formatted into char line[768] in gl_renderer_research_mark). capture_start is counted in records before
++ * any draw, and hdrc_stop writes no row, so no tail row is reserved today; raise HD_RESEARCH_TAIL_ROWS if one is added. */
++#define HD_RESEARCH_MARK_LINE_MAX 768u
++#define HD_RESEARCH_TAIL_ROWS 0u
+ static unsigned hd_research_event_files_reserve(void){
+  return s_hd_research.events<s_hd_research.limits.max_events?s_hd_research.limits.max_events-s_hd_research.events:0;
+ }
+@@ -19,12 +24,19 @@
+  * for every remaining event BEFORE any source sidecar or JSON record is
+  * written. Rejection is soft; event snapshots retain their separate channel. */
+ static int hd_research_evidence_room(uint64_t bytes,unsigned files){
+- uint64_t reserve=hd_research_event_bytes_reserve();unsigned reserve_files=hd_research_event_files_reserve();
++ uint64_t reserve=hd_research_event_bytes_reserve()+(uint64_t)hd_research_event_files_reserve()*HD_RESEARCH_MARK_LINE_MAX;unsigned reserve_files=hd_research_event_files_reserve();
+  return s_hd_research.active && s_hd_research.files<=HDRC_MAX_FILES &&
+   files<=HDRC_MAX_FILES-s_hd_research.files && reserve_files<=HDRC_MAX_FILES-s_hd_research.files-files &&
+   s_hd_research.bytes_written<=s_hd_research.limits.max_bytes &&
+   bytes<=s_hd_research.limits.max_bytes-s_hd_research.bytes_written &&
+   reserve<=s_hd_research.limits.max_bytes-s_hd_research.bytes_written-bytes;
++}
++/* F3: a draw row may take a JSON record only while one record per still-markable event (plus tail rows) stays free.
++ * hd_research_event_files_reserve() is 0 once events are exhausted; the subtraction runs only when records<max. */
++static int hd_research_draw_record_room(void){
++ unsigned left=hd_research_event_files_reserve();
++ return s_hd_research.records<s_hd_research.limits.max_records &&
++  s_hd_research.limits.max_records-s_hd_research.records>left+HD_RESEARCH_TAIL_ROWS;
+ }
+ static int hd_research_ready(void){return gr_backend()==GR_BACKEND_OPENGL && s_ctx && s_raster_ok && s_hd_state>0 && s_hd_pack && s_vram;}
+ int gl_renderer_research_get(GlResearchState *out){
+@@ -104,7 +116,7 @@
+  uint64_t frame=s_frame_count,now;HdResearchSampleKey key;HdResearchSampleEntry *sample;char line[1536],material_fields[384];const HdSkinConfig *material;
+  if(!s_hd_research.active)return;now=psx_host_mono_ms();if(!hdrc_tick(&s_hd_research,frame,now))return;
+  if(!px)hd_research_source(m,q,frame,now);
+- if(s_hd_research.records>=s_hd_research.limits.max_records){++s_hd_research_sampler.record_cap_skips;return;}
++ if(!hd_research_draw_record_room()){++s_hd_research_sampler.record_cap_skips;return;}
+  key.words[0]=m->texture_hash;key.words[1]=m->palette_hash;
+  key.words[2]=((((unsigned)q->u_first+q->u_last)/2u)>>7)|(((((unsigned)q->v_first+q->v_last)/2u)>>7)<<1);
+  key.words[3]=(unsigned)semi;key.words[4]=px!=NULL;key.words[5]=q->depth;

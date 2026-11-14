@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T17:56:19.973021+00:00",
+  "updated_at_utc": "2026-11-14T18:13:16.349641+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -923,11 +923,19 @@
     "live_qualified": false
   },
   "menu_batch_file_admission": {
-    "status": "INVALIDATED: scale output collisions",
-    "old_summaries": [
-      "5ef7b279",
-      "b0421159"
-    ],
-    "rebuild": "pending actual verified v5 result"
+    "old_summaries_invalid": true,
+    "new_summary": "e124d0e8",
+    "new_member_files": 118,
+    "independent_hash_checks": 1183,
+    "look_accepted": false,
+    "installed": false
+  },
+  "recorder_f3": {
+    "source_integrated": true,
+    "cpu_reproduction_passed": true,
+    "private_build": "v68",
+    "executable_sha256": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa",
+    "live_qualified": false,
+    "evidence": "remaster-audit/recorder-menu-results-20261114/README.md"
   }
 }

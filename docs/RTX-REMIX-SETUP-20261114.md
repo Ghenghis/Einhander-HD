@@ -1,5 +1,11 @@
 # RTX Remix setup and actual use — November 14, 2026
 
+## Recorder engine correction and verified new menu bytes —18:12 UTC
+
+F3 capture-record/byte reservation is source-integrated and privately compiled/linked (2.709s); seven CPU scenarios and four mutants pass. Root checks160 source/155 link inputs. Fresh v5 menu bytes pass1183 independent hash checks, including708 variants; old overwritten summaries stay INVALID. No live appearance/class replay, game/GPU/audio or installation. [Actual results, source and failures](../docs/RECORDER-MENU-RESULTS-20261114.md).
+
+User3090Ti hold remains through at least18:37:05UTC, then fresh grant/source/resource gates. Default unassisted-route qualification, cage freeze/fidelity and all seven-stage/release gates remain open. Older dated statements below are historical where superseded.
+
 ## CPU-only continuation and corrected menu claims —17:55 UTC
 
 The user3090Ti hold lasts conservatively until18:37:05UTC, then a fresh broker grant is still required. Twelve CPU policy controls pass (0.496s child, empty tree); no game/GPU/audio or live acceptance. Independent readback INVALIDATES the old72/72 and118/118 menu file summaries because scale variants overwrote the same output paths. Old evidence remains preserved; a new exclusive-write v5 rebuild is pending actual results. [Verified results, source and remaining gates](../docs/CPU-GAMEPLAY-PREPARATION-20261114.md).
