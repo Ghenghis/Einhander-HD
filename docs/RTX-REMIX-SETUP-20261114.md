@@ -1,5 +1,9 @@
 # RTX Remix setup and actual use — November 14, 2026
 
+## Current CPU texture checkpoint and host hold —19:12UTC
+
+Independent native-class replay passes118/118menu candidates; privatev68 C:staging succeeds0/7.613s, without game/GPU/install. Root verifies original receipts/currentpins. Staged enemy material is disabled; player tint covers four hull keys, detail has unprovenlive upload gates. Full realistic skins/selectors remain open. Remixr7is source-only/uncompiled/unrun; last GPU output/Shutdown remains failed. User-observed Windows freezing relayed by coordinator: HOLD new heavy/GPU jobs pending diagnostics; light source/receipt/publication work continues. [Actual results, pinned source map and remaining acceptance](../docs/CPU-TEXTURE-REMIX-RESULTS-20261114.md). Earlier dated results below retain their original scope and do not override this checkpoint.
+
 ## Simulated route/CLI controls and actual visual decisions —18:40 UTC
 
 FT1four fake-boundary cases and14current CLI/policy checks pass; real game/GPU/transport acceptance is still open. Staging refuses70%CPU before a child. Cagev2sixpins/eightfiles are preserved, not integrated/finalHD. Root views12menu images: three2048prompt choices provisional, three spec-text choices rejected. Pizza still owns the sharedGPU; time expiry never transfers ownership. [Exact results, failures and remaining gates](../docs/UNASSISTED-ROUTE-RESULTS-20261114.md).

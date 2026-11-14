@@ -1,0 +1,191 @@
+--- r6/sdk_modern_gl_probe.cpp
++++ r7/sdk_modern_gl_probe.cpp
+@@ -1,9 +1,16 @@
+-// Private API0.16.1 interop qualification, r6 PROPOSAL (claude-einhander; root reviews and applies canonical).
++// Private API0.16.1 interop qualification, r7 PROPOSAL (claude-einhander; root reviews and applies canonical).
++// r7 (root msg_eee3aa32): legal 'not ready' frames. Per the official client (GlInterop.java:41/98/280), interop image
++//  handle 0 or -1 means 'no image yet' and the client's last waited value starts at -1, so a dxvkDone value of 0 is legal.
++//  Such frames are NOT READY: no import, no wait, no readback, never counted or accepted; Submit is still paired with
++//  Present (clientDone signalled without an image barrier). They stay bounded by the ready/capture deadlines; all-not-ready
++//  until the ready limit FAILs as no_interop_image_within_ready_window. Still fatal (rc 18): zero or changed semaphore
++//  handles (explicit prerequisite; the client requires them nonzero), a present image with the wrong size/format, a
++//  value that decreases, and value 0 after a positive wait on the same imported image. Deadlines are now checked before
++//  any frame is counted. r6 af7eb6e43e9d1bdf4e60952f42d870b3079f43b138a81f68f2fbb7b10b617a6e is preserved unchanged.
+ // r6 (root review of r5 c2a6e7ee, msg_c0ba2d55): deadline BEFORE success. The ready window is the half-open interval
+ //  [0, readyLimit) seconds from the first frame loop start: a frame observed at t >= readyLimit never counts, even if it
+ //  passes the oracle (e.g. after a long blocking Submit or readback). The capture window is likewise half-open:
+-//  [firstValidSeconds, firstValidSeconds + 20 s). Timeline value 0: kept rejected (unchanged since r4); the official
+-//  client would wait trivially on 0 and treats image handle 0/-1 as 'no image yet', but no run has shown 0 after Submit.
++//  [firstValidSeconds, firstValidSeconds + 20 s). r6 still rejected timeline value 0; r7 above replaces that.
+ //  r5 c2a6e7eebfa241bb38a6ca2787d1fa1b9658e9a6d8a0f7b40c73c4266f6005d0 is preserved unchanged.
+ // Not a game backend or an installed release. Official release header documents Submit -> external-memory/timeline GL -> Present.
+ // Base: r4 sdk_modern_gl_probe.cpp 3f77474fea5208bafae6a7cd82132f0188584a030112c7db68915e04f382a2dc.
+@@ -128,6 +135,23 @@
+ struct ImportKey{uint64_t handle,size;int w,h;GLenum fmt;};
+ bool importNeeded(bool imported,const ImportKey&have,const ImportKey&want){return !imported||have.handle!=want.handle||have.size!=want.size||have.w!=want.w||have.h!=want.h||have.fmt!=want.fmt;}
+ 
++// ---- r7: interop frame classification (official GlInterop: handle 0/-1 = no image yet; last waited = -1 accepts 0)
++bool semaphoresMatch(const remixapi_dxvk_InteropInfo&i,const remixapi_dxvk_InteropInfo&initial){return i.dxvkDoneSemaphore_Handle&&i.clientDoneSemaphore_Handle&&i.dxvkDoneSemaphore_Handle==initial.dxvkDoneSemaphore_Handle&&i.clientDoneSemaphore_Handle==initial.clientDoneSemaphore_Handle;}
++bool imagePresent(const remixapi_dxvk_InteropInfo&i){return i.imageMemory_Handle!=0&&i.imageMemory_Handle!=~uint64_t(0);}
++bool imageMetaValid(const remixapi_dxvk_InteropInfo&i){return i.allocationSize>=uint64_t(W)*H*pixelBytes(i.interopImageFormat)&&i.allocationSize<=256ull*1024*1024&&i.width==W&&i.height==H&&format(i.interopImageFormat);}
++ImportKey keyOf(const remixapi_dxvk_InteropInfo&i){return {i.imageMemory_Handle,i.allocationSize,i.width,i.height,format(i.interopImageFormat)};}
++enum class Interop{Fatal,NoImage,ZeroValue,Image};
++// haveLastOnSameImage: a value was already waited on THIS imported image (the client resets its last value on re-import).
++Interop classifyInterop(const remixapi_dxvk_InteropInfo&i,const remixapi_dxvk_InteropInfo&initial,bool haveLastOnSameImage,U64 last){
++  if(!semaphoresMatch(i,initial))return Interop::Fatal;      // explicit prerequisite: nonzero, stable semaphores
++  if(!imagePresent(i))return Interop::NoImage;                // legal: no image yet
++  if(!imageMetaValid(i))return Interop::Fatal;                // a present image of the wrong size/format violates the contract
++  if(i.dxvkDoneSemaphore_ValueToWait==0)return haveLastOnSameImage&&last>0?Interop::Fatal:Interop::ZeroValue;  // 0 after progress = decrease
++  return Interop::Image;
++}
++struct FramePlan{bool wait,read,signalImage;};
++FramePlan planFor(Interop k,WaitAction a){if(k!=Interop::Image)return {false,false,false};return {a==WaitAction::Wait,a==WaitAction::Wait,true};}
++
+ // ---- Image classification; the oracle is r4's capture() acceptance, unchanged
+ struct Image{int finite=0,green=0,magenta=0,nonblack=0;};
+ Image classify(const std::vector<float>&px){Image r;for(int j=0;j<W*H;++j){float a=px[size_t(j)*4],b=px[size_t(j)*4+1],c=px[size_t(j)*4+2];
+@@ -137,29 +161,32 @@
+ 
+ // ---- Bounded readiness/capture state machine (pure; covered by --cpu-contract)
+ enum class Phase{Ready,Settle,Done,Fail};
++enum class Obs{Fresh,SkipEqual,NotReady};
+ struct Machine{
+-  Phase phase=Phase::Ready;double readyLimit=READY_DEFAULT;int slot=0,settled=0,accepted=0,fresh=0,skipped=0;
++  Phase phase=Phase::Ready;double readyLimit=READY_DEFAULT;int slot=0,settled=0,accepted=0,fresh=0,skipped=0,notReady=0;
+   int firstNonblackFrame=-1,firstValidFrame=-1;double firstNonblackSeconds=-1,firstValidSeconds=-1;const char*failure="";
+   bool active()const{return phase==Phase::Ready||phase==Phase::Settle;}
+   float offset()const{return phase==Phase::Ready?0.f:OFFSETS[std::min(slot,2)];}
+-  // Once per frame after the interop step. fresh=false for a skipped-equal frame (no new Remix output).
++  // Fresh: a new dxvkDone value was waited and read. SkipEqual: same value as the last wait (no new output).
++  // NotReady (r7): no interop image yet or value 0; never read, counted or accepted.
++  // Deadlines come first (half-open windows): nothing observed at or after a deadline is counted or recorded.
+   // Returns the capture slot (0..2) this frame's image must be written to, or -1.
+-  int step(int frame,double t,bool isFresh,const Image&img){
++  int stepKind(int frame,double t,Obs kind,const Image&img){
+     if(!active())return -1;
+-    if(isFresh)++fresh;else ++skipped;
++    if(phase==Phase::Ready&&t>=readyLimit){phase=Phase::Fail;failure=fresh==0?"no_interop_image_within_ready_window":firstNonblackFrame<0?"no_rt_output_within_ready_window":"no_valid_green_within_ready_window";return -1;}
++    if(phase==Phase::Settle&&t-firstValidSeconds>=CAPTURE_WINDOW_SECONDS){phase=Phase::Fail;failure="capture_window_exceeded";return -1;}
++    if(kind==Obs::NotReady){++notReady;return -1;}
++    if(kind==Obs::SkipEqual){++skipped;return -1;}
++    ++fresh;
+     if(phase==Phase::Ready){
+-      // r6: deadline before success; window [0, readyLimit). Nothing observed at t >= readyLimit is recorded or accepted.
+-      if(t>=readyLimit){phase=Phase::Fail;failure=firstNonblackFrame<0?"no_rt_output_within_ready_window":"no_valid_green_within_ready_window";return -1;}
+-      if(isFresh&&img.nonblack>0&&firstNonblackFrame<0){firstNonblackFrame=frame;firstNonblackSeconds=t;}
+-      if(isFresh&&oracle(img)){firstValidFrame=frame;firstValidSeconds=t;phase=Phase::Settle;slot=0;settled=0;}
++      if(img.nonblack>0&&firstNonblackFrame<0){firstNonblackFrame=frame;firstNonblackSeconds=t;}
++      if(oracle(img)){firstValidFrame=frame;firstValidSeconds=t;phase=Phase::Settle;slot=0;settled=0;}
+       return -1;
+     }
+-    // Capture window [firstValidSeconds, firstValidSeconds + CAPTURE_WINDOW_SECONDS): deadline before any capture.
+-    if(t-firstValidSeconds>=CAPTURE_WINDOW_SECONDS){phase=Phase::Fail;failure="capture_window_exceeded";return -1;}
+-    if(!isFresh)return -1;
+     if(settled<SETTLE){++settled;return -1;}
+     const int s=slot;if(oracle(img))++accepted;++slot;settled=0;if(slot==3)phase=Phase::Done;return s;
+   }
++  int step(int frame,double t,bool isFresh,const Image&img){return stepKind(frame,t,isFresh?Obs::Fresh:Obs::SkipEqual,img);}
+ };
+ 
+ bool readback(GLuint tex,GLuint fb,Gl&g,std::vector<float>&px,Image&img){
+@@ -225,13 +252,37 @@
+    ok&=test(m.phase==Phase::Fail&&std::strcmp(m.failure,"capture_window_exceeded")==0);}
+   // r6 deadline-before-success controls: exact boundary, just inside, late valid after a long blocking frame, capture window
+   {Machine m;m.readyLimit=10;m.step(0,9.999,true,valid);ok&=test(m.phase==Phase::Settle&&m.firstValidFrame==0);}
+-  {Machine m;m.readyLimit=10;m.step(0,10.0,true,valid);ok&=test(m.phase==Phase::Fail&&std::strcmp(m.failure,"no_rt_output_within_ready_window")==0&&m.firstValidFrame<0&&m.firstNonblackFrame<0);}
++  {Machine m;m.readyLimit=10;m.step(0,10.0,true,valid);ok&=test(m.phase==Phase::Fail&&std::strcmp(m.failure,"no_interop_image_within_ready_window")==0&&m.firstValidFrame<0&&m.firstNonblackFrame<0);}
+   {Machine m;m.readyLimit=10;m.step(0,1,true,grey);m.step(1,20,true,valid);ok&=test(m.phase==Phase::Fail&&std::strcmp(m.failure,"no_valid_green_within_ready_window")==0&&m.firstValidFrame<0&&m.firstNonblackFrame==0);}
+   {Machine m;m.readyLimit=10;m.step(0,0,true,valid);int f=1;for(;f<=SETTLE;++f)m.step(f,.1*f,true,valid);const int s=m.step(f,20.0,true,valid);
+    ok&=test(s==-1&&m.phase==Phase::Fail&&std::strcmp(m.failure,"capture_window_exceeded")==0&&m.accepted==0);}
+   {Machine m;m.readyLimit=10;m.step(0,0,true,valid);int f=1;for(;f<=SETTLE;++f)m.step(f,.1*f,true,valid);const int s=m.step(f,19.999,true,valid);
+    ok&=test(s==0&&m.phase==Phase::Settle&&m.accepted==1);}
+-  std::printf("{\"cpu_contract_checks\":%d,\"passed\":%s,\"revision\":\"r6\",\"dll_loaded\":false,\"gl_context\":false}\n",checks,ok?"true":"false");
++  // r7 interop classification (official: handle 0/-1 = no image yet; last waited = -1 accepts value 0)
++  {remixapi_dxvk_InteropInfo init={};init.dxvkDoneSemaphore_Handle=2;init.clientDoneSemaphore_Handle=3;
++   remixapi_dxvk_InteropInfo v=init;v.imageMemory_Handle=10;v.allocationSize=uint64_t(W)*H*8;v.width=W;v.height=H;v.interopImageFormat=REMIXAPI_TEXTURE_FORMAT_RGBA16_SFLOAT;v.dxvkDoneSemaphore_ValueToWait=7;
++   ok&=test(classifyInterop(v,init,false,0)==Interop::Image);
++   {remixapi_dxvk_InteropInfo x=v;x.dxvkDoneSemaphore_Handle=0;ok&=test(classifyInterop(x,init,false,0)==Interop::Fatal);}
++   {remixapi_dxvk_InteropInfo x=v;x.clientDoneSemaphore_Handle=4;ok&=test(classifyInterop(x,init,false,0)==Interop::Fatal);}
++   {remixapi_dxvk_InteropInfo x=v;x.imageMemory_Handle=0;ok&=test(classifyInterop(x,init,true,5)==Interop::NoImage);}
++   {remixapi_dxvk_InteropInfo x=v;x.imageMemory_Handle=~uint64_t(0);ok&=test(classifyInterop(x,init,false,0)==Interop::NoImage);}
++   {remixapi_dxvk_InteropInfo x=v;x.width=W+1;ok&=test(classifyInterop(x,init,false,0)==Interop::Fatal);}
++   {remixapi_dxvk_InteropInfo x=v;x.dxvkDoneSemaphore_ValueToWait=0;ok&=test(classifyInterop(x,init,false,0)==Interop::ZeroValue);
++    ok&=test(classifyInterop(x,init,true,5)==Interop::Fatal);}}
++  {const FramePlan a=planFor(Interop::NoImage,WaitAction::Wait),b=planFor(Interop::ZeroValue,WaitAction::Wait),c=planFor(Interop::Image,WaitAction::Wait),d=planFor(Interop::Image,WaitAction::SkipEqual);
++   ok&=test(!a.wait&&!a.read&&!a.signalImage);ok&=test(!b.wait&&!b.read&&!b.signalImage);
++   ok&=test(c.wait&&c.read&&c.signalImage);ok&=test(!d.wait&&!d.read&&d.signalImage);}
++  // r7 not-ready frames: never counted (even with a 'valid' image), bounded by the deadlines
++  {Machine m;m.readyLimit=10;int f=0;double t=0;for(;f<20;++f,t+=.2)m.stepKind(f,t,Obs::NotReady,valid);m.stepKind(f,t,Obs::Fresh,valid);
++   ok&=test(m.phase==Phase::Settle&&m.notReady==20&&m.fresh==1&&m.firstValidFrame==20);}
++  {Machine m;m.readyLimit=5;int f=0;double t=0;for(;m.active()&&f<100;++f,t+=.2)m.stepKind(f,t,Obs::NotReady,valid);
++   ok&=test(m.phase==Phase::Fail&&std::strcmp(m.failure,"no_interop_image_within_ready_window")==0&&m.fresh==0&&m.firstValidFrame<0);}
++  {Machine m;m.readyLimit=10;m.step(0,0,true,valid);int f=1;double t=.1;for(int n=0;n<50;++n,++f,t+=.1)m.stepKind(f,t,Obs::NotReady,valid);
++   ok&=test(m.phase==Phase::Settle&&m.settled==0&&m.notReady==50&&m.skipped==0);}
++  {Machine m;m.readyLimit=10;m.step(0,0,true,valid);int f=1;for(;f<=SETTLE;++f)m.step(f,.1*f,true,valid);
++   const int nr=m.stepKind(f,.1*f,Obs::NotReady,valid);const int s=m.stepKind(f+1,.1*(f+1),Obs::Fresh,valid);
++   ok&=test(nr==-1&&s==0&&m.accepted==1);}
++  std::printf("{\"cpu_contract_checks\":%d,\"passed\":%s,\"revision\":\"r7\",\"dll_loaded\":false,\"gl_context\":false}\n",checks,ok?"true":"false");
+   return ok?0:1;
+ }
+ }
+@@ -280,7 +331,7 @@
+   remixapi_HardcodedVertex vertices[3]={};const float positions[3][3]={{-3,-2,8},{0,2,8},{3,-2,8}};for(int j=0;j<3;++j){std::memcpy(vertices[j].position,positions[j],sizeof positions[j]);vertices[j].normal[2]=-1;vertices[j].color=0xffffffff;}
+   remixapi_MeshInfoSurfaceTriangles surface={};surface.vertices_values=vertices;surface.vertices_count=3;surface.material=material;remixapi_MeshInfo meshinfo={};meshinfo.sType=REMIXAPI_STRUCT_TYPE_MESH_INFO;meshinfo.hash=0xe1a01602;meshinfo.surfaces_values=&surface;meshinfo.surfaces_count=1;remixapi_MeshHandle mesh=nullptr;
+   if(!rc&&!call("CreateMesh",api.CreateMesh(&meshinfo,&mesh)))rc=16;
+-  U64 clientValue=0,lastDone=0;bool haveLast=false,imported=false;ImportKey have{0,0,0,0,0};GLuint memory=0,tex=0;int imports=0;
++  U64 clientValue=0,lastDone=0;bool haveLast=false,imported=false;ImportKey have{0,0,0,0,0};GLuint memory=0,tex=0;int imports=0,noImageFrames=0,zeroValueFrames=0;
+   auto dropImport=[&]{if(tex)glDeleteTextures(1,&tex);if(memory)gl.deleteMemory(1,&memory);tex=0;memory=0;imported=false;};
+   auto finishSubmitted=[&](GLuint image,bool waitOnClient=true){
+     const GLenum layout=GENERAL;++clientValue;gl.semaphoreValue(client,VALUE_NV,&clientValue);
+@@ -297,28 +348,34 @@
+     const float offset=sm.offset();
+     remixapi_CameraInfo camera={};camera.sType=REMIXAPI_STRUCT_TYPE_CAMERA_INFO;camera.pNext=&cp;camera.type=REMIXAPI_CAMERA_TYPE_WORLD;remixapi_InstanceInfo instance={};instance.sType=REMIXAPI_STRUCT_TYPE_INSTANCE_INFO;instance.mesh=mesh;instance.doubleSided=1;instance.transform={{{1,0,0,offset},{0,1,0,0},{0,0,1,0}}};auto submit=remixapi_SubmitInfo_init();
+     if(!call("SetupCamera",api.SetupCamera(&camera))||!call("DrawInstance",api.DrawInstance(&instance))||!call("Submit",api.Submit(&submit))){rc=17;break;}
+-    remixapi_dxvk_InteropInfo info={};if(!call("InteropInfo",api.dxvk_GetInteropInfo(&info))||!metadata(info)||info.dxvkDoneSemaphore_Handle!=initial.dxvkDoneSemaphore_Handle||info.clientDoneSemaphore_Handle!=initial.clientDoneSemaphore_Handle){rc=18;finishSubmitted(0,false);break;}
+-    const ImportKey want{info.imageMemory_Handle,info.allocationSize,info.width,info.height,format(info.interopImageFormat)};
++    remixapi_dxvk_InteropInfo info={};if(!call("InteropInfo",api.dxvk_GetInteropInfo(&info))){rc=18;finishSubmitted(0,false);break;}
++    const bool sameImage=imported&&imagePresent(info)&&imageMetaValid(info)&&!importNeeded(imported,have,keyOf(info));
++    const Interop kind=classifyInterop(info,initial,haveLast&&sameImage,lastDone);
++    if(kind==Interop::Fatal){std::printf("{\"interop_contract_violation\":{\"frame\":%d,\"image\":%llu,\"value\":%llu,\"width\":%d,\"height\":%d,\"format\":%d}}\n",frame,U64(info.imageMemory_Handle),U64(info.dxvkDoneSemaphore_ValueToWait),int(info.width),int(info.height),int(info.interopImageFormat));std::fflush(stdout);rc=18;finishSubmitted(0,false);break;}
++    WaitAction act=WaitAction::Wait;
++    if(kind==Interop::Image){
++    const ImportKey want=keyOf(info);
+     if(importNeeded(imported,have,want)){
+       dropImport();HANDLE handle=duplicate(info.imageMemory_Handle);if(!handle){rc=19;finishSubmitted(0);break;}
+       gl.createMemory(1,&memory);gl.importMemory(memory,info.allocationSize,HANDLE_WIN32,handle);CloseHandle(handle);glGenTextures(1,&tex);glBindTexture(GL_TEXTURE_2D,tex);gl.textureStorage(GL_TEXTURE_2D,1,want.fmt,W,H,memory,0);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_NEAREST);glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_NEAREST);
+       if(!glOk("import-image")){rc=19;finishSubmitted(0);break;}
+       imported=true;have=want;haveLast=false;++imports;std::printf("{\"interop_import\":%d,\"frame\":%d,\"format\":%d,\"gl_format\":%u,\"allocation\":%llu}\n",imports,frame,int(info.interopImageFormat),want.fmt,U64(info.allocationSize));std::fflush(stdout);
+     }
+-    const WaitAction act=waitAction(haveLast,lastDone,info.dxvkDoneSemaphore_ValueToWait);
++    act=waitAction(haveLast,lastDone,info.dxvkDoneSemaphore_ValueToWait);
+     if(act==WaitAction::ErrorDecrease){std::printf("{\"dxvk_done_decreased\":{\"last\":%llu,\"next\":%llu}}\n",lastDone,U64(info.dxvkDoneSemaphore_ValueToWait));rc=18;finishSubmitted(0,false);break;}
+-    const bool isFresh=act==WaitAction::Wait;
+-    if(isFresh){const GLenum layout=GENERAL;U64 waitValue=info.dxvkDoneSemaphore_ValueToWait;gl.semaphoreValue(done,VALUE_NV,&waitValue);gl.wait(done,0,nullptr,1,&tex,&layout);
++    }else if(kind==Interop::NoImage)++noImageFrames;else ++zeroValueFrames;
++    const FramePlan plan=planFor(kind,act);
++    if(plan.wait){const GLenum layout=GENERAL;U64 waitValue=info.dxvkDoneSemaphore_ValueToWait;gl.semaphoreValue(done,VALUE_NV,&waitValue);gl.wait(done,0,nullptr,1,&tex,&layout);
+       if(!glOk("import-wait")){rc=20;finishSubmitted(tex);break;}lastDone=waitValue;haveLast=true;}
+-    Image img;if(isFresh&&!readback(tex,fb,gl,px,img)){rc=24;finishSubmitted(tex);break;}
+-    const double t=seconds()-loopBegin;const int slot=sm.step(frame,t,isFresh,img);
++    Image img;if(plan.read&&!readback(tex,fb,gl,px,img)){rc=24;finishSubmitted(tex);break;}
++    const double t=seconds()-loopBegin;const int slot=sm.stepKind(frame,t,kind!=Interop::Image?Obs::NotReady:plan.read?Obs::Fresh:Obs::SkipEqual,img);
+     if(slot>=0){const bool written=writePpm(argv[2],SLOT_NAME[slot],px);
+       std::printf("{\"capture_slot\":%d,\"frame\":%d,\"seconds\":%.3f,\"offset_x\":%.1f,\"finite_pixels\":%d,\"green_pixels\":%d,\"fallback_magenta_pixels\":%d,\"nonblack_pixels\":%d,\"accepted\":%s,\"written\":%s}\n",SLOT_NAME[slot],frame,t,double(offset),img.finite,img.green,img.magenta,img.nonblack,oracle(img)?"true":"false",written?"true":"false");std::fflush(stdout);
+       if(!written&&!rc)rc=34;}
+-    if(!finishSubmitted(tex))rc=21;Sleep(FRAME_SLEEP_MS);
++    if(!finishSubmitted(plan.signalImage?tex:0))rc=21;Sleep(FRAME_SLEEP_MS);
+   }
+-  std::printf("{\"readiness\":{\"phase\":\"%s\",\"failure\":\"%s\",\"frames\":%d,\"fresh_frames\":%d,\"skipped_equal_frames\":%d,\"first_nonblack_frame\":%d,\"first_nonblack_seconds\":%.3f,\"first_valid_frame\":%d,\"first_valid_seconds\":%.3f,\"accepted_images\":%d,\"imports\":%d,\"ready_limit_seconds\":%d}}\n",
+-    sm.phase==Phase::Done?"done":sm.phase==Phase::Fail?"fail":"incomplete",sm.failure,frame,sm.fresh,sm.skipped,sm.firstNonblackFrame,sm.firstNonblackSeconds,sm.firstValidFrame,sm.firstValidSeconds,sm.accepted,imports,readyLimit);std::fflush(stdout);
++  std::printf("{\"readiness\":{\"phase\":\"%s\",\"failure\":\"%s\",\"frames\":%d,\"fresh_frames\":%d,\"skipped_equal_frames\":%d,\"not_ready_frames\":%d,\"not_ready_no_image_frames\":%d,\"not_ready_zero_value_frames\":%d,\"first_nonblack_frame\":%d,\"first_nonblack_seconds\":%.3f,\"first_valid_frame\":%d,\"first_valid_seconds\":%.3f,\"accepted_images\":%d,\"imports\":%d,\"ready_limit_seconds\":%d}}\n",
++    sm.phase==Phase::Done?"done":sm.phase==Phase::Fail?"fail":"incomplete",sm.failure,frame,sm.fresh,sm.skipped,sm.notReady,noImageFrames,zeroValueFrames,sm.firstNonblackFrame,sm.firstNonblackSeconds,sm.firstValidFrame,sm.firstValidSeconds,sm.accepted,imports,readyLimit);std::fflush(stdout);
+   if(!rc&&sm.phase==Phase::Fail)rc=std::strcmp(sm.failure,"capture_window_exceeded")?31:32;
+   if(!rc&&sm.phase!=Phase::Done)rc=33;   // frame cap reached
+   if(!rc&&sm.accepted!=3)rc=22;
+@@ -337,5 +394,5 @@
+   if(!call("Shutdown",api.Shutdown())&&!rc)rc=23;stopped.store(true);deadline.join();
+   std::printf("{\"shutdown_seconds\":%.3f}\n",seconds()-shutdownBegin);std::fflush(stdout);
+   UnregisterClassW(wc.lpszClassName,wc.hInstance);FreeLibrary(dll);
+-  std::printf("{\"exit\":%d,\"accepted_images\":%d,\"gameplay\":false,\"revision\":\"r6\"}\n",rc,sm.accepted);return rc;
++  std::printf("{\"exit\":%d,\"accepted_images\":%d,\"gameplay\":false,\"revision\":\"r7\"}\n",rc,sm.accepted);return rc;
+ }

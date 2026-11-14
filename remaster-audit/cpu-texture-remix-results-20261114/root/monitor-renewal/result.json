@@ -1,0 +1,155 @@
+{
+  "prior_pid": 38028,
+  "prior_bound_end_utc": "2026-11-14T18:52:49.061Z",
+  "prior_terminated": false,
+  "prior_identity_absent": true,
+  "prior_expired": true,
+  "at_utc": "2026-11-14T18:56:23.204540+00:00",
+  "pid": 35628,
+  "creation_unix": 1794682582.0896692,
+  "command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "bound_end_utc": "2026-11-14T19:26:22.146Z",
+  "first_snapshot_utc": "2026-11-14T18:56:22.980Z",
+  "first_snapshot": {
+    "observed_utc": "2026-11-14T18:56:22.980Z",
+    "watcher_pid": 35628,
+    "watcher_only": true,
+    "proves_model_activity": false,
+    "observations": 1,
+    "bound_end_utc": "2026-11-14T19:26:22.146Z",
+    "roster_sha256": "645c4c3b4a81b6e545fe9191e9b74931752c965f05c95b835c9e4bdfb17a1868",
+    "sessions": [
+      {
+        "owner": "claude-einhander",
+        "session_id": "43668750-1a3c-49e9-8775-c31ee3df3847",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "17be2c0b5ddb174a99583ac4d28c4569bf8f196cd6a7966c24913af8083e9c63",
+        "checkpoint_utc": "2026-11-14T18:55:57.679Z",
+        "checkpoint_age_seconds": 25,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-CODEX-CONTINUITY-20261114",
+          "EIN-S1-95A3-M-WINDOWS-20261114"
+        ],
+        "next_action": "r6 probe af7eb6e4 + build_r6_cpu.py aecdc732 delivered; awaiting PR6-1 CPU grant (49-check contract). r5 superseded/preserved. No runs without a CPU-naming grant. Re-arm monitor b090glwz1 before ~19:10Z.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s23",
+        "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-14T18:44:39.020Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "a581acb1a9384218effba1bcdb887657240ed7a0df1a527310b4790455d1f529",
+        "checkpoint_utc": "2026-11-14T18:44:38.000Z",
+        "checkpoint_age_seconds": 705,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S2-WHOLE-CELL-20261114",
+          "EIN-S3-WHOLE-CELL-20261114"
+        ],
+        "next_action": "On review result: apply findings to tools/scale2x_cg.py + tools/j10_corner_guard.py (still unpinned drafts), hash, send J10 exact command + corrected cost (~285-320 s, J7=14 keys) to both Codex owners; J10 then J8r1 only on fresh grants. On monitor expiry (18:59:58Z): re-arm, stop the old loop by verified PID.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s45",
+        "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-14T18:07:48.890Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [
+          "checkpoint older than20minutes; inspect actual model before assuming failure"
+        ],
+        "checkpoint_sha256": "f36f1511c26d206ce71979030425f022dc56655a12570c7354a243e76d63cb3e",
+        "checkpoint_utc": "2026-11-14T18:33:13Z",
+        "checkpoint_age_seconds": 1390,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S4-WHOLE-CELL-20261114",
+          "EIN-S5-WHOLE-CELL-20261114"
+        ],
+        "next_action": "On grant: & s45/tools/s45_grant_launch_v2.ps1 -Name <job> -GrantUtc <created_utc> -GrantMsg <id> -Tool <rel tool or frozen builder> ... NOTE: launcher -Tool is relative to s45 cwd; for frozen builders pass the absolute builder path via a tiny s45 wrapper or relative path ..\\..\\comfy-authoring\\w7-stage4\frozen\\s4-world-2-13-v3\builder\build_w7.py with the job path as -ToolArgs.",
+        "status": "needs_attention"
+      },
+      {
+        "owner": "claude-einhander-s67",
+        "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-14T16:50:40.739Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "4f209549d7c5ec449bdc0d72f95c542626c2e3c00eb05f565486c20ca408daa7",
+        "checkpoint_utc": "2026-11-14T18:50:27Z",
+        "checkpoint_age_seconds": 356,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S6-WHOLE-CELL-20261114",
+          "EIN-S7-WHOLE-CELL-20261114",
+          "EIN-S6-TIMEOUT-PROFILE-20261114",
+          "EIN-SKINS-WIRING-20261114"
+        ],
+        "next_action": "No runnable s67 job. Do NOT rerun timeout r5 run 2 or the bursts r2.1 build (both done). On request: fix bursts look notes (a)/(b) in a new revision; support main's integration of the S6 packet and bursts r2.1. Otherwise wait for main's T6/T7 captures and reviews.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-ui",
+        "session_id": "5566e7d6-33fe-44bb-bc2b-e454583e96b1",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-14T16:57:11.780Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "68ce0975df0cee86229dea2f8d2815b9a752a16eb64b59c49146a7fd3d454519",
+        "checkpoint_utc": "2026-11-14T18:38:27.868Z",
+        "checkpoint_age_seconds": 1075,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-MENU-HUD-20261114",
+          "J-S1m",
+          "J-R3-pack-trial"
+        ],
+        "next_action": "On fresh grant: J-S1 v2 4957470c MEASURE-ONLY (1AD90FC9 x3), then pack pilot. Repair waits for reviewed masks.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-support",
+        "session_id": "8e3e011b-bf64-4dca-a616-f3d138451df8",
+        "roster_state": "actual_own_hook_checkpoint_verified_at_dated_snapshot",
+        "presence_updated_utc": "2026-11-14T17:56:49.929Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [
+          "checkpoint older than20minutes; inspect actual model before assuming failure"
+        ],
+        "checkpoint_sha256": "f19efc042cabd68cd4b6ff62c76e31568a63bc52a9293fbfb4fe739663d46632",
+        "checkpoint_utc": "2026-11-14T18:36:12.752Z",
+        "checkpoint_age_seconds": 1210,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-SUPPORT-UI-V5-NATIVE-REPLAY-20261114",
+          "EIN-SUPPORT-REVIEW-QUEUE-20261114",
+          "EIN-SUPPORT-POD-SOURCE-20261114"
+        ],
+        "next_action": "r3 4523790a cleared, unrun; waiting for a fresh gate and an explicit grant. On the grant run once under run_rc2.r1 cd3988af: ... -- python -B -I ui-v5-replay/replay_v5_native_class_r3.py --out ui-v5-replay/run-<UTC>. Also waiting: pods, J-R3. Re-arm monitor ba20l6dak when it expires (~19:06Z).",
+        "status": "needs_attention"
+      }
+    ]
+  },
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "gpu_run": false,
+  "uninterrupted_monitoring_claimed": false
+}

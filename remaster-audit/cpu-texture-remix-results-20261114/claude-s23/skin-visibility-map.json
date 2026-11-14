@@ -1,0 +1,111 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T19:06:43.514825+00:00",
+ "scope": "SOURCE ONLY (code + existing JSON); no GPU, no game, no test",
+ "inputs": {
+  "C:/github/Einhander/remaster-audit/runtime-review/gpu-texture-remix-20261114/v68-staged-material-readback-r1/result.json": "77b3254e14ad1626d994b33bb730d3ec90e3fc2300d56785e48a7abe20af3689",
+  "C:/github/Einhander/windows-x64/psxrecomp/runtime/src/hd_skin_material.h": "59565481657298ffb50eaa71f34544ef98e7ee7ecf5f9cf1789ec2e588fdb774",
+  "C:/github/Einhander/windows-x64/psxrecomp/runtime/src/hd_skin_detail.h": "e2eca3c98e892f6bd01f19db5dabf0ef2bd985c7a8218e8438ec4a01528b0b38",
+  "C:/github/Einhander/windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c": "92d080578d2a3d734160deae1d67ae186b08f4e9f7ca2d5ecdd3d5344b37d03c",
+  "C:/github/Einhander/docs/SKIN-FACTORY-MENU-GAPS.md": "45b4e4ce71ab76697f8ed5fe98ddd1c1490eedee1f9f024c710dd30ecf4d29d9",
+  "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+  "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/world-integrated-mijpq-roi-r1/candidate.json": "903bd84a6be19fdef2b6d19293121515035b68c61b7d0ff67f4ff7cf38b30b20",
+  "runs/actors-20261114T171053Z/actor-ownership.json": "5efc089bf69e793b81cfff430749bf1b65157ac5b75b779bac10bf57cd6a1ab4",
+  "runs/fullstage-20261114T182734Z/fullstage-coverage.json": "5555d17ce7f56e9b97a05c4b0559969379632e0da7683e32151448af2847b3a6"
+ },
+ "staged_config": "v68-staged-material-readback-r1/result.json skin_and_experimental_environment",
+ "gates": [
+  {
+   "id": "G1 compile-time allowlist",
+   "where": "hd_skin_material.h:46-58 (hd_skin_player_keys: 5CC44E5F-053D9A00 + 724E77DA/7E3ADD56/B16492B1/E2F3477C-21FDE894; hd_skin_enemy_keys: 6 x -527B28B9 Stage 1 strips) and :91-123 hd_skin_keys_parse",
+   "rule": "any key not in the allowlist makes the whole channel invalid (return 0 -> parse -1 -> stock); more keys need an explicit code change"
+  },
+  {
+   "id": "G2 channel enable",
+   "where": "hd_skin_material.h:139-160 hd_skin_config_parse_channel",
+   "rule": "profile 'stock' or empty -> enabled=0 (valid keys kept); named profile -> enabled = strength > 0"
+  },
+  {
+   "id": "G3 per-draw channel",
+   "where": "gpu_gl_renderer.c:2558-2564 hd_skin_for_draw",
+   "rule": "key in channel AND (channel.enabled OR that channel's detail texture loaded+enabled), player channel first"
+  },
+  {
+   "id": "G4 HD replacement required",
+   "where": "gpu_gl_renderer.c:~3870-3897 (resident slot or hd_texture_pack_request_decode/acquire must return FOUND, else return 0 -> native path) and :4789-4797 (skin/detail uniforms exist only in s_hd_prog / HD_FS)",
+   "rule": "tint/detail only on draws that use an HD pack image for that exact TEX-CLUT key; native-path draws are never tinted"
+  },
+  {
+   "id": "G5 native edge",
+   "where": "gpu_gl_renderer.c HD_FS lines 1422 and 1425",
+   "rule": "native_edge pixels keep c.rgb (no tint, no detail)"
+  },
+  {
+   "id": "G6 detail layer load",
+   "where": "hd_skin_detail.h:94-114 hd_skin_detail_parse; gpu_gl_renderer.c:2570-2620 hd_skin_detail_load",
+   "rule": "empty PATH -> disabled; needs a valid channel with keys; 8-bit RGB/RGBA PNG <= 4096x4096 and <= GL max size"
+  },
+  {
+   "id": "G7 detail per draw",
+   "where": "hd_skin_detail.h:118-125 hd_skin_detail_source_bounds; gpu_gl_renderer.c:2634-2641 and :4069",
+   "rule": "upload_serial != 0 (a real upload, not a native-page fallback) AND native upload size 64x64 for -053D9A00/-21FDE894 or 256x8 for -527B28B9"
+  }
+ ],
+ "staged": {
+  "player_tint": {
+   "state": "CONFIGURED ACTIVE (aurora-teal 0.75, G2 returns 1) for the 4 hull keys -21FDE894 only",
+   "not_covered": "5CC44E5F-053D9A00 (the shared mechanical sheet, in the allowlist but not in the staged key list) stays stock",
+   "per_draw": "only where G4 (HD image found for that key) and G5 hold; no live per-draw proof exists"
+  },
+  "player_detail": {
+   "state": "CONFIGURED (titanium-teal-nanoceramic.png, strength 0.12, scale 8); loads if G6 holds",
+   "per_draw": "only on the 4 hull keys when G7 holds (upload_serial != 0 and a 64x64 native upload); native-page fallbacks get tint but no detail; upload size of these keys in S2 is not in my records (draws-s2.json has no upload dims)"
+  },
+  "enemy_tint": {
+   "state": "INACTIVE: PSXRECOMP_SKIN_ENEMY_PROFILE=stock -> G2 enabled=0"
+  },
+  "enemy_detail": {
+   "state": "INACTIVE: PSXRECOMP_SKIN_ENEMY_DETAIL_PATH empty -> G6 returns 0, no texture; so G3 returns NULL for every enemy key and enemies are stock"
+  }
+ },
+ "draw_proof": {
+  "player hull keys (724E77DA/7E3ADD56/B16492B1/E2F3477C-21FDE894)": "all 4 in the 1699-file candidate; S2 draws-s2: 65/61/55/59 draws on pages (832,256)/(896,256) (family 'hulls'); S3: no draw records (S3 has none)",
+  "5CC44E5F-053D9A00": "in candidate; S2 56 draws page (832,256); excluded by the staged key list",
+  "enemy strips (6 x -527B28B9)": "all 6 in candidate; 0 draws in S2 draws-s2 and no S2/S3 coverage row -> even with an enemy profile they would not touch Stage 2/3 enemies (header: 'observed Stage 1' strips)",
+  "live material proof": "none: no PSXRECOMP_HD_PROOF_LOG output with material_applied/detail_applied exists under remaster-audit; v68 readback had game_run=false, gpu_run=false"
+ },
+ "cannot_receive_authored_skins": [
+  {
+   "item": "individual player craft (named ships)",
+   "why": "one shared player channel over 4 hull keys (G1/G2); no per-craft identity or selection",
+   "needs": "craft->key ownership proof, per-target channel"
+  },
+  {
+   "item": "player Gunpods / built-in guns",
+   "why": "pod/gun keys (e.g. S2 0223BCEF, B24C6DA2 families in runs/actors-20261114T171053Z) are not in the allowlist; adding any unlisted key invalidates the channel (G1)",
+   "needs": "pod key ownership + allowlist code change + upload dims for G7"
+  },
+  {
+   "item": "Stage 2/3 enemy ships",
+   "why": "enemy allowlist = 6 Stage 1 strips (0 S2 draws); S2 enemy TEX 3DD37B6B/F47289DC/2E670984/721C46B1/7A844A1C/8D419ACF not listed; enemy profile currently stock",
+   "needs": "per-family key ownership, allowlist change, HD images (G4)"
+  },
+  {
+   "item": "bosses (S2 boss member 1/36: CA05583A, A65BA8AE, 4CE48309, 986B6314, AC93CD6C; 151 predicted keys)",
+   "why": "0 drawn, 0 authored HD images (G4 fails before any skin) and not in any allowlist",
+   "needs": "S2-3 boss capture, authored HD images, boss channel"
+  },
+  {
+   "item": "enemy/boss weapons, bullets, effects",
+   "why": "no allowlist entries or channels at all",
+   "needs": "identity mapping first (docs/SKIN-FACTORY-MENU-GAPS.md items 4-5)"
+  }
+ ],
+ "not_a_claim": "ein-material-v3 is a palette tint of existing HD atlases plus an optional procedural RGB detail multiply (hd_skin_material.h:1-4 'changes sampled RGB only'); it is NOT authored realistic 4K skins",
+ "next_integration_gap": [
+  "live per-draw proof: add PSXRECOMP_HD_PROOF_LOG=<file> to the observer env of the next granted live run; gpu_gl_renderer.c:3005-3040 writes material_applied/detail_applied, replacement_size and native_words once per key -> settles G4/G7 for the 4 hull keys",
+  "decide 5CC44E5F-053D9A00 (mechanical sheet) inclusion",
+  "enemy channel: choose a profile and/or a detail PATH, AND re-map enemy keys per stage (current 6 strips are Stage 1 only)",
+  "per-target identities (craft, Gunpods, enemy families, bosses) -> allowlist/channel code change in hd_skin_material.h (compile-time by design)"
+ ]
+}

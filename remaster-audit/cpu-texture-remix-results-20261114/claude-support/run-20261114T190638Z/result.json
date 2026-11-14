@@ -1,0 +1,3591 @@
+{
+ "schema": "support-ui-v5-native-replay-r3",
+ "task": "EIN-SUPPORT-UI-V5-NATIVE-REPLAY-20261114",
+ "pins": {
+  "pins": {
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\integration\\runtime-summary-v5-20261114T180533Z.json": "e124d0e814d2d7b9d503c7df36df1a6aba62cc18e6a9483f6ab2a7e0fa092a1b",
+   "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\ui-v5-replay\\preflight-table-v1.json": "93a6315f4ac837b77bb35b315a16d2a34c2b3fe05a23c40684e2c219b2cc374c",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T175529Z\\class_mip.dll": "2dbc5ef9e562524f90c08eebe1169dc1d84a9e63de3cdcb6838fde0f658c59ad",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T175529Z\\class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T175529Z\\class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T175529Z\\ui_menu_classsnap_v5.py": "67790a05792e3e061bfc5cef7706e31967ed03e8779df0d2666985707df63612",
+   "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-hud-fades\\tools\\classcheck.py": "72bf4a095eecb962f02ff94ddbb911d4151ec75051021305b12f4cb7494d358f",
+   "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-hud-fades\\tools\\w6lib.py": "895b170fe7da5d8377de9561ff4c5f50bdc96e585d8d7a650a94da9fd56ee92a",
+   "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-hud-fades\\tools\\w2lib.py": "516833b90f8615d424d8d32327b5056001943ed1ee3b039ccd3cc7e7a102c2ed"
+  },
+  "mismatch": [],
+  "versions": {
+   "numpy": "2.5.2",
+   "PIL": "12.3.0",
+   "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]"
+  },
+  "version_mismatch": [],
+  "script": "4523790abbf81fa6c4117bca72304f41812f4edfda6bc5d9a5e2dcd699568683",
+  "v5_check_text_sha256": "b264c61a12bf45061993c8dfc7e95068e3155f6c435c30e7db0457a1fa0941e3",
+  "function_text_sha256": {
+   "classes": "240c4b0bdc170d9d7703284eb8f49ebb1fdaca1f78ed67aa05ef4775c49738d6",
+   "decode_words": "41a66f8724c83a331d13f49b2d7727d457798aaf3e9f28f64b012f7c068bb442",
+   "native_cls": "9fb30eb5dcd07f77d7c37a21541ed98f5e2d45306ead35ebfccec0bd081b093f"
+  }
+ },
+ "started_utc": "2026-11-14T19:06:39.814892+00:00",
+ "finished_utc": "2026-11-14T19:06:49.682063+00:00",
+ "elapsed_s": 9.87,
+ "members": 118,
+ "ok": 118,
+ "primary_pass_replayed": 118,
+ "s2_strict_pass_replayed": 118,
+ "stopped_at": {
+  "A": 0,
+  "B": 0,
+  "C": 0,
+  "D": 0,
+  "E": 0,
+  "F": 0,
+  "exception": 0
+ },
+ "failures": [],
+ "scope": "class-validity replay only; not look/live acceptance; no repair, no GPU; CPU-QUIET cy() not used",
+ "rows": [
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-30A66678.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-30A66678.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-30A66678.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-30A66678.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8D0FCF8A-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8D0FCF8A-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8D0FCF8A-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8D0FCF8A-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8D0FCF8A-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8D0FCF8A-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-C04998CA.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-C04998CA.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-30A66678.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-30A66678.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8BE06E98-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8BE06E98-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-30A66678.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-30A66678.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/BDAE4156-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__BDAE4156-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/BDAE4156-DDD3D3CF.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__BDAE4156-DDD3D3CF.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8D0FCF8A-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8D0FCF8A-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8D0FCF8A-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8D0FCF8A-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8D0FCF8A-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8D0FCF8A-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-C04998CA.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-C04998CA.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/DD0B6963-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__DD0B6963-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    128
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 524288,
+    "cells": 32768,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8BE06E98-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8BE06E98-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/9D8DF52A-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__9D8DF52A-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8D0FCF8A-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8D0FCF8A-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8D0FCF8A-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8D0FCF8A-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/C544AC0D-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__C544AC0D-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-F3794D54.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-F3794D54.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/2C6866AA-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__2C6866AA-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/BDAE4156-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__BDAE4156-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/BDAE4156-DDD3D3CF.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__BDAE4156-DDD3D3CF.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-C04998CA.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-C04998CA.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/DD0B6963-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__DD0B6963-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    128
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 2097152,
+    "cells": 32768,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/BDAE4156-B88C038E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__BDAE4156-B88C038E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/48F8001A-02491337.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__48F8001A-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/41E75A55-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__41E75A55-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/7F7452F9-B20FDBC4.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__7F7452F9-B20FDBC4.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/AAE3C8F2-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__AAE3C8F2-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/9D8DF52A-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__9D8DF52A-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/7D2C7E3C-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__7D2C7E3C-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-B1A4FC51.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-B1A4FC51.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-C04998CA.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-C04998CA.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-C04F65C0.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-C04F65C0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-CB9F39AB.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-CB9F39AB.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/2C6866AA-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__2C6866AA-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-1024/DD0B6963-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-1024__DD0B6963-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    128
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 524288,
+    "cells": 32768,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/323B5FB0-1C7962B3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__323B5FB0-1C7962B3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/48F8001A-02491337.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__48F8001A-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-1024/BDAE4156-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-1024__BDAE4156-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-1024/BDAE4156-DDD3D3CF.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-1024__BDAE4156-DDD3D3CF.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8D0FCF8A-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8D0FCF8A-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8D0FCF8A-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8D0FCF8A-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/41E75A55-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__41E75A55-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/7F7452F9-B20FDBC4.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__7F7452F9-B20FDBC4.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/3DA22883-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__3DA22883-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 32768,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T175529Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/B77B98B9-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__B77B98B9-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/AAE3C8F2-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__AAE3C8F2-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/C544AC0D-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__C544AC0D-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8E1A509D-C7A1F2F0.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8E1A509D-C7A1F2F0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/BDAE4156-B88C038E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__BDAE4156-B88C038E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/4E783C96-E2D2473F.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__4E783C96-E2D2473F.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 1,
+   "texels_words": [
+    128,
+    26
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 106496,
+    "cells": 6656,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/7D2C7E3C-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__7D2C7E3C-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-2048/DD0B6963-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-2048__DD0B6963-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    128
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 2097152,
+    "cells": 32768,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/323B5FB0-1C7962B3.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__323B5FB0-1C7962B3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-2048/BDAE4156-4C1DD349.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-2048__BDAE4156-4C1DD349.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "file": "runtime-2048/BDAE4156-DDD3D3CF.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w5-cleanup__prompt-sheet-BDAE4156-DD0B6963-w5-v1__runtime-2048__BDAE4156-DDD3D3CF.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8E1A509D-4FE32821.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8E1A509D-4FE32821.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/3DA22883-678CA3BD.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__3DA22883-678CA3BD.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    8
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 131072,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8E1A509D-8808F70A.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8E1A509D-8808F70A.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8E1A509D-C7A1F2F0.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8E1A509D-C7A1F2F0.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/D0365088-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__D0365088-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/D0365088-B5A45715.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__D0365088-B5A45715.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/4E783C96-E2D2473F.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__4E783C96-E2D2473F.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 1,
+   "texels_words": [
+    128,
+    26
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 425984,
+    "cells": 6656,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/8E1A509D-02491337.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__8E1A509D-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-166E4BE3.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-166E4BE3.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/B77B98B9-8EAF967E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__B77B98B9-8EAF967E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8E1A509D-4FE32821.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8E1A509D-4FE32821.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-1024/1AD90FC9-4315989E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-1024__1AD90FC9-4315989E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/1AD90FC9-4315989E.png",
+   "candidate": "classsnap-v5/20261114T180037Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__1AD90FC9-4315989E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8E1A509D-8808F70A.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8E1A509D-8808F70A.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/D0365088-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__D0365088-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/D0365088-B5A45715.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__D0365088-B5A45715.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/8E1A509D-02491337.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__8E1A509D-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/1AD90FC9-02491337.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__1AD90FC9-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-1024/1AD90FC9-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-1024__1AD90FC9-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-1024/1AD90FC9-02491337.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-1024__1AD90FC9-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-1024/1AD90FC9-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-1024__1AD90FC9-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 4,
+   "audit": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-2048/1AD90FC9-4315989E.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-2048__1AD90FC9-4315989E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/1AD90FC9-4315989E.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-4315989E.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/1AD90FC9-02491337.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "file": "runtime-2048/1AD90FC9-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-2048/1AD90FC9-02491337.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-2048__1AD90FC9-02491337.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "file": "runtime-2048/1AD90FC9-79902A90.png",
+   "candidate": "classsnap-v5/20261114T180407Z/snap-native/w5-cleanup__spec-text-1AD90FC9-w5-v2__runtime-2048__1AD90FC9-79902A90.png",
+   "problems": [],
+   "stopped_at": null,
+   "depth": 0,
+   "texels_words": [
+    64,
+    256
+   ],
+   "scale": 8,
+   "audit": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "primary_pass": true,
+    "s2_strict_pass": true
+   },
+   "ok": true
+  }
+ ]
+}

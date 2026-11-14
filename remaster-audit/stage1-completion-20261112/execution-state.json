@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T18:45:04.634208+00:00",
+  "updated_at_utc": "2026-11-14T19:13:02.959954+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -905,15 +905,15 @@
     "project_complete": false
   },
   "latest_resource_policy": {
-    "gpu_owner": "claude-pizza-tycoon-hd",
-    "broker_revision": 13,
-    "ownership_observed_utc": "2026-11-14T18:38:44Z",
-    "expiry_never_transfers": true,
-    "einhander_gpu_run": false
+    "status": "host-freeze diagnostic hold: no new heavy/GPU work",
+    "coordinator": "codex-einhander-crash-check",
+    "pizza_explicit_release_revision": 14,
+    "einhander_grant": false,
+    "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 38028,
-    "bound_end_utc": "2026-11-14T18:52:49.061Z",
+    "pid": 35628,
+    "bound_end_utc": "2026-11-14T19:26:22.146Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -960,5 +960,20 @@
     "files": 8,
     "integrated": false,
     "final_hd_accepted": false
+  },
+  "cpu_texture_checkpoint": {
+    "evidence": "remaster-audit/cpu-texture-remix-results-20261114/README.md",
+    "native_menu_class_replay": 118,
+    "failed_members": 0,
+    "skipped_members": 0,
+    "look_accepted": false,
+    "private_v68_prepared": true,
+    "staging_seconds": 7.613,
+    "game_run": false,
+    "gpu_run": false,
+    "installed": false,
+    "staged_enemy_skin": "stock/inactive",
+    "authored_realistic_skins_complete": false,
+    "remix_r7": "source-only/uncompiled/unrun"
   }
 }
