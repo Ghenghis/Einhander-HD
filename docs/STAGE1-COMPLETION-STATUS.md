@@ -9,13 +9,23 @@ application frame submissions, p95 17 ms, longest 21 ms, no interval over 25 ms,
 and zero new audio starvation across 120 seconds. Originals were re-hashed
 unchanged; user cards were never mounted. Normal Play-HD, material and Development launches now disable continuous
 forensic readback, with hashed rollback copies of the changed local files. No binary or artwork
-was replaced. The material-runtime test still fails: 15,378 output sample
-frames starved outside the boss; its boss window had two intervals over 25 ms
-(longest 28 ms), with all 350 frames submitted. That runtime starts with an
-empty native cache and no bundled compilation toolchain; the cause of its
-remaining pauses is not yet established. All originals re-hashed unchanged.
-Unassisted full-stage acceptance remains open. The isolated artwork candidate
-below still has upload hitches.
+was replaced. The former material binding still failed with 15,378 starved
+output sample frames. A private saved-material test on the existing Play-HD
+runtime and its own cache then passed: 60.0072 fps, zero new gameplay
+starvation, 350 consecutive boss submissions and a longest interval of 20 ms.
+Live reads confirmed both selected profiles, exact keys and active detail maps.
+The local material receipt now selects that tested runtime, with rollback and
+shared-settings backups. All three additional shortcut configurations pass
+receipt checks; their other profile pairs and the real frontend path have not
+yet been tested live. Existing cache shards and stages 2–7 remain unqualified.
+
+The larger frozen artwork candidate remains separate and still fails:
+39 boss uploads moved about 801 MiB, including 29 reuploads after eviction.
+A private bounded-retention experiment removed all reuploads and reduced boss
+traffic to 88 MiB, but had a 169 ms native VRAM upload-block stall. A repeat
+with extra passive timing still had a 94 ms boss gap. Neither candidate is
+installed. Exact native-call attribution and a buffered-upload experiment are
+in progress; unassisted full-stage and listening acceptance remain open.
 
 An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
 now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero
@@ -42,8 +52,8 @@ averaged 60.00 fight frames/s, with zero boss starvation, but 310 sample frames
 starved outside the boss at gameplay second 26 (frame 4631). Late intervals
 again coincide with first-use
 texture uploads; per-upload timing is being added to test that lead. The
-recorder is therefore not required for the hitch. Normal-player tests are next.
-Nothing is installed. Exact 12-second callback excerpts are available for
+recorder is therefore not required for the hitch. Normal-player results are
+listed above. These experimental binaries are not installed. Exact 12-second callback excerpts are available for
 [history OFF](media/gallery/stage1-display-history-off-boss.wav),
 [history ON](media/gallery/stage1-display-history-on-boss.wav), and the
 [rebuilt recorder-free runtime](media/gallery/stage1-display-history-v54-boss.wav).

@@ -3,7 +3,7 @@
   "problem": "Severe mini-boss hesitation and audio starvation around guest frame9300",
   "finding": "Forensic display-history capture performed two synchronous GPU readbacks every frame by default, even with video/source recording and rewind disabled.",
   "change": "Normal gameplay defaults to display history OFF; only exact PSX_DISPLAY_RING=1 enables it. Forensic UI preparation opts in; pacing and ordinary material-launch environments explicitly opt out. Disabled history commands return a clear diagnostic.",
-  "status": "Play-HD existing runtime passes one assisted120-second ring0 test (boss max21ms, zero measured starvation); local launcher default applied with backup. Material runtime still FAILS (15378 starved sampleframes, boss max28ms); frozen artwork candidate still has8 late intervals up to40ms. Full remaster acceptance remains open.",
+  "status": "Existing normal Play-HD and saved-material configuration pass bounded ring0 boss tests (max21/20ms, zero measured gameplay starvation). Local launch defaults and material runtime binding applied with rollback copies. Larger frozen artwork candidate still FAILS smoothness; boundedGPUretention removes churn but isolated long native-upload stalls remain. Seven-stage remaster acceptance remains open.",
   "stutter_fully_resolved": false,
   "full_remaster_complete": false,
   "production_installed": false,
@@ -4993,6 +4993,157 @@
           "ms": 28
         }
       ]
+    },
+    "material_b287": {
+      "summary": {
+        "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+        "events": 350,
+        "unique": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50": 17,
+        "p95": 17,
+        "p99": 18,
+        "max": 20,
+        "late": [],
+        "starved": 0,
+        "observed_fps": 60.0072233288618,
+        "exit": 0,
+        "errors": [],
+        "port_closed": true
+      },
+      "installed_pack_tree_sha256": "a2c0f14349878d6c60425d64a477cf30dd16514e962f0cacb82040a318201866",
+      "settings": {
+        "supersampling": 2,
+        "rewind_depth": 50,
+        "rewind_interval": 15
+      },
+      "native_cache": {
+        "source": "Existing matching build-release cache, copied with its own executable",
+        "tree_sha256": "c2f1b870f2ab5fafe6d9efe6060f60c6a38e073529e7cf21c51df96ef594c456",
+        "all_shards_requalified": false
+      },
+      "material_before": {
+        "id": 1,
+        "ok": true,
+        "contract": "ein-material-v3",
+        "live_palette": true,
+        "ready": true,
+        "opengl_ready": true,
+        "hd_ready": true,
+        "renderer": "opengl",
+        "applied": false,
+        "generation": 0,
+        "frame": 3075,
+        "apply_scope": "color_only_next_draw",
+        "detail_changes": "next_launch_only",
+        "diagnostic_scope_supported": true,
+        "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+        "player": {
+          "profile": "aurora-teal",
+          "strength_percent": 75,
+          "key_count": 4,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+        },
+        "enemy": {
+          "profile": "crimson-red",
+          "strength_percent": 75,
+          "key_count": 6,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+        },
+        "supported_profiles": [
+          "stock",
+          "aurora-teal",
+          "solar-orange",
+          "ultraviolet-violet",
+          "glacier-blue",
+          "crimson-red",
+          "toxic-lime",
+          "gold-obsidian",
+          "pearl-magenta",
+          "aurora-gilt",
+          "crimson-regalia",
+          "glacier-gilt",
+          "neon-circuit",
+          "ultraviolet-grid",
+          "reactor-lime"
+        ]
+      },
+      "material_after": {
+        "id": 1,
+        "ok": true,
+        "contract": "ein-material-v3",
+        "live_palette": true,
+        "ready": true,
+        "opengl_ready": true,
+        "hd_ready": true,
+        "renderer": "opengl",
+        "applied": false,
+        "generation": 0,
+        "frame": 10286,
+        "apply_scope": "color_only_next_draw",
+        "detail_changes": "next_launch_only",
+        "diagnostic_scope_supported": true,
+        "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+        "player": {
+          "profile": "aurora-teal",
+          "strength_percent": 75,
+          "key_count": 4,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+        },
+        "enemy": {
+          "profile": "crimson-red",
+          "strength_percent": 75,
+          "key_count": 6,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+        },
+        "supported_profiles": [
+          "stock",
+          "aurora-teal",
+          "solar-orange",
+          "ultraviolet-violet",
+          "glacier-blue",
+          "crimson-red",
+          "toxic-lime",
+          "gold-obsidian",
+          "pearl-magenta",
+          "aurora-gilt",
+          "crimson-regalia",
+          "glacier-gilt",
+          "neon-circuit",
+          "ultraviolet-grid",
+          "reactor-lime"
+        ]
+      },
+      "originals_verified_unchanged_before_rebind": true,
+      "user_cards_mounted": false,
+      "proof_sha256": "f7eda15901ea2646995626e19706b3d6381486e0a050755fef7c84c66d0c012b",
+      "candidate_sha256": "04b940773ab2d3f6690ac3e21f3828bd399aa7ad2472d9fcea8c9235d5002322",
+      "post_measurement_image": {
+        "sha256": "62937622ff60fe238be38b2ddcac2cafcd5fa2514f2ae059bfd63b240602417b",
+        "frame_before": 10287,
+        "frame_after": 10292,
+        "review": "Reduced preview inspected: teal craft, enemies, city and HUD appear intact; one frame only, not full-stage appearance acceptance."
+      },
+      "limitations": [
+        "One live-input assisted120-second Stage1 run, not a matched replay or full-stage acceptance.",
+        "Frontend bypassed during timing; normal --launcher path still pending.",
+        "Other profile shortcut checks are receipt validation only, not live appearance acceptance.",
+        "Boot starvation11363 precedes first measured gameplay observation; zero is the measured gameplay delta.",
+        "Source cache is pre-existing; not all cached shards or later stages requalified."
+      ]
     }
   },
   "local_launcher_hotfix": {
@@ -5018,6 +5169,173 @@
         "after_sha256": "bfdffa7647a551f0b1084efbbd1c9197053bd4e7532852ca8e0bf85eefab0ac5"
       }
     ],
-    "scope": "Normal Play-HD, material environment and Development game start disable continuous forensic GPU readback; binaries/assets/settings/cards unchanged. Material gameplay audio remains unresolved."
+    "scope": "Normal Play-HD, material environment and Development game start disable continuous forensic GPU readback; binaries/assets/settings/cards unchanged. Material gameplay audio remains unresolved.",
+    "forensic_and_pacing_sources": [
+      {
+        "path": "remaster-audit/launch_ui_candidate.py",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/launch_ui_candidate.py.before",
+        "before_sha256": "025751689293ccad86e80c49b85f8a8602180b7527ba5d7127ede6ad63d81fb6",
+        "after_sha256": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752"
+      },
+      {
+        "path": "remaster-audit/run_stage1_pacing_ab.py",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/run_stage1_pacing_ab.py.before",
+        "before_sha256": "ef9f493ed3a4b0ef353db9d5fef260ae2da4622d0d3a7abdc042894f83830502",
+        "after_sha256": "98864c9400913bd1a18b395c575c55894929e0a92da1d3e35569387386cc1484"
+      }
+    ],
+    "material_runtime_binding": {
+      "path": "C:/github/Einhander/windows-x64/tools/material-runtime.json",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before.json",
+      "before_sha256": "9d80a09e38ddc4089cf803482fc3026e37a5842dbdbf2e2060da278e54c39b69",
+      "after_sha256": "3335962504f38e2ab37a6f6152d298c1d711449e710e408dd2dc5ff211a85bf1",
+      "from_executable": "C:\\github\\REMASTER_STAGING\\full-remaster\\devtools-build\\Einhander_Recompiled.exe",
+      "to_executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+      "to_executable_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+      "reason": "Use runtime/cache combination that passed exact saved-profile live state and boss timing. Existing binaries/cache/assets/settings not replaced.",
+      "shared_settings": {
+        "path": "C:/github/Einhander/windows-x64/build-release/settings.toml",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/settings.shared-before.toml",
+        "sha256": "68f831cda591f1b5649714f9b8895ed2962f66436d3452906a7019f950d75f20",
+        "behavior": "Material and Play-HD now use the existing build-release settings. Future frontend preference edits apply to both; current settings unchanged."
+      },
+      "lifecycle": "Existing runtime hash is checked at every material launch; replacing that executable requires a new verified receipt.",
+      "shortcut_validation": [
+        {
+          "config": "aurora-teal-20261112-144639-5807813a",
+          "ok": true,
+          "profile": "aurora-teal",
+          "enemy_profile": "crimson-red",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        },
+        {
+          "config": "aurora-teal-20261112-144639-a5d808a5",
+          "ok": true,
+          "profile": "aurora-teal",
+          "enemy_profile": "gold-obsidian",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        },
+        {
+          "config": "neon-circuit-20261112-144639-8852b8b8",
+          "ok": true,
+          "profile": "neon-circuit",
+          "enemy_profile": "ultraviolet-grid",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        }
+      ],
+      "other_profile_live_verification": false
+    }
+  },
+  "upload_timing_diagnostic": {
+    "runtime_sha256": "208809397fc229ce9be30ff25cf85add606532ada5dcd76d22851b6259754f32",
+    "events": 1030,
+    "unique_keys": 778,
+    "reuploads": 252,
+    "boss_uploads": 39,
+    "boss_reuploads": 29,
+    "boss_upload_MiB": 800.625,
+    "boss_full_setup_CPU_ms": 174.1336,
+    "boss_TexImage_CPU_ms": 95.4636,
+    "slow_setup_calls": [
+      {
+        "frame": 9357,
+        "key": "FB235F0C-BB1845F6",
+        "MiB": 4,
+        "full_setup_ms": 24.2466,
+        "TexImage_ms": 0.4103,
+        "next_frame_present_gap_ms": 33
+      },
+      {
+        "frame": 9365,
+        "key": "1FDD7FBD-050B3C19",
+        "MiB": 4,
+        "full_setup_ms": 23.6914,
+        "TexImage_ms": 0.3445,
+        "next_frame_present_gap_ms": 33
+      },
+      {
+        "frame": 9373,
+        "key": "10932164-0386F43A",
+        "MiB": 4,
+        "full_setup_ms": 20.3814,
+        "TexImage_ms": 0.3395,
+        "next_frame_present_gap_ms": 30
+      }
+    ],
+    "proof_sha256": "03d44fbd584c4f315dc7216954f6322a7270306704fc9753e8b3a5b7fb604c70",
+    "scope": "Private frozen1669-PNG candidate, CPU time only; deferred GPU work is not measured."
+  },
+  "bounded_GPU_cache_experiment": {
+    "runtime_sha256": "9b5ff8275faeeef8c06d14d574b279eaf6ba61e37f9004feed9ec2f9535ed479",
+    "production_installed": false,
+    "explicit_base_budget_MiB": 5120,
+    "max_slots": 1024,
+    "default_slots_unchanged": 256,
+    "actual_C_helper_cases_passed": 12,
+    "replacements_per_enabled_stress_case": 5000,
+    "first_run": {
+      "events": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 20,
+      "max_ms": 169,
+      "late": [
+        {
+          "frame": 9275,
+          "ms": 169
+        }
+      ],
+      "total_uploads": 836,
+      "unique_texture_keys": 836,
+      "total_reuploads": 0,
+      "boss_uploads": 10,
+      "boss_reuploads": 0,
+      "boss_upload_MiB": 88.375,
+      "boss_TexImage_CPU_ms": 15.0932,
+      "boss_full_call_CPU_ms": 19.0495,
+      "starved_gameplay": 996,
+      "cache_state": {
+        "slots": 1024,
+        "base_budget_bytes": 5368709120,
+        "base_resident_bytes": 4994236416
+      },
+      "errors": [],
+      "exit": 0,
+      "port_closed": true
+    },
+    "first_run_proof_sha256": "8cc7958a15dee8fc1687405f85de48e93eb34e5e816e13c7f0eb1ab53cfb7247",
+    "repeat_with_additional_passive_diagnostics": {
+      "boss_max_ms": 94,
+      "boss_late": [
+        {
+          "frame": 9296,
+          "ms": 94
+        },
+        {
+          "frame": 9572,
+          "ms": 28
+        }
+      ],
+      "starved_gameplay": 9898,
+      "raw_timing_chunks": 121,
+      "exit": 0,
+      "errors": [],
+      "proof_sha256": "0ddf222a0db8d011a594047b337f985a340039e806b5ce8fa70d24edd8c48cb8",
+      "scope": "Same binary/settings plus an existing120-record passive latency dump and counter query eachsecond; observer overhead and live-input timing differ."
+    },
+    "verdict": "FAIL smoothness: texture reuploads removed in measured run, but native VRAM upload-block stalls remain. No candidate installed.",
+    "native_upload_block_evidence": {
+      "first_run_frame": 9275,
+      "present_gap_ms": 169,
+      "runtime_upload_block_ms_per_second": 151.9,
+      "includes": "Texture binding, pixel-store state and two native VRAM glTexSubImage2D calls; exact call responsible not yet isolated.",
+      "not_a_qualifying_cause": "No claim that pacing or texture data volume alone caused it. Native-call timing and gated buffered-upload experiment are next."
+    }
   }
 }
