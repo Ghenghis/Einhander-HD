@@ -1,0 +1,128 @@
+{
+ "run": "20261114T100659Z",
+ "below_normal": true,
+ "inputs": {
+  "class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+  "class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+  "test_class_mip.c": "77068c229dbda3710f34d7fb0c3dfc2a4a829e5d83f637cb4a35237cf09bf746",
+  "run_class_mip_v2b.py": "b51e0377426e60a152d5afe199d91e002d0399e6aa3b8d1ba411cdc6f77068cd"
+ },
+ "compiler": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)",
+ "fixtures": {
+  "compile_rc": 0,
+  "run_rc": 0,
+  "exe_sha256": "29342ba23ebd430d4c153ecc7c021910a201b8135ad9c5583b405243d01f6437",
+  "metrics": [
+   "f1_clean_r5_fringe_px 48",
+   "f1_pinhole_cells 1",
+   "f1b_disc_inset0_violations 0",
+   "f1b_disc_inset2px_violations 6 (r4 0)",
+   "f1b_disc_inset7px_displaced 505",
+   "f1c_repair_passes 2 became_visible 90",
+   "f2_worst_cell_coverage_error_px 12",
+   "f2_minify_4x_current_count_var 720.621 min 118 energy_var 10818234.5",
+   "f2_minify_4x_proposed_count_var 0.250 min 139 energy_var 3753.1",
+   "f2_minify_8x_current_count_var 1001.688 min 0 energy_var 15037709.0",
+   "f2_minify_8x_proposed_count_var 0.250 min 79 energy_var 3753.1",
+   "f2_minify_12x_current_count_var 119.496 min 0 energy_var 1793920.2",
+   "f2_minify_12x_proposed_count_var 32.652 min 30 energy_var 490189.2",
+   "f3_seam_max_blue_leak proposed 0 naive 82 (of 190)",
+   "f4_palette idx5_cells 16 differ_at_native_level 16 class_diff_outside_idx5 0",
+   "f5_unfilled_build_level1_min_visible_luma 179.1",
+   "f5_unfilled_build_level2_min_visible_luma 179.1",
+   "f5_unfilled_build_level3_min_visible_luma 179.1",
+   "f5_min_visible_luma current_lod0 71.9 naive_mips 67.7 class_aware 179.1 (authored 179.1)",
+   "f7_r2_px bound=0.25 metric=0 119",
+   "f7_r2_px bound=0.25 metric=1 116",
+   "f7_r2_px bound=0.50 metric=0 16",
+   "f7_r2_px bound=0.50 metric=1 4",
+   "f7_r2_px bound=1.00 metric=0 4"
+  ],
+  "summary": "checks 7410 failures 0",
+  "fails": []
+ },
+ "mutants": [
+  {
+   "label": "R2 displacement bound s/2 relaxed to s",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:133: r.r2_displaced_px > 0"
+  },
+  {
+   "label": "default R2 metric switched to Chebyshev",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:469: r.r2_displaced_px == (uint64_t)got[2] && r.r4_island_px == 4 && r.r1_centre_bad == 0"
+  },
+  {
+   "label": "cm_flags_ex ignores metric",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:459: got[k] == exp_r2"
+  },
+  {
+   "label": "cm_flags_ex ignores bound",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:459: got[k] == exp_r2"
+  },
+  {
+   "label": "cm_flags_ex accepts bad metric",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:471: cm_flags_ex(im, w, w, ncls, T, T, S, 0.5, 2, flag) == -1"
+  },
+  {
+   "label": "R4 cross-cell connectivity disabled",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:70: r.r2_displaced_px >= 1 && r.r4_island_px >= 4"
+  },
+  {
+   "label": "R4 connectivity ignores class",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:70: r.r2_displaced_px >= 1 && r.r4_island_px >= 4"
+  },
+  {
+   "label": "repair limited to one pass",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:159: cm_repair(im, w, h, ncls, NULL, TW, TH, S, &st) == 0"
+  },
+  {
+   "label": "R1 centre pixel off by one",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:63: r.r1_centre_bad == 0 && r.pinhole_cells >= 1 && r.r3_uniform_bad_px == (uint64_t)(S * S - 1)"
+  },
+  {
+   "label": "repair rewrites visible RGB on 127<->255",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:75: st.visible_rgb_changed == 0 && st.became_visible == 4 && st.rgb_from_cell == 4 && st.became_cutout == 1"
+  },
+  {
+   "label": "M3 majority instead of coverage preservation",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:252: d <= fp * fp"
+  },
+  {
+   "label": "M3 never-empty rule removed",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:248: visL >= 1"
+  },
+  {
+   "label": "M4 native class at the cell level removed",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:248: visL >= 1"
+  },
+  {
+   "label": "M2 RGB averages cutout children",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:397: fabs(mnu - ref) < 1.0"
+  },
+  {
+   "label": "level cutout RGB not filled",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:410: fabs(mn[2] - ref) < 1.0"
+  },
+  {
+   "label": "proposed sampler reads class at level 0",
+   "caught": true,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\test_class_mip.c:266: vc1 < vc0"
+  }
+ ],
+ "verdict": "pass",
+ "mutants_caught": "16/16"
+}

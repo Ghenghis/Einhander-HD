@@ -1,0 +1,57 @@
+{
+  "started_utc": "2026-11-14T10:46:52.025405+00:00",
+  "gpu_work": false,
+  "game_executed": false,
+  "sdk_calls": false,
+  "logical_cpu_affinity": [
+    15
+  ],
+  "priority_class": 16384,
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "commands": [
+    {
+      "label": "compile",
+      "arguments": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\remix_mesh_packet.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\test_remix_mesh_packet.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\mesh_packet_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 1.442,
+      "peak_sampled_rss_bytes": 5259264,
+      "stdout": "In file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\remix_mesh_packet.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1/remix_mesh_packet.h:3:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\remix_mesh_packet.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1/remix_mesh_packet.h:4:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]\n 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };\n      |                                                                    ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1049 |     remixapi_Interface remixInterface = { 0 };\n      |                                             ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1078 |     remixapi_Interface nullInterface = { 0 };\n      |                                            ^\n4 warnings generated.\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\test_remix_mesh_packet.cpp:2:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1/remix_mesh_packet.h:3:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\test_remix_mesh_packet.cpp:2:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1/remix_mesh_packet.h:4:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]\n 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };\n      |                                                                    ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1049 |     remixapi_Interface remixInterface = { 0 };\n      |                                             ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1078 |     remixapi_Interface nullInterface = { 0 };\n      |                                            ^\n4 warnings generated.\n"
+    },
+    {
+      "label": "host-test",
+      "arguments": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-packet-lag1\\mesh_packet_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 0.065,
+      "peak_sampled_rss_bytes": 2555904,
+      "stdout": "checks 86 failures 0\n"
+    }
+  ],
+  "source_hashes": {
+    "remix_mesh_packet.cpp": "004260ca0cdfd821f86bbc5168a379b31a08b59919d73cb5985167b1428e6d50",
+    "remix_mesh_packet.h": "539d3d48a3a170104da7be82e5bd2a80e09a89d7ff39891bb04854f8940c4c4d",
+    "run_host_checks.py": "7aacdc8da009051cca983cf5eed09a00e95f5ae1fdaba2cb48121342bd630650",
+    "test_remix_mesh_packet.cpp": "5df3a14f6ba27b34db75a0ab85ccf23d5d2e90ee5254cc577b89b9473652e318"
+  },
+  "header_pins": {
+    "pgxp.h": "a9b658729d4f60f5d7b2a58e68c449a3c303b7e4f8d789db81e908b53c84108e",
+    "remix_c.h": "a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d"
+  },
+  "executable_sha256": "f2c6fb48eb2d0f76b8884183af2173be30ffb4af123c1213d5d58da2c72620f1",
+  "ended_utc": "2026-11-14T10:46:53.562629+00:00",
+  "passed": true,
+  "user_gpu_hold_unchanged": true,
+  "scope": "CPU resource-packet construction against official SDK layout using explicit host fixtures. No game integration, real material allocation, camera/world reconstruction, SDK renderer call, rendering or GPU test."
+}

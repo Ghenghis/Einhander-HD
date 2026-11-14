@@ -1,0 +1,22 @@
+psxrecomp: idle_skip disabled
+psxrecomp: overlay_region_floor = 0x32000 (game text end), text_image_lo = 0x10000
+psxrecomp: loaded game config C:\github\Einhander\windows-x64\game.toml (Einhander, SCUS-94243)
+psxrecomp: CLI writable-state directory = C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\v61-live-census-r1\hd-off_rewind-off\state
+psxrecomp: additive overlay capture store = C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\v61-live-census-r1\hd-off_rewind-off\runtime\overlay_captures.json (+ .d history)
+psxrecomp: overlay autocompile disabled by environment
+psxrecomp runtime: loading BIOS from C:\github\Einhander\windows-x64\build-release\bios\SCPH1001.BIN
+psxrecomp: renderer = opengl (opengl)
+psxrecomp: renderer backend requested: opengl
+psxrecomp: supersampling 1x (antialiasing on, texture filter bilinear)
+psxrecomp: disc region NTSC-U (serial SCUS-94243)
+psxrecomp: text image guard armed (0x80010000..0x80032000, local EXE)
+psxrecomp: debug server LISTENING on 127.0.0.1:4376
+[Keybinds] Wrote C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\v61-live-census-r1\hd-off_rewind-off\runtime\keybinds.ini
+psxrecomp: sync-to-host-refresh: pacing to 60.0 Hz panel (16.6667 ms/frame)
+psxrecomp: OpenGL context created (3.3.0 NVIDIA 621.14)
+psxrecomp: GL GPU pipeline ready (internal scale 2x, mask-bit stencil, texture window, GPU copy/upload)
+psxrecomp: GL temporal frame blending disabled (host 60.0 Hz)
+psxrecomp: present cadence: wall-clock pacer (16.6667 ms/frame)
+psxrecomp: bios_backend=HLE (LLE fallback)  bios_boot=HLE (shell skipped)  image=SCPH-1001
+psxrecomp runtime: executing from PC=0xBFC00000
+psxrecomp: thread scheduler = HLE (deterministic TCB) (PSX_HLE_SCHEDULER)

@@ -1,5 +1,18 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+## Current verified state — GPU returned November 14
+
+The user has explicitly authorized the RTX 3090 Ti again; the earlier GPU hold is revoked. Work remains on C:, with bounded sequential tests and the RTX 3060 project untouched. The [GPU integration packet](../remaster-audit/gpu-integration-20261114/README.md) records actual results and preserved failures.
+
+Private v61 now ran in-game: a 30-second early-city diagnostic found 99.16% all-hit textured-triangle calls, with every successful vertex lookup exactly one frame old. The private adapter now supports explicit maximum lag one and passes 86 host checks; it is not connected to the game frame hook. This uncached diagnostic **fails audio/smoothness acceptance** (+480 frontend underruns, +287,368 bridge counter; later slowdown). Phase rows returned the boot window, so they cannot attribute the slowdown.
+
+Real Remix GPU Startup/resource/camera/draw/Present/external-image calls return success, but output is black and Shutdown stalls, including separate-window/FBO/alpha-test/240-frame controls. Every owned probe is closed; this is a failed backend qualification, not ray-traced gameplay or DLSS integration. Shader readiness remains unmeasured. Existing texture ingestion is separate from this renderer failure.
+
+Claude's frozen class-aware mip prototype passes root's independent 7,410-check replay. Its partial Stage1 analysis flags 241 drawn texture keys under a documented policy; that is not a distinct-sign total or automatic art rejection. Strict native-authority sidecars and private renderer integration are being implemented, with GL/full-link/in-game acceptance still pending. The distant green/pink signs, whole-cell masks, background coverage, realistic ship/gun/enemy/boss skins and selectors, modern HUD/menus, audio remastering and seven-stage acceptance remain unfinished. Full remaster completion is not claimed.
+
+<details>
+<summary>Earlier checkpoints and evidence — historical, before the GPU return above</summary>
+
 Further CPU integration is verified: the real GTE RTPT → SWC2/PGXP DATAFLOW → SDK-layout staging host test passes **85 checks** with synthetic guest input and a dummy material. Claude's v3 census adds lag/flag/projection diagnostics; root verifies its frozen run4 pins, reruns all four host executables (74/137 checks plus controls) and compiles/links a new private v61 executable. It has not been launched, and the mesh adapter is not connected to its runtime frame hook. Failed TCP/mutation controls and the rejected stale runner hash remain explicit in the [CPU metrics packet](../remaster-audit/engine-cpu-metrics-20261114/README.md). No GPU work, scene rendering, ray tracing, DLSS or new in-game performance/audio acceptance is claimed.
 
 The follow-up [CPU review packet](../remaster-audit/engine-cpu-review-20261114/README.md) preserves Claude's independent mesh review and root's revised adapter: **71 host checks pass** with transform-hash and command/lane validation. Strict world-v3 class audit: 1,182 pass, **299 mismatch**, 218 lack a qualifying native source in the audit; 142,550 mismatching native centres. Root's 13 audit controls and source-hash/complete-word proof checks pass. These are explicit inherited defects, not full-pack acceptance; some older prepared fixes only stamp centre pixels. GPU/game hold remains in force. The newer v3 host delivery and private compile/link above supersede that preparation checkpoint; live measurements remain pending.
@@ -102,3 +115,5 @@ Read the [package README](../remaster-audit/runtime-diagnostics-v58/README.md), 
 Completed local runs are `display58-phases-observed-r2` and `display58-phases-resource-r3`, both below `remaster-audit/dev-center-evidence/stage1-completion-20261112`. The [public replay package](../remaster-audit/runtime-results-v58/README.md) includes all selected phase rows, counters and analyzers with original-proof hashes. The frozen v58 package retains its historical prepared-only checkpoint unchanged. Claude is drafting a new private narrow HD-object phase diagnostic; source proposals and builds must remain distinct from executed tests. Reserve resources and obtain a fresh manual quiet ACK before another bounded leg. Retain all rejected attempts and release resources after cleanup. No experimental runtime is installed.
 
 Local durable state: `remaster-audit/stage1-completion-20261112/execution-state.json`. Root publication branch: `codex/display-history-opt-in`; [draft PR1](https://github.com/Ghenghis/Einhander-HD/pull/1). Do not mark the overall work complete when a component, source package or document check finishes.
+
+</details>
