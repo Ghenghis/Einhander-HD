@@ -1,3 +1,7 @@
 
 # Frozen diagnostic evidence is byte-hashed; preserve original line endings.
 remaster-audit/runtime-diagnostics-v58/** -text -whitespace
+
+# Preserve the exact metadata-only artwork census and its producing script.
+docs/media/gallery/artwork-frozen-inventory-snapshot.json -text -whitespace
+remaster-audit/art_inventory_snapshot.py -text -whitespace

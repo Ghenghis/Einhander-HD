@@ -1,0 +1,540 @@
+{
+  "schema_version": 1,
+  "snapshot_at_utc": "2026-11-14T05:08:17.004Z",
+  "local_date": "2026-11-13",
+  "project_root": "C:/github/Einhander",
+  "status": "artwork_and_full_game_acceptance_incomplete",
+  "full_game_completion_percentage": null,
+  "total_required_unique_semantic_assets": null,
+  "total_required_runtime_keys": null,
+  "verification_scope": {
+    "performed": "Bounded source-document and JSON-manifest metadata review by two independent reviewers; source-receipt hashes below.",
+    "not_performed": [
+      "No new GPU work",
+      "No PNG decode or image hash census",
+      "No new pixel/class tests",
+      "No new game acceptance run"
+    ],
+    "count_rules": [
+      "PNG files, runtime keys, authored entries, objects, states, masks, masters and revisions are different units",
+      "Latest selected variants are counted; superseded alternatives add no unique keys",
+      "Later-stage exports are predicted-static candidates, not imported or accepted gameplay",
+      "Current lane counts do not establish a globally deduplicated game total"
+    ]
+  },
+  "gpu_provenance": {
+    "coordinator_reported_service": "ComfyUI 8188, GPU0 RTX3090Ti",
+    "source": "comfy-authoring/gpu-log.jsonl",
+    "slot_records": 85,
+    "fields": [
+      "owner",
+      "start",
+      "end"
+    ],
+    "exact_final_pngs_attributable_to_gpu": null,
+    "limits": [
+      "Slot records do not bind individual final PNG hashes to successful generation jobs",
+      "Outputs include CPU vector work, repair, palette derivation, composition and reuse",
+      "No fresh device probe was run during this documentation audit"
+    ]
+  },
+  "stage1": {
+    "installed_pngs": 964,
+    "historical_processing_origins": {
+      "neural_rgb_upscale": 311,
+      "nearest_only": 653
+    },
+    "private_candidate": {
+      "color_pngs": 1669,
+      "authored_entry_records": 837,
+      "emissive_masks": 2,
+      "native_region_verification_records": 226,
+      "recorded_native_verification_failures": 0,
+      "production_installed": false,
+      "live_visual_accepted": false,
+      "authored_entry_categories": {
+        "player_and_gunpods": 78,
+        "enemies": 279,
+        "world_and_lighting": 84,
+        "signs": 42,
+        "effects": 65,
+        "hud": 187,
+        "title_and_menus": 10,
+        "polish": 92
+      }
+    },
+    "bounded_live_evidence": {
+      "astraea_authored_entries_observed": 448,
+      "new_hull_bindings": 5,
+      "canopy_phases": 32,
+      "building_tiles_submitted": 10,
+      "font_bindings_observed": 9,
+      "scope": "Different bounded runs; these counts overlap other inventories and are not a full-stage acceptance count"
+    },
+    "drache_known_key_gap": {
+      "known_keys": 218,
+      "delivered_keys": 195,
+      "flash_clut_capture_missing": 23,
+      "full_live_acceptance": false
+    },
+    "historical_w4_import_v3": {
+      "rows": 635,
+      "files": 1769,
+      "reported_mismatches": 0,
+      "scope": "Separate versioned delivery census; not additive to the1669 candidate"
+    },
+    "w4_v4_addendum": {
+      "rows": 330,
+      "unique_keys": 330,
+      "actions": {
+        "add": 104,
+        "replace": 220,
+        "no-op": 6
+      },
+      "export_files_checked": 729,
+      "class_mismatches": 0,
+      "composite_class_mismatches": 0,
+      "pending_proof_pinning_keys": 83,
+      "not_comparable_file_checks": 9,
+      "production_installed": false,
+      "full_source_merge_acceptance": false
+    }
+  },
+  "later_stages": [
+    {
+      "stage": 2,
+      "current_keys": 39,
+      "runtime_pngs": 78,
+      "selection": {
+        "phase_prep_v2": 8,
+        "sky_ground_retained_v2": 1,
+        "sky_ground_v3": 3,
+        "train_cars_v4": 20,
+        "opening_fx_v2": 2,
+        "opening_fx_v3": 1,
+        "opening_fx_retained_v1": 4
+      },
+      "remaining": [
+        "Live source/CLUT confirmation",
+        "Full-rate draw/UV logs",
+        "Train/ground fly-past and shimmer",
+        "Mechanical shape and integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage2/LEDGER.md",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    },
+    {
+      "stage": 3,
+      "current_keys": 39,
+      "runtime_pngs": 78,
+      "selection": {
+        "machinery_and_walls": 25,
+        "signage_props": 14
+      },
+      "overlapping_alternative_keys": 25,
+      "remaining": [
+        "Live palette/UV and wall motion",
+        "Material choice",
+        "Integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage3/LEDGER.md",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    },
+    {
+      "stage": 4,
+      "current_keys": 11,
+      "runtime_pngs": 22,
+      "selection": {
+        "world": 6,
+        "enemies": 3,
+        "effects": 2
+      },
+      "additional_renderable_later_keys": 233,
+      "remaining": [
+        "Shared05E1881C panorama not built",
+        "Live palette/UV/motion/realism",
+        "Deferred static-source scope",
+        "Integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage4/STATE.md",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    },
+    {
+      "stage": 5,
+      "current_keys": 12,
+      "runtime_pngs": 24,
+      "selection": {
+        "world": 5,
+        "duerer_armour": 5,
+        "effects": 2
+      },
+      "additional_renderable_later_keys": 245,
+      "unresolved_duerer_8bpp_regions": 3,
+      "remaining": [
+        "Shared panorama",
+        "Three8bpp regions",
+        "Live palette/UV/motion",
+        "Integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage5/STATE.md",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    },
+    {
+      "stage": 6,
+      "current_keys": 101,
+      "runtime_pngs": 202,
+      "selection": {
+        "batch2": 83,
+        "initial_explosion": 5,
+        "initial_bolts": 3,
+        "initial_camouflage": 6,
+        "initial_smoke": 4
+      },
+      "count_correction": "83+18=101; ledger capture-request prose83+21 is inconsistent with manifests",
+      "replacement_passes_add_unique_keys": 0,
+      "excluded_failed_revision": "43C26C42 FX pass",
+      "remaining": [
+        "GP0 hull part masks",
+        "Residency and ordered animation",
+        "Live source/CLUT confirmation",
+        "Separate timer-failure outcome",
+        "Integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage6/LEDGER.json",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    },
+    {
+      "stage": 7,
+      "current_keys": 26,
+      "runtime_pngs": 52,
+      "selection": {
+        "fleet_parts": 22,
+        "backdrop": 2,
+        "planet_pairings": 2
+      },
+      "unlisted_pairing": "C4FDEDD2-EAD968A1",
+      "masters_without_runtime_exports": [
+        "Explosion",
+        "Transmission",
+        "Hull index masters"
+      ],
+      "dense_kanji_fallbacks": 14,
+      "remaining": [
+        "Confirm inferred planet pairing",
+        "Live source/CLUT identity",
+        "Keyed exports for masters",
+        "Destruction/transmission/motion",
+        "Integration"
+      ],
+      "ledger": "comfy-authoring/w7-stage7/LEDGER.md",
+      "status": "candidate_predicted_static",
+      "existing_selected_manifest_class_mismatches": 0,
+      "new_pixel_check_performed": false,
+      "live_source_clut_confirmed": false,
+      "in_game_accepted": false,
+      "installed": false,
+      "total_required_remaining_assets": null
+    }
+  ],
+  "required_categories": [
+    "World/background/sky/facade/road/sign color PNGs and owned atlas regions",
+    "Player hulls, enemies, bosses, Gunpods and alternate states",
+    "Sprite/effect textures with ordered animation and palette phases",
+    "Exact transparent/STP/opaque categorical maps",
+    "Emissive masks and material/detail/room-window layers",
+    "Fonts, HUD, labels, logos, diagrams and all menu/end states",
+    "Source words/CLUT identity, UV/draw mapping and shared-page composition"
+  ],
+  "remaining_global": [
+    "Complete unknown source and semantic-state denominator",
+    "Final combined candidate composition and source/region checks",
+    "Live mapped-draw and full-state motion acceptance",
+    "Normal gameplay/audio and full-stage progression",
+    "Full7stage E2E, versioned install and rollback verification"
+  ],
+  "stale_inventories": [
+    {
+      "path": "claude-backlog/import-plan-v5/import-plan-v5.json",
+      "rows": 202,
+      "reason": "Predates later Stage3/5 frozen sets; not a current total"
+    }
+  ],
+  "local_evidence": [
+    {
+      "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/manifest.json",
+      "bytes": 235225,
+      "sha256": "560fbbb5218f5c80093ddbf0732c261f3bedcd4729b54c6e458619910627ff80",
+      "modified_at_utc": "2026-11-12T10:46:37.329Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/overall-remaster-coverage.json",
+      "bytes": 568757,
+      "sha256": "d1a3bcc1c0bfc1da0f6c9c0253724ddba265c23d3120a645ec609fcfd74e1e4b",
+      "modified_at_utc": "2026-11-12T18:21:22.682Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/component-register.json",
+      "bytes": 478265,
+      "sha256": "de0e9925267b2002a7ccbc3150747341d7cbe68c1ceb060b37cb09ba07e57793",
+      "modified_at_utc": "2026-11-12T19:13:58.728Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/REMASTER_COMPLETION_PLAN.md",
+      "bytes": 14870,
+      "sha256": "952260feb6900c96d133b16d64097eee6c707d2d5347e14ce6a92800ec813c64",
+      "modified_at_utc": "2026-11-12T23:55:19.798Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-w3-lit-v1/candidate.json",
+      "bytes": 6347725,
+      "sha256": "245318cda0ecdfb7cf374e6d8ef9e56dca6455ca51e95337adecc97c026a9a2b",
+      "modified_at_utc": "2026-11-13T07:49:16.391Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/frozen-w3-lit-v1/native-verification.json",
+      "bytes": 293,
+      "sha256": "7943d0551506d360ae42f10d419b7645f7a28bcad55b40e4efed508bd42da314",
+      "modified_at_utc": "2026-11-13T07:50:08.099Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/claude-backlog/w4-import-plan/import-plan-v3.json",
+      "bytes": 4138060,
+      "sha256": "82223bfa8ffe75daab7360d42c07c5d56140d84ddd49d1e4825257609bb56b08",
+      "modified_at_utc": "2026-11-13T13:58:13.168Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/claude-backlog/import-plan-v5/import-plan-v5.json",
+      "bytes": 187521,
+      "sha256": "514cfb836994f0d2502fe400216f368d23e6a63c926f80374d38555010c1a94e",
+      "modified_at_utc": "2026-11-13T16:24:08.980Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/gpu-log.jsonl",
+      "bytes": 9745,
+      "sha256": "ad64fea7882b1039272949774f1c4ab2289e671507da65f42f1c33578938ae73",
+      "modified_at_utc": "2026-11-13T23:27:54.819Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w6-drache/STATE.md",
+      "bytes": 8479,
+      "sha256": "e0dfb22749bfa0385dbdb4e2544534d57365bf9113e36275ee6b05e538dae5b2",
+      "modified_at_utc": "2026-11-13T23:23:18.588Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/LEDGER.md",
+      "bytes": 12383,
+      "sha256": "56a3d8673e03ed533773af7e8016cbbcf72c1f0888d6748e62c234aa8741317f",
+      "modified_at_utc": "2026-11-13T23:38:40.285Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/LEDGER.md",
+      "bytes": 6747,
+      "sha256": "6723fcb440ee10c02296f9fe60cfb6ed8eeaecb8ac67f7f1f2fc5142717170ff",
+      "modified_at_utc": "2026-11-13T21:49:41.430Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage4/STATE.md",
+      "bytes": 14524,
+      "sha256": "eda7c762589b8ad600daba0f8403743b0ea615c7dc6469d7b7e51c033837912e",
+      "modified_at_utc": "2026-11-13T23:40:41.784Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage5/STATE.md",
+      "bytes": 15282,
+      "sha256": "ac85392999e947cebda9daf0746791eecc0b99ce347f4f74cf1170c58d78f729",
+      "modified_at_utc": "2026-11-13T23:36:17.153Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage6/LEDGER.json",
+      "bytes": 18194,
+      "sha256": "c4200e3b21f421cc685af59101cecff6ac30b1cb33192f1f381fb0cd02004ae9",
+      "modified_at_utc": "2026-11-13T23:48:33.872Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage7/LEDGER.md",
+      "bytes": 18679,
+      "sha256": "2324a7a1c52a886fc82b3c6a70281172107e66e562d4af90ddde8c3de07d239b",
+      "modified_at_utc": "2026-11-13T22:28:56.681Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage7/frozen/stage7-planet-limb-v1/manifest.json",
+      "bytes": 9609,
+      "sha256": "c438aa5f445ad52f24a3fde357daca733975eff8a757bb5bfaf5459206ef4c23",
+      "modified_at_utc": "2026-11-13T15:44:50.813Z",
+      "published_raw": false
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/claude-backlog/w4-import-plan/import-plan-v4.json",
+      "bytes": 1320344,
+      "sha256": "fd1dd3f91d0033a516e3168769d72320ef59486575eafb6912d556f697380f6c",
+      "modified_at_utc": "2026-11-13T15:08:40.360Z",
+      "published_raw": false,
+      "public_copy": null
+    },
+    {
+      "path": "C:/github/Einhander/remaster-audit/claude-backlog/art-inventory/art-inventory.json",
+      "bytes": 222068,
+      "sha256": "5e007cd6745d77538cd6e12e51041e5df6866cfc206ceae8fe62ae5ac8472a55",
+      "modified_at_utc": "2026-11-14T05:05:17.881Z",
+      "published_raw": true,
+      "public_copy": "docs/media/gallery/artwork-frozen-inventory-snapshot.json"
+    }
+  ],
+  "all_retained_frozen_folder_census": {
+    "public_snapshot": "docs/media/gallery/artwork-frozen-inventory-snapshot.json",
+    "snapshot_sha256": "5e007cd6745d77538cd6e12e51041e5df6866cfc206ceae8fe62ae5ac8472a55",
+    "authoring_lanes": 33,
+    "retained_sets": 263,
+    "png_file_paths": 11106,
+    "distinct_filename_keys": 1764,
+    "keys_in_multiple_sets": 954,
+    "per_stage": {
+      "1": {
+        "lanes": [
+          "facade-v3-architecture",
+          "t1-sky",
+          "t2-facades",
+          "t3-green-lights",
+          "t4-signs",
+          "t6-player",
+          "t7-enemies",
+          "t9-title-menus",
+          "w2-effects",
+          "w2-hud",
+          "w2-polish",
+          "w3-astraea",
+          "w3-canyon",
+          "w3-emissive",
+          "w3-hud",
+          "w3-mk3",
+          "w3-signs",
+          "w4-enemies",
+          "w4-menus",
+          "w4-player",
+          "w4-signs-hud",
+          "w4-world",
+          "w5-cleanup",
+          "w6-drache",
+          "w6-hud-fades",
+          "w6-livepack-classfix",
+          "w6-native-gaps"
+        ],
+        "frozen_sets": 213,
+        "png_files": 9891,
+        "unique_keys": 1540
+      },
+      "2": {
+        "lanes": [
+          "w7-stage2"
+        ],
+        "frozen_sets": 12,
+        "png_files": 332,
+        "unique_keys": 39
+      },
+      "3": {
+        "lanes": [
+          "w7-stage3"
+        ],
+        "frozen_sets": 3,
+        "png_files": 156,
+        "unique_keys": 39
+      },
+      "4": {
+        "lanes": [
+          "w7-stage4"
+        ],
+        "frozen_sets": 9,
+        "png_files": 138,
+        "unique_keys": 11
+      },
+      "5": {
+        "lanes": [
+          "w7-stage5"
+        ],
+        "frozen_sets": 7,
+        "png_files": 97,
+        "unique_keys": 12
+      },
+      "6": {
+        "lanes": [
+          "w7-stage6"
+        ],
+        "frozen_sets": 11,
+        "png_files": 394,
+        "unique_keys": 101
+      },
+      "7": {
+        "lanes": [
+          "w7-stage7"
+        ],
+        "frozen_sets": 8,
+        "png_files": 98,
+        "unique_keys": 26
+      }
+    },
+    "sets_without_manifest": [
+      {
+        "lane": "t2-facades",
+        "set": "2294438F-band-index-v1"
+      },
+      {
+        "lane": "t2-facades",
+        "set": "AB2DB563-index-v1"
+      },
+      {
+        "lane": "t6-player",
+        "set": "t6-detail-proposal-v1"
+      }
+    ],
+    "scope": "Facts on disk only. 'frozen' = a frozen folder exists; not live-captured, in-game accepted or installed unless separate evidence says so. Keys are parsed from file names; duplicate keys across sets/versions are listed, not summed as assets.",
+    "stage_grouping_limit": "Every non-w7 lane assigned toStage1 by name, including cross-stageHUD/menu; not proof of residency",
+    "png_decode_or_hash_scan": false
+  },
+  "public_snapshot_producer": "remaster-audit/art_inventory_snapshot.py"
+}
