@@ -1,0 +1,125 @@
+{
+ "owner": "claude-einhander-s23",
+ "tool": "pilot_stage_onekey_r2.py",
+ "self_sha256": "c03a7d83f00749a686b7ab2adf250f6be5fb9db87f73e5fd922c56349ea435f5",
+ "mode": "stage",
+ "started_utc": "2026-11-14T22:56:10.823705+00:00",
+ "pid": 30572,
+ "affinity": "12",
+ "pilot": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255",
+ "sources": {
+  "png": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s2-28127931-7C2D834A/keys/page2048/28127931-7C2D834A.png",
+   "sha256": "40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a"
+  },
+  "exe": {
+   "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/runtime/Einhander_Recompiled.exe",
+   "sha256": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa"
+  },
+  "settings": {
+   "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/runtime/settings.toml",
+   "sha256": "db24f4abd3529aae216618406fd978418a8f08850b5c2a06bdea295e17ce525c"
+  },
+  "card1": {
+   "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/state/card1.mcd",
+   "sha256": "8156843599078d7776e54a385ffbb523415bd5ad32eeb0cd47fba44e362b2595"
+  },
+  "cache": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/runtime/cache",
+  "cache_manifest": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/j10-cache-qualify-2255/cache-manifest.json",
+   "sha256": "bbcb9abeecb227d5e29705584f6955a06b06386c414c2298933d917b917e9b9f"
+  }
+ },
+ "png": "40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a",
+ "exe": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa",
+ "card1": "8156843599078d7776e54a385ffbb523415bd5ad32eeb0cd47fba44e362b2595",
+ "settings": {
+  "sha256": "cecc4f2b85bddf30f07e70d30ae4b26badd7f5cc4564260eb5894051c1099095",
+  "base_sha256": "db24f4abd3529aae216618406fd978418a8f08850b5c2a06bdea295e17ce525c",
+  "asserted_unchanged": [
+   {
+    "line": 24,
+    "section": "[video]",
+    "text": "hd_textures = true",
+    "unchanged": true
+   }
+  ],
+  "mutated": [
+   {
+    "line": 25,
+    "section": "[video]",
+    "old": "hd_texture_root = \"C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/world-integrated-mijpq-roi-r1/pack\"",
+    "new": "hd_texture_root = \"C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/hdroot\""
+   },
+   {
+    "line": 44,
+    "section": "[memcard]",
+    "old": "dir = \"C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/state\"",
+    "new": "dir = \"C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state\""
+   },
+   {
+    "line": 45,
+    "section": "[memcard]",
+    "old": "card1 = \"C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/state/card1.mcd\"",
+    "new": "card1 = \"C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state/card1.mcd\""
+   },
+   {
+    "line": 46,
+    "section": "[memcard]",
+    "old": "card2 = \"C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/state/card2.mcd\"",
+    "new": "card2 = \"C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state/card2.mcd\""
+   }
+  ],
+  "newline": "CRLF",
+  "lines": 60
+ },
+ "cache": {
+  "mode": "copy",
+  "files": 4405,
+  "bytes": 239111587,
+  "manifest_sha256": "bbcb9abeecb227d5e29705584f6955a06b06386c414c2298933d917b917e9b9f"
+ },
+ "hdroot_check": {
+  "files": [
+   "28127931-7C2D834A.png"
+  ],
+  "only_key_png": true,
+  "hashes_ini_in_root": false,
+  "hashes_ini_in_parent": false,
+  "exact_regions": false
+ },
+ "inherited_settings_paths": {
+  "[bios]": {
+   "path": "C:/github/Einhander/windows-x64/build-release/bios/SCPH1001.BIN",
+   "sha256": "42e4124be7623e2e28b1db0d8d426539646faee49d74b71166d8ba5bd7c472ed",
+   "size": 524288
+  },
+  "[disc]": {
+   "path": "C:/github/Einhander/ROM/Einhander (USA).cue",
+   "sha256": "4386f5e6843f17cac92d97d794f5a39c9abcd9c80bce31c21426e3b483724f51",
+   "size": 81,
+   "cue_files": [
+    {
+     "path": "C:/github/Einhander/ROM/Einhander (USA).bin",
+     "size": 653493792,
+     "hashed": false
+    }
+   ]
+  },
+  "note": "unchanged settings lines, shared read-only inputs (same as the v68 run); the .bin is size-checked only"
+ },
+ "launch_plan": {
+  "exe": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/runtime/Einhander_Recompiled.exe",
+  "settings": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/runtime/settings.toml",
+  "hd_root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/hdroot",
+  "proof_log_env": {
+   "PSXRECOMP_HD_PROOF_LOG": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/logs/hd-proof.jsonl"
+  },
+  "proof_log_exists_now": false,
+  "note": "all launch paths are inside the new pilot tree; do not set a different PSXRECOMP_HD_TEXTURE_ROOT; route = codex AQ-01 (historical frames 40717..41099 are targets, not a replay identity)"
+ },
+ "ok": true,
+ "exit_code": 0,
+ "seconds": 55.12,
+ "finished_utc": "2026-11-14T22:57:05.948143+00:00"
+}

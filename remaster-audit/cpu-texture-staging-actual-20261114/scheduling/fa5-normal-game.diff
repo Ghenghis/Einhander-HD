@@ -1,0 +1,45 @@
+--- qualified-fa5/run_rc2_envelope_r1.py
++++ normal-game-envelope-r1/run_normal_game_envelope_r1.py
+@@ -80,6 +80,7 @@
+ NTDLL = ctypes.WinDLL("ntdll")
+ CREATE_SUSPENDED = 0x00000004
+ BELOW_NORMAL_PRIORITY_CLASS = 0x00004000
++NORMAL_PRIORITY_CLASS = 0x00000020
+ JOB_OBJECT_LIMIT_KILL_ON_JOB_CLOSE = 0x00002000
+ JOB_OBJECT_LIMIT_AFFINITY = 0x00000010
+ JOB_OBJECT_LIMIT_PRIORITY_CLASS = 0x00000020
+@@ -219,18 +220,18 @@
+             lim.JobMemoryLimit = a.max_job_mib * 2 ** 20
+         lim.BasicLimitInformation.LimitFlags = flags
+         lim.BasicLimitInformation.Affinity = mask
+-        lim.BasicLimitInformation.PriorityClass = BELOW_NORMAL_PRIORITY_CLASS
++        lim.BasicLimitInformation.PriorityClass = NORMAL_PRIORITY_CLASS
+         check(K32.SetInformationJobObject(job, JobObjectExtendedLimitInformation, ctypes.byref(lim),
+                                           ctypes.sizeof(lim)), "SetInformationJobObject")
+         rb = limits(job)                                                                   # envelope-r0 readback
+-        rec["job_limits_requested"] = dict(limit_flags=flags, affinity_mask=mask, priority_class=BELOW_NORMAL_PRIORITY_CLASS,
++        rec["job_limits_requested"] = dict(limit_flags=flags, affinity_mask=mask, priority_class=NORMAL_PRIORITY_CLASS,
+                                            job_memory_limit=lim.JobMemoryLimit if a.max_job_mib else 0)
+         rec["job_limits_readback"] = rb
+         if (rb["limit_flags"] & flags) != flags or rb["affinity_mask"] != mask or \
+-                rb["priority_class"] != BELOW_NORMAL_PRIORITY_CLASS or \
++                rb["priority_class"] != NORMAL_PRIORITY_CLASS or \
+                 (a.max_job_mib and rb["job_memory_limit"] != a.max_job_mib * 2 ** 20):
+             raise OSError(f"job limit readback mismatch: requested {rec['job_limits_requested']} readback {rb}")
+-        cflags = CREATE_SUSPENDED | BELOW_NORMAL_PRIORITY_CLASS | (CREATE_NO_WINDOW if a.no_window else 0)
++        cflags = CREATE_SUSPENDED | NORMAL_PRIORITY_CLASS | (CREATE_NO_WINDOW if a.no_window else 0)
+         st["p"] = subprocess.Popen(cmd, env=env, creationflags=cflags)
+         rec["child_pid"] = st["p"].pid
+         rec["child_create_time"] = psutil.Process(st["p"].pid).create_time()
+@@ -249,9 +250,9 @@
+             rec["child_affinity_set_to"] = want_cpus
+             rec["child_readback_before_resume"] = dict(cpu_affinity=sorted(cp.cpu_affinity()), priority=int(cp.nice()))
+             if sorted(rec["child_readback_before_resume"]["cpu_affinity"]) != want_cpus or \
+-                    rec["child_readback_before_resume"]["priority"] != psutil.BELOW_NORMAL_PRIORITY_CLASS:
++                    rec["child_readback_before_resume"]["priority"] != psutil.NORMAL_PRIORITY_CLASS:
+                 raise OSError(f"child readback mismatch before resume: {rec['child_readback_before_resume']} "
+-                              f"want cpus {want_cpus} BelowNormal")
++                              f"want cpus {want_cpus} Normal")
+             if fault == "after_spawn":
+                 raise OSError("RUN_RC2_FAULT=after_spawn (test-only injected failure before resume)")
+             rec["start_utc"] = now()

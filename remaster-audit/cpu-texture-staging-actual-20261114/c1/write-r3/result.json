@@ -1,0 +1,80 @@
+{
+ "owner": "claude-einhander-ui",
+ "job": "J-C1V r3 one-ROI stroke-void correction",
+ "mode": "write",
+ "centre_class_ok_before": 65536,
+ "roi_centre_class_ok_before": 12400,
+ "tool_sha256": "02071250968200ed79ca5323e643e30191c5287d5c642368555a8540e2eca551",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "scipy": "1.17.1",
+  "pillow": "12.3.0"
+ },
+ "controls": {
+  "production_mask_matches_rule": true,
+  "production_mask_excludes_outside_roi": true,
+  "interior_void_filled_with_native": true,
+  "contour_band_void_untouched": true,
+  "counter_pixel_untouched": true,
+  "only_v_changed": true,
+  "centre_detected_by_sampler": true,
+  "injected_centre_void_rejected": true,
+  "clean_toy_all_centres_native": true,
+  "authored_rgb_centre_correct_class_passes_R1": true,
+  "authored_rgb_centre_reported_not_native_rgb": true,
+  "wrong_class_centre_fails_R1_global": true,
+  "class127_cell_fills_alpha127": true,
+  "exact_class_delta_equals_V": true
+ },
+ "key": "1AD90FC9-02491337.png",
+ "roi_b_texels": [
+  0,
+  58,
+  124,
+  158
+ ],
+ "pins": {
+  "authored_sha256": "3eae507320ef8345010a2f096b3e039f9a8fdd599df38b9343071a3fd340dbb2",
+  "snap": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T180407Z\\snap-native\\w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-02491337.png",
+  "snap_sha256": "a3035801bbab95c92dcd3d0adbef31a85086dcdbb029c9a31cd21ef0f9fcb7e3",
+  "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-02491337.words.bin",
+  "words_sha256": "32861a1726c1ee0be1b76bbdd65040f95106084d0d361b883ab4f3df77ce2fc8",
+  "meta": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-02491337.source.json",
+  "meta_sha256": "15dab1ad9dc24a31900a9b7036a02c9aefb5c6956f2705477a667a45cf7e8037",
+  "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-02491337.clut.bin",
+  "clut_sha256": "3b2c7aaef20d4f9368dd6d479773cb9cb4915624a39fd9a849d25031769a806b"
+ },
+ "r6_result_sha256": "5f70c178844604447a24a2d3a5c27b755fee57c92d033a9a974563fc35f59a25",
+ "r6_recorded_voids": 240,
+ "voids": 240,
+ "cells_with_voids": 60,
+ "centre_voids": 0,
+ "roi_centres_native_before": 5478,
+ "roi_cells": 12400,
+ "all_centres_native_before": 32053,
+ "alpha_exception": "alpha 0 -> native class alpha (127/255) only in V",
+ "r5": "not evaluated; no compositor/appearance claim",
+ "gates": {
+  "G1_changed_equals_V_and_outside_identical": true,
+  "G2_changed_equal_native": true,
+  "G3_mismatch_after_eq_before_minus_V_no_new": true,
+  "G4_centres_exact_equal_and_R1_class_all": true,
+  "G5_count_matches_r6": true
+ },
+ "mismatch_before": 442466,
+ "mismatch_after": 442226,
+ "changed_pixels": 240,
+ "contour_band_alpha0_untouched": 10771,
+ "blockers": [],
+ "verdict": "PASS",
+ "review_1x": {
+  "path": "review_roiB_1x.png",
+  "sha256": "b03b7dedf7ad3d2111e118bc7400ca1c79be219060ee2bc81f81c755f80f372f"
+ },
+ "output_png": {
+  "path": "1AD90FC9-02491337.c1.png",
+  "sha256": "e469e26f3acf5230634d51de5775a01c7a57fbc0b553f2d99f9c2d5f9fbfd6d0"
+ },
+ "seconds": 1.3
+}

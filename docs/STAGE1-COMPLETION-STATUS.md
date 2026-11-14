@@ -1,5 +1,7 @@
 # Stage 1 completion status
 
+Latest CPU texture/staging results: [private lettering correction, Stage 2 pilot and Normal scheduling](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). C1 repairs 240 interior pixels; pilot staged; no game/GPU/art admission. Raw menu/audio driver needs concrete corrections before launch. Earlier dated entries retain their historical scope.
+
 Latest actual CPU results: [private menu build, transport checks and retained diagnostic limits](CPU-TRANSPORT-ACTUAL-20261114.md). P1+v69 compiled/linked37c137e8, not launched/installed; T1 36 and T2 55+21 checks passed. Loopback probe5 remains inconclusive. Earlier entries below preserve their dated scope.
 
 Current actual build result: [private v69 audio integration, PR7 CPU build and retained failures](CPU-ENGINE-BUILDS-ACTUAL-20261114.md). v69f1ccb34d compiled/linked, not launched/installed; PR7CPU65/guard77PASS, noGL/DLL/GPU. T1compileFAIL/0of36run; stripepreviewrejected. Earlier entries below retain their dated scope.

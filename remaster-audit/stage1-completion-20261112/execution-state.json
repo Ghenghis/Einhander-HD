@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T22:47:56.382558+00:00",
+  "updated_at_utc": "2026-11-14T23:04:55.718747+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -1112,5 +1112,21 @@
     "gpu_run": false,
     "installed": false,
     "live_qualified": false
+  },
+  "cpu_texture_staging_actual": {
+    "evidence": "docs/CPU-TEXTURE-STAGING-ACTUAL-20261114.md",
+    "c1_private_candidate_sha256": "e469e26f3acf5230634d51de5775a01c7a57fbc0b553f2d99f9c2d5f9fbfd6d0",
+    "c1_changed_pixels": 240,
+    "c1_controls_passed": 14,
+    "c1_gates_passed": 5,
+    "pilot_staged": true,
+    "cache_files": 4405,
+    "cache_bytes": 239111587,
+    "cache_abi_qualified": false,
+    "normal_child_scheduling_pass": true,
+    "game_run": false,
+    "gpu_run": false,
+    "art_admitted": false,
+    "installed": false
   }
 }

@@ -1,0 +1,104 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/tools/pilot_stage_onekey_r2.py",
+  "qualify",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/j10-cache-qualify-2255"
+ ],
+ "cwd": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23",
+ "wrapper_pid": 45332,
+ "wrapper_create_time": 1794696923.310655,
+ "cpu": 12,
+ "affinity": [
+  12
+ ],
+ "priority": 16384,
+ "timeout_s": 120.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T22:55:23.430243+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "1000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 33.1,
+  "free_gib": 59.4,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T22:55:24.431338+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 39324,
+ "child_create_time": 1794696924.432518,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  12
+ ],
+ "child_affinity_set_to": [
+  12
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   12
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T22:55:24.437712+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 5.529,
+ "end_utc": "2026-11-14T22:55:29.969928+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 0.859375,
+  "kernel_s": 3.9375
+ },
+ "peak_job_memory_bytes": 19144704,
+ "peak_process_memory_bytes": 17788928,
+ "descendants_seen": [
+  29724
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}
