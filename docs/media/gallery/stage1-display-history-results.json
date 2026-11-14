@@ -5188,7 +5188,7 @@
       "path": "C:/github/Einhander/windows-x64/tools/material-runtime.json",
       "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before.json",
       "before_sha256": "9d80a09e38ddc4089cf803482fc3026e37a5842dbdbf2e2060da278e54c39b69",
-      "after_sha256": "3335962504f38e2ab37a6f6152d298c1d711449e710e408dd2dc5ff211a85bf1",
+      "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
       "from_executable": "C:\\github\\REMASTER_STAGING\\full-remaster\\devtools-build\\Einhander_Recompiled.exe",
       "to_executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
       "to_executable_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
@@ -5226,7 +5226,13 @@
           "ring": "0"
         }
       ],
-      "other_profile_live_verification": false
+      "other_profile_live_verification": "Title+5second functionalsmokes only; fullstagefalse",
+      "functional_evidence_update": {
+        "before_sha256": "3335962504f38e2ab37a6f6152d298c1d711449e710e408dd2dc5ff211a85bf1",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before-functional-evidence.json",
+        "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+        "scope": "Attach completed frontend/shortcut checks; executable binding unchanged"
+      }
     }
   },
   "upload_timing_diagnostic": {
