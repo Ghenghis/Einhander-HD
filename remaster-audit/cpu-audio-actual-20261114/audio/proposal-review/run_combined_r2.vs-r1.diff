@@ -1,0 +1,99 @@
+--- a/run_combined_r1.py
++++ b/run_combined_r2.py
+@@ -1,4 +1,9 @@
+-"""s67 bounded CPU driver r1 for BOTH combined-telemetry harnesses (NOT run yet). r0 driver 90b00802 kept.
++"""s67 bounded CPU driver r2 for BOTH combined-telemetry harnesses (NOT run yet). r1 73b764af and r0 90b00802 kept.
++r2 vs r1 (main msg_e4fbf475): the compiler is a FIXED path and its real dispatch closure is pinned - clang++.exe,
++clang-22.exe, libclang-cpp.dll, libLLVM-22.dll - with the same 4 pins as primary's T1 driver r2 (b0423d8a), all
++hashed in realpath(CC).parent before any compile; --cc/--cc-sha256 are removed. Child creation time is recorded
++best-effort via psutil (None + reason if psutil is missing or the process already exited; never fabricated).
++The compiler is hashed then executed by path; a swap in between is not excluded.
+ 
+ MANDATORY: run only under a fresh grant, inside the qualified outer Job (wall <= 120 s, 1024 MiB, one CPU,
+ BelowNormal). The outer Job bounds the whole process tree. This driver's inner caps are sized to fit inside
+@@ -6,7 +11,7 @@
+ a step is refused and recorded as a failure if fewer than 5 s remain). An outer kill can still prevent
+ manifest.json from being written; the wrapper's kill/refusal receipt then counts as FAILURE.
+ 
+-Steps (refuses without --grant-id; --out created exclusively; --cc resolved to an absolute path and pinned):
++Steps (refuses without --grant-id; --out created exclusively; fixed CC + 4-file toolchain closure pinned):
+   1. copy into <out>/src: getters harness r1, pump harness, combined header r1, main.cpp r1, both .inc files;
+      every copy hashed against its pin;
+   2. re-extract BOTH blocks from the COPIED main.cpp (getters BEGIN/END markers; pump helper by its unique
+@@ -38,6 +43,17 @@
+ BEGIN, END = "/* s67 combined getters: BEGIN */", "/* s67 combined getters: END */"
+ PUMP_SIG = "static void s67_pump_after_push(const rab_telemetry *tel, int resync) {"
+ CREATIONFLAGS = 0x08004000 if os.name == "nt" else 0   # CREATE_NO_WINDOW | BELOW_NORMAL_PRIORITY_CLASS
++CC = Path("C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe")
++TOOLCHAIN = {  # identical to remix-transport/t1/build_t1_fixture.r2.py (b0423d8a) TOOLCHAIN
++    "clang++.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
++    "clang-22.exe": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
++    "libclang-cpp.dll": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
++    "libLLVM-22.dll": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
++}
++try:
++    import psutil  # optional: best-effort child creation time only
++except ImportError:
++    psutil = None
+ ENVELOPE_S = 105
+ # 25 + 35 + 25 + 10 = 95 s <= ENVELOPE_S 105 s <= outer Job 120 s. The getters run cap covers its own
+ # internal bounds (writer start 5 s + phase C 20 s + stop 5 s = 30 s) plus margin.
+@@ -76,6 +92,14 @@
+     p = subprocess.Popen(rec["argv"], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                          creationflags=CREATIONFLAGS, env=env)
+     rec["pid"] = p.pid
++    rec["creation_unix"] = None
++    if psutil is None:
++        rec["creation_note"] = "psutil not installed"
++    else:
++        try:
++            rec["creation_unix"] = psutil.Process(p.pid).create_time()
++        except psutil.Error as e:
++            rec["creation_note"] = f"unavailable: {type(e).__name__} (process may have exited)"
+     try:
+         out, err = p.communicate(timeout=timeout)
+     except subprocess.TimeoutExpired:
+@@ -108,8 +132,6 @@
+ def main():
+     ap = argparse.ArgumentParser()
+     ap.add_argument("--grant-id", required=True)
+-    ap.add_argument("--cc", required=True, help="C++17 compiler binary (clang++)")
+-    ap.add_argument("--cc-sha256", required=True)
+     ap.add_argument("--getters-harness-sha256", required=True)
+     ap.add_argument("--out", required=True)
+     a = ap.parse_args()
+@@ -119,7 +141,7 @@
+     except FileExistsError:
+         print(f"refusing: {out} exists", file=sys.stderr)
+         return 2
+-    man = {"driver": "run_combined_r1.py", "driver_sha256": sha(__file__), "grant_id": a.grant_id,
++    man = {"driver": "run_combined_r2.py", "driver_sha256": sha(__file__), "grant_id": a.grant_id,
+            "out": str(out), "started_utc": utc(), "envelope_s": ENVELOPE_S, "caps_s": CAPS,
+            "inputs": {}, "children": [], "results": {}, "verdict": "FAIL", "reasons": [], "errors": [],
+            "note": "outer Job receipt is authoritative for wall/memory limits"}
+@@ -140,11 +162,20 @@
+ 
+ def body(a, out, man):
+     budget = Budget()
+-    cc = Path(a.cc).resolve()
+-    got = sha(cc) if cc.is_file() else None
+-    man["inputs"]["cc"] = {"path": str(cc), "sha256": got, "expected": a.cc_sha256}
+-    if got != a.cc_sha256:
+-        man["reasons"].append("pin mismatch: cc")
++    cc = CC
++    real_dir = Path(os.path.realpath(CC)).parent
++    tools = {}
++    for n, want in TOOLCHAIN.items():
++        f = real_dir / n
++        got = sha(f) if f.is_file() else None
++        tools[n] = {"path": str(f), "sha256": got, "expected": want}
++        if got != want:
++            man["reasons"].append(f"toolchain pin mismatch: {n}")
++    invoked = sha(CC) if CC.is_file() else None
++    man["inputs"]["toolchain"] = {"invoked": str(CC), "invoked_sha256": invoked, "real_dir": str(real_dir), "files": tools}
++    if invoked != TOOLCHAIN["clang++.exe"]:
++        man["reasons"].append("toolchain pin mismatch: invoked clang++.exe")
++    if man["reasons"]:
+         return 2
+     src = out / "src"
+     src.mkdir(exist_ok=False)

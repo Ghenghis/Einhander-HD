@@ -1,0 +1,188 @@
+{
+  "driver": "run_combined_r2.py",
+  "driver_sha256": "a3def870c5acb192c9622685a8be566d7132638ddca57a83fcc84a7fde760ecd",
+  "grant_id": "msg_806b9f6d1aa666e0",
+  "out": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b",
+  "started_utc": "2026-11-14T21:40:30Z",
+  "envelope_s": 105,
+  "caps_s": {
+    "compile:getters": 25,
+    "run:getters": 35,
+    "compile:pump": 25,
+    "run:pump": 10
+  },
+  "inputs": {
+    "toolchain": {
+      "invoked": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+      "invoked_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "real_dir": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin",
+      "files": {
+        "clang++.exe": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang++.exe",
+          "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+          "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+        },
+        "clang-22.exe": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang-22.exe",
+          "sha256": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
+          "expected": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+        },
+        "libclang-cpp.dll": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libclang-cpp.dll",
+          "sha256": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
+          "expected": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+        },
+        "libLLVM-22.dll": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libLLVM-22.dll",
+          "sha256": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+          "expected": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+        }
+      }
+    },
+    "getters_harness": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\test_combined_getters_r1.cpp",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_combined_getters_r1.cpp",
+      "copy_sha256": "c698ca22c933d635beb411334783fc94b31a8e1ff72189b55a9e7c4101f55368",
+      "expected": "c698ca22c933d635beb411334783fc94b31a8e1ff72189b55a9e7c4101f55368"
+    },
+    "pump_harness": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\test_pump_after_push.cpp",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_pump_after_push.cpp",
+      "copy_sha256": "e6355f83142dbc776443915330a859770a2c1739708f408b6f261ad8f10d452d",
+      "expected": "e6355f83142dbc776443915330a859770a2c1739708f408b6f261ad8f10d452d"
+    },
+    "getters_inc": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\combined_getters.extracted.inc",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\combined_getters.extracted.inc",
+      "copy_sha256": "fa7feb4b4540a7614b12ba760dcdc09a2c3424a8f38a6f9eea16ab759ef68d3f",
+      "expected": "fa7feb4b4540a7614b12ba760dcdc09a2c3424a8f38a6f9eea16ab759ef68d3f"
+    },
+    "pump_inc": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\pump_after_push.extracted.inc",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\pump_after_push.extracted.inc",
+      "copy_sha256": "2ca3702e8b1cd500e0141ee74f85e0a93bd3c36347d17f26d7653ce313a183d6",
+      "expected": "2ca3702e8b1cd500e0141ee74f85e0a93bd3c36347d17f26d7653ce313a183d6"
+    },
+    "header": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\recomp_audio_drc.h.proposed",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\recomp_audio_drc.h",
+      "copy_sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "expected": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    "main_cpp": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\main.cpp.proposed",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\main.cpp.proposed",
+      "copy_sha256": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36",
+      "expected": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36"
+    },
+    "getters_reextract_equal": true,
+    "pump_reextract_equal": true,
+    "getters_exe": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_combined_getters_r1.exe",
+      "sha256": "6c8816cecc6a9e65efdd2466f7c25cdf810c4e65962350745786408c404647e6"
+    },
+    "pump_exe": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_pump_after_push.exe",
+      "sha256": "e79f788d96e70775e87198cf1266b6bfc8ab8758ea4412a4d81f5b4295f6116b"
+    }
+  },
+  "children": [
+    {
+      "step": "compile:getters",
+      "argv": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-IC:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_combined_getters_r1.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_combined_getters_r1.exe"
+      ],
+      "start_utc": "2026-11-14T21:40:30Z",
+      "pid": 43936,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 25,
+      "creation_unix": 1794692430.3288472,
+      "elapsed_s": 1.057,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": "run:getters",
+      "argv": [
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_combined_getters_r1.exe"
+      ],
+      "start_utc": "2026-11-14T21:40:31Z",
+      "pid": 3236,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 35,
+      "creation_unix": 1794692431.407448,
+      "elapsed_s": 4.922,
+      "stdout": "{\"negative_controls_fired\":3,\"reads\":200000,\"viol_mod37\":0,\"viol_coherence\":0,\"viol_gaps\":0,\"distinct\":196,\"pulls_during_C\":13120668,\"pulls_total\":13125832,\"locked_copies\":200006,\"result\":\"PASS\"}\r\n",
+      "stderr": ""
+    },
+    {
+      "step": "compile:pump",
+      "argv": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O2",
+        "-Wall",
+        "-IC:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_pump_after_push.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_pump_after_push.exe"
+      ],
+      "start_utc": "2026-11-14T21:40:36Z",
+      "pid": 32848,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 25,
+      "creation_unix": 1794692436.3094645,
+      "elapsed_s": 0.385,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": "run:pump",
+      "argv": [
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\test_pump_after_push.exe"
+      ],
+      "start_utc": "2026-11-14T21:40:36Z",
+      "pid": 45380,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 10,
+      "creation_unix": 1794692436.7121823,
+      "elapsed_s": 0.057,
+      "stdout": "{\"events\":4,\"result\":\"PASS\"}\r\n",
+      "stderr": ""
+    }
+  ],
+  "results": {
+    "getters": {
+      "negative_controls_fired": 3,
+      "reads": 200000,
+      "viol_mod37": 0,
+      "viol_coherence": 0,
+      "viol_gaps": 0,
+      "distinct": 196,
+      "pulls_during_C": 13120668,
+      "pulls_total": 13125832,
+      "locked_copies": 200006,
+      "result": "PASS"
+    },
+    "pump": {
+      "events": 4,
+      "result": "PASS"
+    }
+  },
+  "verdict": "PASS",
+  "reasons": [],
+  "errors": [],
+  "note": "outer Job receipt is authoritative for wall/memory limits",
+  "finished_utc": "2026-11-14T21:40:36Z"
+}

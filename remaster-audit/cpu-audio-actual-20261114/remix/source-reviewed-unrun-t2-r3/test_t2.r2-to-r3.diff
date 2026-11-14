@@ -1,0 +1,28 @@
+1c1
+< // CPU-only fixture for T2 r2 (claude-einhander). SOURCE ONLY, not compiled or run. No GL, SDK, game or files
+---
+> // CPU-only fixture for T2 r3 (claude-einhander). SOURCE ONLY, not compiled or run. No GL, SDK, game or files
+17c17,18
+< #include "remix_t2.r2.h"
+---
+> #include "remix_t2.r3.h"
+> #include <thread>
+346c347
+<       check(!s.release() && s.release_underflows == 1 && s.bytes_in_use.load() == 0, "h4_release_underflow_fail_closed"); }
+---
+>       check(!s.release() && s.release_underflows.load() == 1 && s.bytes_in_use.load() == 0, "h4_release_underflow_fail_closed"); }
+365a367,376
+>     // ---------------- r3 controls (root msg_5e9828cb) ----------------
+>     // R9 the current frame is never old enough, even with retire_frames == 0; the next frame is.
+>     check(!T2Resolver::old_enough(7u, 7u, 0u) && T2Resolver::old_enough(8u, 7u, 0u), "r9_age0_never_retires_even_retire0");
+>     // H6 bounded two-thread control: both threads release on an empty slot; the atomic fault counter
+>     // records every underflow exactly once and bytes_in_use never wraps (1000 per thread).
+>     { T2Slot s;
+>       auto spin = [&s]() { for (int k = 0; k < 1000; k++) s.release(); };
+>       std::thread a(spin), b(spin); a.join(); b.join();
+>       check(s.release_underflows.load() == 2000 && s.bytes_in_use.load() == 0, "h6_two_thread_underflow_counter_exact"); }
+> 
+384c395
+<     fprintf(out, "{\"fixture\":\"t2\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"failed\":\"%s\",\"passed\":%s,"
+---
+>     fprintf(out, "{\"fixture\":\"t2\",\"revision\":\"r3\",\"checks\":%d,\"failures\":%d,\"failed\":\"%s\",\"passed\":%s,"

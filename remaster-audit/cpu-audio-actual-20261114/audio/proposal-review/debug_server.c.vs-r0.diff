@@ -1,0 +1,40 @@
+--- a/debug_server.c.proposed (r0)
++++ b/debug_server.c.proposed (r1)
+@@ -6910,6 +6910,7 @@
+                                   int *legacy, int *host_rate,
+                                   uint64_t *gaps, uint64_t *max_gap_frames,
+                                   uint64_t *cur_gap_frames, uint64_t *gap_epoch,
++                                  uint64_t *gap_epoch_base_underruns,
+                                   uint64_t *bridge_generation, int *gap_ok);
+ 
+ static void handle_audio_stats(int id, const char *json)
+@@ -6921,11 +6922,12 @@
+     uint64_t out_underruns = 0, overflow_drops = 0;
+     int legacy = 1, host_rate = 44100;
+     uint64_t gaps = 0, max_gap = 0, cur_gap = 0, gap_epoch = 0, generation = 0;
++    uint64_t gap_base = 0;
+     int gap_ok = 0;
+     int out_ok = psx_audio_out_stats_ex(&fill_ms, &target_ms, &out_underruns,
+                                         &overflow_drops, &correction, &legacy,
+                                         &host_rate, &gaps, &max_gap, &cur_gap,
+-                                        &gap_epoch, &generation, &gap_ok);
++                                        &gap_epoch, &gap_base, &generation, &gap_ok);
+     send_fmt("{\"id\":%d,\"ok\":true,"
+              "\"taps\":["
+              "{\"name\":\"spu_out\",\"frames\":%llu,\"nonzero\":%llu,"
+@@ -6943,6 +6945,7 @@
+              "\"correction\":%.5f,"
+              "\"gap_ok\":%d,\"gaps\":%llu,\"max_gap_frames\":%llu,"
+              "\"cur_gap_frames\":%llu,\"gap_epoch\":%llu,"
++             "\"gap_epoch_base_underruns\":%llu,"
+              "\"bridge_generation\":%llu,\"snapshot\":\"single-lock-v1\","
+              "\"render_b\":\"%s\"}}",
+              id,
+@@ -6972,6 +6975,7 @@
+              correction,
+              gap_ok, (unsigned long long)gaps, (unsigned long long)max_gap,
+              (unsigned long long)cur_gap, (unsigned long long)gap_epoch,
++             (unsigned long long)gap_base,
+              (unsigned long long)generation,
+              legacy ? "legacy:queued-bytes-before" : "bridge:post-push-cached-fill-ms-v1");
+ }

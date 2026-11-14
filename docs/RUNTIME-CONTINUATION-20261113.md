@@ -1,5 +1,7 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+Latest actual CPU result: [two audio fixture passes,74collector checks and the original launcher failure](CPU-AUDIO-ACTUAL-20261114.md). Game/SDL/listening/PCM/RT/DLSS/installed acceptance remains incomplete. Earlier entries below retain their dated scope.
+
 Latest review: [CPU refusal, geometry/audio source corrections and remaining acceptance](CPU-INTEGRATION-REVIEW-20261114.md). PR7correctedbuilder stopped before child at78.6%CPU; T2r1remains source-blocked. No new game/GPU/audio result.
 
 ## Actual CPU build failure and source followup — November14

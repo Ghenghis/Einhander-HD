@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-11-14T20:59:47.174Z",
-  "base_head_before_documentation_commit": "8e93c4660cc6c77c47bcd70607e9f49ad540f94f",
+  "generated_at_utc": "2026-11-14T21:47:41.013Z",
+  "base_head_before_documentation_commit": "2d6ab12db758e1cafacbbe114947eefd5b425d37",
   "verifier": {
     "path": "remaster-audit/verify_documentation.mjs",
     "sha256": "050c5f183e1bacab6875eda9ccbf3408b6de07fdc5905cfca9ba2ca5991fd666"
@@ -23,7 +23,7 @@
     ],
     "e2e_gameplay_acceptance": "pending; no performance, audio, whole-stage or seven-stage completion claim"
   },
-  "document_count": 76,
+  "document_count": 77,
   "json_count": 97,
   "local_links_checked": 1123,
   "external_urls_not_fetched": [
@@ -71,11 +71,11 @@
     },
     {
       "path": "coordination/CLAUDE-SESSIONS-20261114.json",
-      "bytes": 17987,
-      "working_tree_sha256": "232699c4af078b8bef273057f6b77edf0fb9f12eb3ccd3ce320c2eb0ba8b74c4",
-      "git_index_blob": "0360b016e775e465de2ed89316bfb69308f35b8c",
-      "git_index_sha256": "5888b2719331ca2e6b239fa05acf539d277408a85cec6560964d847556b0adba",
-      "git_index_bytes": 17675
+      "bytes": 17988,
+      "working_tree_sha256": "6aa3c5766f72e23ac86936f24e78306bd425ce88add812638fbef3227abb09c3",
+      "git_index_blob": "e99c4396414107390334512e875f7b61a9b77827",
+      "git_index_sha256": "6c16a19a60254c7ee0ec059ab0c2ab39a1bb6e01f76b54193fc85823d1358f4e",
+      "git_index_bytes": 17676
     },
     {
       "path": "coordination/CLAUDE-WORK-QUEUE.md",
@@ -111,11 +111,11 @@
     },
     {
       "path": "coordination/Codex-HANDOFF.md",
-      "bytes": 7699,
-      "working_tree_sha256": "a62b40849773b3d2cca685e2d516584e54b3158c72ee8c8af2e27db7b8ed67cc",
-      "git_index_blob": "c14a8007f9772a8d19c3b417924a0248ca4aad64",
-      "git_index_sha256": "a62b40849773b3d2cca685e2d516584e54b3158c72ee8c8af2e27db7b8ed67cc",
-      "git_index_bytes": 7699
+      "bytes": 7638,
+      "working_tree_sha256": "5d0cae7fa92f6c5778e800b023ce615f329f77705fc0c538bef259b873c6f383",
+      "git_index_blob": "9a7ea65c7b37f9cbfee03ed944ba5d5fbe084151",
+      "git_index_sha256": "5d0cae7fa92f6c5778e800b023ce615f329f77705fc0c538bef259b873c6f383",
+      "git_index_bytes": 7638
     },
     {
       "path": "coordination/Codex-WORK-QUEUE-HISTORY-20261114T1838.md",
@@ -143,11 +143,11 @@
     },
     {
       "path": "coordination/Codex-WORK-QUEUE.md",
-      "bytes": 5160,
-      "working_tree_sha256": "316d3f6906af8d316900a139822a6b469da71d93b0ac7a65f6e9b09552b11043",
-      "git_index_blob": "61862044f18e161150303a37e1818f29f5e1692c",
-      "git_index_sha256": "316d3f6906af8d316900a139822a6b469da71d93b0ac7a65f6e9b09552b11043",
-      "git_index_bytes": 5160
+      "bytes": 2891,
+      "working_tree_sha256": "b59d7833a4f9918ff33ce440d177a9a00de074d692c998c6bf409791c8c761b1",
+      "git_index_blob": "9dc940e93798e29e1f06da1cb138e1b2617ee3ae",
+      "git_index_sha256": "b59d7833a4f9918ff33ce440d177a9a00de074d692c998c6bf409791c8c761b1",
+      "git_index_bytes": 2891
     },
     {
       "path": "coordination/DEVIN-HANDOFF.md",
@@ -167,11 +167,11 @@
     },
     {
       "path": "docs/4K-REMIX-IMPLEMENTATION-PLAN.md",
-      "bytes": 34474,
-      "working_tree_sha256": "eeaa3a4604ee9d7cec755f4b87b2cabad85100afef889ad9a377c49b7f52144e",
-      "git_index_blob": "6bd572f37ef0e1655afb5f0c2d72be1ddbf6ff8d",
-      "git_index_sha256": "eeaa3a4604ee9d7cec755f4b87b2cabad85100afef889ad9a377c49b7f52144e",
-      "git_index_bytes": 34474
+      "bytes": 34732,
+      "working_tree_sha256": "7d4c64ac391534b051dae04c2bc440531fcd906ff0c91ef625fd3207a021428d",
+      "git_index_blob": "071524bdee4678f3ff6c83ee1fe94f700afe54d2",
+      "git_index_sha256": "7d4c64ac391534b051dae04c2bc440531fcd906ff0c91ef625fd3207a021428d",
+      "git_index_bytes": 34732
     },
     {
       "path": "docs/ARTWORK-STATUS-20261113.md",
@@ -196,6 +196,14 @@
       "git_index_blob": "9bd3525bb1c677fe82e2357ff317e83f534a8e5c",
       "git_index_sha256": "406a4a52cb299c0d5326998f2e296d8c802ca578e83983f046f9b3bfe663f708",
       "git_index_bytes": 3633
+    },
+    {
+      "path": "docs/CPU-AUDIO-ACTUAL-20261114.md",
+      "bytes": 6389,
+      "working_tree_sha256": "407add7a04eb66a9c8247f48bea5a9afe503d544d06086ebf44f77def0e03d61",
+      "git_index_blob": "e36eba8fffd07f194224f04453ad46e262b4f0ae",
+      "git_index_sha256": "407add7a04eb66a9c8247f48bea5a9afe503d544d06086ebf44f77def0e03d61",
+      "git_index_bytes": 6389
     },
     {
       "path": "docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md",
@@ -1047,19 +1055,19 @@
     },
     {
       "path": "docs/RTX-REMIX-SETUP-20261114.md",
-      "bytes": 33196,
-      "working_tree_sha256": "bf1ab43e0d0e85c3f7997b6f550619b38942d9d0ba2a30c9d6ab73ea48867abc",
-      "git_index_blob": "faf05c36f1187d0e59bd8d8880d24886be2f1797",
-      "git_index_sha256": "bf1ab43e0d0e85c3f7997b6f550619b38942d9d0ba2a30c9d6ab73ea48867abc",
-      "git_index_bytes": 33196
+      "bytes": 33454,
+      "working_tree_sha256": "b06cbccd1c91d180289440bfd07cc6ff1f80f3815b7cc9ac7278a8611e3649fc",
+      "git_index_blob": "0d9ebceb8588a509190d9bae420704819f82949e",
+      "git_index_sha256": "b06cbccd1c91d180289440bfd07cc6ff1f80f3815b7cc9ac7278a8611e3649fc",
+      "git_index_bytes": 33454
     },
     {
       "path": "docs/RUNTIME-CONTINUATION-20261113.md",
-      "bytes": 47243,
-      "working_tree_sha256": "416b6e98c5548a17e267c5e855d9067cb805869da0868612d3b874e2e5f04fb8",
-      "git_index_blob": "8ec31a76d7f581f3684add3c3d5ad745c6647730",
-      "git_index_sha256": "416b6e98c5548a17e267c5e855d9067cb805869da0868612d3b874e2e5f04fb8",
-      "git_index_bytes": 47243
+      "bytes": 47501,
+      "working_tree_sha256": "4b0c728a5a8bfb8df858b4301e400061e520f172b9babe11e68f3176fa86ed83",
+      "git_index_blob": "d2412a61f72e027493e792850c4dfa9de53fcf9a",
+      "git_index_sha256": "4b0c728a5a8bfb8df858b4301e400061e520f172b9babe11e68f3176fa86ed83",
+      "git_index_bytes": 47501
     },
     {
       "path": "docs/SHARED-GPU-RESULTS-20261114.md",
@@ -1087,11 +1095,11 @@
     },
     {
       "path": "docs/STAGE1-COMPLETION-STATUS.md",
-      "bytes": 45280,
-      "working_tree_sha256": "c338493524699857248642aa36119fd99018e755f507eb36edb53ad87c69d867",
-      "git_index_blob": "30cabc488a8cf0889cf9712d7725f38ebc59d52d",
-      "git_index_sha256": "c338493524699857248642aa36119fd99018e755f507eb36edb53ad87c69d867",
-      "git_index_bytes": 45280
+      "bytes": 45538,
+      "working_tree_sha256": "ea591e4f2a02014f194369863539bd3b05a37a71bc1d96840104e560ce1519a9",
+      "git_index_blob": "e84b1de6e3eee7873f9748df8c3e18008ae46f39",
+      "git_index_sha256": "ea591e4f2a02014f194369863539bd3b05a37a71bc1d96840104e560ce1519a9",
+      "git_index_bytes": 45538
     },
     {
       "path": "docs/STAGE1-CONTROLLER-RESULTS.md",

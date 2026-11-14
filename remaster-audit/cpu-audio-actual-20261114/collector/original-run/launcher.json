@@ -1,0 +1,570 @@
+{
+  "at_utc": "2026-11-14T21:21:05.485383+00:00",
+  "grant_id": "msg_0eac7f8f7f0273e5",
+  "start_before_utc": "2026-11-14T21:22:00+00:00",
+  "attempt": 1,
+  "retries": 0,
+  "passed": false,
+  "gpu_run": false,
+  "game_run": false,
+  "real_socket_used": false,
+  "live_qualified": false,
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-I",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\executed-watchdog.py",
+    "--out",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\envelope.json",
+    "--cpu",
+    "11",
+    "--timeout",
+    "10",
+    "--max-job-mib",
+    "128",
+    "--no-window",
+    "--max-cpu",
+    "60",
+    "--min-free-gib",
+    "16",
+    "--",
+    "C:\\Python314\\python.exe",
+    "-I",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\executed-controls.py",
+    "--out",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\controls",
+    "--cpu",
+    "11"
+  ],
+  "source_pins": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-controls\\controls_c457b58e_r1.py",
+      "sha256": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+      "bytes": 32280
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\owned_gl_adapter_observation.py",
+      "sha256": "c457b58ed670f878dd30fb4962639dbfc18f407e4223685710f498d29a0ded34",
+      "bytes": 12474
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py",
+      "sha256": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+      "bytes": 7315
+    }
+  ],
+  "wrapper_started": true,
+  "launcher_source_sha256": "949d4f9736f481484a833886a129081c44c6ab86090906af4fae6553a5135e5c",
+  "wrapper_pid": 43648,
+  "wrapper_creation_unix": 1794691265.518532,
+  "wrapper_exit": 0,
+  "wrapper_retained_handle_exited": true,
+  "wrapper_identity_absent": false,
+  "envelope": {
+    "sha256": "0a882af347e1d1e9688836142851ace5197e8db3d1a7ef6e0c052ca4346600fa",
+    "data": {
+      "tool": "run_rc2_envelope_r1.py",
+      "revision": "envelope-r1",
+      "base": "run_rc2.r1.py cd3988af06cd348c",
+      "cmd": [
+        "C:\\Python314\\python.exe",
+        "-I",
+        "-B",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\executed-controls.py",
+        "--out",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\collector-controls-run-r1\\controls",
+        "--cpu",
+        "11"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "wrapper_pid": 43648,
+      "wrapper_create_time": 1794691265.518532,
+      "cpu": 11,
+      "affinity": [
+        11
+      ],
+      "priority": 16384,
+      "timeout_s": 10.0,
+      "rc": 0,
+      "created_utc": "2026-11-14T21:21:05.666557+00:00",
+      "allowed_before_pin": [
+        11
+      ],
+      "child_affinity_mode": "cpu",
+      "job_affinity_mask_hex": "800",
+      "max_job_mib": 128,
+      "no_window": true,
+      "precheck": {
+        "system_cpu_pct": 21.1,
+        "free_gib": 60.83,
+        "max_cpu": 60.0,
+        "min_free_gib": 16.0,
+        "at_utc": "2026-11-14T21:21:06.667900+00:00"
+      },
+      "job_limits_requested": {
+        "limit_flags": 8752,
+        "affinity_mask": 2048,
+        "priority_class": 16384,
+        "job_memory_limit": 134217728
+      },
+      "job_limits_readback": {
+        "limit_flags": 8752,
+        "affinity_mask": 2048,
+        "priority_class": 16384,
+        "job_memory_limit": 134217728,
+        "peak_job_memory": 0,
+        "peak_process_memory": 0
+      },
+      "child_pid": 44228,
+      "child_create_time": 1794691266.6690257,
+      "job_assigned_before_resume": true,
+      "child_affinity_before_set": [
+        11
+      ],
+      "child_affinity_set_to": [
+        11
+      ],
+      "child_readback_before_resume": {
+        "cpu_affinity": [
+          11
+        ],
+        "priority": 16384
+      },
+      "start_utc": "2026-11-14T21:21:06.675813+00:00",
+      "child_exit_code": 0,
+      "timeout_killed": false,
+      "elapsed_s": 0.249,
+      "end_utc": "2026-11-14T21:21:06.927979+00:00",
+      "job": {
+        "active": 0,
+        "total": 2,
+        "terminated": 0,
+        "user_s": 0.078125,
+        "kernel_s": 0.125
+      },
+      "peak_job_memory_bytes": 23293952,
+      "peak_process_memory_bytes": 21934080,
+      "descendants_seen": [],
+      "descendants_left": [],
+      "child_absent": true,
+      "job_empty": true,
+      "tree_absent": true,
+      "wrapper_exit": 0
+    }
+  },
+  "controls": {
+    "sha256": "62fa00eead2669ae90f92e04fec64ba21f5302155fc91014230c766fb6faff73",
+    "data": {
+      "schema": "support-adapter-controls-c457b58e-r1",
+      "pins": {
+        "C:\\github\\Einhander\\remaster-audit\\owned_gl_adapter_observation.py": "c457b58ed670f878dd30fb4962639dbfc18f407e4223685710f498d29a0ded34",
+        "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08"
+      },
+      "supersedes": "controls_c457b58e.py 020882d058b58e4b94ebf6038249661c0f1961f98a0b3cecab6378a391ca6c09",
+      "controls_sha256": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+      "cpu": 11,
+      "allowed_affinity": [
+        11
+      ],
+      "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+      "psutil": "6.1.1",
+      "int_max_str_digits": 4300,
+      "started_utc": "2026-11-14T21:21:06Z",
+      "cases": [
+        {
+          "case": "P1_owned_server_row_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "P2_foreign_pid_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer belongs to another process"
+        },
+        {
+          "case": "P3a_missing_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P3b_owned_plus_foreign_ambiguous_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P3c_duplicate_owned_rows_ambiguous_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P4a_syn_recv_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P4b_close_wait_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P4c_time_wait_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P5_inet6_family_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P6_pid_none_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer belongs to another process"
+        },
+        {
+          "case": "P7_client_orientation_only_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P8_owned_other_client_plus_foreign_ours_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer belongs to another process"
+        },
+        {
+          "case": "P9_wildcard_laddr_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "P10_listen_only_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous"
+        },
+        {
+          "case": "D1a_minimal_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "D1b_nested_finite_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "D2a_bytearray_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: bounded original reply bytes required"
+        },
+        {
+          "case": "D2b_str_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: bounded original reply bytes required"
+        },
+        {
+          "case": "D2c_memoryview_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: bounded original reply bytes required"
+        },
+        {
+          "case": "D3a_exactly_16384_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "D3b_16385_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: bounded original reply bytes required"
+        },
+        {
+          "case": "D4a_invalid_utf8_ff_reject",
+          "ok": true,
+          "detail": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xff in position 13: invalid start byte"
+        },
+        {
+          "case": "D4b_overlong_utf8_reject",
+          "ok": true,
+          "detail": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xc0 in position 13: invalid start byte"
+        },
+        {
+          "case": "D4c_encoded_surrogate_reject",
+          "ok": true,
+          "detail": "UnicodeDecodeError: 'utf-8' codec can't decode byte 0xed in position 13: invalid continuation byte"
+        },
+        {
+          "case": "D5a_nan_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: non-finite JSON constant in GL-present reply: NaN"
+        },
+        {
+          "case": "D5b_infinity_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: non-finite JSON constant in GL-present reply: Infinity"
+        },
+        {
+          "case": "D5c_minus_infinity_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: non-finite JSON constant in GL-present reply: -Infinity"
+        },
+        {
+          "case": "D6a_1e999_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: overflowing float in GL-present reply"
+        },
+        {
+          "case": "D6b_minus_1e999_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: overflowing float in GL-present reply"
+        },
+        {
+          "case": "D6c_2e308_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: overflowing float in GL-present reply"
+        },
+        {
+          "case": "D7a_duplicate_top_key_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: duplicate JSON key in GL-present reply: id"
+        },
+        {
+          "case": "D7b_duplicate_nested_key_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: duplicate JSON key in GL-present reply: a"
+        },
+        {
+          "case": "D7c_duplicate_escaped_key_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: duplicate JSON key in GL-present reply: ok"
+        },
+        {
+          "case": "D7d_duplicate_in_array_object_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: duplicate JSON key in GL-present reply: k"
+        },
+        {
+          "case": "D8a_empty_object_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8b_id_2_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8c_id_true_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8d_id_float_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8e_id_string_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8f_top_list_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D8g_top_null_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "D9_utf8_bom_reject",
+          "ok": true,
+          "detail": "JSONDecodeError: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)"
+        },
+        {
+          "case": "D10a_extra_data_reject",
+          "ok": true,
+          "detail": "JSONDecodeError: Extra data: line 1 column 10 (char 9)"
+        },
+        {
+          "case": "D10b_two_objects_reject",
+          "ok": true,
+          "detail": "JSONDecodeError: Extra data: line 1 column 9 (char 8)"
+        },
+        {
+          "case": "D10c_trailing_json_whitespace_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "D11_lone_surrogate_escape_pass_with_caller_note",
+          "ok": true,
+          "detail": "returned; ensure_ascii=False+utf8 -> UnicodeEncodeError: 'utf-8' codec can't encode character '\\ud800' in position 16: surrogates not allowed"
+        },
+        {
+          "case": "D12_5000_digit_int_reject",
+          "ok": true,
+          "detail": "ValueError: Exceeds the limit (4300 digits) for integer string conversion: value has 5000 digits; use sys.set_int_max_str_digits() to increase the limit"
+        },
+        {
+          "case": "D13a_empty_reject",
+          "ok": true,
+          "detail": "JSONDecodeError: Expecting value: line 1 column 1 (char 0)"
+        },
+        {
+          "case": "D13b_whitespace_only_reject",
+          "ok": true,
+          "detail": "JSONDecodeError: Expecting value: line 1 column 4 (char 3)"
+        },
+        {
+          "case": "D14_deep_nesting_within_bound_rejected",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply ID does not match request"
+        },
+        {
+          "case": "O1_owned_peer_send_once_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "O2_foreign_peer_no_send",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer belongs to another process; sent=0"
+        },
+        {
+          "case": "O3_missing_peer_no_send",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous; sent=0"
+        },
+        {
+          "case": "O4_peername_changed_no_table_no_send",
+          "ok": true,
+          "detail": "AdapterEvidenceError: connected endpoint changed; sent=0"
+        },
+        {
+          "case": "O5_identity_changed_during_peer_lookup_no_send_peer_kept",
+          "ok": true,
+          "detail": "AdapterEvidenceError: runtime changed during connected-peer lookup; sent=0"
+        },
+        {
+          "case": "O6_split_reply_pass",
+          "ok": true,
+          "detail": "returned"
+        },
+        {
+          "case": "O7_data_after_newline_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: unsolicited data after GL-present reply; recv_sizes=[4096] returned=10"
+        },
+        {
+          "case": "O8_eof_before_newline_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present connection closed before a complete reply; recv_sizes=[4096, 4096] returned=8"
+        },
+        {
+          "case": "O9_oversize_without_newline_reject",
+          "ok": true,
+          "detail": "AdapterEvidenceError: GL-present reply exceeds bound; recv_sizes=[4096, 4096, 1] returned=16385"
+        },
+        {
+          "case": "O10_duplicate_key_reply_reject_after_send",
+          "ok": true,
+          "detail": "AdapterEvidenceError: duplicate JSON key in GL-present reply: id; recv_sizes=[4096] returned=16"
+        },
+        {
+          "case": "L1_before_listener_failure_never_connects",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned GL-present observation failed"
+        },
+        {
+          "case": "L2_third_sample_refused",
+          "ok": true,
+          "detail": "AdapterEvidenceError: only two explicit samples are allowed"
+        },
+        {
+          "case": "L3_two_good_samples_carry_peer",
+          "ok": true,
+          "detail": "attempts=2"
+        },
+        {
+          "case": "S1_replaced_startup_file_rejected",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed; cause=AdapterEvidenceError('startup log file identity changed')"
+        },
+        {
+          "case": "S2_appended_same_file_reaches_validation",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed; cause=AdapterEvidenceError('expected exactly one adapter identity record')"
+        },
+        {
+          "case": "S3_directory_startup_path_constructor_raises",
+          "ok": true,
+          "detail": "PermissionError: [Errno 13] Permission denied: 'C:\\\\github\\\\Einhander\\\\remaster-audit\\\\runtime-review\\\\gpu-texture-remix-20261114\\\\collector-controls-run-r1\\\\controls\\\\S3.dir'"
+        },
+        {
+          "case": "S4_missing_startup_path_constructor_raises",
+          "ok": true,
+          "detail": "FileNotFoundError: [WinError 2] The system cannot find the file specified: 'C:\\\\github\\\\Einhander\\\\remaster-audit\\\\runtime-review\\\\gpu-texture-remix-20261114\\\\collector-controls-run-r1\\\\controls\\\\S4.missing.log'"
+        },
+        {
+          "case": "S5_deleted_before_finish_wrapped",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed"
+        },
+        {
+          "case": "S6_in_place_rewrite_not_identity_detected_documented",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed"
+        },
+        {
+          "case": "S7_second_finish_refused",
+          "ok": true,
+          "detail": "AdapterEvidenceError: qualification already finalized"
+        },
+        {
+          "case": "F1_two_samples_finish_pass_21_exact_fields_and_peers",
+          "ok": true,
+          "detail": "validation keys=['after_total', 'before_total', 'creation_unix', 'identity_line', 'latest_event_seq', 'listener_brackets_validated', 'model_only', 'physical_uuid_verified', 'pid', 'renderer', 'startup_bytes', 'startup_decoding', 'startup_sha256', 'validation_scope', 'vendor', 'version']"
+        },
+        {
+          "case": "F2_non_advancing_ring_wrapped_fail",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed; cause=AdapterEvidenceError('GL present sequence did not advance')"
+        },
+        {
+          "case": "F3a_wrong_model_ti_suffix_wrapped_fail_partial_receipt",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed; cause=AdapterEvidenceError('driver selected a different adapter model')"
+        },
+        {
+          "case": "F3b_software_fallback_wrapped_fail_partial_receipt",
+          "ok": true,
+          "detail": "ObservationCaptureError: owned adapter qualification failed; cause=AdapterEvidenceError('GL pipeline fell back to software')"
+        }
+      ],
+      "executed_note": "controls exercise pure functions and doubles only; this is NOT collector qualification",
+      "elapsed_s": 0.083,
+      "case_count": 74,
+      "expected_cases": 74,
+      "all_ok": true
+    }
+  },
+  "logs": {
+    "stdout.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "ended_utc": "2026-11-14T21:21:07.016132+00:00",
+  "outer_elapsed_s": 1.5307025000001886
+}

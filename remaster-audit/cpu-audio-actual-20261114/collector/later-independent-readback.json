@@ -1,0 +1,74 @@
+{
+  "at_utc": "2026-11-14T21:22:12.529676+00:00",
+  "metadata_readback_passed": true,
+  "original_launcher_passed": false,
+  "original_launcher_failure": "wrapper_identity_absent=false while retained handle exited",
+  "original_receipt_rewritten": false,
+  "synthetic_controls_passed": true,
+  "controls_count": 74,
+  "controls_elapsed_s": 0.083,
+  "envelope_elapsed_s": 0.249,
+  "peak_job_memory_bytes": 23293952,
+  "job_memory_limit_bytes": 134217728,
+  "known_process_identities": [
+    {
+      "role": "wrapper",
+      "pid": 43648,
+      "creation_unix": 1794691265.518532,
+      "identity_absent": true
+    },
+    {
+      "role": "child",
+      "pid": 44228,
+      "creation_unix": 1794691266.6690257,
+      "identity_absent": true
+    }
+  ],
+  "source_and_receipt_hashes": {
+    "executed-launcher.py": "949d4f9736f481484a833886a129081c44c6ab86090906af4fae6553a5135e5c",
+    "executed-watchdog.py": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+    "executed-controls.py": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+    "launcher.json": "0b15464fa64cc90d8ac8d282e69e957d9e652fe552c7c9c50db11af105f1803e",
+    "envelope.json": "0a882af347e1d1e9688836142851ace5197e8db3d1a7ef6e0c052ca4346600fa",
+    "controls/result.json": "62fa00eead2669ae90f92e04fec64ba21f5302155fc91014230c766fb6faff73",
+    "stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "source_pins": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-controls\\controls_c457b58e_r1.py",
+      "sha256": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+      "bytes": 32280
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\owned_gl_adapter_observation.py",
+      "sha256": "c457b58ed670f878dd30fb4962639dbfc18f407e4223685710f498d29a0ded34",
+      "bytes": 12474
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py",
+      "sha256": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+      "bytes": 7315
+    }
+  ],
+  "resource_precheck": {
+    "system_cpu_pct": 21.1,
+    "free_gib": 60.83,
+    "max_cpu": 60.0,
+    "min_free_gib": 16.0,
+    "at_utc": "2026-11-14T21:21:06.667900+00:00"
+  },
+  "tests_rerun": false,
+  "proposal_imported": false,
+  "gpu_run": false,
+  "game_run": false,
+  "real_socket_tested": false,
+  "live_qualified": false,
+  "installed": false,
+  "limitation": "Readback validates synthetic fixture and later cleanup, not the original launcher verdict or real OS/game adapter integration"
+}

@@ -1,30 +1,19 @@
-# Einhander current work queue — November 14, 2026
+# Einhander current queue — private continuation November 14, 2026
 
-Owner `codex-einhander`, task `EIN-CODEX-CONTINUITY-20261114`, project incomplete. Read [handoff](Codex-HANDOFF.md), [current source review](../docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md) and [exact previous queue](Codex-WORK-QUEUE-HISTORY-20261114T195545Z.md). Current resource hold: urgent preservation by coordinator; C: source/small receipt/Git only, no new tests/heavy/GPU/game or D: reads by this owner.
+Read [handoff](Codex-HANDOFF.md) and actual Hermes inbox. Project ACTIVE/INCOMPLETE; ownercodex-einhander/taskEIN-CODEX-CONTINUITY-20261114. Latest published2d6ab12; actual audio and collector results are included in the current publication bundle.
 
-- [x] Actual F3 reserve controls/private v68 compile and frozen-input checks; private C: staging. No game/install acceptance.
-- [x] Correct overwritten menu claims; verify118v5files and native-class replay118/118; view12conflicts and reject all three spec-text variants.
-- [x] Run10watchdog dummy controls and independently verify receipts/identities. No game qualification.
-- [x] Run three-key menu measurement; view all selected sheets and withdraw unproven text-cause diagnoses. No repair or accepted font.
-- [x] Preserve cagev2; prepare one-key ROI plan onto latest903parent without composition.
-- [x] Review native adapter/observer/audio/transport source; revise pure adapter guard with listener/order/UTF8 contract. Single granted LIGHT run passes21methods/.00763s controls/.373s outer with128MiBwholeJob/ownedtreeabsent; no live qualification.
-- [ ] After preservation hold is explicitly cleared, obtain a fresh grant for PR7 exact-approved CPU command (65controls/guard77); preserve classifier denial and66.1%CPU no-child refusal. No loops/old-grant reuse.
-- [ ] Run GLidentity15case fixture and a new observer extracted-code boundary/fault fixture after source fixes/fresh grants. Implement real retained-handle/exact-port listener sampling; compile into a new private build preserving v68 retained-source provenance.
-- [ ] Run baseline/proposed audio-gap fixture397202b9+driver3f74854d under qualified whole Job; compare actual PCM/legacy counters. Old stats race/performance/audible remaster remain separate open work.
-- [ ] Source-review UIr4manual text ROIs and S23J11 INFERRED palette model. Future bounded J10r2/S45r2 two-key previews only; preserve all protected pixels and failed versions. No full batch or admission yet.
-- [ ] Compose cage ROI only through reviewed frozen composer onto903parent, independent inside/outside/alpha/old-page verification and native admission, then actual look/motion; correctness-only interpolation is not final4Kart.
-- [ ] Qualify normal OpenGL owned-game/adapter/focus/frame progression separately, then bounded mini-boss timing/audio and listening with exact native sequence brackets. No assumed60smini-boss or stageclear.
-- [ ] Implement bounded CPU scene/mesh/material transport skeleton with real native projection/STP/mask/painter order and immutable cross-thread ownership. GPU qualification requires a separate grant after r7 CPU/lifecycle gates. No API-return-code RT/DLSS acceptance.
-- [ ] Finish far-background/building/sign fidelity, class-aware menus/HUD, realistic skins and all ship/gun/enemy/boss/effect targets/selectors, native source captures, seven-stage gameplay/audio/difficulty/options/outcomes and delivered release/rollback.
+- [x] Preserve and remotely verify published34newpacket+3canonical pins;76docs/97JSON/1123links/0issues integrity only.
+- [x] Actual74synthetic collector checks PASS/.083s/128MiBJob; preserve original949launcherFAIL and independent later known-PID/limit/source readbackPASS. No real OS/game qualification and no74rerun for green.
+- [ ] Focused lifetime probe20ce source review/fresh10s128MiBCPU grant; newlauncher143 qualification after actual result. Never reuse consumed0eac grant.
+- [ ] AudioDr2 actualPASS6.723s/89.2MiBJobpeak/2compiles2runs; currentcombined PCM Dr5d84fee7e remains UNRUN. RealSDL/lifecycle/PCM/listening/performance acceptance separate.
+- [ ] Fresh T1r1/driverr2 36checks, T2r3 82checks, observerr3IO36, GLidentity15. Source-clear/UNRUN; exact frozen source/CRLF/actual backend pins required.
+- [ ] Review actual primary ledger-r0 source/fixtures when frozen; full command coverage and G4/compositor still block live native suppression/RT/DLSS.
+- [ ] Review new audited adapter binding r0(1ac7895a/d1b72132/52275a7a27controls). Owned-stub r0 source blocked; corrected realOS fixture required before game wiring.
+- [ ] Review skin-target r1 corrections (r0 header666daa59 blocked); real authored4K/PBR/playercraft/gunpod/enemy/boss/effect bindings/assets/selectors remain missing.
+- [ ] Fresh J10 two-key preview then rootlook, stipple1d8b80bc exact masks; S45stripes; UIr6 fixed3key measure; cage composition/admission. No new decode/repair or admission without grant/evidence.
+- [ ] Normal owned-game/adapter/focus/progression test with normal game affinity, mini-boss pacing/audio/listening; no assumed stageclear or zero stutter from source tests.
+- [ ] Allsevenstages/backgrounds/signs/buildings/HUD/menus/skins/options/outcomes/install/rollback acceptance.
 
-Monitor39248 bound20:48:16.554UTC is metadata-only; refresh owned presence with actual work, read/quietly ACK inbox during waits, renew before expiry and preserve real gaps. Worktree scoped delivery only; no reset/stash/broad stage, broad scans or cleanup of other projects. Component passes are not whole-project completion.
+No Einhander GPU/game/Comfy or power/driver/security change; shared coordinator controls current hardware diagnostic and all resource grants. KeepWindowsusable; C:only. Read own durable queue and actual inbox during bounded waits; a monitor is not a model worker. Previous queue text preserved under N/private-continuity-history.
 
-- [x] Actual PR7syntax check0/1.382s; retain object failure1/.048s and empty-tree receipt97a2738c, root readback. No full build/control/render acceptance.
-- [ ] Fresh PR7CPUgrant for NEWreviewedbuilderb0e08a6a;65controls/guard77stillunexecuted. No retry on consumedgrant, no memory-cap claim forcd398guard.
-- [ ] Qualify collectorc457 with complete pure sample-to-finish controls, then owned-child Windows listener/peer observation, command-audit binding and real runner integration. No GPU/library-load shortcut.
-- [ ] Observerr3IO36fixture/driverba36 andT1r1oracle36fixture/driverr2b042 need actual fresh grants/compile/run. Treat nativeCRLF and patchLF explicitly; preservefailed earlier scripts/hashes.
-- [ ] Review combinedaudio source/getter/pump/reset/extraction fixtures, exact closure then compile/PCM/realSDL/listening. Oldracyreferencefixture rejected; no race/perf/audible completion.
-- [ ] UIr6fixed3keymeasure SOURCEclearfutureonly; preserveungranted45cdselftestdisclosure UNKNOWNruntimefields. Do not infer finalfontrepair or resource acceptance.
-- [ ] T2builder/resolver/hand-off/presentationgate code remains draft; fullGP0ordered2Dcoverage notprovidedbycurrenttextured-onlycapture. Diagnosticgeometry never skips native drawing.
-
-Current CPU/source review: [actual refusal and review](../docs/CPU-INTEGRATION-REVIEW-20261114.md). CorrectedPR7builder remainsUNRUN after78.6%CPUrefusal f211; T2r1sourceBLOCKED/71checksUNRUN, fixesrequested; collector74controlsUNRUN/sourceclear; combinedaudioreviewneedsresetbaseline/combineddriver. Monitor7116 bound2026-11-14T21:19:18.572Z ismetadata-only; predecessor expiredgap recorded. NoGPU/game/installs.
+Current actual result: [audio/collector CPU passes and original launcher failure](../docs/CPU-AUDIO-ACTUAL-20261114.md). Audio2compiles2runsPASS/6.723s/93515776BJobpeak, no realSDL/PCM/listening/game/GPU qualification. Collector74PASS does not rewrite original949launcherFAIL; later metadata cleanupPASS. T2r382checksUNRUN; ledger/glue/skinr1sourceonly/underreview; auditedbindingr0sourceblocked. Metadata monitor32088 bound2026-11-14T22:14:16.961Z only.
