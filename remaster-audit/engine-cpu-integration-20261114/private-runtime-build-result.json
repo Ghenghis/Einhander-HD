@@ -1,0 +1,50 @@
+{
+  "started_utc": "2026-11-14T09:05:14.738610+00:00",
+  "scope": "Complete private executable compile/link from pinned parent inputs plus provenance-v2 full translation units. Not a clean full-source rebuild or executed game.",
+  "production_installed": false,
+  "gpu_work": false,
+  "game_launched": false,
+  "guest_code_cache_staged": false,
+  "below_normal": true,
+  "logical_cpu_affinity": [
+    15
+  ],
+  "sequential": true,
+  "builder_sha256": "dd02c150bbf367df76676b4500d26b2f8a76673a2034ea536b3497bafe84d28b",
+  "parent_runtime_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+  "v2_ready_sha256": "43513d374d9b009bcb5feeaa24c4f2c71a9eba372336228f512e2f313ecddf2b",
+  "build_complete": true,
+  "diagnostic_header_origins": [
+    {
+      "path": "C:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include\\gpu_gl_renderer.h",
+      "sha256": "fb533ebed4e202292cbc148676cba1e33f5b671b32bfc61d3b4fe07a2cdf6d98"
+    },
+    {
+      "path": "C:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include\\hd_texture_pack.h",
+      "sha256": "78234dfdbe4b574b6054b27a65d4cb64877420fa9e67488355542d547969c794"
+    }
+  ],
+  "tcp_merge": {
+    "parent_sha256": "3217e4d7da546c6a876a4bf8f04e6a7bb270929533abc9bc559f6da28b843bb0",
+    "canonical_v2_sha256": "6942a1efd49a068e38b83de057095a736554e1ecd5b9a0b72e5f184568ccbc6e",
+    "injected_handler_sha256": "ba842de722d76ef9ff2dc74c339b739ad5b86ea32ffca5abf244d7304eac3491",
+    "private_combined_sha256": "c6776aee06c3500e0ee5e4d864f0d6a8e5c0299c6cd25c7031859f852e1f2b5d",
+    "existing_parent_code_preserved": true
+  },
+  "response_sha256": "8604990d640a658d3d1d72c81353c294899286bf7ef6198d9ed12618c5b1e6ef",
+  "executable": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v60-view-provenance-r3\\Einhander_Recompiled.exe",
+  "executable_sha256": "19922331c6e7314c3fae8de8512b6464b367f15b17695824ef153b4ce62cabde",
+  "user_gpu_hold_unchanged": true,
+  "compiler_sha256": {
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+  },
+  "limitations": [
+    "Compile/link only; no startup or live PGXP coverage.",
+    "Existing guest/platform objects retained with pinned hashes; no generated code edited.",
+    "Private GPU core rebuilt from reviewed canonical-based v2 source; runtime behavior needs future GPU validation.",
+    "No Remix renderer Startup, scene submission, ray tracing or DLSS yet."
+  ],
+  "ended_utc": "2026-11-14T09:05:21.451770+00:00"
+}
