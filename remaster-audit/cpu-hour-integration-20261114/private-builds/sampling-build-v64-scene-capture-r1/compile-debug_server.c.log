@@ -1,0 +1,29 @@
+In file included from C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:28:
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5376:48: error: expected ')'
+ 5376 |     if(rc!=SCENE_OK||ir!=SCENE_OK){send_fmt("{"id":%d,"ok":false,"error":%d}",id,rc!=SCENE_OK?rc:ir);return;}
+      |                                                ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5376:44: note: to match this '('
+ 5376 |     if(rc!=SCENE_OK||ir!=SCENE_OK){send_fmt("{"id":%d,"ok":false,"error":%d}",id,rc!=SCENE_OK?rc:ir);return;}
+      |                                            ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5379:38: error: expected ')'
+ 5379 |         if(rc!=SCENE_OK){send_fmt("{"id":%d,"ok":false,"error":%d}",id,rc);return;}
+      |                                      ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5379:34: note: to match this '('
+ 5379 |         if(rc!=SCENE_OK){send_fmt("{"id":%d,"ok":false,"error":%d}",id,rc);return;}
+      |                                  ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5380:21: error: expected ')'
+ 5380 |         send_fmt("{"id":%d,"ok":true,"schema":"gp0-scene-v1","record":%s}",id,record);return;
+      |                     ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5380:17: note: to match this '('
+ 5380 |         send_fmt("{"id":%d,"ok":true,"schema":"gp0-scene-v1","record":%s}",id,record);return;
+      |                 ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5382:17: error: expected ')'
+ 5382 |     send_fmt("{"id":%d,"ok":true,"schema":"gp0-scene-v1","mode":%u,"frame":%u,"count":%u,"capacity":%u,"textured_seen":%u,"malformed":%u,"overflow":%u,"geometry_qualified":%u,"missing_vertices":%u,"other_commands":%u,"complete_interval":%s}",id,i.mode,i.frame,i.count,i.capacity,i.textured_seen,i.malformed,i.overflow,i.qualified,i.missing_vertices,i.other_commands,i.complete?"true":"false");
+      |                 ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v64-scene-capture-r1\src\debug_server.c:5382:13: note: to match this '('
+ 5382 |     send_fmt("{"id":%d,"ok":true,"schema":"gp0-scene-v1","mode":%u,"frame":%u,"count":%u,"capacity":%u,"textured_seen":%u,"malformed":%u,"overflow":%u,"geometry_qualified":%u,"missing_vertices":%u,"other_commands":%u,"complete_interval":%s}",id,i.mode,i.frame,i.count,i.capacity,i.textured_seen,i.malformed,i.overflow,i.qualified,i.missing_vertices,i.other_commands,i.complete?"true":"false");
+      |             ^
+1 warning and 4 errors generated.

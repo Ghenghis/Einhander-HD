@@ -1,5 +1,18 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+## Current verified state — timed GPU reservation; CPU integration November 14
+
+The user's 3090 Ti reservation runs **11:44:30–12:44:30UTC (04:44:30–05:44:30 Phoenix)**. CPU-only work continues from C:, one below-normal compiler/worker at a time. The 3060 is permitted if needed but has not been used for this work. The user already authorizes 3090 reuse after the hour; check actual availability and take an owned bounded test reservation then. The previous indefinite hold is superseded.
+
+Root independently verifies all 306 Claude-v4 pins, recompiles/replays 6,185 fixture checks and six exact GL-stub integration modes, all passing. Scoped default-off RGB edges skip opaque pages and combine with offline class mips; no GPU/game acceptance is claimed. V62's broad unlaunched candidate is retired after review. Private v63 and v64r2 compile/link; v64 adds actual submitted GP0 packet capture. Its collector passes 1,626 enabled / 6 disabled CPU checks, and its exact TCP handler plus Windows adapter passes eight CPU RPC cases. Both executables remain unlaunched; retained parent objects mean these are not clean full-source rebuilds. [Source, raw results, hashes, retained failures and payload limits](../remaster-audit/cpu-hour-integration-20261114/README.md).
+
+The bounded scene observer is a real private engine hook, default OFF: explicit next-frame arm/seal, 1024 polygon cap, full raw topology/material/projection input, copied readback and overflow rejection. It still needs live qualification and connection to scene submission. Combined camera/object transforms, PSX compositing/material fidelity and full scene coverage remain unresolved. Prior real Remix SDK output remains black and Shutdown stalls; ray tracing/DLSS are not working in-game. A newly inspected official source lifecycle issue is only a hypothesis against a different runtime revision.
+
+The fringe census identifies 136 sampled drawn texture keys above 8/255 mean bilinear RGB bleed;437 / 1,110 drawn keys are opaque. Claude is implementing separately identity-bound RGB-only sidecars, while strict native-class defects remain open. RISE's hybrid repair was rejected; faithful upright HD composition with exact native gaps/arrow is the chosen replacement direction. Far-background clarity/buildings, full artwork coverage, ship/weapon/enemy/boss skins and selectors, modern HUD/menus, audio remastering and seven-stage acceptance remain incomplete. The prior v61 live run still fails audio/smoothness acceptance; no new game/audio test was run during this CPU checkpoint.
+
+<details>
+<summary>Earlier checkpoints — superseded resource policy and retained historical evidence</summary>
+
 ## Current verified state — GPU tests ended; CPU-only hold November 14
 
 The user has now taken the RTX 3090 Ti for another project (11:30 UTC). All owned GPU/game tests have ended; a new user reservation has no automatic expiry. Further GPU work waits for explicit return. Continue CPU-only work from C:, below normal; leave the RTX 3060 project untouched. The [GPU integration packet](../remaster-audit/gpu-integration-20261114/README.md) records actual results and preserved failures.
@@ -123,5 +136,7 @@ Read the [package README](../remaster-audit/runtime-diagnostics-v58/README.md), 
 Completed local runs are `display58-phases-observed-r2` and `display58-phases-resource-r3`, both below `remaster-audit/dev-center-evidence/stage1-completion-20261112`. The [public replay package](../remaster-audit/runtime-results-v58/README.md) includes all selected phase rows, counters and analyzers with original-proof hashes. The frozen v58 package retains its historical prepared-only checkpoint unchanged. Claude is drafting a new private narrow HD-object phase diagnostic; source proposals and builds must remain distinct from executed tests. Reserve resources and obtain a fresh manual quiet ACK before another bounded leg. Retain all rejected attempts and release resources after cleanup. No experimental runtime is installed.
 
 Local durable state: `remaster-audit/stage1-completion-20261112/execution-state.json`. Root publication branch: `codex/display-history-opt-in`; [draft PR1](https://github.com/Ghenghis/Einhander-HD/pull/1). Do not mark the overall work complete when a component, source package or document check finishes.
+
+</details>
 
 </details>

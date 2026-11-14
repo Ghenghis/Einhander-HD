@@ -1,0 +1,57 @@
+{
+  "at_utc": "2026-11-14T11:55:17.590534+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-comment",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\scene_capture.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r2\\scene_capture_test.exe"
+      ],
+      "exit": 0,
+      "output": ""
+    },
+    {
+      "label": "enabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r2\\scene_capture_test.exe"
+      ],
+      "exit": 0,
+      "output": "checks 1615 failures 0 record_bytes 648 bounded_storage 663552\n"
+    },
+    {
+      "label": "disabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r2\\scene_capture_test.exe",
+        "disabled"
+      ],
+      "exit": 0,
+      "output": "checks 6 failures 0\n"
+    }
+  ],
+  "gpu_executed": false,
+  "gl_context": false,
+  "user_gpu_hold_unchanged": true,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "sources": {
+    "run_host.py": "75ce50d347bfaa57877750f2394ccad5bb4ba6f10a751483a0c121c464ae3c9f",
+    "scene_capture.cpp": "558e05a71944a8821d5ef30bcf322a2c7aeab859568f534d423d3b79841d0abe",
+    "scene_capture.h": "a35a917f5c24a5140f35c71b25a520ff554eb7b64ad5ccc52a894af53ec08d9a",
+    "test_scene_capture.cpp": "92a22b9a6c8592df56e8679a1845ad678de680a1452cc671af17712a83764789"
+  },
+  "pgxp_header_sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+}
