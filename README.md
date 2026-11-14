@@ -20,6 +20,8 @@ Source-aware textures · photographic material studies · 2160p game captures
 
 </div>
 
+> **Current runtime and seven-stage handoff:** [verified results, remaining E2E gates and continuation](docs/RUNTIME-CONTINUATION-20261113.md). The larger artwork still has measured pauses/audio starvation; the remaster is incomplete.
+
 ## The direction
 
 Keep Einhänder's dark silhouettes, saturated windows and industrial character. Rebuild the detail where it matters: recessed glass, visible rooms, worn steel, readable signs and controlled light. Judge the result while flying past buildings at different angles and distances.

@@ -1,5 +1,7 @@
 # Autonomous continuation protocol
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](../docs/RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 Scope: finish the Einhander remaster; Stage 1 is the immediate acceptance
 milestone. Current priorities include Robin enemy awareness, the requested 1%
 audio correction live test, remaining artwork/UI and the release/rollback checks.

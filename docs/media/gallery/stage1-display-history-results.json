@@ -6021,5 +6021,28 @@
       },
       "finding": "Display pages alternate every retained submission in both boss windows and across the184ms pause. This supports continued game buffer flipping; it does not prove pixel uniqueness or physical scanout of every frame."
     }
+  },
+  "phase_diagnostic_v58": {
+    "runtime_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+    "source_checks_passed": true,
+    "integration_build_passed": true,
+    "source_package": "remaster-audit/runtime-diagnostics-v58",
+    "first_live_attempt": {
+      "batch": "display58-phases-pbo-on-r1",
+      "title_gpu_selftest_passed": true,
+      "phase_api_passed": true,
+      "retained_samples": 3,
+      "rejected": "focus loss at next sample",
+      "exit": 0,
+      "port_closed": true,
+      "performance_accepted": false
+    },
+    "next_observed_focus_run": {
+      "batch": "display58-phases-observed-r2",
+      "prepared": true,
+      "executed": false
+    },
+    "active_run": false,
+    "e2e_complete": false
   }
 }

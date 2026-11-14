@@ -1,0 +1,22 @@
+{
+  "below_normal": true,
+  "sequential": true,
+  "files": {
+    "debug_server.c": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\native-upload-stream\\new\\debug_server.c",
+      "original_exit": 0,
+      "patched_exit": 0,
+      "new_build_diagnostics": [],
+      "new_wall_diagnostics": [],
+      "patched_build_tail": []
+    }
+  },
+  "flags": {
+    "c": "v54 compile-debug_server.c argv minus -MD/-MT/-MF/-o/-c, plus -fsyntax-only",
+    "main": "v47 compile-runtime-main argv, runtime remapped to upload-index-hitch worktree (v48 rule), minus -MD/-MT/-MF/-o/-c, plus -fsyntax-only"
+  },
+  "only": [
+    "debug_server.c"
+  ],
+  "passed": true
+}

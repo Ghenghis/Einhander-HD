@@ -2,6 +2,8 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+Current [reboot/runtime and all seven-stage handoff](RUNTIME-CONTINUATION-20261113.md) includes the complete E2E open matrix and frozen source/evidence package. The v58 CPU phase diagnostic passes source/core checks and the full three-file build; its title GPU/API gates passed, but its first gameplay timing attempt lost focus after three seconds and was rejected/closed. The authorized observed-focus retry is prepared, not run at this checkpoint.
+
 The existing normal Play-HD binary, tested in a private copy with the installed
 964-PNG pack, 256 MB decode budget, scale 2 and rewind 50/15, passes the
 bounded boss timing check with only `PSX_DISPLAY_RING=0`: 350 consecutive
