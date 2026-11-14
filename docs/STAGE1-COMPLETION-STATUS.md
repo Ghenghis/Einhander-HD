@@ -2,6 +2,21 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+The existing normal Play-HD binary, tested in a private copy with the installed
+964-PNG pack, 256 MB decode budget, scale 2 and rewind 50/15, passes the
+bounded boss timing check with only `PSX_DISPLAY_RING=0`: 350 consecutive
+application frame submissions, p95 17 ms, longest 21 ms, no interval over 25 ms,
+and zero new audio starvation across 120 seconds. Originals were re-hashed
+unchanged; user cards were never mounted. Normal Play-HD, material and Development launches now disable continuous
+forensic readback, with hashed rollback copies of the changed local files. No binary or artwork
+was replaced. The material-runtime test still fails: 15,378 output sample
+frames starved outside the boss; its boss window had two intervals over 25 ms
+(longest 28 ms), with all 350 frames submitted. That runtime starts with an
+empty native cache and no bundled compilation toolchain; the cause of its
+remaining pauses is not yet established. All originals re-hashed unchanged.
+Unassisted full-stage acceptance remains open. The isolated artwork candidate
+below still has upload hitches.
+
 An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
 now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero
 new audio starvation over two minutes. The profiler and an independent parser
@@ -24,14 +39,17 @@ frames: the video is not a complete 60-fps stream. Fully even presentation
 remains open. A repeat with the same final binary and no recorder submitted all
 350 boss frames but still had eight intervals over 25 ms (longest 40 ms). It
 averaged 60.00 fight frames/s, with zero boss starvation, but 310 sample frames
-starved near gameplay startup. Late intervals again coincide with first-use
+starved outside the boss at gameplay second 26 (frame 4631). Late intervals
+again coincide with first-use
 texture uploads; per-upload timing is being added to test that lead. The
 recorder is therefore not required for the hitch. Normal-player tests are next.
 Nothing is installed. Exact 12-second callback excerpts are available for
 [history OFF](media/gallery/stage1-display-history-off-boss.wav),
 [history ON](media/gallery/stage1-display-history-on-boss.wav), and the
 [rebuilt recorder-free runtime](media/gallery/stage1-display-history-v54-boss.wav).
-They retain the original PCM; source offsets and hashes are in the report.
+They retain the original PCM; source offsets and hashes are in the report. The
+[normal Play-HD excerpt](media/gallery/stage1-display-history-normal-playhd-boss.wav)
+is also retained; subjective listening acceptance is pending.
 
 The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
 completed with R4 and two leaf handlers qualified on the exact tested runtime.
