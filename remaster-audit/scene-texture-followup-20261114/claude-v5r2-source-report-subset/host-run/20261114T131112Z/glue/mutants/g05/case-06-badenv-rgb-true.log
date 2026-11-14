@@ -1,0 +1,5 @@
+checks 4 failures 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g05\glue_harness.c:396: !hd_class_mips_enabled() && !s_hdcm_levels_on && !s_hdcm_rgb_on
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g05\glue_harness.c:397: !s_hdcm_class_dir_on && !s_hdcm_rgb_dir_on
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g05\glue_harness.c:398: s_hdcm_diag.preload_ok == 0 && s_hdcm_cache.n == 0 && rgbonly_untouched()
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g05\glue_harness.c:399: g_n_alloc + g_n_free == (p0).heap && g_n_fopen == (p0).fopens && g_fread_bytes == (p0).fread_bytes

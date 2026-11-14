@@ -1,0 +1,626 @@
+{
+ "name": "stage2-sky-ground-v3",
+ "title": "Stage 2 ground pages: material layering (s2c style) over stage2-sky-ground-v2",
+ "track": "w7-stage2",
+ "lane": "lane-s2",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-01/AQ-03 Stage 2 capture)",
+ "created_at_utc": "2026-11-13T22:00:29.148460+00:00",
+ "method": "W7-STAGE2 material layering for the train-car and ground pages (facade-v3-architecture/s2c_material_layering.py style;\nlane-s2, claude-einhander).\n\n1) swatches: JuggernautXL v9 txt2img 1024 (core nodes, 32 steps, cfg 5.5, dpmpp_2m karras) -> made tileable by a\n   variance-preserving four-copy sin^2 blend (the s2c offset cross-fade left a visible seam; first swatches FAILED, see\n   FAILED_SWATCHES).  The cached Stage 1 swatches were checked first and do not fit: 'painted_steel' reads as\n   vertical wood grain and 'gunmetal' has a swirl pattern; both would read as the wrong material on flat car panels.\n2) one CLUT-free modulation layer per page (8 px/texel = the 2048 grid, float16): the swatch luminance is tiled at\n   REPEAT_PX per repeat; high-pass (luma - gaussian 24 px) normalised to ~[-1,1] and band-limited (gaussian HP_BLUR_PX,\n   motion) + low-pass mottling; factor = 1 + k_hp * 0.35 * clip(hp) + k_lp * clip(lp) (s2c formula).  Strength is 0 within\n   EDGE_TEX texels of the page's transparent texels (silhouettes stay exact) and 0 on protected painted lettering\n   (1BC35EBE marking + emblem: the bright glyph indices inside uv [64,96,128,128], dilated 1 texel, feathered).\n3) per drawn static key: RGB = frozen v2 export RGB x factor (alpha untouched, class re-validated at every native texel\n   centre on re-read); 1024 = box-down of the 2048 result (s2master.export).\nusage: python -I mat_layer.py swatches | build <run> | review <run>",
+ "supersedes": "stage2-sky-ground-v2 RGB of the three 6AE78470 keys only (alpha bit-identical to v2). 65560E82-83E366BC (girder strip / sky page) stays in stage2-sky-ground-v2, not layered.",
+ "base": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/frozen/stage2-sky-ground-v2",
+  "manifest_sha256": "10caeb225b12ce68f23656e6c9c3599970dbf70d9dda262de3252c97c552df1d"
+ },
+ "params": {
+  "swatch": "grey_deck_v3b",
+  "k_hp": 0.45,
+  "k_lp": 0.12,
+  "repeat_px": 2048,
+  "hp_blur_px": 2.0,
+  "edge_tex": 1.0,
+  "protect": {
+   "1BC35EBE": [
+    {
+     "rect": [
+      64,
+      96,
+      128,
+      128
+     ],
+     "why": "painted lettering + eye emblem: glyph texels keep the exact v2 colour",
+     "lum_min": 150
+    }
+   ]
+  }
+ },
+ "swatch": {
+  "name": "grey_deck_v3b",
+  "seed": 2026111363,
+  "prompt": "flat orthographic photo texture of a heavily weathered grey painted steel surface, scuffed and chipped paint, dark grime blotches, oil stains and faded patches, dusty, evenly lit, no shadows, high detail",
+  "negative": "text, letters, logo, watermark, perspective, objects, people, shadows, vignette, frame, border, blurry, lowres, rivets, bolts, seams, grid, tiles, holes, bolts, screws, seams, welds, joints, lines, cracks, edges, stripes, rust streaks, drips, objects, plank, wood",
+  "ckpt": "juggernautXL_v9.safetensors",
+  "w": 1024,
+  "h": 1024,
+  "steps": 32,
+  "cfg": 5.5,
+  "sampler": "dpmpp_2m",
+  "scheduler": "karras",
+  "prompt_id": "afeccb4c-5249-4133-b8ab-59e32e4ddb7c",
+  "at": "2026-11-13T21:53:09.392523+00:00",
+  "tileable": "four shifted copies, sin^2 windows, variance-preserving (mat_layer.make_tileable)",
+  "files": {
+   "-ai.png": {
+    "path": "comfy/grey_deck_v3b-ai.png",
+    "sha256": "c2ab02b91dcdf28fc20004febe32c5447c708178e7f9b637d0319c412133d545"
+   },
+   "-tileable-1024.png": {
+    "path": "comfy/grey_deck_v3b-tileable-1024.png",
+    "sha256": "328af506e2711ccf4bd0817c53070f31a3692adc5279c00b9b2d26785772e9a6"
+   },
+   "-graph.api.json": {
+    "path": "comfy/grey_deck_v3b-graph.api.json",
+    "sha256": "4ec080330d41b40dd0c166d5d61ff4b002db3e92a51dcf40766a3e0ac7bdaafd"
+   },
+   "-history.json": {
+    "path": "comfy/grey_deck_v3b-history.json",
+    "sha256": "fc5662a060615cf56751b87f222f47ad81d195bbeaeab4eca8248e4029afa233"
+   }
+  }
+ },
+ "models": {
+  "checkpoint": "juggernautXL_v9.safetensors",
+  "comfyui": "127.0.0.1:8188, core nodes only, v0.3.76"
+ },
+ "pages": {
+  "6AE78470": {
+   "material_layer": {
+    "path": "master/6AE78470-material-factor-8x.npz",
+    "sha256": "36447cb7b7b65188915f5e613a1dd6682ab521041c06b3dc45d8fc404c5b22bb"
+   },
+   "index_master_from": {
+    "frozen": "stage2-sky-ground-v2",
+    "entry": {
+     "path": "master/6AE78470-index-master-8x.npz",
+     "sha256": "c6717ca6499260780e86e64fce75a23096f78736e0f8bddc58f17b4ce8e045a9"
+    }
+   },
+   "stats": {
+    "factor_min": 0.642,
+    "factor_max": 1.168,
+    "factor_mean_visible": 1.0002,
+    "protected": []
+   }
+  }
+ },
+ "keys": {
+  "6AE78470-95905651": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "95905651",
+    "words_hex": "21044208630c8410a514c618e71c082129254a296b2d8c31ad35ce391f000000",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 10,
+    "frames": [
+     97592,
+     98132
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      0,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       129,
+       160,
+       191,
+       191
+      ],
+      3
+     ],
+     [
+      [
+       128,
+       160,
+       191,
+       191
+      ],
+      2
+     ],
+     [
+      [
+       192,
+       164,
+       223,
+       191
+      ],
+      2
+     ],
+     [
+      [
+       192,
+       165,
+       223,
+       180
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       164,
+       223,
+       180
+      ],
+      1
+     ],
+     [
+      [
+       129,
+       128,
+       191,
+       158
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-95905651.png",
+     "sha256": "f061c6bda01fa0dd63dfcd6114d6bc32e2b0a5f972e189752d8c83bd7eccde95",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-95905651.png",
+     "sha256": "d5c51df642dc5b214d052b9ad7cb80493955214dc20c8d1b0e55762b0666f578",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_base": {
+    "page2048": true,
+    "page1024": true
+   },
+   "change": {
+    "family": "ground",
+    "mean_abs_lum_change": 2.94,
+    "p99_abs_lum_change": 15.0,
+    "mean_lum_ratio": 1.0
+   },
+   "cells": [
+    {
+     "rect": [
+      128,
+      160,
+      192,
+      192
+     ],
+     "px_changed_vs_page_render": 2581,
+     "max_abs_diff": 40
+    },
+    {
+     "rect": [
+      192,
+      164,
+      224,
+      192
+     ],
+     "px_changed_vs_page_render": 1666,
+     "max_abs_diff": 40
+    },
+    {
+     "rect": [
+      129,
+      128,
+      192,
+      159
+     ],
+     "px_changed_vs_page_render": 4302,
+     "max_abs_diff": 57
+    }
+   ]
+  },
+  "6AE78470-BE14F28C": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "BE14F28C",
+    "words_hex": "ff7f1f0000000000000000000000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 5,
+    "frames": [
+     97893,
+     98133
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      64,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       192,
+       255,
+       223
+      ],
+      3
+     ],
+     [
+      [
+       193,
+       192,
+       255,
+       223
+      ],
+      1
+     ],
+     [
+      [
+       193,
+       192,
+       255,
+       222
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-BE14F28C.png",
+     "sha256": "46e6e102fa23c13a25f253d58ee303757864bf09eff254aef2cf84dfed7a0690",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-BE14F28C.png",
+     "sha256": "e28b0ea17e2eee89652acc9b01b9e05e82245cf89243321a7f28dda60beb5fd4",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_base": {
+    "page2048": true,
+    "page1024": true
+   },
+   "change": {
+    "family": "ground",
+    "mean_abs_lum_change": 5.17,
+    "p99_abs_lum_change": 47.0,
+    "mean_lum_ratio": 0.9895
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      192,
+      256,
+      224
+     ],
+     "px_changed_vs_page_render": 0,
+     "max_abs_diff": 0
+    }
+   ]
+  },
+  "6AE78470-D4D43BA5": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "D4D43BA5",
+    "words_hex": "ef3dce39ad358c316b2d4a29292529250821e71cc618a5148410630c630c0000",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     488
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 53,
+    "frames": [
+     40739,
+     98393
+    ],
+    "runs": [
+     "11eebc24",
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      144,
+      488
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       48,
+       16,
+       58,
+       24
+      ],
+      12
+     ],
+     [
+      [
+       25,
+       16,
+       34,
+       25
+      ],
+      11
+     ],
+     [
+      [
+       0,
+       12,
+       62,
+       26
+      ],
+      4
+     ],
+     [
+      [
+       0,
+       48,
+       76,
+       59
+      ],
+      3
+     ],
+     [
+      [
+       17,
+       15,
+       26,
+       25
+      ],
+      3
+     ],
+     [
+      [
+       10,
+       22,
+       20,
+       31
+      ],
+      2
+     ],
+     [
+      [
+       24,
+       14,
+       62,
+       18
+      ],
+      2
+     ],
+     [
+      [
+       51,
+       12,
+       57,
+       17
+      ],
+      2
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-D4D43BA5.png",
+     "sha256": "d4263bf625da08519d32324d084dc6006b85974bafc2f78a55113f23c20de99b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-D4D43BA5.png",
+     "sha256": "26b653037a04cf38ab027798d41a74653870c6d24d66aa03f91446dd846c9549",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_base": {
+    "page2048": true,
+    "page1024": true
+   },
+   "change": {
+    "family": "ground",
+    "mean_abs_lum_change": 4.06,
+    "p99_abs_lum_change": 20.0,
+    "mean_lum_ratio": 0.9997
+   },
+   "cells": [
+    {
+     "rect": [
+      0,
+      12,
+      63,
+      47
+     ],
+     "px_changed_vs_page_render": 1807,
+     "max_abs_diff": 16
+    },
+    {
+     "rect": [
+      0,
+      47,
+      79,
+      62
+     ],
+     "px_changed_vs_page_render": 4976,
+     "max_abs_diff": 127
+    }
+   ]
+  }
+ },
+ "honest_read": "The grey deck / side panels of 6AE78470 now read as grimy weathered grey steel with stains and faded patches instead of flat grey plateaus; the dark panels change little (multiplicative layer). An improvement in realism at 4K. Weak points: on the lightest panels the grime reads slightly concrete-like; the v2 rounded specks remain; the 1080p bilinear-vs-supersampled difference doubles (0.13 -> 0.26 mean abs levels) because the flat panels gain texture: small, but this page scrolls fast under the player, so a live motion check is the gate.",
+ "known_limits": [
+  "predicted-static: import only after a live Stage 2 capture confirms key and CLUT; 6AE78470 is the 1/26 version of an area-versioned page",
+  "material layer = luminance only, from swatch grey_deck_v3b (a different seed than the train cars)",
+  "65560E82-83E366BC not layered (stays in v2)",
+  "review and motion are SIMULATIONS (bilinear, no mips); no in-game capture exists"
+ ],
+ "gpu": "gpu_slot lane-s2; see work/gpu-slots.jsonl",
+ "review": {
+  "sheets": [
+   "review/6AE78470-95905651-motion-2.25px-SIMULATION-frame.png",
+   "review/6AE78470-95905651-motion-2.25px-SIMULATION.mp4",
+   "review/6AE78470-95905651-motion-4.5px-SIMULATION-frame.png",
+   "review/6AE78470-95905651-motion-4.5px-SIMULATION.mp4",
+   "review/6AE78470-95905651-native-base-material.png",
+   "review/6AE78470-D4D43BA5-motion-2.25px-SIMULATION-frame.png",
+   "review/6AE78470-D4D43BA5-motion-2.25px-SIMULATION.mp4",
+   "review/6AE78470-D4D43BA5-motion-4.5px-SIMULATION-frame.png",
+   "review/6AE78470-D4D43BA5-motion-4.5px-SIMULATION.mp4",
+   "review/6AE78470-D4D43BA5-native-base-material.png"
+  ],
+  "motion_shimmer_mean_abs_frame_diff": {
+   "6AE78470-D4D43BA5 cell [0, 12, 63, 47] 4.5 px/texel": {
+    "native": 0.85,
+    "base": 0.741,
+    "material": 0.909
+   },
+   "6AE78470-D4D43BA5 cell [0, 12, 63, 47] 2.25 px/texel": {
+    "native": 1.471,
+    "base": 1.246,
+    "material": 1.539
+   },
+   "6AE78470-95905651 cell [128, 160, 192, 192] 4.5 px/texel": {
+    "native": 0.479,
+    "base": 0.47,
+    "material": 0.656
+   },
+   "6AE78470-95905651 cell [128, 160, 192, 192] 2.25 px/texel": {
+    "native": 0.953,
+    "base": 0.881,
+    "material": 1.196
+   }
+  },
+  "note": "native | base | material: drawn cells at 2 px/texel, a 16x crop, the biggest cell at 9 px/texel (4K) and 4.5 px/texel (1080p), bilinear, no mips: SIMULATIONS. Motion: drift + slow zoom; shimmer = mean |frame - previous frame| (includes the motion itself: compare columns)."
+ },
+ "builder": {
+  "mat_layer.py": "722a0ca874cc758115b22839f965971b90d691e2f06933030709950adb4a948a",
+  "freeze_v2.py": "7897cfe52388d9b1c973fcf41144d630d4c52a31de5210710af7412dcb66a817",
+  "s2master.py": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "s2lib.py": "bd6a99cde59d18c011528362c2d9d7bbe15ae195428f006131ccdb59df617fd3",
+  "s2comfy.py": "4d587d0d7fc776a8dbaf2d1735b5316a7dc39831433443e374b4aba45017594e",
+  "s2review.py": "7ef9f13a090ce84f0ddde0c455f8ddb19bea3a33af6dbbaa23b2442355dfbfc0",
+  "slot.py": "9d08540971bc1572a04930005a1b082c56af49ccbae373d71e2bd9492bb13459"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 / 127 / 255); every export re-read from disk; alpha planes bit-identical to the base frozen exports",
+  "files": 6,
+  "mismatches": 0
+ }
+}

@@ -1,0 +1,44 @@
+{
+  "at_utc": "2026-11-14T12:10:39.336188+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_direct_control.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r1\\sdk-direct-control.exe",
+        "-luser32",
+        "-lgdi32"
+      ],
+      "exit": 0,
+      "output": "In file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_direct_control.cpp:6:\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114/../project-completion-20261114/remix-sdk-reference/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]\n 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };\n      |                                                                    ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114/../project-completion-20261114/remix-sdk-reference/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1049 |     remixapi_Interface remixInterface = { 0 };\n      |                                             ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114/../project-completion-20261114/remix-sdk-reference/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]\n 1078 |     remixapi_Interface nullInterface = { 0 };\n      |                                            ^\n3 warnings generated.\n"
+    },
+    {
+      "label": "cpu-schema",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r1\\sdk-direct-control.exe",
+        "--cpu-schema"
+      ],
+      "exit": 0,
+      "output": "{\"cpu_only\":true,\"startup_bytes\":40,\"interface_bytes\":192,\"vertex_bytes\":64,\"sdk_version\":\"0.6.11\"}\n"
+    }
+  ],
+  "gpu_executed": false,
+  "renderer_dll_loaded": false,
+  "game_launched": false,
+  "user_gpu_hold_unchanged": true,
+  "source_sha256": "2c076d0ef8c4af3d5e7dc5670f31404838232ee838827543d9bf82cb88753428",
+  "header_sha256": "a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d",
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "scope": "Compile and early-return CPU layout branch only. Native device/readback/lifecycle control remains NOT RUN.",
+  "executable_sha256": "7c37bc67e6dfb7fa625f57c63552cb797cc4cc50b2036e8241cc14cfd6d7510c"
+}

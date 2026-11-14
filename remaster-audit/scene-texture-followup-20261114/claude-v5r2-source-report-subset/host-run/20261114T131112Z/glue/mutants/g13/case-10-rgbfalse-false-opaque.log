@@ -1,0 +1,5 @@
+TIMING preload_total_ms 0.221 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 0.000 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)
+checks 33 failures 0

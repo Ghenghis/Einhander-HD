@@ -1,0 +1,8 @@
+In file included from C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g07\glue_harness.c:111:
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g07/glue.c:192:23: warning: misleading indentation; statement is not part of the previous 'if' [-Wmisleading-indentation]
+  192 |         rc = HDCM_OK; (void)hdcm_sidecar_admit(sc, m->texture_hash, m->palette_hash,
+      |                       ^
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g07/glue.c:191:5: note: previous statement is here
+  191 |     if (rc == HDCM_OK)
+      |     ^
+1 warning generated.

@@ -1,0 +1,321 @@
+{
+ "name": "stage7-planet-limb-v1",
+ "family": "planet",
+ "status": "candidate",
+ "state": "predicted-static: import only after a live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 stage 7 capture)",
+ "created_at_utc": "2026-11-13T15:42:44.938962+00:00",
+ "method": "W7-STAGE7: first stage 7 art from the shared static export (predicted-static; import only after a live capture confirms the key).\nusage: python build_s7.py planet|explosion|hulls [freeze]     -> staging/<name>/  (freeze: frozen/<name>/, immutable)\n\nSource: remaster-audit/fullgame-prep/static-extraction/stages/stage7 (textures/<TEX>.words.bin exact-static, cluts.json; the\nstage CLUT block 4/18 at (0,480,256,20)+(0,504,256,8)); crc32 of the words == TEX and of every CLUT == PAL re-checked.\n\nIndex master (CLUT-free, one per page, 8 px/texel = the 2048 export grid): per-index soft weights.  For every native index i the\none-hot mask is upsampled texel-centred (bilinear), gaussian-smoothed (sigma, texels) and raised to a power, then normalised; the\nmaster keeps the top-K labels and weights per pixel (u8).  Any CLUT renders it: RGB = weighted mix of the CLUT entries of the\nvisible labels; alpha either 'soft' (visibility = weight of visible labels >= 0.5, class of the strongest visible label) or\n'native' (the native class map, nearest).  Then the native class is forced at every native texel centre floor((i+0.5)*scale)\n(one pixel each) and validated (0 mismatches).\nRecipes (all CPU, deterministic, no AI, nothing added):\n  planet    sigma 0.90, power 1.0, top-4, alpha native: the limb pages are ordered-dithered tone images with stippled\n            (alternating transparent column) fades; a linear soft mix of the visible labels turns the dither into continuous\n            tone (motion-safe); the stipple columns are the native class map (they cannot become partial alpha: classes are\n            categorical).\n  explosion sigma 0.45, power 1.5, top-4, alpha native (w2-effects FX contract: alpha = native class map, RGB free); per frame\n            cell the light energy of every preview render is checked against native (0.95-1.05).\n  hulls     sigma 0.30, power 4.0, top-3, alpha soft (w4-world catsoft: plateaus keep exact native colours, stair steps\n            become smooth contours).\nKey exports only for listed predicted keys with a real (non-zero) CLUT; renders with other stage CLUTs are review previews.",
+ "recipe": {
+  "sigma_texel": 0.9,
+  "power": 1.0,
+  "top_labels": 4,
+  "alpha": "native",
+  "master_px_per_texel": 8
+ },
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage7",
+  "freeze": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/BUILD.json",
+   "sha256": "9f2fb74ca437f19db57f7433c199111bb5453392bf4419570c38916d1ecdb974"
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage7/readiness.json",
+  "sha256": "f217d8c6bbebb9b65d9d3ab17ebee6b000a630035208e763fe2693d63f54bfe4"
+ },
+ "pages": {
+  "4C783149": {
+   "member": "4/17",
+   "vram_rect_words": [
+    768,
+    0,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage7/textures/4C783149.words.bin",
+    "sha256": "1251973e549bb10945bb8c7ae10d7edd6ee9652914dfe8e0c6c1f451178b5d0d",
+    "crc32": "4C783149"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/4C783149-index-master-8x.npz",
+    "sha256": "efd5cffe6f6fc4c0e32e27e840230d4b3d38d89f3456c59bf956d4c59c5ec53f"
+   },
+   "listed_keys": [
+    "4C783149-190A55AD",
+    "4C783149-EAD968A1"
+   ]
+  },
+  "C4FDEDD2": {
+   "member": "4/17",
+   "vram_rect_words": [
+    832,
+    0,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage7/textures/C4FDEDD2.words.bin",
+    "sha256": "b85dc54d62abd72fce7a4c32ca373700d26fed4a38a8bf898c8437a1d941d52d",
+    "crc32": "C4FDEDD2"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/C4FDEDD2-index-master-8x.npz",
+    "sha256": "35204f0ab8e2b15601ceebfba526c97e63c36f0de196b31650f4017f609933e0"
+   },
+   "listed_keys": []
+  },
+  "9B2F0BFD": {
+   "member": "4/18",
+   "vram_rect_words": [
+    448,
+    256,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage7/textures/9B2F0BFD.words.bin",
+    "sha256": "0d94f37d22767d3293decbd02a3cd014fc7e76bd057dfc333a680f6113f76cba",
+    "crc32": "9B2F0BFD"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/9B2F0BFD-index-master-8x.npz",
+    "sha256": "96ed017989ae14b521aee992982596d0e922371d4d05ca9b3f8b28d1aac4a83f"
+   },
+   "listed_keys": [
+    "9B2F0BFD-190A55AD"
+   ]
+  }
+ },
+ "keys": {
+  "4C783149-EAD968A1": {
+   "why": "listed key (likely, 4/18 CLUT 0,504)",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ],
+    "hex": "ff7fdf7bde7bbe7bbe77dd77bd779d7b9d779d73bc7bbc779c77bb77bb739a77"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/4C783149-EAD968A1.png",
+     "sha256": "db8a84db2ef95e2c000fc62762e86b79323ba3a8bb02836300e5675ed5539699",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/4C783149-EAD968A1.png",
+     "sha256": "7a911ded66bc1fab9482fbf486e569f82d23475955d715e3f442ff4b0f0dbb46",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "C4FDEDD2-EAD968A1": {
+   "why": "predicted pairing (not listed): second half of the same limb, same CLUT slot",
+   "listed": false,
+   "listed_confidence": null,
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ],
+    "hex": "ff7fdf7bde7bbe7bbe77dd77bd779d7b9d779d73bc7bbc779c77bb77bb739a77"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/C4FDEDD2-EAD968A1.png",
+     "sha256": "77130d152b573570544796143e0e8fc8fef7eca70e455a11af726f81cd43f2a8",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/C4FDEDD2-EAD968A1.png",
+     "sha256": "7fbd4f761fd525a30fe4b7526ebfb1f2e59e988ff3db14a9093be605ba66550d",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  }
+ },
+ "previews": {
+  "4C783149-97A55BAA": {
+   "clut": {
+    "crc32": "97A55BAA",
+    "vram_xy": [
+     0,
+     505
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 469,
+   "class_mismatches": 0,
+   "key_listed": false
+  },
+  "4C783149-EAD968A1": {
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "C4FDEDD2-97A55BAA": {
+   "clut": {
+    "crc32": "97A55BAA",
+    "vram_xy": [
+     0,
+     505
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 688,
+   "class_mismatches": 0,
+   "key_listed": false
+  },
+  "C4FDEDD2-EAD968A1": {
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": false
+  },
+  "9B2F0BFD-97A55BAA": {
+   "clut": {
+    "crc32": "97A55BAA",
+    "vram_xy": [
+     0,
+     505
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 350,
+   "class_mismatches": 0,
+   "key_listed": false
+  },
+  "9B2F0BFD-EAD968A1": {
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": false
+  }
+ },
+ "generated_imagery": null,
+ "comfyui": null,
+ "review": [
+  "review/native-vs-hd-16x-and-page-01.png",
+  "review/native-vs-hd-16x-and-page-02.png",
+  "review/native-vs-hd-16x-and-page-03.png",
+  "review/native-vs-hd-ingame-2160-SIMULATION-01.png",
+  "review/native-vs-hd-ingame-2160-SIMULATION-02.png"
+ ],
+ "builder": {
+  "build_s7.py": "3ace2736438781fb58607053bc1d9f0c796616d3b4e0ccf6e439223833255c7e",
+  "gaplib.py": "32159ba54cd79f4ba7647554a16b29cdc471905bf2398e5e4fcaf852bc10da7d",
+  "w4lib.py": "18ddffa6f983e1037826bf824baad4824e96df75386fff6c9b98ad146aacaa4d"
+ },
+ "class_validation": {
+  "key_files": 4,
+  "key_file_mismatches": 0,
+  "previews": 6,
+  "preview_mismatches": 0
+ }
+}

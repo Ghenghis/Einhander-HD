@@ -1,0 +1,201 @@
+{
+ "name": "stage7-space-backdrop-30BB2999-v1",
+ "family": "backdrop",
+ "status": "candidate",
+ "state": "predicted-static: import only after a live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 stage 7 capture)",
+ "created_at_utc": "2026-11-13T16:26:34.859314+00:00",
+ "method": "W7-STAGE7: first stage 7 art from the shared static export (predicted-static; import only after a live capture confirms the key).\nusage: python build_s7.py planet|explosion|hulls [freeze]     -> staging/<name>/  (freeze: frozen/<name>/, immutable)\n\nSource: remaster-audit/fullgame-prep/static-extraction/stages/stage7 (textures/<TEX>.words.bin exact-static, cluts.json; the\nstage CLUT block 4/18 at (0,480,256,20)+(0,504,256,8)); crc32 of the words == TEX and of every CLUT == PAL re-checked.\n\nIndex master (CLUT-free, one per page, 8 px/texel = the 2048 export grid): per-index soft weights.  For every native index i the\none-hot mask is upsampled texel-centred (bilinear), gaussian-smoothed (sigma, texels) and raised to a power, then normalised; the\nmaster keeps the top-K labels and weights per pixel (u8).  Any CLUT renders it: RGB = weighted mix of the CLUT entries of the\nvisible labels; alpha either 'soft' (visibility = weight of visible labels >= 0.5, class of the strongest visible label) or\n'native' (the native class map, nearest).  Then the native class is forced at every native texel centre floor((i+0.5)*scale)\n(one pixel each) and validated (0 mismatches).\nRecipes (all CPU, deterministic, no AI, nothing added):\n  planet    sigma 0.90, power 1.0, top-4, alpha native: the limb pages are ordered-dithered tone images with stippled\n            (alternating transparent column) fades; a linear soft mix of the visible labels turns the dither into continuous\n            tone (motion-safe); the stipple columns are the native class map (they cannot become partial alpha: classes are\n            categorical).\n  explosion sigma 0.45, power 1.5, top-4, alpha native (w2-effects FX contract: alpha = native class map, RGB free); per frame\n            cell the light energy of every preview render is checked against native (0.95-1.05).\n  hulls     sigma 0.30, power 4.0, top-3, alpha soft (w4-world catsoft: plateaus keep exact native colours, stair steps\n            become smooth contours).\nKey exports only for listed predicted keys with a real (non-zero) CLUT; renders with other stage CLUTs are review previews.",
+ "recipe": {
+  "sigma_texel": 0.6,
+  "power": 1.0,
+  "top_labels": 4,
+  "alpha": "soft",
+  "master_px_per_texel": 8
+ },
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7",
+  "freeze": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/FREEZE.json",
+   "sha256": "c77d3597a00df843b02d9bf0daa02b3915cab76d3a93796ce84f5d470f1ab136"
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage7/readiness.json",
+  "sha256": "f217d8c6bbebb9b65d9d3ab17ebee6b000a630035208e763fe2693d63f54bfe4"
+ },
+ "pages": {
+  "30BB2999": {
+   "member": "4/17",
+   "vram_rect_words": [
+    576,
+    0,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7/textures/30BB2999.words.bin",
+    "sha256": "34745011a8bb8b6604771866044794d865ba534424382c3e1b66bf245f953067",
+    "crc32": "30BB2999"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/30BB2999-index-master-8x.npz",
+    "sha256": "d1403841acd9e8bc4ec8bcf8890273dd9e28ffe4461ec5052187edd0a060c70f"
+   },
+   "listed_keys": [
+    "30BB2999-190A55AD",
+    "30BB2999-418C69D6",
+    "30BB2999-FBFE075D"
+   ]
+  }
+ },
+ "keys": {
+  "30BB2999-418C69D6": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [160, 488])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "418C69D6",
+    "vram_xy": [
+     160,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "c618260806080408c310c0088004000000000000000000000000000000000000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/30BB2999-418C69D6.png",
+     "sha256": "845de370902f00b0ac2d7b4f3cf1f48d3f4bfde1b9d5234aa1879ca0b679938a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 75,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/30BB2999-418C69D6.png",
+     "sha256": "0b380a23ae3fd87c1395f5027311303c7dc98e7ed3205bc2ad99831898524255",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 124,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "30BB2999-FBFE075D": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [32, 504])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "FBFE075D",
+    "vram_xy": [
+     32,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ],
+    "hex": "146f136ff36e126ff272f26e1173116ff16ed16ed16af072f06ed06ecf6ace6a"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/30BB2999-FBFE075D.png",
+     "sha256": "e78cf174c4fd0f3522fd0c52194765c8bd6e3edc139f557fd9ac31581d206877",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/30BB2999-FBFE075D.png",
+     "sha256": "9e3d4f4c5692bb7c1d0029fa605f679ad7343bfcdeb4b108686049ba5d28c2c1",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  }
+ },
+ "previews": {
+  "30BB2999-418C69D6": {
+   "clut": {
+    "crc32": "418C69D6",
+    "vram_xy": [
+     160,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 75,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "30BB2999-FBFE075D": {
+   "clut": {
+    "crc32": "FBFE075D",
+    "vram_xy": [
+     32,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  }
+ },
+ "generated_imagery": null,
+ "comfyui": null,
+ "review": [
+  "review/native-vs-hd-16x-and-page-01.png",
+  "review/native-vs-hd-ingame-2160-SIMULATION-01.png"
+ ],
+ "builder": {
+  "build_s7.py": "6e184bb413cb9f5b96cffa979bc900bbaee67a3b3e4f32a2e0b2cee455bc6c56",
+  "gaplib.py": "32159ba54cd79f4ba7647554a16b29cdc471905bf2398e5e4fcaf852bc10da7d",
+  "w4lib.py": "18ddffa6f983e1037826bf824baad4824e96df75386fff6c9b98ad146aacaa4d"
+ },
+ "class_validation": {
+  "key_files": 4,
+  "key_file_mismatches": 0,
+  "previews": 2,
+  "preview_mismatches": 0
+ }
+}

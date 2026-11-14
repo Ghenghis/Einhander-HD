@@ -1,0 +1,200 @@
+{
+  "at_utc": "2026-11-14T12:30:42.065369+00:00",
+  "passed": true,
+  "positive": {
+    "passed": true,
+    "errors": [],
+    "advisories": [
+      "record 0: reserved depth; no material binding acceptance"
+    ],
+    "records": 1,
+    "geometry_qualified": 1,
+    "ideal_projection_error_max_px": 0.0,
+    "projection_error_is_diagnostic": true,
+    "live_ring_revalidated": false,
+    "world_camera_factorization": false,
+    "sdk_materials_or_rendering_accepted": false
+  },
+  "negative_cases": [
+    {
+      "name": "unknown schema",
+      "errors": [
+        "schema"
+      ]
+    },
+    {
+      "name": "partial capture",
+      "errors": [
+        "complete interval"
+      ]
+    },
+    {
+      "name": "overflow",
+      "errors": [
+        "overflow/malformed"
+      ]
+    },
+    {
+      "name": "counter",
+      "errors": [
+        "record count"
+      ]
+    },
+    {
+      "name": "bad topology",
+      "errors": [
+        "record 0 topology"
+      ]
+    },
+    {
+      "name": "source mismatch",
+      "errors": [
+        "record 0 vertex 0 source"
+      ]
+    },
+    {
+      "name": "packet mismatch",
+      "errors": [
+        "record 0 vertex 0 view word"
+      ]
+    },
+    {
+      "name": "UV mismatch",
+      "errors": [
+        "record 0 vertex 0 UV"
+      ]
+    },
+    {
+      "name": "RGB mismatch",
+      "errors": [
+        "record 0 vertex 0 RGB"
+      ]
+    },
+    {
+      "name": "CLUT mismatch",
+      "errors": [
+        "record 0 texture identity"
+      ]
+    },
+    {
+      "name": "future provenance",
+      "errors": [
+        "record 0 vertex 0 age"
+      ]
+    },
+    {
+      "name": "old provenance",
+      "errors": [
+        "record 0 vertex 0 age"
+      ]
+    },
+    {
+      "name": "negative frame",
+      "errors": [
+        "record 0 vertex 0 source frame range"
+      ]
+    },
+    {
+      "name": "uncommitted",
+      "errors": [
+        "record 0 vertex 0 SF/commit/divergence flags"
+      ]
+    },
+    {
+      "name": "divergence",
+      "errors": [
+        "record 0 vertex 0 SF/commit/divergence flags"
+      ]
+    },
+    {
+      "name": "lane",
+      "errors": [
+        "record 0 vertex 0 projection command"
+      ]
+    },
+    {
+      "name": "hash",
+      "errors": [
+        "record 0 vertex 0 independent transform hash"
+      ]
+    },
+    {
+      "name": "MAC",
+      "errors": [
+        "record 0 vertex 0 independent MAC"
+      ]
+    },
+    {
+      "name": "missing fields",
+      "errors": [
+        "record 0: invalid fields 'address'",
+        "qualified count"
+      ]
+    },
+    {
+      "name": "qualified contradiction",
+      "errors": [
+        "record 0 qualified result",
+        "qualified count"
+      ]
+    },
+    {
+      "name": "cross-generation record",
+      "errors": [
+        "record 0 generation/complete binding"
+      ]
+    },
+    {
+      "name": "incomplete record",
+      "errors": [
+        "record 0 generation/complete binding"
+      ]
+    },
+    {
+      "name": "SF0",
+      "errors": [
+        "record 0 vertex 0 SF/commit/divergence flags"
+      ]
+    },
+    {
+      "name": "native XY",
+      "errors": [
+        "record 0 vertex 0 independent signed native XY"
+      ]
+    },
+    {
+      "name": "oversize mask",
+      "errors": [
+        "record 0 independent per-half raster eligibility"
+      ]
+    },
+    {
+      "name": "eligibility mask",
+      "errors": [
+        "record 0 independent per-half raster eligibility"
+      ]
+    },
+    {
+      "name": "omitted geometry hidden",
+      "errors": [
+        "omitted drawing-family disclosure"
+      ]
+    },
+    {
+      "name": "lookup status",
+      "errors": [
+        "record 0 vertex 0 successful lookup status"
+      ]
+    }
+  ],
+  "negative_cases_caught": 28,
+  "wrap_positive": true,
+  "gpu_executed": false,
+  "source_sha256": "f913d1e8b395214004a832ec7adef169ec643de456b49c67a4bfdbf3221e2a5d",
+  "input_record_sha256": "9ecdb52767054d5f23cdde012e24cf5bee3af463c84469e83dba8d3f0ff753c1",
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "scope": "Independent Python packet/MAC/hash consistency; fixture JSON emitted by C++ collector. Not live capture or renderer qualification."
+}

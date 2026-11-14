@@ -1,0 +1,220 @@
+{
+  "started_utc": "2026-11-14T12:53:54.577928+00:00",
+  "gpu_target_uuid": "GPU-ff51fa52-74c8-c785-e000-53fe58844033",
+  "gpu_target_name": "NVIDIA GeForce RTX 3090 Ti",
+  "other_gpu_uuid": "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa",
+  "user_3090_lease_writes": true,
+  "resolution": [
+    320,
+    180
+  ],
+  "frame_limit": 120,
+  "fps_cap": 10,
+  "watchdog_seconds": 45,
+  "executable_sha256": "9d588f52417829501f9b2666ee36880cd6e76d741c0fdfe14f02b65c80680e55",
+  "dll_sha256": "ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1",
+  "cpu_affinity": [
+    14,
+    15
+  ],
+  "below_normal": true,
+  "purpose": "Owned D3D9 readback and direct registered-device Present control; no game, GL or global driver changes.",
+  "passed": false,
+  "target_preflight": [
+    "GPU-ff51fa52-74c8-c785-e000-53fe58844033",
+    "NVIDIA GeForce RTX 3090 Ti",
+    "1131",
+    "24564",
+    "0"
+  ],
+  "target_existing_context_count": 22,
+  "environment_overrides": {
+    "DXVK_FILTER_DEVICE_NAME": "NVIDIA GeForce RTX 3090 Ti",
+    "DXVK_LOG_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-after-hour-r1",
+    "DXVK_CONFIG_FILE": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-after-hour-r1\\dxvk.conf",
+    "DXVK_STATE_CACHE_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-after-hour-r1"
+  },
+  "command": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-after-hour-r1\\readback",
+    "NVIDIA GeForce RTX 3090 Ti"
+  ],
+  "pid": 2216,
+  "watchdog_terminated": true,
+  "exit": 1,
+  "seconds": 45.225,
+  "gpu_process_samples": [
+    {
+      "seconds": 0.023,
+      "owned_pid_rows": []
+    },
+    {
+      "seconds": 2.099,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 4.122,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 6.183,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 8.256,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 10.335,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 12.542,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 14.606,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 16.606,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 18.615,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 20.667,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 22.681,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 24.769,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 26.862,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 28.953,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 31.051,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 33.147,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 35.156,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 37.246,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 39.338,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 41.426,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 43.525,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 2216, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    }
+  ],
+  "selected_adapter_verified": true,
+  "owned_pid_seen_on_target": true,
+  "owned_pid_seen_on_other_gpu": false,
+  "readback_samples": [
+    {
+      "readback_frame": -1,
+      "width": 320,
+      "height": 180,
+      "green_pixels": 0,
+      "magenta_pixels": 57600
+    },
+    {
+      "readback_frame": 7,
+      "width": 320,
+      "height": 180,
+      "green_pixels": 0,
+      "magenta_pixels": 57600
+    },
+    {
+      "readback_frame": 31,
+      "width": 320,
+      "height": 180,
+      "green_pixels": 0,
+      "magenta_pixels": 57600
+    },
+    {
+      "readback_frame": 119,
+      "width": 320,
+      "height": 180,
+      "green_pixels": 0,
+      "magenta_pixels": 57600
+    }
+  ],
+  "readback_control_passed": true,
+  "scene_image_passed": false,
+  "lifecycle_passed": false,
+  "process_gone": true,
+  "owned_gpu_lock_released": true,
+  "owned_3090_lease_released": true,
+  "expired_user_lease_archived": true,
+  "user_hour_respected": true,
+  "ended_utc": "2026-11-14T12:54:40.175218+00:00"
+}
