@@ -8,6 +8,8 @@ Source-aware textures · photographic material studies · 2160p game captures
 
 [Gallery](docs/GALLERY.md) · [Comparisons](docs/COMPARISONS.md) · [Developer guide](docs/DEVELOPMENT.md) · [Restoration plan](remaster-audit/REMASTER_COMPLETION_PLAN.md)
 
+[Skin Factory and in-game menu gaps](docs/SKIN-FACTORY-MENU-GAPS.md)
+
 [Engineering handbook and current handoff](docs/handbook/index.html) · [Master action plan](docs/MASTER-ACTION-PLAN.html)
 
 ![Development preview](https://img.shields.io/badge/status-development_preview-d79b42?style=flat-square)
