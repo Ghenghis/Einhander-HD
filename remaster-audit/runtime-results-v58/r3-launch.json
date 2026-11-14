@@ -1,0 +1,30 @@
+{
+  "started_utc": "2026-11-14T06:35:56.960356+00:00",
+  "arguments": [
+    "C:/Python314/python.exe",
+    "-u",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\run_frame_phases.py",
+    "--batch",
+    "display58-phases-resource-r3",
+    "--rewind",
+    "1",
+    "--run-prepared"
+  ],
+  "gpu_arguments": [
+    "nvidia-smi",
+    "--id=0",
+    "--query-gpu=timestamp,index,memory.used,memory.total,utilization.gpu,clocks.current.graphics",
+    "--format=csv",
+    "--loop-ms=1000"
+  ],
+  "manual_quiet_ack": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\post-recovery-runtime\\manual-quiet-ack.json",
+  "intended_scope": "120s observed-focus assisted diagnostic; no video/source captures/live profilers; C-only",
+  "unrelated_apps_changed": false,
+  "runner_pid": 32264,
+  "ended_utc": "2026-11-14T06:39:14.490884+00:00",
+  "runner_exit": 0,
+  "released": [
+    "GPU-RESERVED",
+    "CPU-QUIET"
+  ]
+}

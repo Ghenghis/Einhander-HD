@@ -26,6 +26,8 @@ Source-aware textures · photographic material studies · 2160p game captures
 
 [Artwork inventory: produced files, current candidates, verification, remaining work and locations](docs/ARTWORK-STATUS-20261113.md).
 
+[Completed frame-phase and audio diagnostics: actual failures, measurements and replay data](docs/STAGE1-FRAME-PHASE-RESULTS.md).
+
 ## The direction
 
 Keep Einhänder's dark silhouettes, saturated windows and industrial character. Rebuild the detail where it matters: recessed glass, visible rooms, worn steel, readable signs and controlled light. Judge the result while flying past buildings at different angles and distances.

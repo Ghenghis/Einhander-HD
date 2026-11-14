@@ -1,0 +1,41 @@
+{
+ "passed": true,
+ "checks": [
+  "all manifest file sizes, SHA256 values and JSON syntax match",
+  "actual analyzer fixture rejects invalid rows and assigns injected wait to correct phase",
+  "r2: all three analyses replay exactly; independent audio delta and process cleanup match",
+  "r3: all three analyses replay exactly; independent audio delta and process cleanup match"
+ ],
+ "manifest_sha256": "b6229627624d688db63edff12f6061e98a203ad4e37f279cbd76ad47365af9e8",
+ "independent_raw_row_checks": {
+  "r2": {
+   "source_proof_sha256": "7eff86734d9a7f63fbdfe3cd73ada9cb1eca1a9a4a374b9864704bc949bb577c",
+   "source_local_batch": "display58-phases-observed-r2",
+   "extracted_observations_sha256": "9864797b4229364a16ebe0b3d1e19a9dad53cc74d7834b52d0f0277e81746b7a",
+   "valid_pairs_independently_checked": 7175,
+   "measured_frame_bracket": [
+    3044,
+    10218
+   ],
+   "owned_exit": 0,
+   "port_closed": true,
+   "focus_true_samples": 0,
+   "observation_count": 121
+  },
+  "r3": {
+   "source_proof_sha256": "f8d58c217d8af6c37ce678b5595d212c332321ee2f66b348b073d7c7020da471",
+   "source_local_batch": "display58-phases-resource-r3",
+   "extracted_observations_sha256": "963e3893fe4e3a2dd905d25c41610c4f387512496cd64ce421fd7237b7d2d343",
+   "valid_pairs_independently_checked": 7198,
+   "measured_frame_bracket": [
+    3046,
+    10243
+   ],
+   "owned_exit": 0,
+   "port_closed": true,
+   "focus_true_samples": 21,
+   "observation_count": 121
+  }
+ },
+ "frozen_runtime_package_modified": false
+}

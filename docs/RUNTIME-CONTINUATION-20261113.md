@@ -4,7 +4,7 @@
 
 ## Current state and safe resume
 
-No owned test game is running. CPU-QUIET and GPU reservations were released. Do not interpret a prepared candidate as an executed test. The observed-focus v58 retry is prepared but **not run**. The user authorized retry/continuation (relayed through Claude). The observed-focus retry remains unlaunched at this documentation checkpoint; it may record focus changes while keeping Windows available, but mixed/background focus cannot establish foreground performance acceptance. No additional permission response is required for the authorized bounded retry.
+No owned test game is running. CPU-QUIET and GPU reservations were released after two completed v58 diagnostics. [Actual r2/r3 phase and audio results](STAGE1-FRAME-PHASE-RESULTS.md): r2 maximum 204.7892 ms/+16,112 starved samples (0/121 focus samples); r3 maximum 198.9995 ms/+3,214 (21/121 focused). Both exited 0 with the port closed, but still fail pacing/audio. Work and runtime inputs are on C:. Selected emergency recovery finished; no D: read is required for these runs. The whole-D weekly-project audit was not completed. Do not interpret resource/focus differences as a causal improvement estimate.
 
 Canonical latest data: [actual runtime results](media/gallery/stage1-display-history-results.json), [Stage 1 status](STAGE1-COMPLETION-STATUS.md), and the [frozen diagnostic package](../remaster-audit/runtime-diagnostics-v58/README.md). Source/code checks, diagnostic gameplay and release acceptance are separate gates.
 
@@ -26,7 +26,7 @@ Use GPU queue reservation and a fresh manual Claude process-inventory quiet ackn
 
 Exact unchanged12-second callback excerpts and their offsets/hashes are linked in the runtime results. Callback PCM is captured before the physical device; no claim of hardware audible quality or subjective listening acceptance is made.
 
-## v58: built and checked, gameplay timing still unaccepted
+## v58: built, checked and diagnostically run; acceptance still open
 
 Frozen executable SHA256: `c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6`. Main source5c94d2dd…, renderer90c6a4e1…, debug3217e4d7…, headerc307ae7f…. Full hashes,151 pinned link inputs and compile arguments are in the package. Only main/GPU/debug objects were replaced; no new collision/CPS or lock-free-audio object was added.
 
@@ -34,7 +34,7 @@ The opt-in `PSX_FRAME_PHASE_RING=1` records raw CPU QPC timestamps,16384 rows, a
 
 Checks passed: actual extracted ring/handler; default16384 capacity; disabled/unbound cases;9/9 mutation controls; corrected file-scope collision scan; full three-TU compile and C++link. First integration compile failed because a phase variable collided with the existing fingerprint ring. The distinct-prefix fix passed. A later scanner falsely counted local variables/calls as globals; its failed output and positive control are preserved. Passing isolated tests did not bypass full compilation.
 
-The first live v58 attempt passed title GPU selftest (8 cases/2048texels, all mismatch/error counts0, state restored) and phase API ownership/capacity checks. It retained3 foreground samples, then lost focus and stopped: exit0/port closed, timing rejected. Its failing sample/phase tail was not retained; the revised runner now preserves the rejected sample and at most4 read-only failure-tail queries before cleanup. The revised observed-focus retry is prepared only. Neither attempt proves the stutter fixed.
+The first live v58 attempt passed title GPU selftest (8 cases/2048texels, all mismatch/error counts0, state restored) and phase API ownership/capacity checks. It retained3 foreground samples, then lost focus and stopped: exit0/port closed, timing rejected. Its failing sample/phase tail was not retained; the revised runner now preserves the rejected sample and at most4 read-only failure-tail queries before cleanup. The revised observed-focus r2 and subsequent resource-controlled r3 have now run; their [completed results](STAGE1-FRAME-PHASE-RESULTS.md) supersede the prepared-only wording in frozen snapshots. r2 locates six long periods mainly inside exact SwapWindow calls; r3 retains upload-linked swaps and a 191.7257 ms mini-boss period. Its small 128 KiB texture's wrapper took 175.224 ms while TexImage itself took 0.0213 ms. Narrow wrapper attribution is next. None proves the stutter fixed.
 
 ## E2E gates still open
 
@@ -62,6 +62,6 @@ The [published checklist index](../remaster-audit/runtime-diagnostics-v58/captur
 
 Read the [package README](../remaster-audit/runtime-diagnostics-v58/README.md), final HANDOFF and manifest; verify hashes before running. All original source, scripts, checks and rejection controls are included or explicitly indexed as local-only. Do not run a local reconstruction recipe as if it were a portable clean-checkout release build.
 
-The prepared local run is `remaster-audit/dev-center-evidence/stage1-completion-20261112/display58-phases-observed-r2/hd-on_rewind-on/candidate.json`, using `sampling-build-v58-frame-phases/run_frame_phases.py`. It permits Windows use, records focus changes, has no foreground-performance acceptance and stops on sustained no progress. A foreground run instead keeps the strict focus gate. Use the authorized explicit diagnostic mode; reserve resources, obtain a fresh manual quiet ACK, run one bounded leg, retain phase/present/native/audio data, close/verify the owned process, release reservations, analyze offline and publish actual results. No run is currently active.
+Completed local runs are `display58-phases-observed-r2` and `display58-phases-resource-r3`, both below `remaster-audit/dev-center-evidence/stage1-completion-20261112`. The [public replay package](../remaster-audit/runtime-results-v58/README.md) includes all selected phase rows, counters and analyzers with original-proof hashes. The frozen v58 package retains its historical prepared-only checkpoint unchanged. Claude is drafting a new private narrow HD-object phase diagnostic; source proposals and builds must remain distinct from executed tests. Reserve resources and obtain a fresh manual quiet ACK before another bounded leg. Retain all rejected attempts and release resources after cleanup. No experimental runtime is installed.
 
 Local durable state: `remaster-audit/stage1-completion-20261112/execution-state.json`. Root publication branch: `codex/display-history-opt-in`; [draft PR1](https://github.com/Ghenghis/Einhander-HD/pull/1). Do not mark the overall work complete when a component, source package or document check finishes.
