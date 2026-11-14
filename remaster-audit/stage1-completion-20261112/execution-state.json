@@ -1,15 +1,16 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T17:11:37.503397+00:00",
+  "updated_at_utc": "2026-11-14T17:29:21.196066+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "Region-O private ROI composition and scoped UI/validator results",
-    "evidence": "remaster-audit/roi-menu-results-20261114/README.md",
-    "composition_passed": true,
+    "id": "Combined private O/M/I/J/P/Q ROI candidate with CPU native admission",
+    "evidence": "remaster-audit/roi-native-admission-20261114/README.md",
     "total_pages": 1699,
-    "unchanged_pages": 1697,
+    "unchanged_from_original_parent": 1689,
+    "native_region_checks": 226,
+    "native_admission_failures": 0,
     "gpu_run": false,
     "game_run": false,
     "audio_run": false,
@@ -916,9 +917,8 @@
     "new_start_requires_coordinator_grant": true
   },
   "actual_monitor": {
-    "pid": 38020,
-    "bound_end_utc": "2026-11-14T17:33:42.232Z",
-    "verified_utc": "2026-11-14T17:11:37.450027+00:00",
+    "pid": 42612,
+    "bound_end_utc": "2026-11-14T17:58:03.357Z",
     "watcher_only": true,
     "proves_model_activity": false
   }

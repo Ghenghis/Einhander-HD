@@ -1,5 +1,11 @@
 # Stage 1 completion status
 
+## Combined ROI candidate admitted —17:26 UTC
+
+The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).
+
+No GPU/game/audio run or installation. Live motion/look, full fidelity and seven-stage acceptance remain open; the earlier modern Remix failure and P/Q scheduling violation remain preserved. Metadata monitor PID42612 ends17:58:03.357 UTC and proves monitoring only. Older dated checkpoints below are historical.
+
 ## Verified region-O integration —17:02 UTC
 
 The private O ROI composition passes: 1,699 page hashes checked, 1,697 unchanged PNGs, two size-neutral corrected pages with identical alpha and all outside-region pixels retained. Composer source and a real CLI fixture are checked; runtime admission/live motion remain pending. The scoped menu census finds only 19/261 primary passes and preserves visual repair failures. Timeout validation passes 72/72 in author and independent runs, without establishing a stage clear. [Actual results and unfinished work](../docs/ROI-COMPOSITION-RESULTS-20261114.md).
