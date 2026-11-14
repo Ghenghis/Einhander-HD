@@ -21,7 +21,17 @@ source build also averages about 60 in a recorded test with zero starvation,
 but its passive swap ring shows seven intervals over 25 ms (longest 43 ms).
 All 350 application frames were submitted once. Capture itself also missed
 frames: the video is not a complete 60-fps stream. Fully even presentation
-remains open; normal-player tests without recording are next. Nothing is installed.
+remains open. A repeat with the same final binary and no recorder submitted all
+350 boss frames but still had eight intervals over 25 ms (longest 40 ms). It
+averaged 60.00 fight frames/s, with zero boss starvation, but 310 sample frames
+starved near gameplay startup. Late intervals again coincide with first-use
+texture uploads; per-upload timing is being added to test that lead. The
+recorder is therefore not required for the hitch. Normal-player tests are next.
+Nothing is installed. Exact 12-second callback excerpts are available for
+[history OFF](media/gallery/stage1-display-history-off-boss.wav),
+[history ON](media/gallery/stage1-display-history-on-boss.wav), and the
+[rebuilt recorder-free runtime](media/gallery/stage1-display-history-v54-boss.wav).
+They retain the original PCM; source offsets and hashes are in the report.
 
 The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
 completed with R4 and two leaf handlers qualified on the exact tested runtime.

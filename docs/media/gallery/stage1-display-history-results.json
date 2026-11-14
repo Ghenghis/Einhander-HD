@@ -2503,5 +2503,174 @@
       "All350 application frames were submitted once; seven intervals exceeded25ms, so average60fps does not establish even presentation.",
       "Captured video contains fewer frames than a full60fps stream; capture gaps and application presentation gaps are separate."
     ]
-  }
+  },
+  "recorder_free_final_source_run": {
+    "date_utc": "2026-11-14T02:38:51Z",
+    "runtime_sha256": "2704d0738e2e501ed6222bd562290563b753016c9fb76a27a1b244a5268a6519",
+    "manual_quiet_ack": "msg_644548d1b7beef33",
+    "recorder": false,
+    "source_collection": false,
+    "measurement_screenshots": false,
+    "settings": "Scale 2; rewind 50/15; held fire and disclosed invincibility-countdown aid; same frozen candidate and diagnostics as recorded v54; no new collision/CPS or lock-free audio objects",
+    "window": {
+      "frames": 350,
+      "start": 9250,
+      "end_exclusive": 9600,
+      "wall_ms": 5833.053,
+      "guest_work_ms": 3742.682,
+      "pacer_ms": 1752.666,
+      "fps": 60.00288356714743,
+      "dirty_instructions": 39890154
+    },
+    "presentation": {
+      "scope": "Application pre-SwapWindow metadata, 1ms SDL tick resolution; not physical monitor scanout",
+      "range": [
+        9250,
+        9600
+      ],
+      "events": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 20,
+      "p99_ms": 27,
+      "max_ms": 40,
+      "gaps_over25ms": [
+        {
+          "frame": 9465,
+          "ms": 26
+        },
+        {
+          "frame": 9468,
+          "ms": 40
+        },
+        {
+          "frame": 9476,
+          "ms": 39
+        },
+        {
+          "frame": 9486,
+          "ms": 27
+        },
+        {
+          "frame": 9509,
+          "ms": 26
+        },
+        {
+          "frame": 9521,
+          "ms": 32
+        },
+        {
+          "frame": 9575,
+          "ms": 26
+        },
+        {
+          "frame": 9580,
+          "ms": 26
+        }
+      ],
+      "first": [
+        8650,
+        9250,
+        "vram",
+        161244
+      ],
+      "last": [
+        8999,
+        9599,
+        "vram",
+        167061
+      ],
+      "measured_gameplay_starved": 310
+    },
+    "audio": {
+      "boot_starved": 21389,
+      "measured_gameplay_starved": 310,
+      "boss_starved": 0,
+      "note": "310 additional sample frames starved near gameplay startup, then cumulative21699 stayed flat through boss and end. Audio continuity is not established across boot/startup."
+    },
+    "uploads": {
+      "note": "First-use GPU upload calls correlate with remaining late burst; per-upload timing not yet measured.",
+      "frame9433": {
+        "new_texture_draws": 983,
+        "draw_ms": 1944.5015,
+        "readback_ms": 580.4623
+      },
+      "frame9552": {
+        "new_texture_draws": 1011,
+        "draw_ms": 2046.1842,
+        "readback_ms": 580.4623
+      }
+    },
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "errors": [],
+    "proof_sha256": "999b40f21e23e0b6346df313c89b27c9394baa7e4719686957124d3058ae6bb1",
+    "limitations": [
+      "Not the normal installed runtime/pack; normal player tests remain pending.",
+      "Application pre-swap submission timestamps are not monitor scanout.",
+      "All350 frames submitted once does not establish visually smooth presentation.",
+      "One live-input run; not an identical replay or causal effect estimate."
+    ]
+  },
+  "actual_callback_excerpts": [
+    {
+      "leg": "off",
+      "file": "stage1-display-history-off-boss.wav",
+      "source_sha256": "87474421052b6fb223d24797f2c8ddaba4b2beff1993dee7304812eb41ca829f",
+      "source_start_sample_frame": 5388000,
+      "source_offset_sample_frames": 1921440,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9476,
+      "center_observation_elapsed": 107.00032400000055,
+      "pcm_sha256": "7a5ac0d40c04dde0436c2bfec573bd932103a1c7583e95d4761a55f784ce9d03",
+      "sha256": "ad95ca705ad71597308a3775b685e883db45ec930fef214b036a5fdf2188aa06",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    },
+    {
+      "leg": "on",
+      "file": "stage1-display-history-on-boss.wav",
+      "source_sha256": "190e5f4fe24dec6ed85b935a0473b4f424c3d26b013b2d6e46317560bd9a2a68",
+      "source_start_sample_frame": 5392800,
+      "source_offset_sample_frames": 1871040,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9420,
+      "center_observation_elapsed": 106.00011350000023,
+      "pcm_sha256": "04d6c23e48847b11cf4cadcc4a897f6f72d87b0578dc2b54ee7cb75e4a55566d",
+      "sha256": "eef21fc244bb4edc00badd74a10a76b9d46c0631e34fc871f348b39fa7f63e7c",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    },
+    {
+      "leg": "v54",
+      "file": "stage1-display-history-v54-boss.wav",
+      "source_sha256": "41626d5b768bc2b903a1aa375698380d88fc6fa1f7bf14ca7b9d0e794e996d2a",
+      "source_start_sample_frame": 5402880,
+      "source_offset_sample_frames": 1872000,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9433,
+      "center_observation_elapsed": 106.0002514000007,
+      "pcm_sha256": "58755a444873ad5dc096cb96e33ad8f7437880956d0e7e26cd0cb1e509bdc637",
+      "sha256": "f2ce8f3354bfc9d9f38a0f34c93358e74024f0cf2fdd9905cb747ad226a9ad63",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    }
+  ]
 }
