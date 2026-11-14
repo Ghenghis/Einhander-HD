@@ -1,0 +1,158 @@
+{
+  "at_utc": "2026-11-14T19:56:40.944288+00:00",
+  "grant_message": "msg_1a6d0e8c46fb8bc5",
+  "source_pins": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py",
+      "sha256": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\test_gl_adapter_identity_guard.py",
+      "sha256": "18977886193c7dd1bdeedb12bc7df30215e21765ec4c775ef7c75df1dda00503"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter_controls_child.py",
+      "sha256": "899a2192432aa6ec3ecccf1747b9b32e0ca9f21af89c4939d8f25e84ee3d4b46"
+    }
+  ],
+  "command": [
+    "C:\\Python314\\python.exe",
+    "-I",
+    "-B",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py",
+    "--out",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter-controls-run-r1\\envelope.json",
+    "--cpu",
+    "11",
+    "--timeout",
+    "10",
+    "--max-job-mib",
+    "128",
+    "--no-window",
+    "--",
+    "C:\\Python314\\python.exe",
+    "-I",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter_controls_child.py",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter-controls-run-r1\\result.json"
+  ],
+  "attempt": 1,
+  "retries": 0,
+  "heavy_job": false,
+  "gpu_run": false,
+  "game_run": false,
+  "wrapper_pid": 37328,
+  "wrapper_creation_unix": 1794686200.9458091,
+  "wrapper_exit": 0,
+  "outer_elapsed_s": 0.37277970000286587,
+  "wrapper_absent": true,
+  "envelope.json": {
+    "sha256": "fe99fe94680ea78d5e90ecdc3b4442a8c9ad8707004ef497e1a18086ebc1501c",
+    "data": {
+      "tool": "run_rc2_envelope_r1.py",
+      "revision": "envelope-r1",
+      "base": "run_rc2.r1.py cd3988af06cd348c",
+      "cmd": [
+        "C:\\Python314\\python.exe",
+        "-I",
+        "-B",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter_controls_child.py",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter-controls-run-r1\\result.json"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "wrapper_pid": 37328,
+      "wrapper_create_time": 1794686200.9458091,
+      "cpu": 11,
+      "affinity": [
+        11
+      ],
+      "priority": 16384,
+      "timeout_s": 10.0,
+      "rc": 0,
+      "created_utc": "2026-11-14T19:56:41.092277+00:00",
+      "allowed_before_pin": [
+        11
+      ],
+      "child_affinity_mode": "cpu",
+      "job_affinity_mask_hex": "800",
+      "max_job_mib": 128,
+      "no_window": true,
+      "job_limits_requested": {
+        "limit_flags": 8752,
+        "affinity_mask": 2048,
+        "priority_class": 16384,
+        "job_memory_limit": 134217728
+      },
+      "job_limits_readback": {
+        "limit_flags": 8752,
+        "affinity_mask": 2048,
+        "priority_class": 16384,
+        "job_memory_limit": 134217728,
+        "peak_job_memory": 0,
+        "peak_process_memory": 0
+      },
+      "child_pid": 28232,
+      "child_create_time": 1794686201.0931728,
+      "job_assigned_before_resume": true,
+      "child_affinity_before_set": [
+        11
+      ],
+      "child_affinity_set_to": [
+        11
+      ],
+      "child_readback_before_resume": {
+        "cpu_affinity": [
+          11
+        ],
+        "priority": 16384
+      },
+      "start_utc": "2026-11-14T19:56:41.099027+00:00",
+      "child_exit_code": 0,
+      "timeout_killed": false,
+      "elapsed_s": 0.15,
+      "end_utc": "2026-11-14T19:56:41.250900+00:00",
+      "job": {
+        "active": 0,
+        "total": 2,
+        "terminated": 0,
+        "user_s": 0.0625,
+        "kernel_s": 0.0625
+      },
+      "peak_job_memory_bytes": 17297408,
+      "peak_process_memory_bytes": 15802368,
+      "descendants_seen": [],
+      "descendants_left": [],
+      "child_absent": true,
+      "job_empty": true,
+      "tree_absent": true,
+      "wrapper_exit": 0
+    }
+  },
+  "result.json": {
+    "sha256": "6389122b6ef5d9742f3e00d5b5cc8650589823471205f54a982a9f364ab9e0ec",
+    "data": {
+      "at_utc": "2026-11-14T19:56:41.240656+00:00",
+      "passed": true,
+      "test_methods_declared": 21,
+      "tests_run": 21,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "elapsed_s": 0.007629400002770126,
+      "source_pins": {
+        "gl_adapter_identity_guard": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+        "test_gl_adapter_identity_guard": "18977886193c7dd1bdeedb12bc7df30215e21765ec4c775ef7c75df1dda00503"
+      },
+      "scope": "pure synthetic evidence controls only",
+      "game_run": false,
+      "gpu_run": false,
+      "live_qualified": false,
+      "integrated_into_launcher": false
+    }
+  },
+  "passed": true
+}

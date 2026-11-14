@@ -1,0 +1,79 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-I",
+  "-B",
+  "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter_controls_child.py",
+  "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\adapter-controls-run-r1\\result.json"
+ ],
+ "cwd": "C:\\github\\Einhander",
+ "wrapper_pid": 37328,
+ "wrapper_create_time": 1794686200.9458091,
+ "cpu": 11,
+ "affinity": [
+  11
+ ],
+ "priority": 16384,
+ "timeout_s": 10.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T19:56:41.092277+00:00",
+ "allowed_before_pin": [
+  11
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "800",
+ "max_job_mib": 128,
+ "no_window": true,
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 2048,
+  "priority_class": 16384,
+  "job_memory_limit": 134217728
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 2048,
+  "priority_class": 16384,
+  "job_memory_limit": 134217728,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 28232,
+ "child_create_time": 1794686201.0931728,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  11
+ ],
+ "child_affinity_set_to": [
+  11
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   11
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T19:56:41.099027+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 0.15,
+ "end_utc": "2026-11-14T19:56:41.250900+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 0.0625,
+  "kernel_s": 0.0625
+ },
+ "peak_job_memory_bytes": 17297408,
+ "peak_process_memory_bytes": 15802368,
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T19:36:35.013198+00:00",
+  "updated_at_utc": "2026-11-14T19:57:26.663853+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,9 +912,8 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 41936,
-    "creation_unix": 1794684239.730168,
-    "bound_end_utc": "2026-11-14T19:53:59.781Z",
+    "pid": 44036,
+    "bound_end_utc": "2026-11-14T20:20:41.609Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -990,6 +989,20 @@
     "pr7": "permission approved; actualCPU66.1precheckdeclined/nochild/uncompiled",
     "gpu_run": false,
     "game_run": false,
+    "live_accepted": false
+  },
+  "engine_source_continuation": {
+    "evidence": "docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md",
+    "adapter_test_methods_declared": 21,
+    "adapter_tests_executed": true,
+    "adapter_tests_passed": 21,
+    "adapter_integrated": false,
+    "observer": "r2sourceblocked:fclosefailurestate;newrevisionrequested",
+    "audio_gap_fixture": "r3sourcecleared;UNRUN",
+    "remix_transport": "planreviewed;notimplemented",
+    "hold": "coordinator urgent preservation; no new tests/heavy/GPU/game",
+    "game_run": false,
+    "gpu_run": false,
     "live_accepted": false
   }
 }
