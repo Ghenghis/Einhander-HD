@@ -1,5 +1,11 @@
 # RTX Remix setup and actual use — November 14, 2026
 
+## Latest CPU verification — November 14, 2026
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
 **Latest resource instruction, verified in the user's crash-status chat:** the 3090Ti is reserved for Pizza Tycoon HD until **at least 07:00 Phoenix / 14:00 UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
 
 ## Current verified state — reviewed scene capture, modern SDK and restart recovery, November 14

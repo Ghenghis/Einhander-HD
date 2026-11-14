@@ -1,5 +1,13 @@
 # Codex continuation — 2026-11-14
 
+## Current CPU continuation
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
+Current native owners: claude-einhander (Stage 1/shared runtime), claude-einhander-s23, claude-einhander-s45 and claude-einhander-s67. Extra sessions are actually launched, not merely planned. The crash-check coordinator now schedules individual bounded texture CPU jobs; root retains runtime/v6/GPU/build/publication and bounded monitor rearm. Preserve older dated paragraphs as history; current session snapshot and new packet supersede their planned-launch state. The current monitor PID28164 ends14:07:14 UTC and must be actually replaced before then; no future rearm is claimed here.
+
 ## Published actual results —13:22UTC
 
 Source/evidence checkpoint `b90142f458fc9810dd0941fe131168e8a5d5380f` is pushed and remote-verified in draft PR1. The new packet has1,064 pins; all2,054 historical/new pins match committed bytes and root/publication copies. Documentation verification:55 documents,88 JSON reports,963 references,0 issues. The delivery worktree was clean after push; actual local receipt is `remaster-audit/runtime-review/gpu-texture-remix-20261114/scene-delivery-verification.json`. PR remains OPEN/DRAFT and its actual-results body was updated. No GPU or gameplay test ran during recovery/publication.

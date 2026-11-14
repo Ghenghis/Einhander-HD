@@ -1,15 +1,14 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T13:24:25.171042+00:00",
+  "updated_at_utc": "2026-11-14T13:59:11.233342+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "v66 reviewed scene capture and matching modern SDK CPU table initialization",
-    "github_commit": "b90142f458fc9810dd0941fe131168e8a5d5380f",
-    "github_commit_scope": "Published source/evidence checkpoint; later documentation follows branch HEAD",
-    "status": "Recovered v5-r2 CPU checkpoint independently verified; v66 compiled/host-tested but not live-run; modern SDK table-only check passed. No GPU/game/project acceptance.",
-    "evidence": "remaster-audit/scene-texture-followup-20261114/README.md"
+    "id": "CPU-only modern GL probe, native session hooks and stage defect audits",
+    "status": "CPU checks pass; texture failures explicitly retained; no GPU/game acceptance",
+    "evidence": "remaster-audit/cpu-session-interop-20261114/README.md",
+    "github_commit_scope": "Current PR branch source/report checkpoint; exact publication hash is recorded in delivery receipts and PR body"
   },
   "remaining": [
     {
@@ -791,7 +790,7 @@
     ],
     "later_stage_lane": {
       "scope": "S2\u2013S7 CPU strict whole-cell/fringe audit queued concurrently with shared engine and Stage1 work; not six active authors",
-      "owner": "Additional native stage sessions planned; actual launch/queue transfer tracked by codex-einhander-crash-check",
+      "owner": "Three actual native Claude workers: s23, s45, s67; original Claude owns Stage1/shared runtime",
       "selected_key_counts": {
         "2": 39,
         "3": 39,
@@ -803,6 +802,11 @@
       "candidate_manifests_verified": 28,
       "fully_accepted_stages": 0,
       "planned_owners": [
+        "claude-einhander-s23",
+        "claude-einhander-s45",
+        "claude-einhander-s67"
+      ],
+      "actual_owners": [
         "claude-einhander-s23",
         "claude-einhander-s45",
         "claude-einhander-s67"
@@ -856,5 +860,41 @@
     "local_links": 963,
     "issues": 0,
     "full_e2e_complete": false
+  },
+  "cpu_session_interop": {
+    "packet": "remaster-audit/cpu-session-interop-20261114",
+    "stage_totals": {
+      "S6 selected": {
+        "keys": 101,
+        "files": 202,
+        "strict_pass": 178,
+        "primary_pass": 178,
+        "errors": 0,
+        "sha_ok": 202
+      },
+      "S7 selected": {
+        "keys": 26,
+        "files": 52,
+        "strict_pass": 52,
+        "primary_pass": 52,
+        "errors": 0,
+        "sha_ok": 52
+      },
+      "S6 alternate": {
+        "keys": 14,
+        "files": 28,
+        "strict_pass": 20,
+        "primary_pass": 20,
+        "errors": 0,
+        "sha_ok": 28
+      }
+    },
+    "hook_tests": 18,
+    "probe_cpu_tests": 14,
+    "image_oracle_controls": 8,
+    "source_draw_tests": 13,
+    "gpu_run": false,
+    "game_run": false,
+    "project_complete": false
   }
 }

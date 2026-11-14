@@ -1,0 +1,55 @@
+{
+  "at_utc": "2026-11-14T13:49:25.030731+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "hook-tests",
+      "args": [
+        "node",
+        "--test",
+        "--test-reporter=tap",
+        "--test-concurrency=1",
+        "tools/coordination/test-claude-continuity.mjs",
+        "tools/coordination/test-claude-checkpoint.mjs"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "started_utc": "2026-11-14T13:49:21.940954+00:00",
+      "ended_utc": "2026-11-14T13:49:22.807029+00:00",
+      "seconds": 0.866,
+      "exit": 0
+    },
+    {
+      "label": "image-oracle-controls",
+      "args": [
+        "python",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\test_modern_gl_image.py"
+      ],
+      "cwd": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+      "started_utc": "2026-11-14T13:49:22.807297+00:00",
+      "ended_utc": "2026-11-14T13:49:25.030072+00:00",
+      "seconds": 2.223,
+      "exit": 0
+    }
+  ],
+  "hook_tests": 18,
+  "image_oracle_cases": 8,
+  "author_receipt_sha256": "e754bef78dfac33dc9a314ecf2d8c3dac0711254dae0ef144b65e24084aff2dc",
+  "source_pins": {
+    "tools/coordination/claude-continuity-hook.mjs": "0e5579e2f3fd499047d92434dac44e7c1321eb4b9b20e412e366b0b19d9d143f",
+    "tools/coordination/claude-checkpoint.mjs": "4cbbe71cd6deb1b1b4faf0e9421a4f0831f5e6bacee7bac6823680edd526bea9",
+    "tools/coordination/test-claude-continuity.mjs": "34580778eb20f4c790bd20051da2103ee82df4ada3f87a9852d5745fc2ae1baf",
+    "tools/coordination/test-claude-checkpoint.mjs": "2df010c1be0ccccb168dc24fe919f80ffc9f5ec7c803b72c38dc2e4d17f8d7b2"
+  },
+  "image_oracle_source_sha256": "e934bbb4be6c6356c5c898bc0f37908863e262759b8faee03ff509d642ce1ea7",
+  "image_oracle_test_sha256": "b298906f0863f9612d1555f3791e0faeb25cd242d612d3cfaadd5a20b8de30ef",
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "gpu_executed": false,
+  "user_hold_unchanged": true,
+  "live_gpu_images_audited": false,
+  "actual_native_workers": "Three additional workers actual startup/own hooks/first source artifacts verified by author; component tests do not prove future liveness or stage acceptance."
+}

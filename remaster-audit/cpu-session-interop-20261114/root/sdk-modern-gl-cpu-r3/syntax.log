@@ -1,0 +1,17 @@
+clang version 22.1.8 (https://github.com/llvm/llvm-project.git ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)
+Target: x86_64-w64-windows-gnu
+Thread model: posix
+InstalledDir: C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin
+Configuration file: C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin/x86_64-w64-windows-gnu.cfg
+ (in-process)
+ "C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin/clang-22.exe" -cc1 -triple x86_64-w64-windows-gnu -fsyntax-only -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name sdk_modern_gl_probe.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -fno-sized-deallocation -fno-use-init-array -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=C:/github/Einhander/remaster-audit/runtime-review/gpu-texture-remix-20261114/sdk-modern-gl-cpu-r3 -v -fcoverage-compilation-dir=C:/github/Einhander/remaster-audit/runtime-review/gpu-texture-remix-20261114/sdk-modern-gl-cpu-r3 -resource-dir C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include/c++/v1 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include/c++/v1 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/usr/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include -Wall -Wextra -Werror -Wno-missing-field-initializers -std=c++17 -fdeprecated-macro -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -exception-model=seh -faddrsig -x c++ "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_modern_gl_probe.cpp"
+clang -cc1 version 22.1.8 based upon LLVM 22.1.8 default target x86_64-w64-mingw32
+ignoring nonexistent directory "C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include/c++/v1"
+ignoring nonexistent directory "C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/usr/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include/c++/v1
+ C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22/include
+ C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include
+ C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include
+End of search list.

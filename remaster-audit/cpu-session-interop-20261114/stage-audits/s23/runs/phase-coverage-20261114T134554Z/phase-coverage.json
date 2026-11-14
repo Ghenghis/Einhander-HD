@@ -1,0 +1,542 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T13:45:54.637847+00:00",
+ "inputs": {
+  "draws_s2": {
+   "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json",
+   "sha256": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7"
+  },
+  "prep_v1_manifest": {
+   "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/frozen/stage2-prep-v1/manifest.json",
+   "sha256": "9e4a8270e988791efdc8fb37573447b5c89389014dc30a562eb093da4e5c83a0"
+  },
+  "selection_map": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/selection-20261114T133254Z/selection-map.json",
+   "sha256": "f29ff130d3f2d087e95a90cfebe7892415cf480af3cc3718723f4594b7256250"
+  }
+ },
+ "method": "Per CLUT position of the page phase inventory: every listed phase key, its sampled draw-row count n in draws-s2.json (runs A f>=39883 and B, sampled_activation_forward repeat 60), whether it is in the s23 39-key selection, and whether its CLUT words are known. Draw-row share is a proxy for the share of cycling time; full-rate logs (S2-3) are needed for exact timing.",
+ "positions": {
+  "3DD37B6B @ 96,484": {
+   "palettes": 39,
+   "frames": [
+    41015,
+    98409
+   ],
+   "keys": {
+    "3DD37B6B-BE3400E6": {
+     "n": 43,
+     "selected": true,
+     "words": "static"
+    },
+    "3DD37B6B-29F8414A": {
+     "n": 11,
+     "selected": true,
+     "words": "recovered"
+    },
+    "3DD37B6B-48F27DAF": {
+     "n": 14,
+     "selected": true,
+     "words": "recovered"
+    },
+    "3DD37B6B-EF8DB31B": {
+     "n": 14,
+     "selected": true,
+     "words": "recovered"
+    },
+    "3DD37B6B-1C6656F5": {
+     "n": 13,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-26373885": {
+     "n": 11,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-2B758D5E": {
+     "n": 10,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-300CDB9B": {
+     "n": 12,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-38D2A6B1": {
+     "n": 15,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-3B266F04": {
+     "n": 8,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-43DBBC79": {
+     "n": 11,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-51B565F7": {
+     "n": 12,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-51E99BAE": {
+     "n": 11,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-56606875": {
+     "n": 9,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-5AF2B6FE": {
+     "n": 11,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-6D63B86B": {
+     "n": 12,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-72C59D19": {
+     "n": 15,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-733509C6": {
+     "n": 12,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-7472D7D7": {
+     "n": 7,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-7E6D4B96": {
+     "n": 14,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-870853C2": {
+     "n": 6,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-98CCDE8D": {
+     "n": 8,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-9BA6BE6C": {
+     "n": 16,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-9F1040C3": {
+     "n": 13,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-AC8EC4DB": {
+     "n": 13,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-B0209041": {
+     "n": 9,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-B36F07A6": {
+     "n": 14,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-B4575651": {
+     "n": 15,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-B5E782B2": {
+     "n": 13,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-B9FEC6D2": {
+     "n": 9,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-C3A229EF": {
+     "n": 16,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-C3F201C9": {
+     "n": 14,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-C857849F": {
+     "n": 14,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-D0246DC5": {
+     "n": 14,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-E85F1C90": {
+     "n": 9,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-F08DED84": {
+     "n": 10,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-F36D77AB": {
+     "n": 10,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-F8290911": {
+     "n": 7,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "3DD37B6B-FD2A0381": {
+     "n": 8,
+     "selected": false,
+     "words": "UNKNOWN"
+    }
+   },
+   "draw_rows": 483,
+   "selected_keys": 4,
+   "unknown_keys": 35,
+   "selected_draw_share": 0.1698,
+   "unknown_draw_share": 0.8302
+  },
+  "3DD37B6B @ 192,484": {
+   "palettes": 1,
+   "frames": [
+    41013,
+    98409
+   ],
+   "keys": {
+    "3DD37B6B-3C1DB4B6": {
+     "n": 66,
+     "selected": false,
+     "words": "static"
+    }
+   },
+   "draw_rows": 66,
+   "selected_keys": 0,
+   "unknown_keys": 0,
+   "selected_draw_share": 0.0,
+   "unknown_draw_share": 0.0
+  },
+  "3DD37B6B @ 48,484": {
+   "palettes": 1,
+   "frames": [
+    41487,
+    97180
+   ],
+   "keys": {
+    "3DD37B6B-86558368": {
+     "n": 42,
+     "selected": false,
+     "words": "static"
+    }
+   },
+   "draw_rows": 42,
+   "selected_keys": 0,
+   "unknown_keys": 0,
+   "selected_draw_share": 0.0,
+   "unknown_draw_share": 0.0
+  },
+  "3DD37B6B @ 0,490": {
+   "palettes": 1,
+   "frames": [
+    40716,
+    98110
+   ],
+   "keys": {
+    "3DD37B6B-AFAD5A36": {
+     "n": 41,
+     "selected": true,
+     "words": "static"
+    }
+   },
+   "draw_rows": 41,
+   "selected_keys": 1,
+   "unknown_keys": 0,
+   "selected_draw_share": 1.0,
+   "unknown_draw_share": 0.0
+  },
+  "3DD37B6B @ 64,484": {
+   "palettes": 1,
+   "frames": [
+    41482,
+    97181
+   ],
+   "keys": {
+    "3DD37B6B-B949240B": {
+     "n": 21,
+     "selected": false,
+     "words": "static"
+    }
+   },
+   "draw_rows": 21,
+   "selected_keys": 0,
+   "unknown_keys": 0,
+   "selected_draw_share": 0.0,
+   "unknown_draw_share": 0.0
+  },
+  "3DD37B6B @ 224,484": {
+   "palettes": 1,
+   "frames": [
+    41015,
+    98409
+   ],
+   "keys": {
+    "3DD37B6B-BE3400E6": {
+     "n": 43,
+     "selected": true,
+     "words": "static"
+    }
+   },
+   "draw_rows": 43,
+   "selected_keys": 1,
+   "unknown_keys": 0,
+   "selected_draw_share": 1.0,
+   "unknown_draw_share": 0.0
+  },
+  "3DD37B6B @ 208,484": {
+   "palettes": 1,
+   "frames": [
+    41017,
+    98408
+   ],
+   "keys": {
+    "3DD37B6B-FAC936BC": {
+     "n": 30,
+     "selected": false,
+     "words": "static"
+    }
+   },
+   "draw_rows": 30,
+   "selected_keys": 0,
+   "unknown_keys": 0,
+   "selected_draw_share": 0.0,
+   "unknown_draw_share": 0.0
+  },
+  "AD934A7E @ 128,484": {
+   "palettes": 29,
+   "frames": [
+    42332,
+    97230
+   ],
+   "keys": {
+    "AD934A7E-1C1AA6DC": {
+     "n": 1,
+     "selected": true,
+     "words": "static"
+    },
+    "AD934A7E-62880A4C": {
+     "n": 1,
+     "selected": true,
+     "words": "recovered"
+    },
+    "AD934A7E-B5CFAFC1": {
+     "n": 1,
+     "selected": true,
+     "words": "recovered"
+    },
+    "AD934A7E-C27643AA": {
+     "n": 1,
+     "selected": true,
+     "words": "recovered"
+    },
+    "AD934A7E-02743302": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-0440AB0A": {
+     "n": 2,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-0ABC7BC7": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-12AC7573": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-1305ECC8": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-24830675": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-3CD6ACFB": {
+     "n": 2,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-44D43B0D": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-5CC1B7FE": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-5F43CE99": {
+     "n": 2,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-6044AFC7": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-633E9CF7": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-640A1059": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-709F04F9": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-7FB71A40": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-8B861273": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-9932CD91": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-9D7C720F": {
+     "n": 2,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-A635ACCF": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-B479397A": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-BDA2595B": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-C5A0CEAD": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-C5EBD0FE": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-F3CA1991": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    },
+    "AD934A7E-FD36C95C": {
+     "n": 1,
+     "selected": false,
+     "words": "UNKNOWN"
+    }
+   },
+   "draw_rows": 33,
+   "selected_keys": 4,
+   "unknown_keys": 25,
+   "selected_draw_share": 0.1212,
+   "unknown_draw_share": 0.8788
+  },
+  "AD934A7E @ 64,484": {
+   "palettes": 1,
+   "frames": [
+    41497,
+    97181
+   ],
+   "keys": {
+    "AD934A7E-B949240B": {
+     "n": 20,
+     "selected": true,
+     "words": "static"
+    }
+   },
+   "draw_rows": 20,
+   "selected_keys": 1,
+   "unknown_keys": 0,
+   "selected_draw_share": 1.0,
+   "unknown_draw_share": 0.0
+  },
+  "AD934A7E @ 96,490": {
+   "palettes": 1,
+   "frames": [
+    97242,
+    97401
+   ],
+   "keys": {
+    "AD934A7E-FC338604": {
+     "n": 9,
+     "selected": true,
+     "words": "static"
+    }
+   },
+   "draw_rows": 9,
+   "selected_keys": 1,
+   "unknown_keys": 0,
+   "selected_draw_share": 1.0,
+   "unknown_draw_share": 0.0
+  }
+ },
+ "finding": "The two cycling light regions (3DD37B6B @96,484 light strips: 39 phases; AD934A7E @128,484 ring lights: 29 phases) have CLUT words for only 4 phases each; the 8 selected prep-v2 keys cover 17.0% and 12.1% of the sampled cycling draw rows. Installing them alone would make the lights alternate between HD and stock on most frames of each cycle. Gate: S2-2 (words of the 60 unknown phases + AQ-05 hold) before any prep-v2 phase key ships; the index masters can then export every phase (CPU)."
+}

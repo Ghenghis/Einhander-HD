@@ -1,5 +1,11 @@
 # Stage 1 completion status
 
+## Latest CPU verification — November 14, 2026
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
 **Latest resource instruction, verified in the user's crash-status chat:** the 3090Ti is reserved for Pizza Tycoon HD until **at least 07:00 Phoenix / 14:00 UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
 
 Root has now independently verified the recovered v5-r2 freeze:874 pins, 7,520 fixture checks and 14 GL-stub cases/352 checks pass; no GPU/game acceptance. All874 failed-predecessor hashes also remain unchanged, including263 all-zero files. Fsync/readback is a precaution; the crash/corruption cause remains unknown. Later-stage scope is concurrent: S2–S7 selected candidates 39/39/11/12/101/26 keys have 28 manifests reverified and concrete CPU whole-cell/fringe audits queued. None of the seven stages is fully accepted.
