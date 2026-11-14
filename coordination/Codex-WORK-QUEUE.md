@@ -17,4 +17,12 @@ Owner `codex-einhander`, task `EIN-CODEX-CONTINUITY-20261114`, project incomplet
 - [ ] Implement bounded CPU scene/mesh/material transport skeleton with real native projection/STP/mask/painter order and immutable cross-thread ownership. GPU qualification requires a separate grant after r7 CPU/lifecycle gates. No API-return-code RT/DLSS acceptance.
 - [ ] Finish far-background/building/sign fidelity, class-aware menus/HUD, realistic skins and all ship/gun/enemy/boss/effect targets/selectors, native source captures, seven-stage gameplay/audio/difficulty/options/outcomes and delivered release/rollback.
 
-Monitor44036 bound20:20:41.609UTC is metadata-only; refresh owned presence with actual work, read/quietly ACK inbox during waits, renew before expiry and preserve real gaps. Worktree scoped delivery only; no reset/stash/broad stage, broad scans or cleanup of other projects. Component passes are not whole-project completion.
+Monitor39248 bound20:48:16.554UTC is metadata-only; refresh owned presence with actual work, read/quietly ACK inbox during waits, renew before expiry and preserve real gaps. Worktree scoped delivery only; no reset/stash/broad stage, broad scans or cleanup of other projects. Component passes are not whole-project completion.
+
+- [x] Actual PR7syntax check0/1.382s; retain object failure1/.048s and empty-tree receipt97a2738c, root readback. No full build/control/render acceptance.
+- [ ] Fresh PR7CPUgrant for NEWreviewedbuilderb0e08a6a;65controls/guard77stillunexecuted. No retry on consumedgrant, no memory-cap claim forcd398guard.
+- [ ] Qualify collectorc457 with complete pure sample-to-finish controls, then owned-child Windows listener/peer observation, command-audit binding and real runner integration. No GPU/library-load shortcut.
+- [ ] Observerr3IO36fixture/driverba36 andT1r1oracle36fixture/driverr2b042 need actual fresh grants/compile/run. Treat nativeCRLF and patchLF explicitly; preservefailed earlier scripts/hashes.
+- [ ] Review combinedaudio source/getter/pump/reset/extraction fixtures, exact closure then compile/PCM/realSDL/listening. Oldracyreferencefixture rejected; no race/perf/audible completion.
+- [ ] UIr6fixed3keymeasure SOURCEclearfutureonly; preserveungranted45cdselftestdisclosure UNKNOWNruntimefields. Do not infer finalfontrepair or resource acceptance.
+- [ ] T2builder/resolver/hand-off/presentationgate code remains draft; fullGP0ordered2Dcoverage notprovidedbycurrenttextured-onlycapture. Diagnosticgeometry never skips native drawing.

@@ -1,0 +1,225 @@
+--- a/main.cpp
++++ b/main.cpp
+@@ -2020,6 +2020,13 @@
+  * thread. */
+ static rab_bridge s_drc;
+ static bool       s_drc_ready = false;
++/* s67 combined telemetry (main thread only). s_drc_generation increments at
++ * every successful rab_init and every rab_free, so state derived from one
++ * bridge (pump baseline, pump snapshot cache) is never applied to the next. */
++static uint64_t      s_drc_generation = 0;
++static rab_telemetry s_pump_tel;
++static int           s_pump_tel_valid = 0;
++static uint64_t      s_pump_tel_generation = 0;
+ 
+ /* Observability + A/B. PSXRECOMP_AUDIO_LEGACY=1 keeps the historical push model
+  * (SDL_QueueAudio, no bridge) so the underrun baseline can be measured against
+@@ -2866,7 +2873,10 @@
+         psx_sdl_audio_close(sdl_audio_device);   /* stops the pull callback */
+         sdl_audio_device = 0;
+     }
+-    if (s_drc_ready) { rab_free(&s_drc); s_drc_ready = false; }
++    if (s_drc_ready) {
++        rab_free(&s_drc); s_drc_ready = false;
++        s_drc_generation++; s_pump_tel_valid = 0;   /* s67: bridge generation ends */
++    }
+     close_controller();
+     debug_server_shutdown();
+ }
+@@ -2883,7 +2893,10 @@
+         psx_sdl_audio_close(sdl_audio_device);
+         sdl_audio_device = 0;
+     }
+-    if (s_drc_ready) { rab_free(&s_drc); s_drc_ready = false; }
++    if (s_drc_ready) {
++        rab_free(&s_drc); s_drc_ready = false;
++        s_drc_generation++; s_pump_tel_valid = 0;   /* s67: bridge generation ends */
++    }
+     close_controller();
+     if (g_vk_active) {
+         vk_renderer_shutdown();
+@@ -2930,6 +2943,37 @@
+  * sdl_audio_fadein_left is declared with present_session_reset. */
+ static const int sdl_audio_fade_samples = 44100 * 40 / 1000;  /* 40 ms */
+ 
++/* s67 combined: underrun->event bridge from a snapshot copied inside the push
++ * critical section. Runs after the unlock, so audio_trace_event (single-writer
++ * ring, main thread) never runs under the audio lock.
++ *   - new bridge generation: the baseline restarts at 0 (counters restart at
++ *     rab_init), so an old larger baseline cannot hide new underruns;
++ *   - resync pending: THIS fresh snapshot (taken after the gap reset, after the
++ *     push) becomes the baseline and the flag is cleared; a cached snapshot is
++ *     never used for that;
++ *   - otherwise every increase of underrun_events is one AUDIO_EV_UNDERRUN
++ *     event carrying the delta, b=1 (as before). */
++static void s67_pump_after_push(const rab_telemetry *tel, int resync) {
++    static uint64_t prev_underruns = 0;
++    static uint64_t prev_generation = 0;
++    extern int g_audio_unmute_resync;
++    if (prev_generation != s_drc_generation) {
++        prev_generation = s_drc_generation;
++        prev_underruns = 0;
++    }
++    if (resync) {
++        prev_underruns = tel->stats.underrun_events;
++        g_audio_unmute_resync = 0;
++    } else if (tel->stats.underrun_events > prev_underruns) {
++        audio_trace_event(AUDIO_EV_UNDERRUN,
++                          (uint32_t)(tel->stats.underrun_events - prev_underruns), 1);
++        prev_underruns = tel->stats.underrun_events;
++    }
++    s_pump_tel = *tel;
++    s_pump_tel_valid = 1;
++    s_pump_tel_generation = s_drc_generation;
++}
++
+ static void sdl_audio_pump(bool discard_output = false) {
+     /* Guest-cycle SPU advance must not depend on host audio device/backpressure.
+      * Win↔Linux rollback forked on aux/spu when one peer skipped spu_render
+@@ -2966,19 +3010,16 @@
+          * Across a turbo mute the ring intentionally runs dry (the pump stops
+          * while the callback keeps pulling); those dry pulls are the mute,
+          * not gaps — resync past them instead of reporting them. */
+-        rab_stats st;
+-        rab_get_stats(&s_drc, &st);
+-        static uint64_t prev_underruns = 0;
++        /* s67 combined: no unlocked bridge read here. In bridge mode RENDER.b is
++         * now "bridge:post-push-cached-fill-ms-v1": the fill of the last snapshot
++         * taken inside the push lock of THIS bridge generation, or 0 when none is
++         * valid (before the first push, after re-init, or while a mute/cycle
++         * resync is pending). audio_stats reports this string as render_b.
++         * Underrun events are emitted after the push (s67_pump_after_push). */
+         extern int g_audio_unmute_resync;
+-        if (g_audio_unmute_resync) {
+-            prev_underruns = st.underrun_events;
+-            g_audio_unmute_resync = 0;
+-        } else if (st.underrun_events > prev_underruns) {
+-            audio_trace_event(AUDIO_EV_UNDERRUN,
+-                              (uint32_t)(st.underrun_events - prev_underruns), 1);
+-            prev_underruns = st.underrun_events;
+-        }
+-        queued = (uint32_t)st.last_fill_ms;
++        const int tel_ok = s_pump_tel_valid && !g_audio_unmute_resync &&
++                           s_pump_tel_generation == s_drc_generation;
++        queued = tel_ok ? (uint32_t)s_pump_tel.stats.last_fill_ms : 0u;
+         host_queue_ok = 1;
+     }
+ 
+@@ -3069,9 +3110,15 @@
+          * SDL_QueueAudio. Lock guards the SPSC ring against the pull callback.
+          * The T3 tap moves to sdl_drc_callback: what the device actually
+          * receives is the bridge's device-rate output, not this buffer. */
++        extern int g_audio_unmute_resync;
++        const int resync = g_audio_unmute_resync;   /* main-thread flag */
++        rab_telemetry tel;
+         psx_sdl_audio_lock(sdl_audio_device);
++        if (resync) rab_reset_gap_stats(&s_drc);    /* mute/cycle drain is not a gap; before the snapshot */
+         rab_push(&s_drc, sdl_audio_buf, frames);
++        rab_get_telemetry(&s_drc, &tel);            /* consistent: same lock as the callback */
+         psx_sdl_audio_unlock(sdl_audio_device);
++        s67_pump_after_push(&tel, resync);          /* trace + cache AFTER unlock */
+     }
+ }
+ 
+@@ -3090,11 +3137,34 @@
+  *     across the first ~50 ms of samples (sdl_audio_pump above). */
+ /* Bridge/legacy output health, surfaced through the audio_stats TCP command
+  * (debug_server.c) — no stderr probe; rule 3. */
+-extern "C" int psx_audio_out_stats(double *fill_ms, double *target_ms,
+-                                   uint64_t *underruns,
+-                                   uint64_t *overflow_drops, double *correction,
+-                                   int *legacy, int *host_rate)
++/* s67 combined getters: BEGIN */
++/* One locked snapshot serves every getter, so out.* and the gap fields of
++ * audio_stats come from the same moment. Callers run on the main/emulation
++ * thread (debug_server_poll safe point, runtime_perf_diag_tick), never inside
++ * the audio callback and never while holding the audio lock: the acquisition
++ * is not recursive. Without an open device there is no audio thread. */
++static void s67_audio_out_snapshot(rab_telemetry *tel)
+ {
++    if (sdl_audio_device) {
++        psx_sdl_audio_lock(sdl_audio_device);
++        rab_get_telemetry(&s_drc, tel);
++        psx_sdl_audio_unlock(sdl_audio_device);
++    } else {
++        rab_get_telemetry(&s_drc, tel);
++    }
++}
++
++extern "C" int psx_audio_out_stats_ex(double *fill_ms, double *target_ms,
++                                      uint64_t *underruns,
++                                      uint64_t *overflow_drops, double *correction,
++                                      int *legacy, int *host_rate,
++                                      uint64_t *gaps, uint64_t *max_gap_frames,
++                                      uint64_t *cur_gap_frames, uint64_t *gap_epoch,
++                                      uint64_t *bridge_generation, int *gap_ok)
++{
++    *gaps = 0; *max_gap_frames = 0; *cur_gap_frames = 0; *gap_epoch = 0;
++    *bridge_generation = s_drc_generation;
++    *gap_ok = 0;
+     *legacy = audio_legacy_mode() ? 1 : 0;
+     *host_rate = g_audio_host_rate;
+     if (*legacy || !s_drc_ready) {
+@@ -3108,15 +3178,44 @@
+         *correction = 0.0;
+         return sdl_audio_device != 0;
+     }
+-    rab_stats st;
+-    rab_get_stats(&s_drc, &st);
+-    *fill_ms = st.last_fill_ms;
++    rab_telemetry tel;
++    s67_audio_out_snapshot(&tel);
++    *fill_ms = tel.stats.last_fill_ms;
+     *target_ms = s_drc.cfg.target_ms;
+-    *underruns = st.underrun_events;
+-    *overflow_drops = st.overflow_drops;
+-    *correction = st.last_correction;
++    *underruns = tel.stats.underrun_events;
++    *overflow_drops = tel.stats.overflow_drops;
++    *correction = tel.stats.last_correction;
++    *gaps = tel.gap.gaps;
++    *max_gap_frames = tel.gap.max_gap_frames;
++    *cur_gap_frames = tel.gap.cur_gap_frames;
++    *gap_epoch = tel.gap_epoch;
++    *gap_ok = 1;
+     return 1;
+ }
++
++/* Old signature and return values unchanged (two callers). */
++extern "C" int psx_audio_out_stats(double *fill_ms, double *target_ms,
++                                   uint64_t *underruns,
++                                   uint64_t *overflow_drops, double *correction,
++                                   int *legacy, int *host_rate)
++{
++    uint64_t g, mx, cu, ep, gen; int ok;
++    return psx_audio_out_stats_ex(fill_ms, target_ms, underruns, overflow_drops,
++                                  correction, legacy, host_rate,
++                                  &g, &mx, &cu, &ep, &gen, &ok);
++}
++
++/* Gap-proposal getter kept for compatibility; same single snapshot. */
++extern "C" int psx_audio_out_gap_stats(uint64_t *gaps, uint64_t *max_gap_frames,
++                                       uint64_t *cur_gap_frames, uint64_t *gap_epoch)
++{
++    double f, t, c; uint64_t u, o, gen; int l, r, ok;
++    (void)psx_audio_out_stats_ex(&f, &t, &u, &o, &c, &l, &r,
++                                 gaps, max_gap_frames, cur_gap_frames, gap_epoch,
++                                 &gen, &ok);
++    return ok;
++}
++/* s67 combined getters: END */
+ 
+ /* Lightweight production-safe cadence probe. Unlike the TCP debug build this
+  * adds no per-block or per-instruction recording. All counter/timer work below
+@@ -13214,7 +13313,10 @@
+                 cfg.channels    = 2;
+                 cfg.source_rate = 44100.0;            /* SPU render rate */
+                 cfg.host_rate   = (double)have.freq;  /* actual device rate */
+-                if (rab_init(&s_drc, &cfg) == 0) s_drc_ready = true;
++                if (rab_init(&s_drc, &cfg) == 0) {
++                    s_drc_ready = true;
++                    s_drc_generation++; s_pump_tel_valid = 0;   /* s67: new bridge generation */
++                }
+             }
+             g_audio_host_rate = have.freq;
+             audio_trace_set_tap_rate(AUDIO_TAP_HOST, (uint32_t)have.freq);

@@ -1,0 +1,36 @@
+--- build_t1_fixture.r1.py	2026-11-14 13:16:44.803893800 -0700
++++ build_t1_fixture.r2.py	2026-11-14 13:29:17.091716100 -0700
+@@ -1,4 +1,8 @@
+-"""CPU-only fixture driver r1 for the T1 reprojection oracle r1 (claude-einhander; r0 driver ef0471c4 superseded, not to be run). Run ONLY under a grant naming
++"""CPU-only fixture driver r2 for the T1 reprojection oracle r1 (claude-einhander; drivers r0 ef0471c4 and r1 a66173d6
++are superseded and must not be run: both pinned gte.cpp files are CRLF, so r0/r1's exact LF anchors found nothing).
++r2 change only: each gte.cpp is pin-checked on its RAW bytes first, then CRLF is normalized to LF (a stray CR fails),
++then the anchors and extraction run; the result records raw sha and normalized block sha. BLOCK_SHA is the LF block.
++Run ONLY under a grant naming
+ the CPU, inside the required outer envelope
+   remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py
+   sha256 fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36
+@@ -54,7 +58,11 @@
+     return datetime.datetime.now(datetime.timezone.utc).isoformat()
+ 
+ 
+-def divide_block(text):
++def divide_block(raw_text):
++    # Called only after the raw-byte pin check. Normalize CRLF -> LF; any remaining CR is an error.
++    text = raw_text.replace("\r\n", "\n")
++    if "\r" in text:
++        raise ValueError("stray CR after CRLF normalization")
+     lines = text.split("\n")
+     starts = [i for i, l in enumerate(lines) if l == "static uint8_t s_gte_div_table[0x101];"]
+     div = [i for i, l in enumerate(lines) if l.startswith("static int32_t gte_divide(")]
+@@ -135,7 +143,9 @@
+         result["inputs"] = {n: dict(path=str(p), sha256=s) for n, (p, s) in pins.items()}
+         b61 = divide_block(data["gte_v61.cpp"].decode("utf-8"))
+         bcan = divide_block(data["gte_canonical.cpp"].decode("utf-8"))
+-        ext = dict(label="extract", block_sha256=sha(b61.encode("utf-8")), v61_equals_canonical=b61 == bcan)
++        ext = dict(label="extract", block_sha256=sha(b61.encode("utf-8")), v61_equals_canonical=b61 == bcan,
++                   normalization="raw pin, then CRLF->LF, then anchors",
++                   raw_sha256={n: sha(data[n]) for n in ("gte_v61.cpp", "gte_canonical.cpp")})
+         ext["passed"] = ext["v61_equals_canonical"] and ext["block_sha256"] == BLOCK_SHA
+         rows.append(ext)
+         if not ext["passed"]:

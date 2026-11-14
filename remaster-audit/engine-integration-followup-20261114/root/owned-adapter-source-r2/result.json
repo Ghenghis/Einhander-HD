@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-11-14T20:07:39.646368+00:00",
+  "source": "C:\\github\\Einhander\\remaster-audit\\owned_gl_adapter_observation.py",
+  "sha256": "c457b58ed670f878dd30fb4962639dbfc18f407e4223685710f498d29a0ded34",
+  "bytes": 12474,
+  "syntax_valid": true,
+  "imported": false,
+  "tests_executed": false,
+  "os_observation_executed": false,
+  "socket_query_executed": false,
+  "game_run": false,
+  "gpu_run": false,
+  "integrated_into_runner": false,
+  "prior_source": "b0c24540ac378e9f36425ace54fac6bfebd81449a8bb885ba700fc7601983021",
+  "peer_review": "813f16979685a8955ce005191efd68d0fec2ae52af79c3ab5a0e204891b3ef1b",
+  "changes": [
+    "connected server/client TCP4tuple+PID checked before command; exact peer receipt",
+    "pure peer-selection and reply-decoding helpers for future controls",
+    "finite float parser rejects1e999; duplicate keys and NaN rejected",
+    "startup dev/inode recorded at construction and matched at finish",
+    "construction errors and external watchdog requirements documented"
+  ],
+  "remaining": [
+    "review revised collector",
+    "focused pure/owned-child transport controls on fresh grants",
+    "wire real runner; compile identity patch; separately qualify private game"
+  ]
+}

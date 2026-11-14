@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T19:57:26.663853+00:00",
+  "updated_at_utc": "2026-11-14T20:38:42.914939+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,8 +912,8 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 44036,
-    "bound_end_utc": "2026-11-14T20:20:41.609Z",
+    "pid": 39248,
+    "bound_end_utc": "2026-11-14T20:48:16.554Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -1004,5 +1004,24 @@
     "game_run": false,
     "gpu_run": false,
     "live_accepted": false
+  },
+  "engine_integration_followup": {
+    "evidence": "docs/ENGINE-INTEGRATION-FOLLOWUP-20261114.md",
+    "pr7_syntax_passed": true,
+    "pr7_object_compile_passed": false,
+    "pr7_failure": "relativeoutresolvedtwice",
+    "pr7_controls_executed": false,
+    "pr7_guard77_executed": false,
+    "builder_fix": "b0e08a6a SOURCEclear/UNRUN",
+    "collector": "c457 source-only/UNRUN/unwired",
+    "observer_io": "r3/36controlsUNRUN",
+    "t1": "r1/driverr2/36controlsUNRUN",
+    "t2": "sourceba059e13 received/unreviewed/uncompiled/unrun;49authoredchecks; texturedsubsetnotfulldrawcoverage",
+    "combined_audio": "received/unreviewed/uncompiled/unrun",
+    "ui_selftest_deviation": "45cd60bc disclosed, runtimefieldsUNKNOWN/notresourceproof",
+    "game_run": false,
+    "gpu_run": false,
+    "live_accepted": false,
+    "installed": false
   }
 }

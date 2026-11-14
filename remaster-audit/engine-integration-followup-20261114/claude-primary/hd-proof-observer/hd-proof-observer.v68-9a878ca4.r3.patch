@@ -1,0 +1,354 @@
+diff --git a/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c b/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
+index e5bd0f2..89b7af1 100644
+--- a/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
++++ b/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
+@@ -3233,6 +3233,142 @@ void gl_renderer_threat_draw_get(ThreatDrawState *out){
+     out->age_frames=s_frame_count>=out->frame?s_frame_count-out->frame:UINT64_MAX;
+     if(out->age_frames>12){out->valid=0;out->count=0;}
+ }
++/* HD-PROOF-OBSERVER BEGIN (r3) */
++/* Proof observer (PSXRECOMP_HD_PROOF_LOG). hd_proof_observer_on() is the only
++ * place the log is opened. It runs once, from whichever of the first receipt,
++ * the first control read or the first HD uniform setup comes first, so no gate
++ * can be set before the observer exists. With the variable unset, its first
++ * call does one getenv and one write (s_hd_proof_init_done = 1), then it
++ * returns 0 forever: the draw path does no proof I/O and no per-draw proof-state
++ * writes beyond the pre-existing s_hd_proof_counts.
++ *
++ * Two states: s_hd_proof_log_on ("observing": gate capture and per-draw counts,
++ * reported in .stats.json) and s_hd_proof_file (the receipt log). Reaching a cap
++ * writes the reserved final marker and closes the log; observing continues ONLY
++ * if that close succeeded. Any write, flush or close failure, an unknown start
++ * offset or a failed open stops observing: no further receipt I/O happens in
++ * this process. receipt_stop_reason keeps the FIRST reason; close failures are
++ * also counted on their own (receipt_close_errors). */
++/* HD-PROOF-IO BEGIN (r3): self-contained; needs only <stdio.h>, <stdint.h>,
++ * <stdlib.h> (getenv) and a uint64_t s_frame_count, so a CPU fixture can
++ * compile these exact bytes with shimmed stdio. */
++#define HD_PROOF_SEEN_MAX 4096u
++#define HD_PROOF_MAX_LINES 32768u                /* hard, includes the final marker */
++#define HD_PROOF_MAX_BYTES (16u * 1024u * 1024u) /* hard, bytes THIS process appends */
++#define HD_PROOF_LINE_MAX 2048
++#define HD_PROOF_EPOCH_MAX 255u
++#define HD_PROOF_MARKER "{\"event\":\"proof log capped\"}\n"
++#define HD_PROOF_MARKER_BYTES (sizeof HD_PROOF_MARKER - 1u)
++/* receipt_stop_reason in .stats.json: why the receipt log is not (or no longer) written. */
++enum { HD_PROOF_OPEN_OK, HD_PROOF_OPEN_FAILED, HD_PROOF_OFFSET_UNKNOWN, HD_PROOF_WRITE_FAILED,
++       HD_PROOF_CLOSE_FAILED };
++static FILE *s_hd_proof_file;
++static int s_hd_proof_init_done, s_hd_proof_log_on, s_hd_proof_capped, s_hd_proof_open_error;
++static long s_hd_proof_start_offset = -1;   /* file size before this process appended */
++static uint64_t s_hd_proof_bytes, s_hd_proof_write_errors, s_hd_proof_dropped_lines;
++static uint64_t s_hd_proof_close_errors;
++static unsigned s_hd_proof_epoch;        /* from PSXRECOMP_HD_PROOF_CONTROL, only while observing */
++static unsigned s_hd_proof_seen_epoch;   /* epoch the receipts and gate counts belong to */
++static unsigned s_hd_proof_lines;
++
++/* Stop observing for the run; the first reason wins. */
++static void hd_proof_stop(int reason) {
++    if (!s_hd_proof_open_error) s_hd_proof_open_error = reason;
++    s_hd_proof_log_on = 0;
++}
++
++/* The one place the receipt FILE is closed. The FILE is NULL after the first
++ * call whatever fclose returns, so it is never closed twice. A failing fclose
++ * (buffered bytes may be lost) is a close error and stops observing; it calls
++ * no other closer, so there is no recursion. */
++static void hd_proof_close_log(void) {
++    FILE *file = s_hd_proof_file;
++    if (!file) return;
++    s_hd_proof_file = NULL;
++    if (fclose(file) != 0) {
++        ++s_hd_proof_close_errors;
++        hd_proof_stop(HD_PROOF_CLOSE_FAILED);
++    }
++}
++
++/* Write failure: count it, stop observing (reason kept if earlier), close once. */
++static void hd_proof_fail(int reason) {
++    ++s_hd_proof_write_errors;
++    hd_proof_stop(reason);
++    hd_proof_close_log();
++}
++
++/* Writes n bytes as one line. Bytes count what fwrite actually accepted, even
++ * on a partial write; the line counts only when the whole line and the flush
++ * succeeded. */
++static int hd_proof_write_raw(const char *p, size_t n) {
++    const size_t wrote = fwrite(p,1,n,s_hd_proof_file);
++    s_hd_proof_bytes += (uint64_t)wrote;
++    if (wrote != n || fflush(s_hd_proof_file) != 0) { hd_proof_fail(HD_PROOF_WRITE_FAILED); return 0; }
++    ++s_hd_proof_lines;
++    return 1;
++}
++
++/* Appends one complete, already formatted line. The final marker's line and
++ * HD_PROOF_MARKER_BYTES are reserved from both hard caps, so a normal line is
++ * refused one line and one marker early; the marker is then written inside the
++ * caps and the log is closed (observing and counting continue). An over-long
++ * or failed format is dropped and counted, never split or truncated. */
++static void hd_proof_put(const char *line, int n) {
++    if (!s_hd_proof_file) return;
++    if (n <= 0 || n >= HD_PROOF_LINE_MAX) { ++s_hd_proof_dropped_lines; return; }
++    if (s_hd_proof_lines + 2u > HD_PROOF_MAX_LINES ||
++        s_hd_proof_bytes + (uint64_t)n + HD_PROOF_MARKER_BYTES > HD_PROOF_MAX_BYTES) {
++        s_hd_proof_capped = 1;
++        if (hd_proof_write_raw(HD_PROOF_MARKER,HD_PROOF_MARKER_BYTES)) hd_proof_close_log();
++        return;
++    }
++    hd_proof_write_raw(line,(size_t)n);
++}
++
++static int hd_proof_observer_on(void) {
++    if (!s_hd_proof_init_done) {
++        const char *path = getenv("PSXRECOMP_HD_PROOF_LOG");
++        s_hd_proof_init_done = 1;
++        if (path && *path) {
++            s_hd_proof_file = fopen(path, "ab");
++            if (!s_hd_proof_file) hd_proof_stop(HD_PROOF_OPEN_FAILED);
++        }
++        if (s_hd_proof_file) {
++            /* Never append at an unknown offset: a failed seek/tell (including a
++             * Windows 32-bit long overflow past 2 GiB, where ftell returns -1)
++             * fails closed before anything is written. Reason 2 is recorded
++             * before the close, so a failing close keeps reason 2 and only
++             * adds a close error. */
++            long offset = -1;
++            if (fseek(s_hd_proof_file,0,SEEK_END) == 0) offset = ftell(s_hd_proof_file);
++            if (offset < 0) {
++                hd_proof_stop(HD_PROOF_OFFSET_UNKNOWN);
++                hd_proof_close_log();
++            } else {
++                s_hd_proof_start_offset = offset;
++                s_hd_proof_log_on = 1;
++                s_hd_proof_seen_epoch = s_hd_proof_epoch;
++                char line[256];
++                const int n = snprintf(line,sizeof line,"{\"event\":\"proof log opened\",\"schema\":\"hd-proof-receipt-v5\","
++                    "\"frame\":%llu,\"epoch\":%u,\"start_offset\":%ld,\"max_bytes\":%u,\"max_lines\":%u}\n",
++                    (unsigned long long)s_frame_count,s_hd_proof_seen_epoch,s_hd_proof_start_offset,
++                    HD_PROOF_MAX_BYTES,HD_PROOF_MAX_LINES);
++                hd_proof_put(line,n);
++            }
++        }
++    }
++    return s_hd_proof_log_on;
++}
++/* HD-PROOF-IO END (r3) */
++
++typedef struct { int valid, skin, detail; uint64_t generation; const HdSkinConfig *material; } HdProofGate;
++static HdProofGate s_hd_proof_gate;      /* gate of the HD uniforms most recently set */
++static uint64_t s_hd_proof_epoch_frame;
++static uint64_t s_hd_proof_gate_counts[3][4]; /* this epoch: stock/player/enemy x (skin*2+detail) */
++static uint64_t s_hd_proof_gate_unrecorded, s_hd_proof_gate_mismatches;
++static unsigned s_hd_proof_saturated;
++
+ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
+                                   const HdTextureDrawQuery *q,
+                                   const HdTexturePixels *px, int semi,
+@@ -3240,27 +3376,71 @@ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
+                                   const int *us, const int *vs) {
+     if(!px)player_draw_on_source(m,q,xs,ys);
+     hd_research_on_draw(m,q,px,semi,xs,ys,us,vs);
+-    static int initialized = 0;
+-    static FILE *log = NULL;
+-    static struct { uint32_t th, ph; int semi, replacement; } seen[4096];
++    /* First sighting per (key, semi, replacement, gate, material generation) and
++     * epoch: a live material change or a different gate on the same key is a
++     * new receipt, not hidden behind the key's earlier one. */
++    static struct { uint32_t th, ph; int semi, replacement, skin, detail; uint64_t generation; } seen[HD_PROOF_SEEN_MAX];
+     static unsigned nseen = 0;
+-    if (!initialized) {
+-        const char *path = getenv("PSXRECOMP_HD_PROOF_LOG");
+-        initialized = 1;
+-        if (path && *path) log = fopen(path, "ab");
++    if (!hd_proof_observer_on()) return;
++    char line[HD_PROOF_LINE_MAX];
++    int n;
++    if (s_hd_proof_seen_epoch != s_hd_proof_epoch) {
++        /* A new epoch re-proves every key: first sightings and gate counts restart. */
++        s_hd_proof_seen_epoch = s_hd_proof_epoch; nseen = 0; s_hd_proof_saturated = 0;
++        memset(s_hd_proof_gate_counts,0,sizeof s_hd_proof_gate_counts);
++        s_hd_proof_gate_unrecorded = s_hd_proof_gate_mismatches = 0;
++        n = snprintf(line,sizeof line,"{\"event\":\"proof epoch\",\"epoch\":%u,\"frame\":%llu,\"epoch_frame\":%llu}\n",
++                     s_hd_proof_seen_epoch,(unsigned long long)s_frame_count,(unsigned long long)s_hd_proof_epoch_frame);
++        hd_proof_put(line,n);
++    }
++    /* Every replacement draw is counted from the gate its uniforms actually
++     * used (one site sets them; a batch flushes before any uniform change). */
++    HdProofGate gate; memset(&gate,0,sizeof gate);
++    if (px) {
++        gate = s_hd_proof_gate;
++        if (!gate.valid) ++s_hd_proof_gate_unrecorded;
++        else ++s_hd_proof_gate_counts[gate.material==&s_hd_skin?1:gate.material==&s_hd_skin_enemy?2:0]
++                                      [gate.skin*2+gate.detail];
++    }
++    if (!s_hd_proof_file) return;   /* capped or closed: counts above still cover every draw */
++    const uint64_t generation = gate.valid ? gate.generation : s_hd_live_generation;
++    if (nseen >= HD_PROOF_SEEN_MAX) {
++        if (!s_hd_proof_saturated) {
++            n = snprintf(line,sizeof line,"{\"event\":\"proof receipts saturated\",\"epoch\":%u,\"frame\":%llu,"
++                         "\"keys\":%u,\"lines\":%u}\n",s_hd_proof_seen_epoch,(unsigned long long)s_frame_count,
++                         nseen,s_hd_proof_lines);
++            hd_proof_put(line,n);
++        }
++        s_hd_proof_saturated = 1;
++        return;
+     }
+-    if (!log || nseen >= sizeof seen / sizeof seen[0]) return;
+     unsigned i;
+     for (i = 0; i < nseen; ++i)
+         if (seen[i].th == m->texture_hash && seen[i].ph == m->palette_hash &&
+-            seen[i].semi == semi && seen[i].replacement == (px != NULL)) return;
++            seen[i].semi == semi && seen[i].replacement == (px != NULL) &&
++            seen[i].skin == gate.skin && seen[i].detail == gate.detail &&
++            seen[i].generation == generation) return;
+     seen[nseen].th=m->texture_hash; seen[nseen].ph=m->palette_hash;
+-    seen[nseen].semi=semi; seen[nseen++].replacement=(px != NULL);
++    seen[nseen].semi=semi; seen[nseen].replacement=(px != NULL);
++    seen[nseen].skin=gate.skin; seen[nseen].detail=gate.detail; seen[nseen++].generation=generation;
+     const HdSkinConfig *material=hd_skin_for_draw(m->texture_hash,m->palette_hash);
+     const unsigned native_width=m->upload_width_words*(q->depth==0?4u:q->depth==1?2u:1u);
+     const HdSkinDetailTexture *detail=hd_skin_detail_for_draw(material,m->texture_hash,m->palette_hash,
+         native_width,m->upload_height,m->upload_serial);
+-    fprintf(log,"{\"key\":\"%08X-%08X\",\"frame\":%llu,"
++    int material_applied = px && material && material->enabled && material->profile;
++    int detail_applied = px && detail;
++    int recompute_match = 1;
++    if (px && gate.valid) {
++        recompute_match = gate.material == material && gate.skin == material_applied &&
++                          gate.detail == detail_applied;
++        if (!recompute_match) ++s_hd_proof_gate_mismatches;
++        material_applied = gate.skin; detail_applied = gate.detail;
++    }
++    /* One snprintf per line; a line longer than HD_PROOF_LINE_MAX (for example an
++     * unusually long profile id) is dropped and counted, never split. */
++    n = snprintf(line,sizeof line,"{\"epoch\":%u,\"material_generation\":%llu,\"gate_source\":\"%s\","
++            "\"gate_recompute_match\":%s,"
++            "\"key\":\"%08X-%08X\",\"frame\":%llu,"
+             "\"replacement_size\":[%u,%u],\"native_words\":[%u,%u],"
+             "\"depth\":%u,\"semi\":%d,\"source_kind\":\"%s\",\"clut_xy\":[%u,%u],"
+             "\"uv_bounds\":[%u,%u,%u,%u],\"xy\":[[%d,%d],[%d,%d],[%d,%d]],"
+@@ -3269,6 +3449,8 @@ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
+             "\"material_profile\":\"%s\",\"material_channel\":\"%s\","
+             "\"material_applied\":%s,\"material_strength\":%.4f,"
+             "\"detail_applied\":%s,\"detail_size\":[%d,%d],\"detail_strength\":%.4f,\"detail_scale\":%.4f}\n",
++            s_hd_proof_seen_epoch,(unsigned long long)generation,
++            !px ? "none" : gate.valid ? "uniform" : "recomputed",recompute_match ? "true" : "false",
+             m->texture_hash,m->palette_hash,(unsigned long long)s_frame_count,
+             px ? px->width : 0,px ? px->height : 0,m->upload_width_words,m->upload_height,q->depth,
+             semi,m->exact_region ? "exact_region" : m->upload_serial ? "upload" : "native_page",q->clut_x,q->clut_y,q->u_first,q->v_first,q->u_last,q->v_last,
+@@ -3277,18 +3459,21 @@ static void hd_proof_draw_receipt(const HdTextureSourceMatch *m,
+             px ? "replacement GL draw submitted" : "source draw query matched",
+             material && material->enabled && material->profile ? material->profile->id : "stock",
+             material==&s_hd_skin ? "player" : material==&s_hd_skin_enemy ? "enemy" : "stock",
+-            px && material && material->enabled && material->profile ? "true" : "false",
++            material_applied ? "true" : "false",
+             material ? (double)material->strength : 0.0,
+-            px && detail ? "true":"false",detail?detail->width:0,detail?detail->height:0,
++            detail_applied ? "true":"false",detail?detail->width:0,detail?detail->height:0,
+             detail?(double)detail->config.strength:0.0,detail?(double)detail->config.scale:0.0);
+-    fflush(log);
++    hd_proof_put(line,n);
+ }
+ 
+-/* Isolated A/B pilot only: an optional control file containing 0 selects native
+- * draws, 1 selects the loaded replacements. Read at most once per guest frame;
+- * no global settings or pack files are rewritten by this diagnostic. */
++/* Isolated A/B pilot only: an optional control file whose first byte 0 selects
++ * native draws and 1 selects the loaded replacements. An optional " <epoch>"
++ * (decimal, at most 3 digits) after that byte names the proof epoch; without it
++ * the epoch advances on each observed 0/1 change after the first read. Epochs
++ * never decrease and are clamped to HD_PROOF_EPOCH_MAX. Read at most once per
++ * guest frame; no global settings or pack files are rewritten. */
+ static int hd_proof_replacements_enabled(void) {
+-    static int initialized = 0, enabled = 1;
++    static int initialized = 0, enabled = 1, have_value = 0;
+     static const char *path = NULL;
+     static uint64_t last_frame = ~(uint64_t)0;
+     if (!initialized) {
+@@ -3297,11 +3482,32 @@ static int hd_proof_replacements_enabled(void) {
+     }
+     if (!path || !*path || last_frame == s_frame_count) return enabled;
+     last_frame = s_frame_count;
++    const int observing = hd_proof_observer_on();   /* epoch state only while the log is open */
+     FILE *file = fopen(path, "rb");
+     if (file) {
+-        int value = fgetc(file);
+-        if (value == '0' || value == '1') enabled = value == '1';
++        char text[8];
++        const size_t got = fread(text, 1, sizeof text - 1, file);
+         fclose(file);
++        text[got] = 0;
++        if (got && (text[0] == '0' || text[0] == '1')) {
++            const int value = text[0] == '1';
++            if (observing) {
++                unsigned epoch = s_hd_proof_epoch + (have_value && value != enabled ? 1u : 0u);
++                if (text[1] == ' ' && text[2] >= '0' && text[2] <= '9') {
++                    unsigned named = 0;
++                    for (size_t k = 2; k < 5 && text[k] >= '0' && text[k] <= '9'; ++k)
++                        named = named * 10u + (unsigned)(text[k] - '0');
++                    epoch = named;
++                }
++                if (epoch > HD_PROOF_EPOCH_MAX) epoch = HD_PROOF_EPOCH_MAX;
++                if (epoch > s_hd_proof_epoch) {
++                    s_hd_proof_epoch = epoch;
++                    s_hd_proof_epoch_frame = s_frame_count;
++                }
++                have_value = 1;
++            }
++            enabled = value;   /* pre-existing behaviour, with or without the log */
++        }
+     }
+     return enabled;
+ }
+@@ -3323,7 +3529,7 @@ static void hd_proof_stats_tick(void) {
+     fprintf(file,"{\"frame\":%llu,\"attempts\":%llu,\"source_matched\":%llu,"
+             "\"decoded_ready\":%llu,\"fully_covered\":%llu,\"replacement_draws\":%llu,"
+             "\"texture_window_fallbacks\":%llu,\"decode_pending\":%llu,\"decode_unavailable\":%llu,"
+-            "\"page_draws\":%llu,\"upload_draws\":%llu,\"gpu_cache_hits\":%llu,\"decode_budget_bytes\":%llu}\n",
++            "\"page_draws\":%llu,\"upload_draws\":%llu,\"gpu_cache_hits\":%llu,\"decode_budget_bytes\":%llu,",
+             (unsigned long long)s_frame_count,(unsigned long long)s_hd_proof_counts[0],
+             (unsigned long long)s_hd_proof_counts[1],(unsigned long long)s_hd_proof_counts[2],
+             (unsigned long long)s_hd_proof_counts[3],(unsigned long long)s_hd_proof_counts[4],
+@@ -3332,8 +3538,29 @@ static void hd_proof_stats_tick(void) {
+             (unsigned long long)s_hd_proof_counts[8],(unsigned long long)s_hd_proof_counts[9],
+             (unsigned long long)s_hd_proof_counts[10],
+             (unsigned long long)s_hd_decode_budget);
++    /* Gate counts cover the epoch the receipt observer is currently in. */
++    uint64_t (*g)[4] = s_hd_proof_gate_counts;
++    fprintf(file,"\"receipt_schema\":\"hd-proof-receipt-v5\",\"receipt_observing\":%d,"
++            "\"receipt_file_open\":%d,\"receipt_stop_reason\":%d,\"receipt_close_errors\":%llu,"
++            "\"receipt_dropped_lines\":%llu,"
++            "\"receipt_start_offset\":%ld,\"receipt_bytes\":%llu,\"receipt_capped\":%d,"
++            "\"receipt_write_errors\":%llu,\"epoch\":%u,"
++            "\"epoch_frame\":%llu,\"gate_count_order\":[\"none\",\"detail\",\"material\",\"material+detail\"],"
++            "\"gate_counts\":{\"stock\":[%llu,%llu,%llu,%llu],\"player\":[%llu,%llu,%llu,%llu],"
++            "\"enemy\":[%llu,%llu,%llu,%llu]},\"gate_unrecorded\":%llu,\"gate_recompute_mismatches\":%llu,"
++            "\"receipt_lines\":%u,\"receipt_saturated\":%u,\"control_epoch\":%u}\n",
++            s_hd_proof_log_on,s_hd_proof_file != NULL,s_hd_proof_open_error,
++            (unsigned long long)s_hd_proof_close_errors,(unsigned long long)s_hd_proof_dropped_lines,
++            s_hd_proof_start_offset,(unsigned long long)s_hd_proof_bytes,s_hd_proof_capped,
++            (unsigned long long)s_hd_proof_write_errors,s_hd_proof_seen_epoch,(unsigned long long)s_hd_proof_epoch_frame,
++            (unsigned long long)g[0][0],(unsigned long long)g[0][1],(unsigned long long)g[0][2],(unsigned long long)g[0][3],
++            (unsigned long long)g[1][0],(unsigned long long)g[1][1],(unsigned long long)g[1][2],(unsigned long long)g[1][3],
++            (unsigned long long)g[2][0],(unsigned long long)g[2][1],(unsigned long long)g[2][2],(unsigned long long)g[2][3],
++            (unsigned long long)s_hd_proof_gate_unrecorded,(unsigned long long)s_hd_proof_gate_mismatches,
++            s_hd_proof_lines,s_hd_proof_saturated,s_hd_proof_epoch);
+     fclose(file);
+ }
++/* HD-PROOF-OBSERVER END (r3) */
+ 
+ /* In-memory "already dumped" set. Without it every textured primitive of every
+  * frame pays an fopen probe on the same few hundred paths. Open addressing over
+@@ -4727,6 +4954,11 @@ static int hd_on_textured_prim_impl(const int *xs, const int *ys,
+         const HdSkinDetailTexture *detail=hd_skin_detail_for_draw(material,m.texture_hash,m.palette_hash,
+             img_w,m.upload_height,m.upload_serial);
+         p_glUniform1i(s_hd_uDetailEnabled,detail!=NULL);
++        if (hd_proof_observer_on()) {   /* the gate these uniforms carry, for receipts only */
++            s_hd_proof_gate.valid=1; s_hd_proof_gate.material=material;
++            s_hd_proof_gate.skin=material && material->enabled && material->profile;
++            s_hd_proof_gate.detail=detail!=NULL; s_hd_proof_gate.generation=s_hd_live_generation;
++        }
+         if (detail) {
+             p_glActiveTexture(PSXGL_TEXTURE0+1);
+             glBindTexture(GL_TEXTURE_2D,detail->texture);

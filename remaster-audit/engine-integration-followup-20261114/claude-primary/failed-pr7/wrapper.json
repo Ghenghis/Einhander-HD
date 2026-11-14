@@ -1,0 +1,56 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "python",
+  "remix-probe-r5/build_r7_cpu.py",
+  "--cpu",
+  "15",
+  "--out-root",
+  "remix-probe-r5/runs/PR7-1-20261114T202434Z",
+  "--expect-source-sha",
+  "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary",
+ "wrapper_pid": 34344,
+ "wrapper_create_time": 1794687874.9298112,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 120.0,
+ "rc": 1,
+ "created_utc": "2026-11-14T20:24:35.131913+00:00",
+ "precheck": {
+  "system_cpu_pct": 50.1,
+  "free_gib": 57.36,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T20:24:36.136087+00:00"
+ },
+ "child_pid": 42144,
+ "child_create_time": 1794687876.1376517,
+ "job_assigned_before_resume": true,
+ "start_utc": "2026-11-14T20:24:36.144206+00:00",
+ "child_exit_code": 1,
+ "timeout_killed": false,
+ "elapsed_s": 1.629,
+ "end_utc": "2026-11-14T20:24:37.775022+00:00",
+ "job": {
+  "active": 0,
+  "total": 5,
+  "terminated": 0,
+  "user_s": 0.953125,
+  "kernel_s": 0.4375
+ },
+ "descendants_seen": [
+  38848,
+  44384
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 1
+}

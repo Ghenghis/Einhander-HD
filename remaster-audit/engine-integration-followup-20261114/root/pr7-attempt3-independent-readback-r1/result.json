@@ -1,0 +1,71 @@
+{
+  "at_utc": "2026-11-14T20:27:01.054582+00:00",
+  "readback_passed": true,
+  "build_passed": false,
+  "sources_and_receipts": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\run_rc2.r1.py",
+      "sha256": "cd3988af06cd348cdef0c9a14e6a87a180b5aea09bb6207eeeb9d3d80a4ea9dd",
+      "bytes": 13740
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\build_r7_cpu.py",
+      "sha256": "a9475b3c0f7e4c59f637fbcab23f690c63393aa91bccf9c14210289aaebf1b4c",
+      "bytes": 5987
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp",
+      "sha256": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05",
+      "bytes": 39881
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-release-header\\remix_c.h",
+      "sha256": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c",
+      "bytes": 61424
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-20261114T202434Z-rc.json",
+      "sha256": "97a2738c26f612f3fe2a638695fe0a831ba734a73fae6b7ba798008570187fd8",
+      "bytes": 1353
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-20261114T202434Z\\20261114T202436Z\\result.json",
+      "sha256": "9391f12c5e92af4905f2be7f7f81312162ed4e1d0ea4e76e234e464261532d8c",
+      "bytes": 2359
+    }
+  ],
+  "known_identities_checked": [
+    {
+      "pid": 34344,
+      "creation_unix": 1794687874.9298112,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 42144,
+      "creation_unix": 1794687876.1376517,
+      "same_identity_alive": false
+    }
+  ],
+  "compile_child_creation_independently_verified": false,
+  "reported_job_active": 0,
+  "source_syntax_passed": true,
+  "syntax_seconds": 1.382,
+  "object_compile_passed": false,
+  "failure": "relative output path resolved again under child cwd=out; file could not be opened",
+  "wrapper_elapsed_s": 1.629,
+  "wrapper_exit": 1,
+  "hard_job_memory_cap": false,
+  "hard_memory_scope": "approved cd3988af wrapper has no hard Job memory cap",
+  "artifacts": {
+    "probe.obj": false,
+    "sdk-modern-gl-r7.exe": false
+  },
+  "cpu_controls_executed": false,
+  "guard77_executed": false,
+  "link_executed": false,
+  "compiler_reexecuted": false,
+  "gpu_run": false,
+  "game_run": false,
+  "dll_loaded": false,
+  "live_qualified": false
+}

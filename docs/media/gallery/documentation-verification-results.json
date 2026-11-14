@@ -1,6 +1,6 @@
 {
-  "generated_at_utc": "2026-11-14T19:57:59.282Z",
-  "base_head_before_documentation_commit": "7c864a7fd463e979625f5fb799433b8481739cd9",
+  "generated_at_utc": "2026-11-14T20:39:33.605Z",
+  "base_head_before_documentation_commit": "5381ad1cec24eb25bf41f5fc316aa7e8aa15c3fa",
   "verifier": {
     "path": "remaster-audit/verify_documentation.mjs",
     "sha256": "050c5f183e1bacab6875eda9ccbf3408b6de07fdc5905cfca9ba2ca5991fd666"
@@ -23,9 +23,9 @@
     ],
     "e2e_gameplay_acceptance": "pending; no performance, audio, whole-stage or seven-stage completion claim"
   },
-  "document_count": 71,
+  "document_count": 73,
   "json_count": 97,
-  "local_links_checked": 1092,
+  "local_links_checked": 1104,
   "external_urls_not_fetched": [
     "https://code.claude.com/docs/en/hooks#stop",
     "https://docs.omniverse.nvidia.com/kit/docs/rtx_remix/latest/docs/gettingstarted/learning-toolkitsetup.html",
@@ -72,9 +72,9 @@
     {
       "path": "coordination/CLAUDE-SESSIONS-20261114.json",
       "bytes": 17988,
-      "working_tree_sha256": "9d7cf3a1e676f733fdf34b4a95f54c1d62f301a187d0344aef4d57f159ab1fbe",
-      "git_index_blob": "e5f8aa241d0a5e871c62ad1b696c355229d887eb",
-      "git_index_sha256": "6d885d0c904f9578776b6d83874e0f29fa27423ae43448614e757040921b796e",
+      "working_tree_sha256": "b7e12b9aef53553259e1433c1362d640b9b183043e91984c6f0f104b48b2c73a",
+      "git_index_blob": "cbb40a2f9debd24ac5d6224fa8720ab4b231d4d5",
+      "git_index_sha256": "d673270fa0b586d6182ca7f3ec919b2a274a751eed9c40340e311d9d091cbfb4",
       "git_index_bytes": 17676
     },
     {
@@ -103,11 +103,11 @@
     },
     {
       "path": "coordination/Codex-HANDOFF.md",
-      "bytes": 6373,
-      "working_tree_sha256": "c03463b37d4a8d79c41c758dae8b28b6592c742f7ab5fcee16ab85b649161842",
-      "git_index_blob": "079ddf63422379a154521a1c26aa4fcd464bccc3",
-      "git_index_sha256": "c03463b37d4a8d79c41c758dae8b28b6592c742f7ab5fcee16ab85b649161842",
-      "git_index_bytes": 6373
+      "bytes": 7284,
+      "working_tree_sha256": "ca8e0ae9f4fc69098e9a7f3aadde06c5a4651ac582b5efd364a7e9078ed28ef7",
+      "git_index_blob": "d24478302b8290f6472fa9e64ff4506a94e42dd1",
+      "git_index_sha256": "ca8e0ae9f4fc69098e9a7f3aadde06c5a4651ac582b5efd364a7e9078ed28ef7",
+      "git_index_bytes": 7284
     },
     {
       "path": "coordination/Codex-WORK-QUEUE-HISTORY-20261114T1838.md",
@@ -127,11 +127,11 @@
     },
     {
       "path": "coordination/Codex-WORK-QUEUE.md",
-      "bytes": 3497,
-      "working_tree_sha256": "e24658d834a8a92197f29193f17390fd4809f1671c87ee035c815972b03d1987",
-      "git_index_blob": "9d555890b264ab40e2c4397062397e2b211dd0e5",
-      "git_index_sha256": "e24658d834a8a92197f29193f17390fd4809f1671c87ee035c815972b03d1987",
-      "git_index_bytes": 3497
+      "bytes": 4745,
+      "working_tree_sha256": "88c9c60fbd1634b4445d996d974b32cba3766e7d24d832fbdc95a823d60bcd9e",
+      "git_index_blob": "a4465811f5c8a14fb9a34fef6510010e05019ac3",
+      "git_index_sha256": "88c9c60fbd1634b4445d996d974b32cba3766e7d24d832fbdc95a823d60bcd9e",
+      "git_index_bytes": 4745
     },
     {
       "path": "coordination/DEVIN-HANDOFF.md",
@@ -151,11 +151,11 @@
     },
     {
       "path": "docs/4K-REMIX-IMPLEMENTATION-PLAN.md",
-      "bytes": 33520,
-      "working_tree_sha256": "fdead7f366a100aee2d40c886f036a0e4e82841afccea9b98329d0d6d54460ef",
-      "git_index_blob": "77c07652129ecaf0452d9dc663b0f66f6802deba",
-      "git_index_sha256": "fdead7f366a100aee2d40c886f036a0e4e82841afccea9b98329d0d6d54460ef",
-      "git_index_bytes": 33520
+      "bytes": 34236,
+      "working_tree_sha256": "bd72f0cda50f822b4836583a71d28da4ae5e12c3e00f5399b87c494ef60de159",
+      "git_index_blob": "f97e9b27490a71c2370ebce7914fe677a99e89e3",
+      "git_index_sha256": "bd72f0cda50f822b4836583a71d28da4ae5e12c3e00f5399b87c494ef60de159",
+      "git_index_bytes": 34236
     },
     {
       "path": "docs/ARTWORK-STATUS-20261113.md",
@@ -236,6 +236,14 @@
       "git_index_blob": "d619926b873163c70aeff325e1535115e1f29268",
       "git_index_sha256": "c5d0d6a5567e7f8229db8fc455c85fab3f89f38b867698a11abf6dc64cdbc094",
       "git_index_bytes": 8428
+    },
+    {
+      "path": "docs/ENGINE-INTEGRATION-FOLLOWUP-20261114.md",
+      "bytes": 7204,
+      "working_tree_sha256": "acc110c78ea673159f394372260ed5ed728994e192ab28aaada503fe27db7039",
+      "git_index_blob": "b8381dbb6db0b2184f478a0bf5405adc892ea366",
+      "git_index_sha256": "acc110c78ea673159f394372260ed5ed728994e192ab28aaada503fe27db7039",
+      "git_index_bytes": 7204
     },
     {
       "path": "docs/GALLERY.md",
@@ -990,6 +998,14 @@
       "git_index_bytes": 4814
     },
     {
+      "path": "docs/REMIX-TRANSPORT-OWNERSHIP-DECISION-20261114.md",
+      "bytes": 4078,
+      "working_tree_sha256": "fa8bf06f2973987c0c87cfd4b7544b63faf361f0c9339041cc6bb347521c39e4",
+      "git_index_blob": "a6bbfc77a314b04b43ff352f005500e3d1e2848f",
+      "git_index_sha256": "fa8bf06f2973987c0c87cfd4b7544b63faf361f0c9339041cc6bb347521c39e4",
+      "git_index_bytes": 4078
+    },
+    {
       "path": "docs/ROI-COMPOSITION-RESULTS-20261114.md",
       "bytes": 3107,
       "working_tree_sha256": "f460e670edf280153b52406b3788c94df4c359c23434b6f386ecc78b3c0a53f8",
@@ -1007,19 +1023,19 @@
     },
     {
       "path": "docs/RTX-REMIX-SETUP-20261114.md",
-      "bytes": 32242,
-      "working_tree_sha256": "f803bdf467576a8809f5843ce24386fff95ffb93ad7eb2a21b8e1da1b6f16b6e",
-      "git_index_blob": "0bddfd01089a83ea6262981ff2f9aa6ef856b59f",
-      "git_index_sha256": "f803bdf467576a8809f5843ce24386fff95ffb93ad7eb2a21b8e1da1b6f16b6e",
-      "git_index_bytes": 32242
+      "bytes": 32958,
+      "working_tree_sha256": "b6cb2f6e8eb3382b2d8053f9774d43e12825cae88165edfae03085be3833b0b6",
+      "git_index_blob": "66dc51ffc265368f79cd482a685ab613e5b439af",
+      "git_index_sha256": "b6cb2f6e8eb3382b2d8053f9774d43e12825cae88165edfae03085be3833b0b6",
+      "git_index_bytes": 32958
     },
     {
       "path": "docs/RUNTIME-CONTINUATION-20261113.md",
-      "bytes": 46289,
-      "working_tree_sha256": "26ef837d7ea67d2bdbb40dd9f7f06fb572a9cc366b43b8024c651752d7dc8104",
-      "git_index_blob": "304fffde9555a0791d2cd8c4b51fff66f861829a",
-      "git_index_sha256": "26ef837d7ea67d2bdbb40dd9f7f06fb572a9cc366b43b8024c651752d7dc8104",
-      "git_index_bytes": 46289
+      "bytes": 47005,
+      "working_tree_sha256": "1ca6ce1bc747566e4a9861d27750dded7d86665d1f1afe85f80ad076759d1f88",
+      "git_index_blob": "d08a011cc9082a24d7378e87071f25dbf8862068",
+      "git_index_sha256": "1ca6ce1bc747566e4a9861d27750dded7d86665d1f1afe85f80ad076759d1f88",
+      "git_index_bytes": 47005
     },
     {
       "path": "docs/SHARED-GPU-RESULTS-20261114.md",
@@ -1047,11 +1063,11 @@
     },
     {
       "path": "docs/STAGE1-COMPLETION-STATUS.md",
-      "bytes": 44326,
-      "working_tree_sha256": "56f4ddd530f4b75c1b5698bdf13c1562dadb58d873287872b25044bd68819992",
-      "git_index_blob": "31376193014be7092dae4bb92919257a82db6669",
-      "git_index_sha256": "56f4ddd530f4b75c1b5698bdf13c1562dadb58d873287872b25044bd68819992",
-      "git_index_bytes": 44326
+      "bytes": 45042,
+      "working_tree_sha256": "27b45efd7216c2a0b3b420382781b10c68f3837fd50a85723b02ac55cce784e6",
+      "git_index_blob": "42193d7e33abcb0485fe9b94022085188107288f",
+      "git_index_sha256": "27b45efd7216c2a0b3b420382781b10c68f3837fd50a85723b02ac55cce784e6",
+      "git_index_bytes": 45042
     },
     {
       "path": "docs/STAGE1-CONTROLLER-RESULTS.md",

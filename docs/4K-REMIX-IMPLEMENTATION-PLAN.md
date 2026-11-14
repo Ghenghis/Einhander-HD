@@ -1,5 +1,9 @@
 # Full 4K remaster and RTX Remix implementation
 
+## Actual CPU build failure and source followup — November14
+
+PR7actuallyruns: syntax0/1.382s, object1/.048s due doubled relative output path, wrapper1/1.629s/ownedtreeabsent; noexe/link/65controls/guard77/GPU. Absolute-path builder fix is source-reviewed, awaitingfreshgrant. NewownedTCPpeer collector, T1overflow/projection oracle, observerIO, T2ownership and coherentaudio source are not live integration. CRLFbase/LFpatch distinctions and ungrantedUIselftests with UNKNOWNresourcefields are preserved. Prior21adaptercontrols remain separate valid evidence. [Actual results, source and remaining acceptance](../docs/ENGINE-INTEGRATION-FOLLOWUP-20261114.md). Earlier dated blocks retain their historical scope.
+
 ## Current source continuation — November 14, 19:57 UTC
 
 Adapter evidence code now requires exact listener/process binding, strict startup bytes and ordered GL identity/ready markers. One granted light run passes21pure-data methods19:56:41UTC/.00763s controls/.373s outer under10s/128MiBJob, ownedtreeabsent. It is not wired into the launcher or qualifiedlive. Observer cap/close defects are source-reviewed; corrected audio-gap fixtures and actual scene/camera/material transport remain uncompiled/unrun. First-batch-init bug assertion is withdrawn as confirmed; receipt precedes uniforms. PR7still has no build child after its allowed66.1%CPU refusal; last GPU rendering remains failed. Other tests/heavy/GPU/game work is held for urgent preservation by the coordinator. [Current verified state and remaining integration](../docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md). Earlier dated checkpoints retain their historical scope.
