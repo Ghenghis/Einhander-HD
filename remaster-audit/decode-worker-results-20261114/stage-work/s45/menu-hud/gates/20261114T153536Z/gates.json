@@ -1,0 +1,1028 @@
+{
+ "run": "20261114T153536Z",
+ "owner": "claude-einhander-s45",
+ "task": "EIN-MENU-HUD-20261114",
+ "note": "join only: gates/CRs are w4-menus' own; delivered = frozen candidate (not installed / not accepted)",
+ "inputs": {
+  "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w4-menus\\LEDGER.md": "9647be1c422b4dc69bc0b0b3bd9513558924fda8fe63b07827980675995aa569",
+  "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w4-menus\\CAPTURE-REQUESTS.md": "e72860f8be2a273dc69a6cada14b7e8fbeea9b79cf82a726d7f09c73559798a7",
+  "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\state-register\\20261114T152157Z\\register.json": "0f7c4b2cc183f698d58fb977f84f3363b740f7b123c20b8fd2f96847700d17a5"
+ },
+ "tool_sha256": "d0166bcc4e0802abc8a8e32647e965cd5be7234fb556af442011daf547da0bc0",
+ "capture_requests": {
+  "CR-01": {
+   "state": "Cold boot splashes and title (gates G-S1, G-S2)",
+   "gates": [
+    "G-S1",
+    "G-S2"
+   ],
+   "keys": [
+    "1AEAD6A5-B20FDBC4",
+    "1D953D67-00000000",
+    "282438F3-00000000",
+    "323B5FB0-1C7962B3",
+    "4E783C96-E2D2473F",
+    "7F7452F9-B20FDBC4",
+    "8E1A509D-4FE32821",
+    "DD0B6963-4C1DD349"
+   ]
+  },
+  "CR-02": {
+   "state": "Title idle \u2192 story intro \u2192 DEMO PLAY \u2192 return (G-S3)",
+   "gates": [
+    "G-S3"
+   ],
+   "keys": [
+    "AEE859DC-19EFC4BC",
+    "E6B65424-4C1DD349"
+   ]
+  },
+  "CR-03": {
+   "state": "Title menu items (G-S6)",
+   "gates": [
+    "G-S6"
+   ],
+   "keys": [
+    "323B5FB0-1C7962B3"
+   ]
+  },
+  "CR-04": {
+   "state": "File Option, Data Load, Discard, Score/NO DATA, Ranking p1\u20133, CREATE DATA FILE grid, save confirmation (G-S7)",
+   "gates": [
+    "G-S7"
+   ],
+   "keys": [
+    "8E1A509D-C7A1F2F0"
+   ]
+  },
+  "CR-05": {
+   "state": "Configuration root + Difficulty/Controller/Screen Adjust/Audio (G-S8)",
+   "gates": [
+    "G-S8"
+   ],
+   "keys": []
+  },
+  "CR-06": {
+   "state": "Fighter and ARM selection (G-S9, G-S10)",
+   "gates": [
+    "G-S10",
+    "G-S9"
+   ],
+   "keys": [
+    "1AD90FC9-4315989E",
+    "57FFDED8-AB6F050C",
+    "D0365088-B5A45715",
+    "EF372CD7-E0475290"
+   ]
+  },
+  "CR-07": {
+   "state": "Pause, QUIT \u2192 title fade-in (G-S11, G-S4)",
+   "gates": [
+    "G-S11",
+    "G-S4"
+   ],
+   "keys": [
+    "BDAE4156-4C1DD349"
+   ]
+  },
+  "CR-08": {
+   "state": "Continue countdown and Game Over (G-S12, G-S13)",
+   "gates": [
+    "G-S12",
+    "G-S13"
+   ],
+   "keys": [
+    "5125FF82-00000000",
+    "BDAE4156-4C1DD349"
+   ]
+  },
+  "CR-09": {
+   "state": "Results: fade-in, Total, Field, Fight graphs, save prompt, title after Game Over (G-S14, G-S15, G-S5)",
+   "gates": [
+    "G-S14",
+    "G-S15",
+    "G-S5"
+   ],
+   "keys": []
+  },
+  "CR-10": {
+   "state": "Stage banners, warnings, stage clear (G-S16)",
+   "gates": [
+    "G-S16"
+   ],
+   "keys": []
+  },
+  "CR-11": {
+   "state": "High-score name entry",
+   "gates": [],
+   "keys": []
+  }
+ },
+ "states": [
+  {
+   "state": "S1. Boot splashes (Sony, SQUARESOFT, WAIT)",
+   "gates": [
+    "G-S1"
+   ],
+   "capture_requests": [
+    "CR-01"
+   ],
+   "keys": [
+    {
+     "key": "1AEAD6A5-B20FDBC4",
+     "delivered_in": [
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "4E783C96-E2D2473F",
+     "delivered_in": [
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "7F7452F9-B20FDBC4",
+     "delivered_in": [
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-4C1DD349",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "DD0B6963-4C1DD349",
+     "delivered_in": [
+      "t9-title-menus/prompts-DD0B6963-v2",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 5,
+   "integrated_line": "Integrated: yes (v13 files / T9 v2). Observed with HD: only v12 `remaster-4k-preview-20261112-v12/captures/startup-sony-vector-internal.png` and `startup-squaresoft-vector-internal.png` (submitted, frames 175/600). Never with HD in a stage1-completion run (native_menus).",
+   "observed_line": null,
+   "defects_line": "Defects: Sony text is a font substitution (Arial Bold; the native raster is itself an Arial/Helvetica-like AA bold, so shapes are close, but not traced); SQUARESOFT is hand Bezier, not traced. Not re-authored here (no live defect report, low exposure ~5 s); listed so the user can decide. Runtime OSD \"Load failed slot 1\" appears in boot captures (`hud-4k-candidate-20261112/captures/boot-card-warn",
+   "gate_text": {
+    "G-S1": "**Gate G-S1:** cold boot, HD menus on from frame 0, recorder off: first-submission frame of each splash key <= its first visible frame + 2; 2160 hires at mid-splash; no native frame visible; no OSD text."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S2. Title, boot path (logo design E)",
+   "gates": [
+    "G-S2"
+   ],
+   "capture_requests": [
+    "CR-01"
+   ],
+   "keys": [
+    {
+     "key": "1D953D67-00000000",
+     "delivered_in": [],
+     "legacy_v13": null,
+     "gl_submitted_live": null,
+     "in_register": false
+    },
+    {
+     "key": "282438F3-00000000",
+     "delivered_in": [],
+     "legacy_v13": null,
+     "gl_submitted_live": null,
+     "in_register": false
+    },
+    {
+     "key": "323B5FB0-1C7962B3",
+     "delivered_in": [
+      "t9-title-menus/title-menu-323B5FB0-v1",
+      "t9-title-menus/title-menu-323B5FB0-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-4FE32821",
+     "delivered_in": [
+      "t9-title-menus/results-footer-8E1A509D-v4",
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-8808F70A",
+     "delivered_in": [
+      "t9-title-menus/results-footer-8E1A509D-v4",
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 3,
+   "integrated_line": "Integrated: yes. Observed with current art: **no 2160 capture**. Old: `title-e-20261112-v13/captures/title-e-gated-internal.png` (design E, pre-wristfix, v13 menu words; pages submitted frame 1996, first draw ~1936).",
+   "observed_line": null,
+   "defects_line": "Defects: (a) never captured at 2160 with wristfix-v2 + menu v5; (b) wrist repaint is smoother than the surrounding skin (T9 known limit); (c) **cold-load pop**: in v13 the pages were submitted ~60 frames after the first title draw, so the first ~1 s shows the native logo (no HD, logo 53 px lower) and then jumps. Fix belongs to Codex: preload/pin both title pages before the title fades in (the fr",
+   "gate_text": {
+    "G-S2": "**Gate G-S2:** cold boot HD-on: both title keys submitted before the first non-black title frame (or within 2 frames); 2160 hires at title settle; logo+HD match design E (HD centre at master (718,640) = internal ~(1428,1273) +-6 px; logo top 53 master px above native); wrist without visible ghost or patch at 100 %; GAME START arrows crisp."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S3. Title after attract/demo return",
+   "gates": [
+    "G-S3"
+   ],
+   "capture_requests": [
+    "CR-02"
+   ],
+   "keys": [
+    {
+     "key": "AEE859DC-19EFC4BC",
+     "delivered_in": [
+      "w4-menus/story-font-AEE859DC-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "E6B65424-4C1DD349",
+     "delivered_in": [],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 1,
+   "integrated_line": "Integrated: S2 keys yes; AEE859DC = legacy v13 (W4 replacement below); E6B65424 = legacy v13 (no native source archived).",
+   "observed_line": "Observed with current art: story text only, 1280x960 composed: `hud-fade-census-v1/.../captures/robin-0570.png`, `robin-0600.png`, `hud-after-native-movie-skip.png` (AEE859DC submitted at 36914). The return to title after the demo was never captured (`hud-returned-title-composed.png`, frame 34757, shows attract gameplay, not the title).",
+   "defects_line": "Defects: AEE859DC live art is a softened native (reads as 1-texel pixels at 2160) -> **W4 `story-font-AEE859DC-v1`**. DEMO PLAY is soft native field; cannot be traced without its words/CLUT (capture request CR-02).",
+   "gate_text": {
+    "G-S3": "**Gate G-S3:** idle from title until the demo starts and returns: 2160 hires of intro text, DEMO PLAY and the returned title; HD logo + HD present on the returned title; no native frame in the fade."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S4. Title after quit (pause -> QUIT -> YES)",
+   "gates": [
+    "G-S4"
+   ],
+   "capture_requests": [
+    "CR-07"
+   ],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": null,
+   "defects_line": null,
+   "gate_text": {
+    "G-S4": "**Gate G-S4:** quit from pause in a HD-on run: hires every 4 frames through the fade (>=8 frames) plus settled title; the fading logo is already at the E position with HD below it; no native-logo frame."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S5. Title after Game Over",
+   "gates": [
+    "G-S2",
+    "G-S5"
+   ],
+   "capture_requests": [
+    "CR-01",
+    "CR-09"
+   ],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": null,
+   "defects_line": "Defects: none visible at 1280; no 2160 capture.",
+   "gate_text": {
+    "G-S5": "**Gate G-S5:** same as G-S2 on this path (2160 hires of the settled title after Game Over -> results -> save -> movie)."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S6. Title menu items (GAME START / PILOT / FILE OPTION / CONFIGURATION / GALLERY)",
+   "gates": [
+    "G-S6"
+   ],
+   "capture_requests": [
+    "CR-03"
+   ],
+   "keys": [
+    {
+     "key": "323B5FB0-1C7962B3",
+     "delivered_in": [
+      "t9-title-menus/title-menu-323B5FB0-v1",
+      "t9-title-menus/title-menu-323B5FB0-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-4FE32821",
+     "delivered_in": [
+      "t9-title-menus/results-footer-8E1A509D-v4",
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 2,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: GAME START + PILOT only (robin-0585, 1280). Other items: old art only (`hud-4k-candidate-20261112-v5/captures/e2e-title-item-one/two/three.png`).",
+   "defects_line": null,
+   "gate_text": {
+    "G-S6": "**Gate G-S6:** 2160 hires with each item highlighted (cursor down x3); highlighted item white and additive, others grey; arrows crisp; no underline/sliver at uv rows 43-55."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S7. File option, data load/save, discard, Score/NO DATA, Score Ranking pages, name entry (CREATE DATA FILE)",
+   "gates": [
+    "G-S7"
+   ],
+   "capture_requests": [
+    "CR-04"
+   ],
+   "keys": [
+    {
+     "key": "323B5FB0-1C7962B3",
+     "delivered_in": [
+      "t9-title-menus/title-menu-323B5FB0-v1",
+      "t9-title-menus/title-menu-323B5FB0-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-C7A1F2F0",
+     "delivered_in": [
+      "t9-title-menus/results-footer-8E1A509D-v4",
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "AEE859DC-19EFC4BC",
+     "delivered_in": [
+      "w4-menus/story-font-AEE859DC-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 3,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: **never.** Old art: v4 `save-confirmation-final`, `saved-pilot-final`, v5 `e2e-ranking-final`, `e2e-score-final-nodata`, `e2e-data-load-final`, `e2e-discard-confirmation`, v2 `name-entry-grid`.",
+   "defects_line": "Defects (old-art captures): legacy Bahnschrift was replaced by W2 native-faithful fonts (B77B98B9: 1-texel counters are wedge slits, small lumps Q R S z, per W2 README). Data Load Yes/No black/teal specks reported on v5 (root `open_quality_findings`), not re-checked with W2 art.",
+   "gate_text": {
+    "G-S7": "**Gate G-S7:** private-card journey with the current pack: 2160 hires of File Option root, Data Load (Yes/No), Discard, Score NO DATA, Score Ranking pages 1-3, CREATE DATA FILE grid with cursor on a letter, Space, End, saved confirmation. Readable at 100 %, no specks, no clipped glyph cells, card hash restored."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S8. Configuration (root, Difficulty, Controller, Screen Adjust, Audio)",
+   "gates": [
+    "G-S8"
+   ],
+   "capture_requests": [
+    "CR-05"
+   ],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: never. Old: v5 `e2e-configuration-fonts-final`, `e2e-controller-final*`, `e2e-difficulty-final-*`, `e2e-screen-adjust-final*`, `e2e-audio-final-monaural`.",
+   "defects_line": null,
+   "gate_text": {
+    "G-S8": "**Gate G-S8:** 2160 hires of each sub-page with its highlighted choice; settings restored afterwards."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S9. Fighter selection",
+   "gates": [
+    "G-S9"
+   ],
+   "capture_requests": [
+    "CR-06"
+   ],
+   "keys": [
+    {
+     "key": "1AD90FC9-4315989E",
+     "delivered_in": [
+      "t9-title-menus/selection-labels-1AD90FC9-v3",
+      "w2-hud/selection-labels-1AD90FC9-v4",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+      "w5-cleanup/weapon-names-1AD90FC9-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "57FFDED8-AB6F050C",
+     "delivered_in": [
+      "w6-native-gaps/fighter-select-absent-keys-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-B88C038E",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w3-hud/hud-label-font-BDAE4156-v1",
+      "w4-menus/menu-class-exact-v1",
+      "w6-hud-fades/w3-hud-classfix-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": true,
+     "in_register": true
+    },
+    {
+     "key": "D0365088-B5A45715",
+     "delivered_in": [
+      "t9-title-menus/selection-headers-D0365088-v3",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "EF372CD7-E0475290",
+     "delivered_in": [
+      "w6-native-gaps/fighter-select-absent-keys-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 5,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: never (Robin native menus). Old: v6 `resume-v6-fighter-mkii-settled`, v8/v9 `*fighter*`, v12 `fighter-final-mkii-internal.png`; native refs `native-craft-choices-v1/hd-off_rewind-off/choice-*-native-*.png`, `native-reference-v1/fighter.png`.",
+   "defects_line": "Defects: 10 drawn keys stay native; blueprint is legacy soft field.",
+   "gate_text": {
+    "G-S9": "**Gate G-S9:** HD-on: 2160 hires for each craft cursor position (MkII, MkIII, Astraea, locked Unknown) incl. the rotating highlight; no native key in the first-submission log for this state."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S10. ARM (armament) selection",
+   "gates": [
+    "G-S10"
+   ],
+   "capture_requests": [
+    "CR-06"
+   ],
+   "keys": [
+    {
+     "key": "1AD90FC9-79902A90",
+     "delivered_in": [
+      "t9-title-menus/selection-labels-1AD90FC9-v3",
+      "w2-hud/selection-labels-1AD90FC9-v4",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+      "w5-cleanup/weapon-names-1AD90FC9-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "AAE3C8F2-678CA3BD",
+     "delivered_in": [
+      "t9-title-menus/arm-strip-AAE3C8F2-v1",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "D0365088-79902A90",
+     "delivered_in": [
+      "t9-title-menus/selection-headers-D0365088-v3",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 3,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: never. Old: v6 `resume-v6-arm-selection-*`, v12 `arm-final-mkii-internal.png`, typography v11 `arm-settled-vector-review-internal.png`.",
+   "defects_line": null,
+   "gate_text": {
+    "G-S10": "**Gate G-S10:** 2160 hires with ARM I/II highlighted for MkII; \"20mm\" reads 20mm; no strip bleed."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S11. Pause",
+   "gates": [
+    "G-S11"
+   ],
+   "capture_requests": [
+    "CR-07"
+   ],
+   "keys": [
+    {
+     "key": "BDAE4156-4C1DD349",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-DDD3D3CF",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 2,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: never. Old: v3 `pause-menu-highres.png` (2160), v5 `e2e-pause-live-v5.png`.",
+   "defects_line": "Defects: prompt-sheet trace has dark specks at inner corners and lumpy glow (visible at 1280 on the Continue still, see S12); selector arrow native nearest (no CLUT).",
+   "gate_text": {
+    "G-S11": "**Gate G-S11:** 2160 hires of PAUSE with CONTINUE and QUIT highlighted, QUIT YES/NO, FIGHTERS LEFT; selector arrow HD."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S12. Continue",
+   "gates": [
+    "G-S12"
+   ],
+   "capture_requests": [
+    "CR-08"
+   ],
+   "keys": [
+    {
+     "key": "BDAE4156-39CF2A18",
+     "delivered_in": [
+      "w2-hud/hud-prompts-BDAE4156-robincluts-v1",
+      "w4-menus/continue-icons-BDAE4156-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-4C1DD349",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-94071623",
+     "delivered_in": [
+      "w2-hud/hud-prompts-BDAE4156-robincluts-v1",
+      "w4-menus/continue-icons-BDAE4156-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-DDD3D3CF",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w4-menus/menu-class-exact-v1",
+      "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 4,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: `hud-fade-census-v1/.../captures/robin-0135.png` (1280x960, frame 10962; all four keys submitted 10586-10612); also `mk3-stage1-long-v1/.../continue-limit-0811.png`, `stage-lane-mk3-v3/.../continue-limit-0481.png`.",
+   "defects_line": "Defects: (a) X and triangle native nearest -> **fixed by W4 `continue-icons-BDAE4156-v1`** (SIMULATION recomposition in its review/); (b) prompt words: T9 v4 soft-glow trace shows dark specks at inner corners and lumpy glow; letters stay rectilinear (native) - open, see \"Remaining defects\"; (c) parent `-39CF2A18` had 1214 texel-centre class mismatches (prompt rows, never drawn with this CLUT) ->",
+   "gate_text": {
+    "G-S12": "**Gate G-S12:** 2160 hires at countdown 9..0 (>=3 values), YES/NO icons smooth; no specks in CONTINUE ?."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S13. Game Over",
+   "gates": [
+    "G-S13"
+   ],
+   "capture_requests": [
+    "CR-08"
+   ],
+   "keys": [
+    {
+     "key": "5125FF82-00000000",
+     "delivered_in": [
+      "w2-hud/gameover-5125FF82-v1",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    }
+   ],
+   "keys_with_frozen_candidate": 1,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: `hud-fade-census-v1/.../captures/robin-0150.png` (1280x960, frame 11860; submitted 11678, 4 frames after first draw). Old: v9 `v9-gameover-fade-0..4`.",
+   "defects_line": "Defects: none visible at 1280 (W2 notes: slightly bolder than v13, small wobbles at E/R junctions).",
+   "gate_text": {
+    "G-S13": "**Gate G-S13:** 2160 hires at fade-in, settled and fade-out; neon not clipped by the exact region."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S14. Total Evaluation / Field Graph / Fight Graph / Exit",
+   "gates": [
+    "G-S14"
+   ],
+   "capture_requests": [
+    "CR-09"
+   ],
+   "keys": [
+    {
+     "key": "48F8001A-02491337",
+     "delivered_in": [
+      "w3-hud/results-score-header-48F8001A-v1",
+      "w4-menus/menu-class-exact-v1",
+      "w6-hud-fades/w3-hud-classfix-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-02491337",
+     "delivered_in": [
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w3-hud/results-footer-8E1A509D-v6",
+      "w4-menus/menu-class-exact-v1",
+      "w6-hud-fades/w3-hud-classfix-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-4FE32821",
+     "delivered_in": [
+      "t9-title-menus/results-footer-8E1A509D-v4",
+      "w2-hud/results-footer-8E1A509D-v5",
+      "w4-menus/menu-class-exact-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "8E1A509D-FCCD2514",
+     "delivered_in": [
+      "w2-hud/results-8E1A509D-drawn-cluts-v1",
+      "w3-hud/results-grades-8E1A509D-v1",
+      "w4-menus/menu-class-exact-v1",
+      "w6-hud-fades/w3-hud-classfix-v1"
+     ],
+     "legacy_v13": false,
+     "gl_submitted_live": false,
+     "in_register": true
+    },
+    {
+     "key": "BDAE4156-B88C038E",
+     "delivered_in": [
+      "t9-title-menus/hud-prompts-BDAE4156-v4",
+      "w2-hud/hud-prompts-BDAE4156-v5",
+      "w3-hud/hud-label-font-BDAE4156-v1",
+      "w4-menus/menu-class-exact-v1",
+      "w6-hud-fades/w3-hud-classfix-v1"
+     ],
+     "legacy_v13": true,
+     "gl_submitted_live": true,
+     "in_register": true
+    },
+    {
+     "key": "F49CFFA5-00000000",
+     "delivered_in": [],
+     "legacy_v13": null,
+     "gl_submitted_live": null,
+     "in_register": false
+    }
+   ],
+   "keys_with_frozen_candidate": 5,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: `hud-fade-census-v1/.../captures/hud-total-evaluation-internal.png` (2160, frame 28703), `hud-field-graph-settled-internal.png` (2160), `hud-field-graph-internal.png`; `hud-after-graph-exit-internal.png` is black (exit transition).",
+   "defects_line": "Defects: (a) **fade-in pop**: the Field Graph arrow cell uv [32,236,47,251] is drawn with a 1-frame-per-CLUT fade ramp (frames 12100-12141); 21 of those aliases (8EF93E13 7F47D855 870BF72D 2F607F24 C39C5147 55DB4DFD F0819DCF CF09551A 564BF5E3 26FD12A9 11D723C1 752FBFBD AD573834 B106FB24 1B31232B 096E5345 227CEE6D AD1CC4ED 6113DF52 6CA464FF 9D7E6155) never reached HD (each is decoded after its on",
+   "gate_text": {
+    "G-S14": "**Gate G-S14:** 2160 hires of Total Evaluation, Field Graph, Fight Graph and the 12100-12200 fade-in (every 4 frames); every drawn 8E1A509D alias submitted before its first visible frame; for each craft used, the matching art set."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S15. Save prompt after results; high-score name entry",
+   "gates": [
+    "G-S15"
+   ],
+   "capture_requests": [
+    "CR-09"
+   ],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": "Observed with current art: never (no still between 32133 and 34757). High-score entry needs a top-5 score (5th = 1,000,000 on the default table) - not reachable in a Stage-1-only run; full-game backlog.",
+   "defects_line": null,
+   "gate_text": {
+    "G-S15": "**Gate G-S15:** 2160 hires of the post-results save prompt (Yes/No) and saved confirmation."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S16. Stage banners, warnings, stage clear",
+   "gates": [
+    "G-S16"
+   ],
+   "capture_requests": [
+    "CR-10"
+   ],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": null,
+   "defects_line": null,
+   "gate_text": {
+    "G-S16": "**Gate G-S16:** first map the keys from a native recording (CR-09), then the same per-key 2160 check."
+   },
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  },
+  {
+   "state": "S17. Gallery / stage select",
+   "gates": [],
+   "capture_requests": [],
+   "keys": [],
+   "keys_with_frozen_candidate": 0,
+   "integrated_line": null,
+   "observed_line": null,
+   "defects_line": null,
+   "gate_text": {},
+   "class_policy_status": "pending J-L (proto-v2b primary not yet run on these folders)"
+  }
+ ],
+ "j_l_folder_order": [
+  {
+   "folder": "w4-menus/menu-class-exact-v1",
+   "gates": [
+    "G-S1",
+    "G-S2",
+    "G-S6",
+    "G-S7",
+    "G-S9",
+    "G-S10",
+    "G-S11",
+    "G-S12",
+    "G-S13",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/hud-prompts-BDAE4156-v4",
+   "gates": [
+    "G-S1",
+    "G-S9",
+    "G-S11",
+    "G-S12",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w2-hud/hud-prompts-BDAE4156-v5",
+   "gates": [
+    "G-S1",
+    "G-S9",
+    "G-S11",
+    "G-S12",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/results-footer-8E1A509D-v4",
+   "gates": [
+    "G-S2",
+    "G-S6",
+    "G-S7",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w2-hud/results-footer-8E1A509D-v5",
+   "gates": [
+    "G-S2",
+    "G-S6",
+    "G-S7",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/title-menu-323B5FB0-v1",
+   "gates": [
+    "G-S2",
+    "G-S6",
+    "G-S7"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/title-menu-323B5FB0-v5",
+   "gates": [
+    "G-S2",
+    "G-S6",
+    "G-S7"
+   ]
+  },
+  {
+   "folder": "w5-cleanup/prompt-sheet-BDAE4156-DD0B6963-w5-v1",
+   "gates": [
+    "G-S1",
+    "G-S11",
+    "G-S12"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/selection-headers-D0365088-v3",
+   "gates": [
+    "G-S9",
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/selection-labels-1AD90FC9-v3",
+   "gates": [
+    "G-S9",
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "w2-hud/selection-labels-1AD90FC9-v4",
+   "gates": [
+    "G-S9",
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "w3-hud/hud-label-font-BDAE4156-v1",
+   "gates": [
+    "G-S9",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w4-menus/story-font-AEE859DC-v1",
+   "gates": [
+    "G-S3",
+    "G-S7"
+   ]
+  },
+  {
+   "folder": "w5-cleanup/spec-text-1AD90FC9-w5-v2",
+   "gates": [
+    "G-S9",
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "w5-cleanup/weapon-names-1AD90FC9-w5-v1",
+   "gates": [
+    "G-S9",
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "w6-hud-fades/w3-hud-classfix-v1",
+   "gates": [
+    "G-S9",
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/arm-strip-AAE3C8F2-v1",
+   "gates": [
+    "G-S10"
+   ]
+  },
+  {
+   "folder": "t9-title-menus/prompts-DD0B6963-v2",
+   "gates": [
+    "G-S1"
+   ]
+  },
+  {
+   "folder": "w2-hud/gameover-5125FF82-v1",
+   "gates": [
+    "G-S13"
+   ]
+  },
+  {
+   "folder": "w2-hud/hud-prompts-BDAE4156-robincluts-v1",
+   "gates": [
+    "G-S12"
+   ]
+  },
+  {
+   "folder": "w2-hud/results-8E1A509D-drawn-cluts-v1",
+   "gates": [
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w3-hud/results-footer-8E1A509D-v6",
+   "gates": [
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w3-hud/results-grades-8E1A509D-v1",
+   "gates": [
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w3-hud/results-score-header-48F8001A-v1",
+   "gates": [
+    "G-S14"
+   ]
+  },
+  {
+   "folder": "w4-menus/continue-icons-BDAE4156-v1",
+   "gates": [
+    "G-S12"
+   ]
+  },
+  {
+   "folder": "w6-native-gaps/fighter-select-absent-keys-v1",
+   "gates": [
+    "G-S9"
+   ]
+  }
+ ]
+}

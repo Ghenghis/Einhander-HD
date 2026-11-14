@@ -43,18 +43,17 @@ return state;
 }
 
 export async function saveCheckpoint(base,args,{now=Date.now()}={}) {
-const dir=path.join(base,'.hermes3d_orchestrator','continuity');
 const option=name=>{const i=args.indexOf(name);return i<0?'':args[i+1]||'';};
 const explicitOwner=option('--owner');
 if(explicitOwner&&!/^claude-einhander(?:-[a-z0-9-]+)?$/.test(explicitOwner))throw Error('Invalid registered Claude owner');
 const profile=await sessionProfile(base,option('--session'),explicitOwner);
 if(!profile)throw Error('Session is not registered in the Claude roster; provide an actual registered --session or explicit --owner REGISTERED_OWNER');
-const file=path.join(dir,profile.owner+'.json');
+const file=profile.checkpointFile;
 const previous=await read(file,{});
 const config=await read(path.join(base,'coordination/work-continuity.json'),{});
 const maxWaitMinutes=Number(config.max_wait_minutes)||30;
 const state=buildCheckpoint(previous,args,{now,maxWaitMinutes});
-await fs.mkdir(dir,{recursive:true});
+await fs.mkdir(path.dirname(file),{recursive:true});
 await writeJson(file,state);
 return {ok:true,owner:profile.owner,file:file.replace(/\\/g,'/'),...state};
 }

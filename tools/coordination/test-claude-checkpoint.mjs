@@ -4,9 +4,48 @@ import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import {buildCheckpoint,saveCheckpoint} from './claude-checkpoint.mjs';
-import {stopDecision} from './claude-continuity-hook.mjs';
+import {stopDecision,handle,sessionProfile} from './claude-continuity-hook.mjs';
 const now=Date.parse('2026-11-13T16:00:00Z');
 const args=['--session','session-a','--monitor','provider-task-a','--wake','2026-11-13T16:25:00Z','--tasks','sys-parity','--next','Read the actual trace and continue'];
+
+test('registered worktree checkpoint is written/read without touching the guarded canonical predecessor',async()=>{
+  const base=await fs.mkdtemp(path.join(os.tmpdir(),'ein-checkpoint-route-'));
+  try{
+    const coordination=path.join(base,'coordination');await fs.mkdir(coordination);
+    const relative='.claude/worktrees/worker/remaster-audit/primary/continuity/claude-einhander.json';
+    await fs.writeFile(path.join(coordination,'CLAUDE-SESSIONS-20261114.json'),JSON.stringify({sessions:[{owner:'claude-einhander',session_id:'session-a',checkpoint:relative}]}));
+    await fs.writeFile(path.join(coordination,'work-continuity.json'),JSON.stringify({owner:'claude-einhander',max_wait_minutes:30,completion_state:'completion.json'}));
+    const predecessor=path.join(base,'.hermes3d_orchestrator/continuity/claude-einhander.json');
+    await fs.mkdir(path.dirname(predecessor),{recursive:true});
+    const previous='{"user_stop":{"requested":true,"reason":"historical predecessor"}}';await fs.writeFile(predecessor,previous);
+    const actual=Date.now(),options=[...args];options[options.indexOf('--wake')+1]=new Date(actual+60000).toISOString();
+    const saved=await saveCheckpoint(base,options,{now:actual});
+    assert.equal(saved.file,path.join(base,relative).replaceAll('\\','/'));
+    assert.equal(await fs.readFile(predecessor,'utf8'),previous);
+    assert.deepEqual(await handle({session_id:'session-a',cwd:base,hook_event_name:'Stop'},base),{});
+    const state=JSON.parse(await fs.readFile(saved.file,'utf8'));state.continuation.armed=false;await fs.writeFile(saved.file,JSON.stringify(state));
+    assert.equal((await handle({session_id:'session-a',cwd:base,hook_event_name:'Stop'},base)).decision,'block');
+  }finally{
+    const target=await fs.realpath(base),tempRoot=await fs.realpath(os.tmpdir());
+    assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-checkpoint-route-'));
+    await fs.rm(target,{recursive:true,force:true});
+  }
+});
+test('registered checkpoint paths reject workspace escape and foreign owner filenames',async()=>{
+  const base=await fs.mkdtemp(path.join(os.tmpdir(),'ein-checkpoint-path-'));
+  try{
+    const directory=path.join(base,'coordination');await fs.mkdir(directory);
+    const roster=path.join(directory,'CLAUDE-SESSIONS-20261114.json');
+    for(const [checkpoint,pattern] of [['../claude-einhander.json',/escaped/],['inside/claude-einhander-s45.json',/filename/]]){
+      await fs.writeFile(roster,JSON.stringify({sessions:[{owner:'claude-einhander',session_id:'session-a',checkpoint}]}));
+      await assert.rejects(sessionProfile(base,'session-a'),pattern);
+    }
+  }finally{
+    const target=await fs.realpath(base),tempRoot=await fs.realpath(os.tmpdir());
+    assert.equal(path.dirname(target),tempRoot);assert.ok(path.basename(target).startsWith('ein-checkpoint-path-'));
+    await fs.rm(target,{recursive:true,force:true});
+  }
+});
 
 test('explicit bounded receiver checkpoint satisfies the actual stop gate',()=>{
   const state=buildCheckpoint({},args,{now});

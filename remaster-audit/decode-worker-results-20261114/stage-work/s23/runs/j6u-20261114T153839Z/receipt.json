@@ -1,0 +1,37 @@
+{
+ "owner": "claude-einhander-s23",
+ "launcher": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\run_granted.py",
+ "cmd": [
+  "python",
+  "-I",
+  "tools/j6_phase_export.py",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-phase-union-20261114T153839Z",
+  "170",
+  "union-known"
+ ],
+ "cpu": 15,
+ "cap_s": 180.0,
+ "precheck_utc": "2026-11-14T15:38:40.117672+00:00",
+ "precheck": {
+  "cpu_percent": 39.9,
+  "free_gib": 76.4,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "ok": true
+ },
+ "start_utc": "2026-11-14T15:38:41.125763+00:00",
+ "pid": 27936,
+ "pid_create_utc": "2026-11-14T15:38:41.119678+00:00",
+ "affinity_after_spawn": [
+  15
+ ],
+ "priority_after_spawn": 16384,
+ "status": "exited",
+ "exit_code": 0,
+ "wall_s": 52.41,
+ "end_utc": "2026-11-14T15:39:33.527734+00:00",
+ "pid_exists_after": false,
+ "pid_number_reused_by_other_process": false,
+ "children_seen": [],
+ "children_alive_after": []
+}

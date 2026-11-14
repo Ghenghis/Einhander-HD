@@ -1,0 +1,53 @@
+{
+  "schema": "hdcm-v6-counters",
+  "head_count": 14,
+  "reason_count": 21,
+  "table_count": 4,
+  "value_count": 98,
+  "head_names": [
+    "preload_ok",
+    "preload_bytes",
+    "preload_ticks",
+    "attempted",
+    "admitted",
+    "levels_uploaded",
+    "bytes",
+    "ticks",
+    "rgb_edge_slots",
+    "rgb_opaque_skipped",
+    "rgbonly_preload_ok",
+    "rgbonly_admitted",
+    "rgbonly_opaque_bypass",
+    "rgbonly_identity_attempts"
+  ],
+  "reason_names": [
+    "HDCM_OK",
+    "HDCM_E_NOFILE",
+    "HDCM_E_SIZE",
+    "HDCM_E_MAGIC",
+    "HDCM_E_SELFHASH",
+    "HDCM_E_KEY",
+    "HDCM_E_NATIVE_DIMS",
+    "HDCM_E_HD_DIMS",
+    "HDCM_E_SCALE",
+    "HDCM_E_LEVELS",
+    "HDCM_E_FLAGS",
+    "HDCM_E_CLASS",
+    "HDCM_E_LEVEL0",
+    "HDCM_E_R1",
+    "HDCM_E_ALLOC",
+    "HDCM_E_BUILD",
+    "HDCM_E_GL",
+    "HDCM_E_LEVELHASH",
+    "HDCM_E_LEVELDATA",
+    "HDCM_E_CUTOUT",
+    "HDCM_E_IDENTITY"
+  ],
+  "table_names": [
+    "class_preload_rejected",
+    "class_rejected",
+    "rgb_preload_rejected",
+    "rgb_rejected"
+  ],
+  "identity_attempts_note": "Head13 increments before identity accessor result; it counts attempts, not accepted entries."
+}

@@ -1,5 +1,11 @@
 # RTX Remix setup and actual use — November 14, 2026
 
+## Current verified CPU checkpoint —15:37UTC
+
+Root independently replays v6:7,534 fixtures,16 recording-GL cases/425 checks and92 worker identity checks pass; bounded outer exit0/13.865s. Private v67r3 now compiles/links (EXE8bc3ac3d...), with8 adapter controls and a real growth mutation caught. It freshly builds debug/pack, retains the rebuilt r2 renderer and other pinned objects; not a clean full-source build. No game/GPU/audio run or installation. Tracker/save-state regressions and all live acceptance remain open. [Actual results and preserved failures](../docs/DECODE-WORKER-RESULTS-20261114.md).
+
+The canonical native primary replacement has actual own hook/inbox/checkpoint proof; original history is retained and its worktree guard respected. Metadata monitor PID36052 is bounded to15:49:33.939UTC. CPU-only work continues; no GPU grant is inferred from elapsed time. Older checkpoint paragraphs below are historical. HUD derived candidates still require source/look/live acceptance; full skins/menu/audio and seven-stage completion are not claimed.
+
 ## Resource and native-worker update —15:06UTC
 
 Pizza explicitly released its shared GPU grant14:56:05UTC; coordinator independently checked parent/child absence14:57:01. Root's legacy marker is still pending reconciliation; no new Einhander GPU/game/audio test ran. [Shared-resource controls and limits](../docs/SHARED-GPU-RESULTS-20261114.md) pass on CPU. The metadata monitor PID31968 is bounded to15:23:29.643UTC and proves monitoring only. Original native primary retired from new assignments with a durable handoff; supported canonical-root replacement remains pending. Other three workers continue stage/UI repairs. HUD152 derived fade-key candidates are not source/live admission; S23 phase silhouette defects and S67 native smoke-fill repairs remain subject to actual acceptance.

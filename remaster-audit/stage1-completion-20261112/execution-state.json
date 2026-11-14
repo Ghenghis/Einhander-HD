@@ -1,13 +1,22 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T15:10:49.219393+00:00",
+  "updated_at_utc": "2026-11-14T15:39:12.293407+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "Private RISE native-alpha composition and CPU decode/interop evidence",
-    "evidence": "remaster-audit/texture-composer-followup-20261114/README.md",
-    "status": "CPU composition/admission verified; v6 file pins verified and author report qualified; no new GPU/game acceptance"
+    "id": "v6 independent CPU replay and private v67r3 link",
+    "evidence": "remaster-audit/decode-worker-results-20261114/README.md",
+    "fixture_checks": 7534,
+    "glue_cases": 16,
+    "glue_checks": 425,
+    "pack_checks": 92,
+    "counter_adapter_cases": 8,
+    "private_exe_sha256": "8bc3ac3daedcbb08790905c228d1dc7b052bd5ed52d3bb739c02009ec86bb772",
+    "game_launched": false,
+    "gpu_run": false,
+    "audio_run": false,
+    "status": "CPU verified/private link only; tracker regression and live acceptance pending"
   },
   "remaining": [
     {
@@ -909,8 +918,8 @@
     "new_start_requires_coordinator_grant": true
   },
   "actual_monitor": {
-    "pid": 31968,
-    "bound_end_utc": "2026-11-14T15:23:29.643Z",
+    "pid": 36052,
+    "bound_end_utc": "2026-11-14T15:49:33.939Z",
     "watcher_only": true,
     "proves_model_activity": false
   }

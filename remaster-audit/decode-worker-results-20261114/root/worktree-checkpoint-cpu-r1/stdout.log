@@ -1,0 +1,130 @@
+TAP version 13
+# Subtest: registered worktree checkpoint is written/read without touching the guarded canonical predecessor
+ok 1 - registered worktree checkpoint is written/read without touching the guarded canonical predecessor
+  ---
+  duration_ms: 44.8269
+  type: 'test'
+  ...
+# Subtest: registered checkpoint paths reject workspace escape and foreign owner filenames
+ok 2 - registered checkpoint paths reject workspace escape and foreign owner filenames
+  ---
+  duration_ms: 9.1775
+  type: 'test'
+  ...
+# Subtest: explicit bounded receiver checkpoint satisfies the actual stop gate
+ok 3 - explicit bounded receiver checkpoint satisfies the actual stop gate
+  ---
+  duration_ms: 0.412
+  type: 'test'
+  ...
+# Subtest: timestamp refresh cannot inherit a dead receiver or expired wake
+ok 4 - timestamp refresh cannot inherit a dead receiver or expired wake
+  ---
+  duration_ms: 0.2186
+  type: 'test'
+  ...
+# Subtest: past, invalid and over-limit wake deadlines are rejected
+ok 5 - past, invalid and over-limit wake deadlines are rejected
+  ---
+  duration_ms: 0.1907
+  type: 'test'
+  ...
+# Subtest: explicit user stop remains possible without a receiver
+ok 6 - explicit user stop remains possible without a receiver
+  ---
+  duration_ms: 0.135
+  type: 'test'
+  ...
+# Subtest: invalid continuation does not overwrite the real checkpoint file
+ok 7 - invalid continuation does not overwrite the real checkpoint file
+  ---
+  duration_ms: 15.1173
+  type: 'test'
+  ...
+# Subtest: registered worker checkpoint does not overwrite the primary owner and rejects foreign identities
+ok 8 - registered worker checkpoint does not overwrite the primary owner and rejects foreign identities
+  ---
+  duration_ms: 13.6643
+  type: 'test'
+  ...
+# Subtest: registered worker user stop saves a paused checkpoint without a receiver and preserves the primary
+ok 9 - registered worker user stop saves a paused checkpoint without a receiver and preserves the primary
+  ---
+  duration_ms: 12.9715
+  type: 'test'
+  ...
+# Subtest: unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+ok 10 - unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+  ---
+  duration_ms: 0.9558
+  type: 'test'
+  ...
+# Subtest: explicit user pause permits stop even with unread work
+ok 11 - explicit user pause permits stop even with unread work
+  ---
+  duration_ms: 0.5912
+  type: 'test'
+  ...
+# Subtest: component completion cannot claim full project completion
+ok 12 - component completion cannot claim full project completion
+  ---
+  duration_ms: 0.794
+  type: 'test'
+  ...
+# Subtest: actual overall completion plus complete registry permits stop
+ok 13 - actual overall completion plus complete registry permits stop
+  ---
+  duration_ms: 0.1303
+  type: 'test'
+  ...
+# Subtest: fresh checkpoint with bounded armed continuation permits a waiting turn
+ok 14 - fresh checkpoint with bounded armed continuation permits a waiting turn
+  ---
+  duration_ms: 0.1194
+  type: 'test'
+  ...
+# Subtest: unread actionable mail prevents a waiting turn until handled
+ok 15 - unread actionable mail prevents a waiting turn until handled
+  ---
+  duration_ms: 0.1142
+  type: 'test'
+  ...
+# Subtest: eligible durable work prevents waiting even with a valid continuation
+ok 16 - eligible durable work prevents waiting even with a valid continuation
+  ---
+  duration_ms: 0.1245
+  type: 'test'
+  ...
+# Subtest: missing/expired/wrong-session continuation blocks stop
+ok 17 - missing/expired/wrong-session continuation blocks stop
+  ---
+  duration_ms: 0.1828
+  type: 'test'
+  ...
+# Subtest: older urgent blockers stay visible ahead of a burst of routine notes
+ok 18 - older urgent blockers stay visible ahead of a burst of routine notes
+  ---
+  duration_ms: 58.8831
+  type: 'test'
+  ...
+# Subtest: real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+ok 19 - real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+  ---
+  duration_ms: 387.5884
+  type: 'test'
+  ...
+# Subtest: registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+ok 20 - registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+  ---
+  duration_ms: 48.8661
+  type: 'test'
+  ...
+1..20
+# tests 20
+# suites 0
+# pass 20
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 745.4344
