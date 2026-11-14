@@ -1,0 +1,1336 @@
+{
+  "run": "world-integrated-live-r1",
+  "date_utc": "2026-11-14T08:39:51.254714+00:00",
+  "proof": {
+    "path": "remaster-audit/dev-center-evidence/stage1-completion-20261112/world-integrated-live-r1/hd-on_rewind-on/world-flypast-proof.json",
+    "sha256": "83dcd96c0794fbf7386c67848d06aeae0f51ce4c0e0e8c6ea19c48b23a518a00"
+  },
+  "errors": [],
+  "composition": {
+    "keys": 1698,
+    "changed_or_added_entries": 161,
+    "added_keys": 29,
+    "changed_existing_keys": 132,
+    "protected_crisp_signs": 5,
+    "native_admission_keys": 1698,
+    "native_exact_region_checks": 226,
+    "native_admission_failures": 0,
+    "native_class_check_keys": 161,
+    "native_centres_checked": 5154816,
+    "class_failures": 0,
+    "coverage_plan": {
+      "known_native_fallback_keys": 21,
+      "targeted_native_fallback_keys": 21,
+      "not_targeted_native_fallback_keys": [],
+      "known_drawn_legacy_with_unused_set": 126,
+      "targeted_drawn_legacy_keys": 114,
+      "remaining_drawn_legacy_keys": [
+        "2597000F-847C03A0",
+        "37342FFF-7B0E84A2",
+        "37342FFF-CAFC4AA7",
+        "57AC02A0-B6B94CE1",
+        "73BF9877-48E2665E",
+        "73BF9877-5E906348",
+        "AB2DB563-B869F949",
+        "AB58BBA4-9EB27255",
+        "AB58BBA4-A9B6354C",
+        "AB58BBA4-FF91A24A",
+        "C7502427-585B7D2F",
+        "C7502427-EB883932"
+      ]
+    }
+  },
+  "phase_summary": {
+    "measured_frames": [
+      3057,
+      10247
+    ],
+    "valid_pairs": 7191,
+    "valid_coverage": 1.0,
+    "period_ms_quantiles": {
+      "0.5": 16.6665,
+      "0.9": 16.6725,
+      "0.99": 18.4895,
+      "0.999": 47.2252,
+      "1.0": 93.2445
+    },
+    "periods_over_ms": {
+      "20": 56,
+      "25": 29,
+      "33.4": 17,
+      "50": 6,
+      "100": 0
+    }
+  },
+  "audio_delta": {
+    "underruns": 3351,
+    "overflow_drops": 0
+  },
+  "focus_samples": {
+    "focused": 0,
+    "total": 121
+  },
+  "observed_changed_entry_upload_keys": 140,
+  "changed_entry_uploads": {
+    "01C8BE36-3BDFB504": [
+      {
+        "frame": 6599,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "0223BCEF-70EEEA84": [
+      {
+        "frame": 7782,
+        "width": 1024,
+        "height": 1024,
+        "bytes": 4194304
+      }
+    ],
+    "0223BCEF-8D34BC17": [
+      {
+        "frame": 7784,
+        "width": 1024,
+        "height": 1024,
+        "bytes": 4194304
+      }
+    ],
+    "0223BCEF-CAB46EA0": [
+      {
+        "frame": 7780,
+        "width": 1024,
+        "height": 1024,
+        "bytes": 4194304
+      }
+    ],
+    "0223BCEF-DE806C24": [
+      {
+        "frame": 7784,
+        "width": 1024,
+        "height": 1024,
+        "bytes": 4194304
+      }
+    ],
+    "285846CF-CA34E803": [
+      {
+        "frame": 6283,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "285846CF-DAD6E40E": [
+      {
+        "frame": 6228,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "31214B41-3D0EB788": [
+      {
+        "frame": 7224,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "31214B41-67842D27": [
+      {
+        "frame": 6718,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "31214B41-73AF4FAA": [
+      {
+        "frame": 5696,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "31214B41-93EDD3A4": [
+      {
+        "frame": 6355,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "31214B41-B4BABCA9": [
+      {
+        "frame": 5364,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "31214B41-B7C32675": [
+      {
+        "frame": 6272,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "675EC00F-0D8BE28C": [
+      {
+        "frame": 6387,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "73BF9877-3FA85320": [
+      {
+        "frame": 7063,
+        "width": 4096,
+        "height": 4096,
+        "bytes": 67108864
+      }
+    ],
+    "73BF9877-7AA4A0DF": [
+      {
+        "frame": 6923,
+        "width": 4096,
+        "height": 4096,
+        "bytes": 67108864
+      }
+    ],
+    "73BF9877-803A474F": [
+      {
+        "frame": 5368,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "73BF9877-CA7DE0E0": [
+      {
+        "frame": 5646,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "92BC5C65-8D0C6ABE": [
+      {
+        "frame": 6516,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-06BDD2F5": [
+      {
+        "frame": 6450,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-0B25BC31": [
+      {
+        "frame": 6445,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-143D2293": [
+      {
+        "frame": 6453,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-24425A14": [
+      {
+        "frame": 6464,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-34737C16": [
+      {
+        "frame": 6433,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-39281776": [
+      {
+        "frame": 6456,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-461895E3": [
+      {
+        "frame": 6441,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-4703B212": [
+      {
+        "frame": 6435,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-50C83105": [
+      {
+        "frame": 6449,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-58B0D936": [
+      {
+        "frame": 6442,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-5F9E0163": [
+      {
+        "frame": 6436,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-6EB1953F": [
+      {
+        "frame": 6451,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-75876E14": [
+      {
+        "frame": 6434,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-7741C5CF": [
+      {
+        "frame": 6447,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-7C2812AB": [
+      {
+        "frame": 6466,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-7FED017B": [
+      {
+        "frame": 6444,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-90BF7527": [
+      {
+        "frame": 6452,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-A00C38B5": [
+      {
+        "frame": 6462,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-A49716D4": [
+      {
+        "frame": 6446,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-AD5FB2B4": [
+      {
+        "frame": 6439,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-B5676015": [
+      {
+        "frame": 6448,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-C2968FF3": [
+      {
+        "frame": 6438,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-C43C237B": [
+      {
+        "frame": 6494,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-CBD58DB1": [
+      {
+        "frame": 6454,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-CE46E1E1": [
+      {
+        "frame": 6443,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-CF23D50D": [
+      {
+        "frame": 6432,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-CFB2DD93": [
+      {
+        "frame": 6465,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-E0010DC4": [
+      {
+        "frame": 6431,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-E42C180A": [
+      {
+        "frame": 6437,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-EC2700D7": [
+      {
+        "frame": 6316,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-F0704041": [
+      {
+        "frame": 6467,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-F619B00C": [
+      {
+        "frame": 6455,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A40D25FE-FAB716A0": [
+      {
+        "frame": 6440,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "A5FCC12A-E2ED781D": [
+      {
+        "frame": 6959,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "AB2DB563-05296EBC": [
+      {
+        "frame": 3086,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-06FF6C27": [
+      {
+        "frame": 3128,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-0ADAA698": [
+      {
+        "frame": 3547,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-182C5E04": [
+      {
+        "frame": 3089,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-1BC4AD13": [
+      {
+        "frame": 3670,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-1BFA5C9F": [
+      {
+        "frame": 3125,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-21F03DEF": [
+      {
+        "frame": 3119,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-22263F74": [
+      {
+        "frame": 3157,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-24DBE101": [
+      {
+        "frame": 3672,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-3CF50D57": [
+      {
+        "frame": 3118,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-3F230FCC": [
+      {
+        "frame": 3158,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-48E1CFB7": [
+      {
+        "frame": 3084,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-4B37CD2C": [
+      {
+        "frame": 3502,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-55E4FF0F": [
+      {
+        "frame": 3107,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-5632FD94": [
+      {
+        "frame": 3137,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-61052463": [
+      {
+        "frame": 3060,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-6A765B36": [
+      {
+        "frame": 3671,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-6C389CE4": [
+      {
+        "frame": 3121,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-6FEE9E7F": [
+      {
+        "frame": 3105,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-713DAC5C": [
+      {
+        "frame": 3082,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-72EBAEC7": [
+      {
+        "frame": 3160,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-806B1E89": [
+      {
+        "frame": 3129,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-83BD1C12": [
+      {
+        "frame": 3085,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-9D6E2E31": [
+      {
+        "frame": 3124,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-9EB82CAA": [
+      {
+        "frame": 3108,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-A01189CF": [
+      {
+        "frame": 3062,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-A4B24DDA": [
+      {
+        "frame": 3106,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-A7644F41": [
+      {
+        "frame": 3122,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-AB19166E": [
+      {
+        "frame": 3058,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-B9B77D62": [
+      {
+        "frame": 3161,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-BA617FF9": [
+      {
+        "frame": 3083,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-C6297498": [
+      {
+        "frame": 3673,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-CD785955": [
+      {
+        "frame": 3854,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-CDA3BF82": [
+      {
+        "frame": 3133,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-CE75BD19": [
+      {
+        "frame": 3087,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-D0A68F3A": [
+      {
+        "frame": 3126,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-D3708DA1": [
+      {
+        "frame": 3088,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-E97AECD1": [
+      {
+        "frame": 3104,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-EAACEE4A": [
+      {
+        "frame": 3120,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-F47FDC69": [
+      {
+        "frame": 3159,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "AB2DB563-F7A9DEF2": [
+      {
+        "frame": 3117,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "B43C181F-06BDD2F5": [
+      {
+        "frame": 6410,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-0B25BC31": [
+      {
+        "frame": 6415,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-143D2293": [
+      {
+        "frame": 6407,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-24425A14": [
+      {
+        "frame": 6400,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-34737C16": [
+      {
+        "frame": 6427,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-39281776": [
+      {
+        "frame": 6404,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-461895E3": [
+      {
+        "frame": 6419,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-4703B212": [
+      {
+        "frame": 6425,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-50C83105": [
+      {
+        "frame": 6411,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-58B0D936": [
+      {
+        "frame": 6418,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-5F9E0163": [
+      {
+        "frame": 6424,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-6EB1953F": [
+      {
+        "frame": 6409,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-75876E14": [
+      {
+        "frame": 6426,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-7741C5CF": [
+      {
+        "frame": 6413,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-7C2812AB": [
+      {
+        "frame": 6402,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-7FED017B": [
+      {
+        "frame": 6416,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-8D63936A": [
+      {
+        "frame": 6706,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-90BF7527": [
+      {
+        "frame": 6408,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-A00C38B5": [
+      {
+        "frame": 6398,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-A49716D4": [
+      {
+        "frame": 6414,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-AD5FB2B4": [
+      {
+        "frame": 6421,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-B5676015": [
+      {
+        "frame": 6412,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-C2968FF3": [
+      {
+        "frame": 6422,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-C43C237B": [
+      {
+        "frame": 6430,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-C6869C0B": [
+      {
+        "frame": 6698,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-CBD58DB1": [
+      {
+        "frame": 6406,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-CE46E1E1": [
+      {
+        "frame": 6417,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-CF23D50D": [
+      {
+        "frame": 6368,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-CFB2DD93": [
+      {
+        "frame": 6401,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-E0010DC4": [
+      {
+        "frame": 6367,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-E42C180A": [
+      {
+        "frame": 6423,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-F0704041": [
+      {
+        "frame": 6403,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-F619B00C": [
+      {
+        "frame": 6405,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B43C181F-FAB716A0": [
+      {
+        "frame": 6420,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "B60405B8-66755655": [
+      {
+        "frame": 6650,
+        "width": 4096,
+        "height": 128,
+        "bytes": 2097152
+      }
+    ],
+    "E360C964-3392E58F": [
+      {
+        "frame": 7718,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-7A38FB8F": [
+      {
+        "frame": 6710,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-9E723485": [
+      {
+        "frame": 6704,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-A92B06F1": [
+      {
+        "frame": 6781,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-C12472D4": [
+      {
+        "frame": 8962,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-C1B5906C": [
+      {
+        "frame": 7836,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-C89502BC": [
+      {
+        "frame": 6729,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-CE2C1696": [
+      {
+        "frame": 7634,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-DF4F533F": [
+      {
+        "frame": 5476,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-EC3CCAA7": [
+      {
+        "frame": 6993,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ],
+    "E360C964-F66A97D4": [
+      {
+        "frame": 6735,
+        "width": 2048,
+        "height": 2048,
+        "bytes": 16777216
+      }
+    ]
+  },
+  "key_draw_submissions_proven": false,
+  "observations": 121,
+  "stills": [
+    {
+      "at_utc": "2026-11-14T08:37:37.660764+00:00",
+      "label": "world-000",
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-live-r1\\hd-on_rewind-on\\captures\\world-000.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "ee50cff00a8adf83f6a33a5d00445262dd9b759cb9687f7e337e8967520b5ee2",
+      "frame_before": 3070,
+      "frame_after": 3073,
+      "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+    },
+    {
+      "at_utc": "2026-11-14T08:38:07.443698+00:00",
+      "label": "world-030",
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-live-r1\\hd-on_rewind-on\\captures\\world-030.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "49298a739865977cd2a6edbc678d4316a105b466319b5444dda0178036ac83cb",
+      "frame_before": 4852,
+      "frame_after": 4862,
+      "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+    },
+    {
+      "at_utc": "2026-11-14T08:38:37.345480+00:00",
+      "label": "world-060",
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-live-r1\\hd-on_rewind-on\\captures\\world-060.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "78059d5972e1317fba9f5bf616c986ca898b5f68631a6887f47715a73d237699",
+      "frame_before": 6652,
+      "frame_after": 6655,
+      "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+    },
+    {
+      "at_utc": "2026-11-14T08:39:07.442313+00:00",
+      "label": "world-090",
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-live-r1\\hd-on_rewind-on\\captures\\world-090.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "721c89ecfb1003a0df2b782e15e102e74fa6e9efab37eb29f56e968124c04f24",
+      "frame_before": 8452,
+      "frame_after": 8463,
+      "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+    },
+    {
+      "at_utc": "2026-11-14T08:39:37.408503+00:00",
+      "label": "world-120",
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-live-r1\\hd-on_rewind-on\\captures\\world-120.png",
+      "width": 1280,
+      "height": 960,
+      "sha256": "e86d7229663b3ce52a1de3b6288ea12f101a8dfaf05c46cbffbd4f476fb7dbd2",
+      "frame_before": 10255,
+      "frame_after": 10259,
+      "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+    }
+  ],
+  "command_audit": {
+    "timer_write_requests": 589,
+    "successful_timer_writes": 589,
+    "forbidden_mutations": []
+  },
+  "exit": 0,
+  "port_closed": true,
+  "owned_pid_gone": true,
+  "gpu_reservation_released": true,
+  "production_installed": false,
+  "visual_accepted": false,
+  "performance_accepted": false,
+  "full_project_complete": false,
+  "visual_review": [
+    "world-060 retains coarse stepped sign contours; requested realistic modern fidelity not met.",
+    "Distant window atlas remains soft;95A3BCF8 was deliberately unchanged in this composition."
+  ],
+  "limits": [
+    "Private scale2 output,1280x960 stills; not a4K output acceptance test.",
+    "Five synchronous composed/native still pairs, mixed focus and other light CPU allowed; not controlled timing comparison.",
+    "No video, full source collector or per-key draw collector. Upload observations do not prove drawn appearance.",
+    "Countdown-byte-only180slease, no stage/lives writes or state loads; not stage-clear acceptance.",
+    "Retained callback PCM/counters do not establish remastered source audio or physical listening acceptance."
+  ],
+  "audio_starvation_intervals": [
+    {
+      "seconds": [
+        0.030394400004297495,
+        1.0004475000023376
+      ],
+      "frames": [
+        3057,
+        3106
+      ],
+      "new_starved_samples": 3351
+    }
+  ],
+  "audio_at_first_measured_sample": {
+    "active": 1,
+    "mode": "bridge-pull",
+    "host_rate": 48000,
+    "fill_ms": 89.5,
+    "target_ms": 180.0,
+    "underruns": 34641,
+    "overflow_drops": 23080,
+    "correction": -0.00253
+  },
+  "audio_at_last_measured_sample": {
+    "active": 1,
+    "mode": "bridge-pull",
+    "host_rate": 48000,
+    "fill_ms": 183.8,
+    "target_ms": 180.0,
+    "underruns": 37992,
+    "overflow_drops": 23080,
+    "correction": 5e-05
+  },
+  "previously_absent_keys_uploaded": [
+    "0223BCEF-70EEEA84",
+    "0223BCEF-8D34BC17",
+    "0223BCEF-CAB46EA0",
+    "0223BCEF-DE806C24",
+    "31214B41-3D0EB788",
+    "31214B41-67842D27",
+    "A40D25FE-24425A14",
+    "A40D25FE-7C2812AB",
+    "A40D25FE-A00C38B5",
+    "A40D25FE-CFB2DD93",
+    "A40D25FE-F0704041",
+    "E360C964-3392E58F",
+    "E360C964-7A38FB8F",
+    "E360C964-9E723485",
+    "E360C964-A92B06F1",
+    "E360C964-C12472D4",
+    "E360C964-C1B5906C",
+    "E360C964-C89502BC",
+    "E360C964-CE2C1696",
+    "E360C964-EC3CCAA7",
+    "E360C964-F66A97D4"
+  ],
+  "previously_absent_keys_not_observed_uploaded": []
+}
