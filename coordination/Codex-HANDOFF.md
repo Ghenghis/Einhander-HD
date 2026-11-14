@@ -1,5 +1,11 @@
 # Codex continuation — 2026-11-14
 
+## Published actual results —13:22UTC
+
+Source/evidence checkpoint `b90142f458fc9810dd0941fe131168e8a5d5380f` is pushed and remote-verified in draft PR1. The new packet has1,064 pins; all2,054 historical/new pins match committed bytes and root/publication copies. Documentation verification:55 documents,88 JSON reports,963 references,0 issues. The delivery worktree was clean after push; actual local receipt is `remaster-audit/runtime-review/gpu-texture-remix-20261114/scene-delivery-verification.json`. PR remains OPEN/DRAFT and its actual-results body was updated. No GPU or gameplay test ran during recovery/publication.
+
+Latest cross-chat coordination: `codex-einhander-crash-check` owns launching/tracking three additional native Claude sessions for S2–3, S4–5, S6–7 under explicit user authorization. Planned owners: `claude-einhander-s23`, `claude-einhander-s45`, `claude-einhander-s67`; do not claim launched/working until actual first turns and Hermes joins are observed. Main Codex retains integration/push/GPU ownership; original Claude retains Stage1/RISE/shared-runtime v6. Avoid duplicate later-stage audits while ownership transfers. Latest user3090Ti hold requires explicit release; no auto return at07:00.
+
 **Latest resource instruction, verified in the user's crash-status chat:** the3090Ti is reserved for Pizza Tycoon HD until **at least07:00Phoenix /14:00UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
 
 Work from `C:/github/Einhander`. Preserve unrelated edits, frozen artwork, failed evidence and native alpha. The project remains active and incomplete. Read [the runtime handoff](../docs/RUNTIME-CONTINUATION-20261113.md), [the work queue](Codex-WORK-QUEUE.md), [Stage 1 acceptance](../docs/STAGE1-COMPLETION-STATUS.md) and the actual Hermes inbox on every resume.
@@ -24,7 +30,7 @@ User reserved the 3090 Ti from 11:44:30 to12:44:30 UTC (04:44:30–05:44:30 Phoe
 
 ## Verified delivery and current local work
 
-Draft [PR1](https://github.com/Ghenghis/Einhander-HD/pull/1), branch `codex/display-history-opt-in`, publication worktree `C:/github/Einhander-wt/display-history-opt-in`. Last published commit `26d3fd208f48544ec69d7abcdf11115e6c061f5d`. Root workspace has unrelated dirty work: never reset/stash/broad-stage it. Stage only reviewed owned paths in the publication worktree. The published CPU-hour packet has381 pins; three latest packets total990 verified file pins.
+Draft [PR1](https://github.com/Ghenghis/Einhander-HD/pull/1), branch `codex/display-history-opt-in`, publication worktree `C:/github/Einhander-wt/display-history-opt-in`. Published source/evidence checkpoint `b90142f458fc9810dd0941fe131168e8a5d5380f`; later documentation clarifications follow the PR branch HEAD. Root workspace has unrelated dirty work: never reset/stash/broad-stage it. Stage only reviewed owned paths in the publication worktree. The published CPU-hour packet has381 pins; three latest packets total990 verified file pins.
 
 Local evidence base: `remaster-audit/runtime-review/gpu-texture-remix-20261114`. Latest scene source is `scene-export/`; host-r8 passes2932 enabled/6 disabled CPU checks. The exact v66 handler/Windows adapter passes14 RPC cases plus foreign-thread control; snapshot-audit-r2 catches28 negative mutations. Private `remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v66-reviewed-scene-r3` compiles/links, EXE SHA256 `51ec32e3fdf4fc7567e807bce7106576a51e0c39ae73e65cb0599c33bd6a5a98`. Retained parent objects mean this is not a clean full-source rebuild. It has not run. Collector schema gp0-scene-v3 is generation-bound; unknown mapping/oversize/clipped geometry is ineligible. Camera/object separation, materials, sprites and submission remain unfinished.
 
@@ -40,6 +46,6 @@ Native Claude owns class-mip renderer and rise-native-vector work; Codex owns GP
 
 ## Next concrete work
 
-Recover/replay Claude v5 into a new immutable folder; publish v66/SDK actual results + restart evidence in a new `scene-texture-followup-20261114` packet; refresh current docs and verify staged references/hashes before push and PR update. Then qualify the matching modern SDK lifecycle using official release source, and separately qualify v66 live capture with a short private route and correct frame-phase bounds. These tests require independent image/lifecycle, timing/audio and geometry/material assertions. Full texture/background coverage, high-fidelity skins/selectors, HUD/menus, audio and seven-stage acceptance remain open.
+Recovered v5-r2 CPU replay and publication are complete as recorded above. Continue v6/RISE implementation, per-stage audit ownership transfer and modern SDK CPU interop preparation. Frozen packets remain immutable; new results require a new packet. Then qualify the matching modern SDK lifecycle using official release source, and separately qualify v66 live capture with a short private route and correct frame-phase bounds. These tests require independent image/lifecycle, timing/audio and geometry/material assertions. Full texture/background coverage, high-fidelity skins/selectors, HUD/menus, audio and seven-stage acceptance remain open.
 
 Do not mark the overall project complete after a component pass. Keep a factual durable checkpoint and actual bounded inbox wake before waiting; never fabricate scheduler/model receipts or uninterrupted availability.

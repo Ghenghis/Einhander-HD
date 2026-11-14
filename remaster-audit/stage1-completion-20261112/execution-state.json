@@ -1,14 +1,14 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T13:21:04.399194+00:00",
+  "updated_at_utc": "2026-11-14T13:24:25.171042+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
     "id": "v66 reviewed scene capture and matching modern SDK CPU table initialization",
-    "github_commit": "26d3fd208f48544ec69d7abcdf11115e6c061f5d",
-    "github_commit_scope": "Previous published checkpoint; current follow-up commit not yet created. See actual branch HEAD/PR delivery receipt.",
-    "status": "v66 compiled/linked and CPU-tested, not live-run; SDK0.16.1 function table initializes, no Startup/Submit/Present; v5 restart integrity recovery ongoing",
+    "github_commit": "b90142f458fc9810dd0941fe131168e8a5d5380f",
+    "github_commit_scope": "Published source/evidence checkpoint; later documentation follows branch HEAD",
+    "status": "Recovered v5-r2 CPU checkpoint independently verified; v66 compiled/host-tested but not live-run; modern SDK table-only check passed. No GPU/game/project acceptance.",
     "evidence": "remaster-audit/scene-texture-followup-20261114/README.md"
   },
   "remaining": [
@@ -647,7 +647,7 @@
     "strict_gate_preserved": true
   },
   "material_receipt_current_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
-  "github_head": "26d3fd208f48544ec69d7abcdf11115e6c061f5d",
+  "github_head": "b90142f458fc9810dd0941fe131168e8a5d5380f",
   "latest_documentation": "docs/RUNTIME-CONTINUATION-20261113.md",
   "package": "remaster-audit/scene-texture-followup-20261114",
   "e2e_complete": false,
@@ -783,15 +783,15 @@
       "gpu_game_accepted": false
     },
     "next_steps": [
-      "Verify fresh Claude v5-r2 freeze and independent CPU replay",
-      "Publish owned source/reports and verify staged documentation, hashes and remote HEAD",
+      "Continue v6/RISE CPU implementation and transfer later-stage audits after actual new native session joins",
+      "Keep published packet immutable; record new scene/SDK/art results in a new packet and current docs",
       "Implement matching modern SDK Submit/Present interop lifecycle on CPU before GPU qualification",
       "Qualify v66 real scene capture with bounded private route and correct phase bounds",
       "Complete RISE/far-background art and full skin/HUD/menu/audio/seven-stage acceptance"
     ],
     "later_stage_lane": {
       "scope": "S2\u2013S7 CPU strict whole-cell/fringe audit queued concurrently with shared engine and Stage1 work; not six active authors",
-      "owner": "claude-einhander",
+      "owner": "Additional native stage sessions planned; actual launch/queue transfer tracked by codex-einhander-crash-check",
       "selected_key_counts": {
         "2": 39,
         "3": 39,
@@ -801,7 +801,12 @@
         "7": 26
       },
       "candidate_manifests_verified": 28,
-      "fully_accepted_stages": 0
+      "fully_accepted_stages": 0,
+      "planned_owners": [
+        "claude-einhander-s23",
+        "claude-einhander-s45",
+        "claude-einhander-s67"
+      ]
     },
     "user_3090_hold_previous": {
       "started_utc": "2026-11-14T11:44:30Z",
@@ -838,12 +843,18 @@
     "full_e2e_complete": false
   },
   "documentation_publication": {
-    "status": "Prepared, not yet committed or pushed",
-    "previous_commit": "26d3fd208f48544ec69d7abcdf11115e6c061f5d",
+    "status": "Source/evidence checkpoint pushed and remote-verified; PR remains draft/open",
+    "commit": "b90142f458fc9810dd0941fe131168e8a5d5380f",
     "branch": "codex/display-history-opt-in",
     "pr": "https://github.com/Ghenghis/Einhander-HD/pull/1",
     "canonical_handoff": "coordination/Codex-HANDOFF.md",
     "package": "remaster-audit/scene-texture-followup-20261114",
+    "package_hash_files": 1064,
+    "historical_and_new_pins_verified": 2054,
+    "documentation_pages": 55,
+    "json_reports": 88,
+    "local_links": 963,
+    "issues": 0,
     "full_e2e_complete": false
   }
 }
