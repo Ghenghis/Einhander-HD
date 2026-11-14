@@ -174,6 +174,7 @@ def environment(identity, strength, targets, root, enemy_identity="stock", enemy
     return {
         "EIN_DEV_URL": "http://127.0.0.1:8094",
         "EIN_DEBUG_PORT": "4370",
+        "PSX_DISPLAY_RING": "0",
         "PSXRECOMP_SKIN_PROFILE": identity,
         "PSXRECOMP_SKIN_KEYS": ",".join(targets),
         "PSXRECOMP_SKIN_STRENGTH": format(strength, ".6f"),

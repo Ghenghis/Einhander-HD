@@ -2,6 +2,27 @@
 
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
+An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
+now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero
+new audio starvation over two minutes. The profiler and an independent parser
+agree: continuous diagnostic GPU readback took about 25.7% of the main thread
+samples in the fight. In a same-binary OFF/ON comparison, disabling that history
+measured 60.01 fight frames/s and zero starvation; re-enabling it measured 57.75
+and 9,482 starved output sample frames. Earlier recorder-OFF tests still had
+this forensic ring ON. An actual rebuilt default-unset runtime, without the
+new collision/CPS or lock-free audio objects, measured 59.99 fight frames/s
+and zero starvation with scale 2 and rewind depth 50/interval 15. One-shot
+screenshots still work. Only one gameplay rewind snapshot was stored; most
+rewind attempts were skipped as unsafe. These are assisted Stage 1 results:
+the authorized hold writes the existing invincibility-countdown byte only,
+with held fire and no stage jumps or state loads. Visible recording, unassisted
+normal-launch acceptance and stages 2–7 remain pending. The final hardened
+source build also averages about 60 in a recorded test with zero starvation,
+but its passive swap ring shows seven intervals over 25 ms (longest 43 ms).
+All 350 application frames were submitted once. Capture itself also missed
+frames: the video is not a complete 60-fps stream. Fully even presentation
+remains open; normal-player tests without recording are next. Nothing is installed.
+
 The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
 completed with R4 and two leaf handlers qualified on the exact tested runtime.
 The 350-frame fight window measured 55.66/56.02 frames/s with native code
