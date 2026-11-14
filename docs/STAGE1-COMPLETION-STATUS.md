@@ -35,7 +35,10 @@ happened to have a 17 ms maximum. GPU pixel-equality/state-restore checks passed
 and focus stayed active throughout both measurements. Different live input and
 handoff timing prevent a causal regression estimate. The prototype remains
 private and fails full smoothness; pauses outside the upload helper are still
-under investigation. Unassisted full-stage and listening acceptance remain open.
+under investigation. The saved display pages alternate on every submission in
+both boss windows and across the 184 ms pause. This supports late delivery
+rather than repeated page submissions; it does not prove unique pixels or
+physical display visibility for every submitted frame. Unassisted full-stage and listening acceptance remain open.
 
 An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
 now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero

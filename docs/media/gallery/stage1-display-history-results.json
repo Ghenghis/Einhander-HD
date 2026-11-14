@@ -5990,6 +5990,36 @@
       "native delta counters include title/route/handoff; frame-filtered slow events give exact stall brackets",
       "no claim that focus caused earlier stalls; full7stage and listening acceptance open"
     ],
-    "qpc_frequency": 10000000
+    "qpc_frequency": 10000000,
+    "display_page_sequence": {
+      "off_boss": {
+        "frames": 350,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "on_boss": {
+        "frames": 350,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "on_stall": {
+        "frames": 16,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "finding": "Display pages alternate every retained submission in both boss windows and across the184ms pause. This supports continued game buffer flipping; it does not prove pixel uniqueness or physical scanout of every frame."
+    }
   }
 }
