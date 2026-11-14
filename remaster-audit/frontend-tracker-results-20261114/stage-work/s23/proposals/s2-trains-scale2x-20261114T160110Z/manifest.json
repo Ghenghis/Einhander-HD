@@ -1,0 +1,1504 @@
+{
+ "name": "s2-trains-scale2x-20261114T160110Z",
+ "owner": "claude-einhander-s23",
+ "status": "PROPOSAL (private; not frozen; not for import)",
+ "created_utc": "2026-11-14T16:01:13.260654+00:00",
+ "method": "J5 (claude-einhander-s23): alternative Stage 3 master by exact Scale2x (AdvMAME2x) index upscaling, cell-isolated.\nPIXEL JOB: grant required.\n\n  python -I j5_s3_scale2x.py <out_dir> <budget_seconds> [s3 | s2-trains]\n\nProfiles: s3 (default) = stage3-machinery-walls-v1 + stage3-signage-props-v1, cells = frozen inferred cells-32grid.\ns2-trains = stage2-train-cars-v4 (20 keys on 6C5AC447 / 1BC35EBE / 0F01F0FA), cells = the merged union of every drawn\nuv rect of the page in w7-stage2/work/draws-s2.json (each merged rect one cell, everything else one background cell);\naddresses the w7-stage2 LEDGER open item \"rounded corners on rectangular machine parts (categorical master)\". The s2\nset has no material layer: it is a crisp-geometry alternative for a live A/B against train-cars-v4, not a replacement.\n\nWhy: the categorical index master (walls-v1 / signage-v1) rounds every contour, so dither becomes blobs, 1-texel\nlines bead and rectangular parts lose their corners (w7-stage3 LEDGER honest read). Scale2x works on palette INDICES\nwith exact equality tests, so:\n  * it never creates a colour or an index that is not in the 3x3 native neighbourhood (nothing invented);\n  * isolated texels and interior checkerboard dither/stipple stay exactly native (rule needs B != H and D != F plus a\n    matching pair); straight edges stay straight; diagonal staircases are smoothed; a convex 90-degree corner gets a\n    bevel confined to its corner texel (unit test: 21 of 64 HD pixels at 8x); at page/cell borders the edge padding can\n    alter corner texels of a checkerboard (4 HD pixels in an 8x8 checkerboard test at 2x);\n  * it is CLUT-free, so every palette phase of a page gets the identical shape (phase-consistent silhouettes).\nRule per native texel E with neighbours B (up), D (left), F (right), H (down), applied 3 times for 8x (twice for 4x):\n  if B != H and D != F: E0 = D if D == B else E; E1 = F if B == F else E; E2 = D if D == H else E; E3 = F if H == F else E\n  else E0 = E1 = E2 = E3 = E   (E0 top-left, E1 top-right, E2 bottom-left, E3 bottom-right)\nCell isolation: each inferred atlas cell of the frozen sets (master/<TEX>-cells-32grid.npy, hash-checked) is upscaled\nfrom its own texels only (texels outside the cell replaced by the nearest in-cell texel), so no neighbouring atlas\ncell can leak in at a quad edge.\nPer key: RGBA = CLUT[index] with native class alpha; strict R1-R4 (s23lib); violators (if any) snap to the native\nclass of their cell with native RGB (iterated, counted); R5 bleed fill. page2048 = 8x, page1024 = 4x (both from the\nindex field, so they agree). Review sheet: native | v1 | Scale2x at 8x for one window per page.\nOutputs only under <out_dir> (NEW, private, not frozen, not for import).",
+ "tool_sha256": {
+  "j5_s3_scale2x.py": "143a95af12f9c3adbf093f2dd4dd18629e59a6c65de82e74d0baad11cf442a90",
+  "s23lib.py": "64d22ee1e47cffead5945c4bdb0ba0b82ed0cb6b7987f6129dee499ecb840505"
+ },
+ "profile": "s2-trains",
+ "sets": {
+  "stage2-train-cars-v4": "28821a39c2cd59704d4e276ff2f2e0b7fbc1d0c6c5cfb8737f8a6129fafcdeb2"
+ },
+ "pages": {
+  "0F01F0FA": {
+   "set": "stage2-train-cars-v4",
+   "words_sha256": "9eba89857d06e57bf5c3ca9c75fa54cf6eed023fd9c3ea2ca262ebf24e24ad54",
+   "cells": 10,
+   "cells_source": {
+    "source": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json",
+    "sha256": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+    "merged_drawn_rects": [
+     [
+      0,
+      0,
+      128,
+      63
+     ],
+     [
+      0,
+      128,
+      64,
+      192
+     ],
+     [
+      64,
+      64,
+      128,
+      128
+     ],
+     [
+      64,
+      128,
+      128,
+      160
+     ],
+     [
+      128,
+      128,
+      192,
+      192
+     ],
+     [
+      192,
+      0,
+      256,
+      64
+     ],
+     [
+      192,
+      64,
+      256,
+      96
+     ],
+     [
+      192,
+      96,
+      256,
+      128
+     ],
+     [
+      192,
+      128,
+      256,
+      192
+     ]
+    ]
+   },
+   "px_changed_vs_nearest_8x": 138143,
+   "share_changed_8x": 0.0329,
+   "index_8x": {
+    "path": "0F01F0FA-index-8x.npy",
+    "sha256": "375ff7ebe08dfde9afec6a79a33f0da3e656186676ba82ffb00b60a241f8b46a"
+   }
+  },
+  "1BC35EBE": {
+   "set": "stage2-train-cars-v4",
+   "words_sha256": "ebc32f03bd8e6053342108588d2b3f18ffe21e3be71dfb2952d5cc8cfe67a500",
+   "cells": 12,
+   "cells_source": {
+    "source": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json",
+    "sha256": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+    "merged_drawn_rects": [
+     [
+      0,
+      0,
+      64,
+      64
+     ],
+     [
+      64,
+      17,
+      128,
+      32
+     ],
+     [
+      64,
+      96,
+      128,
+      128
+     ],
+     [
+      64,
+      128,
+      128,
+      160
+     ],
+     [
+      80,
+      32,
+      128,
+      64
+     ],
+     [
+      128,
+      0,
+      192,
+      32
+     ],
+     [
+      128,
+      32,
+      192,
+      64
+     ],
+     [
+      128,
+      64,
+      192,
+      82
+     ],
+     [
+      208,
+      16,
+      224,
+      32
+     ],
+     [
+      224,
+      32,
+      240,
+      47
+     ],
+     [
+      225,
+      0,
+      256,
+      32
+     ]
+    ]
+   },
+   "px_changed_vs_nearest_8x": 58981,
+   "share_changed_8x": 0.0141,
+   "index_8x": {
+    "path": "1BC35EBE-index-8x.npy",
+    "sha256": "865b3aecf120f3eda53b000e17399e6fc7d15758365440a02a622bbbbc23c98e"
+   }
+  },
+  "6C5AC447": {
+   "set": "stage2-train-cars-v4",
+   "words_sha256": "8923b1900f288672cbb6c944933926c39f663b0645aba84c790649b1a806662d",
+   "cells": 19,
+   "cells_source": {
+    "source": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json",
+    "sha256": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+    "merged_drawn_rects": [
+     [
+      0,
+      0,
+      64,
+      64
+     ],
+     [
+      0,
+      160,
+      64,
+      192
+     ],
+     [
+      0,
+      192,
+      64,
+      256
+     ],
+     [
+      64,
+      64,
+      127,
+      96
+     ],
+     [
+      64,
+      96,
+      128,
+      128
+     ],
+     [
+      64,
+      160,
+      128,
+      182
+     ],
+     [
+      96,
+      224,
+      128,
+      240
+     ],
+     [
+      128,
+      41,
+      192,
+      64
+     ],
+     [
+      128,
+      64,
+      192,
+      128
+     ],
+     [
+      128,
+      128,
+      192,
+      160
+     ],
+     [
+      128,
+      224,
+      160,
+      256
+     ],
+     [
+      160,
+      224,
+      191,
+      256
+     ],
+     [
+      192,
+      0,
+      256,
+      55
+     ],
+     [
+      192,
+      64,
+      256,
+      96
+     ],
+     [
+      192,
+      128,
+      256,
+      160
+     ],
+     [
+      192,
+      168,
+      224,
+      192
+     ],
+     [
+      224,
+      96,
+      256,
+      128
+     ],
+     [
+      224,
+      192,
+      256,
+      237
+     ]
+    ]
+   },
+   "px_changed_vs_nearest_8x": 152461,
+   "share_changed_8x": 0.0363,
+   "index_8x": {
+    "path": "6C5AC447-index-8x.npy",
+    "sha256": "a3f5c767a0931abf34597c7ec632d76b58f9fee1da61bcc05b5781a8fd77b8b5"
+   }
+  }
+ },
+ "keys": {
+  "0F01F0FA-8FD3DE52": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-8FD3DE52.png",
+     "sha256": "c79c1e46eb0eeb8d0564f89f7cde78eff9263a13e05e47dce3f4098c2806e542",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-8FD3DE52.png",
+     "sha256": "013f5c56afeeda70d66ce2fbbfb540733bb7698a675edfc420533101dcae08a4",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "0F01F0FA-B692B4C2": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-B692B4C2.png",
+     "sha256": "8227cd9b680a5f2c138ef2e60220c828b9bf1af4cd436219dce4c0d32312d095",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-B692B4C2.png",
+     "sha256": "d2c895377ba9dedcd884f1c7fe0a6de9e43e0542d8a16c85d47b86512a112b9b",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "0F01F0FA-BE954EE4": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-BE954EE4.png",
+     "sha256": "b79272ac3ec2103801ea234b787ef9728cbcf930cff119b739639ee2bf0e65e0",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-BE954EE4.png",
+     "sha256": "4ab2d5ab32b462091accc2609509515d9c7795b8a6145fb0c6bd080edc11f05f",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "0F01F0FA-CDBFF4CE": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-CDBFF4CE.png",
+     "sha256": "076c9bb39bb2ac33f0e56fe89bd11c16de3543853e6902f88a9cc9c01ca0b4e2",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-CDBFF4CE.png",
+     "sha256": "69fe72b2999df3aba2fe737c76ee2596bc0eacf200e15e25cafc6df5c4b29ee0",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "0F01F0FA-E8247720": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-E8247720.png",
+     "sha256": "abefa3cc7b6a68e2e61666a5f12fc6b66111bb7b6231ef542a01a2c6f1b9248c",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-E8247720.png",
+     "sha256": "3724084c7a22ad839d9273ed1cafd492cd3f415bcf193d58e02096d5952cab20",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "0F01F0FA-F11578EE": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-F11578EE.png",
+     "sha256": "d9775e3b09b1df0b32171f63f95c950189c5ddd197eb67d311d791b11a936c1e",
+     "scale": 8,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 436,
+      "residual": 0
+     },
+     "cutout_rgb_written": 3802899,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 11203,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 45963
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-F11578EE.png",
+     "sha256": "d859e2df577071d0f60a5108f8b103c333cb142662af3f2cc36627751131bdc3",
+     "scale": 4,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 102,
+      "residual": 0
+     },
+     "cutout_rgb_written": 950697,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 2667,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 22888
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-0A8C366F": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-0A8C366F.png",
+     "sha256": "edc0797535f88237df2067b641f80b7fa8a8783f37fa4f7cd38b7b88682bd7d3",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 4036,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-0A8C366F.png",
+     "sha256": "58554812c4318883e666a5c56c28b9f460eb2ae3dad20e2220578c8187a394b3",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 976,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-0E52E513": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-0E52E513.png",
+     "sha256": "44cb8f0cbec445fd170f5f0bc296e9c793d2de483dcb34292923b15d37258422",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-0E52E513.png",
+     "sha256": "55c843247f61bc24e4024ca1ecc1cefc3f8a560eac5a4ea7348ba2a6e219cb68",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-34F92FE6": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-34F92FE6.png",
+     "sha256": "bcd6b7cdb6eb834f1f71a18ac3bf350afd258faf4028c270e25ce4faf4d95dc9",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 144090,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 4036,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 15090
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-34F92FE6.png",
+     "sha256": "4b9d491b799fc1d4b2f6547015aa453f8413af212cbf4da32735369d83289ae7",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 35994,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 976,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 7454
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-A537C5E8": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-A537C5E8.png",
+     "sha256": "f63d90e44a62eea28884d4233d28bab47e6e8b1297cdbb1a22a8e0728db59ff3",
+     "scale": 8,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 134,
+      "residual": 0
+     },
+     "cutout_rgb_written": 1892150,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 6822,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 21027
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-A537C5E8.png",
+     "sha256": "25f0953d57dd487037f4093fe6f9f4fe08e0518a2c8199a5341e0c6d60dcfd57",
+     "scale": 4,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 34,
+      "residual": 0
+     },
+     "cutout_rgb_written": 473026,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 1660,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 10499
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-B4827EFC": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-B4827EFC.png",
+     "sha256": "ce0f454ce544ca06ea29a2583ffba7f7f4424b2b9e7c0db863f49a0cb561c843",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-B4827EFC.png",
+     "sha256": "6c0d15bd9f3f699ba1402ed87c374c98c4ab947c97f05952e16a67ab3d504d0a",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "1BC35EBE-F954F9F4": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-F954F9F4.png",
+     "sha256": "a0d64e0ed384ebcbaeb02a2a01d90fb01fce6a80f9b89da71d4e54cf714596f0",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-F954F9F4.png",
+     "sha256": "32b6d40e18b3aa3171ec16ca18c9436257eb03e0299caa559f08c47df1b02997",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-01E11FC0": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-01E11FC0.png",
+     "sha256": "7fbba899d1e463fd384a06584527a6689334158043caf58ef118da1f988781a4",
+     "scale": 8,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 630,
+      "residual": 0
+     },
+     "cutout_rgb_written": 1949623,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 37435,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 97800
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-01E11FC0.png",
+     "sha256": "149932b3b1ef58cc200df8754eceb22b4cd8ddf52fdbc4310d87d05759356422",
+     "scale": 4,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 140,
+      "residual": 0
+     },
+     "cutout_rgb_written": 487453,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 9027,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 48231
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-1930C7FD": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-1930C7FD.png",
+     "sha256": "03231801685ebad6eab684c17618b061c437fa22f942897366d610ea41b0abdf",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-1930C7FD.png",
+     "sha256": "18f4a8996a46d95fa2eddbb04a0f4a6bc931eb88f06d5a1f7c1f82a7b513c84a",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-413E2F28": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-413E2F28.png",
+     "sha256": "f9cbc088d83a7b0d22b6abd73303c651eed2d3b6331290d5503c01bab9c797ac",
+     "scale": 8,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 66,
+      "residual": 0
+     },
+     "cutout_rgb_written": 433563,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 11137,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 31938
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-413E2F28.png",
+     "sha256": "4cce0652e1d4ef0b606c107584b4be6e349ea3773cd441b8a8ba501b27281f74",
+     "scale": 4,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 15,
+      "residual": 0
+     },
+     "cutout_rgb_written": 108390,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 2764,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 15728
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-58B6A90A": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-58B6A90A.png",
+     "sha256": "49957736c3d4f12786a86ba2ecb5b4d78e97b9a586e9c6c90d27808e72543df9",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-58B6A90A.png",
+     "sha256": "76202405169c4042ffa4bc63a1acb930b38cb12cd3918b460d2024169b2ba723",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-706102D6": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-706102D6.png",
+     "sha256": "6ba22fafec5e5ba7ee7029713ce09564577dc6a3cff3d73effb122a28e2964e0",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-706102D6.png",
+     "sha256": "a604ad02160f36af91f6ae7b43316e24e84640997603058365af93ec08b1b2b0",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-96F7C884": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-96F7C884.png",
+     "sha256": "c072dea1748841b649324c68e1efced4818a42bde72c23662f83801766480705",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-96F7C884.png",
+     "sha256": "c4decd76f7a95844bab207dc862e0bd67f036f5a02ffdd38d6ac57d0fb48d070",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-A318595A": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-A318595A.png",
+     "sha256": "d38567fe16f190a692ff9d1503c288e15aa36498179386d389dbd114e2e6d8aa",
+     "scale": 8,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 78,
+      "residual": 0
+     },
+     "cutout_rgb_written": 251740,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 11020,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 28481
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-A318595A.png",
+     "sha256": "715edbacdb6eccaa948705a7062a45df306579232cbf7a9b60f7a671e10230e6",
+     "scale": 4,
+     "repair": {
+      "passes": 1,
+      "repaired_px": 19,
+      "residual": 0
+     },
+     "cutout_rgb_written": 62935,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 2753,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 14001
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  },
+  "6C5AC447-C0539880": {
+   "set": "stage2-train-cars-v4",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-C0539880.png",
+     "sha256": "7681ab95ed5cae5d550f8871f0c2a1b6a5c7d258924525e1c312d7cbdd1becf4",
+     "scale": 8,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 4194304,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-C0539880.png",
+     "sha256": "068b17ad29c29c06f65eb43470d2c771f3b6e1708ff9bd9e5d62775c7ea0d271",
+     "scale": 4,
+     "repair": {
+      "passes": 0,
+      "repaired_px": 0,
+      "residual": 0
+     },
+     "cutout_rgb_written": 0,
+     "strict": {
+      "pixels": 1048576,
+      "cells": 65536,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "deviant_px": 0,
+      "r5_fringe_px": 0,
+      "edge_cutout_px": 0
+     },
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   }
+  }
+ },
+ "sessions": [
+  {
+   "start_utc": "2026-11-14T16:01:13.261850+00:00",
+   "pid": 36068,
+   "affinity": "13",
+   "resumed_keys": 0
+  }
+ ],
+ "complete": true,
+ "review_this_session": {
+  "path": "review-native-v1-scale2x-s1.png",
+  "sha256": "410fdad6f90e38a5e5c61e5926ad9bb6a3dfbc9a8f85ebd83117a14a2e7f892f",
+  "rows": [
+   "0F01F0FA-8FD3DE52 uv[103, 111, 151, 143]: native 8x | stage2-train-cars-v4 | scale2x-8x",
+   "1BC35EBE-0A8C366F uv[103, 111, 151, 143]: native 8x | stage2-train-cars-v4 | scale2x-8x",
+   "6C5AC447-01E11FC0 uv[104, 138, 152, 170]: native 8x | stage2-train-cars-v4 | scale2x-8x"
+  ]
+ },
+ "summary": {
+  "keys": 20,
+  "files": 40,
+  "strict_pass": 40,
+  "r5_zero": 40,
+  "repaired_px": 1654
+ },
+ "finished_utc": "2026-11-14T16:02:05.322367+00:00"
+}

@@ -1,5 +1,11 @@
 # Codex continuation — 2026-11-14
 
+## Current frontend/tracker checkpoint —16:06UTC
+
+Development launch now uses validated saved materials, explicit stock recovery and correct custom-port links. Nine unit cases and actual CPU validation/PowerShell/Windows-argv controls pass; saved pointer unchanged. The exact v67 pack passes16 tracker/save-state/decode fixture processes in6.037s. Region-O9pins/all11files are preserved in canonical C: storage; ROI-only integration/sidecar refresh and live look remain pending. [Actual code, checks and newer art/menu failures](../docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md).
+
+No game/GPU/audio/browser/bridge test ran. Modern GPU qualification is the next controlled gate after explicit shared grant and current resource checks; elapsed time alone grants nothing. Full remaster/stage acceptance remains open. Metadata monitor PID37556 is bounded to16:17:23.189UTC; older checkpoints below are historical.
+
 ## Current verified CPU checkpoint —15:37UTC
 
 Root independently replays v6:7,534 fixtures,16 recording-GL cases/425 checks and92 worker identity checks pass; bounded outer exit0/13.865s. Private v67r3 now compiles/links (EXE8bc3ac3d...), with8 adapter controls and a real growth mutation caught. It freshly builds debug/pack, retains the rebuilt r2 renderer and other pinned objects; not a clean full-source build. No game/GPU/audio run or installation. Tracker/save-state regressions and all live acceptance remain open. [Actual results and preserved failures](../docs/DECODE-WORKER-RESULTS-20261114.md).

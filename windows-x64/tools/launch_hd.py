@@ -15,7 +15,7 @@ from launch_material import prepare_launch as prepare_material_launch
 from material_profiles import DEFAULT_PLAYER_KEYS, ENEMY_KEYS, environment, saved_selection
 
 
-def prepare_hd_launch(root, *, stock=False, game_arguments=()):
+def prepare_hd_launch(root, *, stock=False, frontend=False, game_arguments=()):
     root = Path(root).resolve()
     saved = saved_selection(root) if not stock else {"exists": False}
     if saved.get("exists"):
@@ -24,7 +24,8 @@ def prepare_hd_launch(root, *, stock=False, game_arguments=()):
         prepared = prepare_material_launch(root, saved["config_path"])
         # Ordinary Play-HD keeps its direct-game behavior; the separate material
         # launcher still opens the frontend for interactive configuration.
-        prepared["arguments"][prepared["arguments"].index("--launcher")] = "--no-launcher"
+        if not frontend:
+            prepared["arguments"][prepared["arguments"].index("--launcher")] = "--no-launcher"
         prepared.update(selection_source="explicit_saved_preset", saved_descriptor=saved["config_path"])
     else:
         paths = {
@@ -38,7 +39,7 @@ def prepare_hd_launch(root, *, stock=False, game_arguments=()):
             if not path.is_file():
                 raise ValueError("Required HD launch file is missing (" + label + "): " + str(path))
         prepared = dict(
-            arguments=[str(paths["executable"]), "--no-launcher", "--game", str(paths["game"]),
+            arguments=[str(paths["executable"]), "--launcher" if frontend else "--no-launcher", "--game", str(paths["game"]),
                        "--disc", str(paths["disc"]), "--bios", str(paths["bios"])],
             cwd=str(root), environment_overrides=environment(
                 "stock", 0, list(DEFAULT_PLAYER_KEYS), root, "stock", 0, list(ENEMY_KEYS)),
@@ -53,9 +54,10 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true")
     parser.add_argument("--stock", action="store_true")
+    parser.add_argument("--frontend", action="store_true", help="Open the launcher with the validated material selection")
     args, game_arguments = parser.parse_known_args(argv)
     try:
-        prepared = prepare_hd_launch(Path(__file__).resolve().parents[1], stock=args.stock,
+        prepared = prepare_hd_launch(Path(__file__).resolve().parents[1], stock=args.stock, frontend=args.frontend,
                                      game_arguments=game_arguments)
         if args.check:
             print(json.dumps(dict(ok=True, game_launched=False, **prepared), indent=2))

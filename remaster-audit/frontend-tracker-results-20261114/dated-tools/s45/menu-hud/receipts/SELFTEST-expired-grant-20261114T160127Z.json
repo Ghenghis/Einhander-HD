@@ -1,0 +1,23 @@
+﻿{
+    "name":  "SELFTEST-expired-grant",
+    "grant_msg":  "selftest-no-grant",
+    "grant_utc":  "2026-11-14T15:00:00.0000000Z",
+    "start_window_s":  120,
+    "tool":  "menu-hud\\tools\\s45_ji_review.py",
+    "tool_args":  "",
+    "cap_s":  30,
+    "mem_cap_mib":  512,
+    "affinity_mask":  "2000",
+    "preflight":  {
+                      "utc":  "2026-11-14T16:01:27.7598463Z",
+                      "seconds_since_grant":  3687.76,
+                      "tool_sha256":  "8dc3e4516c95a1dfeb827c0df43bc03bbbf2cd6412ac5bfe7434ae6418fcf065",
+                      "cpu_pct":  51,
+                      "free_gib":  76.18,
+                      "log_exists":  false
+                  },
+    "status":  "DECLINED_UNUSED (no spawn; needs a fresh grant; no retry)",
+    "reasons":  [
+                    "start window expired (3687.8 s \u003e 120 s)"
+                ]
+}

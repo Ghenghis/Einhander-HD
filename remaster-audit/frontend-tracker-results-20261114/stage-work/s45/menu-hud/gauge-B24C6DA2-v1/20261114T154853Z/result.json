@@ -1,0 +1,2941 @@
+{
+ "run": "20261114T154853Z",
+ "owner": "claude-einhander-s45",
+ "task": "EIN-MENU-HUD-20261114",
+ "texture": "B24C6DA2",
+ "status": "CANDIDATE: not installed, not live-tested, not accepted; crisp = primary candidate, soft = alternative",
+ "method": "index-space EPX (frozen w4 epx.py.txt) of native stock words; exact CLUT colours; per-CLUT alpha classes",
+ "draw_evidence": "typography-inventory draw_evidence: uv [0,64,63,71] at clut_xy (256,501), page (832,256), semi 0",
+ "tool_sha256": "3519ac341dcc0f3a32b62411ceea282e128d7cdd870b5c72b929e60dbe124b87",
+ "epx_sha256": "86831043dfa0dfa6be91ad2f636519ab529366ce68771eb77b408d88f1506e08",
+ "class_mip_c_sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+ "typography_inventory_sha256": "e045691625cfcd8bb32a9a8f80dafe69b728bc29aafb386bf3f90a707b751e3c",
+ "words_identical_across_cluts": true,
+ "epx_texel_centre_label_mismatch": {
+  "pack": 0,
+  "runtime-2048": 0,
+  "runtime-1024": 0
+ },
+ "summary": {
+  "crisp/pack": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 14540,
+   "centre_mismatch": 0
+  },
+  "crisp/runtime-2048": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 7265,
+   "centre_mismatch": 0
+  },
+  "crisp/runtime-1024": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 3604,
+   "centre_mismatch": 0
+  },
+  "soft/pack": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 14540,
+   "centre_mismatch": 0
+  },
+  "soft/runtime-2048": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 7265,
+   "centre_mismatch": 0
+  },
+  "soft/runtime-1024": {
+   "files": 11,
+   "primary_pass": 11,
+   "s2_strict_pass": 11,
+   "r5_fringe_px_max": 3604,
+   "centre_mismatch": 0
+  }
+ },
+ "legacy_v13": {
+  "files": 11,
+  "primary_pass": 0
+ },
+ "keys": [
+  {
+   "key": "B24C6DA2-00F61447",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x119f",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-00F61447.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-00F61447.clut.bin",
+    "clut_sha256": "5500ab311d99b38ec70c19497c0e953c79034548ce0c7d649cac7213dbbadf71",
+    "source_json": {
+     "key": "B24C6DA2-00F61447",
+     "frame": 7223,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-00F61447.png",
+     "sha256": "2fde720ac7b43d400ec9cb1b63a8e161815415202170dc0e8e161ab51bf48d92",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14008,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-00F61447.png",
+     "sha256": "74039db1110d104a0b61ee3aae35030681eae436e408db3c3a15a9d4606d162a",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14008,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-00F61447.png",
+     "sha256": "d93a0ce5b03498a6c0fc20cbaf45739de426a927c9bff312bf2bd3c98a079719",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6995,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-00F61447.png",
+     "sha256": "49adfa7b4782c1fbf9e16f5f88c626cb0d1baae1ec6d31dc6157f4d88cd99867",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6995,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-00F61447.png",
+     "sha256": "ef3f6a91e3cf550705bacefb83fc592488d3e8380e682ae6e506ed30c7131d75",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3472,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-00F61447.png",
+     "sha256": "7cd3564fec8a98569026d9b66ff75b8219fd2ccf4cee684f8bc9a0de253a09a5",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3472,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-00F61447.png",
+    "sha256": "5233c837022e4b867ffe76a77b91b16ed68d7783ddee18b6aa841745d874826b",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 16112,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-17761414",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-17761414.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-17761414.clut.bin",
+    "clut_sha256": "0832e9433ae1af55c3d9735ead9548535251746cf0c48bc2a14a33dcc661d7af",
+    "source_json": {
+     "key": "B24C6DA2-17761414",
+     "frame": 7254,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-17761414.png",
+     "sha256": "7489f929f6cc15c0899adac0c9ec629e1f29ca43051bf4340902c6e3100b5332",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14540,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-17761414.png",
+     "sha256": "84b3c55018a1d153fbe7c924d5ac22d3f0b9a25157a36ac15074f897f1c1e2c7",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14540,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-17761414.png",
+     "sha256": "96141bac1973c4c3ccac8f2e8fc769e95b3f428e68509648f8992c9f81b9718f",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 7265,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-17761414.png",
+     "sha256": "843000804604c29869e66079fc8bbeb069c89803b3f664cd74ccdfc4b24d5ccd",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 7265,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-17761414.png",
+     "sha256": "7bffe57262abff7d7d80bab404241c6628ea20411c4d2056f4c89aad5fc8614a",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3604,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-17761414.png",
+     "sha256": "3b63a86512945c7ef77c61a5358c6dae033169f304215d779ff0fffab9c8076e",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3604,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-17761414.png",
+    "sha256": "c4b9aadbd9433a990434e06da287d6aafe3b921cb704d032535a9fe8ae98d2ae",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 16572,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-87D74FCC",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x119f",
+    "0x15df",
+    "0x161f",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-87D74FCC.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-87D74FCC.clut.bin",
+    "clut_sha256": "f4204e338aa6f449d6ceaa7313d66f971da54df4fd6670d5ad0539cdf28610af",
+    "source_json": {
+     "key": "B24C6DA2-87D74FCC",
+     "frame": 7356,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-87D74FCC.png",
+     "sha256": "67d0d758093cfd4c7ac9ce26a131eb7ebdba5d26e4f3e0eb870fcccf018bb656",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 9004,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-87D74FCC.png",
+     "sha256": "118240227c18e42d96981c71202eaa35ed5a8652c8037cb1ae2b043215a1b161",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 9004,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-87D74FCC.png",
+     "sha256": "54bd19c53863a2659aa1ce7ad74b506ebb8317764a3a47b85ae496aa42a9f5cb",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 4510,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-87D74FCC.png",
+     "sha256": "b07c391ca7f65f408c5d1ebd36c076c7ee9c11a85ff2c1f2b2c04f259fe84d2d",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 4510,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-87D74FCC.png",
+     "sha256": "b0c08f4ff18fa9b654780c21f2f010217fed10c6c52d3ad09415b679ccece5d6",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2250,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-87D74FCC.png",
+     "sha256": "a463474a644af69d28083652c5a5632e63004918dcb30ccadac748f344c6ee3d",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2250,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-87D74FCC.png",
+    "sha256": "f6e4e20a38f5bbbbcd3065cca398bc010c30ff1c3c66b8e96b4e86bc106f4442",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 11102,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-91478949",
+   "clut_words_hex": [
+    "0x043f",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-91478949.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-91478949.clut.bin",
+    "clut_sha256": "6e6013871749b35567974ed0a3e808bc96be41e5e90d99e71918ec2c55a828e1",
+    "source_json": {
+     "key": "B24C6DA2-91478949",
+     "frame": 7292,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-91478949.png",
+     "sha256": "ac14f8a258da752807ac95a1bcf128b490f51c7f8eebef0819e18638fc45443f",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12456,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-91478949.png",
+     "sha256": "ffcaa910d8e089f8b0c445ba297d44db38519f551ea6ed0e5286ecc5e1fa2bfc",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12456,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-91478949.png",
+     "sha256": "7d741f6f0304e08d0226a8b3b8182abe7eee99c027cdc8701d14772df3e0605b",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6229,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-91478949.png",
+     "sha256": "18d3c7b5b299e029fe041ff90e11b62c9d69079b3a05a574fb402cba3f43c1ef",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6229,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-91478949.png",
+     "sha256": "0a60217721ea8b32a147e083c380a1f9ca5ce57d30d2246047707aaec1094497",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3076,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-91478949.png",
+     "sha256": "18ab236d3291ca1a7f139729dcca2f224becea90434021d958d21e84b98c7acd",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3076,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-91478949.png",
+    "sha256": "873e7fab247b567602043a8b7e95e37106f1a0cc2baa85c66f157f2f43031207",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 14255,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-C288EEEE",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-C288EEEE.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-C288EEEE.clut.bin",
+    "clut_sha256": "ff771d81b53021f2b5dae1f8782b5263dc72a76da37419627cfcb4a0048f3988",
+    "source_json": {
+     "key": "B24C6DA2-C288EEEE",
+     "frame": 7279,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-C288EEEE.png",
+     "sha256": "cf40fac2a440d781b4aa83957b24f60ae08f444e3fe76f9ccd835c4efc586cd3",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12481,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-C288EEEE.png",
+     "sha256": "ac4469e68f0f7b5f9b843f31963a66faeaa1b683115828120b8381894c1fe8ee",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12481,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-C288EEEE.png",
+     "sha256": "ae6777bb34869d26d4f18cfc03aeeaf2021df06f394811d0be9dc729e9e74f27",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6241,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-C288EEEE.png",
+     "sha256": "8fd3abd96ad258a7461441adb2e49b584c2bddffb8c937feb6dd21664317b74b",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6241,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-C288EEEE.png",
+     "sha256": "02957baec014534e4519280026058b3f1b352951623cfcd64738b6170364fea4",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3085,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-C288EEEE.png",
+     "sha256": "f0649a814da6cc6ca3b1d8cfd457de26571ef2e9960161cd01515317bf38f8a4",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3085,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-C288EEEE.png",
+    "sha256": "0dfa7aa9b48d5ee215da2a15b8fe2e6911633918022f09809fe42e5cec96cf62",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 14346,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-D2D9B701",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x119f",
+    "0x15df",
+    "0x161f",
+    "0x1a5f",
+    "0x1ebf",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-D2D9B701.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-D2D9B701.clut.bin",
+    "clut_sha256": "7f61f1b15668c2c554f060fe68b25fb658d22b21a8bd365ae190d90188273d09",
+    "source_json": {
+     "key": "B24C6DA2-D2D9B701",
+     "frame": 7233,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-D2D9B701.png",
+     "sha256": "8bea6a762678b55d46108750740887a4b59ac9201453eeabcab37222e8af76ac",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6797,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-D2D9B701.png",
+     "sha256": "5100078f5c49a48005eb01a8e4cc78328b80f045a6608942faba0cafe86360e3",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6797,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-D2D9B701.png",
+     "sha256": "36b7c8f13860d0c5cce18a95642a59d17be7dbd77e450ba07908e360febf7cc9",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3411,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-D2D9B701.png",
+     "sha256": "2385848b48069b43d46f85253fd9f1df85f68c21062c9db12d34d2fe6dbb2362",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3411,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-D2D9B701.png",
+     "sha256": "d9c124509edf023cd0efa9d5b3602926b93d9f944273dbf4c1f54299bf183d3a",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 1709,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-D2D9B701.png",
+     "sha256": "a5a4374dad8acd346556cb3f9dce7d39cf5fbfda7267e8468d6316ebc06eba1f",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 1709,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-D2D9B701.png",
+    "sha256": "396331fa1593b48ecd59289a409dad20f7cb55c698f536c4e1e330ff2eefc142",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 8897,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-D6B2BFF7",
+   "clut_words_hex": [
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-D6B2BFF7.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-D6B2BFF7.clut.bin",
+    "clut_sha256": "96d3d21c8a8d153047552a366aa38d58507aaa39741b06460c0cdef9ba366cd7",
+    "source_json": {
+     "key": "B24C6DA2-D6B2BFF7",
+     "frame": 6551,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "a678179e3837895d590b6a5114603a5124e859d97d339c7b5917b189147953ab",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 10622,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "08c0e4d5e490a8b4cb5ea9fd0ca2edcdf08ea7ac2b4c0efde4a99cadb08e3bab",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 10622,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "736e5005562b69d1ddcdc2165dc62ab484f71e851f81f6f1dc8e8d8ebe7e9c50",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 5329,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "6ca70052670c469b8796735628f348c5c85b35c226c3e2b9419a910e60003d84",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 5329,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "e11e4288a181951741a53a7a2dadd09cd8f5ecb13c6a4c732abee2cba1ae7431",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2638,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-D6B2BFF7.png",
+     "sha256": "6f276117bd264797e1126d0750f1cf5410e365f03585fb7f35636e27f5ed01f6",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2638,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-D6B2BFF7.png",
+    "sha256": "f36b58428be0b6f55a941a462f756f323cdedf255fa814b4db2677d34663143f",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 12355,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-E20902CB",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x119f",
+    "0x15df",
+    "0x161f",
+    "0x1a5f",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-E20902CB.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-E20902CB.clut.bin",
+    "clut_sha256": "58f36da60ff7e084576852d586f0d7a9e2549ae10ed35770619df0bc9d17cc31",
+    "source_json": {
+     "key": "B24C6DA2-E20902CB",
+     "frame": 7330,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-E20902CB.png",
+     "sha256": "dc0db07f9cc02888ba2f4abf5decc9a76fe700d2683467d40b77a5ec23328856",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 8674,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-E20902CB.png",
+     "sha256": "0e640b5daf6216db7f0118c2cd8151510295732f98f4a88f5c7eb71d9e1eb7a1",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 8674,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-E20902CB.png",
+     "sha256": "9a4dce6e7e667da71989dfa2911d8f0b66d63439de5389b5f0d666504b50d0da",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 4345,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-E20902CB.png",
+     "sha256": "2fcc80ca034b0893a3ef57005686371add8c58f2c4441b155d90928248be279c",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 4345,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-E20902CB.png",
+     "sha256": "8bc19ba0ec2649ec896bfd6aa70b8a4b60265fe710213f4465895b21bbb391ce",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2170,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-E20902CB.png",
+     "sha256": "314d682d1af039128ae69ba45043deff7e057fe5f063c18c73c13dff5d399bba",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 2170,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-E20902CB.png",
+    "sha256": "f6b841ad85dc54b7eed859d70571c50f3aa569b9a4f55f39685a4e290f9e569c",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 10796,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-EE4896FB",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-EE4896FB.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-EE4896FB.clut.bin",
+    "clut_sha256": "54e2d7acff083a1a4cdfe1011a4c354ac6d2ce0fdb8d4e2894cd96d6f77845a9",
+    "source_json": {
+     "key": "B24C6DA2-EE4896FB",
+     "frame": 7239,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-EE4896FB.png",
+     "sha256": "982276f4f5dc8662730ed65d250aca13918e235317cd93f6fd86b7d9ea40949e",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14376,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-EE4896FB.png",
+     "sha256": "ede4d444b5f127265ecc35af118c01ed6c5dd0c9c766e1001015096d051a55eb",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 14376,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-EE4896FB.png",
+     "sha256": "260af4eb9fd4c2fb7017e948edd970976f4ccc6849690c442cafe2094606ea98",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 7181,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-EE4896FB.png",
+     "sha256": "adcc3d41770aac141b4d6bcef8d470889e4f7945d663936194cb2532230333cc",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 7181,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-EE4896FB.png",
+     "sha256": "3acbb6a4ed2ab920fe3a84e65e1254ad8689b6319c1fee80cde4437bbbdba612",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3564,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-EE4896FB.png",
+     "sha256": "d3ec8d9a61ea3a44b400d5d7a2e495d055decf1a2ef580906e222473b2e572c8",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3564,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-EE4896FB.png",
+    "sha256": "570fbd460b5c670d3d8f15f2555549961051999012f14dd3df1c5a202e73445a",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 16469,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-EF6E99C9",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0cff",
+    "0x0d3f",
+    "0x119f",
+    "0x15df",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-EF6E99C9.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-EF6E99C9.clut.bin",
+    "clut_sha256": "803813bb11782b06c9159781150cfb56e26462c7660983a94cb53ec5bbbac83d",
+    "source_json": {
+     "key": "B24C6DA2-EF6E99C9",
+     "frame": 7376,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-EF6E99C9.png",
+     "sha256": "eb668f948a6332f33662ccaebf3522d1b8bfeae162e9b588efde7c2690c9d50f",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 13167,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-EF6E99C9.png",
+     "sha256": "c42bdf614bf727479af4fbd17adb3d11296dead81c4b28cff1123be75d97e711",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 13167,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-EF6E99C9.png",
+     "sha256": "faa2c11feea04e500fc6db1d834877f0b65182cb64d7db362c61e8e29160b462",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6582,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-EF6E99C9.png",
+     "sha256": "d3d9914ea3edaefc1c83844f80c6e6e162d1f7994780e3fb6f0925b186537076",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6582,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-EF6E99C9.png",
+     "sha256": "615c5eb77a0cb4878fe01fb4957e99c7b4d120ffad55540a594301f397aafe29",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3275,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-EF6E99C9.png",
+     "sha256": "521963f70966638f7bfc4eec48318660de4643ff3d15a4833fd6b8f0cea011dc",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3275,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-EF6E99C9.png",
+    "sha256": "cb802c53bb1fea57b6046a24e3ed9b32176150ed56aa19e11665a98ad96e021a",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 15262,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  },
+  {
+   "key": "B24C6DA2-FEB2DF2F",
+   "clut_words_hex": [
+    "0x043f",
+    "0x047f",
+    "0x08bf",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0x0000",
+    "0xf39c",
+    "0x0842",
+    "0x3def",
+    "0x5294",
+    "0x6739",
+    "0x0000"
+   ],
+   "classes_per_entry": [
+    127,
+    127,
+    127,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    255,
+    127,
+    127,
+    127,
+    127,
+    0
+   ],
+   "inputs": {
+    "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-FEB2DF2F.words.bin",
+    "words_sha256": "c201fcb0a20164d709501835f806b9ffaf2be59b1529b02c449e99b799d9eb47",
+    "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\B24C6DA2-FEB2DF2F.clut.bin",
+    "clut_sha256": "3bf06d7fc3806563c78716799115c9d6bfed97595b0f17246abc2d78ecd3a300",
+    "source_json": {
+     "key": "B24C6DA2-FEB2DF2F",
+     "frame": 7267,
+     "upload_serial": 2875,
+     "width_words": 64,
+     "height": 8,
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "clut_words": 16,
+     "known_words": 512,
+     "total_words": 512,
+     "reconstructed_crc32": "B24C6DA2",
+     "raw_origin": "original CPU upload",
+     "fragments": [
+      [
+       832,
+       320,
+       32,
+       8,
+       0,
+       0
+      ],
+      [
+       880,
+       320,
+       16,
+       8,
+       48,
+       0
+      ]
+     ]
+    }
+   },
+   "files": {
+    "crisp/pack": {
+     "path": "pack\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "67aff9287550e874e4eaf81c2d0fbb9f4452c8289a7bc6b8167f99d6520c7d06",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12361,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/pack": {
+     "path": "alt-soft\\pack\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "16d619e352d1e229e4f80d194b30d8eef15613f22b5848a896d3cc99fdc8977d",
+     "dims": [
+      4096,
+      128
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 524288,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 12361,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-2048": {
+     "path": "runtime-2048\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "6f241c65bb230ef0297da1d5f3a3b2f2d8bb758d5d6e5d0e184b94ff943d46b8",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6180,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-2048": {
+     "path": "alt-soft\\runtime-2048\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "67e0888deaa6a3545ca0d5b5255fa73e5504fa277cb78b5b7396ec41958e2c9b",
+     "dims": [
+      2048,
+      64
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 131072,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 6180,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "crisp/runtime-1024": {
+     "path": "runtime-1024\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "3bb39cc0fd41c710fa3d1d03ae75041558f56cafaee09b3204edcee8eca3c3f4",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3057,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    },
+    "soft/runtime-1024": {
+     "path": "alt-soft\\runtime-1024\\B24C6DA2-FEB2DF2F.png",
+     "sha256": "09dc1297b77cbebb22e810f6d0bf0966a65dad17c6dd83d8a9568208cc1775ac",
+     "dims": [
+      1024,
+      32
+     ],
+     "texel_centre_class_mismatch": 0,
+     "audit": {
+      "pixels": 32768,
+      "cells": 2048,
+      "r1_centre_bad": 0,
+      "r2_displaced_px": 0,
+      "r3_uniform_bad_px": 0,
+      "r4_island_px": 0,
+      "r5_fringe_px": 3057,
+      "cells_bad": 0,
+      "pinhole_cells": 0,
+      "nonclass_px": 0,
+      "s2_viol_px": 0,
+      "conn_viol_px": 0,
+      "primary_pass": true,
+      "s2_strict_pass": true
+     }
+    }
+   },
+   "legacy_v13": {
+    "path": "C:/github/Einhander/remaster-audit/dev-center-evidence/title-e-20261112-v13/pack/einhander-texture-replacements/B24C6DA2-FEB2DF2F.png",
+    "sha256": "8c1c5ee12073ec02cd6b9734e21a68bd9017c1df358d0cc8ab473fa0fc54df67",
+    "dims": [
+     4096,
+     128
+    ],
+    "alpha_values": [
+     0,
+     127,
+     255
+    ],
+    "audit": {
+     "pixels": 524288,
+     "cells": 2048,
+     "r1_centre_bad": 0,
+     "r2_displaced_px": 1886,
+     "r3_uniform_bad_px": 0,
+     "r4_island_px": 1886,
+     "r5_fringe_px": 14262,
+     "cells_bad": 121,
+     "pinhole_cells": 121,
+     "nonclass_px": 0,
+     "s2_viol_px": 1887,
+     "conn_viol_px": 1886,
+     "primary_pass": false,
+     "s2_strict_pass": false
+    }
+   }
+  }
+ ],
+ "seconds": 5.3
+}

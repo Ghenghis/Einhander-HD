@@ -1,0 +1,128 @@
+{
+  "ok": true,
+  "game_launched": false,
+  "arguments": [
+    "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+    "--no-launcher",
+    "--renderer",
+    "opengl",
+    "--game",
+    "C:\\github\\Einhander\\windows-x64\\game.toml",
+    "--disc",
+    "C:\\github\\Einhander\\ROM\\Einhander (USA).cue",
+    "--bios",
+    "C:\\github\\Einhander\\windows-x64\\build-release\\bios\\SCPH1001.BIN"
+  ],
+  "cwd": "C:\\github\\Einhander\\windows-x64",
+  "environment_overrides": {
+    "EIN_DEV_URL": "http://127.0.0.1:8094",
+    "EIN_DEBUG_PORT": "4370",
+    "PSX_DISPLAY_RING": "0",
+    "PSXRECOMP_SKIN_PROFILE": "aurora-teal",
+    "PSXRECOMP_SKIN_KEYS": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894",
+    "PSXRECOMP_SKIN_STRENGTH": "0.750000",
+    "PSXRECOMP_SKIN_ENEMY_PROFILE": "crimson-red",
+    "PSXRECOMP_SKIN_ENEMY_KEYS": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9",
+    "PSXRECOMP_SKIN_ENEMY_STRENGTH": "0.750000",
+    "PSXRECOMP_SKIN_DETAIL_PATH": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\titanium-teal-nanoceramic.png",
+    "PSXRECOMP_SKIN_DETAIL_STRENGTH": "0.120000",
+    "PSXRECOMP_SKIN_DETAIL_SCALE": "8.000000",
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_PATH": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\crimson-gold-plating.png",
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH": "0.120000",
+    "PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE": "8.000000",
+    "PSXRECOMP_HD_TEXTURE_ROOT": "C:\\github\\Einhander\\windows-x64\\hd-textures\\stage1-v1",
+    "PSXRECOMP_HD_PAGE_FALLBACK": "1",
+    "PSXRECOMP_HD_DECODE_BUDGET_MB": "256",
+    "PSXRECOMP_HD_CPU_AUTHORITY": "0",
+    "PSXRECOMP_HD_DUMP": "",
+    "PSXRECOMP_HD_SOURCE_SIDECARS": "",
+    "PSXRECOMP_HD_PROOF_LOG": "",
+    "PSXRECOMP_HD_PROOF_CONTROL": ""
+  },
+  "runtime": {
+    "receipt_path": "C:\\github\\Einhander\\windows-x64\\tools\\material-runtime.json",
+    "receipt_present": true,
+    "ready": true,
+    "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+    "sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+    "executable_hash_verified": true,
+    "dual_profiles": true,
+    "player_keys": [
+      "5CC44E5F-053D9A00",
+      "724E77DA-21FDE894",
+      "7E3ADD56-21FDE894",
+      "B16492B1-21FDE894",
+      "E2F3477C-21FDE894"
+    ],
+    "enemy_keys": [
+      "3594C110-527B28B9",
+      "3FE0776D-527B28B9",
+      "6BB2A2A3-527B28B9",
+      "784BFD39-527B28B9",
+      "DEA9D15C-527B28B9",
+      "05C32A1E-527B28B9"
+    ],
+    "profiles": [
+      "stock",
+      "aurora-teal",
+      "solar-orange",
+      "ultraviolet-violet",
+      "glacier-blue",
+      "crimson-red",
+      "toxic-lime",
+      "gold-obsidian",
+      "pearl-magenta",
+      "aurora-gilt",
+      "crimson-regalia",
+      "glacier-gilt",
+      "neon-circuit",
+      "ultraviolet-grid",
+      "reactor-lime"
+    ],
+    "detail_maps": true,
+    "reason": "Build receipt exists. In-game material validation remains pending; this API has not launched a game."
+  },
+  "profile": "aurora-teal",
+  "strength": 0.75,
+  "targets": [
+    "724E77DA-21FDE894",
+    "7E3ADD56-21FDE894",
+    "B16492B1-21FDE894",
+    "E2F3477C-21FDE894"
+  ],
+  "enemy_profile": "crimson-red",
+  "enemy_strength": 0.75,
+  "enemy_targets": [
+    "3594C110-527B28B9",
+    "3FE0776D-527B28B9",
+    "6BB2A2A3-527B28B9",
+    "784BFD39-527B28B9",
+    "DEA9D15C-527B28B9",
+    "05C32A1E-527B28B9"
+  ],
+  "authored_detail": {
+    "player": {
+      "id": "titanium-teal-nanoceramic",
+      "path": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\titanium-teal-nanoceramic.png",
+      "sha256": "60be37a0c813d6f6ab0790974db7abd5554d18007fcd9d2b4f7a7cf1d5c65aa9",
+      "strength": 0.12,
+      "scale": 8.0,
+      "wrap": "mirrored_repeat",
+      "width": 1254,
+      "height": 1254
+    },
+    "enemy": {
+      "id": "crimson-gold-plating",
+      "path": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\crimson-gold-plating.png",
+      "sha256": "fc53a8174abbf2221ef3f87a5ea7af3514e320a501d53be3404a65d4d1675ec1",
+      "strength": 0.12,
+      "scale": 8.0,
+      "wrap": "mirrored_repeat",
+      "width": 1254,
+      "height": 1254
+    }
+  },
+  "status": "validated_not_launched",
+  "selection_source": "explicit_saved_preset",
+  "saved_descriptor": "C:\\github\\Einhander\\windows-x64\\tools\\material-profiles\\aurora-teal-20261112-144941-2dc37129\\material.json"
+}

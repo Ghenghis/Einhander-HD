@@ -1,22 +1,18 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T15:39:12.293407+00:00",
+  "updated_at_utc": "2026-11-14T16:08:54.034851+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "v6 independent CPU replay and private v67r3 link",
-    "evidence": "remaster-audit/decode-worker-results-20261114/README.md",
-    "fixture_checks": 7534,
-    "glue_cases": 16,
-    "glue_checks": 425,
-    "pack_checks": 92,
-    "counter_adapter_cases": 8,
-    "private_exe_sha256": "8bc3ac3daedcbb08790905c228d1dc7b052bd5ed52d3bb739c02009ec86bb772",
-    "game_launched": false,
+    "id": "Development saved-material parity and actual-pack tracker regressions",
+    "evidence": "remaster-audit/frontend-tracker-results-20261114/README.md",
+    "frontend_cpu_verified": true,
+    "tracker_fixture_processes": 16,
     "gpu_run": false,
+    "game_run": false,
     "audio_run": false,
-    "status": "CPU verified/private link only; tracker regression and live acceptance pending"
+    "live_acceptance": false
   },
   "remaining": [
     {
@@ -918,8 +914,8 @@
     "new_start_requires_coordinator_grant": true
   },
   "actual_monitor": {
-    "pid": 36052,
-    "bound_end_utc": "2026-11-14T15:49:33.939Z",
+    "pid": 37556,
+    "bound_end_utc": "2026-11-14T16:17:23.189Z",
     "watcher_only": true,
     "proves_model_activity": false
   }

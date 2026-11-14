@@ -1,0 +1,84 @@
+{
+  "at_utc": "2026-11-14T15:56:42.306369+00:00",
+  "passed": true,
+  "unit_cases": 9,
+  "source_normalized_sha256": {
+    "windows-x64/tools/launch_hd.py": "08f590ec8d49f7069b5dfce558f343c32d1f1043f08587d91963df5a80ce77ed",
+    "windows-x64/tools/Start-Development.ps1": "9bc1646bd07ef5308cb2e53f3a2aa6ea16e56e86a6b9e0e79ca32fef000af0b6",
+    "windows-x64/tools/test_launch_hd.py": "6b69cb84c1343bf3cc21edf787f159b706816b82af89f2d2bcf615e9f26bd846"
+  },
+  "commands": [
+    {
+      "label": "unit",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "-m",
+        "unittest",
+        "-v",
+        "test_launch_hd"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "direct-check",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\windows-x64\\tools\\launch_hd.py",
+        "--check"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "frontend-check",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\windows-x64\\tools\\launch_hd.py",
+        "--check",
+        "--frontend"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "powershell-syntax",
+      "args": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$tokens=$null; $errors=$null; [System.Management.Automation.Language.Parser]::ParseFile('C:/github/Einhander/windows-x64/tools/Start-Development.ps1',[ref]$tokens,[ref]$errors) | Out-Null; if($errors.Count){$errors | ConvertTo-Json -Compress; exit 1}; Write-Output 'PowerShell syntax OK'"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "development-check",
+      "args": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "C:\\github\\Einhander\\windows-x64\\tools\\Start-Development.ps1",
+        "-Check"
+      ],
+      "exit": 0
+    }
+  ],
+  "actual_saved_profile": "aurora-teal",
+  "actual_enemy_profile": "crimson-red",
+  "actual_selection_source": "explicit_saved_preset",
+  "saved_pointer_unchanged": true,
+  "frontend_flag_validated": true,
+  "below_normal": true,
+  "affinity": [
+    11
+  ],
+  "game_run": false,
+  "gpu_run": false,
+  "browser_or_bridge_started": false,
+  "live_frontend_acceptance": false
+}

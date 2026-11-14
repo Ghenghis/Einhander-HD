@@ -1,0 +1,33 @@
+"""EPX / Scale2x (AdvMAME2x) on categorical index maps (palette independent), applied k times -> 2^k x.
+Staircases of single texels become 45-degree edges, straight runs stay straight; no new index values.
+aa_weights(): per-index one-hot of the upscaled map, gaussian-blurred by a fraction of an HD pixel -> anti-aliased
+categorical weights (convex mix of palette entries)."""
+import numpy as np
+from scipy import ndimage
+
+
+def scale2x(P):
+    H, W = P.shape
+    p = np.pad(P, 1, mode='edge')
+    A = p[0:H, 1:W + 1]; B = p[1:H + 1, 2:W + 2]; C = p[1:H + 1, 0:W]; D = p[2:H + 2, 1:W + 1]
+    E0 = np.where((C == A) & (C != D) & (A != B), A, P)
+    E1 = np.where((A == B) & (A != C) & (B != D), B, P)
+    E2 = np.where((D == C) & (D != B) & (C != A), C, P)
+    E3 = np.where((B == D) & (B != A) & (D != C), D, P)
+    out = np.empty((H * 2, W * 2), P.dtype)
+    out[0::2, 0::2] = E0; out[0::2, 1::2] = E1; out[1::2, 0::2] = E2; out[1::2, 1::2] = E3
+    return out
+
+
+def upscale(P, k=4):
+    for _ in range(k): P = scale2x(P)
+    return P
+
+
+def aa_weights(U, present=None, sigma=0.7):
+    present = np.unique(U) if present is None else present
+    w = np.zeros((16,) + U.shape, np.float32)
+    for i in present:
+        w[i] = ndimage.gaussian_filter((U == i).astype(np.float32), sigma, mode='nearest') if sigma > 0 else (U == i)
+    w /= np.maximum(w.sum(0, keepdims=True), 1e-6)
+    return w

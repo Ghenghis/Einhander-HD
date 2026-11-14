@@ -44,6 +44,39 @@ class HdLaunchTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "Saved skin preset"):
             launch_hd.prepare_hd_launch(self.root)
 
+    def test_frontend_uses_same_saved_runtime_material_and_detail_plan(self):
+        fixtures.MaterialProfileTests.detail_asset(self)
+        self.save(detail_map="gold-obsidian-engraved")
+        direct = launch_hd.prepare_hd_launch(self.root)
+        frontend = launch_hd.prepare_hd_launch(self.root, frontend=True)
+        self.assertEqual(frontend["environment_overrides"], direct["environment_overrides"])
+        self.assertEqual(frontend["profile"], "aurora-teal")
+        expected = list(direct["arguments"])
+        expected[expected.index("--no-launcher")] = "--launcher"
+        self.assertEqual(frontend["arguments"], expected)
+
+    def test_frontend_stock_and_invalid_saved_selection_are_explicit(self):
+        frontend = launch_hd.prepare_hd_launch(self.root, frontend=True)
+        self.assertIn("--launcher", frontend["arguments"])
+        self.assertEqual(frontend["environment_overrides"]["PSXRECOMP_SKIN_PROFILE"], "stock")
+        self.save()
+        pointer = self.root / "tools/material-selection.json"
+        pointer.write_text("invalid JSON")
+        with self.assertRaisesRegex(ValueError, "Saved skin preset"):
+            launch_hd.prepare_hd_launch(self.root, frontend=True)
+        recovered = launch_hd.prepare_hd_launch(self.root, frontend=True, stock=True)
+        self.assertEqual(recovered["selection_source"], "explicit_stock")
+        self.assertIn("--launcher", recovered["arguments"])
+        self.assertEqual(pointer.read_text(), "invalid JSON")
+
+    def test_frontend_check_validates_without_starting_the_runtime(self):
+        prepared = launch_hd.prepare_hd_launch(self.root, frontend=True)
+        with patch("launch_hd.prepare_hd_launch", return_value=prepared) as prepare, patch("launch_hd.subprocess.run") as run, contextlib.redirect_stdout(io.StringIO()) as output:
+            self.assertEqual(launch_hd.main(["--check", "--frontend"]), 0)
+            self.assertTrue(prepare.call_args.kwargs["frontend"])
+            run.assert_not_called()
+            self.assertFalse(json.loads(output.getvalue())["game_launched"])
+
     def test_changed_runtime_receipt_is_rejected(self):
         self.save()
         (self.root / "built/Material-runtime.exe").write_bytes(b"different executable")

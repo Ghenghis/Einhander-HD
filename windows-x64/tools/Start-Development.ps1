@@ -2,10 +2,20 @@
 param(
     [ValidateRange(1024, 65535)][int]$Port = 8094,
     [switch]$WebOnly,
+    [switch]$Stock,
     [switch]$Check
 )
 
 $ErrorActionPreference = 'Stop'
+function ConvertTo-DevelopmentRuntimeArguments {
+    param([string[]]$RuntimeArguments)
+    foreach ($runtimeArgument in $RuntimeArguments) {
+        if ($runtimeArgument.Contains('"') -or $runtimeArgument.EndsWith('\')) {
+            throw 'Unexpected quote or trailing backslash in validated launch argument'
+        }
+        '"' + $runtimeArgument + '"'
+    }
+}
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $runtimePath = Join-Path $projectRoot 'build-release\Einhander_Recompiled.exe'
 $bridgePath = Join-Path $PSScriptRoot 'ein_bridge.py'
@@ -24,10 +34,25 @@ if (-not $WebOnly) {
     }
 }
 $pythonCommand = Get-Command python.exe -ErrorAction Stop
+$launchPlan = $null
+if (-not $WebOnly) {
+    # Validate the saved selection before starting the bridge or opening a window.
+    $planArguments = @('--check', '--frontend')
+    if ($Stock) { $planArguments += '--stock' }
+    $launchPlanText = & $pythonCommand.Source (Join-Path $PSScriptRoot 'launch_hd.py') @planArguments
+    if ($LASTEXITCODE -ne 0) { throw "Saved material launch validation failed: $launchPlanText. Use -Stock for stock materials or -WebOnly to open the material workspace." }
+    $launchPlan = ($launchPlanText -join "`n") | ConvertFrom-Json
+    if (-not $launchPlan.ok -or $launchPlan.game_launched -or $launchPlan.arguments.Count -lt 2) {
+        throw 'Invalid development launch plan'
+    }
+    $launchPlan.environment_overrides.EIN_DEV_URL = $workspaceUrl
+    Write-Output "Materials: $($launchPlan.profile) / $($launchPlan.enemy_profile) ($($launchPlan.selection_source))"
+}
 if ($Check) {
     Write-Output "Development workspace ready: $workspaceUrl"
     Write-Output "Python: $($pythonCommand.Source)"
     Write-Output "Runtime: $runtimePath"
+    if ($launchPlan) { Write-Output "Launcher workspace: $($launchPlan.environment_overrides.EIN_DEV_URL)" }
     return
 }
 
@@ -71,5 +96,9 @@ if (-not $WebOnly) {
     $env:PSXRECOMP_HD_CPU_AUTHORITY = '0'
     # The launcher is interactive and intentionally visible. Its normal Play
     # action owns game startup and settings persistence.
-    Start-Process -FilePath $runtimePath -ArgumentList @('--game', '"' + $gamePath + '"', '--disc', '"' + $discPath + '"', '--bios', '"' + $biosPath + '"') -WorkingDirectory $projectRoot
+    foreach ($entry in $launchPlan.environment_overrides.PSObject.Properties) {
+        [Environment]::SetEnvironmentVariable($entry.Name, [string]$entry.Value, 'Process')
+    }
+    $launchArgs = @(ConvertTo-DevelopmentRuntimeArguments -RuntimeArguments @($launchPlan.arguments | Select-Object -Skip 1))
+    Start-Process -FilePath ([string]$launchPlan.arguments[0]) -ArgumentList $launchArgs -WorkingDirectory ([string]$launchPlan.cwd)
 }
