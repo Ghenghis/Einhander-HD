@@ -1,14 +1,22 @@
 # Full 4K remaster and RTX Remix implementation
 
-## Current verified state — GPU returned November 14
+## Current verified state — GPU tests ended; CPU-only hold November 14
 
-The user has explicitly authorized the RTX 3090 Ti again; the earlier GPU hold is revoked. Work remains on C:, with bounded sequential tests and the RTX 3060 project untouched. The [GPU integration packet](../remaster-audit/gpu-integration-20261114/README.md) records actual results and preserved failures.
+The user has now taken the RTX 3090 Ti for another project (11:30 UTC). All owned GPU/game tests have ended; a new user reservation has no automatic expiry. Further GPU work waits for explicit return. Continue CPU-only work from C:, below normal; leave the RTX 3060 project untouched. The [GPU integration packet](../remaster-audit/gpu-integration-20261114/README.md) records actual results and preserved failures.
 
 Private v61 now ran in-game: a 30-second early-city diagnostic found 99.16% all-hit textured-triangle calls, with every successful vertex lookup exactly one frame old. The private adapter now supports explicit maximum lag one and passes 86 host checks; it is not connected to the game frame hook. This uncached diagnostic **fails audio/smoothness acceptance** (+480 frontend underruns, +287,368 bridge counter; later slowdown). Phase rows returned the boot window, so they cannot attribute the slowdown.
 
 Real Remix GPU Startup/resource/camera/draw/Present/external-image calls return success, but output is black and Shutdown stalls, including separate-window/FBO/alpha-test/240-frame controls. Every owned probe is closed; this is a failed backend qualification, not ray-traced gameplay or DLSS integration. Shader readiness remains unmeasured. Existing texture ingestion is separate from this renderer failure.
 
 Claude's frozen class-aware mip prototype passes root's independent 7,410-check replay. Its partial Stage1 analysis flags 241 drawn texture keys under a documented policy; that is not a distinct-sign total or automatic art rejection. Strict native-authority sidecars and private renderer integration are being implemented, with GL/full-link/in-game acceptance still pending. The distant green/pink signs, whole-cell masks, background coverage, realistic ship/gun/enemy/boss skins and selectors, modern HUD/menus, audio remastering and seven-stage acceptance remain unfinished. Full remaster completion is not claimed.
+
+Follow-up actual GPU shader testing now shows stable synthetic strokes at4×/8×, but still fails at12× and retains the LOD0 fringe; overall exit1. Root also rejected synchronous95–344ms mip generation on the draw thread. Native Remix presentation without OpenGL/custom material still fails image/lifecycle qualification. A newer official SDK0.16.1 header is incompatible with the installed renderer (CPU probe error8); it has not been installed. [Raw follow-up evidence and review](../remaster-audit/gpu-shader-followup-20261114/README.md). No private class-mip game executable is accepted.
+
+A separate default-off RGB edge-filter prototype now removes the synthetic LOD0 fringe on the3090Ti, including fractional LOD controls, while preserving tested cutout/STP support and point sampling. This narrower GPU goal passes; the original overall suite still fails at12×/LOD0 identity, and no game integration or performance acceptance is claimed. Exact source/results are in the follow-up packet above.
+
+The guarded RGB variant now preserves the tested all-opaque result exactly, including mixed-STP controls. A separate default-off level0 RGB-only private v62 executable compiles/links (two TUs rebuilt, pinned parent objects retained) and its preprocessed shader matches the GPU-tested branch. A short visual candidate was prepared but **not launched before the user took the GPU**. No new in-game fidelity/performance/audio acceptance is claimed.
+
+CPU-only follow-up: Claude v3 now precomputes mip levels offline and preloads a bounded cache. Root verifies212 frozen pins and independently recompiles/replays6,182 fixture checks plus28 opt-in/2 opt-out GL-stub checks, all passing with the user GPU hold unchanged. These are CPU stubs, not GPU/game acceptance. Region O gets no useful class-mip benefit; eight verified cutout keys replace that initial target. V4 RGB integration remains ongoing. Source/evidence and local-payload omissions are explicit in the follow-up packet.
 
 <details>
 <summary>Earlier checkpoints and evidence — historical, before the GPU return above</summary>

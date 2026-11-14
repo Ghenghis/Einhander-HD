@@ -1,0 +1,138 @@
+{
+  "recorded_utc": "2026-11-14T11:14:15.794576+00:00",
+  "reviewed_author_run": "20261114T110331Z",
+  "author_result_sha256": "e7d6115eff505af0c441e230fa149f9c0ac18bcca9bc79e44d27a40fd3b444b1",
+  "findings": [
+    "hdcm_build_level shifted by unchecked L; L>=32 undefined. Reject before shifting, add controls.",
+    "glTexImage2D result unchecked: partial/OOM chain could be marked admitted. Need validated upload and fail-closed fallback.",
+    "Runner final verdict FAIL could exit0. Make process exit reflect verdict.",
+    "All-level CPU mip building on first draw measured95.53ms green /343.72ms pink in author host run. Not acceptable on draw thread. Build offline/preload with pinned level payloads."
+  ],
+  "author_timings_are_host_measurements_not_controlled_game_timings": true,
+  "gpu_findings": {
+    "gl_renderer": "NVIDIA GeForce RTX 3090 Ti/PCIe/SSE2",
+    "gl_version": "3.3.0 NVIDIA 621.14",
+    "link": true,
+    "uniforms": true,
+    "fbo": true,
+    "gl_error": 0,
+    "authored_min_luma": 122.52,
+    "minify": [
+      {
+        "m": 1,
+        "A_level0": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "B_generate_mipmap": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "C_class_levels": [
+          448,
+          448,
+          448.0,
+          30.71
+        ]
+      },
+      {
+        "m": 2,
+        "A_level0": [
+          112,
+          112,
+          112.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          112,
+          112,
+          112.0,
+          30.71
+        ],
+        "C_class_levels": [
+          112,
+          112,
+          112.0,
+          122.52
+        ]
+      },
+      {
+        "m": 4,
+        "A_level0": [
+          0,
+          56,
+          28.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          55,
+          27.5,
+          15.35
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 8,
+        "A_level0": [
+          0,
+          28,
+          7.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          28,
+          3.5,
+          23.68
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 12,
+        "A_level0": [
+          0,
+          19,
+          4.62,
+          61.94
+        ],
+        "B_generate_mipmap": [
+          0,
+          0,
+          0.0,
+          9.86
+        ],
+        "C_class_levels": [
+          0,
+          19,
+          13.88,
+          122.52
+        ]
+      }
+    ],
+    "stat_fields": "stroke pixels min, max, mean over 8 phases; darkest visible luma",
+    "checks": {
+      "stroke_never_vanishes_m8_m12": false,
+      "no_cutout_bleed": false,
+      "point_path_unchanged": true,
+      "lod0_identical": true
+    },
+    "pass": false
+  },
+  "actual_game_renderer_linked": false,
+  "requested_fix": "Preserve old prototypes and failed GPU results; precompute native-bound mip levels; separately explain/resolve sub-native class aliasing and level0 fringe. Verify on GPU before live link."
+}

@@ -1,0 +1,160 @@
+{
+  "at_utc": "2026-11-14T11:10:09.307991+00:00",
+  "author_build_sha256": "b476daf8b9a12b282d44520ef5d61bc69b305f72bd4363aebc2f34fcc0feb4fb",
+  "all_build_files_verified": true,
+  "original_build_files": {
+    "build_selftest.py": "7dcf35934c6a9b12aaff15faa310a5798202a7f8caae87b928930666f9d9698a",
+    "gl_selftest_classmips.c": "2dc4c84947e75e60de0429f38b7d0527c684261421eaa471700166005cd4b20c",
+    "gl_selftest_classmips.exe": "674df90f266ec67691200a15401320c8d14739980b507e53c3795e008261d642",
+    "hd_class_mips.inc": "75b40306bd7176bac6fa7d394b6c26918f0fb6d126cc8e092815f603c3b67403",
+    "HD_FS.frag": "1eb9de8764bbf65fbb1bab8e2284a712395d7b73a39b247acf3a7aa5eefc8f8f",
+    "TEX_VS.vert": "b2649aee06a3fe7a9008c2f39c38e0f653053ead7b6ee53e45f6fd398bb6ea04"
+  },
+  "gpu_fixture_only": true,
+  "gameplay": false,
+  "renderer_version": "v1 shader, v1 uploader superseded after review; this test does not exercise slot uploader/sidecar admission",
+  "passed": false,
+  "preflight": {
+    "checked_at_utc": "2026-11-14T11:10:10.411482+00:00",
+    "reservation_sha256": "1497165e557117583d39ae8bb5bf7289eac159e9a8fa1446bd164bd1c1b662cd",
+    "active_holder": false,
+    "comfy_server_reachable": false,
+    "queue_running": 0,
+    "queue_pending": 0
+  },
+  "pid": 41720,
+  "arguments": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-gpu-r1\\gl_selftest_classmips.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-gpu-r1\\TEX_VS.vert",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-gpu-r1\\HD_FS.frag",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-gpu-r1\\selftest-result.json"
+  ],
+  "exit": 1,
+  "seconds": 0.69,
+  "test_result": {
+    "gl_renderer": "NVIDIA GeForce RTX 3090 Ti/PCIe/SSE2",
+    "gl_version": "3.3.0 NVIDIA 621.14",
+    "link": true,
+    "uniforms": true,
+    "fbo": true,
+    "gl_error": 0,
+    "authored_min_luma": 122.52,
+    "minify": [
+      {
+        "m": 1,
+        "A_level0": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "B_generate_mipmap": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "C_class_levels": [
+          448,
+          448,
+          448.0,
+          30.71
+        ]
+      },
+      {
+        "m": 2,
+        "A_level0": [
+          112,
+          112,
+          112.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          112,
+          112,
+          112.0,
+          30.71
+        ],
+        "C_class_levels": [
+          112,
+          112,
+          112.0,
+          122.52
+        ]
+      },
+      {
+        "m": 4,
+        "A_level0": [
+          0,
+          56,
+          28.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          55,
+          27.5,
+          15.35
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 8,
+        "A_level0": [
+          0,
+          28,
+          7.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          28,
+          3.5,
+          23.68
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 12,
+        "A_level0": [
+          0,
+          19,
+          4.62,
+          61.94
+        ],
+        "B_generate_mipmap": [
+          0,
+          0,
+          0.0,
+          9.86
+        ],
+        "C_class_levels": [
+          0,
+          19,
+          13.88,
+          122.52
+        ]
+      }
+    ],
+    "stat_fields": "stroke pixels min, max, mean over 8 phases; darkest visible luma",
+    "checks": {
+      "stroke_never_vanishes_m8_m12": false,
+      "no_cutout_bleed": false,
+      "point_path_unchanged": true,
+      "lod0_identical": true
+    },
+    "pass": false
+  },
+  "process_gone": true,
+  "reservation_released": true
+}

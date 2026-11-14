@@ -1,0 +1,271 @@
+{
+  "at_utc": "2026-11-14T11:19:01.022660+00:00",
+  "build_sha256": "cf7d5ffbc99278f5c9580e378047d3a38570f1fdc7e69523eb5cef36bcd1a83c",
+  "all_build_files_verified": true,
+  "original_build_files": {
+    "gl_selftest_classmips.c": "c401a22e7fcf0592ca7b47f876e5017be26bd4950574840c08dc6fd41dcde588",
+    "hd_class_mips.inc": "75b40306bd7176bac6fa7d394b6c26918f0fb6d126cc8e092815f603c3b67403",
+    "HD_FS.frag": "f3a279bef48337fdf032034e6c914c37c4622745b22899fdb43251d88ba786a8",
+    "TEX_VS.vert": "b2649aee06a3fe7a9008c2f39c38e0f653053ead7b6ee53e45f6fd398bb6ea04",
+    "gl_selftest_classmips.exe": "c24c0b28a2693b661d7af987b01191711cadc83a4c6ef3b2d2ca41ac084c8f46"
+  },
+  "gpu_fixture_only": true,
+  "gameplay": false,
+  "renderer_version": "Separate RGB-only shader experiment. Original m12/LOD0 identity criteria retained and not relabeled.",
+  "passed": true,
+  "preflight": {
+    "checked_at_utc": "2026-11-14T11:19:02.163442+00:00",
+    "reservation_sha256": "aed450b08ba8740a800c6f1df608eb7fd057203e95acce6b678b45c43afd4ff0",
+    "active_holder": false,
+    "comfy_server_reachable": false,
+    "queue_running": 0,
+    "queue_pending": 0
+  },
+  "pid": 37288,
+  "arguments": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r2\\gl_selftest_classmips.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r2\\TEX_VS.vert",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r2\\HD_FS.frag",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r2\\selftest-result.json"
+  ],
+  "exit": 1,
+  "seconds": 0.682,
+  "test_result": {
+    "gl_renderer": "NVIDIA GeForce RTX 3090 Ti/PCIe/SSE2",
+    "gl_version": "3.3.0 NVIDIA 621.14",
+    "rgb_edge_experiment": {
+      "support_and_stp_unchanged": true,
+      "opaque_lod0_max_delta": 1,
+      "opaque_stp_unchanged": true
+    },
+    "link": true,
+    "uniforms": true,
+    "fbo": true,
+    "gl_error": 0,
+    "authored_min_luma": 122.52,
+    "minify": [
+      {
+        "m": 0.5,
+        "A_level0": [
+          1004,
+          1008,
+          1006.5,
+          30.71
+        ],
+        "B_generate_mipmap": [
+          1004,
+          1008,
+          1006.5,
+          30.71
+        ],
+        "C_class_levels": [
+          1004,
+          1008,
+          1006.5,
+          122.52
+        ]
+      },
+      {
+        "m": 1.0,
+        "A_level0": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "B_generate_mipmap": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "C_class_levels": [
+          448,
+          448,
+          448.0,
+          122.52
+        ]
+      },
+      {
+        "m": 1.125,
+        "A_level0": [
+          199,
+          400,
+          348.5,
+          51.14
+        ],
+        "B_generate_mipmap": [
+          199,
+          400,
+          348.5,
+          47.88
+        ],
+        "C_class_levels": [
+          199,
+          400,
+          348.5,
+          122.52
+        ]
+      },
+      {
+        "m": 1.25,
+        "A_level0": [
+          179,
+          360,
+          291.38,
+          46.06
+        ],
+        "B_generate_mipmap": [
+          179,
+          360,
+          291.38,
+          40.68
+        ],
+        "C_class_levels": [
+          179,
+          360,
+          291.38,
+          122.52
+        ]
+      },
+      {
+        "m": 1.5,
+        "A_level0": [
+          149,
+          298,
+          186.62,
+          61.11
+        ],
+        "B_generate_mipmap": [
+          149,
+          298,
+          186.62,
+          42.81
+        ],
+        "C_class_levels": [
+          150,
+          225,
+          205.12,
+          122.52
+        ]
+      },
+      {
+        "m": 1.75,
+        "A_level0": [
+          128,
+          256,
+          144.0,
+          64.78
+        ],
+        "B_generate_mipmap": [
+          128,
+          256,
+          144.0,
+          37.73
+        ],
+        "C_class_levels": [
+          128,
+          192,
+          152.0,
+          122.52
+        ]
+      },
+      {
+        "m": 2.0,
+        "A_level0": [
+          112,
+          112,
+          112.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          112,
+          112,
+          112.0,
+          30.71
+        ],
+        "C_class_levels": [
+          112,
+          112,
+          112.0,
+          122.52
+        ]
+      },
+      {
+        "m": 4.0,
+        "A_level0": [
+          0,
+          56,
+          28.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          55,
+          27.5,
+          15.35
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 8.0,
+        "A_level0": [
+          0,
+          28,
+          7.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          28,
+          3.5,
+          23.68
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 12.0,
+        "A_level0": [
+          0,
+          19,
+          4.62,
+          61.94
+        ],
+        "B_generate_mipmap": [
+          0,
+          0,
+          0.0,
+          9.86
+        ],
+        "C_class_levels": [
+          0,
+          19,
+          13.88,
+          122.52
+        ]
+      }
+    ],
+    "stat_fields": "stroke pixels min, max, mean over 8 phases; darkest visible luma",
+    "checks": {
+      "stroke_never_vanishes_m8_m12": false,
+      "no_cutout_bleed": true,
+      "point_path_unchanged": true,
+      "lod0_identical": false
+    },
+    "pass": false
+  },
+  "original_suite_passed": false,
+  "rgb_edge_goal_passed": true,
+  "process_gone": true,
+  "reservation_released": true
+}
