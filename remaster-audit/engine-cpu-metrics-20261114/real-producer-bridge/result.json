@@ -1,0 +1,90 @@
+{
+  "at_utc": "2026-11-14T09:27:41.101514+00:00",
+  "gpu_work": false,
+  "sdk_calls": false,
+  "game_executed": false,
+  "one_logical_cpu": [
+    15
+  ],
+  "below_normal": true,
+  "v2_ready_sha256": "43513d374d9b009bcb5feeaa24c4f2c71a9eba372336228f512e2f313ecddf2b",
+  "commands": [
+    {
+      "label": "compile0",
+      "args": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+        "-std=gnu11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include",
+        "-IC:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\vendor",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\extracts",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\gpu_census_harness.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\harness.obj"
+      ],
+      "exit": 0,
+      "seconds": 0.119,
+      "log": "compile0.log"
+    },
+    {
+      "label": "compile1",
+      "args": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include",
+        "-IC:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\vendor",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\extracts",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\test_real_producer.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\remix_mesh_packet.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\gte.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp_view_census.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\harness.obj",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\real_producer_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 2.252,
+      "log": "compile1.log"
+    },
+    {
+      "label": "host-test",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real-producer-bridge-r2\\real_producer_test.exe"
+      ],
+      "exit": 0,
+      "seconds": 0.062,
+      "log": "host-test.log"
+    }
+  ],
+  "source_hashes": {
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\real_producer_bridge.inc": "c0358fb250bef88d8670baf4f2956565ea1353e65dee771b5999ebaa136cad83",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\run_real_producer_bridge.py": "6fb04c5685cddb1c7c19d6a1fc59dd0192b7486c41f96e2c0dfcf46d3aa43602",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\run_host_test_v2.py": "7c18b7e685be84069296e87c04f3d6b9199bc7caecad058bd780fb6c01092b84",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp": "1f4ce34e4ec9aa0d1fd55f4e7c776ac180886c71699df25ec0651a570675fca5",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\gpu_census_harness.c": "7f1d2766cc17394871804740812b40b6426018cfccd9850607e12a5e4287d48d",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include\\pgxp.h": "a9b658729d4f60f5d7b2a58e68c449a3c303b7e4f8d789db81e908b53c84108e",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include\\gpu.h": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\gte.cpp": "1d6760582edd8625758053c127a0c234d213343846339dde7c0266e778da4216",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp.cpp": "c46cbe4f25a9e39404a90140d022803762f407d2d64e8931cf95f3c906fc087b",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp_view_census.cpp": "ab91ed318d424599564022a7bb88f8c8250415f45ff7eda74ab4569e6d0f64b0"
+  },
+  "executable_sha256": "cc3b99e8b80bd14a645e2e1981715c35c7c61631ee880196be0047ea52891e6c",
+  "stdout_tail": [
+    "checks 85 failures 0"
+  ],
+  "tcp_errors": [],
+  "passed": true,
+  "user_gpu_hold_unchanged": true,
+  "scope": "Actual CPU GTE RTPT and SWC2 PGXP transport to SDK-layout resource staging, with synthetic guest input/dummy material and extracted GPU/debug stand-ins. No game, actual frame submission, SDK renderer, camera/world reconstruction, rendering, performance or visual acceptance."
+}
