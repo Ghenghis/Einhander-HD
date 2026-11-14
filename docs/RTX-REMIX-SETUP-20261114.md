@@ -13,7 +13,7 @@ The installed service's published OpenAPI schema was then read, and its document
 - `C:/Remix/Einhander-HD/ingested/green-sign.a.rtex.dds`: **1,048,772 bytes**, **1024 x 768 RGBA**, SHA256 `1c6ac7b675883e3df0db373dd5aabab21b7760a663c7a06672d5f5c23cc5bba4`.
 - Matching `.meta` ingestion metadata: **6,166 bytes**, SHA256 `ddef5fafb0dad0fc60ccff2d712f0506dec7d382c0b0f91b5caa0e24b520e089`.
 
-The entire DDS decoded successfully. A PNG decode preview was visually inspected; the source's existing soft glyph shapes remain. This was format conversion, not an image-quality improvement. Source-copy identity and the repeat recipe's Python syntax were checked. The retained repeat recipe has not been run a second time merely to broaden testing.
+The entire DDS decoded successfully. A PNG decode preview was visually inspected; the source's existing soft glyph shapes remain. This was format conversion, not an image-quality improvement. Source-copy identity and the repeat recipe's Python syntax were checked. Its read-only `--verify-existing` path also passed against the actual saved API response and DDS: successful context/import/exit, explicit input identity, successful DDS check/fix, metadata result and complete decode. No additional conversion was submitted by that verification.
 
 The [machine-readable receipt](media/gallery/remix-ingestion-results.json) records plugin results, file hashes, both unsuccessful GUI attempts and the actual API request/response hashes. Full request/response, local OpenAPI snapshot, source receipt, decoded preview and repeat recipe are retained beneath `C:/Remix/Einhander-HD/evidence` and its parent. This work used local files/services; no GPU model download, AI authoring batch or changes to the user's RTX 3060 project occurred.
 

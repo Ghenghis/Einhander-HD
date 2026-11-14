@@ -117,5 +117,17 @@
  "toolkit_installed_path": "C:/Program Files/NVIDIA Corporation/RTX Remix",
  "local_workspace_readme": "C:/Remix/Einhander-HD/README.md",
  "local_recipe": "C:/Remix/Einhander-HD/Ingest-Green-Sign.py",
- "local_recipe_sha256": "02e7914e3dd01a8f4456d0a0c37adbce49eb6a3e21b01df9d345a93f03d95da5"
+ "local_recipe_sha256": "5f26fc38a93eabd502ea62f4eaa67542fa407338b0aaf9d54d437100f485fd36",
+ "recipe_existing_response_and_dds_check": {
+  "command": "python C:/Remix/Einhander-HD/Ingest-Green-Sign.py --verify-existing",
+  "exit_code": 0,
+  "assertions": [
+   "one successful import context",
+   "explicit source identity",
+   "successful DDS check/fix",
+   "metadata result succeeded",
+   "full DDS decode"
+  ],
+  "new_conversion_submitted": false
+ }
 }
