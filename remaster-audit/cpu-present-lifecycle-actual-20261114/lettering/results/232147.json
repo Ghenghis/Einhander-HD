@@ -1,0 +1,114 @@
+{
+ "owner": "claude-einhander-ui",
+ "job": "J-C1V r4 per-key three-ROI stroke-void correction",
+ "mode": "write",
+ "centre_class_ok_before": 65536,
+ "roi_centre_class_ok_before": 24064,
+ "tool_sha256": "4b21da8314d688fb36c1d2cc982bb824fef91b663b8cd1a66ada3c36e86c30a0",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "scipy": "1.17.1",
+  "pillow": "12.3.0"
+ },
+ "controls": {
+  "production_mask_matches_rule": true,
+  "production_mask_excludes_outside_roi": true,
+  "interior_void_filled_with_native": true,
+  "contour_band_void_untouched": true,
+  "counter_pixel_untouched": true,
+  "only_v_changed": true,
+  "centre_detected_by_sampler": true,
+  "injected_centre_void_rejected": true,
+  "clean_toy_all_centres_native": true,
+  "authored_rgb_centre_correct_class_passes_R1": true,
+  "authored_rgb_centre_reported_not_native_rgb": true,
+  "wrong_class_centre_fails_R1_global": true,
+  "class127_cell_fills_alpha127": true,
+  "exact_class_delta_equals_V": true
+ },
+ "key": "1AD90FC9-79902A90.png",
+ "rois": {
+  "A_spec_right_SWAP_to_SELECT_WEAPON_partial_to_row68": [
+   128,
+   0,
+   212,
+   68
+  ],
+  "B_spec_left_30mm_to_RAIL": [
+   0,
+   58,
+   124,
+   158
+  ],
+  "C_bold_header_BLADE_to_WASP": [
+   0,
+   0,
+   124,
+   48
+  ]
+ },
+ "voids_per_roi": {
+  "A": 88,
+  "B": 240,
+  "C": 94
+ },
+ "r6_voids_per_roi": {
+  "A": 88,
+  "B": 240,
+  "C": 94
+ },
+ "pins": {
+  "authored_sha256": "d67b4c1959165d887aa01db9ecf63e46ff3f83a71f36f200d3e51be12fe1e26e",
+  "snap": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\classsnap-v5\\20261114T180407Z\\snap-native\\w4-menus__menu-class-exact-v1__runtime-2048__1AD90FC9-79902A90.png",
+  "snap_sha256": "3e4f462464a796fee468ab1b12ecfacdc8600b18343b9fe4dc52138e0488a9e7",
+  "words": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-02491337.words.bin",
+  "words_sha256": "32861a1726c1ee0be1b76bbdd65040f95106084d0d361b883ab4f3df77ce2fc8",
+  "meta": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-02491337.source.json",
+  "meta_sha256": "15dab1ad9dc24a31900a9b7036a02c9aefb5c6956f2705477a667a45cf7e8037",
+  "clut": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\1AD90FC9-79902A90.clut.bin",
+  "clut_sha256": "ae941bea285cc8fcbb8ddd189766d81bd0dfae2f459836561bafabc9bba72d76"
+ },
+ "r6_result_sha256": "5f70c178844604447a24a2d3a5c27b755fee57c92d033a9a974563fc35f59a25",
+ "r6_recorded_voids": 422,
+ "voids": 422,
+ "cells_with_voids": 141,
+ "centre_voids": 0,
+ "roi_centres_native_before": 10989,
+ "roi_cells": 24064,
+ "all_centres_native_before": 32057,
+ "alpha_exception": "alpha 0 -> native class alpha (127/255) only in V",
+ "r5": "not evaluated; no compositor/appearance claim",
+ "gates": {
+  "G1_changed_equals_V_and_outside_identical": true,
+  "G2_changed_equal_native": true,
+  "G3_mismatch_after_eq_before_minus_V_no_new": true,
+  "G4_centres_exact_equal_and_R1_class_all": true,
+  "G5_per_roi_counts_match_r6": true
+ },
+ "mismatch_before": 442466,
+ "mismatch_after": 442044,
+ "changed_pixels": 422,
+ "contour_band_alpha0_untouched": 22697,
+ "blockers": [],
+ "verdict": "PASS",
+ "review_1x": {
+  "A": {
+   "path": "review_1AD90FC9-79902A90_roiA_1x.png",
+   "sha256": "993836f05f0eec70bb59db31ccab55e90e0276bcd0c1442bba268e26f2e9780e"
+  },
+  "B": {
+   "path": "review_1AD90FC9-79902A90_roiB_1x.png",
+   "sha256": "b26a5a834fb8e6548bd9a30acd256d9887ead517eea57934f0e3200eb1daa198"
+  },
+  "C": {
+   "path": "review_1AD90FC9-79902A90_roiC_1x.png",
+   "sha256": "67fdf126cc3baa15e058bd49ff1feb93a28696b32be3afb21aea5248e3f1ea56"
+  }
+ },
+ "output_png": {
+  "path": "1AD90FC9-79902A90.c1r4.png",
+  "sha256": "1067cc536c8028c619089b4abff41f228c9d845696eed26f99af9af693355a03"
+ },
+ "seconds": 1.5
+}

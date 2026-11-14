@@ -1,0 +1,109 @@
+{
+ "schema": "support-owned-cleanup-controls-r1",
+ "pins": {
+  "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\unassisted_command_guard_adapter_r1.py": "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_process_cleanup_r0.py": "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84"
+ },
+ "controls_sha256": "c44d0fec3e8babca98b3c1442dd97b6234cbad90142d430bc45615ebd736f692",
+ "cpu": 12,
+ "allowed_affinity": [
+  12
+ ],
+ "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+ "psutil": "6.1.1",
+ "cases": [
+  {
+   "case": "H1_clean_exit_no_descendants_identity_and_tree_absent",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": true, \"tree_absent\": true, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H2_running_descendant_killed_and_absent_tree_absent",
+   "ok": true,
+   "detail": "{\"5001:1731700001.5\": true}"
+  },
+  {
+   "case": "H3_nonzero_job_active_tree_not_absent",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": true, \"tree_absent\": false, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H4_missing_job_readback_tree_not_absent",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": true, \"tree_absent\": false, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H5_access_denied_not_absent_fail_closed",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": false, \"tree_absent\": false, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H6_reused_pid_different_ctime_is_absent",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": true, \"tree_absent\": true, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H7_retained_external_alias_not_absent",
+   "ok": true,
+   "detail": "aliases_released=False"
+  },
+  {
+   "case": "H8_stuck_process_retained_handle_not_exited_not_absent",
+   "ok": true,
+   "detail": "{\"owned_pid\": 5000, \"owned_identity\": [5000, 1731700000.5], \"identity_absent\": false, \"tree_absent\": false, \"method\": \"OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0\"}"
+  },
+  {
+   "case": "H9_reused_descendant_pid_never_killed",
+   "ok": true,
+   "detail": "{\"signaled\": null, \"absent\": {\"5001:1731700001.5\": true}}"
+  },
+  {
+   "case": "H10_requires_retained_popen",
+   "ok": true,
+   "detail": "TypeError: OwnedProcessHolder requires the retained subprocess.Popen"
+  },
+  {
+   "case": "H11_job_active_processes_must_be_callable",
+   "ok": true,
+   "detail": "TypeError: job_active_processes must be a callable returning the qualified Job active count"
+  },
+  {
+   "case": "H12_double_cleanup_refused",
+   "ok": true,
+   "detail": "RuntimeError: owned cleanup already performed"
+  },
+  {
+   "case": "H13_record_satisfies_cleanup_verdict_only_for_owned",
+   "ok": true,
+   "detail": "proven/failed"
+  },
+  {
+   "case": "H14_run_owned_qualification_requires_holder",
+   "ok": true,
+   "detail": "{\"status\": \"failed\", \"detail\": \"no OwnedProcessHolder: owned cleanup cannot be proven\"}"
+  },
+  {
+   "case": "H15_one_shared_deadline_across_lingering_descendants",
+   "ok": true,
+   "detail": "elapsed=0.2 sleeps=9"
+  },
+  {
+   "case": "H16_job_readback_exception_tree_not_absent",
+   "ok": true,
+   "detail": "RuntimeError: job query failed"
+  },
+  {
+   "case": "H17_run_owned_qualification_cleanup_failure_evidence",
+   "ok": true,
+   "detail": "{\"passed\": false, \"status\": \"failed\"}"
+  }
+ ],
+ "started_utc": "2026-11-14T23:19:08Z",
+ "note": "process doubles only; no real process created, killed or run; models the holder RETURN contract, not real OS absence",
+ "elapsed_s": 0.234,
+ "case_count": 17,
+ "expected_cases": 17,
+ "all_ok": true
+}

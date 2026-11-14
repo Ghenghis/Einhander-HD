@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\raw37c_driver_r3.py", line 630, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\raw37c_driver_r3.py", line 615, in main
+    print(json.dumps({"staging": str(stage(a.stage))}))
+                                     ~~~~~^^^^^^^^^
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\raw37c_driver_r3.py", line 218, in stage
+    pacing = load_module("pacing_own_cache", PINS["pacing_own_cache"][0], N)
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\raw37c_driver_r3.py", line 135, in load_module
+    spec.loader.exec_module(mod)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "<frozen importlib._bootstrap_external>", line 759, in exec_module
+  File "<frozen importlib._bootstrap>", line 491, in _call_with_frames_removed
+  File "C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\pacing-own-cache.py", line 19, in <module>
+    import build_facade_ab_candidates as base
+ModuleNotFoundError: No module named 'build_facade_ab_candidates'

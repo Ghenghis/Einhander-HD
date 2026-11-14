@@ -1,0 +1,732 @@
+{
+  "at_utc": "2026-11-14T23:29:48.746371+00:00",
+  "sources": [
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r6/remix_t2.r6.h",
+      "published": "present/source/remix_t2.r6.h",
+      "sha256": "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd",
+      "bytes": 20206
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r6/test_t2.r6.cpp",
+      "published": "present/source/test_t2.r6.cpp",
+      "sha256": "06d3b8f0749876a2746c3a425e648f3b1731b9c683883743f05359222508fc94",
+      "bytes": 25948
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r6/build_t2_fixture.r6.py",
+      "published": "present/source/build_t2_fixture.r6.py",
+      "sha256": "7d9f6beec484d73403514de8f5f668c9f1b4be858f47231babfbe27bc3a6dd6f",
+      "bytes": 13212
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r6/T2-R6-PRESENT-LIFECYCLE-r6-20261114.md",
+      "published": "present/source/T2-R6-PRESENT-LIFECYCLE-r6-20261114.md",
+      "sha256": "872b78e9fba76d00b1995eea3f82da7d67fa42fdbe74763f50fdb90aefc65c5f",
+      "bytes": 8970
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/compile-unit.log",
+      "published": "present/actual/compile-unit.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/executed-test-unit.cpp",
+      "published": "present/actual/executed-test-unit.cpp",
+      "sha256": "06d3b8f0749876a2746c3a425e648f3b1731b9c683883743f05359222508fc94",
+      "bytes": 25948
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/fixture-unit.json",
+      "published": "present/actual/fixture-unit.json",
+      "sha256": "34bdb9aa2e5872310ada7e6365d79a73921d414534e0ff4479f5bed343cdcb66",
+      "bytes": 105
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/gte_divide_extracted.inc",
+      "published": "present/actual/gte_divide_extracted.inc",
+      "sha256": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+      "bytes": 1757
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/pgxp.h",
+      "published": "present/actual/pgxp.h",
+      "sha256": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+      "bytes": 19088
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/remix_t1_reproject.r1.h",
+      "published": "present/actual/remix_t1_reproject.r1.h",
+      "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+      "bytes": 6649
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/remix_t2.r3.h",
+      "published": "present/actual/remix_t2.r3.h",
+      "sha256": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+      "bytes": 29214
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/remix_t2.r4.h",
+      "published": "present/actual/remix_t2.r4.h",
+      "sha256": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96",
+      "bytes": 14010
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/remix_t2.r6.h",
+      "published": "present/actual/remix_t2.r6.h",
+      "sha256": "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd",
+      "bytes": 20206
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/result.json",
+      "published": "present/actual/result.json",
+      "sha256": "d5f7a5fd752316e4820e8f7eea29b10abb98501a850410b182ef7abfc61be90f",
+      "bytes": 7838
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/run-unit.log",
+      "published": "present/actual/run-unit.log",
+      "sha256": "4cd796f054683e9ae21df4f829ccc768467ec661bb245775c3ad106fa968b667",
+      "bytes": 73
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1/20261114T231146Z/scene_capture.h",
+      "published": "present/actual/scene_capture.h",
+      "sha256": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+      "bytes": 4001
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1-envelope.json",
+      "published": "present/envelope.json",
+      "sha256": "423ade12a8c081de636effd650ed39559c1e0a4891338a2251db3f348acb1f03",
+      "bytes": 2347
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2r6-run1-runner/executed-watchdog.py",
+      "published": "present/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/r6-errata/T2-R6-DOC-ERRATA-r1-20261114.md",
+      "published": "present/errata/T2-R6-DOC-ERRATA-r1-20261114.md",
+      "sha256": "c30fcb063d425fa9fe6ed643b949385e100bdc6f978b8f051a55dc13238e86a8",
+      "bytes": 1016
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/tools/fullstage_coverage_r3.py",
+      "published": "coverage/source.py",
+      "sha256": "4c40c85b43d5b8228fa2bc1b1858c097afb3a486742d2611dc49404a599b3f90",
+      "bytes": 16265
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/fullstage-r3-2311/fullstage-coverage.json",
+      "published": "coverage/fullstage-coverage.json",
+      "sha256": "ef8ff7519743d6f829fda8f7fb785644bbe93422556921534fd7bb7403b73c46",
+      "bytes": 1664429
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/fullstage-r3-2311/FULLSTAGE-COVERAGE.md",
+      "published": "coverage/FULLSTAGE-COVERAGE.md",
+      "sha256": "27575fafbcfb509fb287fd0bef3d5ca77f824134b41d6184a31f8cf339a349bd",
+      "bytes": 4414
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/fullstage-20261114T182734Z/fullstage-coverage.json",
+      "published": "coverage/preserved-previous-report.json",
+      "sha256": "5555d17ce7f56e9b97a05c4b0559969379632e0da7683e32151448af2847b3a6",
+      "bytes": 1344937
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/covr3-2311-envelope.json",
+      "published": "coverage/envelope.json",
+      "sha256": "6ec6c1bfe3214e6764674d472fe94c96ddaaf38e219fad8639e3e64099808fff",
+      "bytes": 2217
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/covr3-2311-runner/executed-watchdog.py",
+      "published": "coverage/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/ownership-20261114T183239Z/s2-unassigned-gaps.json",
+      "published": "coverage/ownership-s2.json",
+      "sha256": "1420fd6e9dd40df2c2b4a572b2b6ab81f4ba681e841de203ec5f57da1124acc2",
+      "bytes": 5876
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s23/runs/ownership-20261114T184349Z/unassigned-family-owners.json",
+      "published": "coverage/ownership-families.json",
+      "sha256": "528960faee3ef9eb68608ce008315658b8a3529f1583b52c25b0395c54893306",
+      "bytes": 18350
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/ui_c1_stroke_void_r4.py",
+      "published": "lettering/source.py",
+      "sha256": "4b21da8314d688fb36c1d2cc982bb824fef91b663b8cd1a66ada3c36e86c30a0",
+      "bytes": 27065
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-dry-run-02491337-20261114T231400Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-dry-run-02491337-20261114T231400Z-envelope.json",
+      "sha256": "13e7fe82c15219da829f9d8b18784c5dde6080c8fac0496a7912a69308016931",
+      "bytes": 2288
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-dry-run-4315989E-20261114T231259Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-dry-run-4315989E-20261114T231259Z-envelope.json",
+      "sha256": "ccfa087639fc45ebcb849a6eb5dd0503e2a01f04694d90538d68217b82fbbcb3",
+      "bytes": 2288
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-dry-run-79902A90-20261114T231428Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-dry-run-79902A90-20261114T231428Z-envelope.json",
+      "sha256": "95811f33d85fa366aa1eaa070228cc975b2ef7c9af1ad7a817e3c59a641bf875",
+      "bytes": 2286
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-write-02491337-20261114T231411Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-write-02491337-20261114T231411Z-envelope.json",
+      "sha256": "b7b2a92366ddd955d3936eb7881b129723ae1f19db5d9328a15fdb208d503e9d",
+      "bytes": 2317
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-write-4315989E-20261114T231343Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-write-4315989E-20261114T231343Z-envelope.json",
+      "sha256": "ee9ef31c6dbdd7a475b12d0a4dd6ff6d61a9b4a569a9e8de1032fee20e3553fe",
+      "bytes": 2315
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-write-79902A90-20261114T231440Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-write-79902A90-20261114T231440Z-envelope.json",
+      "sha256": "278f227f6e55dd48b56b9188699c122cca4cbf8bae29f11eecbd695166952b86",
+      "bytes": 1286
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-write-79902A90-20261114T232145Z-envelope.json",
+      "published": "lettering/envelopes/C1r4-write-79902A90-20261114T232145Z-envelope.json",
+      "sha256": "0ad0663b0738d775d1e85be35d39f152846b2be4533ac92ef184f8ede9ffda1f",
+      "bytes": 2311
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T231302Z/result.json",
+      "published": "lettering/results/231302.json",
+      "sha256": "25d463ff76e4110f5235a26301381816ab60fd3320fca67618ab0fb443274316",
+      "bytes": 3835
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T231345Z/result.json",
+      "published": "lettering/results/231345.json",
+      "sha256": "5a571150a91eb4621c8e4011bad89ca61f8f00a1ce74454203bd3f3034a53351",
+      "bytes": 3977
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T231402Z/result.json",
+      "published": "lettering/results/231402.json",
+      "sha256": "46d72d58dfebd0f7e7d93ff44b0a2f1fa904b2dc0894eba20034f55147008aa5",
+      "bytes": 3849
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T231414Z/result.json",
+      "published": "lettering/results/231414.json",
+      "sha256": "9cb29c029f07814ef64a5ba0a743240a214f8b06c2f1e95ad04ddf7cd7cbd692",
+      "bytes": 3991
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T231431Z/result.json",
+      "published": "lettering/results/231431.json",
+      "sha256": "9f9a527ca6e5506e9e6d6ddf8b7d147cfcd90b9218a8796e99637505fcacf282",
+      "bytes": 3849
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/c1-stroke-void/runs/20261114T232147Z/result.json",
+      "published": "lettering/results/232147.json",
+      "sha256": "60f03bc1a8a9ddd2a179f83ae099d09f5dd795ac783dcdf03a8e23bebcbd3fa1",
+      "bytes": 3991
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/C1r4-dry-run-4315989E-20261114T231259Z/executed-watchdog.py",
+      "published": "lettering/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/receipts/c1r4run.sh",
+      "published": "lettering/owner-launches.sh",
+      "sha256": "321bce67f189148585c15cb0441b7fe72d3f2ac6980921357196ba6d7b59c6a2",
+      "bytes": 1410
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/owned_process_cleanup_r0.py",
+      "published": "cleanup/source/owned_process_cleanup_r0.py",
+      "sha256": "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84",
+      "bytes": 10791
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/controls_cleanup_r0.py",
+      "published": "cleanup/source/controls_cleanup_r0.py",
+      "sha256": "b04de074ae23b5a18645a88326dfb782eb2723cf7417688afc1ff7d51bd80e50",
+      "bytes": 17733
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/controls_cleanup_r1.py",
+      "published": "cleanup/source/controls_cleanup_r1.py",
+      "sha256": "c44d0fec3e8babca98b3c1442dd97b6234cbad90142d430bc45615ebd736f692",
+      "bytes": 22516
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/CLEANUP-HOLDER-CONTRACT-20261114.md",
+      "published": "cleanup/source/CLEANUP-HOLDER-CONTRACT-20261114.md",
+      "sha256": "5e1af6b7b1cbb2df780bf9913482dfa95578fcd62654938d987980883ed90f80",
+      "bytes": 7537
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-cleanup-2316/result.json",
+      "published": "cleanup/result.json",
+      "sha256": "9944c3a4a188b835483e45f78540e90eec7dd71f7e854a21906456291359fa49",
+      "bytes": 5609
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-cleanup-2316-envelope.json",
+      "published": "cleanup/envelope.json",
+      "sha256": "5116ecc2c9b5351c9353ecd72e98c64f9129b6cebff8b0f895bcc9855f4ed680",
+      "bytes": 2327
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/RUN-RECEIPT-CLEANUP-2316-20261114.md",
+      "published": "cleanup/owner-receipt.md",
+      "sha256": "ec015aaa069757c4aae1fe468f4c82a1d5f3244fffe46b2d140985b31ea3ae35",
+      "bytes": 2625
+    },
+    {
+      "source": ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding/runs/controls-cleanup-2316-runner/executed-watchdog.py",
+      "published": "cleanup/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r2.py",
+      "published": "raw-driver/source/raw37c_driver_r2.py",
+      "sha256": "d6e925d9c547b69020b488d94efbe54385d2d7c1c1ee3353f542bea15d027541",
+      "bytes": 33932
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r3.py",
+      "published": "raw-driver/source/raw37c_driver_r3.py",
+      "sha256": "9ee0b4fe149971a74ccb5aa525b2842112d5c9f78e9dc655aa6a9a6203324c7a",
+      "bytes": 34654
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r4.py",
+      "published": "raw-driver/source/raw37c_driver_r4.py",
+      "sha256": "288d92c6e3e11c3ab6b2ffbcc34dfde6662b2b9f4ae1e14a1021036c5864cf11",
+      "bytes": 35990
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/test_raw37c_driver_r2.py",
+      "published": "raw-driver/source/test_raw37c_driver_r2.py",
+      "sha256": "fd48acf1dce35d1c579596cd701f3179795710a7c2a17de1e232f6883f81d230",
+      "bytes": 17351
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/test_raw37c_driver_r3.py",
+      "published": "raw-driver/source/test_raw37c_driver_r3.py",
+      "sha256": "316a1e3ee2ef2fa9487f8a658fc90671b08919365185ad4d009d4ee3c1701730",
+      "bytes": 17983
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/test_raw37c_driver_r4.py",
+      "published": "raw-driver/source/test_raw37c_driver_r4.py",
+      "sha256": "4cb682814039ba2e3f19a6e061f0c8d1398016ec44c7ac869a3f57f247325262",
+      "bytes": 18357
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r2-2315-envelope.json",
+      "published": "raw-driver/raw37c-controls-r2-2315/envelope.json",
+      "sha256": "57e2bfb56578db2443b76a78e275dc43668777372a1848e2c7307a605f09d91b",
+      "bytes": 2090
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r2-2315.stdout",
+      "published": "raw-driver/raw37c-controls-r2-2315/raw37c-controls-r2-2315.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r2-2315.stderr",
+      "published": "raw-driver/raw37c-controls-r2-2315/raw37c-controls-r2-2315.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r3-2318-envelope.json",
+      "published": "raw-driver/raw37c-controls-r3-2318/envelope.json",
+      "sha256": "6406175e4c4ff296956d7e56d6b9d182661c564a9b11a47252c97766dc4ff3a4",
+      "bytes": 2190
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r3-2318.log",
+      "published": "raw-driver/raw37c-controls-r3-2318/raw37c-controls-r3-2318.log",
+      "sha256": "28ae6aa2fce663d76049426c4ff3f2607d4126b72e65f802617be286f7c545f2",
+      "bytes": 556
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r4-2322-envelope.json",
+      "published": "raw-driver/raw37c-controls-r4-2322/envelope.json",
+      "sha256": "baf6012191e9cf3c71273aa3101a665a4ac28d80bc3cfc995b8cd9a72575f034",
+      "bytes": 2208
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r4-2322.log",
+      "published": "raw-driver/raw37c-controls-r4-2322/raw37c-controls-r4-2322.log",
+      "sha256": "7afd98983386c5b93323751dca75ac21eb56aa7b1092ef4306a9ce209d5c191c",
+      "bytes": 409
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-stage-r3-2323-envelope.json",
+      "published": "raw-driver/raw37c-stage-r3-2323/envelope.json",
+      "sha256": "420e7740883fe40d53314ef04bba98336933b3547d7d8ceb86050c0a49e11c8c",
+      "bytes": 2300
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-stage-r3-2323.log",
+      "published": "raw-driver/raw37c-stage-r3-2323/raw37c-stage-r3-2323.log",
+      "sha256": "e57d4f45f001f063842b1f9d8f9b3388eadfb5bbe75e8077078ff88d88ab5960",
+      "bytes": 1309
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_t2r6_coverage_r1.py",
+      "published": "root/readback_t2r6_coverage_r1.py",
+      "sha256": "fe2aef83256675d9a20f0c5a0a52a94bf0cd8e69836ffbbb9250eaa81b97bc58",
+      "bytes": 5740
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_c1r4_actual_r1.py",
+      "published": "root/readback_c1r4_actual_r1.py",
+      "sha256": "d3c3eb7a1100e76477cb034aaf9c5334b6370b56a4172c61c422eb0d929b039e",
+      "bytes": 4274
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_final_lettering_cleanup_failures_r1.py",
+      "published": "root/readback_final_lettering_cleanup_failures_r1.py",
+      "sha256": "e01c57e8ef4ec3758d9b63a31e594fe199c281f0466aa93b9d0a36157fd9d175",
+      "bytes": 4990
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/t2r6-coverage-actual-readback-r1/result.json",
+      "published": "root/t2r6-coverage-actual-readback-r1.json",
+      "sha256": "2f0ed955438eb2233e5393532040fc94ebeab3f1b0a602f6509ece3b72e08892",
+      "bytes": 9331
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/c1r4-actual-readback-r1/result.json",
+      "published": "root/c1r4-actual-readback-r1.json",
+      "sha256": "09a8cf8af5a0b2598bb52643b37f3672491b48876acbacdf3ad9786ed2333dab",
+      "bytes": 11888
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/final-lettering-cleanup-failures-readback-r1/result.json",
+      "published": "root/final-lettering-cleanup-failures-readback-r1.json",
+      "sha256": "d3080c84cca6d256390d90ef2779877f5cba4b29e195f7789915b71ac36688d5",
+      "bytes": 7271
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r5.py",
+      "published": "raw-driver/source/raw37c_driver_r5.py",
+      "sha256": "b72bceabbb1302ab46a0d27e1258c2a729f0c77750d9c73c6787db218cd54437",
+      "bytes": 38166
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r6.py",
+      "published": "raw-driver/source/raw37c_driver_r6.py",
+      "sha256": "21daa0f436588291d82529fbcd5981cd19213b9f88eab393c1a8c1aa2cb7b394",
+      "bytes": 40449
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_raw_controls_stage_failure_r1.py",
+      "published": "root/readback_raw_controls_stage_failure_r1.py",
+      "sha256": "1db5196bf0f5800c50504012794a9f9b9bc387fc60a5d76b2733a59241c3cc95",
+      "bytes": 3253
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_s45r4_failure_r1.py",
+      "published": "root/readback_s45r4_failure_r1.py",
+      "sha256": "2cb1984543ddb0fd6163c0eaa11f3b54c8249d8fc0f4ec86615c548842387676",
+      "bytes": 3052
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/qualify_rawr5_imports_r1.py",
+      "published": "root/qualify_rawr5_imports_r1.py",
+      "sha256": "426d265136c220aa3e014257b9b3cfe375161c0e526fff8314f608dbe3acc1a1",
+      "bytes": 1774
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/qualify_rawr6_imports_r1.py",
+      "published": "root/qualify_rawr6_imports_r1.py",
+      "sha256": "d9927b52e7730d278fc168545fee220f9d58ea190a13d6c574dedcbec02b6331",
+      "bytes": 3147
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/raw-controls-stage-failure-actual-readback-r1/result.json",
+      "published": "root/raw-controls-stage-failure-actual-readback-r1.json",
+      "sha256": "e75427643155df6556d9594c0ae57e5e08f576b46278390f3dd7c9afecad4dc0",
+      "bytes": 2755
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/s45r4-failure-actual-readback-r1/result.json",
+      "published": "root/s45r4-failure-actual-readback-r1.json",
+      "sha256": "6500a0a3b53e4af2dacb654f65f7c4e759d773e4c976f2fa30c7a5ec1eb4f241",
+      "bytes": 3417
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/rawr5-import-source-qualification-r1/result.json",
+      "published": "root/rawr5-import-source-qualification-r1.json",
+      "sha256": "0e62198fec98e2d6f650be25028b81f14bdb4e495095890093a248fda33c4ee2",
+      "bytes": 3802
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/rawr6-import-source-qualification-r1/result.json",
+      "published": "root/rawr6-import-source-qualification-r1.json",
+      "sha256": "0e0eb05cd9bb501386846e149d8fb8562cb65ea72a07d6cfa07bb85832f262ba",
+      "bytes": 5131
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/rawr5-import-source-qualification-r1/ERRATUM-LAZY-CLASSIFICATION.md",
+      "published": "root/R5-import-scope-erratum.md",
+      "sha256": "4f72d421c8d3780b28389940e7f275504e0ab3eb48447f0087039b7c76cff35f",
+      "bytes": 893
+    },
+    {
+      "source": "remaster-audit/build_facade_ab_candidates.py",
+      "published": "raw-driver/local-import-source/build_facade_ab_candidates.py",
+      "sha256": "09736514fe63f9611daf786c69e862423f5baf782637ff6aabf905f205d59d8e",
+      "bytes": 12905
+    },
+    {
+      "source": "remaster-audit/gpu_capture_guard.py",
+      "published": "raw-driver/local-import-source/gpu_capture_guard.py",
+      "sha256": "86f2c819d45232f41b08adb77adc84f4712f8e16c9ea13fa262cdcb843422201",
+      "bytes": 2543
+    },
+    {
+      "source": "windows-x64/tools/launch_material.py",
+      "published": "raw-driver/local-import-source/launch_material.py",
+      "sha256": "648ae54a57611975fc67b0e18b318e570cc19ae6cfecd8a0708df6cdbd87ad75",
+      "bytes": 5199
+    },
+    {
+      "source": "remaster-audit/launch_ui_candidate.py",
+      "published": "raw-driver/local-import-source/launch_ui_candidate.py",
+      "sha256": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752",
+      "bytes": 94135
+    },
+    {
+      "source": "windows-x64/tools/material_profiles.py",
+      "published": "raw-driver/local-import-source/material_profiles.py",
+      "sha256": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4",
+      "bytes": 32977
+    },
+    {
+      "source": "remaster-audit/native_ui_facade_route.py",
+      "published": "raw-driver/local-import-source/native_ui_facade_route.py",
+      "sha256": "851d1a7bd70488d8f47f24641f9531040586bf756df09616e078ca532c07935b",
+      "bytes": 16154
+    },
+    {
+      "source": "remaster-audit/private_process_checks.py",
+      "published": "raw-driver/local-import-source/private_process_checks.py",
+      "sha256": "7274e5c011da1bf659ad0a3ffa3074b2c11dcd8fce8899befa9edb5a7366c3fc",
+      "bytes": 6337
+    },
+    {
+      "source": "remaster-audit/run_facade_ab_probe.py",
+      "published": "raw-driver/local-import-source/run_facade_ab_probe.py",
+      "sha256": "0c049a7a1ebfc5dab66bc114db3e80dfe4f6a91b129041d6f910651f1c9aacc8",
+      "bytes": 13219
+    },
+    {
+      "source": "remaster-audit/stage_world_candidate.py",
+      "published": "raw-driver/local-import-source/stage_world_candidate.py",
+      "sha256": "6a3dd216dd3cfd210b035497c1d93a52c232dbbc3017eb017e283fd3669bf498",
+      "bytes": 22337
+    },
+    {
+      "source": "remaster-audit/ui_candidate_probe.py",
+      "published": "raw-driver/local-import-source/ui_candidate_probe.py",
+      "sha256": "5cf1986cd2df68164a149e75b4b3f6a8f921fc7634d512537013d0b0562f80a3",
+      "bytes": 8087
+    },
+    {
+      "source": "remaster-audit/verify_world_source_backlog.py",
+      "published": "raw-driver/local-import-source/verify_world_source_backlog.py",
+      "sha256": "11abf66dcead722c8bd7f4bafaa8a69a4545bd52a8ebe66feda522d462db4ad3",
+      "bytes": 13191
+    },
+    {
+      "source": "windows-x64/tools/devtools_service.py",
+      "published": "raw-driver/local-import-source/devtools_service.py",
+      "sha256": "c1e64fa6b37dd20ed58befdc8b6dc7b98b6ad6f2d4cf22729c549b737e22f02f",
+      "bytes": 31274
+    },
+    {
+      "source": "remaster-audit/observe_native_boot.py",
+      "published": "raw-driver/local-import-source/observe_native_boot.py",
+      "sha256": "fbb463737c1960c582d653271c10d1308b2b92c15c441ce323f3e650474d94c0",
+      "bytes": 2841
+    },
+    {
+      "source": "remaster-audit/run_h24_facade_review.py",
+      "published": "raw-driver/local-import-source/run_h24_facade_review.py",
+      "sha256": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2",
+      "bytes": 2995
+    },
+    {
+      "source": "remaster-audit/ui_native_journey.py",
+      "published": "raw-driver/local-import-source/ui_native_journey.py",
+      "sha256": "a6764c1725c395de1c96785c999a3ec431eeac2908af14b92bde8f2a47a289dd",
+      "bytes": 5586
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/tools/s45_diag_bands_r4.py",
+      "published": "stripes/source.py",
+      "sha256": "5e02bc2233006d3ce566a42418d41a9bc2ee87aeabf4b023b88684f579959341",
+      "bytes": 65776
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/repairs/20261114T232856Z-diagbands-r4-fixtures/receipt.json",
+      "published": "stripes/receipt.json",
+      "sha256": "ef88b7e9bebc21fa36be18f659dd0d4f69a95f8b2786957704359d388900d1a3",
+      "bytes": 2060
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/repairs/20261114T232856Z-diagbands-r4-fixtures/fixtures-receipt.json",
+      "published": "stripes/fixtures-receipt.json",
+      "sha256": "08e1afe65deb8bcb6d285fc55630388c6724c8e2db430836829e3f3dcc4d5d16",
+      "bytes": 4721
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/runs/diagbands-r4-fixtures-envelope.json",
+      "published": "stripes/envelope.json",
+      "sha256": "0a5f1314a43e2ce031a75e74dec716c2c7fb12eb187ca3e8774d60d9b0d1c3a2",
+      "bytes": 2141
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/runs/diagbands-r4-fixtures-runner/executed-watchdog.py",
+      "published": "stripes/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s45/runs/diagbands-r4-fixtures-runner/sequence-log.txt",
+      "published": "stripes/sequence-log.txt",
+      "sha256": "3c71f2004d081aaa59bb6233dd2fc2cc7a63a65eecb5915b8fd7fa6d8ead5655",
+      "bytes": 443
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r7.py",
+      "published": "raw-driver/source/raw37c_driver_r7.py",
+      "sha256": "4dbc93d901f32a25f4a63c5d2a04d0c1c3f4295ceae6a4afc5c6e5e0ba428230",
+      "bytes": 42562
+    },
+    {
+      "source": "remaster-audit/dev-center-evidence/stage1-completion-20261112/raw37c-r6-20261114T2331Z/hd-on_rewind-off/raw37c-staging.json",
+      "published": "raw-stage/staging.json",
+      "sha256": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79",
+      "bytes": 306899
+    },
+    {
+      "source": "remaster-audit/dev-center-evidence/stage1-completion-20261112/raw37c-r6-20261114T2331Z/hd-on_rewind-off/runtime/settings.toml",
+      "published": "raw-stage/initial-settings.toml",
+      "sha256": "406643a175d55a5e45cdcf9645b05a74d24f38efc0de0647c6d720949c2c90b9",
+      "bytes": 1747
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-stage-r6-2331-envelope.json",
+      "published": "raw-stage/envelope.json",
+      "sha256": "f6541cc6af56cfe8ef18581db90c67018b11a2b451cabec2f9df6e89bf9f4b4c",
+      "bytes": 2313
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/raw37c-stage-r6-2331.log",
+      "published": "raw-stage/driver.log",
+      "sha256": "d6b2d38af34562f40f718a6493376f88aac802699fca0355dc03fd102a92c9fa",
+      "bytes": 168
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233236Z/envelope.json",
+      "published": "live/before-game-import-abort/envelope.json",
+      "sha256": "a8a74775cf9008216e87b7dc29e9baa6333fdc977216919dd45949ff1c6d225b",
+      "bytes": 2886
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233236Z/evidence/raw37c-evidence.json",
+      "published": "live/before-game-import-abort/raw37c-evidence.json",
+      "sha256": "8c8363a8f9d5c8f8d1eef674325797affcf2d943dad492f2944495ee95d83911",
+      "bytes": 2805
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233521Z/envelope.json",
+      "published": "live/game-startup-transport-abort/envelope.json",
+      "sha256": "28a6b66ca9da9d2cb2c3df9e2b6352695085afe6b261727d1a11b84bde1785b4",
+      "bytes": 2900
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233521Z/evidence/raw37c-evidence.json",
+      "published": "live/game-startup-transport-abort/raw37c-evidence.json",
+      "sha256": "07e5310c1398bd30e1bd5d2cdcaf999c66cf6e08923de168222aa5219f5220c0",
+      "bytes": 8859
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233521Z/evidence/game.stdout.log",
+      "published": "live/game-startup-transport-abort/game.stdout.log",
+      "sha256": "590b6cab3c0a1df297833a7d3e72755d0bf0d8fd2302a497dfc5c133cd24fb5e",
+      "bytes": 1836
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233521Z/evidence/game.stderr.log",
+      "published": "live/game-startup-transport-abort/game.stderr.log",
+      "sha256": "1e2f14c9075d6d4b6a0fba35d7360eadb4debfe454b2bcff9dd7263c3dcfe795",
+      "bytes": 277
+    },
+    {
+      "source": "coordination/pizza-review-20261114/raw37c-live-20261114T233521Z/evidence/commands/001-intent.json",
+      "published": "live/game-startup-transport-abort/commands/001-intent.json",
+      "sha256": "c71295ea1d8ec7ddf69c00ce40d0ed096d5cac1b202f130192ee15299c89c488",
+      "bytes": 119
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_raw_stage_setup_actual_r1.py",
+      "published": "root/readback_raw_stage_setup_actual_r1.py",
+      "sha256": "6b604250253a63a4f6333c2d39683be3c524bd1f41380c132892994b7500565c",
+      "bytes": 4711
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_rawr7_startup_abort_r1.py",
+      "published": "root/readback_rawr7_startup_abort_r1.py",
+      "sha256": "f402d0afa5dbd24d71a755292551e84a0cc5b4476ceba8ff29057e556ca66aa6",
+      "bytes": 3965
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/raw-stage-setup-actual-readback-r1/result.json",
+      "published": "root/raw-stage-setup-actual-readback-r1.json",
+      "sha256": "ff78894cf7b69b35680d836ccf505c3e6b122287acd4e30d93d620d83a593761",
+      "bytes": 6422
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/rawr7-startup-abort-actual-readback-r1/result.json",
+      "published": "root/rawr7-startup-abort-actual-readback-r1.json",
+      "sha256": "f16a920794116944a34b7bb1df84aa5400d47ce812032d55cab77adef768fc2d",
+      "bytes": 2914
+    }
+  ],
+  "game_run": true,
+  "gpu_run": false,
+  "installed": false,
+  "supplemented_at_utc": "2026-11-14T23:43:48.192355+00:00",
+  "coordinator_gpu_fenced_startup": true,
+  "root_gpu_job": false,
+  "raw_collection_pass": false
+}

@@ -1,0 +1,228 @@
+{
+  "schema": "s67-raw37c-evidence-r2",
+  "verdict": "ABORTED",
+  "not_run": {
+    "L5": "held F6: no supported CUA hold API",
+    "L6": "held steering: no supported CUA hold API",
+    "L7": "held fire: no supported CUA hold API",
+    "L8": "follow-up profile",
+    "L9": "follow-up profile",
+    "L10": "needs a second launch",
+    "L11": "follow-up profile (quit while open)"
+  },
+  "steps": {
+    "S0": {
+      "pid": 7116,
+      "create_time": 1794699328.160226,
+      "exe": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\runtime\\Einhander_Recompiled.exe",
+      "exe_sha256": "37c137e8af8c53d141d53623f9dafa8ce59555cc6a365152098fa49f1be4d9cc",
+      "cmdline": [
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\runtime\\Einhander_Recompiled.exe",
+        "--renderer",
+        "opengl",
+        "--game",
+        "C:\\github\\Einhander\\windows-x64\\game.toml",
+        "--disc",
+        "C:\\github\\Einhander\\ROM\\Einhander (USA).cue",
+        "--bios",
+        "C:\\github\\Einhander\\windows-x64\\build-release\\bios\\SCPH1001.BIN",
+        "--no-launcher",
+        "--debug-port",
+        "4376",
+        "--memcard-dir",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\state",
+        "--window-title",
+        "Einhander pacing - hd-on_rewind-off"
+      ],
+      "cwd": "C:\\github\\Einhander\\windows-x64",
+      "nice": 32,
+      "cpu_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "at_utc": "2026-11-14T23:35:28.289Z",
+      "listener_seconds_cold_cache": 3.46
+    }
+  },
+  "claims": "raw observations only; no acceptance, PCM, listening, pacing or performance claim; title not proven",
+  "started_utc": "2026-11-14T23:35:24.616Z",
+  "pins": {
+    "holder": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_process_cleanup_r0.py",
+      "sha256": "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84"
+    },
+    "audited_r1": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py",
+      "sha256": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"
+    },
+    "ui_live_check_plan": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\proposals\\p1-player-color\\build\\LIVE-CHECK-PLAN-p1-v69-2240.md",
+      "sha256": "d0bb13e577b2b87aa2943e8e406026def70cd931478dfbb3562d6db8d8e8032c"
+    },
+    "owner_build_receipt": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\proposals\\p1-player-color\\build\\BUILD-RECEIPT-p1-v69-2240.md",
+      "sha256": "97c1da1f6bca8061a255f9679a160d5c4f93edba39ebdd3c797acf2dceb1a821"
+    },
+    "gpu_guard": {
+      "path": "C:\\github\\Einhander\\tools\\coordination\\shared_gpu_guard.py",
+      "sha256": "cb767d1f5cf4c1795eb46d369a558bdfedf33c9e51b529123893c53c47685ac7"
+    }
+  },
+  "staging": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\raw37c-staging.json",
+    "sha256": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79"
+  },
+  "holder_closure": {
+    "owned_gl_adapter_observation_audited_r1": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py",
+      "sha256": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"
+    },
+    "unassisted_command_guard_adapter_r1": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\unassisted_command_guard_adapter_r1.py",
+      "sha256": "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee"
+    },
+    "gl_adapter_identity_guard": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py",
+      "sha256": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08"
+    }
+  },
+  "env": {
+    "inherited_dropped_names": [
+      "EINHANDER_SHARED_GPU_TOKEN"
+    ],
+    "overrides_applied": [
+      "EIN_DEBUG_PORT",
+      "EIN_DEV_URL",
+      "PSXRECOMP_HD_BATCH_ATTRIB",
+      "PSXRECOMP_HD_CPU_AUTHORITY",
+      "PSXRECOMP_HD_CPU_PROFILE",
+      "PSXRECOMP_HD_DECODE_BUDGET_MB",
+      "PSXRECOMP_HD_DUMP",
+      "PSXRECOMP_HD_EMISSIVE",
+      "PSXRECOMP_HD_FACADE_MOTION",
+      "PSXRECOMP_HD_FILTER_STATE_CACHE",
+      "PSXRECOMP_HD_KEEP_BRACKET",
+      "PSXRECOMP_HD_OPAQUE_BATCH",
+      "PSXRECOMP_HD_PAGE_FALLBACK",
+      "PSXRECOMP_HD_PROOF_CONTROL",
+      "PSXRECOMP_HD_PROOF_LOG",
+      "PSXRECOMP_HD_REGION_INDEX",
+      "PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY",
+      "PSXRECOMP_HD_SOURCE_CACHE_KEYS",
+      "PSXRECOMP_HD_SOURCE_SIDECARS",
+      "PSXRECOMP_HD_TEXTURE_ROOT",
+      "PSXRECOMP_HD_WORLD_ANISOTROPY",
+      "PSXRECOMP_HD_WORLD_SAMPLING",
+      "PSXRECOMP_NATIVE_UPLOAD_LEDGER",
+      "PSXRECOMP_PLAYER_DRAW_ONLY",
+      "PSXRECOMP_PLAYER_DRAW_TRACKING",
+      "PSXRECOMP_SKIN_DETAIL_PATH",
+      "PSXRECOMP_SKIN_DETAIL_SCALE",
+      "PSXRECOMP_SKIN_DETAIL_STRENGTH",
+      "PSXRECOMP_SKIN_ENEMY_DETAIL_PATH",
+      "PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE",
+      "PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH",
+      "PSXRECOMP_SKIN_ENEMY_KEYS",
+      "PSXRECOMP_SKIN_ENEMY_PROFILE",
+      "PSXRECOMP_SKIN_ENEMY_STRENGTH",
+      "PSXRECOMP_SKIN_KEYS",
+      "PSXRECOMP_SKIN_PROFILE",
+      "PSXRECOMP_SKIN_STRENGTH",
+      "PSXRECOMP_THREAT_DRAW_TRACKING",
+      "PSX_DISPLAY_RING",
+      "PSX_FPS_TELEMETRY",
+      "PSX_FRAME_INTERPOLATION",
+      "PSX_FRAME_PHASE_RING",
+      "PSX_GL_PERF",
+      "PSX_GL_PRESENT_PROBE",
+      "PSX_OVERLAY_AUTOCOMPILE_OFF",
+      "PSX_OVERLAY_CAPTURES",
+      "PSX_OVERLAY_DIFF",
+      "PSX_OVERLAY_DIFF_ADDR",
+      "PSX_REWIND",
+      "PSX_REWIND_DEPTH",
+      "PSX_REWIND_FMV_INTERVAL",
+      "PSX_REWIND_INTERVAL",
+      "PSX_RUNTIME_PERF_DIAG",
+      "PSX_RUNTIME_PERF_DIAG_MS"
+    ],
+    "deleted": [
+      "PSX_LOAD_SLOT",
+      "PSX_HLE_SCHEDULER"
+    ]
+  },
+  "fence": {
+    "before_launch": {
+      "permission": {
+        "allowed": true,
+        "owner": "claude-einhander"
+      },
+      "check": {
+        "action": "check",
+        "exit": 0,
+        "allowed": true,
+        "committed": null,
+        "event_id": null,
+        "scope": "Live token/private broker arguments intentionally omitted"
+      }
+    },
+    "game_registration": {
+      "action": "start",
+      "exit": 0,
+      "allowed": null,
+      "committed": true,
+      "event_id": "dd6c2e60-c47a-4bc9-84d8-575ef997032f",
+      "scope": "Live token/private broker arguments intentionally omitted",
+      "registered_pid": 7116,
+      "registered_create_time": 1794699328.160226,
+      "note": "grant never implicitly released; coordinator verifies absence before explicit release"
+    }
+  },
+  "abort": "AdapterEvidenceError: connected debug TCP peer missing or ambiguous",
+  "cleanup_holder": {
+    "owned_pid": 7116,
+    "owned_identity": [
+      7116,
+      1794699328.160226
+    ],
+    "identity_absent": true,
+    "tree_absent": false,
+    "method": "OwnedProcessHolder r0: kill owned process and recorded owned descendants; release every Popen alias (weakref) and gc; bounded pid+create_time absence; qualified Job active_processes == 0"
+  },
+  "cleanup_holder_facts": {
+    "descendants_enumerated": true,
+    "descendants_recorded": [],
+    "exited_before_cleanup": false,
+    "signaled": true,
+    "retained_handle_exited": true,
+    "returncode": 1,
+    "popen_aliases_released": true,
+    "descendants_absent": {},
+    "job_active_processes": null
+  },
+  "logs": {
+    "game.stdout.log": "590b6cab3c0a1df297833a7d3e72755d0bf0d8fd2302a497dfc5c133cd24fb5e",
+    "game.stderr.log": "1e2f14c9075d6d4b6a0fba35d7360eadb4debfe454b2bcff9dd7263c3dcfe795"
+  },
+  "config_marker": {
+    "private_dir_in_logs": true
+  },
+  "settings_sha256_after": "406643a175d55a5e45cdcf9645b05a74d24f38efc0de0647c6d720949c2c90b9",
+  "job_active_processes_self_inclusive": 1,
+  "cleanup_qualification": "join required: holder identity_absent here AND the wrapper's Job-empty/tree-absent receipt for this pid/ctime; holder tree_absent is False inside the Job by design",
+  "ended_utc": "2026-11-14T23:35:32.822Z"
+}

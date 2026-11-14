@@ -1,0 +1,74 @@
+{
+  "at_utc": "2026-11-14T23:41:58.240405+00:00",
+  "metadata_readback_pass": true,
+  "actual_game_started": true,
+  "actual_menu_audio_acceptance": false,
+  "verdict": "ABORTED",
+  "elapsed_s": 8.368,
+  "peak_job_memory_bytes": 1830989824,
+  "game_identity": {
+    "pid": 7116,
+    "creation_unix": 1794699328.160226,
+    "exe_sha256": "37c137e8af8c53d141d53623f9dafa8ce59555cc6a365152098fa49f1be4d9cc",
+    "priority": 32,
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ]
+  },
+  "listener_seconds_cold_cache": 3.46,
+  "first_command": "skin_material",
+  "peer_failure_phase": "not persisted; pre-send versus post-reply cannot be determined",
+  "menu_gates_completed": 0,
+  "audio_stats_recorded": false,
+  "exact_identity_broker_holder_join": true,
+  "holder_identity_absent": true,
+  "outer_job_empty": true,
+  "whole_cleanup_join_pass": true,
+  "private_settings_after": "406643a175d55a5e45cdcf9645b05a74d24f38efc0de0647c6d720949c2c90b9",
+  "pins": {
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233521Z\\envelope.json": "28a6b66ca9da9d2cb2c3df9e2b6352695085afe6b261727d1a11b84bde1785b4",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233521Z\\evidence\\raw37c-evidence.json": "07e5310c1398bd30e1bd5d2cdcaf999c66cf6e08923de168222aa5219f5220c0",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233521Z\\evidence\\game.stdout.log": "590b6cab3c0a1df297833a7d3e72755d0bf0d8fd2302a497dfc5c133cd24fb5e",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233521Z\\evidence\\game.stderr.log": "1e2f14c9075d6d4b6a0fba35d7360eadb4debfe454b2bcff9dd7263c3dcfe795",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233521Z\\evidence\\commands\\001-intent.json": "c71295ea1d8ec7ddf69c00ce40d0ed096d5cac1b202f130192ee15299c89c488",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\raw37c_driver_r7.py": "4dbc93d901f32a25f4a63c5d2a04d0c1c3f4295ceae6a4afc5c6e5e0ba428230"
+  },
+  "known_identities": [
+    {
+      "role": "wrapper",
+      "pid": 41008,
+      "creation_unix": 1794699323.290525,
+      "identity_absent": true
+    },
+    {
+      "role": "driver",
+      "pid": 40892,
+      "creation_unix": 1794699324.4627151,
+      "identity_absent": true
+    },
+    {
+      "role": "game",
+      "pid": 7116,
+      "creation_unix": 1794699328.160226,
+      "identity_absent": true
+    }
+  ],
+  "game_replayed_by_root": false,
+  "gpu_or_driver_settings_changed_by_root": false,
+  "release_scope": "coordinator reports explicit broker release; private token files not read by root"
+}

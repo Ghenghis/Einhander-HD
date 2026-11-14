@@ -1,5 +1,9 @@
 # Stage 1 completion status
 
+Current actual results: [CPU50/61/17 checks, three private lettering candidates, successful staging and controlled startup abort](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Actual37c game started Normal/all16cores; peer validation aborted before menus/audio, cleanup passed. S45r4 failed19/23; art/Remix/audio/stage/release acceptance remains open. Earlier entries retain their dated scope.
+
+Latest CPU followup: [50 present-lifecycle checks, three private lettering candidates, honest coverage and retained diagnostic failures](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Cleanup17 and corrected raw-driver61 controls passed; first staging failed before prepare. Game/Remix/audio/art acceptance remains incomplete. Earlier entries retain their dated scope.
+
 Latest CPU texture/staging results: [private lettering correction, Stage 2 pilot and Normal scheduling](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). C1 repairs 240 interior pixels; pilot staged; no game/GPU/art admission. Raw menu/audio driver needs concrete corrections before launch. Earlier dated entries retain their historical scope.
 
 Latest actual CPU results: [private menu build, transport checks and retained diagnostic limits](CPU-TRANSPORT-ACTUAL-20261114.md). P1+v69 compiled/linked37c137e8, not launched/installed; T1 36 and T2 55+21 checks passed. Loopback probe5 remains inconclusive. Earlier entries below preserve their dated scope.
