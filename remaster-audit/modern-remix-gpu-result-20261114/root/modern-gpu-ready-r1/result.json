@@ -1,0 +1,27 @@
+{
+  "at_utc": "2026-11-14T16:17:21.872027+00:00",
+  "pins": {
+    "run_modern_gl_probe.py": "d545a7de7ef220e1c30eadb69eef3aa12f64db60861c40d56df485f4d36ea122",
+    "sdk_modern_gl_probe.cpp": "3f77474fea5208bafae6a7cd82132f0188584a030112c7db68915e04f382a2dc",
+    "sdk-modern-gl-cpu-r4/sdk-modern-gl.exe": "3911f74c0e380f9358d32f529ee1de440b709bdf8fec93b1ef4ea12a91643d1d",
+    "sdk-v016-release/win64/d3d9.dll": "a8365272734cf5541e3600aeacb445c0fd102187dc3a167495a56809ce5891d9",
+    "audit_modern_gl_image.py": "a8c80d0ab4acc7674d57c1791809929cb37dc9bdb2d0c4f8539bc3cdb4e2bc1f"
+  },
+  "guard_sha256": "a0142d4230ea8a6604bb4488e4448f245079aadc65b9dd9ba0eb739bb8436d13",
+  "shared_revision": 3,
+  "shared_owner": null,
+  "gpu_run": false,
+  "adapter_queried": false,
+  "graphics_library_loaded": false,
+  "ready_recipe": "run_modern_gl_probe.py --run-after-explicit-user-release",
+  "requires_fresh_grant": true,
+  "requires_reconciled_legacy_hold": true,
+  "dimensions": [
+    320,
+    180
+  ],
+  "frames": 32,
+  "child_deadline_seconds": 45,
+  "cleanup_bound_about_seconds": 70,
+  "no_power_or_driver_change": true
+}

@@ -1,0 +1,35 @@
+{
+  "start": {
+    "at_utc": "2026-11-14T16:33:11.955571+00:00",
+    "managed_parent_pid": 38504,
+    "creation_unix": 1794673991.948414,
+    "command": [
+      "C:\\Python314\\python.exe",
+      "-X",
+      "utf8",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\run_modern_gl_probe.py",
+      "--run-after-explicit-user-release"
+    ],
+    "shared_revision": 8,
+    "shared_owner": "claude-einhander",
+    "affinity": [
+      15
+    ],
+    "below_normal": true,
+    "precheck_cpu": 15.6,
+    "free_gib": 74.22257995605469,
+    "token_omitted": true
+  },
+  "ended_utc": "2026-11-14T16:33:53.628406+00:00",
+  "outer_exit": 1,
+  "seconds": 41.68130779999956,
+  "managed_parent_identity_absent": true,
+  "probe_result": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\modern-gl-parent-20261114T163312127399Z\\result.json",
+  "probe_result_sha256": "2c19e0832d94d6fba5f2a670a15b5c83176b91687c5e4f2eb918e666ace1c37f",
+  "probe_passed": false,
+  "gpu_executed": true,
+  "owned_child_gone": true,
+  "owned_marker_released": true,
+  "owned_lock_released": true,
+  "broker_release_not_automatic": true
+}

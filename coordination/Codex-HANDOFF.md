@@ -1,5 +1,11 @@
 # Codex continuation — 2026-11-14
 
+## Actual modern GPU result —16:35UTC
+
+The private modern Remix probe ran on3090Ti and FAILED: three identical outputs with zero expected triangle pixels; Shutdown exceeded its15-second deadline, child exit30/40.159s, wrapper exit1/41.681s. Startup/frame return codes and the initial GL readback pass do not establish rendering. Both processes are absent, markers removed and shared grant explicitly released revision10. [Actual evidence and remaining work](../docs/MODERN-REMIX-GPU-RESULT-20261114.md).
+
+Root continues CPU-only diagnosis/publication; bounded Claude texture/HUD work resumes. No game/audio test, installed runtime, RT/DLSS gameplay or full remaster acceptance is claimed. Six native sessions are registered. Metadata monitor PID37252 ends17:06:21.828UTC and proves monitoring only. Earlier dated checkpoints below are historical.
+
 ## Current frontend/tracker checkpoint —16:06UTC
 
 Development launch now uses validated saved materials, explicit stock recovery and correct custom-port links. Nine unit cases and actual CPU validation/PowerShell/Windows-argv controls pass; saved pointer unchanged. The exact v67 pack passes16 tracker/save-state/decode fixture processes in6.037s. Region-O9pins/all11files are preserved in canonical C: storage; ROI-only integration/sidecar refresh and live look remain pending. [Actual code, checks and newer art/menu failures](../docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md).
