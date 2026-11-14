@@ -1,5 +1,9 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+## Latest actual CPU trials and source limits —November14
+
+Watchdog10dummycases pass0/5.67s; UI3keymeasure0/2.61s/200.6MiB uses a polledcap, not a kernel Job cap. Root verifies receipts/sources and views3UIcrops; emblems/logo prevent a body-text cause claim. OriginalRGB-only inference is withdrawn; no repair. User-approvedPR7command is allowed but fresh wrapper refuses66.1%CPU before any build child; originalpermissiondenial remains preserved. Cage/GLidentity/audio-gap/preview source work is unbuilt/unintegrated/unacceptedlive. NoGPU/game/audio or stage/release completion. [Actual evidence, source boundaries and remaining work](../docs/CPU-SOURCE-REVIEW-20261114.md). Older dated blocks retain their original scope.
+
 ## Current CPU texture checkpoint and host hold —19:12UTC
 
 Independent native-class replay passes118/118menu candidates; privatev68 C:staging succeeds0/7.613s, without game/GPU/install. Root verifies original receipts/currentpins. Staged enemy material is disabled; player tint covers four hull keys, detail has unprovenlive upload gates. Full realistic skins/selectors remain open. Remixr7is source-only/uncompiled/unrun; last GPU output/Shutdown remains failed. User-observed Windows freezing relayed by coordinator: HOLD new heavy/GPU jobs pending diagnostics; light source/receipt/publication work continues. [Actual results, pinned source map and remaining acceptance](../docs/CPU-TEXTURE-REMIX-RESULTS-20261114.md). Earlier dated results below retain their original scope and do not override this checkpoint.

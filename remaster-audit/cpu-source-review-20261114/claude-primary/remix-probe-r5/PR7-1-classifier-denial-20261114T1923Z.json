@@ -1,0 +1,21 @@
+{
+ "schema": "claude-einhander-launch-denial-v1",
+ "grant": {"root": "msg_a16d50b23ea0cffe (2026-11-14T19:22:03.236Z)", "coordinator_clear": "msg_b6e168413d7cda3b (2026-11-14T19:21:51.032Z)"},
+ "pins_verified_before_attempt": {
+  "source_r7": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05",
+  "builder_r7": "a9475b3c0f7e4c59f637fbcab23f690c63393aa91bccf9c14210289aaebf1b4c",
+  "header": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c",
+  "wrapper_run_rc2_r1": "cd3988af06cd348cdef0c9a14e6a87a180b5aea09bb6207eeeb9d3d80a4ea9dd"
+ },
+ "attempt_utc_approx": "2026-11-14T19:23:10Z",
+ "intended_command": "T=$(date -u +%Y%m%dT%H%M%SZ) && R=remix-probe-r5/runs/PR7-1-$T && mkdir -p remix-probe-r5/runs && test ! -e $R && python tools/run_rc2.r1.py --out $R-rc.json --cpu 15 --timeout 120 --max-cpu 60 --min-free-gib 16 -- python remix-probe-r5/build_r7_cpu.py --cpu 15 --out-root $R --expect-source-sha 751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05",
+ "cwd": "remaster-audit/claude-einhander-primary",
+ "result": "DENIED by the Claude Code auto-mode permission classifier before the shell ran",
+ "classifier_reason_verbatim": "[Destructive or Unwanted Actions]",
+ "process_created": false,
+ "pid": null,
+ "receipt_or_out_root_written": false,
+ "cpu15": "returned unused",
+ "retry": "none; not rerouted through another tool or agent; permissions not changed",
+ "needs": "the actual user to allow this command in the Claude session, then a fresh root grant and coordinator clear"
+}

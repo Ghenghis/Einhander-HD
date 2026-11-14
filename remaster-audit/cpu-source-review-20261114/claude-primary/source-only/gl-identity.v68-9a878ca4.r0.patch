@@ -1,0 +1,57 @@
+diff --git a/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c b/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
+index e5bd0f2..0cf1308 100644
+--- a/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
++++ b/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v68-recorder-reserve-r1/src/gpu_gl_renderer.c
+@@ -5730,6 +5730,44 @@ static int init_gpu_raster(void) {
+     return 1;
+ }
+ 
++/* Adapter identity: read once, on the thread that just made the context
++ * current, immediately after context creation. Never queried per frame, from
++ * the debug server or from any other thread. Copies are bounded and sanitized
++ * so the startup line is one deterministic, parseable record. The renderer
++ * string names the adapter MODEL the GL driver chose (it separates a 3090 Ti
++ * from a 3060); it is not a physical-device identity (no UUID / PCI bus id). */
++#define GL_IDENTITY_CHARS 128
++static char s_gl_id_vendor[GL_IDENTITY_CHARS];
++static char s_gl_id_renderer[GL_IDENTITY_CHARS];
++static char s_gl_id_version[GL_IDENTITY_CHARS];
++static int s_gl_id_captured;
++
++/* Returns 1 when the driver string was longer than the bound. */
++static int gl_identity_copy(char *out, const GLubyte *in) {
++    size_t n = 0;
++    if (in) {
++        for (; in[n] && n < GL_IDENTITY_CHARS - 1; ++n) {
++            const unsigned char c = in[n];
++            out[n] = (c >= 0x20 && c < 0x7F && c != '"' && c != '\\') ? (char)c : '?';
++        }
++    }
++    out[n] = 0;
++    if (!n) { out[0] = '?'; out[1] = 0; }
++    return in && in[n] != 0;
++}
++
++static void gl_identity_capture(void) {
++    if (s_gl_id_captured) return;      /* immutable after the first context */
++    int truncated = gl_identity_copy(s_gl_id_vendor, glGetString(GL_VENDOR));
++    truncated |= gl_identity_copy(s_gl_id_renderer, glGetString(GL_RENDERER));
++    truncated |= gl_identity_copy(s_gl_id_version, glGetString(GL_VERSION));
++    s_gl_id_captured = 1;
++    fprintf(stdout, "psxrecomp: GL identity vendor=\"%s\" renderer=\"%s\" "
++            "version=\"%s\" truncated=%d\n",
++            s_gl_id_vendor, s_gl_id_renderer, s_gl_id_version, truncated);
++    fflush(stdout);   /* stdout is redirected to a file; do not rely on _IOLBF */
++}
++
+ int gl_renderer_init_context(SDL_Window *win) {
+     s_win = win;
+     s_present_w = 0;
+@@ -5749,6 +5787,7 @@ int gl_renderer_init_context(SDL_Window *win) {
+     glDisable(GL_DEPTH_TEST); glDisable(GL_CULL_FACE);
+     const char *ver = (const char *)glGetString(GL_VERSION);
+     fprintf(stdout, "psxrecomp: OpenGL context created (%s)\n", ver ? ver : "?");
++    gl_identity_capture();
+ 
+     /* All-or-nothing: any missing entry point / failed shader / bad FBO means
+      * the whole GL renderer is unavailable and the runtime stays on the pure

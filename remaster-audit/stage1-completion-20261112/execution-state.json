@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T19:13:02.959954+00:00",
+  "updated_at_utc": "2026-11-14T19:36:35.013198+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,8 +912,9 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 35628,
-    "bound_end_utc": "2026-11-14T19:26:22.146Z",
+    "pid": 41936,
+    "creation_unix": 1794684239.730168,
+    "bound_end_utc": "2026-11-14T19:53:59.781Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -975,5 +976,20 @@
     "staged_enemy_skin": "stock/inactive",
     "authored_realistic_skins_complete": false,
     "remix_r7": "source-only/uncompiled/unrun"
+  },
+  "cpu_source_review": {
+    "evidence": "remaster-audit/cpu-source-review-20261114/README.md",
+    "watchdog_cases": 10,
+    "watchdog_passed": true,
+    "watchdog_seconds": 5.67,
+    "ui_measured_keys": 3,
+    "ui_seconds": 2.61,
+    "ui_peak_working_set_mib": 200.6,
+    "ui_whole_job_cap": false,
+    "ui_body_text_cause_accepted": false,
+    "pr7": "permission approved; actualCPU66.1precheckdeclined/nochild/uncompiled",
+    "gpu_run": false,
+    "game_run": false,
+    "live_accepted": false
   }
 }

@@ -1,0 +1,43 @@
+--- a/debug_server.c
++++ b/debug_server.c
+@@ -6900,6 +6900,9 @@
+                                uint64_t *underruns,
+                                uint64_t *overflow_drops, double *correction,
+                                int *legacy, int *host_rate);
++/* Gap counters of the bridge (main.cpp; C linkage). Returns 0 if unavailable. */
++extern int psx_audio_out_gap_stats(uint64_t *gaps, uint64_t *max_gap_frames,
++                                   uint64_t *cur_gap_frames, uint64_t *gap_epoch);
+ 
+ static void handle_audio_stats(int id, const char *json)
+ {
+@@ -6912,6 +6915,8 @@
+     int out_ok = psx_audio_out_stats(&fill_ms, &target_ms, &out_underruns,
+                                      &overflow_drops, &correction, &legacy,
+                                      &host_rate);
++    uint64_t gaps = 0, max_gap = 0, cur_gap = 0, gap_epoch = 0;
++    int gap_ok = psx_audio_out_gap_stats(&gaps, &max_gap, &cur_gap, &gap_epoch);
+     send_fmt("{\"id\":%d,\"ok\":true,"
+              "\"taps\":["
+              "{\"name\":\"spu_out\",\"frames\":%llu,\"nonzero\":%llu,"
+@@ -6926,7 +6931,9 @@
+              "\"out\":{\"active\":%d,\"mode\":\"%s\",\"host_rate\":%d,"
+              "\"fill_ms\":%.1f,\"target_ms\":%.1f,\"underruns\":%llu,"
+              "\"overflow_drops\":%llu,"
+-             "\"correction\":%.5f}}",
++             "\"correction\":%.5f,"
++             "\"gap_ok\":%d,\"gaps\":%llu,\"max_gap_frames\":%llu,"
++             "\"cur_gap_frames\":%llu,\"gap_epoch\":%llu}}",
+              id,
+              (unsigned long long)st.tap_frames[0],
+              (unsigned long long)st.tap_nonzero[0],
+@@ -6951,7 +6958,9 @@
+              fill_ms, target_ms,
+              (unsigned long long)out_underruns,
+              (unsigned long long)overflow_drops,
+-             correction);
++             correction,
++             gap_ok, (unsigned long long)gaps, (unsigned long long)max_gap,
++             (unsigned long long)cur_gap, (unsigned long long)gap_epoch);
+ }
+ 
+ static void handle_audio_wav(int id, const char *json)

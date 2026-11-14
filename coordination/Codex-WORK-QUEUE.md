@@ -19,3 +19,12 @@ Owner`codex-einhander`, task`EIN-CODEX-CONTINUITY-20261114`, active/incomplete. 
 Always join/read actual Hermes inbox on resume/waits/handoff/yield, claim/lock before edits, respect native guards/resources, record actual exits/pins/failures and refresh your own task presence. Current metadata monitor35628 bounds19:26:22.146UTC and proves monitoring only. Preserve currentC:workspace/unrelated edits; no reset/stash/broad-stage, broad hash scans or cleanup of other projects.
 
 HOST HOLD19:08UTC: no NEW heavy tests/builds/decodes/game/GPU/Comfy until coordinator diagnostics clears. Light source and small receipt/Git work only. [Current skin gaps and executed receipts](../docs/CPU-TEXTURE-REMIX-RESULTS-20261114.md). Keep overall project active/incomplete.
+
+- [x] Prepare one-key cage ROI plan51de1e96 using903parent/9c7cf244manifest/nativeCRC identity; no image decode/composition/admission. Private`cage-roi-plan-r1` under runtime-review holds exact plan and future independent checks.
+- [x] Review UIv2/J10v1/S45stripev0/watchdogr0 source and record concrete false-success/binding/cleanup issues. Old files preserved; NEW source revisions requested. UIr3f00af9d6fixed-scope measure-only source cleared, UNRUN.
+- [ ] Read nativeprimary GLadapteridentity/material-proof proposal, watchdog harnessr2 and S23/S45 new preview revisions; source/CPU qualification and canonical integration remain distinct. S67source-only audio audit assigned.
+- [ ] After explicit coordinator host-clearance, schedule ONE fresh PR7CPU build/65controls/guard77 first. Oldgrant was unstarted/suspended/returned; never reuse. Then separately schedule source-cleared UIr3measure/watchdog dummytests. No GPUscheduling by clock expiry.
+
+- [x] Actualwatchdogguardfa5/harnessaff35passes10/10in5.67s; originalmask/64MiBcontrolledrefusal/timeoutandPIDcleanupverified. No livegamequalification.
+- [x] UIr3fixed3keymeasurement0/2.61s/200.6MiB, root3sheetview/hash/receiptcheck; semantictextscopeunaccepted, noRGBoralpha repair. Polledcapdeviationdisclosed.
+- [ ] PR7approvedexactcommandresource-refused66.1%CPU(nochild); sendREADYwithimmediatefreshload/pins, awaitnewshortgrant, neverlooporreuseoldgrants. MinimalGLidentityproposaluncompiled, largerproofobserverdraftsourceblocked. Audio-gapfixturefirstdraftlacksrealoracles; newrevisionrequired. Allotherheavy/GPUholdsspecificfreshgrants.

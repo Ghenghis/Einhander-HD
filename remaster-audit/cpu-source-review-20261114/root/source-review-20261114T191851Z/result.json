@@ -1,0 +1,96 @@
+{
+  "at_utc": "2026-11-14T19:18:51.893438+00:00",
+  "owner": "codex-einhander",
+  "task_id": "EIN-CODEX-CONTINUITY-20261114",
+  "sources": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\tools\\ui_speck_repair_v2.py",
+      "sha256": "4957470c32b26d374691b4216a39176a8cb8277bf7d467349d08fd14afd8fcb6",
+      "bytes": 18203
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\tools\\ui_speck_measure_r3.py",
+      "sha256": "f00af9d6f59735ff6440deea95e2dbddfc89dac14e6ef8a76e78107ffb509114",
+      "bytes": 18570
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope.py",
+      "sha256": "0d4078fcfdc71bd2163780c7a2887eefb74909e2517294f3e3f8500f9ea3e102",
+      "bytes": 19720
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\selftest_envelope.py",
+      "sha256": "1f6d58bb5339a93352d936727a523b7e229e10133ebaf6aa13bf06720afacd27",
+      "bytes": 7299
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j10_preview.py",
+      "sha256": "9ba10f175b403ec71fa89f4666e0a450381e0f285725a0d1502e06d900220907",
+      "bytes": 14984
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\scale2x_cg.py",
+      "sha256": "0c0517d37b033f469330c65d1bd533cd69bf210a4fbb2688fafae0d2954cd7ee",
+      "bytes": 4464
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\tools\\s45_diag_bands_repair.py",
+      "sha256": "ae2d61dc00e88d632be19cfae734b171c9a14dce77c20332c32736f6bc0b4f4f",
+      "bytes": 10482
+    }
+  ],
+  "reviews": [
+    {
+      "component": "UI speckv2",
+      "status": "source-blocked/superseded",
+      "findings": [
+        "versions recorded but not checked",
+        "sidecar hash not bound to expected metadata",
+        "author modules imported before closure pins",
+        "CLI can widen beyond exact three known keys",
+        "CRC/CLUT bounds missing before decode",
+        "wrong-mask control and R5 claims exceed implemented checks"
+      ],
+      "replacement": "r3 measure-only source f00af9d6 addresses binding/versions/fixed scope; source cleared only, unrun"
+    },
+    {
+      "component": "watchdog envelope-r0",
+      "status": "source-blocked/new revision requested",
+      "findings": [
+        "wider job mask may not expand inherited one-core child affinity; explicitly set while suspended then verify",
+        "selftest exceptions can orphan its unrelated sentinel; finally/identity cleanup and partial receipts required",
+        "memory-cap test must distinguish controlled allocation refusal from wrapper failure; peak is report-only",
+        "test harness needs full source pins and bounded whole-owned cleanup without one-core outer Job"
+      ]
+    },
+    {
+      "component": "S23 J10 previewv1",
+      "status": "source-blocked/new revision requested",
+      "findings": [
+        "caught errors and partial/failed output currently exit0",
+        "unfinished output directories can be reused/overwritten",
+        "critical assert checks vanish under optimized Python",
+        "numeric budget unused/step hardcodes120",
+        "full imported source closure is recorded after use rather than pinned before execution"
+      ]
+    },
+    {
+      "component": "S45 stripev0",
+      "status": "source-blocked/new revision requested",
+      "findings": [
+        "native validation return codes ignored",
+        "critical assert and unpinned dependencies/versions",
+        "image decode before exact fixed header bounds; numerical threads not pinned before import",
+        "compile step excluded from stated cost",
+        "skipped/failed audit does not fail the process",
+        "nearest same-palette donor may cross distant material components; bound/locality evidence required"
+      ]
+    }
+  ],
+  "source_code_executed": false,
+  "images_decoded": 0,
+  "native_tests_run": false,
+  "gpu_run": false,
+  "runtime_acceptance": false,
+  "next_action": "Await native new revisions and coordinator host quiet-window clearance; old grants remain suspended"
+}

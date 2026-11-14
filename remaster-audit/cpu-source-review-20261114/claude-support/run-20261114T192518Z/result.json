@@ -1,0 +1,619 @@
+{
+ "schema": "support-envelope-selftest-r2",
+ "pins": {
+  "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\run_rc2.r1.py": "cd3988af06cd348cdef0c9a14e6a87a180b5aea09bb6207eeeb9d3d80a4ea9dd",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\TEST-PLAN-r1.md": "9b2420b934ae4260b02f81008d5ab65f03799869a8f6cccbf03216d80bddc6a0",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\TEST-PLAN-r2.md": "6039654d449001827b66acea668dc0978f8ee18dff9ffd8ebf08e582a1f9d44e"
+ },
+ "selftest_sha256": "aff35f825624dfd00b29923b235ecd620c6a56a8771a2f32a6187416e435b2d8",
+ "cpu": 15,
+ "allowed_affinity": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "budget": {
+  "work_s": 240.0,
+  "hard_s": 300.0
+ },
+ "cases": [
+  {
+   "case": "T1_normal_return",
+   "ok": true,
+   "wrapper_pid": 41900,
+   "wrapper_create_time": 1794684319.7697573,
+   "wrapper_rc": 0,
+   "elapsed_s": 0.24,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 0,
+    "child_exit_code": 0,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:19.923581+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 9371648,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "rc0/tree/mask"
+  },
+  {
+   "case": "T2_failure_exit7",
+   "ok": true,
+   "wrapper_pid": 13304,
+   "wrapper_create_time": 1794684320.0225747,
+   "wrapper_rc": 7,
+   "elapsed_s": 0.24,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 7,
+    "child_exit_code": 7,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:20.172770+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 9629696,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "rc7 propagated"
+  },
+  {
+   "case": "T3_timeout_grandchild",
+   "ok": true,
+   "wrapper_pid": 30536,
+   "wrapper_create_time": 1794684320.275706,
+   "wrapper_rc": 124,
+   "elapsed_s": 3.36,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 124,
+    "child_exit_code": 124,
+    "timeout_killed": true,
+    "tree_absent": true,
+    "descendants_seen": [
+     35004
+    ],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:20.426283+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 18853888,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "rc124, grandchild seen and gone"
+  },
+  {
+   "case": "T4_injected_postspawn_failure",
+   "ok": true,
+   "wrapper_pid": 40560,
+   "wrapper_create_time": 1794684323.6534872,
+   "wrapper_rc": 125,
+   "elapsed_s": 0.2,
+   "stderr_tail": "run_rc2 wrapper error: OSError('RUN_RC2_FAULT=after_spawn (test-only injected failure before resume)')\n",
+   "receipt": {
+    "rc": 125,
+    "child_exit_code": 125,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": null,
+    "wrapper_error": "OSError('RUN_RC2_FAULT=after_spawn (test-only injected failure before resume)')",
+    "peak_job_memory_bytes": 389120,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "rc125 before resume, never started"
+  },
+  {
+   "case": "T5a_affinity_one_core",
+   "ok": true,
+   "wrapper_pid": 42700,
+   "wrapper_create_time": 1794684323.8636968,
+   "wrapper_rc": 0,
+   "elapsed_s": 0.29,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 0,
+    "child_exit_code": 0,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:24.019754+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 11931648,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "child sees [cpu]"
+  },
+  {
+   "case": "T5b_affinity_original",
+   "ok": true,
+   "wrapper_pid": 15288,
+   "wrapper_create_time": 1794684324.1778886,
+   "wrapper_rc": 0,
+   "elapsed_s": 0.27,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 0,
+    "child_exit_code": 0,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8240,
+     "affinity_mask": 65535,
+     "priority_class": 16384,
+     "job_memory_limit": 0,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "child_affinity_set_to": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:24.335104+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 12128256,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "explicit set/readback/self-report = original (before-set recorded: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15])"
+  },
+  {
+   "case": "T6_hard_memory_cap",
+   "ok": true,
+   "wrapper_pid": 21520,
+   "wrapper_create_time": 1794684324.469576,
+   "wrapper_rc": 3,
+   "elapsed_s": 0.23,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 3,
+    "child_exit_code": 3,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": {
+     "limit_flags": 8752,
+     "affinity_mask": 32768,
+     "priority_class": 16384,
+     "job_memory_limit": 67108864,
+     "peak_job_memory": 0,
+     "peak_process_memory": 0
+    },
+    "child_affinity_before_set": [
+     15
+    ],
+    "child_affinity_set_to": [
+     15
+    ],
+    "child_readback_before_resume": {
+     "cpu_affinity": [
+      15
+     ],
+     "priority": 16384
+    },
+    "allowed_before_pin": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "start_utc": "2026-11-14T19:25:24.620918+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": 278421504,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "cap readback + controlled MemoryError + no after-alloc marker (peak reported only)"
+  },
+  {
+   "case": "T7a_usage_timeout_over_300",
+   "ok": true,
+   "wrapper_pid": 44964,
+   "wrapper_create_time": 1794684324.717751,
+   "wrapper_rc": 2,
+   "elapsed_s": 0.15,
+   "stderr_tail": "usage: run_rc2_envelope_r1.py [-h] --out OUT --cpu CPU --timeout TIMEOUT\n                              [--max-cpu MAX_CPU]\n                              [--min-free-gib MIN_FREE_GIB]\n                              [--child-affinity {cpu,original}]\n                              [--max-job-mib MAX_JOB_MIB] [--no-window]\n                              ...\nrun_rc2_envelope_r1.py: error: --timeout must be in (0, 300] seconds\n",
+   "receipt": {
+    "rc": null,
+    "child_exit_code": null,
+    "timeout_killed": null,
+    "tree_absent": null,
+    "descendants_seen": null,
+    "descendants_left": null,
+    "job_limits_readback": null,
+    "child_affinity_before_set": null,
+    "child_affinity_set_to": null,
+    "child_readback_before_resume": null,
+    "allowed_before_pin": null,
+    "start_utc": null,
+    "wrapper_error": null,
+    "peak_job_memory_bytes": null,
+    "affinity": null
+   },
+   "receipt_present": false,
+   "why": "exit 2, no receipt, nothing started"
+  },
+  {
+   "case": "T7b_usage_invalid_cap",
+   "ok": true,
+   "wrapper_pid": 30124,
+   "wrapper_create_time": 1794684324.879223,
+   "wrapper_rc": 2,
+   "elapsed_s": 0.16,
+   "stderr_tail": "usage: run_rc2_envelope_r1.py [-h] --out OUT --cpu CPU --timeout TIMEOUT\n                              [--max-cpu MAX_CPU]\n                              [--min-free-gib MIN_FREE_GIB]\n                              [--child-affinity {cpu,original}]\n                              [--max-job-mib MAX_JOB_MIB] [--no-window]\n                              ...\nrun_rc2_envelope_r1.py: error: --max-job-mib must be in 1..4096\n",
+   "receipt": {
+    "rc": null,
+    "child_exit_code": null,
+    "timeout_killed": null,
+    "tree_absent": null,
+    "descendants_seen": null,
+    "descendants_left": null,
+    "job_limits_readback": null,
+    "child_affinity_before_set": null,
+    "child_affinity_set_to": null,
+    "child_readback_before_resume": null,
+    "allowed_before_pin": null,
+    "start_utc": null,
+    "wrapper_error": null,
+    "peak_job_memory_bytes": null,
+    "affinity": null
+   },
+   "receipt_present": false,
+   "why": "exit 2, no receipt, nothing started"
+  },
+  {
+   "case": "T8_r1_baseline",
+   "ok": true,
+   "wrapper_pid": 40600,
+   "wrapper_create_time": 1794684325.0508704,
+   "wrapper_rc": 0,
+   "elapsed_s": 0.37,
+   "stderr_tail": "",
+   "receipt": {
+    "rc": 0,
+    "child_exit_code": 0,
+    "timeout_killed": false,
+    "tree_absent": true,
+    "descendants_seen": [],
+    "descendants_left": [],
+    "job_limits_readback": null,
+    "child_affinity_before_set": null,
+    "child_affinity_set_to": null,
+    "child_readback_before_resume": null,
+    "allowed_before_pin": null,
+    "start_utc": "2026-11-14T19:25:25.257704+00:00",
+    "wrapper_error": null,
+    "peak_job_memory_bytes": null,
+    "affinity": [
+     15
+    ]
+   },
+   "receipt_present": true,
+   "why": "canonical r1 on the same child"
+  }
+ ],
+ "started_utc": "2026-11-14T19:25:19Z",
+ "sentinel": {
+  "pid": 44128,
+  "create_time": 1794684319.7638118,
+  "untouched_by_cases": true,
+  "absent_after": true
+ },
+ "elapsed_s": 5.67,
+ "case_count_exact": true,
+ "all_ok": true
+}

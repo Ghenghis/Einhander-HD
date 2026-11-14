@@ -1,5 +1,9 @@
 # Full 4K remaster and RTX Remix implementation
 
+## Latest actual CPU trials and source limits —November14
+
+Watchdog10dummycases pass0/5.67s; UI3keymeasure0/2.61s/200.6MiB uses a polledcap, not a kernel Job cap. Root verifies receipts/sources and views3UIcrops; emblems/logo prevent a body-text cause claim. OriginalRGB-only inference is withdrawn; no repair. User-approvedPR7command is allowed but fresh wrapper refuses66.1%CPU before any build child; originalpermissiondenial remains preserved. Cage/GLidentity/audio-gap/preview source work is unbuilt/unintegrated/unacceptedlive. NoGPU/game/audio or stage/release completion. [Actual evidence, source boundaries and remaining work](../docs/CPU-SOURCE-REVIEW-20261114.md). Older dated blocks retain their original scope.
+
 ## Combined ROI candidate admitted —17:26 UTC
 
 The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).

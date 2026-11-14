@@ -1,0 +1,41 @@
+--- a/main.cpp
++++ b/main.cpp
+@@ -2972,6 +2972,11 @@
+         extern int g_audio_unmute_resync;
+         if (g_audio_unmute_resync) {
+             prev_underruns = st.underrun_events;
++            /* gaps: the mute drain is not a gap; restart gap accounting at the
++             * unmute resync (gap_epoch records each restart). */
++            psx_sdl_audio_lock(sdl_audio_device);
++            rab_reset_gap_stats(&s_drc);
++            psx_sdl_audio_unlock(sdl_audio_device);
+             g_audio_unmute_resync = 0;
+         } else if (st.underrun_events > prev_underruns) {
+             audio_trace_event(AUDIO_EV_UNDERRUN,
+@@ -3115,6 +3120,26 @@
+     *underruns = st.underrun_events;
+     *overflow_drops = st.overflow_drops;
+     *correction = st.last_correction;
++    return 1;
++}
++
++/* Gap counters of the bridge (s67 proposal). New function: the signature of
++ * psx_audio_out_stats and its two callers stay unchanged. Read under the SDL
++ * audio device lock, which also guards rab_pull, so the three values are one
++ * consistent snapshot. Returns 0 in legacy mode or before the bridge exists. */
++extern "C" int psx_audio_out_gap_stats(uint64_t *gaps, uint64_t *max_gap_frames,
++                                       uint64_t *cur_gap_frames, uint64_t *gap_epoch)
++{
++    *gaps = 0; *max_gap_frames = 0; *cur_gap_frames = 0; *gap_epoch = 0;
++    if (audio_legacy_mode() || !s_drc_ready || !sdl_audio_device) return 0;
++    rab_gap_stats g;
++    psx_sdl_audio_lock(sdl_audio_device);
++    rab_get_gap_stats(&s_drc, &g);
++    *gap_epoch = s_drc.gap_epoch;
++    psx_sdl_audio_unlock(sdl_audio_device);
++    *gaps = g.gaps;
++    *max_gap_frames = g.max_gap_frames;
++    *cur_gap_frames = g.cur_gap_frames;
+     return 1;
+ }
+ 
