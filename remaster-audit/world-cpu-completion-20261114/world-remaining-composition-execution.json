@@ -1,0 +1,39 @@
+{
+  "started_utc": "2026-11-14T08:46:58.372720+00:00",
+  "gpu_work": false,
+  "below_normal": true,
+  "sequential": true,
+  "commands": [
+    {
+      "phase": "classes",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\check_world_patch_classes.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-remaining-plan-v1.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-remaining-class-check.json"
+      ],
+      "exit": 0
+    },
+    {
+      "phase": "composition",
+      "args": [
+        "C:\\Python314\\python.exe",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\world-remaining-plan-v1.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v2"
+      ],
+      "exit": 0
+    }
+  ],
+  "ended_utc": "2026-11-14T08:47:06.397897+00:00",
+  "user_gpu_hold_unchanged": true,
+  "candidate": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v2\\candidate.json"
+}

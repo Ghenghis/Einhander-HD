@@ -1,0 +1,61 @@
+{
+  "at_utc": "2026-11-14T08:47:30.302311+00:00",
+  "candidate_sha256": "b0e4769db4cd59527bcf65dac513b9b1988aa40694c96fd7952bbd058a92891b",
+  "parent_candidate_sha256": "92d9158fa500efaf8a7acf8f18233936979717fa0b83652f04d6af04abcbc4e9",
+  "final_key_count": 1698,
+  "patch_count": 10,
+  "added_keys": [],
+  "changed_existing_keys": [
+    "2597000F-847C03A0.png",
+    "37342FFF-7B0E84A2.png",
+    "37342FFF-CAFC4AA7.png",
+    "73BF9877-48E2665E.png",
+    "73BF9877-5E906348.png",
+    "AB58BBA4-9EB27255.png",
+    "AB58BBA4-A9B6354C.png",
+    "AB58BBA4-FF91A24A.png",
+    "C7502427-585B7D2F.png",
+    "C7502427-EB883932.png"
+  ],
+  "protected_crisp_signs": {
+    "0FB1EFC5-F6269484.png": "82ad1d6ab191c73150c6598742b209d7b9ccd7ef13821923f0dce3c71fe4ecdf",
+    "327E6D9E-89C41FFB.png": "5c5296e68d4bee7cb2d41b4338fac1dad6e37a80cb91284a062ad874c144f736",
+    "67DC56D7-8D0C6ABE.png": "7e94330b75f8e80b4e1dba747c5cc5b737ec24f8e71eea186786c41558e52726",
+    "7A652858-600290FE.png": "a212a5c99c39c4d957d1299fe58e54f2cbc25125ed76923908d66cefb45c924e",
+    "CBF6CACF-7BEF165F.png": "5590b58b978f64d176215b2e296cb3995b22634f199c7bb65a637b6d682b6857"
+  },
+  "pinned_mismatches": [],
+  "native": [
+    {
+      "label": "new",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v2\\pack",
+        "1698"
+      ],
+      "exit": 0,
+      "stdout": "{\"keys\":1698,\"region_checks\":226,\"failures\":0}",
+      "stderr": ""
+    },
+    {
+      "label": "parent",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v1\\pack",
+        "1698"
+      ],
+      "exit": 0,
+      "stdout": "{\"keys\":1698,\"region_checks\":226,\"failures\":0}",
+      "stderr": ""
+    }
+  ],
+  "class_check": {
+    "keys": 10,
+    "native_centres_checked": 528384,
+    "failures": 0
+  },
+  "manifest_files": 2388,
+  "pack_root_sha256": "ef445895e5b19c2f7b23d576feeeedc3400451896c47c8211eb791cf75e861a5",
+  "all_checks_pass": true,
+  "scope": "Admission, native class preservation, hash/source/parent integrity only. Live appearance, gameplay, timing and complete scene coverage NOT accepted."
+}

@@ -1,0 +1,540 @@
+{
+  "parent": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v1\\candidate.json",
+    "sha256": "92d9158fa500efaf8a7acf8f18233936979717fa0b83652f04d6af04abcbc4e9"
+  },
+  "entries": [
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w4-world\\frozen\\2597000F-glow-bar-v1\\manifest.json",
+        "sha256": "a6f4b7c93c8e6fb94c5203e3cdbb1f4fba4282cb696b20578c4d898ff1b4cbe6"
+      },
+      "key": "2597000F-847C03A0",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w4-world\\frozen\\2597000F-glow-bar-v1\\runtime-2048\\2597000F-847C03A0.png",
+        "sha256": "fb67a677d7171fc3e69eb467c639bd5445f985262e38a972c572632714b0670f"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\stage-lane-mk3-v3\\hd-on_rewind-off\\source-pages\\2597000F-847C03A0.words.bin",
+          "sha256": "d3619d776b505c19e7f72aa359dd47d6dd15ff6e5527ebc631e2944ac74ca326"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\stage-lane-mk3-v3\\hd-on_rewind-off\\source-pages\\2597000F-847C03A0.clut.bin",
+          "sha256": "14111f9d673fefd7eeb0382e8aebb71ba0110370fccf466548bea5b2eafbdeb4"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\stage-lane-mk3-v3\\hd-on_rewind-off\\source-pages\\2597000F-847C03A0.source.json",
+        "sha256": "2af6cf4f0251c1feb00a187152f0308c90fcdc881107a2121733c28828287700"
+      },
+      "integration_variant": "runtime-2048",
+      "lane": "w4-world",
+      "selected_set": "2597000F-glow-bar-v1",
+      "retained_limits": [
+        "owner of the sprite unverified (engine trail or searchlight-source glow); census item 7",
+        "not seen live; review sheet only"
+      ],
+      "old_dimensions": [
+        2048,
+        2048
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\manifest.json",
+        "sha256": "4adc95e7904d93ea1a23ae23e9a36c4fd5986893c06f7f19b1fd1647b12118f7"
+      },
+      "key": "37342FFF-7B0E84A2",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\runtime-2048\\37342FFF-7B0E84A2.png",
+        "sha256": "1c1c1a7ad58e38018a6dd4af853408e7e6afbb81b8cc06745df0d8fa5282eead"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-7B0E84A2.words.bin",
+          "sha256": "99ced8edb1a167951c4a4b51a0de1e59f3d8148f575785416a9ee5bb38e973ac"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-7B0E84A2.clut.bin",
+          "sha256": "d44f34452a237d1fce3cef5e1084a5dc328662d1f38a02fcee112bde1e1a6a37"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-7B0E84A2.source.json",
+        "sha256": "0e475ec9683a4259ab4aae000fafe3932fc6c7e535f6c8406aadcf11c3c2cc4b"
+      },
+      "integration_variant": "runtime-2048",
+      "lane": "w2-effects",
+      "selected_set": "electric-arc-37342FFF-v1",
+      "retained_limits": [
+        "Deterministic, no AI: the arcs are a stylised discharge (white zigzag core, blue sheath, dark-blue additive halo) drawn along the native centrelines, not photographed lightning. The zigzag is a smooth noise warp of +-0.25 texel, so it stays inside the native footprint and changes only where the native frame changes.",
+        "Opaque (class 127) blue sheath fills the native opaque footprint exactly like the PSX; it reads as a tube in places where the native footprint is 3 texels wide.",
+        "The arc frames also exist in CAFC4AA7 (brown/white) and the flash cell in 7B0E84A2, but the logs show 7B0E84A2 only on the arc frames and CAFC4AA7 only on the flash cell.",
+        "Review composites and motion are SIMULATIONS (dark background, PSX semi-1 rule, bilinear RGB / nearest A, no mips); the live look (robin-0030/0120) still shows stock pixels. A live A/B is required.",
+        "The other texels of the page (debris row, fire puffs, flash wedges) are never drawn in the logs and stay native."
+      ],
+      "old_dimensions": [
+        2048,
+        2048
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\manifest.json",
+        "sha256": "4adc95e7904d93ea1a23ae23e9a36c4fd5986893c06f7f19b1fd1647b12118f7"
+      },
+      "key": "37342FFF-CAFC4AA7",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\runtime-2048\\37342FFF-CAFC4AA7.png",
+        "sha256": "a7e392320892851069d6b89296159c70b884287ff4c673d4f4977d428e1c2cfd"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-CAFC4AA7.words.bin",
+          "sha256": "99ced8edb1a167951c4a4b51a0de1e59f3d8148f575785416a9ee5bb38e973ac"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-CAFC4AA7.clut.bin",
+          "sha256": "4a1719baf70554b4e2ccd7a9a9a9c4d979a8dd88d0274c322d50ca94a8f29150"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-effects\\frozen\\electric-arc-37342FFF-v1\\source\\37342FFF-CAFC4AA7.source.json",
+        "sha256": "3f031ad94c3909ecc3c5b78391e1c136aa6fe0d898950f5426d42995468dcfd0"
+      },
+      "integration_variant": "runtime-2048",
+      "lane": "w2-effects",
+      "selected_set": "electric-arc-37342FFF-v1",
+      "retained_limits": [
+        "Deterministic, no AI: the arcs are a stylised discharge (white zigzag core, blue sheath, dark-blue additive halo) drawn along the native centrelines, not photographed lightning. The zigzag is a smooth noise warp of +-0.25 texel, so it stays inside the native footprint and changes only where the native frame changes.",
+        "Opaque (class 127) blue sheath fills the native opaque footprint exactly like the PSX; it reads as a tube in places where the native footprint is 3 texels wide.",
+        "The arc frames also exist in CAFC4AA7 (brown/white) and the flash cell in 7B0E84A2, but the logs show 7B0E84A2 only on the arc frames and CAFC4AA7 only on the flash cell.",
+        "Review composites and motion are SIMULATIONS (dark background, PSX semi-1 rule, bilinear RGB / nearest A, no mips); the live look (robin-0030/0120) still shows stock pixels. A live A/B is required.",
+        "The other texels of the page (debris row, fire puffs, flash wedges) are never drawn in the logs and stay native."
+      ],
+      "old_dimensions": [
+        2048,
+        2048
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd25-three-block-indicator-w3-v1\\manifest.json",
+        "sha256": "0f84a37d5a51e6e77feda72d73978bc215a1bfdd077e88edfe9abc9dd3a96cd3"
+      },
+      "key": "73BF9877-48E2665E",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd25-three-block-indicator-w3-v1\\page2048\\73BF9877-48E2665E.png",
+        "sha256": "1aaddc96e0643df908586cfedeff8eb1497adcd01e4625680d08c2167ae27779"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd25-three-block-indicator-w3-v1\\source\\73BF9877-48E2665E.words.bin",
+          "sha256": "fbf087505f4c79162fcef3f5ff872a0f432c513681edf64831435062e7c3277c"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd25-three-block-indicator-w3-v1\\source\\73BF9877-48E2665E.clut.bin",
+          "sha256": "5bcbd0828f7c31d7d6bf5014b6329e835a128ddadbe83aa07a40c780fe4c4a14"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd25-three-block-indicator-w3-v1\\source\\73BF9877-48E2665E.source.json",
+        "sha256": "e8e6bae7c21c8e444786590bdf643b57da17b8a69728d6f5afce54eefd9fc673"
+      },
+      "integration_variant": "page2048",
+      "lane": "w3-signs",
+      "selected_set": "fd25-three-block-indicator-w3-v1",
+      "retained_limits": "Indicator panel (three coloured blocks in a grey frame; not a sign): crisp frame, bevelled blocks on their native ramps. Role resolved visually in robin-0120 (small three-block panels on the scaffolds); exact-region binding not yet wired.",
+      "old_dimensions": [
+        2048,
+        2048
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd27-dark-backing-panel-w3-v1\\manifest.json",
+        "sha256": "8f59b9fbdc85a332a60d7f3c7e30c71923ab92934e13e76ca34977b11a0c9579"
+      },
+      "key": "73BF9877-5E906348",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd27-dark-backing-panel-w3-v1\\page2048\\73BF9877-5E906348.png",
+        "sha256": "43a6f354da4952262584a69b14294ce0a1c5bf6e5693befed4520d69b37bfe8a"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd27-dark-backing-panel-w3-v1\\source\\73BF9877-5E906348.words.bin",
+          "sha256": "fbf087505f4c79162fcef3f5ff872a0f432c513681edf64831435062e7c3277c"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd27-dark-backing-panel-w3-v1\\source\\73BF9877-5E906348.clut.bin",
+          "sha256": "4cb33bdba5ca953b4b47e30ff8598e35b90cccd1d9d9355a48c5f372bd53e852"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd27-dark-backing-panel-w3-v1\\source\\73BF9877-5E906348.source.json",
+        "sha256": "ea387964c53446ed215a490cedf6a9f8f5028962ff8e07d9075d349be41b5c51"
+      },
+      "integration_variant": "page2048",
+      "lane": "w3-signs",
+      "selected_set": "fd27-dark-backing-panel-w3-v1",
+      "retained_limits": "Near-black dark-blue backing panel (max native colour 8,24,48; not a sign). Crisp categorical only (smooth contours of the native mottling, no blocks); a smoothed-panel variant gave wobbly band edges and was dropped. Low impact.",
+      "old_dimensions": [
+        2048,
+        2048
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\manifest.json",
+        "sha256": "563c0bcfee471a0709cd008ba6e36ad23707f1e495b8c417ac98f96956c02639"
+      },
+      "key": "AB58BBA4-9EB27255",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\page2048\\AB58BBA4-9EB27255.png",
+        "sha256": "162ffb7649cb56077a9c729f1e7f29d6b54c189260d509d05f493643b5915d76"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-9EB27255.words.bin",
+          "sha256": "1795450f8926bc859e34f9ab9f999d7a9408305549f83fd2a0d28f18a1f96ef8"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-9EB27255.clut.bin",
+          "sha256": "3fb35a3a4eedfb4e188d1a1575c74943d59cbfac26d9679cb919ca970c46da80"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-9EB27255.source.json",
+        "sha256": "72c44f42b6184167f31240e7f4455eec2a94a0c13b4b93c69f4bc91f69cb64c0"
+      },
+      "integration_variant": "page2048",
+      "lane": "w6-native-gaps",
+      "selected_set": "greif-puffs-AB58BBA4-C7502427-v2",
+      "retained_limits": [
+        "Deterministic smooth puffs (w2 smoke v1 method); no generated texture detail (the w2 v2 SDXL pass was not run for these small cells).",
+        "Not seen live (Greif fight); review sheets only."
+      ],
+      "old_dimensions": [
+        4096,
+        4096
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": true
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\manifest.json",
+        "sha256": "563c0bcfee471a0709cd008ba6e36ad23707f1e495b8c417ac98f96956c02639"
+      },
+      "key": "AB58BBA4-A9B6354C",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\page2048\\AB58BBA4-A9B6354C.png",
+        "sha256": "9115d0cdf5dccc34475bf7f33917c3c629c7d137772489235c78f89e140cab45"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-A9B6354C.words.bin",
+          "sha256": "1795450f8926bc859e34f9ab9f999d7a9408305549f83fd2a0d28f18a1f96ef8"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-A9B6354C.clut.bin",
+          "sha256": "768c09298b0681e34bf84af23f5b4c8cd14a98010a7f08055adb0d28929f40cc"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-A9B6354C.source.json",
+        "sha256": "72c44f42b6184167f31240e7f4455eec2a94a0c13b4b93c69f4bc91f69cb64c0"
+      },
+      "integration_variant": "page2048",
+      "lane": "w6-native-gaps",
+      "selected_set": "greif-puffs-AB58BBA4-C7502427-v2",
+      "retained_limits": [
+        "Deterministic smooth puffs (w2 smoke v1 method); no generated texture detail (the w2 v2 SDXL pass was not run for these small cells).",
+        "Not seen live (Greif fight); review sheets only."
+      ],
+      "old_dimensions": [
+        4096,
+        4096
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": true
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\manifest.json",
+        "sha256": "563c0bcfee471a0709cd008ba6e36ad23707f1e495b8c417ac98f96956c02639"
+      },
+      "key": "AB58BBA4-FF91A24A",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\page2048\\AB58BBA4-FF91A24A.png",
+        "sha256": "f220c4a36bf3965e863778e0037ecd8e3b452f655c2a4f13c067428c7eb30e17"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-FF91A24A.words.bin",
+          "sha256": "1795450f8926bc859e34f9ab9f999d7a9408305549f83fd2a0d28f18a1f96ef8"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-FF91A24A.clut.bin",
+          "sha256": "54827512e9b5fb1ecf5aa7ee051fa6594c87ef4ed5ca58ec94e65602129fb7b5"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\AB58BBA4-FF91A24A.source.json",
+        "sha256": "72c44f42b6184167f31240e7f4455eec2a94a0c13b4b93c69f4bc91f69cb64c0"
+      },
+      "integration_variant": "page2048",
+      "lane": "w6-native-gaps",
+      "selected_set": "greif-puffs-AB58BBA4-C7502427-v2",
+      "retained_limits": [
+        "Deterministic smooth puffs (w2 smoke v1 method); no generated texture detail (the w2 v2 SDXL pass was not run for these small cells).",
+        "Not seen live (Greif fight); review sheets only."
+      ],
+      "old_dimensions": [
+        4096,
+        4096
+      ],
+      "candidate_dimensions": [
+        2048,
+        2048
+      ],
+      "resolution_change": true
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\manifest.json",
+        "sha256": "563c0bcfee471a0709cd008ba6e36ad23707f1e495b8c417ac98f96956c02639"
+      },
+      "key": "C7502427-585B7D2F",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\pack\\C7502427-585B7D2F.png",
+        "sha256": "290b1207d3f68d01dd55eaa026d520ffe09230531c2ee3457966923e0ecf4dd6"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-585B7D2F.words.bin",
+          "sha256": "4baceeb8e906f8729d5570c2dc0d357511b61c3212bd65f7de593dae8f960359"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-585B7D2F.clut.bin",
+          "sha256": "cc4bb3bf05dba510e5315f13bfacaafe7bb4ffe77018ac9cec78e0a116269811"
+        },
+        "source_shape_words": [
+          64,
+          8
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-585B7D2F.source.json",
+        "sha256": "4c651516f9a80fd79ffdc23e98c9daf054cb41c5fb1b0e9f08cdb848f38c62d0"
+      },
+      "integration_variant": "pack",
+      "lane": "w6-native-gaps",
+      "selected_set": "greif-puffs-AB58BBA4-C7502427-v2",
+      "retained_limits": [
+        "Deterministic smooth puffs (w2 smoke v1 method); no generated texture detail (the w2 v2 SDXL pass was not run for these small cells).",
+        "Not seen live (Greif fight); review sheets only."
+      ],
+      "old_dimensions": [
+        4096,
+        128
+      ],
+      "candidate_dimensions": [
+        4096,
+        128
+      ],
+      "resolution_change": false
+    },
+    {
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\manifest.json",
+        "sha256": "563c0bcfee471a0709cd008ba6e36ad23707f1e495b8c417ac98f96956c02639"
+      },
+      "key": "C7502427-EB883932",
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\pack\\C7502427-EB883932.png",
+        "sha256": "80dd5d2050bacfb8059ccad1de6382f7e2ec601d163f425018f43c84769b00d4"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-EB883932.words.bin",
+          "sha256": "4baceeb8e906f8729d5570c2dc0d357511b61c3212bd65f7de593dae8f960359"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-EB883932.clut.bin",
+          "sha256": "bdfbcc63799c6bcf99e69ea56524a68a8af64b4c47f8b3fe725e725efd6c499d"
+        },
+        "source_shape_words": [
+          64,
+          8
+        ],
+        "depth": 0
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w6-native-gaps\\frozen\\greif-puffs-AB58BBA4-C7502427-v2\\source\\C7502427-EB883932.source.json",
+        "sha256": "4c651516f9a80fd79ffdc23e98c9daf054cb41c5fb1b0e9f08cdb848f38c62d0"
+      },
+      "integration_variant": "pack",
+      "lane": "w6-native-gaps",
+      "selected_set": "greif-puffs-AB58BBA4-C7502427-v2",
+      "retained_limits": [
+        "Deterministic smooth puffs (w2 smoke v1 method); no generated texture detail (the w2 v2 SDXL pass was not run for these small cells).",
+        "Not seen live (Greif fight); review sheets only."
+      ],
+      "old_dimensions": [
+        4096,
+        128
+      ],
+      "candidate_dimensions": [
+        4096,
+        128
+      ],
+      "resolution_change": false
+    }
+  ],
+  "protected_keys": [
+    "0FB1EFC5-F6269484",
+    "7A652858-600290FE",
+    "67DC56D7-8D0C6ABE",
+    "327E6D9E-89C41FFB",
+    "CBF6CACF-7BEF165F"
+  ],
+  "unresolved": [
+    {
+      "key": "57AC02A0-B6B94CE1",
+      "set": "uhu-57AC02A0-v2",
+      "reason": "No intrinsic source dump pinned by this set. Resolve source/CLUT binding and companion-key or proposal requirements before admission."
+    },
+    {
+      "key": "AB2DB563-B869F949",
+      "set": "AB2DB563-emblem-v3b",
+      "reason": "No intrinsic source dump pinned by this set. Resolve source/CLUT binding and companion-key or proposal requirements before admission."
+    }
+  ],
+  "scope": "Ten already-authored sourced candidates enter a new private composition. CPU only; no GPU, installation or live acceptance while user owns3090Ti.",
+  "resolution_changes": [
+    {
+      "key": "AB58BBA4-9EB27255",
+      "old": [
+        4096,
+        4096
+      ],
+      "new": [
+        2048,
+        2048
+      ],
+      "reason": "Existing authored puff candidate supplies2048 page; older4096neural page retained in parent. This is an explicit alternative, not native4K authoring acceptance."
+    },
+    {
+      "key": "AB58BBA4-A9B6354C",
+      "old": [
+        4096,
+        4096
+      ],
+      "new": [
+        2048,
+        2048
+      ],
+      "reason": "Existing authored puff candidate supplies2048 page; older4096neural page retained in parent. This is an explicit alternative, not native4K authoring acceptance."
+    },
+    {
+      "key": "AB58BBA4-FF91A24A",
+      "old": [
+        4096,
+        4096
+      ],
+      "new": [
+        2048,
+        2048
+      ],
+      "reason": "Existing authored puff candidate supplies2048 page; older4096neural page retained in parent. This is an explicit alternative, not native4K authoring acceptance."
+    }
+  ],
+  "coverage": {
+    "sampled_native_fallback_keys_targeted": 21,
+    "sampled_drawn_legacy_unused_keys_targeted_after_composition": 124,
+    "known_total_legacy_unused": 126,
+    "remaining_drawn_legacy_keys": [
+      "57AC02A0-B6B94CE1",
+      "AB2DB563-B869F949"
+    ]
+  },
+  "limits": [
+    "Distant95A3BCF8window atlas remains unchanged and requires authoring.",
+    "All new candidates require motion/look/audio verification after user returnsGPU.",
+    "No whole-game coverage or realistic4K skin claim."
+  ]
+}

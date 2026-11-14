@@ -1,0 +1,10 @@
+{
+  "phase": "first plan preparation",
+  "exit": 1,
+  "error": "KeyError: 'runtime-1024-calm/57AC02A0-022CDB4A.png'",
+  "cause": "The Uhu manifest files object lists masters/review names and does not contain runtime PNG hashes. The preparer incorrectly assumed a flat per-file hash map.",
+  "correction": "Pin actual selected runtime PNG bytes in the new plan; retain the set descriptor hash and independently verify every native class/source before composition. Do not claim these output hashes came from the original manifest.",
+  "game_started": false,
+  "gpu_work": false,
+  "installation_changed": false
+}
