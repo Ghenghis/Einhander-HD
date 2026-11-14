@@ -1,0 +1,7 @@
+TIMING preload_total_ms 4.920 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 1 bytes 5570672
+TIMING draw_admit_ms 3.168 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 2.953 min 2.919 max 3.213 (21 fresh slots, warm)
+checks 31 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g01\glue_harness.c:530: g_teximage == 0 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g01\glue_harness.c:541: g_teximage == 0 && (s_hdcm_diag.attempted == 1 || (!want_levels && !EXPECT_RGB))

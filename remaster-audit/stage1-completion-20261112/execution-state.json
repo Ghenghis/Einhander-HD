@@ -1,14 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T13:59:11.233342+00:00",
+  "updated_at_utc": "2026-11-14T15:10:49.219393+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
   "latest_verified_component": {
-    "id": "CPU-only modern GL probe, native session hooks and stage defect audits",
-    "status": "CPU checks pass; texture failures explicitly retained; no GPU/game acceptance",
-    "evidence": "remaster-audit/cpu-session-interop-20261114/README.md",
-    "github_commit_scope": "Current PR branch source/report checkpoint; exact publication hash is recorded in delivery receipts and PR body"
+    "id": "Private RISE native-alpha composition and CPU decode/interop evidence",
+    "evidence": "remaster-audit/texture-composer-followup-20261114/README.md",
+    "status": "CPU composition/admission verified; v6 file pins verified and author report qualified; no new GPU/game acceptance"
   },
   "remaining": [
     {
@@ -646,7 +645,7 @@
     "strict_gate_preserved": true
   },
   "material_receipt_current_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
-  "github_head": "b90142f458fc9810dd0941fe131168e8a5d5380f",
+  "github_head": "ee7824a4e4e869972045b914225cfdf1efab8fcc",
   "latest_documentation": "docs/RUNTIME-CONTINUATION-20261113.md",
   "package": "remaster-audit/scene-texture-followup-20261114",
   "e2e_complete": false,
@@ -896,5 +895,23 @@
     "gpu_run": false,
     "game_run": false,
     "project_complete": false
+  },
+  "latest_resource_policy": {
+    "gpu_user_project_hold": true,
+    "modern_gpu_test_started": false,
+    "requires_explicit_user_release": false,
+    "hold_sha256": "91c25dccc9956aa77ac2a24935b2bb6f11e82371700d114cf841fbfa04626796",
+    "handoff_receipt": "remaster-audit/runtime-review/gpu-texture-remix-20261114/user-gpu-handback-20261114T1438/result.json",
+    "broker_revision": 3,
+    "broker_owner": null,
+    "broker_explicit_release_utc": "2026-11-14T14:56:05Z",
+    "legacy_marker_pending_reconciliation": true,
+    "new_start_requires_coordinator_grant": true
+  },
+  "actual_monitor": {
+    "pid": 31968,
+    "bound_end_utc": "2026-11-14T15:23:29.643Z",
+    "watcher_only": true,
+    "proves_model_activity": false
   }
 }

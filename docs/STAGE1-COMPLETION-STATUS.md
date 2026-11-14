@@ -1,5 +1,23 @@
 # Stage 1 completion status
 
+## Resource and native-worker update —15:06UTC
+
+Pizza explicitly released its shared GPU grant14:56:05UTC; coordinator independently checked parent/child absence14:57:01. Root's legacy marker is still pending reconciliation; no new Einhander GPU/game/audio test ran. [Shared-resource controls and limits](../docs/SHARED-GPU-RESULTS-20261114.md) pass on CPU. The metadata monitor PID31968 is bounded to15:23:29.643UTC and proves monitoring only. Original native primary retired from new assignments with a durable handoff; supported canonical-root replacement remains pending. Other three workers continue stage/UI repairs. HUD152 derived fade-key candidates are not source/live admission; S23 phase silhouette defects and S67 native smoke-fill repairs remain subject to actual acceptance.
+
+## Latest texture/engine CPU checkpoint
+
+The 3090 Ti was handed back to Pizza Tycoon at14:38:45UTC; the modern GPU test never started and a new user-project hold blocks launches until release. CPU work continues. New private RISE composition replaces33 variants, preserves1,666 other images and passes native admission for1,699 entries, without installation/live acceptance. Opt-in composition fill passes10 controls and removes100,550 measured border flags on a real audit probe while preserving alpha/visible RGB.
+
+Root verifies1,111 v6 freeze pins; author host report passes7,534 fixtures plus mutation/glue/pack checks, but its outer process exit was not captured and root replay/private game link remain pending. Modern GL r4 compiles and passes14 CPU contracts,12 image controls and7 cleanup controls; actual modern GPU images/lifecycle and in-game RT/DLSS remain NOT RUN. Later-stage repaired copies still require source/colour/live review; current policy corrections and failures are retained. [Actual source, checks, failures and limits](../remaster-audit/texture-composer-followup-20261114/README.md).
+
+## Resource release and actual monitor renewal — November 14
+
+**Latest resource update:** the user explicitly released the RTX 3090 Ti in the other Einhander chat; root verified the actual human message and archived/removed the old hold at14:03:44 UTC. Reuse still requires root coordination, a quiet resource window and reviewed source. No new GPU test has started at this checkpoint; no power/driver setting was changed. Older reservation paragraphs below are historical and superseded. Native workers remain CPU-only without individual grants.
+
+Published checkpoint `ee7824a4e4e869972045b914225cfdf1efab8fcc` is remote-verified in draft PR1:189 new packet pins,2,243 historical/new pins verified;55 documents,89 JSON reports,970 references,0 issues. Its immutable packet preserves failures. The later RISE float32 correction is local:33/33 class checks pass and approved reference is byte-identical; composition/live acceptance remains pending.
+
+The owned metadata monitor was actually renewed: PID26032, first snapshot14:01:10 UTC, bound14:31:09.548 UTC; receipt `remaster-audit/runtime-review/gpu-texture-remix-20261114/monitor-renewal-20261114T140109Z/result.json`. It proves metadata monitoring only. Main continues actual inbox turns. The crash-check coordinator schedules bounded texture jobs; root retains v6/runtime/GPU/build/publication. Whole remaster remains incomplete.
+
 ## Latest CPU verification — November 14, 2026
 
 CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.

@@ -1,0 +1,87 @@
+{
+  "observed_utc": "2026-11-14T14:00:50.321Z",
+  "watcher_pid": 28164,
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "observations": 48,
+  "bound_end_utc": "2026-11-14T14:07:14.706Z",
+  "roster_sha256": "6d82088c38258e1dabe73256e55e42b937a973e76f14924966d0294713afe9b4",
+  "sessions": [
+    {
+      "owner": "claude-einhander",
+      "session_id": "11357b05-21ce-4470-8da8-e1597e772a7f",
+      "roster_state": "existing_actual_model_verified",
+      "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "6add412cfcee7736fa113e45ec389d02995607a0ddf3b91893c768d636a171bc",
+      "checkpoint_utc": "2026-11-14T13:59:42Z",
+      "checkpoint_age_seconds": 68,
+      "phase": "idle-light-work (no heavy jobs; RISE 33-palette set complete; v6 long host suite is root-only)",
+      "pending_task_ids": [
+        "v6 decode-worker identity: sources ready on root v48 baseline; long host suite root-only per msg_f12634163f",
+        "RISE: current 33-palette set expand33/20261114T135902Z d4379b41 (private, no install/live)"
+      ],
+      "next_action": "On grant: start authored_v5_f32.py then expand33.py <its run> in the same slot, report PID within 60 s.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s23",
+      "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T13:49:38.864Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "f1e0d95c3eb031e572e0682bb01eb1558659deb9adde377d14ef8f3c677a3519",
+      "checkpoint_utc": "2026-11-14T13:57:39.000Z",
+      "checkpoint_age_seconds": 191,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S2-WHOLE-CELL-20261114",
+        "EIN-S3-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On grant run in order J2a, J2b, J4, J3, J6 selftest, J5 (each bounded, PID reported). Re-arm inbox monitor before bj872zvtf expiry (~14:20Z).",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s45",
+      "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T13:49:57.682Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "65e34a45804514437d065bfc49b8572c2dc79dd60a1f274e7581ef30a062e714",
+      "checkpoint_utc": "2026-11-14T13:57:24.000Z",
+      "checkpoint_age_seconds": 206,
+      "phase": "working",
+      "pending_task_ids": [
+        "EIN-S4-WHOLE-CELL-20261114",
+        "EIN-S5-WHOLE-CELL-20261114"
+      ],
+      "next_action": "Await individual grant (next s45 job J-B then J-D/J-E). Meanwhile visual review of lane review sheets for documented defects (bead chains S5 452F3CC3/503474BD, 3/6 banding), refine repair proposals.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s67",
+      "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T13:49:30.931Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "c71c5a14085b42df048e4987ade71968fc3dc108ae603459efd85a9c5451d75a",
+      "checkpoint_utc": "2026-11-14T13:59:02Z",
+      "checkpoint_age_seconds": 108,
+      "phase": "working",
+      "pending_task_ids": [
+        "EIN-S6-WHOLE-CELL-20261114",
+        "EIN-S7-WHOLE-CELL-20261114"
+      ],
+      "next_action": "Prepare FX class-ownership repair r1 tool (cm_repair on copies of 24 failing files) with dry-run; request grant via crash-check for: FX repair r1 (<30s), A5969BC9 de-dither r1 (~60s). Then 30BB2999 burst fit JSON + analytic builder.",
+      "status": "checkpoint_available"
+    }
+  ]
+}

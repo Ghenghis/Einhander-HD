@@ -1,0 +1,247 @@
+{
+  "at_utc": "2026-11-14T14:20:48.651782+00:00",
+  "commands": [
+    {
+      "label": "compose",
+      "command": [
+        "python",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rise-native-alpha-plan.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-rise-f32-r1"
+      ],
+      "exit": 0,
+      "seconds": 16.702
+    },
+    {
+      "label": "native-admission",
+      "command": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-rise-f32-r1\\pack",
+        "1699"
+      ],
+      "exit": 0,
+      "seconds": 1.649
+    }
+  ],
+  "seconds": 22.409,
+  "candidate": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-rise-f32-r1\\candidate.json",
+  "candidate_sha256": "aa9d5798cef3176f20f72670b1c861cfb22eab446837c9a32c8a60294aaa7c27",
+  "parent_sha256": "a890af1e7fe78d2568c7362a1a3c0da3984fa6411fe6389529867e2cdb412799",
+  "new_entries": 33,
+  "all_other_parent_images_unchanged": 1666,
+  "source_png_pixels_equal": true,
+  "all_33_native_alpha_exact": true,
+  "input_checks": [
+    {
+      "key": "82831823-06BDD2F5",
+      "source_png_sha256": "b71f1e06c7a64e6df4b40d7269e79d8249cdbf25ba46f4e9a2be1499365c8244",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-0B25BC31",
+      "source_png_sha256": "1c42fc450995d75a8cf5f85d5f37143fc2e4ccddc98bb72b1eeeee5381fdfc1b",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-143D2293",
+      "source_png_sha256": "df7225b060e125d7b70a8d487f7c6330769da01d2f350b3706e8d14c6b884f57",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-24425A14",
+      "source_png_sha256": "caf1f28fad3785a78c3df5376a277713078936ec4a89fe2989c4f3e3dd403888",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-34737C16",
+      "source_png_sha256": "3094ff6a0f022f90ae161d97a719768965c6f3c82162eda158175dba26b4e6cb",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-39281776",
+      "source_png_sha256": "d287d8a033b4ce7bc979c3d7ce75d60adc32572af8114f9f50abbab874105681",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-461895E3",
+      "source_png_sha256": "e9a05daa9a9a3e2b12cabbe84e8b2971c100b58d8bacb3617e227ae4aa1d8a2e",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-4703B212",
+      "source_png_sha256": "717f0a51a6b3b34b77d49e9e73dd598ab11d42c1442a8288f3da0d8c476afc5b",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-50C83105",
+      "source_png_sha256": "2768d0e1fad055a93fb97f27f1f8a0a80e0064759ef33bfb48b07e1c6432d3da",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-58B0D936",
+      "source_png_sha256": "ef7e76408820b39c0b3a254cd627e3deb9e9d8c984a09d4502534bf913facbb5",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-5F9E0163",
+      "source_png_sha256": "cc9e05538130296c9385aca1471ea8caac16f738098c402d4a7f6956b426e544",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-6EB1953F",
+      "source_png_sha256": "d75decc9a1ac97f47a4c298d4f115f2d17b41fa5983dfe45a54a299d6ee5f69c",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-75876E14",
+      "source_png_sha256": "bb7c8034e29483893893576c7b5b83149f1b97b86eafd4bd0de2cff3d7dff703",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-7741C5CF",
+      "source_png_sha256": "28eff23653b32b356c000c1fd4dfb75059203853c03157b1c2a87ad49652c182",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-7C2812AB",
+      "source_png_sha256": "b21842e6451d5d3e7c4e0a65aa62a64eb28c332c3f6b8956f60b8c88317daf1d",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-7FED017B",
+      "source_png_sha256": "9c5a7b1c68fd5f2bc5c584a3e290ee3665a356cef3122eff6f77f804f870ece9",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-90BF7527",
+      "source_png_sha256": "09e1d0d39d16b4d46ab0f5b56aa4837dfe312bda6beb59b30b378e743f288986",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-A00C38B5",
+      "source_png_sha256": "a3dabb8a7ffa2bb90521280497f5fc2ea726691ce54dd4d81b57e7ad0cd03b51",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-A49716D4",
+      "source_png_sha256": "f8b7c4496ad7c326739c50ea063456974d173597dfa6f6ebfcd4fc9a6163076b",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-AD5FB2B4",
+      "source_png_sha256": "cc82f5537d05a62b638e9e3459d6911a22eb6f1cb5d31ba2aa69667b659d1d53",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-B364E336",
+      "source_png_sha256": "65669fc24bdfadacb4836cbe05bea9cbcc86364c70e03fbc7fa5fc89cb2f7ac5",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-B5676015",
+      "source_png_sha256": "e449b755e98c5670dd4ffdb75ebb1cfa96c33024c6f078f44056c4a2cd7f18be",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-C2968FF3",
+      "source_png_sha256": "db6d87153155e9744591ea476a57ddf186c67181ebbbabcac7e7337143955cf8",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-C43C237B",
+      "source_png_sha256": "4051d59957c834fddf8fd9cfe15825f06d1b54c6bda812c943df2308505035ab",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-CBD58DB1",
+      "source_png_sha256": "28c50dd62ebe0ce0573dabe6b7043e8ca590acbcc44370b3e2c0d985b4ea547f",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-CE46E1E1",
+      "source_png_sha256": "c16b6077ab2f84abcd460d6b6a8065e6f3c0b6c24eafd3eadbee90c369deb726",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-CF23D50D",
+      "source_png_sha256": "dcdecb23cf07035efc77097ae9510e9415c5957fd92da74d0b85f9242ae307f3",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-CFB2DD93",
+      "source_png_sha256": "edd88598b1ebdc28b1567f15d945afdbec0ce6b31cf5905258a733cbe76166db",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-E0010DC4",
+      "source_png_sha256": "220244d439bdd2d6d155e58e9183f4d7c4d8fd7eb838e5f21b3e7f69e886ede3",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-E42C180A",
+      "source_png_sha256": "6c128c028aa0bcd7a20ea810a0ab047dfb8756a6aa1985d3b584166eab47a50b",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-F0704041",
+      "source_png_sha256": "004b3accd203e03f456873a8114a50d2c66c21c6cf3922f079b6ec6b494142d3",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-F619B00C",
+      "source_png_sha256": "d2d71e5a77cdf9d799dbea2f7f11339a101e056bba6d19a8e186eaedaab82053",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    },
+    {
+      "key": "82831823-FAB716A0",
+      "source_png_sha256": "30ea0bcc4fd947e8d29ad891b9d29ab05d0c6526d6c1464bcbeda268a7bb0725",
+      "native_alpha_all_pixels_equal": true,
+      "words_crc_and_clut_crc_match": true
+    }
+  ],
+  "final_count": 1699,
+  "production_installed": false,
+  "live_visual_accepted": false,
+  "gpu_executed": false,
+  "below_normal": true,
+  "cpu_affinity": [
+    15
+  ],
+  "scope": "Native admission and composition; old unrelated class/RGB defects are retained and this is not whole-world or gameplay acceptance."
+}

@@ -1,0 +1,6 @@
+TIMING preload_total_ms 25.073 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 8 bytes 25774976
+TIMING draw_admit_ms 0.394 (cache lookup + level-0 hash + R1 + stub level uploads)
+TIMING draw_admit_ms_median 0.377 min 0.374 max 0.738 (21 fresh slots, warm)
+checks 40 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g04\glue_harness.c:579: s_hdcm_diag.rejected[HDCM_E_GL] == 1 && g_base == 0 && g_max == 1000

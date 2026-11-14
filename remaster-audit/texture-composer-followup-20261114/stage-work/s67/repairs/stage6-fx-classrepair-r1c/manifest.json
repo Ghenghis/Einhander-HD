@@ -1,0 +1,167 @@
+{
+ "name": "stage6-fx-classrepair-r1c",
+ "status": "proposal (s67 repair r1b; NOT frozen lane art; NOT accepted)",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S6-WHOLE-CELL-20261114",
+ "created_utc": "2026-11-14T14:35:37.908582+00:00",
+ "audit_run": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\20261114T135603Z",
+  "result_sha256": "e1eeb72d6e2052e2f5bd49feb4d677fc2b6b7008e31ea1574bc95c5bbe79b1ee"
+ },
+ "selection_maps": {
+  "stage6": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\stage6\\selection-map-20261114T133638Z.json",
+   "sha256": "3d0961e7f734a173b0dd161ceb7951776024a5f727cebb5dcad882bda0312eb7"
+  },
+  "stage7": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\stage7\\selection-map-20261114T133927Z.json",
+   "sha256": "1069a9044ec05bfd35faae8882c1ff3f7df14e1bc5de87c64d76225f86266da2"
+  }
+ },
+ "method": "s67 isolated REPAIR PROPOSAL r1: whole-cell class ownership for the Stage 6 FX keys that fail the strict audit.\n\nInput: the s67 strict audit result (runs/<UTC>/result.json): every SELECTED file with whole_cell_strict_pass == False\n(10932164 x5, E653AA46 x3, D552405C v4 x4 = 24 files at run 20261114T135603Z). All of them pass the lane's texel-centre gate\n(R1 = 0) but break R2 (alpha deviates farther than s/2 from any native cell of that class) and R4 (islands).\nMethod (CPU, deterministic, frozen proto-v2b, no AI, no new palette):\n  * start from a COPY of the frozen file (sha256 must equal the manifest);\n  * cm_repair: R1/R2/R4 violators take the native class of their cell; a pixel that becomes visible takes the mean colour of\n    the cell's correct-class pixels, else the native texel colour from the CRC-proven CLUT (nrgb);\n  * then every pixel that is cutout AFTER the repair gets its v1 RGB back (cm_repair's R5 cutout fill is undone, so the\n    only byte changes are the class flips and the RGB of newly visible pixels; visible_rgb_changed must be 0);\n  * cm_validate on the result: whole-cell strict must pass; R5 fringe is reported as a diagnostic;\n  * cm_flags_ex bits 2|4|16 before and after at two EXPLICIT bounds: 0.5 (s/2 diagnostic) and 1e9 (root connectivity-only);\n  * alpha changes are reported explicitly: became_visible_px, became_cutout_px, stp_toggled_px (the class plane DOES change).\nFrozen v1/v4 folders and the Stage 1 w2-effects files are never modified. Review sheets: native class / v1 / r1 at the worst\ncells (class shown as grey levels 0/127/255 over RGB). Not an acceptance: look judgement and live A/B are still required\n(the lane rejected a blocky native-class silhouette for the Stage 7 explosion; R2 allows soft contours within s/2).\nWrites ONLY C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/repairs/stage6-fx-classrepair-r1/.\nusage: python -B -I s6_fx_classrepair.py [--dry-run] [--budget-s=28] [--cpu=N] [--only=KEY[,KEY]] [--out-name=stage6-fx-classrepair-rX]\n  (granted cap: 30 s). r1c follow-up: --only=D552405C-C12DB7DC --out-name=stage6-fx-classrepair-r1c (the 2 files r1b did not reach).",
+ "priority": {
+  "pid": 19128,
+  "nice": "below_normal",
+  "affinity": [
+   15
+  ]
+ },
+ "elapsed_s": 4.35,
+ "aborted": null,
+ "error": null,
+ "complete": true,
+ "files": 2,
+ "strict_pass": 2,
+ "visible_rgb_changed_total": 0,
+ "alpha_changed_total": 35114,
+ "became_visible_total": 5711,
+ "became_cutout_total": 7982,
+ "stp_toggled_total": 21421,
+ "rows": [
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-C12DB7DC",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-1024\\D552405C-C12DB7DC.png",
+   "src_sha256": "132a4396119b35b11938c29dabc1580233ec8bd957c633370bcd70562003379f",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-1024/D552405C-C12DB7DC.png",
+   "out_sha256": "25f731c718f82f9cc56c537776cae82449d08b81093fc22f47da42574c989640",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 5774,
+    "became_visible": 897,
+    "became_cutout": 1319,
+    "rgb_from_cell": 897,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 403787,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 5774,
+   "bytes_changed_px": 5774,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 22747,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 5766,
+    "r3_uniform_bad_px": 2754,
+    "r4_island_px": 2309,
+    "r5_fringe_px": 23641,
+    "cells_bad": 1324,
+    "pinhole_cells": 1324,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 5774,
+    "conn_only_px": 5456
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 897,
+   "became_cutout_px": 1319,
+   "stp_toggled_px": 3558
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-C12DB7DC",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-2048\\D552405C-C12DB7DC.png",
+   "src_sha256": "53c2b1c8a61c330b36532f649ad960621c5bdc48e0308229a644a56b694cc7d0",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-2048/D552405C-C12DB7DC.png",
+   "out_sha256": "ff7f92e602f56d7e7290efb1fbd5907ed5102ae148197a1be16ea38f797d4755",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 29340,
+    "became_visible": 4814,
+    "became_cutout": 6663,
+    "rgb_from_cell": 4814,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1609521,
+    "visible_rgb_changed": 0,
+    "passes": 2,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 29340,
+   "bytes_changed_px": 29340,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 43518,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 29338,
+    "r3_uniform_bad_px": 13952,
+    "r4_island_px": 11363,
+    "r5_fringe_px": 45325,
+    "cells_bad": 1376,
+    "pinhole_cells": 1376,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 29338,
+    "conn_only_px": 27499
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 4814,
+   "became_cutout_px": 6663,
+   "stp_toggled_px": 17863,
+   "review": "D552405C-C12DB7DC-worst-cells_native_v1class_r1class_v1rgb_r1rgb.png"
+  }
+ ],
+ "previous_failed_attempt": "repairs/stage6-fx-classrepair-r1 (OSError 22 on a review filename with '|'; partial, preserved)",
+ "stage1_note": "10932164-0386F43A/-5F4DE3D3/-66175427/-AF93AEF2 sources are Stage 1 frozen files reused byte for byte; these repaired copies are a Stage 6 proposal only and do not modify the Stage 1 deliverable"
+}

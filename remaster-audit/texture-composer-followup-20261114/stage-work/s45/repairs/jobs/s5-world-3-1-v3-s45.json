@@ -1,0 +1,214 @@
+{
+ "root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/repairs",
+ "name": "s5-world-3-1-v3-s45",
+ "stage": 5,
+ "track": "w7-stage5",
+ "task": "EIN-S5-WHOLE-CELL-20261114 isolated repair proposal (s45, 2026-11-14)",
+ "family": "s5-world-main",
+ "mode": "world",
+ "method": "World v2 (lane-s5). Categorical soft-label index master at 16x (4096): one-hot mask of every native index blurred at 4x and texel-centred bilinear to 16x; crisp contours (sigma 0.42 texel, power 4); tone-group blending of dithers between indices that share the class under every renderable static CLUT and are within RGB 56 under >= 75 % of them (sigma 1.0 texel, dither window 0.3..0.65); top-3 labels; lost-texel rounded-square cores; native index forced at every texel centre. FX contract boxes on 1A2ACF78 (smoke puffs, dark puff sprites, smoke trails): any-pair tone blending (render keeps only the dominant label's class per CLUT), crisp 0.42/4, blend 1.0 texel, dither window 0.15..0.4, no cores, centres not forced in the master (exports stamp the native class), no material. Material logD at 8x (palette-independent): relief 0.18 from the review-CLUT luminance (sigma 0.9 texel, light from the upper left), groove AO 0.1 at luminance edges, luminance detail from the lane-s5 stage-5 JuggernautXL swatches sandblasted_concrete (s5-swatches-v1) and sandworn_steel_a (s5-swatches-v2) per page (raw images, centre 60 %, random Hann-windowed patches, high-pass 48 px, band-limited 1.5 px at 2048), procedural low-frequency grime 0.03; zero-mean per native index over the material area. 05E1881C is not built (lane-s4 owns it).",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale)",
+ "material": {
+  "relief": 0.18,
+  "relief_sigma_tex": 0.9,
+  "groove": 0.1,
+  "groove_sigma_tex": 0.3,
+  "groove_ref": 0.35,
+  "swatch_amp": 0.045,
+  "swatch_sigma_px": 1.5,
+  "grime": 0.03,
+  "grime_sigma_tex": 3.0,
+  "final_sigma_px": 0.8,
+  "clamp": [
+   -0.45,
+   0.25
+  ]
+ },
+ "soft": {
+  "crisp": [
+   0.42,
+   4.0
+  ],
+  "blend_sigma": 1.0,
+  "near_T": 56,
+  "near_quorum": 0.75,
+  "strokes": true
+ },
+ "max_renders": 3,
+ "turbulence": 0.0,
+ "ramp_min": 0.85,
+ "reuse": null,
+ "pages": [
+  {
+   "tex": "9F3D98EF",
+   "member": "3/1",
+   "page_xy": [
+    640,
+    0
+   ],
+   "material": {
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.5
+     ],
+     [
+      "sandworn_steel_a",
+      0.5
+     ]
+    ]
+   }
+  },
+  {
+   "tex": "7E088757",
+   "member": "3/1",
+   "page_xy": [
+    704,
+    0
+   ],
+   "material": {
+    "swatch": [
+     [
+      "sandworn_steel_a",
+      0.6
+     ],
+     [
+      "sandblasted_concrete",
+      0.4
+     ]
+    ]
+   }
+  },
+  {
+   "tex": "452F3CC3",
+   "member": "3/1",
+   "page_xy": [
+    768,
+    0
+   ],
+   "material": {
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.6
+     ],
+     [
+      "sandworn_steel_a",
+      0.4
+     ]
+    ]
+   }
+  },
+  {
+   "tex": "1A2ACF78",
+   "member": "3/1",
+   "page_xy": [
+    832,
+    0
+   ],
+   "material": {
+    "swatch": [
+     [
+      "sandworn_steel_a",
+      0.6
+     ],
+     [
+      "sandblasted_concrete",
+      0.4
+     ]
+    ],
+    "exclude_boxes": [
+     [
+      0,
+      128,
+      256,
+      192
+     ],
+     [
+      0,
+      192,
+      240,
+      224
+     ]
+    ]
+   },
+   "fx_boxes": [
+    [
+     0,
+     128,
+     256,
+     192
+    ],
+    [
+     0,
+     192,
+     240,
+     224
+    ]
+   ],
+   "region_note": "smoke puffs and dark puff sprites (u0-255 v128-191) and smoke trails (u0-239 v192-223): FX contract (any-pair tone blending, no cores, centres not forced in the master), no material"
+  },
+  {
+   "tex": "503474BD",
+   "member": "3/1",
+   "page_xy": [
+    896,
+    0
+   ],
+   "material": {
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.6
+     ],
+     [
+      "sandworn_steel_a",
+      0.4
+     ]
+    ]
+   }
+  }
+ ],
+ "lane": "claude-einhander-s45",
+ "shared_pages": [
+  {
+   "tex": "05E1881C",
+   "member": "3/1",
+   "page_xy": [
+    960,
+    0
+   ],
+   "owner": "lane-s4 (comfy-authoring/w7-stage4)",
+   "reference": "w7-stage4/work/panorama-05E1881C/STATUS.json (lane-s4: NOT BUILT, blocked on a capture; sha256 3cee20f147183469b048a37b302c9f697539efd32d640fb3a51d050ff0b74e2f at the time of this build)",
+   "note": "byte-identical page in stage 4 (member 2/22, VRAM 960,0) and stage 5 (member 3/1, 960,0); one master serves both stages; stage-5 keys of this TEX render from lane-s4's master after a stage-5 live capture; lane-s5 does not build it"
+  }
+ ],
+ "supersedes": null,
+ "fx_region": {
+  "blend_sigma": 1.0,
+  "crisp": [
+   0.42,
+   4.0
+  ],
+  "beta": [
+   0.15,
+   0.4
+  ],
+  "class_aware": true
+ },
+ "gpu_note": "this build is CPU-only; its material swatches were generated earlier by lane-s5 in gpu_slot('lane-s5') runs (JuggernautXL v9 txt2img, ComfyUI 127.0.0.1:8188 core nodes) and frozen in w7-stage5/frozen/s5-swatches-v1 (sandblasted_concrete) and s5-swatches-v2 (sandworn_steel_a); exact graphs + history copied in comfy/",
+ "swatch_note": "lane-s5 stage-5 JuggernautXL swatches (sandblasted_concrete from s5-swatches-v1, sandworn_steel_a from s5-swatches-v2) used as luminance detail only; graphs/history in comfy/",
+ "comfyui_graphs": [
+  "comfy/sandblasted_concrete-graph.api.json",
+  "comfy/sandworn_steel_a-graph.api.json"
+ ],
+ "seed_name": "s5-world-3-1-v2",
+ "repair_of": {
+  "revision": "s5-world-3-1-v2",
+  "manifest_sha256": "d6f088ef96e5284b9c23f674033c7d19203f953a1023b2b4bfa353c6670d16dc",
+  "change": "soft.strokes=True (lane-s4 stroke rule) + fx_region.class_aware=True (1A2ACF78 smoke FX boxes); seeds and swatches unchanged",
+  "why": "v2 honest_read: 1-texel frames of alternating tones (452F3CC3 window frame, 503474BD rail) are bead chains at 16x",
+  "why2": "J-E probe 20261114T141451Z-s5: 1A2ACF78-0DA351E7 (134-pair transparent candidate CLUT) fails PRIMARY inside FX box [0,128,256,192]: conn 83 px, R4 8, R3 75, R2 8098 at 2048"
+ },
+ "tool": "parallel-stages-20261114/s45/tools/w7m2/build_w7.py (w7m + fx_region class_aware opt-in)"
+}

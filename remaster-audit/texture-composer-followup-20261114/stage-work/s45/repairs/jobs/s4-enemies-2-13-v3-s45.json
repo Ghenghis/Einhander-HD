@@ -1,0 +1,81 @@
+{
+ "root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/repairs",
+ "name": "s4-enemies-2-13-v3-s45",
+ "stage": 4,
+ "track": "w7-stage4",
+ "task": "EIN-S4-WHOLE-CELL-20261114 isolated repair proposal (s45, 2026-11-14)",
+ "family": "s4-enemies-main",
+ "mode": "enemy",
+ "method": "Categorical soft-label index master at 16x (4096): one-hot mask of every native index blurred at 4x and texel-centred bilinear to 16x; crisp contours everywhere (sigma 0.38 texel, power 5); where the native page dithers between indices that share the class under every renderable static CLUT of the page and are close in colour (RGB distance <= 56) under at least 75 % of them, only those indices are blended (sigma 1.0 texel), so dither becomes the intended mixed tone while edges between distinct tones stay crisp, top-3 labels kept; texels whose native index lost its own centre keep a rounded-square core of that index (superellipse p=6, full weight to the mid-edges), native index forced at every texel centre. Palette-independent armour material logD at 8x: relief from the reference-CLUT luminance (sigma 0.9 texel, light from the upper left), light groove AO at luminance edges, luminance detail from the Stage 1 JuggernautXL navy_armour + gunmetal_worn tileable swatches (raw images where they exist, centre 60%, overlapping Hann-windowed random patches, horizontal flips only: no tiling seam, no repeat; high-pass sigma 48 px, band-limited sigma 1.5 px at 2048), low-frequency grime; zero-mean per native index. No GP0 polygons exist for stage 4, so there is no per-unit vector outline or seam layer (the Stage 1 t7/w4 vector step); per-unit cutting waits for AQ-03 draw UVs.",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); class 0 = raw black; runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale)",
+ "material": {
+  "relief": 0.18,
+  "relief_sigma_tex": 0.9,
+  "groove": 0.08,
+  "groove_sigma_tex": 0.3,
+  "groove_ref": 0.35,
+  "swatch": [
+   [
+    "navy_armour",
+    1.0
+   ]
+  ],
+  "swatch_amp": 0.04,
+  "swatch_sigma_px": 1.5,
+  "grime": 0.025,
+  "grime_sigma_tex": 3.0,
+  "final_sigma_px": 0.8,
+  "clamp": [
+   -0.45,
+   0.25
+  ]
+ },
+ "soft": {
+  "crisp": [
+   0.38,
+   5.0
+  ],
+  "blend_sigma": 1.0,
+  "near_T": 56,
+  "near_quorum": 0.75,
+  "strokes": true
+ },
+ "max_renders": 3,
+ "pages": [
+  {
+   "tex": "D57D51A6",
+   "member": "2/13",
+   "page_xy": [
+    320,
+    0
+   ]
+  },
+  {
+   "tex": "0FD152CA",
+   "member": "2/13",
+   "page_xy": [
+    384,
+    0
+   ]
+  },
+  {
+   "tex": "C7C81B36",
+   "member": "2/13",
+   "page_xy": [
+    448,
+    0
+   ]
+  }
+ ],
+ "supersedes": null,
+ "seed_name": "s4-enemies-2-13-v2",
+ "lane": "claude-einhander-s45",
+ "repair_of": {
+  "revision": "s4-enemies-2-13-v2",
+  "manifest_sha256": "3a0e7aeb1265d44f60db51ea08cb679a8383235b33a493c4caa0766c447907db",
+  "change": "swatch gunmetal_worn removed (navy_armour 1.0 instead of navy_armour 0.5 + gunmetal_worn 0.5; lane-s4 STATE next step 4) + soft.strokes=True (next step 3)",
+  "why": "v2 honest_read: gunmetal_worn leaves small dark diagonal scratch strokes on flat fillers and stained-paper mottle on light flats",
+  "note": "v2 was built by an older lane-s4 tool (w7lib 97b6818e); differences vs v2 are not only these options",
+  "swatch_choice": "s4_wet_painted_steel (calmest, detail std 0.031) rejected: it carries vertical run-off streaks, a directional cue that is unproven for rotating enemy sprites; no new swatch introduced"
+ }
+}

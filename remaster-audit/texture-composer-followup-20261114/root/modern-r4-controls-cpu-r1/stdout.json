@@ -1,0 +1,338 @@
+{
+  "at_utc": "2026-11-14T14:35:12.939301+00:00",
+  "passed": true,
+  "cpu_cases": 12,
+  "cases": [
+    {
+      "kind": "triangle",
+      "expected": true,
+      "passed": true,
+      "errors": [],
+      "sha256": "59524a6d01c7b5fac19e763d9d514f40f3ab3cc02146fc76b3c2d3078b921903",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 3674,
+      "inside_green_fraction": 1.0,
+      "outside_green": 0,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "green",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "bounded green geometry area",
+        "green outside projected geometry/halo",
+        "green corner fallback/background"
+      ],
+      "sha256": "1fbebabc1fc5ed9701e448466aaf6daa08c7c8f61aef8fb77b89580b841de3bb",
+      "green_pixels": 57600,
+      "inside_pixels": 3674,
+      "inside_green": 3674,
+      "inside_green_fraction": 1.0,
+      "outside_green": 51704,
+      "corner_green": 1024,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "magenta",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "bounded green geometry area",
+        "expected projected triangle interior"
+      ],
+      "sha256": "48f3f5844eed911b87b12f6736bb9670493ddee2737dce0430d47e394918f783",
+      "green_pixels": 0,
+      "inside_pixels": 3674,
+      "inside_green": 0,
+      "inside_green_fraction": 0.0,
+      "outside_green": 0,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "black",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "bounded green geometry area",
+        "expected projected triangle interior"
+      ],
+      "sha256": "8b329bbf0b37386cd7f8094766a953d89287b83a5a7b3aef400ff2dc364727a2",
+      "green_pixels": 0,
+      "inside_pixels": 3674,
+      "inside_green": 0,
+      "inside_green_fraction": 0.0,
+      "outside_green": 0,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "shifted",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "expected projected triangle interior",
+        "green outside projected geometry/halo"
+      ],
+      "sha256": "0ac88bda712fb1e05687f8c7f0f0238ed1e5367e7a9484ffaf20c6e4076a6372",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 275,
+      "inside_green_fraction": 0.0748502994011976,
+      "outside_green": 3974,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "corner",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "green corner fallback/background"
+      ],
+      "sha256": "5b782fb5f7acf9497e47d3f235df647a9633eca905e6a01c9ffbd11926a51de6",
+      "green_pixels": 4818,
+      "inside_pixels": 3674,
+      "inside_green": 3674,
+      "inside_green_fraction": 1.0,
+      "outside_green": 256,
+      "corner_green": 256,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "truncated",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "exact owned PPM header/length"
+      ],
+      "scope": "Fixed private320x180 triangle only"
+    },
+    {
+      "kind": "header",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "exact owned PPM header/length"
+      ],
+      "scope": "Fixed private320x180 triangle only"
+    },
+    {
+      "kind": "moving_triangle_-2",
+      "expected": true,
+      "passed": true,
+      "errors": [],
+      "sha256": "22dc455524663b9f840336103a74710640393865de61a7508cb4efa4bbd6bf3e",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 3674,
+      "inside_green_fraction": 1.0,
+      "outside_green": 0,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          62.57214207425065,
+          128.97114317029974
+        ],
+        [
+          121.02885682970026,
+          51.02885682970026
+        ],
+        [
+          179.48557158514987,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": -2,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "moving_triangle_2",
+      "expected": true,
+      "passed": true,
+      "errors": [],
+      "sha256": "08b032cd3a8d26687209664d5d8160c1dcbf14832ce2e30116d1a7c2367e1ba8",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 3674,
+      "inside_green_fraction": 1.0,
+      "outside_green": 0,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          140.51442841485013,
+          128.97114317029974
+        ],
+        [
+          198.97114317029974,
+          51.02885682970026
+        ],
+        [
+          257.4278579257493,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 2,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "frozen_left_at_centre",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "expected projected triangle interior",
+        "green outside projected geometry/halo"
+      ],
+      "sha256": "22dc455524663b9f840336103a74710640393865de61a7508cb4efa4bbd6bf3e",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 1621,
+      "inside_green_fraction": 0.4412084921066957,
+      "outside_green": 2266,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          101.54328524455039,
+          128.97114317029974
+        ],
+        [
+          160.0,
+          51.02885682970026
+        ],
+        [
+          218.4567147554496,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 0,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    },
+    {
+      "kind": "frozen_centre_at_right",
+      "expected": false,
+      "passed": false,
+      "errors": [
+        "expected projected triangle interior",
+        "green outside projected geometry/halo"
+      ],
+      "sha256": "59524a6d01c7b5fac19e763d9d514f40f3ab3cc02146fc76b3c2d3078b921903",
+      "green_pixels": 4562,
+      "inside_pixels": 3674,
+      "inside_green": 1621,
+      "inside_green_fraction": 0.4412084921066957,
+      "outside_green": 2266,
+      "corner_green": 0,
+      "expected_triangle": [
+        [
+          140.51442841485013,
+          128.97114317029974
+        ],
+        [
+          198.97114317029974,
+          51.02885682970026
+        ],
+        [
+          257.4278579257493,
+          128.97114317029974
+        ]
+      ],
+      "scene_offset_x": 2,
+      "scope": "Known synthetic phase with identity camera,60degFOV,320x180; not a general game image quality or ray tracing proof"
+    }
+  ],
+  "gpu_executed": false,
+  "real_gpu_images_audited": false
+}

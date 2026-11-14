@@ -1,0 +1,202 @@
+{
+ "root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/repairs",
+ "name": "s5-member3-17-ext-v1-s45",
+ "stage": 5,
+ "track": "w7-stage5",
+ "task": "EIN-S5-WHOLE-CELL-20261114 backlog item 1 (s45 draft, 2026-11-14)",
+ "family": "s5 member 3/17 pages 768/832/896 (boss-section content; identity unverified)",
+ "mode": "armour",
+ "method": "Duerer v2 (lane-s5). Armour base as v1: categorical soft-label index master at 16x (4096), tight contours (sigma 0.32 texel, power 6, no dither blending) so camouflage patches keep native extents; lost-texel cores; native index forced at every texel centre. Region overrides, in order: (1) FX contract boxes (shock rings, bursts, debris, flames, crater): tone-group soft labels where 'near' = same class under every renderable static CLUT of the page (colour distance ignored, because the native fades are high-contrast dithers), crisp 0.42/4, blend sigma 1.0 texel, dither window 0.15..0.4, no lost-texel cores, no material; (2) 8bpp hull sub-images read as 4bpp (alt8 detector: 1-texel nibble stripes, share > 0.35 per 8x8 block, closing 1): native pass-through (nearest labels), no material, NOT HD, pending an 8bpp-mode master after the capture; (3) '13' glyph boxes: glyph lock (no material on the numeral texels) and de-stair: per-index weights (1-a)*tight + a*smooth (sigma 0.7 texel), a = staircase-corner indicator of the glyph mask blurred 0.7 texel, withdrawn wherever any native texel would lose its own index as majority (native shape guard). Material: palette-independent logD at 8x: relief 0.12 from the review-CLUT luminance, luminance detail from the lane-s5 stage-5 JuggernautXL swatches camo_paint_worn_a (0.55) + sandworn_steel_a (0.45) (raw images, centre 60 %, random Hann-windowed patches, high-pass 48 px, band-limited 1.5 px), grime 0.03; zero-mean per native index over the material area. 2B4626A3 keeps the FX contract page-wide.",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale); page 2B4626A3: FX contract (continuous index if ramp, energy gate)",
+ "material": {
+  "relief": 0.12,
+  "relief_sigma_tex": 0.9,
+  "groove": 0.0,
+  "swatch": [
+   [
+    "camo_paint_worn_a",
+    0.55
+   ],
+   [
+    "sandworn_steel_a",
+    0.45
+   ]
+  ],
+  "swatch_amp": 0.045,
+  "swatch_sigma_px": 1.5,
+  "grime": 0.03,
+  "grime_sigma_tex": 3.0,
+  "final_sigma_px": 0.8,
+  "clamp": [
+   -0.45,
+   0.25
+  ]
+ },
+ "soft": {
+  "crisp": [
+   0.32,
+   6.0
+  ],
+  "no_busy": true
+ },
+ "max_renders": 3,
+ "turbulence": 0.35,
+ "ramp_min": 0.85,
+ "pages": [
+  {
+   "tex": "D8403129",
+   "member": "3/17",
+   "page_xy": [
+    768,
+    0
+   ],
+   "mode": "effect",
+   "soft": {
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "near_T": 56,
+    "near_quorum": 0.75
+   },
+   "native_8bpp": {
+    "threshold": 0.35,
+    "closing": 1
+   },
+   "fx_boxes": [
+    [
+     0,
+     0,
+     256,
+     165
+    ],
+    [
+     190,
+     165,
+     256,
+     256
+    ],
+    [
+     0,
+     215,
+     190,
+     256
+    ]
+   ],
+   "region_note": "explosion / burst sprites everywhere except the small icon row u0-189 v165-214 (arrows, panels): FX contract (class-aware)"
+  },
+  {
+   "tex": "81FB494C",
+   "member": "3/17",
+   "page_xy": [
+    832,
+    0
+   ],
+   "material": {
+    "exclude_boxes": [
+     [
+      176,
+      0,
+      226,
+      136
+     ],
+     [
+      0,
+      150,
+      256,
+      256
+     ]
+    ]
+   },
+   "native_8bpp": {
+    "threshold": 0.35,
+    "closing": 1
+   },
+   "fx_boxes": [
+    [
+     176,
+     0,
+     226,
+     136
+    ],
+    [
+     0,
+     150,
+     256,
+     256
+    ]
+   ],
+   "region_note": "vehicle hull u0-175 v0-149 and missile sprites u226-255: armour; smoke puffs u176-225 v0-135 and clouds v150-255: FX contract (class-aware), no material"
+  },
+  {
+   "tex": "11FA828A",
+   "member": "3/17",
+   "page_xy": [
+    896,
+    0
+   ],
+   "mode": "world",
+   "material": {
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.6
+     ],
+     [
+      "sandworn_steel_a",
+      0.4
+     ]
+    ],
+    "exclude_boxes": [
+     [
+      0,
+      128,
+      128,
+      256
+     ]
+    ]
+   },
+   "native_8bpp": {
+    "threshold": 0.35,
+    "closing": 1
+   },
+   "fx_boxes": [
+    [
+     0,
+     128,
+     128,
+     256
+    ]
+   ],
+   "region_note": "mechanical strip u0-159 v0-59: world (Stage 5 world v2 swatches); cloud tile u0-127 v128-255: FX contract (class-aware); flat fill elsewhere"
+  }
+ ],
+ "lane": "claude-einhander-s45",
+ "fx_region": {
+  "blend_sigma": 1.0,
+  "crisp": [
+   0.42,
+   4.0
+  ],
+  "beta": [
+   0.15,
+   0.4
+  ],
+  "class_aware": true
+ },
+ "destair": {
+  "smooth_sigma": 0.7,
+  "reach": 0.7,
+  "crisp": [
+   0.32,
+   6.0
+  ]
+ },
+ "comfyui_graphs": [
+  "comfy/camo_paint_worn_a-graph.api.json",
+  "comfy/sandworn_steel_a-graph.api.json"
+ ],
+ "tool": "parallel-stages-20261114/s45/tools/w7m2/build_w7.py",
+ "status_note": "DRAFT: FX boxes read off static reference renders under position-inherited CLUTs (793A3662 / 0DA351E7 / 1A80CA9D, the 3/1 world pages review/candidate CLUTs at the same VRAM x); refine after S5-5 identity marks; build only after V1-V3 pass"
+}

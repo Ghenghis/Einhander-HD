@@ -1,0 +1,1392 @@
+{
+ "name": "stage6-fx-classrepair-r1b",
+ "status": "proposal (s67 repair r1b; NOT frozen lane art; NOT accepted)",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S6-WHOLE-CELL-20261114",
+ "created_utc": "2026-11-14T14:32:20.086864+00:00",
+ "audit_run": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\20261114T135603Z",
+  "result_sha256": "e1eeb72d6e2052e2f5bd49feb4d677fc2b6b7008e31ea1574bc95c5bbe79b1ee"
+ },
+ "selection_maps": {
+  "stage6": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\stage6\\selection-map-20261114T133638Z.json",
+   "sha256": "3d0961e7f734a173b0dd161ceb7951776024a5f727cebb5dcad882bda0312eb7"
+  },
+  "stage7": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\stage7\\selection-map-20261114T133927Z.json",
+   "sha256": "1069a9044ec05bfd35faae8882c1ff3f7df14e1bc5de87c64d76225f86266da2"
+  }
+ },
+ "method": "s67 isolated REPAIR PROPOSAL r1: whole-cell class ownership for the Stage 6 FX keys that fail the strict audit.\n\nInput: the s67 strict audit result (runs/<UTC>/result.json): every SELECTED file with whole_cell_strict_pass == False\n(10932164 x5, E653AA46 x3, D552405C v4 x4 = 24 files at run 20261114T135603Z). All of them pass the lane's texel-centre gate\n(R1 = 0) but break R2 (alpha deviates farther than s/2 from any native cell of that class) and R4 (islands).\nMethod (CPU, deterministic, frozen proto-v2b, no AI, no new palette):\n  * start from a COPY of the frozen file (sha256 must equal the manifest);\n  * cm_repair: R1/R2/R4 violators take the native class of their cell; a pixel that becomes visible takes the mean colour of\n    the cell's correct-class pixels, else the native texel colour from the CRC-proven CLUT (nrgb);\n  * then every pixel that is cutout AFTER the repair gets its v1 RGB back (cm_repair's R5 cutout fill is undone, so the\n    only byte changes are the class flips and the RGB of newly visible pixels; visible_rgb_changed must be 0);\n  * cm_validate on the result: whole-cell strict must pass; R5 fringe is reported as a diagnostic;\n  * cm_flags_ex bits 2|4|16 before and after at two EXPLICIT bounds: 0.5 (s/2 diagnostic) and 1e9 (root connectivity-only);\n  * alpha changes are reported explicitly: became_visible_px, became_cutout_px, stp_toggled_px (the class plane DOES change).\nFrozen v1/v4 folders and the Stage 1 w2-effects files are never modified. Review sheets: native class / v1 / r1 at the worst\ncells (class shown as grey levels 0/127/255 over RGB). Not an acceptance: look judgement and live A/B are still required\n(the lane rejected a blocky native-class silhouette for the Stage 7 explosion; R2 allows soft contours within s/2).\nWrites ONLY C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/repairs/stage6-fx-classrepair-r1/.\nusage: python -B -I s6_fx_classrepair.py [--dry-run] [--budget-s=28]   (granted cap: 30 s)",
+ "priority": {
+  "pid": 1516,
+  "nice": "below_normal",
+  "affinity": [
+   13
+  ]
+ },
+ "elapsed_s": 29.41,
+ "aborted": {
+  "reason": "budget 28.0s",
+  "at_key": "D552405C-C12DB7DC"
+ },
+ "error": null,
+ "complete": false,
+ "files": 22,
+ "strict_pass": 22,
+ "visible_rgb_changed_total": 0,
+ "alpha_changed_total": 47893,
+ "became_visible_total": 27878,
+ "became_cutout_total": 943,
+ "stp_toggled_total": 19072,
+ "rows": [
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-8E3D08E7",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-1024\\10932164-8E3D08E7.png",
+   "src_sha256": "c9b922b17ae17e61f182f86f1a18e2d9739a0ba8d268616ac359b283b4d6cf19",
+   "out": "stage6-large-explosion-10932164-v1/runtime-1024/10932164-8E3D08E7.png",
+   "out_sha256": "fea3a74d9692c06f4ffefca9b2038472a970d853526374ff8f78d9506526fbbe",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 28,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 28,
+   "bytes_changed_px": 28,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 15,
+    "r3_uniform_bad_px": 6,
+    "r4_island_px": 28,
+    "r5_fringe_px": 0,
+    "cells_bad": 18,
+    "pinhole_cells": 18,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 28,
+    "conn_only_px": 28
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 28
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-8E3D08E7",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-2048\\10932164-8E3D08E7.png",
+   "src_sha256": "0b11919073707ef8a5a263f9a368586f12556d8f546803c933c4f60d7a8ef1dc",
+   "out": "stage6-large-explosion-10932164-v1/runtime-2048/10932164-8E3D08E7.png",
+   "out_sha256": "1792ebc04d1be89802f773343c815907ef0bdfacef744871f77d9d3c2eac49cd",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 108,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 108,
+   "bytes_changed_px": 108,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 73,
+    "r3_uniform_bad_px": 29,
+    "r4_island_px": 95,
+    "r5_fringe_px": 0,
+    "cells_bad": 28,
+    "pinhole_cells": 28,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 108,
+    "conn_only_px": 95
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 108,
+   "review": "10932164-8E3D08E7-worst-cells_native_v1class_r1class_v1rgb_r1rgb.png"
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-0386F43A",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-1024\\10932164-0386F43A.png",
+   "src_sha256": "0549dd2798896eb689dc6bf617c7db4f6c2325667e26229ac0b067025b448a07",
+   "out": "stage6-large-explosion-10932164-v1/runtime-1024/10932164-0386F43A.png",
+   "out_sha256": "bbce5a17e0df085529a348d743fed824f4c8e14be26aa1739140eb06644b58c8",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 148,
+    "became_visible": 106,
+    "became_cutout": 4,
+    "rgb_from_cell": 106,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 380247,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 148,
+   "bytes_changed_px": 148,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 6444,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 124,
+    "r3_uniform_bad_px": 57,
+    "r4_island_px": 131,
+    "r5_fringe_px": 6550,
+    "cells_bad": 77,
+    "pinhole_cells": 77,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 148,
+    "conn_only_px": 132
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 106,
+   "became_cutout_px": 4,
+   "stp_toggled_px": 38
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-0386F43A",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-2048\\10932164-0386F43A.png",
+   "src_sha256": "55228c4998c8172a47e705e9c90ce920f58694a970cc83c3e97af611d4cb30ae",
+   "out": "stage6-large-explosion-10932164-v1/runtime-2048/10932164-0386F43A.png",
+   "out_sha256": "57753b1b62f1401880f919db7ab37dba76a85a9f84152a9551db3b8a92a200f9",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 714,
+    "became_visible": 512,
+    "became_cutout": 3,
+    "rgb_from_cell": 512,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1520950,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 714,
+   "bytes_changed_px": 714,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 12525,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 629,
+    "r3_uniform_bad_px": 311,
+    "r4_island_px": 627,
+    "r5_fringe_px": 12942,
+    "cells_bad": 125,
+    "pinhole_cells": 125,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 714,
+    "conn_only_px": 636
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 512,
+   "became_cutout_px": 3,
+   "stp_toggled_px": 199
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-5F4DE3D3",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-1024\\10932164-5F4DE3D3.png",
+   "src_sha256": "90ef485283e5a8e0fdd9e21f109c020805e050536c3c6b923cc4eee881b51a2e",
+   "out": "stage6-large-explosion-10932164-v1/runtime-1024/10932164-5F4DE3D3.png",
+   "out_sha256": "7ccf198ae2aea5771e3ff5715d70027738d505009765a8c063982c6ed45d589a",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 63,
+    "became_visible": 15,
+    "became_cutout": 48,
+    "rgb_from_cell": 15,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 796618,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 63,
+   "bytes_changed_px": 63,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 7116,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 63,
+    "r3_uniform_bad_px": 45,
+    "r4_island_px": 58,
+    "r5_fringe_px": 7211,
+    "cells_bad": 29,
+    "pinhole_cells": 29,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 63,
+    "conn_only_px": 58
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 15,
+   "became_cutout_px": 48,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-5F4DE3D3",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-2048\\10932164-5F4DE3D3.png",
+   "src_sha256": "94a70ebe66396ec5758b9f6bf0a3d8408803b59c0e4d21da635e7cc6987be726",
+   "out": "stage6-large-explosion-10932164-v1/runtime-2048/10932164-5F4DE3D3.png",
+   "out_sha256": "c38b3fb1a20a88d1fc6fc926d40bf3e870638a0b15ae216b4c50b35663c39602",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 354,
+    "became_visible": 91,
+    "became_cutout": 263,
+    "rgb_from_cell": 91,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 3185436,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 354,
+   "bytes_changed_px": 354,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 13593,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 354,
+    "r3_uniform_bad_px": 257,
+    "r4_island_px": 329,
+    "r5_fringe_px": 13855,
+    "cells_bad": 47,
+    "pinhole_cells": 47,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 354,
+    "conn_only_px": 334
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 91,
+   "became_cutout_px": 263,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-66175427",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-1024\\10932164-66175427.png",
+   "src_sha256": "350d036c9ba0ca19810e3cea4696c66ec85944251ad0f3a8c00f4f0059ae7013",
+   "out": "stage6-large-explosion-10932164-v1/runtime-1024/10932164-66175427.png",
+   "out_sha256": "b2da987ab3cc6b99cc68f24e1a09b13a1e7613b8e6213dab9d077b5a9422eba4",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 148,
+    "became_visible": 106,
+    "became_cutout": 4,
+    "rgb_from_cell": 106,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 380247,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 148,
+   "bytes_changed_px": 148,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 6444,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 124,
+    "r3_uniform_bad_px": 57,
+    "r4_island_px": 131,
+    "r5_fringe_px": 6550,
+    "cells_bad": 77,
+    "pinhole_cells": 77,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 148,
+    "conn_only_px": 132
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 106,
+   "became_cutout_px": 4,
+   "stp_toggled_px": 38
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-66175427",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-2048\\10932164-66175427.png",
+   "src_sha256": "835902d21a51d0b2a622a86e01a0dbf87a6b5b9a7609cabd08e979f7ba788be5",
+   "out": "stage6-large-explosion-10932164-v1/runtime-2048/10932164-66175427.png",
+   "out_sha256": "d43c0bfd36a8c679d65c32899dbc968e9c03e858612fa62196344a393b9b7057",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 714,
+    "became_visible": 512,
+    "became_cutout": 3,
+    "rgb_from_cell": 512,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1520950,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 714,
+   "bytes_changed_px": 714,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 12525,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 629,
+    "r3_uniform_bad_px": 311,
+    "r4_island_px": 627,
+    "r5_fringe_px": 12942,
+    "cells_bad": 125,
+    "pinhole_cells": 125,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 714,
+    "conn_only_px": 636
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 512,
+   "became_cutout_px": 3,
+   "stp_toggled_px": 199
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-AF93AEF2",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-1024\\10932164-AF93AEF2.png",
+   "src_sha256": "455ef86f002fc3ed30b67645c5dc965d9fb35f560776d6955ab20aa40b92cfdc",
+   "out": "stage6-large-explosion-10932164-v1/runtime-1024/10932164-AF93AEF2.png",
+   "out_sha256": "cc044d20a1c949e1b576703bddd061540ae737878a0ea4a3db81530337859bbc",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 47,
+    "became_visible": 30,
+    "became_cutout": 17,
+    "rgb_from_cell": 30,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 613653,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 47,
+   "bytes_changed_px": 47,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 6647,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 47,
+    "r3_uniform_bad_px": 47,
+    "r4_island_px": 47,
+    "r5_fringe_px": 6717,
+    "cells_bad": 25,
+    "pinhole_cells": 25,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 47,
+    "conn_only_px": 47
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 30,
+   "became_cutout_px": 17,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-large-explosion-10932164-v1",
+   "key": "10932164-AF93AEF2",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-large-explosion-10932164-v1\\runtime-2048\\10932164-AF93AEF2.png",
+   "src_sha256": "b9d22931cfbb96f6293bdc40b19dd647b67369e354c8fc649811f84b7780d352",
+   "out": "stage6-large-explosion-10932164-v1/runtime-2048/10932164-AF93AEF2.png",
+   "out_sha256": "af0af48e03d901a076b8f1349d90c553268f904af9c0d1142d10f3d8f5c564f5",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 251,
+    "became_visible": 157,
+    "became_cutout": 94,
+    "rgb_from_cell": 157,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 2454626,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 251,
+   "bytes_changed_px": 251,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 12623,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 250,
+    "r3_uniform_bad_px": 248,
+    "r4_island_px": 251,
+    "r5_fringe_px": 12815,
+    "cells_bad": 38,
+    "pinhole_cells": 38,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 251,
+    "conn_only_px": 251
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 157,
+   "became_cutout_px": 94,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-47823F21",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-1024\\E653AA46-47823F21.png",
+   "src_sha256": "0638064d354220ddd540ccc7832e40bf5e40276b227264414ee51ff8e7b4e7e9",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-1024/E653AA46-47823F21.png",
+   "out_sha256": "edc47854ad30021d8e7c5cec6da190d0321911a194a1c2ef51cd6c2e5d42ef85",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 1453,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 1453,
+   "bytes_changed_px": 1453,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 1448,
+    "r3_uniform_bad_px": 1078,
+    "r4_island_px": 1197,
+    "r5_fringe_px": 0,
+    "cells_bad": 544,
+    "pinhole_cells": 544,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 1453,
+    "conn_only_px": 1341
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 1453
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-47823F21",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-2048\\E653AA46-47823F21.png",
+   "src_sha256": "05c41b38da1f789fc6452bf99796bf53dee7bd33e854e9195fbb26f58923a766",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-2048/E653AA46-47823F21.png",
+   "out_sha256": "4b21ec77ac6f19de1ec99da96db9f9385916418d663ff7c6850c83beef39f345",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 7778,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 7778,
+   "bytes_changed_px": 7778,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 7768,
+    "r3_uniform_bad_px": 5840,
+    "r4_island_px": 6402,
+    "r5_fringe_px": 0,
+    "cells_bad": 757,
+    "pinhole_cells": 757,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 7778,
+    "conn_only_px": 7193
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 7778,
+   "review": "E653AA46-47823F21-worst-cells_native_v1class_r1class_v1rgb_r1rgb.png"
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-8E3D08E7",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-1024\\E653AA46-8E3D08E7.png",
+   "src_sha256": "57db3d86c64af0271ed6104f8002d6bb541e5638f014b9ce23f0c97a57baeea7",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-1024/E653AA46-8E3D08E7.png",
+   "out_sha256": "aa64aee9f0bdb8cb0c08974f7dc3f123d77e62aee626038502a94808f975349c",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 1453,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 1453,
+   "bytes_changed_px": 1453,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 1448,
+    "r3_uniform_bad_px": 1078,
+    "r4_island_px": 1197,
+    "r5_fringe_px": 0,
+    "cells_bad": 544,
+    "pinhole_cells": 544,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 1453,
+    "conn_only_px": 1341
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 1453
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-8E3D08E7",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-2048\\E653AA46-8E3D08E7.png",
+   "src_sha256": "d50cbb03db906842aa2408f2ef10b37aad3c01c30b35a0236285be575899bb2b",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-2048/E653AA46-8E3D08E7.png",
+   "out_sha256": "96091823db3e3b585287843243592a4506a0cd9de0c0be9323c2174c7cb882b4",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 7778,
+    "became_visible": 0,
+    "became_cutout": 0,
+    "rgb_from_cell": 0,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 0,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 7778,
+   "bytes_changed_px": 7778,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 7768,
+    "r3_uniform_bad_px": 5840,
+    "r4_island_px": 6402,
+    "r5_fringe_px": 0,
+    "cells_bad": 757,
+    "pinhole_cells": 757,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 7778,
+    "conn_only_px": 7193
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 0,
+   "became_cutout_px": 0,
+   "stp_toggled_px": 7778
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-4CAF3E0F",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-1024\\E653AA46-4CAF3E0F.png",
+   "src_sha256": "5a2ac25050fc8d36b1301a780092c15969422b4d0fc2f80e1821e886f1324593",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-1024/E653AA46-4CAF3E0F.png",
+   "out_sha256": "eee71131e68fb4c0090f5ac4a5b6cae7ad2dcf736cd7691c77ba1ae7ee6c30fb",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 1453,
+    "became_visible": 1451,
+    "became_cutout": 2,
+    "rgb_from_cell": 1451,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 598633,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 1453,
+   "bytes_changed_px": 1453,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 15576,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 1448,
+    "r3_uniform_bad_px": 1078,
+    "r4_island_px": 1197,
+    "r5_fringe_px": 16943,
+    "cells_bad": 544,
+    "pinhole_cells": 544,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 1453,
+    "conn_only_px": 1341
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 1451,
+   "became_cutout_px": 2,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-electric-bolts-E653AA46-v1",
+   "key": "E653AA46-4CAF3E0F",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-electric-bolts-E653AA46-v1\\runtime-2048\\E653AA46-4CAF3E0F.png",
+   "src_sha256": "e61316c44983141f58a12d8a1103d508c252587a6844652ff1d41c962ed58ec0",
+   "out": "stage6-electric-bolts-E653AA46-v1/runtime-2048/E653AA46-4CAF3E0F.png",
+   "out_sha256": "b33c7b229efe75be962873899b84490bacb3c7161602634c6a957d0569f73bb2",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 7778,
+    "became_visible": 7765,
+    "became_cutout": 13,
+    "rgb_from_cell": 7765,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 2390849,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 7778,
+   "bytes_changed_px": 7778,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 29887,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 7768,
+    "r3_uniform_bad_px": 5840,
+    "r4_island_px": 6402,
+    "r5_fringe_px": 33444,
+    "cells_bad": 757,
+    "pinhole_cells": 757,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 7778,
+    "conn_only_px": 7193
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 7765,
+   "became_cutout_px": 13,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-92AC1558",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-1024\\D552405C-92AC1558.png",
+   "src_sha256": "c51bae01bd78c4ed245736feff425601acef72eb303face657791c1df8b3f610",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-1024/D552405C-92AC1558.png",
+   "out_sha256": "3bf7f398f43d003b94b55c058a3bbb90cc6811ec828c5bd19848a5860c46d126",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 925,
+    "became_visible": 897,
+    "became_cutout": 28,
+    "rgb_from_cell": 897,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 402501,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 925,
+   "bytes_changed_px": 925,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 22756,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 921,
+    "r3_uniform_bad_px": 622,
+    "r4_island_px": 333,
+    "r5_fringe_px": 23643,
+    "cells_bad": 287,
+    "pinhole_cells": 287,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 925,
+    "conn_only_px": 767
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 897,
+   "became_cutout_px": 28,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-92AC1558",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-2048\\D552405C-92AC1558.png",
+   "src_sha256": "564ad4f711bc3d9d2cfdd2077576234127658dcc0d3487f5d9dcd32e5225a767",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-2048/D552405C-92AC1558.png",
+   "out_sha256": "b251079da0563249118a8f7e53d28248a2bc56845afaeedfaa153ffc9e309deb",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 4950,
+    "became_visible": 4814,
+    "became_cutout": 136,
+    "rgb_from_cell": 4814,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1603027,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 4950,
+   "bytes_changed_px": 4950,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 43540,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 4950,
+    "r3_uniform_bad_px": 3300,
+    "r4_island_px": 1558,
+    "r5_fringe_px": 45325,
+    "cells_bad": 322,
+    "pinhole_cells": 322,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 4950,
+    "conn_only_px": 4003
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 4814,
+   "became_cutout_px": 136,
+   "stp_toggled_px": 0,
+   "review": "D552405C-92AC1558-worst-cells_native_v1class_r1class_v1rgb_r1rgb.png"
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-98C90B96",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-1024\\D552405C-98C90B96.png",
+   "src_sha256": "493294e00a9f0760919181d379a2671195883cbc1db460d48e1dd9429a4845e6",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-1024/D552405C-98C90B96.png",
+   "out_sha256": "dc76e558d7ef60db9f408457d60263608d7e227dd817361ca18edd62b532f84f",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 925,
+    "became_visible": 897,
+    "became_cutout": 28,
+    "rgb_from_cell": 897,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 402497,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 925,
+   "bytes_changed_px": 925,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 22754,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 921,
+    "r3_uniform_bad_px": 622,
+    "r4_island_px": 333,
+    "r5_fringe_px": 23641,
+    "cells_bad": 287,
+    "pinhole_cells": 287,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 925,
+    "conn_only_px": 767
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 897,
+   "became_cutout_px": 28,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-98C90B96",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-2048\\D552405C-98C90B96.png",
+   "src_sha256": "372c511a38195687c2cf237157e53176e7aec6dfe9df126d49a40fb7ece112eb",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-2048/D552405C-98C90B96.png",
+   "out_sha256": "a348c9b3b3834799ea0353c233845d43e479f25f7ea5854d26c776bb242b79a0",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 4950,
+    "became_visible": 4814,
+    "became_cutout": 136,
+    "rgb_from_cell": 4814,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1603041,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 4950,
+   "bytes_changed_px": 4950,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 43541,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 4950,
+    "r3_uniform_bad_px": 3300,
+    "r4_island_px": 1558,
+    "r5_fringe_px": 45325,
+    "cells_bad": 322,
+    "pinhole_cells": 322,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 4950,
+    "conn_only_px": 4003
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 4814,
+   "became_cutout_px": 136,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-5E251958",
+   "file": "1024",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-1024\\D552405C-5E251958.png",
+   "src_sha256": "6f31ac51d0cc3958d9fd6c0e4c55885e49ad45bb08d95f2a0022fad2cce1765f",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-1024/D552405C-5E251958.png",
+   "out_sha256": "db15cbaae98ca84bcb08c4270e640b8e30423a89d35c144d4a0666c7b488a59c",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 925,
+    "became_visible": 897,
+    "became_cutout": 28,
+    "rgb_from_cell": 897,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 402502,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 925,
+   "bytes_changed_px": 925,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 22757,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 921,
+    "r3_uniform_bad_px": 622,
+    "r4_island_px": 333,
+    "r5_fringe_px": 23643,
+    "cells_bad": 287,
+    "pinhole_cells": 287,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 925,
+    "conn_only_px": 767
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 897,
+   "became_cutout_px": 28,
+   "stp_toggled_px": 0
+  },
+  {
+   "folder": "stage6-smoke-exhaust-D552405C-v4",
+   "key": "D552405C-5E251958",
+   "file": "2048",
+   "src": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-smoke-exhaust-D552405C-v4\\runtime-2048\\D552405C-5E251958.png",
+   "src_sha256": "44dfb8f57ed95bb872c165baaeee6935a9f23fc32465b6b34a4ad063dc94349f",
+   "out": "stage6-smoke-exhaust-D552405C-v4/runtime-2048/D552405C-5E251958.png",
+   "out_sha256": "86cba613a55b40c4c63ea996c147847f36cee5e96eec310750b9eacef6cc5c86",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair": {
+    "class_changed": 4950,
+    "became_visible": 4814,
+    "became_cutout": 136,
+    "rgb_from_cell": 4814,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1603028,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "visible_rgb_changed_after_restore": 0,
+   "alpha_changed_px": 4950,
+   "bytes_changed_px": 4950,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 43541,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true,
+   "v2_before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 4950,
+    "r3_uniform_bad_px": 3300,
+    "r4_island_px": 1558,
+    "r5_fringe_px": 45325,
+    "cells_bad": 322,
+    "pinhole_cells": 322,
+    "nonclass_px": 0
+   },
+   "flags_before": {
+    "s2_px": 4950,
+    "conn_only_px": 4003
+   },
+   "flags_after": {
+    "s2_px": 0,
+    "conn_only_px": 0
+   },
+   "became_visible_px": 4814,
+   "became_cutout_px": 136,
+   "stp_toggled_px": 0
+  }
+ ],
+ "previous_failed_attempt": "repairs/stage6-fx-classrepair-r1 (OSError 22 on a review filename with '|'; partial, preserved)",
+ "stage1_note": "10932164-0386F43A/-5F4DE3D3/-66175427/-AF93AEF2 sources are Stage 1 frozen files reused byte for byte; these repaired copies are a Stage 6 proposal only and do not modify the Stage 1 deliverable"
+}

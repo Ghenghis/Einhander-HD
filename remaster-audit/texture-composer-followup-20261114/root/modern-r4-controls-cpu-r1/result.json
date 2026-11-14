@@ -1,0 +1,34 @@
+{
+  "at_utc": "2026-11-14T14:35:12.965424+00:00",
+  "passed": true,
+  "command": [
+    "python",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\test_modern_gl_image.py"
+  ],
+  "exit": 0,
+  "seconds": 3.109,
+  "image_controls": 12,
+  "cleanup_controls": 7,
+  "below_normal": true,
+  "cpu_affinity": [
+    11
+  ],
+  "pins": {
+    "sdk_modern_gl_probe.cpp": "3f77474fea5208bafae6a7cd82132f0188584a030112c7db68915e04f382a2dc",
+    "run_modern_gl_probe.py": "5cfdb8d5388c3583ee84a0dbfa2c82fcfb61feeccc494e74f012123eda16d11b",
+    "audit_modern_gl_image.py": "a8c80d0ab4acc7674d57c1791809929cb37dc9bdb2d0c4f8539bc3cdb4e2bc1f",
+    "test_modern_gl_image.py": "e997fd8962d0f818f70303fc57c13898605f02dec18ad3b5d59e4c9c672c2824",
+    "test_modern_parent_cleanup.py": "45eb82abd21f940ef646627a0621cc6655152caafd69443597e1ba37dded546a"
+  },
+  "prior_observation": {
+    "tool_chunk": "8b1852",
+    "exit": 0,
+    "cases": 12,
+    "full_stdout_not_retained": true,
+    "resource_confinement_not_established": true
+  },
+  "repeat_reason": "Retain complete raw output and establish measured affinity/priority for the evidence packet.",
+  "gpu_run": false,
+  "actual_gpu_images_audited": false
+}

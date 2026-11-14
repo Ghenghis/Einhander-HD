@@ -1,0 +1,18 @@
+{
+ "base": "tools/w7m",
+ "base_merge_record_sha256": "940acd85bb230baa93f2784d87330cc421500371060f42716caf96aa919baa94",
+ "base_w7lib_sha256": "80de86c886bfe770b3168b3202e2c595748970913f37381d94e5dcb01ed3f8ad",
+ "patch": "fx_region(class_aware=False) opt-in; record fields near/near_pairs",
+ "note": "near_pairs is a NEW record field in every fx region record (build-record.json / manifest regions); exports and masters are unaffected when class_aware is False",
+ "outputs": {
+  "build_w7.py": "d3e09d2e66aaa3f85604d32c8d7492b4247e5f63bbb0c21e4d8a78c0a304f0dc",
+  "freeze_w7.py": "7036a638eb8eada34eea83d6876a947781759d0327406ad27a789ab2997d576e",
+  "glyph_check.py": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+  "lowprio.py": "b0fc5d59b8ae7030312ea5173680ed057c4f4ea42b64189accbfcb6a07f30d9d",
+  "make_w7m.py": "ff4e86b29321e54f80ba46d15301424664d001dc3cd92ab3e7c513ba1a349f91",
+  "make_w7m2.py": "7a940a56efcf796671e5442e512f6c4bc7958b9171de968979f096c4a11f1b44",
+  "twinkle_sim.py": "159f38f15626bf9b61dc23ec39613ce51f8ae211f9369d43871366bf2d1f58d3",
+  "verify_frozen.py": "b10b9f4b32061de3b29d65309208ee83c76e0f7176911ff8ebf2210d6bd006b3",
+  "w7lib.py": "5b3bfd706990dc0bb2822b912121e5ebe27596bd53f4b19fa721204105e8c2fe"
+ }
+}

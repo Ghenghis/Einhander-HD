@@ -1,0 +1,356 @@
+{
+ "name": "renderer-v61-classmip-v6",
+ "owner": "claude-einhander",
+ "supersedes": "renderer-v61-classmip-v5-r2 (READY 5f96e715) for the opt-in decode-worker identity path only; v5-r2 stays frozen and valid",
+ "frozen_utc": "2026-11-14T14:29:36.516312+00:00",
+ "status": "PRIVATE; default OFF; patched COPY of the frozen v61 renderer only; NOT linked, NOT run, NO GPU used by claude; root owns link/live/GPU/GitHub",
+ "v61_input": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gpu_gl_renderer.c",
+  "sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1"
+ },
+ "patched_tu": {
+  "path": "host-run/20261114T142204Z/patched/gpu_gl_renderer.c",
+  "sha256": "9a878ca4cf74d7c45a43b0308d5820243728a3df3a51a2a01e34d05cdbcfc487",
+  "lines": 7327,
+  "insertions": [
+   "gl-defines",
+   "hd-fs-uniform",
+   "hd-fs-rgb-helper",
+   "hd-fs-rgb-edges",
+   "hd-fs-class",
+   "slot-field",
+   "uniform-var",
+   "glue",
+   "hd-fs-rgb",
+   "draw-build",
+   "preload-proto",
+   "preload-call",
+   "draw-uniform",
+   "base-sampling",
+   "uniform-location"
+  ],
+  "include_sha256": "91a2dc4f6bf100dcf616bc46d2785f9b12906e0d8d0702340c0720cd3ea391c8",
+  "obj_sha256": "4ff5248ba5b5b0389acc1f9a7f5198fa6802d200e3eaa8b3b56005d41b08ee45",
+  "control_obj_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a",
+  "new_warning_kinds": [],
+  "builder_in_runtime_tu": false
+ },
+ "admission": {
+  "index": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "31214B41-73AF4FAA",
+   "67DC56D7-96998A63",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F",
+   "A34295C8-FBCA4A8A"
+  ],
+  "bytes": 25774976,
+  "negatives": {
+   "o_green_sidecar_vs_pink_pixels": "LEVEL0",
+   "o_green_sidecar_for_pink_key": "KEY",
+   "rise_offline": "REFUSED: R1 centre vs native mismatches 295",
+   "rise_falsely_flagged_admission": "R1"
+  }
+ },
+ "rgbonly": {
+  "dir": "host-run/20261114T142204Z/sidecars-rgb",
+  "listed": 136,
+  "written": 136,
+  "in_index": 136,
+  "has_cutout": 136,
+  "harness_key": "BDAE4156-E21112A6",
+  "overlap_with_class_admit": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F"
+  ],
+  "negatives": {
+   "false_opaque_claim": "CUTOUT",
+   "changed_pixel": "LEVEL0",
+   "wrong_key": "KEY",
+   "opaque_true_claim": "OK",
+   "false_has_cutout_claim": "CUTOUT"
+  },
+  "index_sha256": "e2975baa2f54dce28b1dd5d819c3495bf0b18a686599f58936f706ecdd603ab7"
+ },
+ "pack": {
+  "dir": "host-run/20261114T142204Z/pack-v6",
+  "base": {
+   "snapshot": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48",
+   "cpp": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\src\\hd_texture_pack.cpp",
+   "cpp_sha256": "22a97b569e4c3a3ffaff9fff90f37745d1eee92da97f321a1900b452cfee41cd",
+   "h": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\include\\hd_texture_pack.h",
+   "h_sha256": "78234dfdbe4b574b6054b27a65d4cb64877420fa9e67488355542d547969c794",
+   "queue_h_sha256": "434b57a1e146c01ac02cb25a990c245e701196b5a3e7b9131e13a7f9941ee0fb",
+   "limitation": "v61 linked a retained hd_texture_pack object; this v48 snapshot keeps the v61 header and incremental-index API; root rebuilds the TU and runs the pack regression"
+  },
+  "env": "PSXRECOMP_HD_DECODE_IDENTITY",
+  "insertions": [
+   "include",
+   "image-fields",
+   "cache-flag",
+   "worker-identity",
+   "open-env",
+   "accessor"
+  ],
+  "files": {
+   "hd_texture_identity.h": "25c940c30fed179cde8acaf99e312f22095c85e7070c097a7aaccb42bf609efa",
+   "hd_texture_pack.cpp": "6f65ee3c9a9d78df48dfa28e5255a9135a9eb9ba8ae3ab1eef4d09ed27b6041b",
+   "hdcm_x4.h": "5619213b03124d67dd84582f7f53e5d7fb40c85c6b52e38de843b9730c49d46d"
+  },
+  "harness_enum_identical": true,
+  "build_rc": 0,
+  "warning_kinds": [],
+  "modes": {
+   "on": "checks 56 failures 0",
+   "off-unset": "checks 18 failures 0",
+   "off-true": "checks 18 failures 0"
+  },
+  "identity_rows": [
+   "IDENTITY 3068759C-D0F6E018 5b40117eeb027ed6 cut 1 1024x32",
+   "IDENTITY 63B35393-3C49F3D7 a2ddc5ffc9a00ed4 cut 1 1024x256",
+   "IDENTITY 93F0FC72-024FAA77 7769ad7dadbaf4d9 cut 1 512x512",
+   "IDENTITY 95A3BCF8-60245B3A 6fd75c354de2617a cut 0 2048x2048"
+  ],
+  "mutants": "6/6",
+  "scope": "pack TU built and unit-tested on the host only; NOT linked into an executable; root owns the private executable build and the pack regression"
+ },
+ "host": {
+  "run": "20261114T142204Z",
+  "verdict": "pass",
+  "checks": {
+   "fixtures": true,
+   "mutants": true,
+   "real": true,
+   "sidecars": true,
+   "rgbonly": true,
+   "pack": true,
+   "glue": true,
+   "patch": true,
+   "compile": true,
+   "glsl": true
+  },
+  "result_sha256": "c53dfe6bbc41ec2e413ad21907b3515d8378106e329ca3e0fcb0ed4b41ed228a",
+  "fixture_checks": 7534,
+  "mutants": "56/56",
+  "glue_cases": [
+   {
+    "mode": "off",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 5 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 5 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "on",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 40 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 26.008 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.379 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.362 min 0.357 max 0.517 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "levels",
+    "control": "key+rgbdir-env",
+    "rc": 0,
+    "checks": "checks 39 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 23.077 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.379 (cache lookup + level-0 hash + R1 + stub level uploads)",
+     "TIMING draw_admit_ms_median 0.362 min 0.360 max 0.423 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "key",
+    "rc": 0,
+    "checks": "checks 31 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 23.929 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 0.389 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 0.370 min 0.370 max 0.396 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgb",
+    "control": "opaque",
+    "rc": 0,
+    "checks": "checks 31 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 18.814 (index + file reads + full verification of every listed sidecar, at init)",
+     "TIMING draw_admit_ms 3.168 (cache lookup + level-0 hash + R1)",
+     "TIMING draw_admit_ms_median 2.989 min 2.933 max 4.984 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "badenv",
+    "control": "rgb-true",
+    "rc": 0,
+    "checks": "checks 5 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "rgb-emptydir",
+    "rc": 0,
+    "checks": "checks 5 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "badenv",
+    "control": "levels-rgbdir-only",
+    "rc": 0,
+    "checks": "checks 5 failures 0",
+    "timing": []
+   },
+   {
+    "mode": "rgbdir",
+    "control": "census-list",
+    "rc": 0,
+    "checks": "checks 39 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 16.555 (index + 136 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 6.407 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 6.104 min 5.869 max 6.703 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbfalse",
+    "control": "false-opaque",
+    "rc": 0,
+    "checks": "checks 34 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 12.389 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 0.000 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbcaps",
+    "control": "read-caps",
+    "rc": 0,
+    "checks": "checks 40 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 43.816 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 6.202 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 6.036 min 5.735 max 9.274 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbid",
+    "control": "decode-identity",
+    "rc": 0,
+    "checks": "checks 20 failures 0",
+    "timing": [
+     "TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)",
+     "TIMING note: identity admission reads no pixel (sentinel rgba)"
+    ]
+   },
+   {
+    "mode": "rgbdir",
+    "control": "identity-env-true",
+    "rc": 0,
+    "checks": "checks 39 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 14.335 (index + 136 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 6.441 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 6.098 min 5.862 max 7.012 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "both",
+    "control": "class+rgb",
+    "rc": 0,
+    "checks": "checks 49 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 30.463 (index + 2 RGB-only reads + verification + class sidecars, at init)",
+     "TIMING draw_admit_ms 6.270 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 5.990 min 5.812 max 6.577 (21 fresh slots, warm)"
+    ]
+   },
+   {
+    "mode": "rgbopaque",
+    "control": "opaque-bypass",
+    "rc": 0,
+    "checks": "checks 38 failures 0",
+    "timing": [
+     "TIMING preload_total_ms 5.893 (index + 1 RGB-only reads + verification, at init)",
+     "TIMING draw_admit_ms 1.527 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+     "TIMING draw_admit_ms_median 1.361 min 1.351 max 2.833 (21 fresh slots, warm)"
+    ]
+   }
+  ],
+  "glue_mutants": "24/24",
+  "tool_timing_ms": {
+   "11CFE2E3-0E09E912": {
+    "preload_verify": 0.446,
+    "draw_admit": 0.372
+   },
+   "E360C964-C1B5906C": {
+    "preload_verify": 3.192,
+    "draw_admit": 3.11
+   },
+   "31214B41-73AF4FAA": {
+    "preload_verify": 3.166,
+    "draw_admit": 2.982
+   },
+   "67DC56D7-96998A63": {
+    "preload_verify": 0.607,
+    "draw_admit": 0.56
+   },
+   "327E6D9E-5039A9C5": {
+    "preload_verify": 0.397,
+    "draw_admit": 0.368
+   },
+   "E360C964-DF4F533F": {
+    "preload_verify": 2.868,
+    "draw_admit": 3.006
+   },
+   "73BF9877-803A474F": {
+    "preload_verify": 3.183,
+    "draw_admit": 3.036
+   },
+   "A34295C8-FBCA4A8A": {
+    "preload_verify": 0.583,
+    "draw_admit": 0.556
+   }
+  }
+ },
+ "selftest": {
+  "run": "20261114T142842Z",
+  "exe": "selftest/20261114T142842Z/gl_selftest_classmips.exe",
+  "sha256": "e3714b3e5afc15cdb00afcf016e04ce9ec5734a24aa3bb49e68964c74d76827c",
+  "compile_rc": 0,
+  "readme": "selftest/20261114T142842Z/README-ROOT.md",
+  "run_by": "root on GPU only after the user explicitly returns the 3090; NOT run by claude"
+ },
+ "known_limits": [
+  "run_host exit code not captured: Start-Process handle not kept; stdout pass JSON, stderr 0 B, run_host.py:1117 returns 0 iff pass",
+  "pack TU built and unit-tested on the host only; NOT linked; root owns the private executable build, pack regression, link and GPU",
+  "GL selftest built NOT run: 9 warnings, all -Wunused-function from the shared .inc (+1 vs v5-r2: hdcm_rgb_admit_identity)",
+  "no game run, not live-accepted"
+ ],
+ "failed_runs": "docs/FAILED-RUNS.md - every failure kept in place",
+ "sha256sums": "904cc6bc33510f1e6c205d5a7201f7e81875e71f19120b3a7ae967d5ed2b8af9",
+ "files": 1111,
+ "durability": {
+  "fsync_files": 1112,
+  "fsync_source_files": 1084,
+  "read_back_verified": 1111,
+  "note": "every file flushed (FlushFileBuffers) and re-hashed against SHA256SUMS before READY"
+ }
+}

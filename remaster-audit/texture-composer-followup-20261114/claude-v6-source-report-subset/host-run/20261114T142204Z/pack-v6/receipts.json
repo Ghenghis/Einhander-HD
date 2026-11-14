@@ -1,0 +1,54 @@
+{
+ "base": {
+  "snapshot": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48",
+  "cpp": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\src\\hd_texture_pack.cpp",
+  "cpp_sha256": "22a97b569e4c3a3ffaff9fff90f37745d1eee92da97f321a1900b452cfee41cd",
+  "h": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\include\\hd_texture_pack.h",
+  "h_sha256": "78234dfdbe4b574b6054b27a65d4cb64877420fa9e67488355542d547969c794",
+  "queue_h_sha256": "434b57a1e146c01ac02cb25a990c245e701196b5a3e7b9131e13a7f9941ee0fb",
+  "limitation": "v61 linked a retained hd_texture_pack object; this v48 snapshot keeps the v61 header and incremental-index API; root rebuilds the TU and runs the pack regression"
+ },
+ "env": "PSXRECOMP_HD_DECODE_IDENTITY",
+ "receipts": [
+  {
+   "name": "include",
+   "offset": 60,
+   "inserted_bytes": 168
+  },
+  {
+   "name": "image-fields",
+   "offset": 19768,
+   "inserted_bytes": 236
+  },
+  {
+   "name": "cache-flag",
+   "offset": 20360,
+   "inserted_bytes": 88
+  },
+  {
+   "name": "worker-identity",
+   "offset": 23949,
+   "inserted_bytes": 426
+  },
+  {
+   "name": "open-env",
+   "offset": 54832,
+   "inserted_bytes": 186
+  },
+  {
+   "name": "accessor",
+   "offset": 86041,
+   "inserted_bytes": 848
+  }
+ ],
+ "crlf": true,
+ "x4_extracted_from": {
+  "inc_sha256": "91a2dc4f6bf100dcf616bc46d2785f9b12906e0d8d0702340c0720cd3ea391c8",
+  "bytes": 4316
+ },
+ "files": {
+  "hd_texture_identity.h": "25c940c30fed179cde8acaf99e312f22095c85e7070c097a7aaccb42bf609efa",
+  "hd_texture_pack.cpp": "6f65ee3c9a9d78df48dfa28e5255a9135a9eb9ba8ae3ab1eef4d09ed27b6041b",
+  "hdcm_x4.h": "5619213b03124d67dd84582f7f53e5d7fb40c85c6b52e38de843b9730c49d46d"
+ }
+}

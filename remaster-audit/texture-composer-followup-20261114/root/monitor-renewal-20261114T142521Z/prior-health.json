@@ -1,0 +1,90 @@
+{
+  "observed_utc": "2026-11-14T14:25:15.315Z",
+  "watcher_pid": 26032,
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "observations": 49,
+  "bound_end_utc": "2026-11-14T14:31:09.548Z",
+  "roster_sha256": "e40e05914f406d250f8448ebb906dfcc01489b5e8e33ae9ff617fe58599bb4b2",
+  "sessions": [
+    {
+      "owner": "claude-einhander",
+      "session_id": "11357b05-21ce-4470-8da8-e1597e772a7f",
+      "roster_state": "existing_actual_model_verified",
+      "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "29c55b57d12517f13bf9db6839a0b904d95fa72e7bdf3f0a2fd4a3b724cc28df",
+      "checkpoint_utc": "2026-11-14T14:13:41Z",
+      "checkpoint_age_seconds": 694,
+      "phase": "idle-light-work; v6 host suite queued after S23 J2, S45 J-D/J-E, S67 FX repair (root grants)",
+      "pending_task_ids": [
+        "v6 decode-worker identity: sources ready on root v48 baseline; long host suite root-only per msg_f12634163f",
+        "RISE: current 33-palette set expand33/20261114T135902Z d4379b41 (private, no install/live)",
+        "Stage1 backlog: shared explosion 10932164 x4 fail primary (R4>0 bound-independent per coordinator msg_228a2603; exact conn-only counts come with s67 FX repair) - review s67 copies with stage1-fx-review/review_fx_repair.py",
+        "GL probe: parent findings sent (msg_e5fbf2c1); child review subagent running since ~14:03Z"
+      ],
+      "next_action": "On grant: start authored_v5_f32.py then expand33.py <its run> in the same slot, report PID within 60 s.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s23",
+      "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:19:09.094Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "f1defb66b311614bd8867bb10a215db67e441db44e12311716e542b646e3d0c6",
+      "checkpoint_utc": "2026-11-14T14:22:31.000Z",
+      "checkpoint_age_seconds": 164,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S2-WHOLE-CELL-20261114",
+        "EIN-S3-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On grant: J2 full a+b (sha 31e7899f) -> J3 -> J6 selftest -> J5. On composer outputs: optional R5/sampled-fringe control if root asks.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s45",
+      "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:18:36.711Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "eee075e4f15c8051f9885486e9a8f2e67529f44ea0679c304a32689fca241bd6",
+      "checkpoint_utc": "2026-11-14T14:23:14.000Z",
+      "checkpoint_age_seconds": 121,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S4-WHOLE-CELL-20261114",
+        "EIN-S5-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On J-F grant: from s45, for KEY in 1A2ACF78-0DA351E7 3D108041-BE3400E6 BFC445B0-066C0B81 1168CC84-A345AE9E: `python -I -B tools/s45_cm_repair.py --probe-run probe-audit/20261114T141451Z-s5 --key KEY` inside one timeout 30 wrapper; report PIDs/exits/results. On any mail: read, act, ack quietly.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s67",
+      "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:16:54.748Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "48b875b5a0820c309919782996c63395214f08ea5482bdbe7bc3c8a40ef48676",
+      "checkpoint_utc": "2026-11-14T14:24:29Z",
+      "checkpoint_age_seconds": 46,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S6-WHOLE-CELL-20261114",
+        "EIN-S7-WHOLE-CELL-20261114",
+        "EIN-S6-TIMEOUT-PROFILE-20261114"
+      ],
+      "next_action": "On a FRESH grant: python -B -I tools/s6_fx_classrepair.py --budget-s=28 (r1b; read PID from repairs/stage6-fx-classrepair-r1b/start.json), report, then de-dither/burst on their own grants.",
+      "status": "checkpoint_available"
+    }
+  ]
+}

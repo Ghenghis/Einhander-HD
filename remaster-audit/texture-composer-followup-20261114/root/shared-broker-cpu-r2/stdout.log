@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: exclusive grant, fencing, explicit release and transfer
+ok 1 - exclusive grant, fencing, explicit release and transfer
+  ---
+  duration_ms: 1.9047
+  type: 'test'
+  ...
+# Subtest: expiry disallows starts but never gives card to another project
+ok 2 - expiry disallows starts but never gives card to another project
+  ---
+  duration_ms: 0.9511
+  type: 'test'
+  ...
+# Subtest: deny preserves existing ownership and requires explicit allow
+ok 3 - deny preserves existing ownership and requires explicit allow
+  ---
+  duration_ms: 0.384
+  type: 'test'
+  ...
+# Subtest: requests are durable and do not silently grant permission
+ok 4 - requests are durable and do not silently grant permission
+  ---
+  duration_ms: 2.0587
+  type: 'test'
+  ...
+# Subtest: actual job identity required, old-token starts and owner self-grants rejected
+ok 5 - actual job identity required, old-token starts and owner self-grants rejected
+  ---
+  duration_ms: 0.2942
+  type: 'test'
+  ...
+# Subtest: concurrent cross-project mutations cannot both acquire mutex
+ok 6 - concurrent cross-project mutations cannot both acquire mutex
+  ---
+  duration_ms: 20.1666
+  type: 'test'
+  ...
+# Subtest: release blocks a real live PID and fails closed on unknown access
+ok 7 - release blocks a real live PID and fails closed on unknown access
+  ---
+  duration_ms: 0.4808
+  type: 'test'
+  ...
+# Subtest: notification failure retains durable event; delivery does not hold state mutex
+ok 8 - notification failure retains durable event; delivery does not hold state mutex
+  ---
+  duration_ms: 0.5372
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 102.4864

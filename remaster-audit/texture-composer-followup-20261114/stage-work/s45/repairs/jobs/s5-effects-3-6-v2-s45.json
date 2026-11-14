@@ -1,0 +1,80 @@
+{
+ "root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/repairs",
+ "name": "s5-effects-3-6-v2-s45",
+ "stage": 5,
+ "track": "w7-stage5",
+ "task": "EIN-S5-WHOLE-CELL-20261114 isolated repair proposal (s45, 2026-11-14)",
+ "family": "s5-effects-set",
+ "mode": "effect",
+ "method": "FX contract: alpha = classes of the categorical soft-label master (tone-group version, label-exact centres), identical for every CLUT with the same transparent entries; RGB free of class thresholds = continuous index field t (normalised convolution of the native index inside the opaque silhouette, sigma 0.55 texel: low frequencies locked to native) + band-limited turbulence (0.35 index steps) when the CLUT is a luminance ramp (Spearman >= 0.85), else categorical soft labels; per 32x32-texel cell light-energy gate vs native (scalar correction outside +-6 %). No material layer and no generated detail in this revision.",
+ "render_formula": "t = smoothed native index (+ turbulence); rgb = lerp(P[floor t], P[ceil t]) inside the opaque silhouette; class = class(P[l_0]) of the soft-label master; energy gate per cell; class stamped at every texel centre",
+ "turbulence": 0.35,
+ "ramp_min": 0.85,
+ "soft": {
+  "crisp": [
+   0.42,
+   4.0
+  ],
+  "blend_sigma": 1.0,
+  "near_T": 56,
+  "near_quorum": 0.75
+ },
+ "max_renders": 3,
+ "pages": [
+  {
+   "tex": "5C04E373",
+   "member": "3/6",
+   "page_xy": [
+    512,
+    0
+   ],
+   "fx_boxes": [
+    [
+     0,
+     0,
+     256,
+     256
+    ]
+   ]
+  },
+  {
+   "tex": "BD968A3C",
+   "member": "3/6",
+   "page_xy": [
+    576,
+    0
+   ],
+   "fx_boxes": [
+    [
+     0,
+     0,
+     256,
+     256
+    ]
+   ]
+  }
+ ],
+ "lane": "claude-einhander-s45",
+ "seed_name": "s5-effects-3-6-v1",
+ "energy_smooth": true,
+ "fx_region": {
+  "blend_sigma": 1.0,
+  "crisp": [
+   0.42,
+   4.0
+  ],
+  "beta": [
+   0.15,
+   0.4
+  ],
+  "class_aware": true
+ },
+ "repair_of": {
+  "revision": "s5-effects-3-6-v1",
+  "manifest_sha256": "ab0920be08d31d18e3223bc70c8c8b8475fadf67d2a41265f214142db25eaa16",
+  "change": "FX contract box over each whole page (lane-s5 Duerer v2 any-pair tone blending, centres not forced in the master; exports still stamp native classes) + energy_smooth (lane-s4 smooth gain field); fx_region.class_aware=True (blend only same-class index pairs under every candidate CLUT) so STP/opaque borders keep the crisp contour (J-B BFC445B0 lesson)",
+  "why": "v1 honest_read: non-ramp CLUTs -> radial gradients band into octagonal tone plateaus, fire-ring speckle stays rounded dots; scalar per-cell energy gate can leave straight steps at 32-texel borders",
+  "note": "v1 was built by an older lane-s5 tool (w7lib af3c2ec9); this build uses the current lane-s5 base, so differences vs v1 are not only the two options"
+ },
+ "tool": "parallel-stages-20261114/s45/tools/w7m2/build_w7.py (w7m + fx_region class_aware opt-in)"
+}

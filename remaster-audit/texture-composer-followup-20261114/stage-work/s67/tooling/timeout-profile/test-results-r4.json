@@ -1,0 +1,552 @@
+{
+ "work": "C:/Users/Admin/AppData/Local/Temp/claude/e5fad2775628cc35/00b8d103-2731-4007-9483-52e8168f2e8e/scratchpad/timeout-leg-work-r4",
+ "cases": 55,
+ "passed": 55,
+ "all_ok": true,
+ "results": [
+  {
+   "case": "clean",
+   "expect": "pass",
+   "rc": 0,
+   "ok": true,
+   "failing": []
+  },
+  {
+   "case": "claims a stage clear",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "clear recorded",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "RAM writes",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "timer touched",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no Stage 5 lineage",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "expiry only from RAM",
+   "expect": "TX",
+   "rc": 1,
+   "failing": [
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no expiry capture",
+   "expect": "TX",
+   "rc": 1,
+   "failing": [
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "movie neither recorded nor denied",
+   "expect": "MV",
+   "rc": 1,
+   "failing": [
+    "MV"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no passage index",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "narration neither recorded nor denied",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "residency TEX without a draw row",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no Game Over capture",
+   "expect": "GO",
+   "rc": 1,
+   "failing": [
+    "GO"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no next screen",
+   "expect": "NS",
+   "rc": 1,
+   "failing": [
+    "NS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "movie before expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "tally after expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "hash mismatch",
+   "expect": "H",
+   "rc": 1,
+   "failing": [
+    "H"
+   ],
+   "ok": true
+  },
+  {
+   "case": "user card mounted",
+   "expect": "C",
+   "rc": 1,
+   "failing": [
+    "C"
+   ],
+   "ok": true
+  },
+  {
+   "case": "sources missing",
+   "expect": "K",
+   "rc": 1,
+   "failing": [
+    "K"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 declared stage 5",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number missing",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number bool",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number string",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration without frame_range",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration invalid range",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration outside capture span",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "NA",
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration searched outside window",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration partial search",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration search beyond capture span",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 timer expiry outside capture span",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O",
+    "RS",
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 entry equals timer expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 residency frame before expiry",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "O",
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 residency frame not bound to a draw row",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 unknown residency basis",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 positive: not-observed narration covering expiry..last end state",
+   "expect": "pass",
+   "rc": 0,
+   "failing": [],
+   "ok": true
+  },
+  {
+   "case": "r2 ambiguous 704,256 residency",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "K",
+    "RS"
+   ],
+   "report_written": true,
+   "ok": true
+  },
+  {
+   "case": "r3 upload_event label only (DEADBEEF)",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r3 upload_event unsupported even with a drawn TEX",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r3 snapshot label only (no evidence)",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r4 positive: native EINRC01 snapshot bound to its mark row",
+   "expect": "pass",
+   "rc": 0,
+   "failing": [],
+   "ok": true,
+   "rs_failures": []
+  },
+  {
+   "case": "r4 headerless same-size blob (r3 fixture style) rejected",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "native header: magic is not EINRC01\\0",
+    "native header: version @8 = 0 != 1",
+    "native header: header bytes @12 = 0 != 160"
+   ]
+  },
+  {
+   "case": "r4 bad magic",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "native header: magic is not EINRC01\\0"
+   ]
+  },
+  {
+   "case": "r4 bad version",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "native header: version @8 = 2 != 1"
+   ]
+  },
+  {
+   "case": "r4 header frame != claimed frame (wrong-frame relabel)",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "header frame 5300 != claimed residency frame 5250"
+   ]
+  },
+  {
+   "case": "r4 file name index != header index",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "event file name event-0008.bin does not carry the header event index 7"
+   ]
+  },
+  {
+   "case": "r4 no mark row for this event file",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "expected exactly one mark row for event-0007.bin in the capture logs, found 0 (an unlogged or duplicated mark cannot be bound)"
+   ]
+  },
+  {
+   "case": "r4 mark row label != header label",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "mark row native-source-0/capture.jsonl:54 label='other_label' != header 'timeout_residency'"
+   ]
+  },
+  {
+   "case": "r4 duplicated mark rows",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "expected exactly one mark row for event-0007.bin in the capture logs, found 2 (an unlogged or duplicated mark cannot be bound)"
+   ]
+  },
+  {
+   "case": "r4 RAM payload checksum mismatch",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "native RAM payload FNV-1a != header checksum @68 (corrupt or edited snapshot)"
+   ]
+  },
+  {
+   "case": "r4 VRAM payload checksum mismatch",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "native VRAM payload FNV-1a != header checksum @72 (corrupt or edited snapshot)"
+   ]
+  },
+  {
+   "case": "r4 VRAM CRC != claimed TEX",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "snapshot VRAM rect (704,256,64,256) CRC32 EC8EE2DD != claimed TEX DEADBEEF"
+   ]
+  },
+  {
+   "case": "r4 evidence sha mismatch",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "snapshot sha256 09b8e064b7ca8100b6b3370ed4d9e7a5b4040282c65aa5a280068beaed32786b != evidence.sha256 0000000000000000000000000000000000000000000000000000000000000000"
+   ]
+  },
+  {
+   "case": "r4 not pinned in files_sha256",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true,
+   "rs_failures": [
+    "snapshot research/event-0007.bin is not pinned in files_sha256 with its actual hash"
+   ]
+  },
+  {
+   "case": "r2 non-object JSON rows",
+   "expect": "K",
+   "rc": 1,
+   "failing": [
+    "K",
+    "O"
+   ],
+   "report_written": true,
+   "ok": true
+  },
+  {
+   "case": "canonical validator on the timeout leg",
+   "expect": "fails X and T",
+   "rc": 1,
+   "failing": [
+    "F",
+    "L",
+    "M",
+    "S",
+    "T",
+    "X"
+   ],
+   "ok": true
+  }
+ ]
+}

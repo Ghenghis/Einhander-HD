@@ -1,0 +1,96 @@
+{
+  "at_utc": "2026-11-14T14:32:10.888817+00:00",
+  "passed": true,
+  "cpu_cases": 7,
+  "cases": [
+    {
+      "case": "not-started",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "owned_process_gone": true,
+        "owned_marker_released": true,
+        "owned_lock_released": true
+      },
+      "termination_errors": []
+    },
+    {
+      "case": "exited",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "owned_process_gone": true,
+        "owned_marker_released": true,
+        "owned_lock_released": true
+      },
+      "termination_errors": []
+    },
+    {
+      "case": "normal",
+      "passed": true,
+      "result": {
+        "passed": true,
+        "owned_process_gone": true,
+        "owned_marker_released": true,
+        "owned_lock_released": true
+      },
+      "termination_errors": []
+    },
+    {
+      "case": "delayed",
+      "passed": true,
+      "result": {
+        "passed": false,
+        "owned_child_termination_timeout": true,
+        "owned_process_gone": false,
+        "owned_marker_released": false,
+        "owned_lock_released": false
+      },
+      "termination_errors": []
+    },
+    {
+      "case": "terminate-error",
+      "passed": true,
+      "result": {
+        "passed": false,
+        "owned_child_termination_timeout": true,
+        "owned_process_gone": false,
+        "owned_marker_released": false,
+        "owned_lock_released": false
+      },
+      "termination_errors": [
+        "OSError('synthetic terminate failure')"
+      ]
+    },
+    {
+      "case": "foreign-marker",
+      "passed": true,
+      "result": {
+        "passed": false,
+        "owned_process_gone": true,
+        "owned_marker_released": false,
+        "owned_lock_released": true
+      },
+      "termination_errors": []
+    },
+    {
+      "case": "foreign-race",
+      "passed": true,
+      "result": {
+        "passed": false,
+        "owned_process_gone": true,
+        "owned_marker_released": false,
+        "owned_lock_released": true
+      },
+      "termination_errors": []
+    }
+  ],
+  "source_sha256": "5cfdb8d5388c3583ee84a0dbfa2c82fcfb61feeccc494e74f012123eda16d11b",
+  "actual_gpu_processes_tested": false,
+  "actual_gpu_reservation_touched": false,
+  "gpu_run": false,
+  "below_normal": true,
+  "cpu_affinity": [
+    15
+  ]
+}

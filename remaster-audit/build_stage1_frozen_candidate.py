@@ -12,6 +12,7 @@ record lineage, retained limitations, and pending live acceptance.
 from __future__ import annotations
 import argparse
 import copy
+import ctypes
 from datetime import datetime, timezone
 import hashlib
 import io
@@ -40,8 +41,32 @@ def pinned(ref):
 def atomic(path,data):
     # Break immutable parent hardlinks before replacing any candidate file.
     temporary=path.with_name(path.name+'.new')
-    with temporary.open('xb') as stream:stream.write(data)
+    with temporary.open('xb') as stream:stream.write(data);stream.flush();os.fsync(stream.fileno())
     temporary.replace(path)
+
+def load_cutout_rgb_fill(policy):
+    """Explicit opt-in CPU library, with pinned build/source provenance in the plan."""
+    if policy is None:return None
+    if policy.get('method')!='cm_fill_cutout_rgb-v2b':raise ValueError('Unsupported cutout RGB fill method')
+    library=pinned(policy['library'])
+    for field in ('source','header','build_receipt'):pinned(policy[field])
+    dll=ctypes.CDLL(str(library));function=dll.cm_fill_cutout_rgb
+    function.argtypes=[ctypes.c_void_p,ctypes.c_int,ctypes.c_int];function.restype=ctypes.c_int64
+    return dll,function
+
+def apply_cutout_rgb_fill(image,function):
+    """Fill invisible RGB only; reject a function that changes alpha or visible RGB."""
+    before=np.array(image.convert('RGBA'),dtype=np.uint8,copy=True)
+    if not set(np.unique(before[:,:,3])).issubset({0,127,255}):raise ValueError('Noncategorical fill input alpha')
+    if not np.any(before[:,:,3]==0):
+        return image,dict(applied=False,reason='No cutout pixels',rgb_pixels_changed=0,alpha_unchanged=True,visible_rgb_unchanged=True)
+    after=before.copy();count=function(after.ctypes.data,image.width,image.height)
+    if count<0:raise ValueError('Cutout RGB fill failed')
+    visible=before[:,:,3]!=0
+    if not np.array_equal(before[:,:,3],after[:,:,3]):raise ValueError('Cutout RGB fill changed alpha')
+    if not np.array_equal(before[:,:,:3][visible],after[:,:,:3][visible]):raise ValueError('Cutout RGB fill changed visible RGB')
+    changed=int(np.any(before[:,:,:3]!=after[:,:,:3],axis=2).sum())
+    return Image.fromarray(after),dict(applied=True,rgb_pixels_changed=changed,alpha_unchanged=True,visible_rgb_unchanged=True)
 
 def verified_native_source(source,key):
     words=pinned(source['source_words']).read_bytes();clut=pinned(source['source_clut']).read_bytes()
@@ -62,6 +87,7 @@ def main():
     args=parser.parse_args();out=args.output.resolve()
     if out.parent!=EVIDENCE.resolve() or out.exists():raise ValueError('Use a fresh direct child of private completion evidence')
     plan_path=args.plan.resolve();plan=json.loads(plan_path.read_bytes())
+    fill_policy=plan.get('cutout_rgb_fill');fill=load_cutout_rgb_fill(fill_policy);fill_rows=[]
     parent_path=pinned(plan['parent']);parent=json.loads(parent_path.read_bytes())
     parent_pack=Path(parent['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT'])
     manifest_refs={}
@@ -162,6 +188,9 @@ def main():
             classes=np.unique(np.asarray(image.getchannel('A')))
             if not set(classes).issubset({0,127,255}):raise ValueError('Noncategorical alpha: '+str(image_path))
             if not (1<=width<=4096 and 1<=height<=4096):raise ValueError('Image exceeds renderer dimensions')
+            if fill:
+                image,fill_result=apply_cutout_rgb_fill(image,fill[1])
+                fill_rows.append(dict(key=key,**fill_result))
             # Validate and transform every input first. Reuse the parent's
             # already-pinned encoded PNG only after comparing all final RGBA
             # pixels; changed builders or inputs cannot bypass validation.
@@ -196,6 +225,7 @@ def main():
         frozen_manifests=manifest_refs,parent_candidate=dict(path=str(parent_path),sha256=sha(parent_path)),
         authored_entries=len(plan['entries']),live_visual_accepted=False,production_installed=False,
         pixel_equal_parent_pngs_reused=pixel_equal_reused,
+        cutout_rgb_fill=dict(policy=fill_policy,rows=fill_rows) if fill else None,
         emissive_files=sorted(masks.values(),key=lambda x:x['name']),
         composed_at_utc=datetime.now(timezone.utc).isoformat())
     report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT']=str(pack)

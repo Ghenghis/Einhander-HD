@@ -1,0 +1,16 @@
+✔ exclusive grant, fencing, explicit release and transfer (2.0679ms)
+✔ expiry disallows starts but never gives card to another project (0.9477ms)
+✔ deny preserves existing ownership and requires explicit allow (0.3939ms)
+✔ requests are durable and do not silently grant permission (0.2749ms)
+✔ actual job identity required, old-token starts and owner self-grants rejected (0.2912ms)
+✔ concurrent cross-project mutations cannot both acquire mutex (23.563ms)
+✔ release blocks a real live PID and fails closed on unknown access (0.6699ms)
+✔ notification failure retains durable event; delivery does not hold state mutex (0.605ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 107.2826

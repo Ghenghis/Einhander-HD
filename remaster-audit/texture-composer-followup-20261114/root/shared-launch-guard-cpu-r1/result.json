@@ -1,0 +1,174 @@
+{
+  "at_utc": "2026-11-14T14:52:27.182659+00:00",
+  "passed": true,
+  "cpu_cases": 12,
+  "cases": [
+    {
+      "case": "valid_current_fence",
+      "expected": true,
+      "passed": true,
+      "result": {
+        "allowed": true,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": []
+      }
+    },
+    {
+      "case": "foreign_project",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-pizza-tycoon-hd",
+        "revision": 1,
+        "errors": [
+          "Shared GPU is not granted to Einhander"
+        ]
+      }
+    },
+    {
+      "case": "expired",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Shared GPU grant expired"
+        ]
+      }
+    },
+    {
+      "case": "denied",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "New shared GPU starts disallowed"
+        ]
+      }
+    },
+    {
+      "case": "new_starts_disabled",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "New shared GPU starts disallowed"
+        ]
+      }
+    },
+    {
+      "case": "wrong_device",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Wrong shared GPU schema/device"
+        ]
+      }
+    },
+    {
+      "case": "bad_deadline",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Invalid shared GPU deadline"
+        ]
+      }
+    },
+    {
+      "case": "bad_deny_list",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Invalid shared GPU deny list"
+        ]
+      }
+    },
+    {
+      "case": "missing_fence",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Missing or stale shared GPU fence"
+        ]
+      }
+    },
+    {
+      "case": "stale_fence",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": [
+          "Missing or stale shared GPU fence"
+        ]
+      }
+    },
+    {
+      "case": "missing_state",
+      "expected": false,
+      "passed": true,
+      "result": {
+        "allowed": false,
+        "owner": null,
+        "errors": [
+          "Shared GPU state unavailable"
+        ]
+      }
+    },
+    {
+      "case": "running_job_retains_ownership_after_expiry",
+      "expected": true,
+      "passed": true,
+      "result": {
+        "allowed": true,
+        "owner": "claude-einhander",
+        "revision": 1,
+        "errors": []
+      }
+    }
+  ],
+  "current_actual_owner_without_token": {
+    "allowed": false,
+    "owner": "claude-pizza-tycoon-hd",
+    "revision": 2,
+    "errors": [
+      "Shared GPU is not granted to Einhander",
+      "Missing or stale shared GPU fence"
+    ]
+  },
+  "actual_state_mutated": false,
+  "gpu_run": false,
+  "source_sha256": "a0142d4230ea8a6604bb4488e4448f245079aadc65b9dd9ba0eb739bb8436d13",
+  "below_normal": true,
+  "cpu_affinity": [
+    11
+  ]
+}
