@@ -98,7 +98,9 @@ def prepare(args):
         frozen_helper=directory/'process_loopback_capture.exe'
         ui.copy_verified(helper,frozen_helper)
         report['process_loopback_helper']=pacing.base.ref(frozen_helper)
-    report['launches']['candidate']['environment_overrides'].update(PSX_OVERLAY_DIFF='0',PSX_OVERLAY_DIFF_ADDR='0')
+    report['launches']['candidate']['environment_overrides'].update(PSX_OVERLAY_DIFF='0',PSX_OVERLAY_DIFF_ADDR='0',
+        PSX_FRAME_PHASE_RING='1',PSXRECOMP_NATIVE_UPLOAD_LEDGER='1')
+    report['visual_profile']['observer_overhead']='Frame/upload diagnostic rings and one-second focus RPC; not recorder-free baseline acceptance'
     if args.qualified_code_proof:
         from build_stage1_code_cache import stage_qualified_cache
         stage_qualified_cache(report,args.qualified_code_proof)
@@ -199,7 +201,9 @@ def run(args):
         if report['visual_profile'].get('static_image_profile'):
             proof['static_image_at_title']=probe.request(report,'static_image_status')
             proof['boot_fingerprints']=probe.request(report,'frame_fingerprint',count=4096)
-        proof['route']=enter_city(report,poll_seconds=.25)
+        report['command_phase']='native-menu-route'
+        try:proof['route']=enter_city(report,poll_seconds=.25)
+        finally:report['command_phase']='gameplay'
         if report['visual_profile'].get('native_menus'):
             control=directory/'replacement-control.txt'
             if control.read_text()!='0\n':raise RuntimeError('Native-menu control changed before gameplay')
@@ -300,10 +304,11 @@ def run(args):
                 row['native_upload_totals']=probe.request(report,'native_upload_ledger',n=1)
             if report['visual_profile'].get('static_image_profile') and second%15==0:
                 row['static_image_status']=probe.request(report,'static_image_status')
-            if report['visual_profile'].get('cpu_profile'):
-                row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
-                if row['hd_cpu_profile'].get('hr_kept_leaks',0):
-                    raise RuntimeError('A retained HD framebuffer escaped its primitive handler')
+            # Focus is an acceptance gate even when attribution counters are off.
+            # This one-second diagnostic RPC overhead is retained in the proof.
+            row['hd_cpu_profile']=probe.request(report,'hd_cpu_profile')
+            if row['hd_cpu_profile'].get('hr_kept_leaks',0):
+                raise RuntimeError('A retained HD framebuffer escaped its primitive handler')
             if report['visual_profile'].get('dirty_profile') and second in (0,65,75,85,95,120,150,169):
                 row['dirty_ram_stats']=probe.request(report,'dirty_ram_stats')
             if report['visual_profile'].get('phase_profile') and second%15==0:

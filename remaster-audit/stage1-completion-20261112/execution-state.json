@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T18:13:16.349641+00:00",
+  "updated_at_utc": "2026-11-14T18:45:04.634208+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -905,14 +905,15 @@
     "project_complete": false
   },
   "latest_resource_policy": {
-    "user_3090_released": false,
-    "reserved_until_utc": "2026-11-14T18:37:05Z",
-    "root_gpu_run": false,
-    "fresh_grant_still_required": true
+    "gpu_owner": "claude-pizza-tycoon-hd",
+    "broker_revision": 13,
+    "ownership_observed_utc": "2026-11-14T18:38:44Z",
+    "expiry_never_transfers": true,
+    "einhander_gpu_run": false
   },
   "actual_monitor": {
-    "pid": 39432,
-    "bound_end_utc": "2026-11-14T18:25:12.652Z",
+    "pid": 38028,
+    "bound_end_utc": "2026-11-14T18:52:49.061Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -937,5 +938,27 @@
     "executable_sha256": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa",
     "live_qualified": false,
     "evidence": "remaster-audit/recorder-menu-results-20261114/README.md"
+  },
+  "unassisted_route": {
+    "ft1_simulated_cases": 4,
+    "cli_policy_cases": 14,
+    "passed": true,
+    "real_game": false,
+    "staging": "declined70%CPU/no child",
+    "evidence": "remaster-audit/unassisted-route-results-20261114/README.md"
+  },
+  "menu_visual_review": {
+    "images_viewed": 12,
+    "provisional_prompt_choices_2048": 3,
+    "rejected_spec_choices_2048": 3,
+    "lower_resolution_accepted": false,
+    "live_accepted": false
+  },
+  "cage_v2": {
+    "canonical_preserved": true,
+    "ledger_pins": 6,
+    "files": 8,
+    "integrated": false,
+    "final_hd_accepted": false
   }
 }

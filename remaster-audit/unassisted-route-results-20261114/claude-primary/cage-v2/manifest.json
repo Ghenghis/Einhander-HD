@@ -1,0 +1,200 @@
+{
+ "name": "95A3BCF8-C-cage-v2",
+ "revision": "r1",
+ "status": "candidate (private; not integrated, not live-tested)",
+ "owner": "claude-einhander",
+ "region": "C_barred_window_cage uv [64,0]-[112,64] half-open (t3-green-lights/regions.json)",
+ "gpu": "none: CPU-only deterministic rebuild from native palette colours; no generated imagery",
+ "why": "C_barred_window_cage (uv [64,0]-[112,64]) is drawn in Stage 1 only with palette 857DB48E (148 draws, all\nsemi -1, t3-green-lights draw-census). The live parent page (frozen-w3-lit-v1, sha 59e799b4, unchanged in root's\neight-ROI candidate 903bd84a) came from a smoothed upscale: the bright bars (index 0) average 71 levels too dark,\nthe saturated blue lit panels (index 5) 67 levels off, and the texel-cell mean error reaches 196. 490 of the 506\nSTP-black void texels carry alpha 127 instead of their native class 255 and 16 blocks have non-uniform alpha. The\nregion is an inverted lattice (no wall index), so the ramp-window builder window_ramp_rebuild.r1.py does not apply.",
+ "method": "* Void texels (colour exactly black; here index 15, STP black) keep the exact native colour, uniform per block.\n  * Every other texel is rendered as an edge-aware bilinear field of NATIVE COLOURS between texel centres. A\n    neighbour contributes only if it lies inside the region, is not void, and its colour differs from the texel's\n    own colour by less than TAU (max over channels). Larger steps (bars against shadows, panels against bars,\n    anything against a void) stay crisp; small steps (glow gradient, dithered wall) are smoothed. A diagonal\n    neighbour also needs both edge neighbours.\n  * Per texel block and channel the block MEAN is made exactly the native colour: an additive pass, then a\n    headroom-proportional residual that cannot clip, then exact-sum rounding to 8 bits (block sum = 64 x colour).\n    No texel is added, removed or moved, and every block mean is its native palette colour.\n  * ALPHA = the native class of each texel (127 opaque, 255 STP), uniform per block, inside the ROI only.\n  * Every pixel outside the ROI is byte-identical to the parent.",
+ "bindings": "indices-256 equals the decoded stock words (all 16,384 valid, 4-bit, low nibble\nfirst); the raw CLUT decodes to palettes.json; no CLUT entry is raw 0x0000 (no transparent class); classes are within\n{127, 255}; the region bbox equals regions.json; the draw census binds the key to region C only and region C to this\npalette only, with uv_union inside the bbox; the parent is RGBA 2048x2048. --freeze also requires the parent sha256\nprefix recorded below.",
+ "params": {
+  "px_per_texel": 8,
+  "tau": 64.0,
+  "classes_allowed": [
+   127,
+   255
+  ],
+  "gates": [
+   "readback_equals_written",
+   "outside_roi_identical_to_parent",
+   "centre_alpha_equals_native_class",
+   "alpha_uniform_per_block",
+   "block_sums_equal_native_exactly",
+   "void_blocks_exact_native",
+   "rounding_in_range"
+  ]
+ },
+ "keys": {
+  "95A3BCF8-857DB48E": {
+   "region": "C_barred_window_cage",
+   "bbox": [
+    64,
+    0,
+    112,
+    64
+   ],
+   "census": {
+    "region_draws": 148,
+    "draws": 148,
+    "uv_union": [
+     64,
+     0,
+     111,
+     63
+    ],
+    "semi": {
+     "-1": 148
+    },
+    "max_quad_area": 9690,
+    "median_quad_area": 2288.0,
+    "top_uv": [
+     [
+      64,
+      0,
+      110,
+      62,
+      33
+     ],
+     [
+      64,
+      0,
+      111,
+      63,
+      25
+     ],
+     [
+      74,
+      0,
+      102,
+      27,
+      25
+     ],
+     [
+      64,
+      30,
+      110,
+      62,
+      17
+     ]
+    ]
+   },
+   "parent": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-857DB48E.png",
+    "sha256": "59e799b40a9c6beb37284a8597847f5110ea2e26310f47672804c2520462ed63",
+    "mode": "RGBA",
+    "shape": [
+     2048,
+     2048,
+     4
+    ]
+   },
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-857DB48E.png",
+    "sha256": "59e799b40a9c6beb37284a8597847f5110ea2e26310f47672804c2520462ed63"
+   },
+   "native": {
+    "words": 16384,
+    "words_valid": 16384,
+    "indices_equal_indices256": true,
+    "clut_raw_hex": [
+     "7F9B",
+     "7315",
+     "5A70",
+     "458A",
+     "2D27",
+     "48E1",
+     "24A3",
+     "1CA2",
+     "1882",
+     "1461",
+     "1061",
+     "0C41",
+     "0820",
+     "0400",
+     "0400",
+     "8000"
+    ],
+    "frame": 11342,
+    "clut_xy": [
+     32,
+     490
+    ],
+    "files": {
+     "words.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-857DB48E.words.bin",
+      "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+     },
+     "valid.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-857DB48E.valid.bin",
+      "sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f"
+     },
+     "clut.bin": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-857DB48E.clut.bin",
+      "sha256": "2f154549e52f08f7d34a9ca548516559bf9c68cc13848599014906eac257ab73"
+     },
+     "source.json": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-857DB48E.source.json",
+      "sha256": "21871467ef29a4c8f3096b245ba0343c5966e6e9fc6b05c7a458a15efd2f8a74"
+     }
+    }
+   },
+   "classes": [
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    127,
+    255
+   ]
+  }
+ },
+ "validation_passed": true,
+ "integration": "ROI-only: overlay the region ROI (RGBA) of page2048 onto the same parent page; every other pixel is the parent's, byte for byte.",
+ "known_limits": [
+  "correctness candidate: every texel block mean is the native colour; within-block detail is only the edge-aware interpolation of native colours (no authored HD texture, no bevel)",
+  "the STP class (255) of void texels is restored, but all 148 Stage 1 draws are semi -1, so STP is expected to be inert there (not verified live)",
+  "the 84 other parent pages that contain region C are not touched (no Stage 1 draws)",
+  "SIMULATION only: not integrated, not seen live"
+ ],
+ "sources": {
+  "indices": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\indices-256.npy",
+   "sha256": "5da75af150796f75fce5e35f3838e25921df9b089e10d3fbab908dbb42bbbb19"
+  },
+  "palettes": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\palettes.json",
+   "sha256": "47ee9709fc3390bf765623bbf67ddf09dcecf83f41f76653f960ed7256ebd680"
+  },
+  "regions": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\regions.json",
+   "sha256": "52aa9d2509c14fd633b6fc373a2f6f12ca44d377fb44b9fa65c9a302cfbac075"
+  },
+  "census": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\draw-census.json",
+   "sha256": "a698ca0f5cc5a92031d6fe1561334b9a5f825634ea93e73beeeff8b91daf2218"
+  },
+  "builder": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\cage_rebuild.r1.py",
+   "sha256": "5b15ea8ea249bc0bcabab003b9d567c53194cc3f3d807b5aa2745b5bb0814a21"
+  }
+ },
+ "pin": {
+  "priority": 16384,
+  "affinity": [
+   13
+  ],
+  "threads_env": "1"
+ },
+ "built_utc": "2026-11-14T18:17:09.833014+00:00"
+}

@@ -1,5 +1,11 @@
 # CPU-only gameplay preparation — actual results and corrections
 
+## Simulated route/CLI controls and actual visual decisions —18:40 UTC
+
+FT1four fake-boundary cases and14current CLI/policy checks pass; real game/GPU/transport acceptance is still open. Staging refuses70%CPU before a child. Cagev2sixpins/eightfiles are preserved, not integrated/finalHD. Root views12menu images: three2048prompt choices provisional, three spec-text choices rejected. Pizza still owns the sharedGPU; time expiry never transfers ownership. [Exact results, failures and remaining gates](../docs/UNASSISTED-ROUTE-RESULTS-20261114.md).
+
+Current handoff/queue are concise with exact dated history preserved. Actual metadata monitor38028 bounds18:52:49.061UTC and proves monitoring only. All seven-stage/release/live gates remain incomplete; older dated claims below are historical where superseded.
+
 ## Recorder engine correction and verified new menu bytes —18:12 UTC
 
 F3 capture-record/byte reservation is source-integrated and privately compiled/linked (2.709s); seven CPU scenarios and four mutants pass. Root checks160 source/155 link inputs. Fresh v5 menu bytes pass1183 independent hash checks, including708 variants; old overwritten summaries stay INVALID. No live appearance/class replay, game/GPU/audio or installation. [Actual results, source and failures](../docs/RECORDER-MENU-RESULTS-20261114.md).

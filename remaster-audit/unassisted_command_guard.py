@@ -7,7 +7,7 @@ import uuid
 
 SIMPLE = {'get_registers', 'audio_stats', 'turbo_state', 'hd_cpu_profile',
           'native_upload_selftest', 'display_ring_stats', 'clear_input', 'quit',
-          'present_shot_seq'}
+          'present_shot_seq', 'gpu_state'}
 
 
 def integer(value, low, high):
@@ -31,6 +31,9 @@ def validate_command(report, request):
             return
     if command == 'set_input' and fields == {'buttons': '0x7FFF'} and visual.get('ordinary_fire') is True:
         return
+    if command == 'set_input' and fields in ({'buttons': '0xBFFF'}, {'buttons': '0xFFBF'}):
+        if report.get('command_phase') == 'native-menu-route':
+            return
     if command == 'read_ram' and fields in ({'addr': '0x800813C4', 'len': 1},
                                            {'addr': '0x80081380', 'len': 6}):
         return
@@ -39,6 +42,11 @@ def validate_command(report, request):
         if set(fields) <= allowed and integer(fields.get('n'), 1, 2048 if command == 'frame_phase_ring' else 256):
             if all(integer(v, 0, 2**64-1) for k,v in fields.items() if k != 'n'):
                 return
+    if command == 'gl_present_ring' and fields == {'n': 16384} and type(fields['n']) is int:
+        return
+    if command == 'hd_upload_ledger' and set(fields) == {'from_seq', 'n'}:
+        if integer(fields['from_seq'],0,2**64-1) and integer(fields['n'],1,128):
+            return
     if command in {'screenshot', 'present_shot'} and set(fields) == {'path'}:
         target = Path(fields['path']).resolve()
         root = Path(report['evidence']).resolve()
@@ -56,7 +64,8 @@ def send_guarded(original, report, raw):
     # A timed-out send still has a durable, uniquely named intent. A result
     # receipt from the existing transport is additional evidence, not a prerequisite.
     with target.open('x', encoding='utf-8') as stream:
-        json.dump(dict(request=request, state='validated_before_transport'), stream)
+        json.dump(dict(request=request, command_phase=report.get('command_phase','gameplay'),
+                       state='validated_before_transport'), stream)
         stream.write('\n')
         stream.flush()
         os.fsync(stream.fileno())
@@ -67,13 +76,22 @@ def audit_commands(report):
     root = Path(report['evidence'])
     errors = []
     count = 0
+    intents = {}
     for directory in ('command-intents', 'commands'):
         for receipt in (root/directory).glob('*.json'):
             try:
                 row = json.loads(receipt.read_bytes())
                 request = dict(row['request'])
                 request.pop('id', None)
-                validate_command(report, request)
+                signature=json.dumps(request,sort_keys=True)
+                if directory == 'command-intents':
+                    phase=row.get('command_phase','gameplay')
+                    validate_command(dict(report,command_phase=phase),request)
+                    intents.setdefault(signature,[]).append(phase)
+                else:
+                    phases=intents.get(signature)
+                    if not phases:raise ValueError('Transport receipt has no validated request intent')
+                    validate_command(dict(report,command_phase=phases[0]),request)
                 count += 1
             except Exception as error:
                 errors.append(dict(receipt=str(receipt),error=type(error).__name__+': '+str(error)))

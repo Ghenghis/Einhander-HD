@@ -1,0 +1,95 @@
+# Codex durable work queue
+
+## Recorder engine correction and verified new menu bytes —18:12 UTC
+
+F3 capture-record/byte reservation is source-integrated and privately compiled/linked (2.709s); seven CPU scenarios and four mutants pass. Root checks160 source/155 link inputs. Fresh v5 menu bytes pass1183 independent hash checks, including708 variants; old overwritten summaries stay INVALID. No live appearance/class replay, game/GPU/audio or installation. [Actual results, source and failures](../docs/RECORDER-MENU-RESULTS-20261114.md).
+
+User3090Ti hold remains through at least18:37:05UTC, then fresh grant/source/resource gates. Default unassisted-route qualification, cage freeze/fidelity and all seven-stage/release gates remain open. Older dated statements below are historical where superseded.
+
+## CPU-only continuation and corrected menu claims —17:55 UTC
+
+The user3090Ti hold lasts conservatively until18:37:05UTC, then a fresh broker grant is still required. Twelve CPU policy controls pass (0.496s child, empty tree); no game/GPU/audio or live acceptance. Independent readback INVALIDATES the old72/72 and118/118 menu file summaries because scale variants overwrote the same output paths. Old evidence remains preserved; a new exclusive-write v5 rebuild is pending actual results. [Verified results, source and remaining gates](../docs/CPU-GAMEPLAY-PREPARATION-20261114.md).
+
+The earlier1699-entry world-pack admission is a separate valid component; all seven-stage/release acceptance remains open. Actual metadata monitor39432 is bounded to18:25:12.652UTC and proves metadata monitoring only. Older dated claims below are historical and superseded where this correction applies.
+
+## Combined ROI candidate admitted —17:26 UTC
+
+The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).
+
+No GPU/game/audio run or installation. Live motion/look, full fidelity and seven-stage acceptance remain open; the earlier modern Remix failure and P/Q scheduling violation remain preserved. Metadata monitor PID42612 ends17:58:03.357 UTC and proves monitoring only. Older dated checkpoints below are historical.
+
+## Verified region-O integration —17:02 UTC
+
+The private O ROI composition passes: 1,699 page hashes checked, 1,697 unchanged PNGs, two size-neutral corrected pages with identical alpha and all outside-region pixels retained. Composer source and a real CLI fixture are checked; runtime admission/live motion remain pending. The scoped menu census finds only 19/261 primary passes and preserves visual repair failures. Timeout validation passes 72/72 in author and independent runs, without establishing a stage clear. [Actual results and unfinished work](../docs/ROI-COMPOSITION-RESULTS-20261114.md).
+
+No new GPU/game/audio run or installation. M/I/J/P/Q freezes are verified; eight-ROI composition remains pending after a prestart runner-pin refusal. The P/Q late-start violation is preserved. The failed modern Remix GPU result is preserved. Metadata monitor PID38020 is bounded to17:33:42.232 UTC and proves monitoring only. Earlier dated paragraphs below are historical.
+
+## Actual modern GPU result —16:35UTC
+
+The private modern Remix probe ran on3090Ti and FAILED: three identical outputs with zero expected triangle pixels; Shutdown exceeded its15-second deadline, child exit30/40.159s, wrapper exit1/41.681s. Startup/frame return codes and the initial GL readback pass do not establish rendering. Both processes are absent, markers removed and shared grant explicitly released revision10. [Actual evidence and remaining work](../docs/MODERN-REMIX-GPU-RESULT-20261114.md).
+
+Root continues CPU-only diagnosis/publication; bounded Claude texture/HUD work resumes. No game/audio test, installed runtime, RT/DLSS gameplay or full remaster acceptance is claimed. Six native sessions are registered. Metadata monitor PID37252 ends17:06:21.828UTC and proves monitoring only. Earlier dated checkpoints below are historical.
+
+## Current frontend/tracker checkpoint —16:06UTC
+
+Development launch now uses validated saved materials, explicit stock recovery and correct custom-port links. Nine unit cases and actual CPU validation/PowerShell/Windows-argv controls pass; saved pointer unchanged. The exact v67 pack passes16 tracker/save-state/decode fixture processes in6.037s. Region-O9pins/all11files are preserved in canonical C: storage; ROI-only integration/sidecar refresh and live look remain pending. [Actual code, checks and newer art/menu failures](../docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md).
+
+No game/GPU/audio/browser/bridge test ran. Modern GPU qualification is the next controlled gate after explicit shared grant and current resource checks; elapsed time alone grants nothing. Full remaster/stage acceptance remains open. Metadata monitor PID37556 is bounded to16:17:23.189UTC; older checkpoints below are historical.
+
+## Current verified CPU checkpoint —15:37UTC
+
+Root independently replays v6:7,534 fixtures,16 recording-GL cases/425 checks and92 worker identity checks pass; bounded outer exit0/13.865s. Private v67r3 now compiles/links (EXE8bc3ac3d...), with8 adapter controls and a real growth mutation caught. It freshly builds debug/pack, retains the rebuilt r2 renderer and other pinned objects; not a clean full-source build. No game/GPU/audio run or installation. Tracker/save-state regressions and all live acceptance remain open. [Actual results and preserved failures](../docs/DECODE-WORKER-RESULTS-20261114.md).
+
+The canonical native primary replacement has actual own hook/inbox/checkpoint proof; original history is retained and its worktree guard respected. Metadata monitor PID36052 is bounded to15:49:33.939UTC. CPU-only work continues; no GPU grant is inferred from elapsed time. Older checkpoint paragraphs below are historical. HUD derived candidates still require source/look/live acceptance; full skins/menu/audio and seven-stage completion are not claimed.
+
+## Resource and native-worker update —15:06UTC
+
+Pizza explicitly released its shared GPU grant14:56:05UTC; coordinator independently checked parent/child absence14:57:01. Root's legacy marker is still pending reconciliation; no new Einhander GPU/game/audio test ran. [Shared-resource controls and limits](../docs/SHARED-GPU-RESULTS-20261114.md) pass on CPU. The metadata monitor PID31968 is bounded to15:23:29.643UTC and proves monitoring only. Original native primary retired from new assignments with a durable handoff; supported canonical-root replacement remains pending. Other three workers continue stage/UI repairs. HUD152 derived fade-key candidates are not source/live admission; S23 phase silhouette defects and S67 native smoke-fill repairs remain subject to actual acceptance.
+
+## Latest texture/engine CPU checkpoint
+
+The 3090 Ti was handed back to Pizza Tycoon at14:38:45UTC; the modern GPU test never started and a new user-project hold blocks launches until release. CPU work continues. New private RISE composition replaces33 variants, preserves1,666 other images and passes native admission for1,699 entries, without installation/live acceptance. Opt-in composition fill passes10 controls and removes100,550 measured border flags on a real audit probe while preserving alpha/visible RGB.
+
+Root verifies1,111 v6 freeze pins; author host report passes7,534 fixtures plus mutation/glue/pack checks, but its outer process exit was not captured and root replay/private game link remain pending. Modern GL r4 compiles and passes14 CPU contracts,12 image controls and7 cleanup controls; actual modern GPU images/lifecycle and in-game RT/DLSS remain NOT RUN. Later-stage repaired copies still require source/colour/live review; current policy corrections and failures are retained. [Actual source, checks, failures and limits](../remaster-audit/texture-composer-followup-20261114/README.md).
+
+## Resource release and actual monitor renewal — November 14
+
+**Latest resource update:** the user explicitly released the RTX 3090 Ti in the other Einhander chat; root verified the actual human message and archived/removed the old hold at14:03:44 UTC. Reuse still requires root coordination, a quiet resource window and reviewed source. No new GPU test has started at this checkpoint; no power/driver setting was changed. Older reservation paragraphs below are historical and superseded. Native workers remain CPU-only without individual grants.
+
+Published checkpoint `ee7824a4e4e869972045b914225cfdf1efab8fcc` is remote-verified in draft PR1:189 new packet pins,2,243 historical/new pins verified;55 documents,89 JSON reports,970 references,0 issues. Its immutable packet preserves failures. The later RISE float32 correction is local:33/33 class checks pass and approved reference is byte-identical; composition/live acceptance remains pending.
+
+The owned metadata monitor was actually renewed: PID26032, first snapshot14:01:10 UTC, bound14:31:09.548 UTC; receipt `remaster-audit/runtime-review/gpu-texture-remix-20261114/monitor-renewal-20261114T140109Z/result.json`. It proves metadata monitoring only. Main continues actual inbox turns. The crash-check coordinator schedules bounded texture jobs; root retains v6/runtime/GPU/build/publication. Whole remaster remains incomplete.
+
+## Current CPU continuation
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
+**Latest resource instruction, verified in the user's crash-status chat:** the3090Ti is reserved for Pizza Tycoon HD until **at least07:00Phoenix /14:00UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
+
+Updated2026-11-14 after the12:49UTC Windows restart. Owner `codex-einhander`; current task `EIN-CODEX-CONTINUITY-20261114`. Overall project remains active. [Current handoff](Codex-HANDOFF.md).
+
+- [x] Reconnect native Claude on C:, observe a real model turn and reconcile current recovery inbox: fork2 session11357b05 and actual-model message msg_23d0f67 at13:10UTC. Historical mail remains subject to reconciliation rather than automatic replay.
+- [x] Preserve damaged frozen v5 unchanged and verify NEW v5-r2 on CPU (root874 pins,7520 fixtures,14 modes/352checks pass). Independent live qualification remains open. Historical preparation note: Root reverified90 text files/89 intact counterparts/10 input pins and990 published pins. Claude's broader audit reports263 all-NUL files confined to that freeze; it now owns fresh replay/selftest/new v5-r2 freeze. Independently verify every new pin and CPU tests after handoff.
+- [x] Publish owned v65/v66 source/actual host/RPC/oracle/build results, SDK failed GPU controls, modern matching-SDK CPU initialization and restart integrity audit to GitHub (source/evidence checkpoint b90142f,1064 new+990 prior pins verified, PR1 OPEN/DRAFT). Include source/recipes, retained failures, payload exclusions and concrete limitations. Verify staged documentation links, manifests and remote HEAD; keep PR draft.
+- [ ] Inspect exact release SDK lifecycle/interop source and implement a private matching0.16 probe. Qualify final image and clean Shutdown independently before engine scene submission. Function-table success is not rendering success.
+- [ ] Review/qualify v66 one-frame real GP0 capture, correct generation/readback, provenance and omitted-family diagnostics. Compare actual native raster/projection and materials; separate combined camera/object data before RT world reuse. Collector fixture success is not full scene acceptance.
+- [ ] Review faithful RISE hand-authored geometry, all33 palette/fade variants, gaps/arrow and strict class ownership. Preserve approved five sign revisions. Complete distant opaque sign/window/building art; class mips alone do not sharpen it.
+- [ ] Integrate reviewed offline levels/RGB-only sidecars in a new private candidate with decode-worker identity preparation. Measure first-use stalls and steady cost before accepting. Keep experimental flags OFF by default and preserve native alpha/STP/point sampling.
+- [ ] Run short, bounded, isolated in-game comparisons only after recovery/source gates, with owned resource reservations and fresh Claude quiet inventory. Check real frame phases using from_frame/to_frame/from_seq; preserve failures. No full-game/audio acceptance currently.
+- [ ] Complete actual realistic player/enemy/boss/weapon skins and selectors, modern HUD/menus, effects, background coverage and remastered audio; maintain an evidence-backed implementation inventory rather than claiming existing mockups are in-game.
+- [ ] Complete all seven stages, release/rollback/source reproduction and actual visual/audio/gameplay E2E acceptance. Do not label component completion as project completion.
+
+No D: dependency is required for current work. No GPU/game jobs are owned at this checkpoint. The latest user3090Ti hold above requires explicit release; no automatic reuse. Keep Windows responsive with sequential below-normal work and bounded waits.
+
+## Concrete concurrent later-stage CPU/source lane
+
+Owner transfer in progress: additional native Claude sessions are being organized by codex-einhander-crash-check for S2–3 (claude-einhander-s23), S4–5 (claude-einhander-s45), S6–7 (claude-einhander-s67). These are planned until actual first-turn/queue handoffs are observed. Original Claude retains Stage1/shared runtime. Codex schedules source capture and reviews/publishes evidence. These are queued independent of Stage1 clear, not six currently running authors. Audit each selected key against CRC-proven native class maps, explicitly list missing proof, keep R1/R2/R4 and connectivity-only outcomes separate, and do not relabel centre-only checks as whole-cell passes. All GPU/live captures remain sequential and reserved.
+
+- [ ] EIN-S2-WHOLE-CELL-20261114: 39 selected keys. Review retained train/ground/FX selections and reconcile phase keys. Prepare strict whole-cell class audit; preserve v2/v3 smoke alternatives and native mission text. Next source gate: STOCK-S2-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.
+- [ ] EIN-S3-WHOLE-CELL-20261114: 39 selected keys. Review documented dither/blob defects in E49BC3F1/AA5DBEF2. Prepare a new isolated repair proposal and strict class audit; do not ship the documented rejected cells. Next source gate: STOCK-S3-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.
+- [ ] EIN-S4-WHOLE-CELL-20261114: 11 selected keys. Reconcile shared 05E1881C source ownership with Stage5; inventory the deferred233 static keys and the world/effects look alternatives. Prepare strict class audit. Next source gate: STOCK-S4-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.
+- [ ] EIN-S5-WHOLE-CELL-20261114: 12 selected keys. Separate three likely8bpp Duerer subregions from4bpp assumptions; map exact capture fields. Reconcile shared panorama and245 deferred static keys. Prepare strict class audit. Next source gate: STOCK-S5-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.
+- [ ] EIN-S6-WHOLE-CELL-20261114: 101 selected keys. Keep101-key manifest total (83+18), preserve failed43C26C42 revision, reconcile replacement passes and GP0 part-mask requests. Prepare strict class audit. Next source gate: STOCK-S6-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.
+- [ ] EIN-S7-WHOLE-CELL-20261114: 26 selected keys. Reconcile C4FDEDD2-EAD968A1 inferred pairing, five export-less masters and14 dense-kanji fallbacks. Prepare source request and strict class audit before admission. Next source gate: STOCK-S7-SOURCE-CONFIRM; Continuous stock-first run; confirm native key, CLUT, actual UV/draw/state coverage with validate_predicted confirm + gate.

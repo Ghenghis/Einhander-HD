@@ -1,0 +1,46 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-B",
+  "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py",
+  "--batch",
+  "v68-unassisted-r1",
+  "--candidate",
+  "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-mijpq-roi-r1\\candidate.json",
+  "--runtime",
+  "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\build.json",
+  "--capture-seconds",
+  "60",
+  "--supersampling",
+  "2",
+  "--cpu-profile",
+  "1",
+  "--telemetry-only",
+  "--native-menus",
+  "--prepare-only"
+ ],
+ "cwd": "C:\\github\\Einhander",
+ "wrapper_pid": 43312,
+ "wrapper_create_time": 1794681313.5845504,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 90.0,
+ "rc": null,
+ "created_utc": "2026-11-14T18:35:13.740790+00:00",
+ "precheck": {
+  "system_cpu_pct": 70.0,
+  "free_gib": 66.33,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T18:35:14.741752+00:00"
+ },
+ "declined": true,
+ "child_pid": null,
+ "wrapper_exit": 3,
+ "end_utc": "2026-11-14T18:35:14.741767+00:00"
+}

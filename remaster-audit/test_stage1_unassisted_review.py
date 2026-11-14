@@ -8,6 +8,9 @@ import sys
 import unittest
 from unittest.mock import patch
 import tempfile
+import ast
+import contextlib
+import io
 
 ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
@@ -148,6 +151,36 @@ class CommandPolicy(unittest.TestCase):
             self.assertTrue(shared_gpu_guard.broker_action('check','synthetic-test-fence',self.temp.name)['allowed'])
             with self.assertRaises(TimeoutError):shared_gpu_guard.broker_action('check','synthetic-test-fence',self.temp.name)
         self.assertTrue(all(not p.exists() and not p.parent.exists() for p in paths))
+
+
+class ActualCliPolicy(unittest.TestCase):
+    def execute_main(self, extra):
+        text=(ROOT/'run_stage1_unassisted_review.py').read_text(encoding='utf-8')
+        block=ast.parse(text).body[-1]
+        self.assertIsInstance(block,ast.If)
+        namespace=dict(review.__dict__)
+        calls=[]
+        namespace['prepare']=lambda args:calls.append(vars(args))
+        namespace['run']=lambda *_:self.fail('GPU/game path must not run')
+        argv=['review','--batch','cpu-fixture','--candidate','unused-private-candidate.json',
+              '--runtime','unused-private-build.json','--prepare-only',*extra]
+        with patch.object(sys,'argv',argv),contextlib.redirect_stderr(io.StringIO()):
+            exec(compile(ast.Module(body=block.body,type_ignores=[]),'actual-cli-block','exec'),namespace)
+        return calls
+
+    def test_actual_cli_defaults_are_light_and_unassisted(self):
+        calls=self.execute_main([])
+        self.assertEqual(len(calls),1)
+        args=calls[0]
+        self.assertEqual((args['capture_seconds'],args['supersampling']),(60,2))
+        self.assertTrue(args['telemetry_only'])
+        self.assertFalse(args['timer_assist'])
+
+    def test_unsupported_modes_refuse_before_preparation(self):
+        for extra in (['--timer-assist'],['--record-evidence'],['--capture-seconds','3600']):
+            with self.subTest(extra=extra),self.assertRaises(SystemExit) as caught:
+                self.execute_main(extra)
+            self.assertEqual(caught.exception.code,2)
 
 
 if __name__ == '__main__':
