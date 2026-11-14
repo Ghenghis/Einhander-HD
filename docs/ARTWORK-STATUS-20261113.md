@@ -1,6 +1,6 @@
 # Artwork produced, verified and still required
 
-November 14 continuation: the [green/pink sign audit](STAGE1-SIGN-QUALITY-20261114.md) identifies soft W3 overrides and private sharper alternatives; none is newly accepted or installed. The installed [RTX Remix texture workflow](RTX-REMIX-SETUP-20261114.md) produced a verified DDS, while connected gameplay project creation remains blocked by the missing compatible runtime scene capture.
+November 14 continuation: the [green/pink sign audit](STAGE1-SIGN-QUALITY-20261114.md) now includes a private live five-sign run and [broader world census](../remaster-audit/world-sign-census-20261114/WORLD-SIGN-CENSUS.md). The inspected distant green/pink panels are city window-light atlas regions with soft/grainy replacements. Twenty-one drawn keys are absent from the tested pack, and126 drawn legacy keys have unused deliverable candidates in sampled earlier routes. These are texture-key counts, not full-game coverage. No revised art is accepted or installed. The [RTX Remix direct SDK](RTX-REMIX-SETUP-20261114.md) now initializes successfully, while scene transport and real gameplay capture/rendering remain unfinished. [Full4K implementation scope](4K-REMIX-IMPLEMENTATION-PLAN.md).
 
 Snapshot: November 13, 2026 (America/Phoenix). The art pipeline has produced substantial Stage 1 work and candidate exports for every later stage. **Full-game artwork, Stage 1 release acceptance and seven-stage E2E are incomplete. There is no verified whole-project completion percentage.**
 

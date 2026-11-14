@@ -1,5 +1,9 @@
 # In-game menu and Skin Factory gaps
 
+November 14 delivery correction: ordinary `Play-HD.cmd` previously bypassed the saved material selection entirely. It now calls [launch_hd.py](../windows-x64/tools/launch_hd.py), which reuses the existing receipt/hash validation and applies the explicitly saved preset. `--stock` deliberately skips it; invalid saved receipts fail visibly. Six focused tests and actual saved/stock CMD `--check` operations passed without launching a game. The local CMD has a byte-exact rollback copy. This entry-point correction does not make all skins, in-game selectors or PBR complete.
+
+A separate light private gameplay review retained native/HD/material captures with acknowledged live color changes, no RAM writes/state loads, clean exit and closed port. The initial attempt failed before gameplay because the test's material environment overwrote its native-menu gate and pack path; that failure is preserved and the fresh corrected run passed. The reviewed Aurora/Gold image shows a teal player and gold-toned small enemies, but coarse surfaces remain and the Neon sample contains no visible ship. Therefore this is limited material delivery evidence, not complete high-fidelity skin acceptance. Bosses, weapons and all craft remain open.
+
 November 13, 2026. Static source audit following the requested player/enemy ship, gun, bullet and effect customization. These are implementation and acceptance gaps, not a claim that new controls have shipped.
 
 ## What exists now

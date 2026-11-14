@@ -1,5 +1,9 @@
 # RTX Remix setup and actual use — November 14, 2026
 
+Latest engine integration result: the installed x64 Remix renderer's direct C API **initializes successfully with the pinned official 0.6.11 header**. A private below-normal C++ probe returned result 0 and non-null scene functions for camera, meshes, materials, lights, Startup/Present/Shutdown and external-swapchain access. No renderer Startup, game injection, ray tracing or gameplay capture ran in this probe. Installed DLL SHA256: `ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1`; pinned upstream commit: `42b54bbe2a9280f7720e5b64415c78aa3e15224f`; header SHA256: `a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d`.
+
+This establishes a direct SDK alternative to implementing an entire D3D9 translation backend. The [official SDK](https://github.com/NVIDIAGameWorks/dxvk-remix/blob/42b54bbe2a9280f7720e5b64415c78aa3e15224f/documentation/RemixSDK.md) supports explicit resource/camera submission; the pinned header also describes external OpenGL presentation interop. Einhander's real geometry/projection provenance, stable camera/object identities, materials, PSX blend/mask/feedback semantics and HUD composition still need engine implementation and testing. [Full 4K implementation plan](4K-REMIX-IMPLEMENTATION-PLAN.md). The absence of automatic OpenGL interception is not a reason to abandon source-level integration.
+
 **The local texture-ingestion workflow works. A connected Einhander Remix gameplay project has not been created.** The user requested setup and use of the installed toolkit. NVIDIA RTX Remix 1.6.1-0 opens from `C:/Program Files/NVIDIA Corporation/RTX Remix`; the bounded workspace is `C:/Remix/Einhander-HD`.
 
 ## What was executed and verified
