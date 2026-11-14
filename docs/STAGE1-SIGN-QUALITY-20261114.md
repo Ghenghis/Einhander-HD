@@ -1,5 +1,9 @@
 # Green and pink sign quality — November 14, 2026
 
+Latest continuation: five private class-preserving sign revisions (boards 4, 9, 10, 12 and 26) passed native pack admission and ran through a light 120-second gameplay check. Sparse captures still show uneven quality; the distant green/pink signs and potentially untreated buildings remain open. No full visual acceptance or production installation is claimed. [Actual live results](media/gallery/sign-crisp-v2-live-results.json) and [full 4K/Remix implementation scope](4K-REMIX-IMPLEMENTATION-PLAN.md) supersede the earlier four-board prepared-only snapshot below.
+
+The remaining distinct-sign total is **unknown**. The older register has 37 rows: 29 numbered boards, three posters and five request rows; later W4 work resolves some requests, so these are not five current missing signs. Two numbered entries are an indicator and a backing panel, leaving 30 named sign/poster rows. The 42 artwork entry records include variants and cannot serve as a distinct-sign denominator. Four cube/sign-row texture cells remain known authoring gaps; eleven late-city source/phase records require resolution. These units overlap and must not be summed. [Source-bound census receipt](media/gallery/sign-census-progress-results.json).
+
 **The washed-out signs are unresolved visual defects. They were not accepted as finished HD artwork.** The user's smoother gameplay report does not approve the sign artwork. There is no verified fraction of all signs completed; the existing 42 authored sign entry records are not a complete sign/state denominator.
 
 Claude performed a C-only source/pack audit and built private alternatives without GPU generation. Root inspected the green-sign comparison. The exact native glyph reading is unverified; no new Japanese/Chinese text was invented.
