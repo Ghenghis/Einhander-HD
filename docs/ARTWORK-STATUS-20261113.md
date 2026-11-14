@@ -1,5 +1,7 @@
 # Artwork produced, verified and still required
 
+November 14 continuation: the [green/pink sign audit](STAGE1-SIGN-QUALITY-20261114.md) identifies soft W3 overrides and private sharper alternatives; none is newly accepted or installed. The installed [RTX Remix texture workflow](RTX-REMIX-SETUP-20261114.md) produced a verified DDS, while connected gameplay project creation remains blocked by the missing compatible runtime scene capture.
+
 Snapshot: November 13, 2026 (America/Phoenix). The art pipeline has produced substantial Stage 1 work and candidate exports for every later stage. **Full-game artwork, Stage 1 release acceptance and seven-stage E2E are incomplete. There is no verified whole-project completion percentage.**
 
 The installed Stage 1 pack has **964 PNGs**. The larger private Stage 1 composition has **1,669 color PNGs**, including **837 authored entry records**, plus **two emissive masks**. Its **226 native-region verification records report zero failures**. It is explicitly uninstalled and not accepted as a complete visual candidate. A PNG, palette key, sprite frame, authored entry, object, frozen revision and accepted gameplay state are different units.

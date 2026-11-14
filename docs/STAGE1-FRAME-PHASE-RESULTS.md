@@ -1,5 +1,7 @@
 # Stage 1 frame phases — November 13, 2026
 
+November 14 continuation: the [completed private power comparison](STAGE1-POWER-PROFILE-RESULTS.md) recorded 230.0131 ms/+11,808 starved samples in its first leg and 50.8336 ms/+0 in its second. The latter still has a mini-boss hitch; profile matching and causal effect remain unproven. The earlier r2/r3 observations below are retained unchanged as historical diagnostics.
+
 **The larger private artwork still fails pacing and audio. No new runtime or artwork was installed.** These two completed, 120-second, timer-assisted diagnostics replace the earlier prepared-only status. Both used the exact v58 executable `c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6`, the frozen 1669-color-PNG candidate, scale 2, PBO uploads, a 5120 MiB GPU texture budget and rewind 50/15 with FMV interval 4. No video, continuous display readback or source capture ran during measurement.
 
 The [replay package](../remaster-audit/runtime-results-v58/README.md) includes actual phase rows, upload events, sampled counters, analyzers and source-proof hashes. The original [v58 source/check package](../remaster-audit/runtime-diagnostics-v58/README.md) remains frozen. Neither diagnostic establishes foreground acceptance, physical scanout, full-stage completion or actual listening acceptance.

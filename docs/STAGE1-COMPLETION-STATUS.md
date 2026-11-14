@@ -1,5 +1,7 @@
 # Stage 1 completion status
 
+November 14 update: [private power-profile results](STAGE1-POWER-PROFILE-RESULTS.md) show a better second run (50.8336 ms maximum, zero new starvation) with a remaining mini-boss hitch and no proven causal driver fix. The scoped preference is restored; no experimental runtime/art was installed. The [sign audit](STAGE1-SIGN-QUALITY-20261114.md) leaves green/pink overrides unaccepted. [Remix ingestion works](RTX-REMIX-SETUP-20261114.md), but no compatible game scene has been captured and no connected Remix project exists. These updates supersede the next-action wording in the dated notes below.
+
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
 
 Current [reboot/runtime and all seven-stage handoff](RUNTIME-CONTINUATION-20261113.md) includes the complete E2E open matrix and frozen source/evidence package. The v58 CPU phase diagnostic passes source/core checks and the full three-file build; its title GPU/API gates passed, but its first gameplay timing attempt lost focus after three seconds and was rejected/closed. Two observed-focus diagnostics are now complete: [actual r2/r3 results and replay data](STAGE1-FRAME-PHASE-RESULTS.md). They still fail: r2 maximum 204.7892 ms/+16,112 starved sample frames; r3 maximum 198.9995 ms/+3,214. r3 isolates a 175.224 ms small-texture wrapper delay near the mini-boss while its TexImage call takes 0.0213 ms. Focus differed and resource sampling has overhead; no causal improvement or installed fix is claimed. Narrow wrapper timing is next.

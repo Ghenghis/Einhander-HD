@@ -1,5 +1,13 @@
 # Runtime and seven-stage continuation — November 13, 2026
 
+## Latest continuation — November 14
+
+The authorized two-leg private NVIDIA comparison and restoration are complete. [Actual power-pair results](STAGE1-POWER-PROFILE-RESULTS.md): Normal first 230.0131 ms/+11,808 starved samples; maximum preference selected second 50.8336 ms/+0. Both have 0/121 focused samples, exit 0 and closed ports. The second run's nominal mini-boss maximum is 50.8336 ms versus Normal's 23.7319 ms. Similar sampled clock distributions, uncertain executable-profile matching, leg order and differing uploads prevent a causal fix claim. The private preference is back to Global – Normal, other programs/globals were untouched, and reservations were released. No further driver test has run.
+
+The user's current priority includes [washed-out green/pink signs](STAGE1-SIGN-QUALITY-20261114.md) and [setting up/using RTX Remix](RTX-REMIX-SETUP-20261114.md). Four sign alternatives are produced/source-checked candidates, not accepted or installed work. Remix's actual explicit-API ingestion created and fully decoded one DDS. Two earlier GUI green/100% jobs produced no files and were rejected. The toolkit wizard requires a real runtime scene capture before creating the proposed C-only project; no compatible Einhander scene capture or connected Remix project exists yet.
+
+v59's narrow HD-wrapper diagnostic compiled and linked locally in a sequential below-normal build; executable SHA256 `14dbc0e585f31d489d5ff0baf4cc5b1f2c4c25d2dd4cf730660858d320303b99`. It has not been run or installed. No owned game is currently running; the toolkit remains open. Do not run timing while Remix or GPU art is active. Continue with a light private sign comparison and separately assess the OpenGL-to-Remix capture requirement; do not label conversion as completed HD art or a driver profile as a proven stutter fix.
+
 **The remaster, full-stage E2E testing and audio acceptance remain incomplete.** This is the current handoff after the reboot. Work from `C:/github/Einhander`; older D: paths in dated receipts are historical. The user requested light tests, usable Windows, work with Claude on all seven stages, and actual-results publication. The latest steering prioritizes complete verified documentation and continuation with the remaining usage.
 
 ## Current state and safe resume

@@ -142,3 +142,5 @@ Built on modified inline copies of [psxrecomp](https://github.com/mstan/psxrecom
 PSXRecomp retains its [PolyForm Noncommercial 1.0.0 license](windows-x64/psxrecomp/LICENSE); recomp-ui retains its [MIT license](windows-x64/recomp-ui/LICENSE). Vendored libraries, fonts and OpenBIOS retain their notices and pins. No new blanket license is declared for the whole repository.
 
 Einhänder and its original artwork belong to their respective rights holders. This is an independent fan restoration. The DuckStation video and IceBullet texture work are credited as an external reference. Project image-generation and local authoring contributions are identified in the gallery provenance.
+
+Current November 14 continuation: [private power-profile results](docs/STAGE1-POWER-PROFILE-RESULTS.md), [green/pink sign quality](docs/STAGE1-SIGN-QUALITY-20261114.md), and [RTX Remix setup and actual conversion](docs/RTX-REMIX-SETUP-20261114.md). Gameplay/visual acceptance and live Remix integration remain incomplete.
