@@ -27,8 +27,15 @@ The larger frozen artwork candidate remains separate and still fails:
 A private bounded-retention experiment removed all reuploads and reduced boss
 traffic to 88 MiB, but had a 169 ms native VRAM upload-block stall. A repeat
 with extra passive timing still had a 94 ms boss gap. Neither candidate is
-installed. Exact native-call attribution and a buffered-upload experiment are
-in progress; unassisted full-stage and listening acceptance remain open.
+installed. A same-binary buffered-upload comparison now pins one 58.27 ms stall to the
+raw VRAM `glTexSubImage2D` call. Buffering removed slow native-helper calls
+in that pair, but the full run still had a 184 ms gap and 703 starved sample
+frames (OFF: 85 ms maximum, zero starvation). Both 350-frame boss windows
+happened to have a 17 ms maximum. GPU pixel-equality/state-restore checks passed,
+and focus stayed active throughout both measurements. Different live input and
+handoff timing prevent a causal regression estimate. The prototype remains
+private and fails full smoothness; pauses outside the upload helper are still
+under investigation. Unassisted full-stage and listening acceptance remain open.
 
 An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
 now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero

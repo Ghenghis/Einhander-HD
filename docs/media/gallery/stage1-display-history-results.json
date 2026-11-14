@@ -5419,5 +5419,571 @@
       "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
       "originals_unchanged": true
     }
-  ]
+  ],
+  "native_upload_stream_experiment": {
+    "runtime_sha256": "efde4724c391bed59393e16573e5831999848fb261e9dad5ca88061f3d75656d",
+    "default": "client-memory; buffered path opt-in only",
+    "same_binary": true,
+    "off": {
+      "batch": "display57-pbo-off-r3",
+      "gameplay": {
+        "from_frame": 3798,
+        "to_frame": 10996,
+        "count": 7199,
+        "unique_frames": 7199,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 19,
+        "max_ms": 85,
+        "late_over25": [
+          {
+            "seq": 3381,
+            "frame": 3982,
+            "ms": 51
+          },
+          {
+            "seq": 3392,
+            "frame": 3993,
+            "ms": 71
+          },
+          {
+            "seq": 3963,
+            "frame": 4564,
+            "ms": 33
+          },
+          {
+            "seq": 3988,
+            "frame": 4589,
+            "ms": 26
+          },
+          {
+            "seq": 4066,
+            "frame": 4667,
+            "ms": 26
+          },
+          {
+            "seq": 4103,
+            "frame": 4704,
+            "ms": 85
+          },
+          {
+            "seq": 4160,
+            "frame": 4761,
+            "ms": 27
+          },
+          {
+            "seq": 4163,
+            "frame": 4764,
+            "ms": 29
+          },
+          {
+            "seq": 4289,
+            "frame": 4890,
+            "ms": 27
+          },
+          {
+            "seq": 4292,
+            "frame": 4893,
+            "ms": 30
+          },
+          {
+            "seq": 4393,
+            "frame": 4994,
+            "ms": 28
+          },
+          {
+            "seq": 5498,
+            "frame": 6099,
+            "ms": 28
+          },
+          {
+            "seq": 5992,
+            "frame": 6593,
+            "ms": 27
+          },
+          {
+            "seq": 5995,
+            "frame": 6596,
+            "ms": 75
+          },
+          {
+            "seq": 6105,
+            "frame": 6706,
+            "ms": 31
+          },
+          {
+            "seq": 6842,
+            "frame": 7443,
+            "ms": 28
+          },
+          {
+            "seq": 7561,
+            "frame": 8162,
+            "ms": 32
+          },
+          {
+            "seq": 7564,
+            "frame": 8165,
+            "ms": 27
+          },
+          {
+            "seq": 9102,
+            "frame": 9703,
+            "ms": 27
+          },
+          {
+            "seq": 9103,
+            "frame": 9704,
+            "ms": 41
+          },
+          {
+            "seq": 9640,
+            "frame": 10241,
+            "ms": 33
+          }
+        ]
+      },
+      "common_window": {
+        "from_frame": 4355,
+        "to_frame": 10996,
+        "count": 6642,
+        "unique_frames": 6642,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 19,
+        "max_ms": 85,
+        "late_over25": [
+          {
+            "seq": 3963,
+            "frame": 4564,
+            "ms": 33
+          },
+          {
+            "seq": 3988,
+            "frame": 4589,
+            "ms": 26
+          },
+          {
+            "seq": 4066,
+            "frame": 4667,
+            "ms": 26
+          },
+          {
+            "seq": 4103,
+            "frame": 4704,
+            "ms": 85
+          },
+          {
+            "seq": 4160,
+            "frame": 4761,
+            "ms": 27
+          },
+          {
+            "seq": 4163,
+            "frame": 4764,
+            "ms": 29
+          },
+          {
+            "seq": 4289,
+            "frame": 4890,
+            "ms": 27
+          },
+          {
+            "seq": 4292,
+            "frame": 4893,
+            "ms": 30
+          },
+          {
+            "seq": 4393,
+            "frame": 4994,
+            "ms": 28
+          },
+          {
+            "seq": 5498,
+            "frame": 6099,
+            "ms": 28
+          },
+          {
+            "seq": 5992,
+            "frame": 6593,
+            "ms": 27
+          },
+          {
+            "seq": 5995,
+            "frame": 6596,
+            "ms": 75
+          },
+          {
+            "seq": 6105,
+            "frame": 6706,
+            "ms": 31
+          },
+          {
+            "seq": 6842,
+            "frame": 7443,
+            "ms": 28
+          },
+          {
+            "seq": 7561,
+            "frame": 8162,
+            "ms": 32
+          },
+          {
+            "seq": 7564,
+            "frame": 8165,
+            "ms": 27
+          },
+          {
+            "seq": 9102,
+            "frame": 9703,
+            "ms": 27
+          },
+          {
+            "seq": 9103,
+            "frame": 9704,
+            "ms": 41
+          },
+          {
+            "seq": 9640,
+            "frame": 10241,
+            "ms": 33
+          }
+        ]
+      },
+      "boss": {
+        "from_frame": 9250,
+        "to_frame": 9599,
+        "count": 350,
+        "unique_frames": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 17,
+        "max_ms": 17,
+        "late_over25": []
+      },
+      "audio": {
+        "new_starved_sample_frames": 0,
+        "increments": []
+      },
+      "focus_all": true,
+      "exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "selftest": {
+        "passed": true,
+        "cases": 8,
+        "texels": 2048,
+        "all_mismatch_counts_zero": true,
+        "gl_error_test": 0,
+        "gl_error_restore": 0
+      },
+      "native_counter_delta": {
+        "rects": 45351,
+        "pbo_rects": 0,
+        "fallback_rects": 0,
+        "slow_events": 43,
+        "staging_ticks": 0,
+        "state_ticks": 176327,
+        "rgba_upload_ticks": 154918,
+        "raw_upload_ticks": 27280891,
+        "total_ticks": 27635022
+      },
+      "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+      "ring": {
+        "id": 1,
+        "ok": true,
+        "total": 10402,
+        "now_ms": 189154,
+        "requested": 16384,
+        "returned": 10402,
+        "missing": 0,
+        "truncated": 0,
+        "capacity": 16384
+      },
+      "command_audit": {
+        "timer_write_requests": 608,
+        "successful_timer_writes": 608,
+        "forbidden_mutations": []
+      }
+    },
+    "on": {
+      "batch": "display57-pbo-on-r1",
+      "gameplay": {
+        "from_frame": 4355,
+        "to_frame": 11552,
+        "count": 7198,
+        "unique_frames": 7198,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 20,
+        "max_ms": 184,
+        "late_over25": [
+          {
+            "seq": 5287,
+            "frame": 5888,
+            "ms": 35
+          },
+          {
+            "seq": 5981,
+            "frame": 6582,
+            "ms": 40
+          },
+          {
+            "seq": 5985,
+            "frame": 6586,
+            "ms": 184
+          },
+          {
+            "seq": 5989,
+            "frame": 6590,
+            "ms": 49
+          },
+          {
+            "seq": 6093,
+            "frame": 6694,
+            "ms": 26
+          },
+          {
+            "seq": 6830,
+            "frame": 7431,
+            "ms": 33
+          },
+          {
+            "seq": 6846,
+            "frame": 7447,
+            "ms": 28
+          },
+          {
+            "seq": 7550,
+            "frame": 8151,
+            "ms": 33
+          },
+          {
+            "seq": 7691,
+            "frame": 8292,
+            "ms": 27
+          },
+          {
+            "seq": 7695,
+            "frame": 8296,
+            "ms": 86
+          },
+          {
+            "seq": 8271,
+            "frame": 8872,
+            "ms": 26
+          },
+          {
+            "seq": 8306,
+            "frame": 8907,
+            "ms": 26
+          },
+          {
+            "seq": 9091,
+            "frame": 9692,
+            "ms": 41
+          },
+          {
+            "seq": 9638,
+            "frame": 10239,
+            "ms": 33
+          },
+          {
+            "seq": 9774,
+            "frame": 10375,
+            "ms": 32
+          },
+          {
+            "seq": 10144,
+            "frame": 10745,
+            "ms": 29
+          }
+        ]
+      },
+      "common_window": {
+        "from_frame": 4355,
+        "to_frame": 10996,
+        "count": 6642,
+        "unique_frames": 6642,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 20,
+        "max_ms": 184,
+        "late_over25": [
+          {
+            "seq": 5287,
+            "frame": 5888,
+            "ms": 35
+          },
+          {
+            "seq": 5981,
+            "frame": 6582,
+            "ms": 40
+          },
+          {
+            "seq": 5985,
+            "frame": 6586,
+            "ms": 184
+          },
+          {
+            "seq": 5989,
+            "frame": 6590,
+            "ms": 49
+          },
+          {
+            "seq": 6093,
+            "frame": 6694,
+            "ms": 26
+          },
+          {
+            "seq": 6830,
+            "frame": 7431,
+            "ms": 33
+          },
+          {
+            "seq": 6846,
+            "frame": 7447,
+            "ms": 28
+          },
+          {
+            "seq": 7550,
+            "frame": 8151,
+            "ms": 33
+          },
+          {
+            "seq": 7691,
+            "frame": 8292,
+            "ms": 27
+          },
+          {
+            "seq": 7695,
+            "frame": 8296,
+            "ms": 86
+          },
+          {
+            "seq": 8271,
+            "frame": 8872,
+            "ms": 26
+          },
+          {
+            "seq": 8306,
+            "frame": 8907,
+            "ms": 26
+          },
+          {
+            "seq": 9091,
+            "frame": 9692,
+            "ms": 41
+          },
+          {
+            "seq": 9638,
+            "frame": 10239,
+            "ms": 33
+          },
+          {
+            "seq": 9774,
+            "frame": 10375,
+            "ms": 32
+          },
+          {
+            "seq": 10144,
+            "frame": 10745,
+            "ms": 29
+          }
+        ]
+      },
+      "boss": {
+        "from_frame": 9250,
+        "to_frame": 9599,
+        "count": 350,
+        "unique_frames": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 17,
+        "max_ms": 17,
+        "late_over25": []
+      },
+      "audio": {
+        "new_starved_sample_frames": 703,
+        "increments": [
+          {
+            "elapsed": 38.00040330000047,
+            "frame": 6633,
+            "delta": 703
+          }
+        ]
+      },
+      "focus_all": true,
+      "exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "selftest": {
+        "passed": true,
+        "cases": 8,
+        "texels": 2048,
+        "all_mismatch_counts_zero": true,
+        "gl_error_test": 0,
+        "gl_error_restore": 0
+      },
+      "native_counter_delta": {
+        "rects": 48504,
+        "pbo_rects": 48504,
+        "fallback_rects": 0,
+        "slow_events": 0,
+        "staging_ticks": 304940,
+        "state_ticks": 133803,
+        "rgba_upload_ticks": 58126,
+        "raw_upload_ticks": 20540,
+        "total_ticks": 544772
+      },
+      "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+      "ring": {
+        "id": 1,
+        "ok": true,
+        "total": 10959,
+        "now_ms": 199743,
+        "requested": 16384,
+        "returned": 10959,
+        "missing": 0,
+        "truncated": 0,
+        "capacity": 16384
+      },
+      "command_audit": {
+        "timer_write_requests": 598,
+        "successful_timer_writes": 598,
+        "forbidden_mutations": []
+      }
+    },
+    "exact_attributed_stall": {
+      "off_frame": 6596,
+      "presentation_interval_ms": 75,
+      "raw_TexSubImage2D_ms": 58.2742,
+      "rgba_TexSubImage2D_ms": 0.0008,
+      "state_calls_ms": 0.0393
+    },
+    "result": "FAIL full smoothness and ON zero-starvation; native helper waits removed in observed pair, overall waits persist",
+    "installed": false,
+    "limits": [
+      "one ordered pair; handoff delay and live input timing differ",
+      "120 seconds each, timer-only assistance, scale2, rewind50/15, frozen1669PNGpack,5120MiBHDcache",
+      "no recorder, source capture, screenshot, GPU probe or profiler during timing; endpoint getters and1HzCPUcounters still have observer cost",
+      "GPU selftest before timing can warm driver state",
+      "pre-swap intervals include guest work and pacing; no physical display visibility claim",
+      "native delta counters include title/route/handoff; frame-filtered slow events give exact stall brackets",
+      "no claim that focus caused earlier stalls; full7stage and listening acceptance open"
+    ],
+    "qpc_frequency": 10000000
+  }
 }
