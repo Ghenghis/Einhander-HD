@@ -26,3 +26,5 @@ Monitor39248 bound20:48:16.554UTC is metadata-only; refresh owned presence with 
 - [ ] Review combinedaudio source/getter/pump/reset/extraction fixtures, exact closure then compile/PCM/realSDL/listening. Oldracyreferencefixture rejected; no race/perf/audible completion.
 - [ ] UIr6fixed3keymeasure SOURCEclearfutureonly; preserveungranted45cdselftestdisclosure UNKNOWNruntimefields. Do not infer finalfontrepair or resource acceptance.
 - [ ] T2builder/resolver/hand-off/presentationgate code remains draft; fullGP0ordered2Dcoverage notprovidedbycurrenttextured-onlycapture. Diagnosticgeometry never skips native drawing.
+
+Current CPU/source review: [actual refusal and review](../docs/CPU-INTEGRATION-REVIEW-20261114.md). CorrectedPR7builder remainsUNRUN after78.6%CPUrefusal f211; T2r1sourceBLOCKED/71checksUNRUN, fixesrequested; collector74controlsUNRUN/sourceclear; combinedaudioreviewneedsresetbaseline/combineddriver. Monitor7116 bound2026-11-14T21:19:18.572Z ismetadata-only; predecessor expiredgap recorded. NoGPU/game/installs.

@@ -1,0 +1,99 @@
+{
+  "at_utc": "2026-11-14T20:54:20.164438+00:00",
+  "source_pins": [
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\runs\\PR7-1-20261114T204240Z-rc.json",
+      "sha256": "f211c63437ce5fd3ccfc41c5e613019fe209f78462fba8c4101074c7a6103365",
+      "bytes": 919
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\build_r7_cpu.r1.py",
+      "sha256": "b0e08a6a71b7cab97e3deab5860aaa017bbe7d2d8ff3dcf90c1b424ab924f69e",
+      "bytes": 6868
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\remix_t2.r1.h",
+      "sha256": "a00ca23f99477082101db4ab41bab71c53d6b92b185ecee02b8906143edcdf15",
+      "bytes": 26692
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\test_t2.r1.cpp",
+      "sha256": "752855bf3c34905a9e784e8feacd7adc08c3b9b5172e1049ab91fcdb184405ae",
+      "bytes": 24033
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\build_t2_fixture.r1.py",
+      "sha256": "fc07ca5fa907ae357009668e671aaad43c8463e97944e3047e4b2a8028959418",
+      "bytes": 11115
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\CAPTURE-LEDGER-REVISION-SPEC-r1-20261114.md",
+      "sha256": "48d7fbfd0232d46fbcf4d0dbddefd4a9222de0478c72432be439fa3a09e3cf87",
+      "bytes": 5598
+    },
+    {
+      "path": ".claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-controls\\controls_c457b58e_r1.py",
+      "sha256": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+      "bytes": 32280
+    },
+    {
+      "path": ".claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-controls\\CONTROLS-R1-c457b58e-20261114.md",
+      "sha256": "2451c63404a139cf19e566a62f3474307e6dc2ec803a6c0299d2ea86abe2d7c7",
+      "bytes": 4833
+    }
+  ],
+  "metadata_readback_passed": true,
+  "wrapper_identity_absent": true,
+  "wrapper_pid": 28444,
+  "wrapper_creation_unix": 1794688960.8891988,
+  "refused_output_root_absent": true,
+  "original_refusal": {
+    "tool": "run_rc2.py",
+    "revision": "r1",
+    "cmd": [
+      "python",
+      "remix-probe-r5/build_r7_cpu.r1.py",
+      "--cpu",
+      "15",
+      "--out-root",
+      "remix-probe-r5/runs/PR7-1-20261114T204240Z",
+      "--expect-source-sha",
+      "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05"
+    ],
+    "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary",
+    "wrapper_pid": 28444,
+    "wrapper_create_time": 1794688960.8891988,
+    "cpu": 15,
+    "affinity": [
+      15
+    ],
+    "priority": 16384,
+    "timeout_s": 120.0,
+    "rc": null,
+    "created_utc": "2026-11-14T20:42:41.173173+00:00",
+    "precheck": {
+      "system_cpu_pct": 78.6,
+      "free_gib": 54.98,
+      "max_cpu": 60.0,
+      "min_free_gib": 16.0,
+      "at_utc": "2026-11-14T20:42:42.179273+00:00"
+    },
+    "declined": true,
+    "child_pid": null,
+    "wrapper_exit": 3,
+    "end_utc": "2026-11-14T20:42:42.179286+00:00"
+  },
+  "tests_executed": false,
+  "proposal_imported": false,
+  "compiler_started": false,
+  "gpu_run": false,
+  "game_run": false,
+  "pr7_builder_r1_executed": false,
+  "pr7_cpu_controls_executed": false,
+  "t2_r1_source_blocked": true,
+  "t2_r1_controls_authored": 71,
+  "t2_r1_controls_passed": null,
+  "collector_controls_r1_authored": 74,
+  "collector_controls_r1_passed": null,
+  "source_review_limits": "T2 r1 predicted B11 interleave failure and wrap/bounds/receipt corrections requested; no runtime validation"
+}

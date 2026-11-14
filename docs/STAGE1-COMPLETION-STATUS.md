@@ -1,5 +1,7 @@
 # Stage 1 completion status
 
+Latest review: [CPU refusal, geometry/audio source corrections and remaining acceptance](CPU-INTEGRATION-REVIEW-20261114.md). PR7correctedbuilder stopped before child at78.6%CPU; T2r1remains source-blocked. No new game/GPU/audio result.
+
 ## Actual CPU build failure and source followup — November14
 
 PR7actuallyruns: syntax0/1.382s, object1/.048s due doubled relative output path, wrapper1/1.629s/ownedtreeabsent; noexe/link/65controls/guard77/GPU. Absolute-path builder fix is source-reviewed, awaitingfreshgrant. NewownedTCPpeer collector, T1overflow/projection oracle, observerIO, T2ownership and coherentaudio source are not live integration. CRLFbase/LFpatch distinctions and ungrantedUIselftests with UNKNOWNresourcefields are preserved. Prior21adaptercontrols remain separate valid evidence. [Actual results, source and remaining acceptance](../docs/ENGINE-INTEGRATION-FOLLOWUP-20261114.md). Earlier dated blocks retain their historical scope.

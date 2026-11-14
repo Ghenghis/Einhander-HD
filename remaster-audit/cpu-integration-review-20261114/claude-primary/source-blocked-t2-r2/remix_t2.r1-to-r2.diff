@@ -1,0 +1,57 @@
+1c1,4
+< // T2 mesh/instance transport r1 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+---
+> // T2 mesh/instance transport r2 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+> // r2 (root msg_e8982681) on top of r1 (a00ca23f, preserved): max_entries bounded to the array before any
+> // find/resolve/pin; retirement uses a modular forward frame age (< 2^31) and never retires on a backward or
+> // discontinuous frame number; T2Slot reserve/release are overflow/underflow fail-closed with counters.
+326a330,331
+>     // max_entries is public configuration; any value above the array is rejected before indexing.
+>     bool capacity_valid() const { return max_entries >= 1 && max_entries <= kCacheEntries; }
+327a333
+>         if (!capacity_valid()) return -1;
+330a337,342
+>     // Forward frame age with uint32 wraparound: valid only when the current frame is the same or later by
+>     // less than 2^31 frames; a backward or discontinuous frame number is never old enough to retire.
+>     static bool old_enough(uint32_t now, uint32_t last, uint32_t retire) {
+>         const uint32_t age = now - last;                 // modular
+>         return age < 0x80000000u && age >= retire;
+>     }
+333a346
+>         if (!capacity_valid()) return false;
+345c358
+<             const bool retirable = e.used && !reserved[i] && e.refs == 0 && f.frame_id >= e.last_frame + retire_frames;
+---
+>             const bool retirable = e.used && !reserved[i] && e.refs == 0 && old_enough(f.frame_id, e.last_frame, retire_frames);
+403a417
+>         if (!capacity_valid()) return;
+414a429,433
+> // Threads: exactly ONE producer (emulation owner thread: reserve, publish, release of an unpublished frame)
+> // and ONE consumer (Remix owner thread: take, release after the frame is finished). pending and
+> // bytes_in_use are atomics. The plain counters have single writers: dropped_busy and refused_budget are
+> // written only by the producer; release_underflows only by whichever thread calls release (documented as a
+> // fault counter, read only after both threads are joined in tests).
+419c438
+<     uint64_t dropped_busy = 0, refused_budget = 0;
+---
+>     uint64_t dropped_busy = 0, refused_budget = 0, release_underflows = 0;
+421a441,451
+>         const uint64_t need = sizeof(T2Frame);
+>         uint64_t cur = bytes_in_use.load();
+>         do {
+>             // Overflow-safe: compare against budget - need instead of computing cur + need.
+>             if (budget_bytes < need || cur > budget_bytes - need) { refused_budget++; return false; }
+>         } while (!bytes_in_use.compare_exchange_weak(cur, cur + need));
+>         return true;
+>     }
+>     // Fail-closed: a release without a matching reservation never wraps the counter.
+>     bool release() {
+>         const uint64_t need = sizeof(T2Frame);
+423,424c453,454
+<         do { if (cur + sizeof(T2Frame) > budget_bytes) { refused_budget++; return false; } }
+<         while (!bytes_in_use.compare_exchange_weak(cur, cur + sizeof(T2Frame)));
+---
+>         do { if (cur < need) { release_underflows++; return false; } }
+>         while (!bytes_in_use.compare_exchange_weak(cur, cur - need));
+427d456
+<     void release() { bytes_in_use.fetch_sub(sizeof(T2Frame)); }

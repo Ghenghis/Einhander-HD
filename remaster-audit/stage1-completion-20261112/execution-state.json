@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T20:38:42.914939+00:00",
+  "updated_at_utc": "2026-11-14T20:56:22.410351+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -912,8 +912,8 @@
     "expiry_never_transfers": true
   },
   "actual_monitor": {
-    "pid": 39248,
-    "bound_end_utc": "2026-11-14T20:48:16.554Z",
+    "pid": 7116,
+    "bound_end_utc": "2026-11-14T21:19:18.572Z",
     "watcher_only": true,
     "proves_model_activity": false
   },
@@ -1023,5 +1023,17 @@
     "gpu_run": false,
     "live_accepted": false,
     "installed": false
+  },
+  "cpu_integration_review": {
+    "evidence": "docs/CPU-INTEGRATION-REVIEW-20261114.md",
+    "pr7_r1_declined_cpu": 78.6,
+    "pr7_r1_child_started": false,
+    "t2_r1": "source-blocked/71checksUNRUN",
+    "collector_r1": "74checksAUTHORED/UNRUN",
+    "audio_combined": "source-reviewed/correctionsrequested/UNRUN",
+    "gpu_run": false,
+    "game_run": false,
+    "installed": false,
+    "live_accepted": false
   }
 }

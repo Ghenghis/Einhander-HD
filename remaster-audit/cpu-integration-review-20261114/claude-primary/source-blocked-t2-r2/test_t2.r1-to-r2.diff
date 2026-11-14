@@ -1,0 +1,43 @@
+1c1
+< // CPU-only fixture for T2 r1 (claude-einhander). SOURCE ONLY, not compiled or run. No GL, SDK, game or files
+---
+> // CPU-only fixture for T2 r2 (claude-einhander). SOURCE ONLY, not compiled or run. No GL, SDK, game or files
+17c17
+< #include "remix_t2.r1.h"
+---
+> #include "remix_t2.r2.h"
+95a96,97
+> // r2: every primitive gets its own disjoint ledger bbox, so build_live never creates an accidental
+> // interleave (r1's shared [0,0,1,1] box made B11 fall back to F_INTERLEAVED). B10 tests interleave on its own.
+97c99
+<     for (uint32_t i = 0; i < n; i++) L[i] = led(P[i].ordinal, 0, 0, 1, 1);
+---
+>     for (uint32_t i = 0; i < n; i++) L[i] = led(P[i].ordinal, (int16_t)(i * 10), 0, (int16_t)(i * 10 + 5), 5);
+340a343,365
+>     // ---------------- r2 controls (root msg_e8982681) ----------------
+>     // H4 release without a reservation fails closed: no wrap, counted.
+>     { T2Slot s;
+>       check(!s.release() && s.release_underflows == 1 && s.bytes_in_use.load() == 0, "h4_release_underflow_fail_closed"); }
+>     // H5 reserve never overflows: huge in-use with a huge budget, and a budget smaller than one frame.
+>     { T2Slot s; s.budget_bytes = UINT64_MAX; s.bytes_in_use.store(UINT64_MAX - 10);
+>       check(!s.reserve() && s.refused_budget == 1 && s.bytes_in_use.load() == UINT64_MAX - 10, "h5_reserve_no_overflow");
+>       T2Slot t; t.budget_bytes = 1;
+>       check(!t.reserve() && t.bytes_in_use.load() == 0, "h5_budget_below_one_frame"); }
+>     // R7 max_entries beyond the array (or zero) is rejected before any indexing.
+>     { T2Resolver *x = new T2Resolver;
+>       P[0] = prim(0x24, 0); build_live(1, &F);
+>       x->max_entries = kCacheEntries + 1;
+>       check(!x->resolve(F, &RR) && x->next_id == 1, "r7_max_entries_above_capacity_rejected");
+>       x->max_entries = 0;
+>       check(!x->resolve(F, &RR) && x->next_id == 1, "r7_max_entries_zero_rejected");
+>       delete x; }
+>     // R8 modular forward frame age.
+>     check(T2Resolver::old_enough(0x10u, 0xFFFFFFF0u, 5u), "r8_wraparound_forward_age_32");
+>     check(!T2Resolver::old_enough(5u, 5u, 1u), "r8_same_frame_not_old");
+>     check(!T2Resolver::old_enough(5u, 10u, 1u), "r8_backward_frame_never_retires");
+>     check(!T2Resolver::old_enough(0x80000010u, 0x10u, 5u), "r8_discontinuity_2pow31_never_retires");
+> 
+359c384
+<     fprintf(out, "{\"fixture\":\"t2\",\"revision\":\"r0\",\"checks\":%d,\"failures\":%d,\"failed\":\"%s\",\"passed\":%s,"
+---
+>     fprintf(out, "{\"fixture\":\"t2\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"failed\":\"%s\",\"passed\":%s,"
