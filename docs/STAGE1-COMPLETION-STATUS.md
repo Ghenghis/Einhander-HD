@@ -46,6 +46,15 @@ leaves reached 32 clean comparisons, but the global comparison scope included
 older cached routines with seven unrelated failures and device skips. The whole
 run is rejected. Narrow handler and continuation qualification, boss-route parity,
 and a new quiet timing/audio pair are still pending. Nothing is installed.
+A later focused 0x393D8 test made 3,518 boss-window comparison attempts across
+frames 8800–9659, reported one SETUP rejection and blocked the candidate.
+This is not evidence of a specific MMIO access or native CPU divergence; the
+setup cause remains open. The final command audit also failed because two
+helpers' timestamp-only receipt names collided. The damaged receipt is preserved.
+An independent check found the owned game absent and port closed; its exit code
+was not retained by the failed audit. Unique, atomic, exclusive receipt writing
+now passes three tests (256 concurrent writers, forced collision and failed
+publication), with all 16 combined receipt/qualification checks passing.
 
 The bad segment itself is now recorded: [15-second silent mini-boss video](media/gallery/stage1-miniboss-stutter-20261113.mp4)
 and [separate game-process audio](media/gallery/stage1-miniboss-stutter-20261113.wav).

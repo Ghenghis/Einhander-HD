@@ -245,5 +245,69 @@
     "Repeat narrow same-state handler and nonleaf qualification in the final exact runtime.",
     "Check native/interpreter boss-route parity and fingerprints before performance measurement.",
     "Run another quiet recorder-off same-route timing/audio comparison; publish observed results."
-  ]
+  ],
+  "v50_393d8_focus": {
+    "accepted": false,
+    "focus_entry": "0x000393D8",
+    "runtime_sha256": "88b66bf288d5c076cd472ed10cbf7a43e9c34ae4184c69bfe04a417a2f4a9ba8",
+    "boss_first_frame": 8800,
+    "boss_last_frame": 9659,
+    "boss_shadow_calls": 3518,
+    "boss_divergences": 1,
+    "rejection_kind": 17,
+    "rejection_name": "SHDIFF_SETUP",
+    "not_proven": "The generic device_touch quarantine flag does not identify an actual MMIO access. Setup failure is gte_ok false or generated bad-entry refusal; precise cause remains open.",
+    "boss_record": {
+      "seq": 14028,
+      "addr": "0x000393D8",
+      "kind": 17,
+      "index": -1,
+      "reg": -1,
+      "reg_native": "0x00000000",
+      "reg_interp": "0x00000000",
+      "hi": 0,
+      "lo": 0,
+      "ram_off": -1,
+      "ram_native": "0x00000000",
+      "ram_interp": "0x00000000",
+      "cycle_native": 0,
+      "cycle_interp": 5438,
+      "trace_ops": 559,
+      "replay_ops": 0,
+      "trace_kind": 0,
+      "trace_pc": "0x00000000",
+      "trace_addr": "0x00000000",
+      "trace_expected": "0x00000000",
+      "trace_actual": "0x00000000"
+    },
+    "skipped_before": 3,
+    "skipped_after": 12,
+    "boss_proof_sha256": "3f224ed5ef8b9476b9001a21215d3bae30ef345ddead411c5cff390bd1bf69d2",
+    "original_qualification_proof_sha256": "0b377bad73d9bb15adfc22369f875b91c4e586b082c941aec0f2a301f0a93c19",
+    "final_audit_completed": false,
+    "audit_error": "Concurrent command receipts with timestamp-only names collided, leaving one invalid JSON file. Original files retained unchanged.",
+    "damaged_receipts": [
+      {
+        "file": "000229914125.json",
+        "sha256": "12ae907a3b025f7bbceffd3a6f4383dcfcc88c46dbcdd7618ce634f9f501c446",
+        "bytes": 1125,
+        "error": "Unexpected non-whitespace character after JSON at position 282 (line 18 column 1)"
+      }
+    ],
+    "independent_close_check": {
+      "pid": 21168,
+      "pid_present": false,
+      "port_closed": true,
+      "at_utc": "2026-11-14T00:05:11.735Z"
+    },
+    "owned_game_exit_code": null,
+    "command_receipt_fix": {
+      "tests": 3,
+      "passed": true,
+      "concurrent_same_timestamp_writers": 256,
+      "combined_qualification_and_receipt_tests": 16,
+      "publication": "Same-directory exclusive atomic hard link of completed unique temporary receipt; failed evidence retained",
+      "runtime_behavior_changed": false
+    }
+  }
 }

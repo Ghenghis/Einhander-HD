@@ -20,6 +20,7 @@ import struct
 import subprocess
 import sys
 import zlib
+import uuid
 
 ROOT = Path(__file__).resolve().parent.parent
 PROJECT = ROOT / "windows-x64"
@@ -1351,6 +1352,26 @@ def launch(report, rollback):
     return dict(ok=True, mode=mode, pid=process.pid, debug_port=PORT, receipt=str(marker))
 
 
+
+def write_command_receipt(directory, receipt):
+    """Publish complete, unique evidence without replacing another writer's file."""
+    directory = Path(directory)
+    directory.mkdir(exist_ok=True)
+    name = (datetime.now(timezone.utc).strftime('%H%M%S%f')
+            + '-' + str(os.getpid()) + '-' + uuid.uuid4().hex)
+    temporary = directory / (name + '.tmp')
+    target = directory / (name + '.json')
+    with temporary.open('x', encoding='utf-8') as output:
+        json.dump(receipt, output, indent=2)
+        output.write('\n')
+    # Same-directory hard-link creation is atomic and exclusive on NTFS: an
+    # auditor sees the whole receipt, and an existing final name is never lost.
+    # Keep the temporary evidence if writing or publication fails.
+    os.link(temporary, target)
+    temporary.unlink()
+    return target
+
+
 def command(report, raw):
     evidence = Path(report["evidence"])
     if not any((evidence / ("launch-" + mode + ".json")).is_file() for mode in ("candidate", "rollback")):
@@ -1373,8 +1394,7 @@ def command(report, raw):
     reply = json.loads(received.split(b"\n", 1)[0])
     receipt = dict(at_utc=stamp(), port=PORT, request=request, reply=reply)
     directory = Path(report["evidence"]) / "commands"
-    directory.mkdir(exist_ok=True)
-    (directory / (datetime.now(timezone.utc).strftime("%H%M%S%f") + ".json")).write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
+    write_command_receipt(directory, receipt)
     return reply
 
 
