@@ -1,0 +1,48 @@
+1a2
+> // r1 (2026-11-14): ADDITIVE revision of r0 9614a6a8: includes scene_ledger.r1.h and appends scene_ledger_display_hazard.
+8c9
+< #include "scene_ledger.r0.h"
+---
+> #include "scene_ledger.r1.h"
+487a489,529
+>         }
+>     }
+>     verdict(LP_TRANSPORT_OK, kNoIndex, kNoIndex);
+>     return LEDGER_OK;
+> }
+> // r1 (additive): display hazard of an explicit target rect; see scene_ledger.r1.h. Everything above is r0.
+> extern "C" int scene_ledger_display_hazard(uint32_t token, uint32_t generation, const uint32_t *t, uint32_t n,
+>                                            const int32_t rect[4], SceneLedgerVerdict *out) {
+>     if (int e = guard_read(token)) return e;
+>     if (!out || !rect || (n && !t) || rect[2] <= 0 || rect[3] <= 0) return LEDGER_BAD_ARGUMENT;
+>     *out = SceneLedgerVerdict{LP_NATIVE_INCOMPLETE, kNoIndex, kNoIndex};
+>     if (hdr.mode == LEDGER_SEALED) evaluate();
+>     if (hdr.mode != LEDGER_SEALED || !hdr.complete || generation != hdr.generation) return LEDGER_OK;
+>     auto verdict = [&](uint32_t v, uint32_t entry, uint32_t ref) { *out = SceneLedgerVerdict{v, entry, ref}; };
+>     if (n > uint32_t(SCENE_LEDGER_CAPACITY)) { verdict(LP_NATIVE_BAD_REF, kNoIndex, kNoIndex); return LEDGER_OK; }
+>     static uint32_t ref_entry[SCENE_LEDGER_CAPACITY];   // owner thread only
+>     for (uint32_t r = 0; r < n; ++r) {                   // the same reference rules as scene_ledger_policy
+>         uint32_t found = kNoIndex;
+>         for (uint32_t j = 0; j < hdr.entry_count && found == kNoIndex; ++j)
+>             if ((entries[j].flags & LF_CAPTURED_TEXTURED) && entries[j].textured_index == t[r]) found = j;
+>         if (found == kNoIndex) { verdict(LP_NATIVE_BAD_REF, kNoIndex, r); return LEDGER_OK; }
+>         for (uint32_t q = 0; q < r; ++q)
+>             if (ref_entry[q] == found) { verdict(LP_NATIVE_BAD_REF, found, r); return LEDGER_OK; }
+>         ref_entry[r] = found;
+>     }
+>     LedgerRect target[SCENE_LEDGER_MAX_PIECES];
+>     const int nt = split_wrap(rect[0], rect[1], rect[2], rect[3], target);
+>     LedgerRect disp[SCENE_LEDGER_MAX_DISPLAY * SCENE_LEDGER_MAX_PIECES];
+>     int nd = 0;
+>     for (uint32_t i = 0; i < hdr.display_count; ++i) nd += split_rect(hdr.display[i], disp + nd);
+>     // 1. The target overlaps an area displayed during the interval: not a hidden (back) buffer.
+>     if (any_intersect(target, nt, disp, nd)) { verdict(LP_NATIVE_DISPLAY, kNoIndex, kNoIndex); return LEDGER_OK; }
+>     // 2. A transported page or CLUT overlaps the target.
+>     for (uint32_t r = 0; r < n; ++r) {
+>         const SceneLedgerEntry &p = entries[ref_entry[r]];
+>         LedgerRect tex[2 * SCENE_LEDGER_MAX_PIECES];
+>         int np = 0, nc = 0;
+>         tex_pieces(p.tpage, p.clut, tex, &np, tex + SCENE_LEDGER_MAX_PIECES, &nc);
+>         if (any_intersect(tex, np, target, nt) || any_intersect(tex + SCENE_LEDGER_MAX_PIECES, nc, target, nt)) {
+>             verdict(LP_NATIVE_DISPLAY, ref_entry[r], r);
+>             return LEDGER_OK;

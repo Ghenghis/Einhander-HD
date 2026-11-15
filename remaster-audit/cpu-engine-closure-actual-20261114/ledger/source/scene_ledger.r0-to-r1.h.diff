@@ -1,0 +1,23 @@
+1,2c1,2
+< #ifndef EINHD_SCENE_LEDGER_R0_H
+< #define EINHD_SCENE_LEDGER_R0_H
+---
+> #ifndef EINHD_SCENE_LEDGER_R1_H
+> #define EINHD_SCENE_LEDGER_R1_H
+3a4,5
+>  * r1 (claude-einhander, 2026-11-14): ADDITIVE revision. Only scene_ledger_display_hazard is new (declared after
+>  * scene_ledger_policy); every other byte is r0 220d1a5e except this note and the include guard. r0 is preserved.
+124a127,139
+> /* r1 (additive): display hazard of an EXPLICIT target rect (x, y, w, h in VRAM halfwords; w, h > 0; wrap-split
+>  * like every native area) for the proposed transported set of a sealed, complete ledger of `generation`. This is
+>  * the T2 r5/r6 DisplayHazardHook: the glue passes the frame's target (the buffer that the expected flip will
+>  * display) and the exact transported ordinal set. Verdicts:
+>  *   LP_NATIVE_INCOMPLETE  not sealed, not complete, or another generation (the default)
+>  *   LP_NATIVE_BAD_REF     a transported index is absent, not captured, repeated, or count > capacity
+>  *   LP_NATIVE_DISPLAY     entry == ref == 0xFFFFFFFF: the target overlaps an area displayed DURING the interval
+>  *                         (the frame did not draw into a hidden buffer); otherwise (entry, ref): a transported
+>  *                         page or CLUT overlaps the target (its texels would be the suppressed displayed image)
+>  *   LP_TRANSPORT_OK       otherwise.
+>  * It does NOT replace scene_ledger_policy: T2 r4 still requires that policy to be LP_TRANSPORT_OK as well. */
+> int scene_ledger_display_hazard(uint32_t token, uint32_t generation, const uint32_t *transported, uint32_t count,
+>                                 const int32_t rect[4], SceneLedgerVerdict *out);

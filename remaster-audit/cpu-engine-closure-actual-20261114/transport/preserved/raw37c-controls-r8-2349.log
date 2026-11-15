@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\test_raw37c_driver_r8.py", line 356, in <module>
+    check("cleanup_fail_recorded", rc == 1 and e["verdict"] == "ABORTED" and e["cleanup_holder"]["verdict"] == "CLEANUP-FAIL")
+                                                                             ~^^^^^^^^^^^^^^^^^^
+KeyError: 'cleanup_holder'

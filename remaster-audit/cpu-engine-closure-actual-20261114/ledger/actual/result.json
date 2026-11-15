@@ -1,0 +1,295 @@
+{
+ "tool": "build_scene_ledger_fixture.r1.py",
+ "builder_sha256": "5430020d4ad710f3f400ea2da958e6c209f8244ca4676edbf5c446d443879f65",
+ "cpu": 12,
+ "out": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z",
+ "started_utc": "2026-11-15T00:02:22.736009+00:00",
+ "gl_used": false,
+ "sdk_used": false,
+ "steps": [
+  {
+   "label": "extract",
+   "normalization": "raw pin, then CRLF->LF bytes, then anchors",
+   "blocks": {
+    "sign_extend": {
+     "source": "gpu.c",
+     "first_line": 3269,
+     "lines": 4,
+     "sha256": "97dd1b03dd35e010d69d310aab285a17e87c06691221a05356b35d97973c1940",
+     "pinned": "97dd1b03dd35e010d69d310aab285a17e87c06691221a05356b35d97973c1940",
+     "passed": true
+    },
+    "parse_vertex": {
+     "source": "gpu.c",
+     "first_line": 3277,
+     "lines": 4,
+     "sha256": "971000ac2c1fe5e0d6cd33d460988ae9f40a3491298d6b37eb7b2c81bb624949",
+     "pinned": "971000ac2c1fe5e0d6cd33d460988ae9f40a3491298d6b37eb7b2c81bb624949",
+     "passed": true
+    },
+    "word_count": {
+     "source": "gpu.c",
+     "first_line": 4570,
+     "lines": 85,
+     "sha256": "c5f6fa67dfb83120d0c8a902258f33db4a9523bb1376743b51d681aa18040598",
+     "pinned": "c5f6fa67dfb83120d0c8a902258f33db4a9523bb1376743b51d681aa18040598",
+     "passed": true
+    },
+    "fill": {
+     "source": "gpu.c",
+     "first_line": 4287,
+     "lines": 4,
+     "sha256": "e47c795b35adedcc0fd38a456427e4a4be5721b9d3a588376a0a5103f78a965f",
+     "pinned": "e47c795b35adedcc0fd38a456427e4a4be5721b9d3a588376a0a5103f78a965f",
+     "passed": true
+    },
+    "copy": {
+     "source": "gpu.c",
+     "first_line": 5274,
+     "lines": 8,
+     "sha256": "fc758e038ad110ceae00c9a55cf6d0fa425dfc6781d10cf8db56619778c3a790",
+     "pinned": "fc758e038ad110ceae00c9a55cf6d0fa425dfc6781d10cf8db56619778c3a790",
+     "passed": true
+    },
+    "cpu_to_vram": {
+     "source": "gpu.c",
+     "first_line": 4450,
+     "lines": 8,
+     "sha256": "1998ffd79b8e6d4007cf22e9070dd741c83f26f11f231412c59353612ce9d152",
+     "pinned": "1998ffd79b8e6d4007cf22e9070dd741c83f26f11f231412c59353612ce9d152",
+     "passed": true
+    },
+    "vram_to_cpu": {
+     "source": "gpu.c",
+     "first_line": 4539,
+     "lines": 7,
+     "sha256": "6d11eb6299945a63f950fcae1b459ea90ef607ebf10ec743cc27ce82b2c32fa4",
+     "pinned": "6d11eb6299945a63f950fcae1b459ea90ef607ebf10ec743cc27ce82b2c32fa4",
+     "passed": true
+    },
+    "mono_rect_size": {
+     "source": "gpu.c",
+     "first_line": 4110,
+     "lines": 4,
+     "sha256": "7e56cc9f946ea3c505e3cd1bf1aa23a99684ab7338a37f8b0c204bad9eaff672",
+     "pinned": "7e56cc9f946ea3c505e3cd1bf1aa23a99684ab7338a37f8b0c204bad9eaff672",
+     "passed": true
+    },
+    "textured_rect_size": {
+     "source": "gpu.c",
+     "first_line": 4144,
+     "lines": 4,
+     "sha256": "c7d973123942f91019d94d75e8d5395ee5d05833789afe142fc2b30e573ccef6",
+     "pinned": "c7d973123942f91019d94d75e8d5395ee5d05833789afe142fc2b30e573ccef6",
+     "passed": true
+    },
+    "clut": {
+     "source": "gpu.c",
+     "first_line": 3833,
+     "lines": 2,
+     "sha256": "ce195f2af16b2d5fc19cf4d94890f5adc49ac42dc3ff93bba7b4e8719abbf029",
+     "pinned": "ce195f2af16b2d5fc19cf4d94890f5adc49ac42dc3ff93bba7b4e8719abbf029",
+     "passed": true
+    },
+    "poly_tpage": {
+     "source": "gpu.c",
+     "first_line": 3837,
+     "lines": 1,
+     "sha256": "89e95d52143777686c79e545f5c4a2461e310951077bf4814509ffb56649d868",
+     "pinned": "89e95d52143777686c79e545f5c4a2461e310951077bf4814509ffb56649d868",
+     "passed": true
+    },
+    "page": {
+     "source": "gpu_gl_renderer.c",
+     "first_line": 2527,
+     "lines": 3,
+     "sha256": "648c6a2a2a82359b187f3b0e3adb9e82cc2e43bdb28245846b9c2c65506f70b1",
+     "pinned": "648c6a2a2a82359b187f3b0e3adb9e82cc2e43bdb28245846b9c2c65506f70b1",
+     "passed": true
+    }
+   },
+   "passed": true
+  },
+  {
+   "label": "compile-r0reg",
+   "argv": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\executed-test-r0reg.cpp",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\scene_ledger.r1.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\test-scene-ledger-r0reg.exe"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "pid": 26000,
+   "creation_unix": 1794700942.8859792,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 1.151,
+   "passed": true,
+   "output_tail": ""
+  },
+  {
+   "label": "run-r0reg",
+   "argv": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\test-scene-ledger-r0reg.exe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\fixture-r0reg.json"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 10,
+   "pid": 50136,
+   "creation_unix": 1794700944.0577543,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 0.084,
+   "passed": true,
+   "output_tail": "{\"fixture\":\"scene_ledger\",\"revision\":\"r0\",\"checks\":99,\"failures\":0,\"passed\":true}\n",
+   "fixture": {
+    "fixture": "scene_ledger",
+    "revision": "r0",
+    "checks": 99,
+    "failures": 0,
+    "passed": true,
+    "gl_used": false,
+    "sdk_used": false
+   }
+  },
+  {
+   "label": "compile-r1",
+   "argv": [
+    "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-I",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\executed-test-r1.cpp",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\scene_ledger.r1.cpp",
+    "-o",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\test-scene-ledger-r1.exe"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "pid": 46680,
+   "creation_unix": 1794700944.126316,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 1.205,
+   "passed": true,
+   "output_tail": ""
+  },
+  {
+   "label": "run-r1",
+   "argv": [
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\test-scene-ledger-r1.exe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\ledger-r1-run1\\20261115T000222Z\\fixture-r1.json"
+   ],
+   "expected_exit": 0,
+   "cap_seconds": 10,
+   "pid": 43516,
+   "creation_unix": 1794700945.352374,
+   "exit": 0,
+   "timed_out": false,
+   "seconds": 0.073,
+   "passed": true,
+   "output_tail": "{\"fixture\":\"scene_ledger\",\"revision\":\"r1\",\"checks\":32,\"failures\":0,\"passed\":true}\n",
+   "fixture": {
+    "fixture": "scene_ledger",
+    "revision": "r1",
+    "checks": 32,
+    "failures": 0,
+    "passed": true,
+    "gl_used": false,
+    "sdk_used": false
+   }
+  }
+ ],
+ "passed": true,
+ "exception": null,
+ "envelope_required": {
+  "path": "remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py",
+  "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+  "options": [
+   "--cpu",
+   "12",
+   "--timeout",
+   "120",
+   "--max-job-mib",
+   "1024",
+   "--no-window"
+  ],
+  "verified_by_this_driver": false
+ },
+ "inputs": {
+  "gpu.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\src\\gpu.c",
+   "sha256": "3d8b5d3e23c42a22fe1cecbe1287a286f2f4305147d67cb1039bdef96f628689"
+  },
+  "gpu_gl_renderer.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\src\\gpu_gl_renderer.c",
+   "sha256": "b41b7ab5843ce1a6d4710cc010be6d44f3127a77ce660cc2527eb98e6cd0cb16"
+  },
+  "scene_ledger.r0.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r0\\scene_ledger.r0.h",
+   "sha256": "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc"
+  },
+  "test_scene_ledger.r0.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r0\\test_scene_ledger.r0.cpp",
+   "sha256": "c1d389f1490fb178eb61a25640bdb47c53740d85f8a1dcc96a7ac7e543f4809a"
+  },
+  "scene_ledger.r1.h": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r1\\scene_ledger.r1.h",
+   "sha256": "f080658b11c2692de5d47c88989d203cd78bb2b058b128012ff45a394b62f15c"
+  },
+  "scene_ledger.r1.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r1\\scene_ledger.r1.cpp",
+   "sha256": "f39a436311a401873276c3f9ad58d3e5bb2117dcb9d0e858cdb73f9c0fc755fb"
+  },
+  "test_scene_ledger.r1.cpp": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-r1\\test_scene_ledger.r1.cpp",
+   "sha256": "eb4655ec65a65599b1cf1fbbe5a3cf48eced5ee847a599a9930eabfc7d468cc2"
+  }
+ },
+ "executed_copies": {
+  "scene_ledger_native_unpack.inc": "a9b1eaa343f4d6853f31a78d12faa817ac4564df3a7922db31891430eb534b00",
+  "scene_ledger.r0.h": "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc",
+  "scene_ledger.r1.h": "f080658b11c2692de5d47c88989d203cd78bb2b058b128012ff45a394b62f15c",
+  "scene_ledger.r1.cpp": "f39a436311a401873276c3f9ad58d3e5bb2117dcb9d0e858cdb73f9c0fc755fb",
+  "executed-test-r0reg.cpp": "c1d389f1490fb178eb61a25640bdb47c53740d85f8a1dcc96a7ac7e543f4809a",
+  "executed-test-r1.cpp": "eb4655ec65a65599b1cf1fbbe5a3cf48eced5ee847a599a9930eabfc7d468cc2"
+ },
+ "toolchain": {
+  "invoked": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+  "invoked_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "files": {
+   "clang++.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang++.exe",
+    "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+   },
+   "clang-22.exe": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang-22.exe",
+    "sha256": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+   },
+   "libclang-cpp.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libclang-cpp.dll",
+    "sha256": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+   },
+   "libLLVM-22.dll": {
+    "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libLLVM-22.dll",
+    "sha256": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+   }
+  }
+ },
+ "exe_sha256": {
+  "r0reg": "58107149a09cf56bc04bfd6afe21c4a3e4a119f5a8ee695d84b3d0be66d5e4a8",
+  "r1": "f03e1a728aeeb74b53ccd00b311f2e584a79af29ec05609c7eacb0ff4f453aed"
+ },
+ "ended_utc": "2026-11-15T00:02:25.410243+00:00"
+}

@@ -1,0 +1,27 @@
+{
+  "started_utc": "2026-11-14T23:58:19.896997+00:00",
+  "attempts": [
+    {
+      "attempt": 1,
+      "receipt": "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\controls-r9-window-20261114T235819Z\\eligibility-1.json",
+      "receipt_sha256": "8cb4ff0d186c4bcd0299fe3c12e0bc4e13ce124415aac7b971952af95320eee9",
+      "process_exit": 0,
+      "precheck": {
+        "system_cpu_pct": 55.3,
+        "free_gib": 56.54,
+        "max_cpu": 60.0,
+        "min_free_gib": 16.0,
+        "at_utc": "2026-11-14T23:58:21.055094+00:00"
+      },
+      "declined": false,
+      "child_pid": 15300
+    }
+  ],
+  "actual_child_started": true,
+  "scope": "CPU controls only, no game/GPU; maximum one actual child",
+  "outcome": "CHILD_FINISHED",
+  "test_exit": 0,
+  "cleanup_proven": true,
+  "wrapper_exit": 0,
+  "finished_utc": "2026-11-14T23:58:23.512339+00:00"
+}

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-14T23:29:48.746371+00:00",
+  "updated_at_utc": "2026-11-15T00:06:14.876252+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -1159,5 +1159,18 @@
     "raw_collection_pass": false,
     "menu_audio_acceptance": false,
     "raw_game_startup_abort_preserved": true
+  },
+  "cpu_engine_closure_actual": {
+    "evidence": "docs/CPU-ENGINE-CLOSURE-ACTUAL-20261114.md",
+    "ledger_regression_checks_passed": 99,
+    "ledger_display_hazard_checks_passed": 32,
+    "raw_transport_pure_controls_passed": 79,
+    "preceding_fixture_failure_preserved": true,
+    "resource_only_declines_preserved": 3,
+    "hud_candidates_match_current_staging": 4,
+    "glue_consumer_source_only": true,
+    "root_game_gpu_used": false,
+    "live_acceptance": false,
+    "installed": false
   }
 }

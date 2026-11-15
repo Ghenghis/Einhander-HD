@@ -1,5 +1,7 @@
 # Full 4K remaster and RTX Remix implementation
 
+Latest CPU engine results: [131 ledger and79 transport controls, retained failures and four-HUD coverage correction](CPU-ENGINE-CLOSURE-ACTUAL-20261114.md). Both CPU Jobs end empty; glue consumer integration is source-only. No new live art/audio/Remix acceptance. Earlier dated scope remains preserved.
+
 Current actual results: [CPU50/61/17 checks, three private lettering candidates, successful staging and controlled startup abort](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Actual37c game started Normal/all16cores; peer validation aborted before menus/audio, cleanup passed. S45r4 failed19/23; art/Remix/audio/stage/release acceptance remains open. Earlier entries retain their dated scope.
 
 Latest CPU followup: [50 present-lifecycle checks, three private lettering candidates, honest coverage and retained diagnostic failures](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Cleanup17 and corrected raw-driver61 controls passed; first staging failed before prepare. Game/Remix/audio/art acceptance remains incomplete. Earlier entries retain their dated scope.

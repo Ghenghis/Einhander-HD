@@ -1,0 +1,57 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "test_raw37c_driver_r9.py",
+  "raw37c_driver_r11.py",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/runs/raw37c-controls-r9-2353-coordinator.log"
+ ],
+ "cwd": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic",
+ "wrapper_pid": 49224,
+ "wrapper_create_time": 1794700412.6702545,
+ "cpu": 14,
+ "affinity": [
+  14
+ ],
+ "priority": 16384,
+ "timeout_s": 60.0,
+ "rc": null,
+ "created_utc": "2026-11-14T23:53:32.860205+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "4000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 67.6,
+  "free_gib": 55.81,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T23:53:33.861898+00:00"
+ },
+ "declined": true,
+ "child_pid": null,
+ "wrapper_exit": 3,
+ "end_utc": "2026-11-14T23:53:33.861913+00:00"
+}
