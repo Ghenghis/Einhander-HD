@@ -1,0 +1,2229 @@
+{
+ "mode": "fixtures",
+ "cases": [
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=8: direction, centres (b), per-chain/border/corner/dot gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "border residual 0.5503 > 0.5",
+   "ok": false,
+   "info": {
+    "quality": {
+     "input": {
+      "stair_px": 0.413,
+      "resid_px": 1.4391,
+      "width_px": 8.464,
+      "samples": 291,
+      "missing": 0,
+      "d2_n": 273,
+      "skipped": {
+       "out_of_band": 32,
+       "window": 21
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 8,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 32
+        },
+        "stair_px": 0.2481,
+        "d2_n": 6,
+        "resid_px": 0.3137,
+        "jump_max_px": 0.4964,
+        "width_px": 8.375
+       },
+       "1": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4428,
+        "d2_n": 38,
+        "resid_px": 1.4957,
+        "jump_max_px": 1.0846,
+        "width_px": 8.45
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.3885,
+        "d2_n": 38,
+        "resid_px": 1.201,
+        "jump_max_px": 1.0362,
+        "width_px": 8.45
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4036,
+        "d2_n": 38,
+        "resid_px": 1.488,
+        "jump_max_px": 1.1836,
+        "width_px": 8.7
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4458,
+        "d2_n": 38,
+        "resid_px": 1.3766,
+        "jump_max_px": 1.0601,
+        "width_px": 8.55
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4357,
+        "d2_n": 38,
+        "resid_px": 1.4981,
+        "jump_max_px": 1.1369,
+        "width_px": 8.65
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4058,
+        "d2_n": 38,
+        "resid_px": 1.3019,
+        "jump_max_px": 1.1473,
+        "width_px": 8.275
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.3906,
+        "d2_n": 38,
+        "resid_px": 1.7705,
+        "jump_max_px": 1.1248,
+        "width_px": 8.3
+       },
+       "8": {
+        "kind": "family",
+        "measured": 3,
+        "missing": 0,
+        "skipped": {
+         "window": 21
+        },
+        "stair_px": 0.0292,
+        "d2_n": 1,
+        "resid_px": 1.5715,
+        "jump_max_px": 0.5167,
+        "width_px": 7.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "stepped": {
+      "stair_px": 2.4334,
+      "resid_px": 2.6828,
+      "width_px": 0.852,
+      "samples": 291,
+      "missing": 0,
+      "d2_n": 273,
+      "skipped": {
+       "out_of_band": 32,
+       "window": 21
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 8,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 32
+        },
+        "stair_px": 0.4109,
+        "d2_n": 6,
+        "resid_px": 1.1152,
+        "jump_max_px": 0.822,
+        "width_px": 8.0
+       },
+       "1": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 3.1305,
+        "d2_n": 38,
+        "resid_px": 3.0276,
+        "jump_max_px": 7.3765,
+        "width_px": 0.0
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5623,
+        "d2_n": 38,
+        "resid_px": 2.5405,
+        "jump_max_px": 7.3555,
+        "width_px": 0.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.0699,
+        "d2_n": 38,
+        "resid_px": 2.6084,
+        "jump_max_px": 7.3685,
+        "width_px": 1.6
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5286,
+        "d2_n": 38,
+        "resid_px": 2.8465,
+        "jump_max_px": 7.0502,
+        "width_px": 0.0
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.0785,
+        "d2_n": 38,
+        "resid_px": 2.6148,
+        "jump_max_px": 7.2746,
+        "width_px": 1.6
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5622,
+        "d2_n": 38,
+        "resid_px": 2.467,
+        "jump_max_px": 7.4843,
+        "width_px": 0.0
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.1414,
+        "d2_n": 38,
+        "resid_px": 2.895,
+        "jump_max_px": 7.3418,
+        "width_px": 1.4
+       },
+       "8": {
+        "kind": "family",
+        "measured": 3,
+        "missing": 0,
+        "skipped": {
+         "window": 21
+        },
+        "stair_px": 0.0,
+        "d2_n": 1,
+        "resid_px": 1.9413,
+        "jump_max_px": 0.5257,
+        "width_px": 0.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "r4": {
+      "stair_px": 0.1835,
+      "resid_px": 0.2187,
+      "width_px": 0.935,
+      "samples": 291,
+      "missing": 0,
+      "d2_n": 273,
+      "skipped": {
+       "out_of_band": 32,
+       "window": 21
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 8,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 32
+        },
+        "stair_px": 0.1415,
+        "d2_n": 6,
+        "resid_px": 0.0738,
+        "jump_max_px": 0.1319,
+        "width_px": 0.75
+       },
+       "1": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1886,
+        "d2_n": 38,
+        "resid_px": 0.2799,
+        "jump_max_px": 0.4634,
+        "width_px": 0.925
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2155,
+        "d2_n": 38,
+        "resid_px": 0.2163,
+        "jump_max_px": 0.4685,
+        "width_px": 1.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2536,
+        "d2_n": 38,
+        "resid_px": 0.2335,
+        "jump_max_px": 0.5968,
+        "width_px": 1.075
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.0889,
+        "d2_n": 38,
+        "resid_px": 0.065,
+        "jump_max_px": 0.1796,
+        "width_px": 0.9
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1528,
+        "d2_n": 38,
+        "resid_px": 0.2033,
+        "jump_max_px": 0.4402,
+        "width_px": 0.9
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1773,
+        "d2_n": 38,
+        "resid_px": 0.2821,
+        "jump_max_px": 0.5038,
+        "width_px": 0.95
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1724,
+        "d2_n": 38,
+        "resid_px": 0.173,
+        "jump_max_px": 0.3765,
+        "width_px": 0.825
+       },
+       "8": {
+        "kind": "family",
+        "measured": 3,
+        "missing": 0,
+        "skipped": {
+         "window": 21
+        },
+        "stair_px": 0.0105,
+        "d2_n": 1,
+        "resid_px": 0.4006,
+        "jump_max_px": 0.0767,
+        "width_px": 1.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "dots_r4": {
+      "n": 141,
+      "max_dc": 0.1354,
+      "p95_dc": 0.0253
+     },
+     "dots_input": {
+      "n": 141,
+      "max_dc": 0.178,
+      "p95_dc": 0.097
+     },
+     "border_input": {
+      "n": 88,
+      "resid_max_px": 1.3367,
+      "stair_px": 0.0279,
+      "missing": 4,
+      "trimmed": {
+       "not_pure_column": 88
+      }
+     },
+     "border_r4": {
+      "n": 92,
+      "resid_max_px": 0.5503,
+      "stair_px": 0.0903,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 88
+      }
+     },
+     "corner_input": {
+      "alpha": 0.1478,
+      "t_mean": 0.2167
+     },
+     "corner_r4": {
+      "alpha": 0.1478,
+      "t_mean": 0.1422
+     }
+    },
+    "stats": {
+     "changed_px": 6095,
+     "fallback_unchanged": 0,
+     "fallback_outside_feather": 0,
+     "centre_candidates": 141,
+     "centre_changed": 33,
+     "centre_fallback_unchanged": 0,
+     "centre_side_dev_max": 0.0,
+     "r3_style_kept_centre_dev_max": 104.0,
+     "centre_rgb_change_max": 104,
+     "relaxed_donor_px": 619,
+     "centre_byte_exact_r3_rule": {
+      "result": "FAIL (intended option-b exception, see centre_log)",
+      "changed_centre_px": 33
+     },
+     "family_slope_tex_per_row": -0.5357
+    }
+   }
+  },
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=4: direction, centres (b), per-chain/border/corner/dot gates",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "quality": {
+     "input": {
+      "stair_px": 0.5705,
+      "resid_px": 0.633,
+      "width_px": 3.979,
+      "samples": 145,
+      "missing": 0,
+      "d2_n": 128,
+      "skipped": {
+       "out_of_band": 16,
+       "window": 11
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 16
+        },
+        "stair_px": 0.3377,
+        "d2_n": 2,
+        "resid_px": 0.2813,
+        "jump_max_px": 0.259,
+        "width_px": 4.0
+       },
+       "1": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.6323,
+        "d2_n": 18,
+        "resid_px": 0.5944,
+        "jump_max_px": 0.8409,
+        "width_px": 4.05
+       },
+       "2": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.59,
+        "d2_n": 18,
+        "resid_px": 0.6099,
+        "jump_max_px": 0.8319,
+        "width_px": 4.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.5329,
+        "d2_n": 18,
+        "resid_px": 0.6797,
+        "jump_max_px": 0.9879,
+        "width_px": 4.0
+       },
+       "4": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.6218,
+        "d2_n": 18,
+        "resid_px": 0.6174,
+        "jump_max_px": 0.8579,
+        "width_px": 4.1
+       },
+       "5": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.5296,
+        "d2_n": 18,
+        "resid_px": 0.6589,
+        "jump_max_px": 0.9151,
+        "width_px": 4.0
+       },
+       "6": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.5942,
+        "d2_n": 18,
+        "resid_px": 0.6501,
+        "jump_max_px": 0.9151,
+        "width_px": 3.85
+       },
+       "7": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4996,
+        "d2_n": 18,
+        "resid_px": 0.6751,
+        "jump_max_px": 0.7953,
+        "width_px": 3.9
+       },
+       "8": {
+        "kind": "family",
+        "measured": 1,
+        "missing": 0,
+        "skipped": {
+         "window": 11
+        },
+        "stair_px": null,
+        "d2_n": 0,
+        "resid_px": 0.3989,
+        "jump_max_px": null,
+        "width_px": 3.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "stepped": {
+      "stair_px": 1.7718,
+      "resid_px": 1.3272,
+      "width_px": 0.414,
+      "samples": 145,
+      "missing": 0,
+      "d2_n": 128,
+      "skipped": {
+       "out_of_band": 16,
+       "window": 11
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 16
+        },
+        "stair_px": 0.3559,
+        "d2_n": 2,
+        "resid_px": 0.5414,
+        "jump_max_px": 0.7389,
+        "width_px": 4.0
+       },
+       "1": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.2693,
+        "d2_n": 18,
+        "resid_px": 1.5058,
+        "jump_max_px": 3.3778,
+        "width_px": 0.0
+       },
+       "2": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.8555,
+        "d2_n": 18,
+        "resid_px": 1.2608,
+        "jump_max_px": 3.3571,
+        "width_px": 0.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.5186,
+        "d2_n": 18,
+        "resid_px": 1.28,
+        "jump_max_px": 3.5201,
+        "width_px": 0.8
+       },
+       "4": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.8307,
+        "d2_n": 18,
+        "resid_px": 1.4139,
+        "jump_max_px": 3.1559,
+        "width_px": 0.0
+       },
+       "5": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.5269,
+        "d2_n": 18,
+        "resid_px": 1.2947,
+        "jump_max_px": 3.4312,
+        "width_px": 0.8
+       },
+       "6": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.8612,
+        "d2_n": 18,
+        "resid_px": 1.2284,
+        "jump_max_px": 3.4843,
+        "width_px": 0.0
+       },
+       "7": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 1.5051,
+        "d2_n": 18,
+        "resid_px": 1.4126,
+        "jump_max_px": 3.3451,
+        "width_px": 0.6
+       },
+       "8": {
+        "kind": "family",
+        "measured": 1,
+        "missing": 0,
+        "skipped": {
+         "window": 11
+        },
+        "stair_px": null,
+        "d2_n": 0,
+        "resid_px": 0.8669,
+        "jump_max_px": null,
+        "width_px": 0.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "r4": {
+      "stair_px": 0.1571,
+      "resid_px": 0.0747,
+      "width_px": 0.89,
+      "samples": 145,
+      "missing": 0,
+      "d2_n": 128,
+      "skipped": {
+       "out_of_band": 16,
+       "window": 11
+      },
+      "chains": {
+       "0": {
+        "kind": "straight",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 16
+        },
+        "stair_px": 0.3295,
+        "d2_n": 2,
+        "resid_px": 0.0709,
+        "jump_max_px": 0.1447,
+        "width_px": 1.0
+       },
+       "1": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.167,
+        "d2_n": 18,
+        "resid_px": 0.0912,
+        "jump_max_px": 0.1844,
+        "width_px": 0.9
+       },
+       "2": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1811,
+        "d2_n": 18,
+        "resid_px": 0.0796,
+        "jump_max_px": 0.1919,
+        "width_px": 0.85
+       },
+       "3": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2576,
+        "d2_n": 18,
+        "resid_px": 0.0827,
+        "jump_max_px": 0.2364,
+        "width_px": 1.0
+       },
+       "4": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.0899,
+        "d2_n": 18,
+        "resid_px": 0.0552,
+        "jump_max_px": 0.1555,
+        "width_px": 0.9
+       },
+       "5": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1103,
+        "d2_n": 18,
+        "resid_px": 0.0719,
+        "jump_max_px": 0.1947,
+        "width_px": 0.9
+       },
+       "6": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.0494,
+        "d2_n": 18,
+        "resid_px": 0.0562,
+        "jump_max_px": 0.1182,
+        "width_px": 0.8
+       },
+       "7": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1168,
+        "d2_n": 18,
+        "resid_px": 0.0803,
+        "jump_max_px": 0.106,
+        "width_px": 0.85
+       },
+       "8": {
+        "kind": "family",
+        "measured": 1,
+        "missing": 0,
+        "skipped": {
+         "window": 11
+        },
+        "stair_px": null,
+        "d2_n": 0,
+        "resid_px": 0.0441,
+        "jump_max_px": null,
+        "width_px": 1.0
+       }
+      },
+      "unmeasured_chains": [],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "dots_r4": {
+      "n": 143,
+      "max_dc": 0.08,
+      "p95_dc": 0.0343
+     },
+     "dots_input": {
+      "n": 143,
+      "max_dc": 0.2253,
+      "p95_dc": 0.1266
+     },
+     "border_input": {
+      "n": 45,
+      "resid_max_px": 0.6757,
+      "stair_px": 0.0129,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 45
+      }
+     },
+     "border_r4": {
+      "n": 45,
+      "resid_max_px": 0.128,
+      "stair_px": 0.0449,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 45
+      }
+     },
+     "corner_input": {
+      "alpha": 0.1478,
+      "t_mean": 0.17
+     },
+     "corner_r4": {
+      "alpha": 0.1478,
+      "t_mean": 0.1256
+     }
+    },
+    "stats": {
+     "changed_px": 1415,
+     "fallback_unchanged": 0,
+     "fallback_outside_feather": 0,
+     "centre_candidates": 143,
+     "centre_changed": 34,
+     "centre_fallback_unchanged": 0,
+     "centre_side_dev_max": 0.0625,
+     "r3_style_kept_centre_dev_max": 104.0,
+     "centre_rgb_change_max": 104,
+     "relaxed_donor_px": 188,
+     "centre_byte_exact_r3_rule": {
+      "result": "FAIL (intended option-b exception, see centre_log)",
+      "changed_centre_px": 34
+     },
+     "family_slope_tex_per_row": -0.5357
+    },
+    "chains": [
+     {
+      "chain": 0,
+      "kind": "straight",
+      "kind_edge": "rising",
+      "slope": 0.0,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "xc": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 1,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5957,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       13.0,
+       13.0,
+       12.0,
+       11.0,
+       11.0,
+       10.0,
+       10.0
+      ],
+      "xc": [
+       13.459,
+       12.919,
+       12.267,
+       11.48,
+       11.076,
+       10.48,
+       9.919
+      ],
+      "clamped": 3
+     },
+     {
+      "chain": 2,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6107,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       16.0,
+       15.0,
+       15.0,
+       14.0,
+       14.0,
+       13.0,
+       12.0
+      ],
+      "xc": [
+       16.144,
+       15.48,
+       14.923,
+       14.312,
+       13.923,
+       13.091,
+       12.48
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 3,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5257,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       20.0,
+       19.0,
+       18.0,
+       17.292,
+       17.0,
+       17.0,
+       16.0
+      ],
+      "xc": [
+       19.901,
+       19.004,
+       18.479,
+       17.48,
+       17.427,
+       16.901,
+       16.376
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 4,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6357,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       22.0,
+       21.0,
+       21.0,
+       20.0,
+       19.0,
+       19.0,
+       18.0
+      ],
+      "xc": [
+       22.108,
+       21.472,
+       20.929,
+       20.2,
+       19.48,
+       18.929,
+       18.293
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 5,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5157,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       24.615,
+       24.0,
+       24.0,
+       23.0,
+       23.0,
+       22.396,
+       22.0
+      ],
+      "xc": [
+       24.993,
+       24.478,
+       23.962,
+       23.446,
+       22.93,
+       22.415,
+       21.899
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 6,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5157,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       27.0,
+       27.0,
+       26.0,
+       26.0,
+       25.0,
+       25.0,
+       24.0
+      ],
+      "xc": [
+       27.478,
+       26.962,
+       26.446,
+       25.93,
+       25.415,
+       24.899,
+       24.383
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 7,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.4007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       30.0,
+       29.539,
+       29.0,
+       29.0,
+       28.0,
+       28.0,
+       28.0
+      ],
+      "xc": [
+       30.271,
+       29.87,
+       29.469,
+       29.069,
+       28.48,
+       28.267,
+       27.87
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 8,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5257,
+      "rows": [
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       31.0,
+       31.0,
+       30.0,
+       30.0
+      ],
+      "xc": [
+       31.479,
+       30.953,
+       30.427,
+       29.901
+      ],
+      "clamped": 0
+     }
+    ]
+   }
+  },
+  {
+   "name": "positive: protected 7DD / 66CC fittings of the actual ROI unchanged (incl. their centre pixels)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "checked": 7
+   }
+  },
+  {
+   "name": "positive: top-left corner endpoint (index C) stays mostly dark; no leak above the band",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "corner_texel_coverage": 0.1084
+   }
+  },
+  {
+   "name": "positive: steep two-row staircase (1 texel per 2 rows), stripes continue outside: slope -0.5, gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "chain 1 (family) has 3 missing crossings",
+   "ok": false,
+   "info": {
+    "quality": {
+     "input": {
+      "stair_px": 0.4085,
+      "resid_px": 1.2857,
+      "width_px": 8.196,
+      "samples": 286,
+      "missing": 3,
+      "d2_n": 270,
+      "skipped": {
+       "out_of_band": 40,
+       "window": 20,
+       "fallback": 3
+      },
+      "chains": {
+       "1": {
+        "kind": "family",
+        "measured": 34,
+        "missing": 3,
+        "skipped": {
+         "fallback": 3
+        },
+        "stair_px": 0.4357,
+        "d2_n": 32,
+        "resid_px": 1.2543,
+        "jump_max_px": 1.1086,
+        "width_px": 7.853
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.4109,
+        "d2_n": 38,
+        "resid_px": 1.2894,
+        "jump_max_px": 1.1086,
+        "width_px": 8.275
+       },
+       "8": {
+        "kind": "family",
+        "measured": 12,
+        "missing": 0,
+        "skipped": {
+         "window": 20
+        },
+        "stair_px": 0.2229,
+        "d2_n": 10,
+        "resid_px": 1.2992,
+        "jump_max_px": 0.5,
+        "width_px": 7.583
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "straight",
+        "rows": [
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ],
+        "xc": [
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 40
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "stepped": {
+      "stair_px": 2.5682,
+      "resid_px": 2.3763,
+      "width_px": 0.0,
+      "samples": 288,
+      "missing": 1,
+      "d2_n": 272,
+      "skipped": {
+       "out_of_band": 40,
+       "window": 20,
+       "fallback": 3
+      },
+      "chains": {
+       "1": {
+        "kind": "family",
+        "measured": 36,
+        "missing": 1,
+        "skipped": {
+         "fallback": 3
+        },
+        "stair_px": 2.7547,
+        "d2_n": 34,
+        "resid_px": 2.4441,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 2.5955,
+        "d2_n": 38,
+        "resid_px": 2.3938,
+        "jump_max_px": 7.5,
+        "width_px": 0.0
+       },
+       "8": {
+        "kind": "family",
+        "measured": 12,
+        "missing": 0,
+        "skipped": {
+         "window": 20
+        },
+        "stair_px": 0.0,
+        "d2_n": 10,
+        "resid_px": 1.7334,
+        "jump_max_px": 0.5,
+        "width_px": 0.0
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "straight",
+        "rows": [
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ],
+        "xc": [
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 40
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "r4": {
+      "stair_px": 0.1232,
+      "resid_px": 0.1694,
+      "width_px": 0.93,
+      "samples": 286,
+      "missing": 3,
+      "d2_n": 270,
+      "skipped": {
+       "out_of_band": 40,
+       "window": 20,
+       "fallback": 3
+      },
+      "chains": {
+       "1": {
+        "kind": "family",
+        "measured": 34,
+        "missing": 3,
+        "skipped": {
+         "fallback": 3
+        },
+        "stair_px": 0.1129,
+        "d2_n": 32,
+        "resid_px": 0.1618,
+        "jump_max_px": 0.2968,
+        "width_px": 0.971
+       },
+       "2": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "6": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "7": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.1271,
+        "d2_n": 38,
+        "resid_px": 0.1715,
+        "jump_max_px": 0.2968,
+        "width_px": 0.925
+       },
+       "8": {
+        "kind": "family",
+        "measured": 12,
+        "missing": 0,
+        "skipped": {
+         "window": 20
+        },
+        "stair_px": 0.0304,
+        "d2_n": 10,
+        "resid_px": 0.1452,
+        "jump_max_px": 0.0826,
+        "width_px": 0.917
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "straight",
+        "rows": [
+         5,
+         6,
+         7,
+         8,
+         9,
+         10
+        ],
+        "xc": [
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 40
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "dots_r4": {
+      "n": 140,
+      "max_dc": 0.0358,
+      "p95_dc": 0.0136
+     },
+     "dots_input": {
+      "n": 140,
+      "max_dc": 0.0938,
+      "p95_dc": 0.0625
+     },
+     "border_input": {
+      "n": 85,
+      "resid_max_px": 0.5015,
+      "stair_px": 0.001,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 95
+      }
+     },
+     "border_r4": {
+      "n": 85,
+      "resid_max_px": 0.0,
+      "stair_px": 0.0,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 95
+      }
+     },
+     "corner_input": {
+      "alpha": 1.0,
+      "t_mean": 0.7119
+     },
+     "corner_r4": {
+      "alpha": 1.0,
+      "t_mean": 1.0
+     }
+    },
+    "stats": {
+     "changed_px": 5045,
+     "fallback_unchanged": 13,
+     "fallback_outside_feather": 13,
+     "centre_candidates": 140,
+     "centre_changed": 2,
+     "centre_fallback_unchanged": 0,
+     "centre_side_dev_max": 0.0,
+     "r3_style_kept_centre_dev_max": 14.0,
+     "centre_rgb_change_max": 14,
+     "relaxed_donor_px": 149,
+     "centre_byte_exact_r3_rule": {
+      "result": "FAIL (intended option-b exception, see centre_log)",
+      "changed_centre_px": 2
+     },
+     "family_slope_tex_per_row": -0.5
+    }
+   }
+  },
+  {
+   "name": "positive: shallow staircase (2 texels per row), stripes continue outside: slope -2, gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "output staircase not < stepped reference",
+   "ok": false,
+   "info": {
+    "quality": {
+     "input": {
+      "stair_px": 0.7968,
+      "resid_px": 2.8336,
+      "width_px": 6.361,
+      "samples": 169,
+      "missing": 54,
+      "d2_n": 111,
+      "skipped": {
+       "out_of_band": 13,
+       "window": 12
+      },
+      "chains": {
+       "1": {
+        "kind": "native",
+        "measured": 5,
+        "missing": 3,
+        "skipped": {},
+        "stair_px": 0.5932,
+        "d2_n": 3,
+        "resid_px": 2.5954,
+        "jump_max_px": 2.001,
+        "width_px": 6.6
+       },
+       "2": {
+        "kind": "family",
+        "measured": 27,
+        "missing": 8,
+        "skipped": {
+         "out_of_band": 5
+        },
+        "stair_px": 0.7902,
+        "d2_n": 19,
+        "resid_px": 2.6486,
+        "jump_max_px": 2.2223,
+        "width_px": 6.333
+       },
+       "3": {
+        "kind": "family",
+        "measured": 29,
+        "missing": 11,
+        "skipped": {},
+        "stair_px": 0.7757,
+        "d2_n": 19,
+        "resid_px": 2.8503,
+        "jump_max_px": 2.001,
+        "width_px": 6.379
+       },
+       "4": {
+        "kind": "family",
+        "measured": 30,
+        "missing": 10,
+        "skipped": {},
+        "stair_px": 0.8053,
+        "d2_n": 20,
+        "resid_px": 2.9006,
+        "jump_max_px": 2.001,
+        "width_px": 6.333
+       },
+       "5": {
+        "kind": "family",
+        "measured": 30,
+        "missing": 10,
+        "skipped": {},
+        "stair_px": 0.8053,
+        "d2_n": 20,
+        "resid_px": 2.9006,
+        "jump_max_px": 2.001,
+        "width_px": 6.333
+       },
+       "6": {
+        "kind": "family",
+        "measured": 28,
+        "missing": 8,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.8136,
+        "d2_n": 18,
+        "resid_px": 2.8791,
+        "jump_max_px": 2.001,
+        "width_px": 6.357
+       },
+       "7": {
+        "kind": "family",
+        "measured": 16,
+        "missing": 4,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.8202,
+        "d2_n": 10,
+        "resid_px": 2.863,
+        "jump_max_px": 2.001,
+        "width_px": 6.375
+       },
+       "8": {
+        "kind": "native",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.8771,
+        "d2_n": 2,
+        "resid_px": 2.7472,
+        "jump_max_px": 2.001,
+        "width_px": 6.5
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "native",
+        "rows": [
+         5,
+         6
+        ],
+        "xc": [
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 8
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "stepped": {
+      "stair_px": 0.0,
+      "resid_px": 4.0549,
+      "width_px": 0.0,
+      "samples": 195,
+      "missing": 28,
+      "d2_n": 137,
+      "skipped": {
+       "out_of_band": 13,
+       "window": 12
+      },
+      "chains": {
+       "1": {
+        "kind": "native",
+        "measured": 7,
+        "missing": 1,
+        "skipped": {},
+        "stair_px": 0.0,
+        "d2_n": 5,
+        "resid_px": 4.1648,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "2": {
+        "kind": "family",
+        "measured": 29,
+        "missing": 6,
+        "skipped": {
+         "out_of_band": 5
+        },
+        "stair_px": 0.0,
+        "d2_n": 21,
+        "resid_px": 3.87,
+        "jump_max_px": 2.2447,
+        "width_px": 0.0
+       },
+       "3": {
+        "kind": "family",
+        "measured": 35,
+        "missing": 5,
+        "skipped": {},
+        "stair_px": 0.0,
+        "d2_n": 25,
+        "resid_px": 4.1648,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "4": {
+        "kind": "family",
+        "measured": 35,
+        "missing": 5,
+        "skipped": {},
+        "stair_px": 0.0,
+        "d2_n": 25,
+        "resid_px": 4.1648,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "5": {
+        "kind": "family",
+        "measured": 35,
+        "missing": 5,
+        "skipped": {},
+        "stair_px": 0.0,
+        "d2_n": 25,
+        "resid_px": 4.1648,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "6": {
+        "kind": "family",
+        "measured": 32,
+        "missing": 4,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.0,
+        "d2_n": 22,
+        "resid_px": 4.0281,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "7": {
+        "kind": "family",
+        "measured": 18,
+        "missing": 2,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.0,
+        "d2_n": 12,
+        "resid_px": 3.9185,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       },
+       "8": {
+        "kind": "native",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.0,
+        "d2_n": 2,
+        "resid_px": 2.8958,
+        "jump_max_px": 2.0,
+        "width_px": 0.0
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "native",
+        "rows": [
+         5,
+         6
+        ],
+        "xc": [
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 8
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "r4": {
+      "stair_px": 0.2704,
+      "resid_px": 0.1985,
+      "width_px": 1.865,
+      "samples": 223,
+      "missing": 0,
+      "d2_n": 207,
+      "skipped": {
+       "out_of_band": 13,
+       "window": 12
+      },
+      "chains": {
+       "1": {
+        "kind": "native",
+        "measured": 8,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2898,
+        "d2_n": 6,
+        "resid_px": 0.1817,
+        "jump_max_px": 0.3851,
+        "width_px": 2.0
+       },
+       "2": {
+        "kind": "family",
+        "measured": 35,
+        "missing": 0,
+        "skipped": {
+         "out_of_band": 5
+        },
+        "stair_px": 0.4232,
+        "d2_n": 33,
+        "resid_px": 0.2947,
+        "jump_max_px": 1.0953,
+        "width_px": 2.086
+       },
+       "3": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2443,
+        "d2_n": 38,
+        "resid_px": 0.176,
+        "jump_max_px": 0.3899,
+        "width_px": 1.8
+       },
+       "4": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2198,
+        "d2_n": 38,
+        "resid_px": 0.1712,
+        "jump_max_px": 0.3899,
+        "width_px": 1.825
+       },
+       "5": {
+        "kind": "family",
+        "measured": 40,
+        "missing": 0,
+        "skipped": {},
+        "stair_px": 0.2443,
+        "d2_n": 38,
+        "resid_px": 0.176,
+        "jump_max_px": 0.3899,
+        "width_px": 1.8
+       },
+       "6": {
+        "kind": "family",
+        "measured": 36,
+        "missing": 0,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.2033,
+        "d2_n": 34,
+        "resid_px": 0.1713,
+        "jump_max_px": 0.3899,
+        "width_px": 1.833
+       },
+       "7": {
+        "kind": "family",
+        "measured": 20,
+        "missing": 0,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.2243,
+        "d2_n": 18,
+        "resid_px": 0.172,
+        "jump_max_px": 0.3899,
+        "width_px": 1.8
+       },
+       "8": {
+        "kind": "native",
+        "measured": 4,
+        "missing": 0,
+        "skipped": {
+         "window": 4
+        },
+        "stair_px": 0.1396,
+        "d2_n": 2,
+        "resid_px": 0.2131,
+        "jump_max_px": 0.1466,
+        "width_px": 2.0
+       }
+      },
+      "unmeasured_chains": [
+       {
+        "chain": 0,
+        "kind": "native",
+        "rows": [
+         5,
+         6
+        ],
+        "xc": [
+         8.0,
+         8.0
+        ],
+        "skipped": {
+         "out_of_band": 8
+        },
+        "reason": "no sample: rows within 1 texel of the band top/bottom or all windows skipped"
+       }
+      ],
+      "coverage_note": "partial by construction: skipped and unmeasured samples are listed; not full edge coverage"
+     },
+     "dots_r4": {
+      "n": 185,
+      "max_dc": 0.0316,
+      "p95_dc": 0.0157
+     },
+     "dots_input": {
+      "n": 185,
+      "max_dc": 0.1562,
+      "p95_dc": 0.0625
+     },
+     "border_input": {
+      "n": 58,
+      "resid_max_px": 0.6364,
+      "stair_px": 0.0459,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 122
+      }
+     },
+     "border_r4": {
+      "n": 58,
+      "resid_max_px": 0.1445,
+      "stair_px": 0.0753,
+      "missing": 0,
+      "trimmed": {
+       "not_pure_column": 122
+      }
+     },
+     "corner_input": {
+      "alpha": 1.0,
+      "t_mean": 0.7119
+     },
+     "corner_r4": {
+      "alpha": 1.0,
+      "t_mean": 1.0
+     }
+    },
+    "stats": {
+     "changed_px": 6894,
+     "fallback_unchanged": 129,
+     "fallback_outside_feather": 129,
+     "centre_candidates": 185,
+     "centre_changed": 25,
+     "centre_fallback_unchanged": 0,
+     "centre_side_dev_max": 0.0,
+     "r3_style_kept_centre_dev_max": 14.0,
+     "centre_rgb_change_max": 14,
+     "relaxed_donor_px": 5774,
+     "centre_byte_exact_r3_rule": {
+      "result": "FAIL (intended option-b exception, see centre_log)",
+      "changed_centre_px": 25
+     },
+     "family_slope_tex_per_row": -2.0
+    }
+   }
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical incl. centres (S=8)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8,
+    "centre_changed": 0
+   }
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical incl. centres (S=4)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8,
+    "centre_changed": 0
+   }
+  },
+  {
+   "name": "negative: ROI out of bounds",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI out of bounds (30, 4, 44, 12)",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: scale 16 not allowed",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "scale 16 not allowed",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: cross-class ROI (edited CLUT) rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI not single-class under the CLUT",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: edited CLUT words rejected by the PAL CRC check",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "CLUT words CRC != PAL",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: foreign (fitting) index inside the stripe band rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "non-stripe index inside BAND",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: shade texel inside a same-colour run rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "shade texels inside a same-colour run before u28",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: alpha change detected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "alpha changed inside ROI",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: centre recoloured from the OTHER side's donor",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "donor not on the centre's native side",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: centre recoloured from a CROSS-CLASS donor",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "cross-class donor",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: protected (fitting) pixel mutation detected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "protected pixel changed",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: centre pixel OUTSIDE the edge band mutated",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "centre pixel outside the edge band changed",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: changed centre missing from the centre log",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "changed centre pixel missing from the centre log",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: pixel OUTSIDE the ROI mutated",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "outside-ROI RGBA changed",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: r3-style kept blurred centres fail the dot gate (S=8)",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "dot contrast 0.4612 > 0.25",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: r3-style kept blurred centres fail the dot gate (S=4)",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "dot contrast 0.4576 > 0.25",
+   "ok": true,
+   "info": null
+  },
+  {
+   "name": "negative: stepped r2-like output fails the quality gate",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "output staircase not <= input",
+   "ok": true,
+   "info": null
+  }
+ ],
+ "all_ok": false
+}

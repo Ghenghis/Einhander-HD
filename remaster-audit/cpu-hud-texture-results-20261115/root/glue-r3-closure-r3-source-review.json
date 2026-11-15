@@ -1,0 +1,79 @@
+{
+  "at_utc": "2026-11-15T00:41:14.707963+00:00",
+  "pins": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build\\build_glue_fixture.r2.py",
+      "sha256": "b057695aa257b9e7167f6610b6af20b6fe5c92297e4c9cb4e597fc5304f3e86a",
+      "bytes": 45217
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build-r3\\build_glue_fixture.r3.py",
+      "sha256": "11c26259ac40c3db1d9cba06d90e5fd6f54629e90dd0279a05fec6904921157c",
+      "bytes": 46204
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3\\test_glue.r1.cpp",
+      "sha256": "44ab03a6ef6e76e340750ff5d45ad4864f061727729d1d6384f3fc5056be62cf",
+      "bytes": 15579
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build-r3\\test_glue.r2.cpp",
+      "sha256": "3ec929d534be51104cd368f05c236db8bcf67837440e5db381046f3f42b15e4b",
+      "bytes": 20968
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build\\build_glue_fixture.r1-to-r2.diff",
+      "sha256": "355c51b30f913ca6874030a6eee2aaea750e773936747be1a7b00d703be3e08a",
+      "bytes": 6768
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build-r3\\build_glue_fixture.r2-to-r3.diff",
+      "sha256": "d30f18bb6f60f76e3ff5b51c36a7844a63e78c426460cbb79dddafd9cf9c1956",
+      "bytes": 2708
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3-build-r3\\test_glue.r1-to-r2.diff",
+      "sha256": "7f4ac03011e1aa35b9be8e70dee69135ca868e08c3c7f894f6ea33be9219bd72",
+      "bytes": 6865
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3\\patched\\scene_runtime.cpp",
+      "sha256": "b0d820a705714fa024475393ce3359f1d8a5a0764f75dccb0cf4e2990e9895b4",
+      "bytes": 12960
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3\\patched\\scene_runtime.h",
+      "sha256": "6c69adcbe2dc078c4062734bf09bf5b3e1c75e7ac45cbddbdf8b437b36076dfc",
+      "bytes": 2751
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3\\patched\\scene_t2_bridge.r3.cpp",
+      "sha256": "5182d80ddb8c4aa6bde518be23ccc54157f21c693d643c222d7d67a97f0476cb",
+      "bytes": 12251
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\capture\\ledger-glue-r3\\patched\\scene_t2_bridge.r3.h",
+      "sha256": "f09f3296bb2894fd228799e34bc047d7d655cc87dc88199539f7702cb5156c73",
+      "bytes": 3354
+    }
+  ],
+  "unchanged_builder_helpers_except_fixture_ok_and_main": true,
+  "unchanged_authored_check_lines": 19,
+  "null_safe_stamp": true,
+  "diagnostic_groups": 7,
+  "source_clear_for_one_separately_granted_cpu_job": true,
+  "tests_executed": 0,
+  "target_imported": false,
+  "compiler_invoked": false,
+  "gpu_game_used": false,
+  "review": "Root read full runtime R2-to-R3 changes, bridge and old fixture previously; now read both builder deltas, changed paths/layout/compile/fixture verdict, corrected fixture delta and null-safe function. Runtime and bridge retain reviewed bytes. Private CPU closure only.",
+  "limits": [
+    "Actual compile/link/19 checks still unrun at review time.",
+    "Older closure r2 is superseded and must not be granted.",
+    "Fresh coordinator grant and copied fa5 whole Job, one CPU, BelowNormal, 120s/1GiB, resource checks and exclusive output required.",
+    "The ten compiles may exhaust the outer 120s limit; preserve failure and do not auto-retry.",
+    "Gate consumer uses owned taken pointer, gate before release, release once, single consumer; no general checked handle API.",
+    "No continuous per-frame scheduling, material consumer, G4, compositor, native suppression, RT, DLSS or live qualification.",
+    "No new toolchain library/header sweep in this static review."
+  ]
+}

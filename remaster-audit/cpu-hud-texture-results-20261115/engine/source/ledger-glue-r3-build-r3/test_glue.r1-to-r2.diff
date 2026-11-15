@@ -1,0 +1,132 @@
+0a1,12
+> // CPU-only glue r3 lifecycle fixture (claude-einhander), glue fixture r2. SOURCE ONLY until a grant.
+> // r2 = r1 (44ab03a6, preserved) narrowed for failure diagnosis, per root msg_b1a99057. The 19 authored CHECKs and
+> // every scenario step are unchanged. Only these change:
+> //   - stamp(nullptr) returns an all-zero CompletionR6 and never dereferences a failed take. The CHECK before it
+> //     already records the failed take. (In r1, stamp(f), stamp(f3) and stamp(f5) dereferenced a null frame on a
+> //     producer refusal and lost the check summary.) gate() and release() are already null-safe in bridge r3;
+> //   - each failing CHECK line is recorded (first 32), and a diagnostic snapshot is taken after each group
+> //     L/O/M/Q/P/R/F: the producer audit (seal/invalid/built/bound/published/busy/refused counts, last invalid
+> //     bits, last scan and bind reasons), epoch, owner errors, armed epoch and the PresentState snapshot;
+> //   - fixture JSON revision "r2" carries failed_lines, the group snapshots and the final audit.
+> // Snapshots only read state; nothing in them is asserted or counted.
+> // r1 header follows.
+14c26
+< // Usage: test-glue-r1.exe RESULT.json  (the driver sets PSXRECOMP_SCENE_CAPTURE=1)  exit 0 only when all pass.
+---
+> // Usage: test-glue-r2.exe RESULT.json  (the driver sets PSXRECOMP_SCENE_CAPTURE=1)  exit 0 only when all pass.
+32c44,46
+< #define CHECK(c) do { ++g_checks; if (!(c)) { ++g_failures; printf("FAIL line %d: %s\n", __LINE__, #c); } } while (0)
+---
+> static int g_fail_lines[32], g_nfail_lines;                          // r2: diagnosis only
+> #define CHECK(c) do { ++g_checks; if (!(c)) { ++g_failures; if (g_nfail_lines < 32) g_fail_lines[g_nfail_lines++] = __LINE__; \
+>                                               printf("FAIL line %d: %s\n", __LINE__, #c); } } while (0)
+160a175
+>     if (!f) return c;                                                // r2: a failed take is never dereferenced
+175a191,262
+> // ---- r2: read-only diagnostics (never asserted). Called on the owner thread only, so guard() has no effect. ----
+> struct GroupDiag {
+>     char group;
+>     int checks, failures;
+>     SceneT2Audit audit;
+>     uint64_t epoch, owner_errors, armed_epoch;
+>     t2::r6::PresentSnapshot present;
+> };
+> static GroupDiag g_diag[7];
+> static int g_ndiag;
+> static void diag(char group) {
+>     if (g_ndiag >= 7) return;
+>     GroupDiag &d = g_diag[g_ndiag++];
+>     d.group = group;
+>     d.checks = g_checks;
+>     d.failures = g_failures;
+>     d.audit = scene_t2_audit();
+>     d.epoch = scene_t2_epoch_now();
+>     d.owner_errors = scene_t2_owner_errors_now();
+>     d.armed_epoch = scene_runtime_armed_epoch();
+>     d.present = snap();
+> }
+> static void put_u64(FILE *fo, uint64_t v) {                          // portable: no 64-bit printf length modifier
+>     char b[24];
+>     int i = 23;
+>     b[i] = 0;
+>     do { b[--i] = (char)('0' + v % 10); v /= 10; } while (v);
+>     fputs(b + i, fo);
+> }
+> static void kv(FILE *fo, const char *key, uint64_t v, bool more) {
+>     fprintf(fo, "\"%s\":", key);
+>     put_u64(fo, v);
+>     if (more) fputc(',', fo);
+> }
+> static void put_audit(FILE *fo, const SceneT2Audit &a) {
+>     fputc('{', fo);
+>     kv(fo, "seals", a.seals, true); kv(fo, "invalid_seals", a.invalid_seals, true); kv(fo, "built", a.built, true);
+>     kv(fo, "bound", a.bound, true); kv(fo, "published", a.published, true); kv(fo, "busy", a.busy, true);
+>     kv(fo, "refused_scanout", a.refused_scanout, true); kv(fo, "last_invalid", a.last_invalid, true);
+>     kv(fo, "last_scan_reason", a.last_scan_reason, true); kv(fo, "last_bind_reason", a.last_bind_reason, false);
+>     fputc('}', fo);
+> }
+> static void put_words(FILE *fo, const char *key, const uint32_t *w, unsigned n) {
+>     fprintf(fo, "\"%s\":[", key);
+>     for (unsigned i = 0; i < n; ++i) fprintf(fo, "%s%u", i ? "," : "", (unsigned)w[i]);
+>     fputc(']', fo);
+> }
+> static void put_record(FILE *fo, const t2::r6::PresentRecord &r) {
+>     fputc('{', fo);
+>     kv(fo, "kind", r.kind, true); kv(fo, "serial", r.serial, true); kv(fo, "epoch", r.epoch, true);
+>     kv(fo, "boundary_generation", r.boundary_generation, true); kv(fo, "flip_generation", r.flip_generation, true);
+>     kv(fo, "frame", r.frame, true); kv(fo, "generation", r.generation, true); kv(fo, "boundaries", r.boundaries, true);
+>     put_words(fo, "target", r.target.w, (unsigned)(sizeof r.target.w / sizeof r.target.w[0]));
+>     fprintf(fo, ",\"target_rect\":[%d,%d,%d,%d]}", (int)r.target_rect[0], (int)r.target_rect[1], (int)r.target_rect[2],
+>             (int)r.target_rect[3]);
+> }
+> static void put_diag(FILE *fo, const GroupDiag &d) {
+>     fprintf(fo, "{\"group\":\"%c\",\"checks\":%d,\"failures\":%d,\"audit\":", d.group, d.checks, d.failures);
+>     put_audit(fo, d.audit);
+>     fputc(',', fo);
+>     kv(fo, "epoch", d.epoch, true); kv(fo, "owner_errors", d.owner_errors, true); kv(fo, "armed_epoch", d.armed_epoch, true);
+>     fputs("\"present\":{", fo);
+>     kv(fo, "scanout_generation", d.present.scanout_generation, true); kv(fo, "retired_serial", d.present.retired_serial, true);
+>     kv(fo, "reference_mode", d.present.reference_mode, true);
+>     kv(fo, "last_retire_reason", d.present.last_retire_reason, true);
+>     put_words(fo, "scanout", d.present.scanout.w, (unsigned)(sizeof d.present.scanout.w / sizeof d.present.scanout.w[0]));
+>     fputs(",\"pending\":", fo);
+>     put_record(fo, d.present.pending);
+>     fputs(",\"displayed\":", fo);
+>     put_record(fo, d.present.displayed);
+>     fputs("}}", fo);
+> }
+207a295
+>     diag('L');
+224a313
+>     diag('O');
+234a324
+>     diag('M');
+240a331
+>     diag('Q');
+254a346
+>     diag('P');
+265a358
+>     diag('R');
+289a383
+>     diag('F');
+292c386
+<     printf("{\"fixture\":\"glue\",\"revision\":\"r1\",\"checks\":%d,\"failures\":%d,\"passed\":%s}\n",
+---
+>     printf("{\"fixture\":\"glue\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"passed\":%s}\n",
+297,298c391,402
+<         fprintf(fo, "{\"fixture\":\"glue\",\"revision\":\"r1\",\"checks\":%d,\"failures\":%d,\"passed\":%s,"
+<                     "\"gl_used\":false,\"sdk_used\":false}\n", g_checks, g_failures, passed ? "true" : "false");
+---
+>         fprintf(fo, "{\"fixture\":\"glue\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"passed\":%s,"
+>                     "\"gl_used\":false,\"sdk_used\":false,\"failed_lines\":[", g_checks, g_failures,
+>                 passed ? "true" : "false");
+>         for (int i = 0; i < g_nfail_lines; ++i) fprintf(fo, "%s%d", i ? "," : "", g_fail_lines[i]);
+>         fputs("],\"groups\":[", fo);
+>         for (int i = 0; i < g_ndiag; ++i) {
+>             if (i) fputc(',', fo);
+>             put_diag(fo, g_diag[i]);
+>         }
+>         fputs("],\"audit\":", fo);
+>         put_audit(fo, au);
+>         fputs("}\n", fo);

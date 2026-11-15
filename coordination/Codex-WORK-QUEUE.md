@@ -1,14 +1,12 @@
-# Einhander active queue — November 14, 2026
+# Einhander active queue — November 14/15, 2026
 
-Latest CPU engine results: [131 ledger and79 transport controls, retained failures and four-HUD coverage correction](../docs/CPU-ENGINE-CLOSURE-ACTUAL-20261114.md). Both CPU Jobs end empty; glue consumer integration is source-only. No new live art/audio/Remix acceptance. Earlier dated scope remains preserved.
+ACTIVE / INCOMPLETE. [Current handoff](Codex-HANDOFF.md), [latest CPU results](../docs/CPU-HUD-TEXTURE-RESULTS-20261115.md), [seven-stage scope](../docs/RUNTIME-CONTINUATION-20261113.md). Component passes are not project completion. Prior queues preserved under the handoff's private history.
 
-ACTIVE / INCOMPLETE. Current actual state and paths: [handoff](Codex-HANDOFF.md). Latest publishedb1dd313122pins; PR1exact OPEN/DRAFT/unmerged. Previous queue/checkpoint preserved under private-continuity-history; never infer overall acceptance from completed components.
-
-1. R11/R9 ACTUAL79PASS/rootreadbackcomplete; preserveR8FAIL+3resource-refusals. LedgerR1ACTUAL99+32PASS/root25pins6knownidentitieschecked; no rootduplicate. Preserve failedR8/log and prior startupabort; no auto-retry or GPU launch. Coordinator alone grants/operates any actual game.
-2. Rootsource reviewcompletedglueR0/R1consumer8c7; consumercompileUNRUN. LedgerR1ACTUAL131PASS. ContinueprimaryR3sourceintegration. Exact37cv69debugconsumercompile-check must join closure before merge. Sourcework while gamequiet; no heavybuild without freshslot.
-3. S45r5 firstfixtureattemptCPU85%declined/nochild, retain7d31a580. New exclusiveattempt/freshgrant only. No artkeys/scope/admission;4r4positivefailures retained.
-4. S23padrecorderR1sourceBLOCKEDdurability/ownership/deadline; reviewcorrectedR2+separateobserverpolicy. DrachefamilydataSOURCEtaskactive. No replay/determinism/liveownership claim; immutablej10pilotneedsseparatewritablelive route.
-5. Continue alltexture gaps/menucontours/distantneons/buildings/realisticskins/HUD and seven-stage backlog from acceptance. AllliveSDL/listening/pacing, G4/material/camera/compositor/RT/DLSS/install/rollback open.
-6. UpdateGitHub in substantive actual-result batches; b1ddpublication alreadyverified. Preserve rootunrelatededits/frozenart/nativealpha/failures, no Ddrive. Maintain durablecheckpoint/actualpresence/quietACK and verify ownedmonitoridentity before renewal.
-
-Resource correction: root23:50reread did not start a newhumanhour. Retract00:50:33bound asauthority; coordinatorusesactualverifiedlatesthumaninstruction/freshgrant, rootCPU-only.
+1. Publish actual HUD4 (two FAIL/two PASS, one blank), S45r5FAIL21/24 and private P1r2 build34e5d8f5, exact source/evidence/remaining gaps. Remote still3669 until delivery proof. No broad root staging/reset/stash.
+2. UI: separately granted short private E0rim253b and44Crim2d3d candidates; current source clear, no art/install/live claim. Review other11-palette HUD audit4c9c, no full HUD coverage from four keys. Player/enemy menu compiled, live L5-L7/E1-E6 unrun; realistic skins/PBR/factory/library/persistence/zero-strength UX unresolved.
+3. Primary: actual ledgerR3f08a and glue closure r3 11c2 after exact fresh coordinator CPU grants. Do not run superseded b057. Continue opt-in bounded capture scheduler and material identity contract while waiting. No native suppression/G4/SDKcompositor/RT/DLSS acceptance.
+4. S67: fix R-A d31e helper/CLUT provenance and durable error receipt, R-B ae13 pre-import/C return checks/readback; then one region measurement and one default E candidate under separate grants. Preserve audit4f39+erratumecf1, K provenance uncertainty, missingCLUT distinction. No total remaining sign count/full coverage claim.
+5. S45: real-key private diagnostic preview with strict failures and source/input/rejected/r5 crops. R6 gate relaxations leave candidate pixels unchanged; no false quality clearance. All prior failures/refusals remain.
+6. S23: review recorderR3 6aed targeted delta and new controls; separate read-only observer policy/canonicalguard unchanged. No ordinary route/kill/replay or BOUND skins from assisted D1metadata. Support: SDK black-output/indices/lifecycle source diagnosis and peer deadline source; no GPU without coordinator.
+7. Coordinator alone: fresh actual raw37c menu/audio/game grant after current resource/GPU ownership. Preserve R7 controlled startupABORT/failurephase UNKNOWN and R11 nochild68.2CPU refusal. Root no game/GPU/device/globalsettings/Ddrive.
+8. All seven-stage/art/live audio/menu/realistic skin/RT-DLSS/installation/rollback acceptance remains. Read/quietACK inbox and durable queue, refresh own work presence, preserve checkpoint. Metadata monitor9712 bound01:10:14UTC proves monitoring only; actual model continues available independent work.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-11-15T00:06:14.876252+00:00",
+  "updated_at_utc": "2026-11-15T00:45:53.011220+00:00",
   "objective": "Complete remaining remaster implementation and acceptance; Stage1 is the immediate end-to-end milestone, with later stages and unlock/end states retained in scope",
   "full_remaster_complete": false,
   "stage1_complete": false,
@@ -1171,6 +1171,23 @@
     "glue_consumer_source_only": true,
     "root_game_gpu_used": false,
     "live_acceptance": false,
+    "installed": false
+  },
+  "cpu_hud_texture_actual": {
+    "evidence": "docs/CPU-HUD-TEXTURE-RESULTS-20261115.md",
+    "hud_measurement_complete": true,
+    "hud_connectivity_pass": 2,
+    "hud_connectivity_fail": 2,
+    "hud_blank_palette_pass": 1,
+    "stripe_checks_passed": 21,
+    "stripe_checks_total": 24,
+    "stripe_failed": true,
+    "private_player_enemy_colour_build_pass": true,
+    "private_exe_sha256": "34e5d8f50ee013749bdd53eb139796ca15adea684d1a93bb8335b6127bcd3be2",
+    "selector_launched": false,
+    "ledger_glue_r3_source_only": true,
+    "root_game_gpu_used": false,
+    "art_admitted": false,
     "installed": false
   }
 }

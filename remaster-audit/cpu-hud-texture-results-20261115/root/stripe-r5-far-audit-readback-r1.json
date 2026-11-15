@@ -1,0 +1,104 @@
+{
+  "at_utc": "2026-11-15T00:20:16.855540+00:00",
+  "pins": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\tools\\s45_diag_bands_r5.py",
+      "sha256": "4df3b6a612244969df99564144a73813a7370ed2b1525ebc02978ec7bc09ae10",
+      "bytes": 72895
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\runs\\diagbands-r5-fixtures-attempt2-envelope.json",
+      "sha256": "48ce9256981a0970a3e7b00cd28630ad066dc35791ffb5332352af6ab10a926f",
+      "bytes": 2137
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\20261115T001350Z-diagbands-r5-fixtures\\receipt.json",
+      "sha256": "f8d8bc99bb317c379602595ec4df7cfb55af46c1a642ecbf684e2b653837af81",
+      "bytes": 2060
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\20261115T001350Z-diagbands-r5-fixtures\\fixtures-receipt.json",
+      "sha256": "e7e90eaabdfd5dc76792ec111d9f2cabc5802391e35024facdc2b67596856b84",
+      "bytes": 49899
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\reports\\S67-STAGE1-FAR-NEON-BUILDING-AUDIT-20261115.md",
+      "sha256": "4f39c1c33d70c711a2ad65d5d0b5f4048bb2f66d5cd3bf150e83c84b3c47243e",
+      "bytes": 7472
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\reports\\S67-STAGE1-FAR-NEON-BUILDING-AUDIT-20261115-ERRATUM-r1.md",
+      "sha256": "ecf1fb3bdfe208a84882f79d3c996148b0df9dbbf5805c0da96aa9ff23311125",
+      "bytes": 2270
+    }
+  ],
+  "known_identities": [
+    {
+      "kind": "wrapper",
+      "pid": 45456,
+      "creation_unix": 1794701629.1065967,
+      "identity_absent": true
+    },
+    {
+      "kind": "child",
+      "pid": 45548,
+      "creation_unix": 1794701630.2890425,
+      "identity_absent": true
+    }
+  ],
+  "stripe_actual": {
+    "cases": 24,
+    "ok": 21,
+    "negative_cases_ok": 16,
+    "failed": true,
+    "failures": [
+      {
+        "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=8: direction, centres (b), per-chain/border/corner/dot gates",
+        "reason": "border residual 0.5503 > 0.5"
+      },
+      {
+        "name": "positive: steep two-row staircase (1 texel per 2 rows), stripes continue outside: slope -0.5, gates",
+        "reason": "chain 1 (family) has 3 missing crossings"
+      },
+      {
+        "name": "positive: shallow staircase (2 texels per row), stripes continue outside: slope -2, gates",
+        "reason": "output staircase not < stepped reference"
+      }
+    ],
+    "whole_job_s": 1.773,
+    "peak_job_memory_bytes": 87171072,
+    "job_empty": true
+  },
+  "far_background": {
+    "missing_staged_key": "95A3BCF8-7589E98F.png",
+    "staged_subset": {
+      "95A3BCF8-60245B3A.png": {
+        "relative": "einhander-texture-replacements/95A3BCF8-60245B3A.png",
+        "sha256": "6b8aa13e2590d14b11b9c4a1abaf05369684c790341b002e3a2e143fe9b8b859",
+        "current_staged_bytes_match": true
+      },
+      "95A3BCF8-07A9568D.png": {
+        "relative": "einhander-texture-replacements/95A3BCF8-07A9568D.png",
+        "sha256": "52b92c145f051c01e56a596fbce35af4bda0ef3fca201c2c3421f89fe0396e7f",
+        "current_staged_bytes_match": true
+      },
+      "95A3BCF8-723E222C.png": {
+        "relative": "einhander-texture-replacements/95A3BCF8-723E222C.png",
+        "sha256": "f17632027bbbd232167d2c5b76f84c872617f9af50c1677a557affe70ae6e30e",
+        "current_staged_bytes_match": true
+      }
+    },
+    "original_audit_and_erratum_read": true,
+    "full_visual_acceptance": false
+  },
+  "tests_replayed": false,
+  "images_decoded": false,
+  "gpu_game_used": false,
+  "limits": [
+    "Far-audit drawcount/role/source assertions are owner/subagentmetadata; root independentlychecks only threecurrentstagedhashes and missing-mapmembership, not allcitedsources.",
+    "Page-level failure is unattributed to particularROI; no dominanceoutsideK/failedinsideC claim.",
+    "MissingCLUTblocks offlineauthoring/audit, not nativegamerendering.",
+    "No accepted-look appliesonlyauditedsubset and recordedqualifiedliveproof.",
+    "R6 metrics relaxations do not change candidateRGBalgorithm; not repaireddefects/acceptedart."
+  ]
+}

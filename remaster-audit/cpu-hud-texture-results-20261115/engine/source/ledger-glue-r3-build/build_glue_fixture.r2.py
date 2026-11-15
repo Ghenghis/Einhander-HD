@@ -1,0 +1,662 @@
+"""CPU-only build-closure driver r2 for the FROZEN glue r3 (claude-einhander), per root msg_b02d1bcc, msg_08008ad5
+and msg_2fe98abb. r2 = closure r1 (8c7bbfb8, preserved) with the glue r3 sources in place of the glue r2 ones:
+  - scene_runtime.cpp / .h r3 (b0d820a7 / 6c69adcb) and scene_t2_bridge.r3.cpp / .h (5182d80d / f09f3296);
+  - ledger r3 (scene_ledger.r3.h 9a0af4a9, .cpp 23499310) in place of ledger r0; scene_ledger_t2.r0.h (94bc9c24)
+    is unchanged; the native unpack BLOCKS/TEMPLATE are identical to the ledger r3 driver's (f08a5a2e lines 84-176);
+  - T2 r6 (remix_t2.r6.h 419dea94) added to the strict closure beside T2 r3 / r4;
+  - harness test_glue.r1.cpp (44ab03a6): fixture glue, revision r1, 19 authored checks.
+gpu.c stays the glue r2 de9dfd77 (glue r3 needs no new hook); compile-gpu-patched and compile-debug-patched now see
+scene_runtime.h r3, which includes scene_ledger.r3.h. Everything else is r1 unchanged: native/strict split, raw pins,
+hermetic roots, the v69 toolchain-closure equality, PSXRECOMP_SCENE_CAPTURE=1 for run-glue only, no GL/SDK/GPU/game.
+r1 docstring follows.
+CPU-only build-closure driver r1 for the FROZEN ledger glue r2 (claude-einhander), per root msg_31e3312e and
+msg_75dee0c2. r1 = r0 (70592507, preserved) + the scene_runtime.h CONSUMER debug_server.c as actually built by v69
+(37c retains v69 debug_server.c.obj dc75afc2, retained-inputs.v69.tsv d9eb77e0 row 25):
+  compile-debug-base / compile-debug-patched : v69 src/debug_server.c (b50aef2a) against its 56 recorded project
+      headers (v67-decode-identity-r3 include/src, pinned to the v69 manifest e6ab30e9 build.debug.closure hashes),
+      with the base scene_runtime.h 6ddedc78 and with glue r2 730b5b4f (+ ledger r0 header); the exact v69
+      build:debug defines/flags and -isystem toolchain deps/include. Beyond the hermetic-root check, every toolchain
+      dependency must appear in the recorded v69 closure with an identical sha256. The base object is compared with
+      dc75afc2 for information only (paths may differ). Objects are never linked or run.
+Everything below is r0 unchanged except these additions.
+r0 docstring follows.
+Proves, on one CPU and with no GL, SDK, game, GPU or DLL, that the glue r2 sources compile and link in a pinned,
+hermetic closure, and runs a wiring fixture:
+  compile-gpu-base / compile-gpu-patched : v66-r3 gpu.c (3d8b5d3e) and glue r2 gpu.c (de9dfd77), each with its own
+      scene_runtime.h, compiled as C with the EXACT native defines and optimisation flags of the v66-r3 build.json
+      compile-gpu.c command (no warning flags, raw pgxp.h, as natively). Objects are hashed, never linked or run.
+  compile-native-capture / compile-native-json : v66-r3 scene_capture.cpp / scene_json.cpp with the native C++
+      flags (raw pgxp.h); linked into the fixture unchanged.
+  compile-ledger / compile-runtime / compile-bridge / compile-harness : ledger r0, glue r2 scene_runtime.cpp and
+      scene_t2_bridge.r2.cpp, and test_glue.r0.cpp under -std=c++17 -Wall -Wextra -Werror with the DERIVED pgxp.h.
+  link, run-glue : fixture glue, revision r0, 28 authored checks (fakes for gpu.c / PGXP / GTE-ring entry points).
+Every compile writes -MD -MF dependencies; a step passes only if every dependency resolves inside this run's
+output folder or the pinned toolchain root (hermeticity: no header comes from the repository or an SDK).
+Native include closure: the v66-r3 .obj.d files list exactly 23 include/*.h headers for gpu.c and scene_capture.h /
+pgxp.h for the capture TUs; the native -I directories outside v66-r3 (runtime, recompiler, recomp-ui, VulkanSDK,
+build-ss8c, deps) contribute no header and are omitted. v68 links these same v66-r3 objects (v68 build.json); the
+"37c" parents are NOT compared here (paths not supplied).
+Rules inherited from build_t2_fixture.r4.py (7b39f6a4), whose lines 77-271 (sha, now, BLOCKS, TEMPLATE,
+lf_lines, native_block, divide_block, derive_pgxp, write_exact, run_child) are byte copies below (sed -n):
+  - raw-byte pins first; a single in-memory read per input; every executed copy re-hashed after writing;
+  - gte.cpp divide block cfa7686a (v61 == canonical); ledger native closure from the raw-pinned v66-r3 gpu.c /
+    gpu_gl_renderer.c BLOCKS; pgxp.h DERIVED (comment-only, offset 3986, 50a6ef6d) for the strict TUs only.
+Run ONLY under a grant naming the CPU, inside the required outer envelope (or a verified copy of it)
+  remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py
+  sha256 fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36
+  options: --cpu N --timeout 120 --max-job-mib 1024 --no-window
+Children are CREATE_NO_WINDOW|BELOW_NORMAL with bounded waits; the envelope owns tree cleanup and the 120 s limit.
+result.json is written in try/finally (best effort). The compilers are hashed then executed by path."""
+import argparse, datetime, hashlib, json, os, subprocess, sys, time, traceback
+from pathlib import Path
+
+import psutil
+
+HERE = Path(__file__).resolve().parent
+CAPTURE = HERE.parent
+T2DIR = CAPTURE.parent / "t2"
+T1DIR = CAPTURE.parent / "t1"
+LEDGER = CAPTURE / "ledger-r3"                       # r2: ledger r3
+LEDGER0 = CAPTURE / "ledger-r0"                      # r2: scene_ledger_t2.r0.h only
+GLUE2 = CAPTURE / "ledger-glue-r2" / "patched"       # r2: gpu.c de9dfd77 only
+GLUE = CAPTURE / "ledger-glue-r3" / "patched"        # r2: glue r3
+T2R6 = T2DIR / "r6"                                  # r2: T2 r6
+R = Path("C:/github/Einhander")
+EV = R / "remaster-audit/dev-center-evidence/stage1-completion-20261112"
+V66 = EV / "sampling-build-v66-reviewed-scene-r3"
+GPU_HEADERS = {  # v66-r3 include/*.h listed by gpu.c.obj.d (pgxp.h raw)
+    "gpu.h": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405",
+    "pgxp.h": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+    "mod_memory.h": "89174eb7cd7db7294d6f5e5a0b99a6b5e24a5a724c6d8adca56239de830db83f",
+    "gpu_primitive_reject.h": "d8ad4e64e9cc536e18e47d488b46216c4d7bc44df0de0b821d2e72f7e53b02db",
+    "gpu_sw_renderer.h": "7211fae8b6741507a9e4260ea1915b1e36d2a76cc0d477f991bca07ba7a08285",
+    "gpu_vram_dirty.h": "9536a2e2cbf54eb4178cc8540412ad71b1c3919d40857c238893a9e8a22171d2",
+    "gpu_render.h": "a4e686c8fa453b691a8e299ab991a10d076da97461ffb5cc27b4c85a2d2654cc",
+    "text_xlate.h": "8f64dfc366cbefac0fb01ef585c31ef5ab9d96a2ae2ca8994f7a0ccaa3d25707",
+    "crash_trace.h": "c37c6e1f50003e4454bf995ef678e7259a66844fb042e070c53b9738bf8b751f",
+    "debug_server.h": "819212833c2903e010bc8a7f0c9403052bf96a84c7adcdc28cf80d4d2422f842",
+    "cpu_state.h": "f73944953efa2effaa62ba672a7bd6cc618f4df2f5381624aaca62dc73ab2053",
+    "psx_icache.h": "1fbfa842f69e16e9432f1ff4baf2a03fa284735daf3d8142f751c8d37d338f2a",
+    "pgxp_hooks.h": "fa5ae62be37343236118d3229af4ade4ee3d36e8ca4917ae83a327926cdd678d",
+    "psx_cyc.h": "a3efef40effc95eef8d1f6e88bcba1cb785dcea5ad0ff38e55d4d753ce4109f6",
+    "psx_cycles.h": "0e4c3e30fd7f235ab6226c9bf7c9d515c817dc39f12aa706a1ec53f1165d92f7",
+    "event_ring.h": "06cc69ded9a8c2c6ed7723d86633eaaf1336c5da9aee432724142fe4696f6d89",
+    "color_lut.h": "4738db18cb4aa215ed03eaf44474ffd1dc397f73cb38e4ffd0666fabd3a00830",
+    "mod_runtime.h": "b1e9f43a7d97a326df3b60b458256f5c2c8e58a520e89ab42da831b2cf49cc80",
+    "sio.h": "e53de1c7ee0947f0785e60ed0e0bb90affff10b9d13311708a09a63acecbfc3e",
+    "ws_cull_detect.h": "75172fae6957a89ac7cf70416b3e6715c7b0dc1726e99364f6ffb4707374e684",
+    "ws_aspect_cone_math.h": "b40a362504331b5963ccc2e72cf8dfa3fb43990c7f61ba7a58961431f44b04aa",
+    "ws_ui_group.h": "38190a000994c9b57995835023b37848e99fdf4458b8be1c71b875c1f1054833",
+    "pst_wire.h": "3448f12dc6fc4d657d211adb25bf5f1ae0546e3a46d99a8749c736c80ba227ab",
+}
+INPUTS = {  # name -> (path, sha256)
+    "gte_v61.cpp": (EV / "sampling-build-v61-view-metrics-r2/src/gte.cpp",
+                    "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849"),
+    "gte_canonical.cpp": (R / "windows-x64/psxrecomp/runtime/src/gte.cpp",
+                          "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0"),
+    "gpu.c": (V66 / "src/gpu.c", "3d8b5d3e23c42a22fe1cecbe1287a286f2f4305147d67cb1039bdef96f628689"),
+    "gpu_gl_renderer.c": (V66 / "src/gpu_gl_renderer.c",
+                          "b41b7ab5843ce1a6d4710cc010be6d44f3127a77ce660cc2527eb98e6cd0cb16"),
+    "base_scene_runtime.h": (V66 / "src/scene_runtime.h",
+                             "6ddedc789b76254f865217c9e4e0eec7bba498cc039397178c7cec4ea5d41544"),
+    "scene_capture.h": (V66 / "src/scene_capture.h", "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8"),
+    "scene_capture.cpp": (V66 / "src/scene_capture.cpp",
+                          "78c4158d6428b57e5c1312b61637af4cfebd0c8a484860294ae13ce140c9eff8"),
+    "scene_json.cpp": (V66 / "src/scene_json.cpp", "4305f17e8d0dfea833209400da4ddc819d8cc2aa3ed46b584d6f4a257889211f"),
+    "glue_gpu.c": (GLUE2 / "gpu.c", "de9dfd7742d337d94811dca542043d18d8fb330352474d67bda64a2b3dd88335"),  # glue r2
+    "glue_scene_runtime.cpp": (GLUE / "scene_runtime.cpp",                                   # r2: glue r3
+                               "b0d820a705714fa024475393ce3359f1d8a5a0764f75dccb0cf4e2990e9895b4"),
+    "glue_scene_runtime.h": (GLUE / "scene_runtime.h",
+                             "6c69adcbe2dc078c4062734bf09bf5b3e1c75e7ac45cbddbdf8b437b36076dfc"),
+    "scene_t2_bridge.r3.cpp": (GLUE / "scene_t2_bridge.r3.cpp",
+                               "5182d80ddb8c4aa6bde518be23ccc54157f21c693d643c222d7d67a97f0476cb"),
+    "scene_t2_bridge.r3.h": (GLUE / "scene_t2_bridge.r3.h",
+                             "f09f3296bb2894fd228799e34bc047d7d655cc87dc88199539f7702cb5156c73"),
+    "scene_ledger.r3.h": (LEDGER / "scene_ledger.r3.h", "9a0af4a903cfbd653ed858cec2f23e71ade8322fe6e55255e1dbddff833073fd"),
+    "scene_ledger.r3.cpp": (LEDGER / "scene_ledger.r3.cpp",
+                            "234993106083f7ed5633d50b6a0872851397c8d6198bc8f508ecb1cb4564513e"),
+    "scene_ledger_t2.r0.h": (LEDGER0 / "scene_ledger_t2.r0.h",
+                             "94bc9c245e3f2c003119fd57fdaf49de959d37799bbe870ba1c8528017dd39c8"),
+    "remix_t1_reproject.r1.h": (T1DIR / "remix_t1_reproject.r1.h",
+                                "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795"),
+    "remix_t2.r3.h": (T2DIR / "remix_t2.r3.h", "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b"),
+    "remix_t2.r4.h": (T2DIR / "r4" / "remix_t2.r4.h", "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96"),
+    "remix_t2.r6.h": (T2R6 / "remix_t2.r6.h", "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd"),  # r2
+    "test_glue.r1.cpp": (CAPTURE / "ledger-glue-r3" / "test_glue.r1.cpp",          # r2: the frozen r1 harness
+                         "44ab03a6ef6e76e340750ff5d45ad4864f061727729d1d6384f3fc5056be62cf"),
+}
+INPUTS.update({"include/" + n: (V66 / "include" / n, s) for n, s in GPU_HEADERS.items()})
+PGXP_DELTA_OFFSET = 3986
+PGXP_DELTA_OLD = b"*x16/*y16"
+PGXP_DELTA_NEW = b"*x16 and *y16"
+PGXP_DERIVED_SHA = "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52"
+DIVIDE_BLOCK_SHA = "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef"
+TOOLBIN = Path("C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin")
+CC = TOOLBIN / "clang++.exe"
+C_CC = TOOLBIN / "clang.exe"
+TOOLCHAIN = {
+    "clang++.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+    "clang.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+    "clang-22.exe": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
+    "libclang-cpp.dll": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
+    "libLLVM-22.dll": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+}
+FLAGS = ["-std=c++17", "-Wall", "-Wextra", "-Werror"]
+# Exact defines and optimisation flags of the v66-r3 build.json compile-gpu.c / compile-scene_capture.cpp commands.
+NATIVE_DEFINES = [
+    "-DDEFAULT_DEBUG_PORT=4370", "-DFMT_HEADER_ONLY=1", "-DLNG_SDL3=1", "-DNOMINMAX",
+    '-DPSX_BUNDLED_BIOS_PATH="bios/openbios.bin"', '-DPSX_DEFAULT_BIOS_PATH="bios/SCPH1001.BIN"',
+    '-DPSX_DEFAULT_GAME_CONFIG_PATH="game.toml"', "-DPSX_ENABLE_BLOCK_CYCLES=1", "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+    "-DPSX_HAS_GAME_CODEGEN=1", "-DPSX_HAS_GAME_DISPATCH=1", "-DPSX_HAS_RBENGINE_SNAP=1", "-DPSX_HAS_SETUP_WIZARD=1",
+    "-DPSX_HAVE_VULKAN=1", "-DPSX_MAX_PLAYERS=1", "-DPSX_NATIVE_BUILD=1", "-DPSX_SDL3=1",
+    '-DPSX_WINDOW_TITLE="Einhander Recompiled"', "-DRECOMP_LAUNCHER", "-DRECOMP_UI_ENABLE_MODS=1",
+    "-DRECOMP_UI_PSX_HAS_REWIND=1", "-DSDL_MAIN_HANDLED",
+]
+NATIVE_C = ["-O3", "-DNDEBUG", "-fzero-initialized-in-bss"]
+NATIVE_CXX = ["-O3", "-DNDEBUG", "-std=gnu++17", "-fzero-initialized-in-bss"]
+# r1: the v69 scene_runtime.h consumer (debug_server.c) and its recorded closure (v69 manifest build.debug).
+V67 = EV / "sampling-build-v67-decode-identity-r3"
+V69 = R / "remaster-audit/parallel-stages-20261114/s67/runs/v69-build-2206"
+V69_DEBUG_OBJ_SHA = "dc75afc26f599ac93d20d877122312c0054900e85d9c3a9569a61d9c3c87a37f"
+V69_DEBUG_DEPFILE_SHA = "939b9cd139336fdb885bb3e0abfc944f74552894cfd4ab5d9e711831fe23acd8"
+DEBUG_HEADERS = {  # name -> (path under v67-decode-identity-r3, sha256): the 56 recorded project headers
+    "debug_server.h": ("include/debug_server.h", "819212833c2903e010bc8a7f0c9403052bf96a84c7adcdc28cf80d4d2422f842"),
+    "cpu_state.h": ("include/cpu_state.h", "f73944953efa2effaa62ba672a7bd6cc618f4df2f5381624aaca62dc73ab2053"),
+    "psx_icache.h": ("include/psx_icache.h", "1fbfa842f69e16e9432f1ff4baf2a03fa284735daf3d8142f751c8d37d338f2a"),
+    "pgxp_hooks.h": ("include/pgxp_hooks.h", "fa5ae62be37343236118d3229af4ade4ee3d36e8ca4917ae83a327926cdd678d"),
+    "psx_cyc.h": ("include/psx_cyc.h", "a3efef40effc95eef8d1f6e88bcba1cb785dcea5ad0ff38e55d4d753ce4109f6"),
+    "psx_cycles.h": ("include/psx_cycles.h", "0e4c3e30fd7f235ab6226c9bf7c9d515c817dc39f12aa706a1ec53f1165d92f7"),
+    "psx_bss.h": ("include/psx_bss.h", "eacf7e36a2e8e0e8b1adea110dbf97179f5dfe369481755424ba5e717fc606b7"),
+    "nd_intro_ot.h": ("include/nd_intro_ot.h", "1224632232d059f1d873e9f0baf9495b463c81fca1dd89385392ca2701c9670e"),
+    "latency_ring.h": ("include/latency_ring.h", "38cdd66f206d8abc22f040a6477667b7039620493298095839a2c01170974356"),
+    "overlay_loader.h": ("include/overlay_loader.h", "65ff13802951fa890f9dececa60cdefd81c7dfe3f468755c56841c41fc4fe81d"),
+    "overlay_capture.h": ("include/overlay_capture.h", "63adee09d3a69394ab79eb33c3939327f613f1519e24a0c3299f6625eb4da767"),
+    "code_provider.h": ("include/code_provider.h", "3d4bc5f012ef46581848f8ec08ce15c450f36a049a55fc372c2ed4852e892f63"),
+    "overlay_backend.h": ("include/overlay_backend.h", "7b85fa7b905376d0b4cae2200d323ea2630f5fac7d2bf5be155d023a54d945ca"),
+    "interp_pc_sampler.h": ("include/interp_pc_sampler.h", "7958e2d9c1d0ab512e00d8e6b68ad11fa2be2ab3a20c588f375ae1281fd300fd"),
+    "pgxp.h": ("include/pgxp.h", "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47"),
+    "scene_runtime.h": ("src/scene_runtime.h", "6ddedc789b76254f865217c9e4e0eec7bba498cc039397178c7cec4ea5d41544"),
+    "scene_capture.h": ("src/scene_capture.h", "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8"),
+    "dma.h": ("include/dma.h", "5102e6ffc1efd5d4f07458d3609d84379040129f0918afd03c8dc4bae8744a83"),
+    "gpu.h": ("include/gpu.h", "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405"),
+    "gpu_render.h": ("include/gpu_render.h", "a4e686c8fa453b691a8e299ab991a10d076da97461ffb5cc27b4c85a2d2654cc"),
+    "present_ring.h": ("include/present_ring.h", "5e984c6578716a124e205b61c5a520565746e8bf1558de8c19a54d6034478ca9"),
+    "load_transition_ring.h": ("include/load_transition_ring.h", "53e6f5dd1435b04c1c30a25b7f21751eba4a8afcd5742a0d50a823799d8650ca"),
+    "cdrom.h": ("include/cdrom.h", "8f53f7eda568efc0d29239fcf84ba6dbe1a5d94795836798e321dfb5ca040090"),
+    "sio.h": ("include/sio.h", "e53de1c7ee0947f0785e60ed0e0bb90affff10b9d13311708a09a63acecbfc3e"),
+    "memcard.h": ("include/memcard.h", "d819abc0863f82c1a692f8ece1e592fc5b74b0d4b84aa3fc72e62471467dc6eb"),
+    "spu.h": ("include/spu.h", "1684c9ea7757eb282f2be00bbf9338a80456991499b741b40061903dcbd1a0c6"),
+    "audio_trace.h": ("include/audio_trace.h", "5e3e7951ef4ca85708e1e35749cf1f59c939ce2d73739e9713b2f786b7aed2bd"),
+    "mdec.h": ("include/mdec.h", "ef99ad2fff168b74d9a6944adbb6dba7cc5a40512b359fe6373adee30912a790"),
+    "interrupts.h": ("include/interrupts.h", "43d30ba1c991b9b29ecd0e8d2fad47a9babb0efb0b946630ebaa7e8dee06b478"),
+    "timers.h": ("include/timers.h", "ccfb313386cff9a281b3fd613952469b55341cd274b1f6ffe9f1ed2b68d3285b"),
+    "dirty_ram_interp.h": ("include/dirty_ram_interp.h", "04145525df315f6d6e38e1d2eb1910d83496da1128b6a536583a2a785d0c691b"),
+    "card_read_summary.h": ("include/card_read_summary.h", "cf760551ef3954fe27fe60aa8480447b3569bfccedf4c5c53e02cbb94107cfd7"),
+    "card_data_writes.h": ("include/card_data_writes.h", "f737fc867d39c21f93b2699fa888e7c30f6b5d3b06914a0b7bb61484371d72dd"),
+    "crash_trace.h": ("include/crash_trace.h", "c37c6e1f50003e4454bf995ef678e7259a66844fb042e070c53b9738bf8b751f"),
+    "gpu_gl_renderer.h": ("include/gpu_gl_renderer.h", "fb533ebed4e202292cbc148676cba1e33f5b671b32bfc61d3b4fe07a2cdf6d98"),
+    "hd_upload_ledger.h": ("include/hd_upload_ledger.h", "fd3848ba5aa3423766c42bd69f08ee8dc4b76910e1f6babffd5f45523c827ef6"),
+    "native_upload_ledger.h": ("include/native_upload_ledger.h", "72150915c1d70a5f2ccd203a5cf0bcad702e51e0091829881d5a28cf823c09a6"),
+    "frame_phase_ring.h": ("include/frame_phase_ring.h", "c307ae7f0937521106af9f7ebc511de10fbc23d49a55dcc77f2f22994492eef7"),
+    "lockstep.h": ("include/lockstep.h", "78d66c58572feae0703b03eb2194bec54088f0d0cdb722cfeb4440207ee13e8a"),
+    "psx_rewind.h": ("include/psx_rewind.h", "551b5d1d4a83552f8da92bdb941138185832a24a0a11582d647e1380336984ce"),
+    "psx_sdl.h": ("include/psx_sdl.h", "3f25b782a6cf0fa9f5c73a98561bbf3efc441617e78725a5ca48d828c85ca002"),
+    "fntrace.h": ("include/fntrace.h", "e83ad49eb85b0284adc607cca862ff33ecb40f92a533bb27f3fe35e5567c326b"),
+    "starvation_ring.h": ("include/starvation_ring.h", "6c2592bebca3f2f85c8f943c7888c7224ee1bdcc0a1695a973961a6aebd75695"),
+    "bios_hle.h": ("include/bios_hle.h", "8c5f1e36c13bbee1fa9aeaeb83ad9994f883e1c617a96a28e7f38637b74a910b"),
+    "psx_bios_image.h": ("include/psx_bios_image.h", "51145f4a03ab3e705b8dbf7dc0fdf582d3d09efaac2287ee9739c46a136d55a9"),
+    "parity_trace.h": ("include/parity_trace.h", "afb76bf022f5c3061d6b9a02adae9f70d3a3635f34c05a0901e5225dc7564ce3"),
+    "device_trace.h": ("include/device_trace.h", "7174fdcd5b3333cd02de8a3c4ef06f48737e62849993dc0ff8f7b9784742dcdf"),
+    "hd_skin_live_debug.h": ("include/hd_skin_live_debug.h", "2e33d6a92dd6a09cf697805ce21ab696fd0e8aabaf48d0192ef269c2c9761102"),
+    "hd_skin_live.h": ("include/hd_skin_live.h", "e003bfafe0db93254cd54749ce6f6a41139909099424a72d52e2058c802c4f15"),
+    "hd_skin_material.h": ("include/hd_skin_material.h", "59565481657298ffb50eaa71f34544ef98e7ee7ecf5f9cf1789ec2e588fdb774"),
+    "hd_research_debug.h": ("include/hd_research_debug.h", "5b95b90b0dfec4624542f3fe47f1a49b50ed9f675167d62915a6cb66b171f3ea"),
+    "hd_research_request.h": ("include/hd_research_request.h", "d89b03ec826b4024df11bc9405492c4e0acd35578dd5c8a40fd631da26d312ea"),
+    "hd_research_event.h": ("include/hd_research_event.h", "22ed3be41c915d0649ea8636f45355344b586ba596989f2693f37454b3184b62"),
+    "hd_research_filter.h": ("include/hd_research_filter.h", "e820958b3bf7fdfdd899b06ff6cc9fc66d82fa05a670022a0eb55af6cc1668f1"),
+    "threat_draw_tracker.h": ("include/threat_draw_tracker.h", "8ec0a1bab703ea3e729927487b710947cdcc6af66c21c3baf028edd89b51be43"),
+    "png_write.h": ("include/png_write.h", "4ac63e7ea052284ab9d2bfa2aa8c77518d79ee9190be522e2684235ae1966578"),
+}
+INPUTS.update({
+    "v69_debug_server.c": (V69 / "src/debug_server.c", "b50aef2a4de7ef8ceb621ffc681d072699f88cc5247357a435ebe405cebc0185"),
+    "v69_manifest.json": (V69 / "manifest.json", "e6ab30e9c9c03697b3c4dcd64a253d232cd0de1d1fbc9bc73d5c7880748de8b4"),
+})
+INPUTS.update({"dbg/" + n: (V67 / rel, s) for n, (rel, s) in DEBUG_HEADERS.items()})
+DEBUG_ISYSTEM = TOOLBIN.parent / "deps" / "include"   # the v69 build:debug -isystem directory
+FIXTURES = {"glue": ("glue", 19)}                     # r2: harness r1
+HIDDEN_BELOW_NORMAL = 0x08000000 | 0x00004000
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def now():
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+
+# ---- byte copy of build_scene_ledger_fixture.r0.py (55901a53) lines 61-153: BLOCKS and TEMPLATE ----
+BLOCKS = {
+    "sign_extend": ("gpu.c", b"static int32_t sign_extend(uint32_t val, int bits) {",
+                    b"static int32_t sign_extend(uint32_t val, int bits) {", b"}", 4,
+                    "97dd1b03dd35e010d69d310aab285a17e87c06691221a05356b35d97973c1940"),
+    "parse_vertex": ("gpu.c", b"static void parse_vertex(uint32_t word, int32_t* x, int32_t* y) {",
+                     b"static void parse_vertex(uint32_t word, int32_t* x, int32_t* y) {", b"}", 4,
+                     "971000ac2c1fe5e0d6cd33d460988ae9f40a3491298d6b37eb7b2c81bb624949"),
+    "word_count": ("gpu.c", b"static int gp0_command_word_count(uint8_t opcode) {",
+                   b"static int gp0_command_word_count(uint8_t opcode) {", b"}", 85,
+                   "c5f6fa67dfb83120d0c8a902258f33db4a9523bb1376743b51d681aa18040598"),
+    "fill": ("gpu.c", b"static void gp0_exec_fill_rect(void) {",
+             b"    uint32_t dst_x = gp0_cmd_buf[1] & 0x3F0u;          /* X masked to 16-pixel alignment */",
+             b"    uint32_t height = (gp0_cmd_buf[2] >> 16) & 0x1FFu;", 4,
+             "e47c795b35adedcc0fd38a456427e4a4be5721b9d3a588376a0a5103f78a965f"),
+    "copy": ("gpu.c", b"static void gp0_execute_command(void) {",
+             b"            int src_x = gp0_cmd_buf[1] & 0x3FF;", b"            if (h == 0) h = 0x200;", 8,
+             "fc758e038ad110ceae00c9a55cf6d0fa425dfc6781d10cf8db56619778c3a790"),
+    "cpu_to_vram": ("gpu.c", b"static void gp0_exec_cpu_to_vram(void) {",
+                    b"    vram_write_x = gp0_cmd_buf[1] & 0x3FFu;",
+                    b"    vram_write_h = (h == 0) ? 0x200 : (uint16_t)h;", 8,
+                    "1998ffd79b8e6d4007cf22e9070dd741c83f26f11f231412c59353612ce9d152"),
+    "vram_to_cpu": ("gpu.c", b"static void gp0_exec_vram_to_cpu(void) {",
+                    b"    vram_read_x = gp0_cmd_buf[1] & 0x3FFu;",
+                    b"    vram_read_h = (h == 0) ? 0x200 : (uint16_t)h;", 7,
+                    "6d11eb6299945a63f950fcae1b459ea90ef607ebf10ec743cc27ce82b2c32fa4"),
+    "mono_rect_size": ("gpu.c", b"static void gp0_exec_mono_rect(void) {",
+                       b"    int w = gp0_cmd_buf[2] & 0xFFFFu;", b"    if (h > 511)  h = 511;", 4,
+                       "7e56cc9f946ea3c505e3cd1bf1aa23a99684ab7338a37f8b0c204bad9eaff672"),
+    "textured_rect_size": ("gpu.c", b"static void gp0_exec_textured_rect(void) {",
+                           b"    int w = gp0_cmd_buf[3] & 0x3FF;", b"    if (h > 511)  h = 511;", 4,
+                           "c7d973123942f91019d94d75e8d5395ee5d05833789afe142fc2b30e573ccef6"),
+    "clut": ("gpu.c", b"static void gp0_exec_textured_tri(void) {",
+             b"    uint16_t clut_x = (clut & 0x3F) * 16;", b"    uint16_t clut_y = (clut >> 6) & 0x1FF;", 2,
+             "ce195f2af16b2d5fc19cf4d94890f5adc49ac42dc3ff93bba7b4e8719abbf029"),
+    "poly_tpage": ("gpu.c", b"static void gp0_exec_textured_tri(void) {",
+                   b"    uint16_t tpage = tpage_word & 0x1FF;", b"    uint16_t tpage = tpage_word & 0x1FF;", 1,
+                   "89e95d52143777686c79e545f5c4a2461e310951077bf4814509ffb56649d868"),
+    "page": ("gpu_gl_renderer.c", b"static void gpu_textured_triangle(const int *xs, const int *ys,",
+             b"    int base_x = (texpage & 0xF) * 64;",
+             b"    int depth  = (texpage >> 7) & 3; if (depth > 2) depth = 2;", 3,
+             "648c6a2a2a82359b187f3b0e3adb9e82cc2e43bdb28245846b9c2c65506f70b1"),
+}
+# Fixed wrapper text; "@name@" lines are replaced by the extracted block (between BEGIN/END markers).
+TEMPLATE = b"""// scene_ledger_native_unpack.inc -- GENERATED by build_scene_ledger_fixture.r0.py; do not edit.
+// Lines between BEGIN and END markers are byte-exact copies (after CRLF->LF) of the raw-pinned native sources
+// named in each marker; everything else is the driver's fixed template.
+#include <stdint.h>
+namespace scene_ledger_native {
+@sign_extend@
+@parse_vertex@
+@word_count@
+static inline void fill_unpack(const uint32_t *gp0_cmd_buf, uint32_t *o_x, uint32_t *o_y, uint32_t *o_w,
+                               uint32_t *o_h) {
+@fill@
+    *o_x = dst_x; *o_y = dst_y; *o_w = width; *o_h = height;
+}
+static inline void copy_unpack(const uint32_t *gp0_cmd_buf, int *o_sx, int *o_sy, int *o_dx, int *o_dy, int *o_w,
+                               int *o_h) {
+@copy@
+    *o_sx = src_x; *o_sy = src_y; *o_dx = dst_x; *o_dy = dst_y; *o_w = w; *o_h = h;
+}
+static inline void cpu_to_vram_unpack(const uint32_t *gp0_cmd_buf, int *o_x, int *o_y, int *o_w, int *o_h) {
+    uint16_t vram_write_x, vram_write_y, vram_write_w, vram_write_h;   /* gpu.c globals are uint16_t */
+@cpu_to_vram@
+    *o_x = vram_write_x; *o_y = vram_write_y; *o_w = vram_write_w; *o_h = vram_write_h;
+}
+static inline void vram_to_cpu_unpack(const uint32_t *gp0_cmd_buf, int *o_x, int *o_y, int *o_w, int *o_h) {
+    uint16_t vram_read_x, vram_read_y, vram_read_w, vram_read_h;       /* gpu.c globals are uint16_t */
+@vram_to_cpu@
+    *o_x = vram_read_x; *o_y = vram_read_y; *o_w = vram_read_w; *o_h = vram_read_h;
+}
+static inline void mono_rect_size(const uint32_t *gp0_cmd_buf, int *o_w, int *o_h) {
+@mono_rect_size@
+    *o_w = w; *o_h = h;
+}
+static inline void textured_rect_size(const uint32_t *gp0_cmd_buf, int *o_w, int *o_h) {
+@textured_rect_size@
+    *o_w = w; *o_h = h;
+}
+static inline void clut_unpack(uint16_t clut, int *o_x, int *o_y) {
+@clut@
+    *o_x = clut_x; *o_y = clut_y;
+}
+static inline uint16_t poly_tpage(uint16_t tpage_word) {
+@poly_tpage@
+    return tpage;
+}
+static inline void page_unpack(uint16_t texpage, int *o_x, int *o_y, int *o_depth) {
+@page@
+    *o_x = base_x; *o_y = base_y; *o_depth = depth;
+}
+}  // namespace scene_ledger_native
+"""
+
+
+# ---- byte copy of build_scene_ledger_fixture.r0.py (55901a53) lines 175-214: lf_lines, native_block, divide_block ----
+def lf_lines(raw, name):
+    # Called only after the raw-byte pin check. CRLF -> LF; any remaining CR is an error.
+    text = raw.replace(b"\r\n", b"\n")
+    if b"\r" in text:
+        raise ValueError("stray CR after CRLF normalization: " + name)
+    return text.split(b"\n")
+
+
+def native_block(lines, anchor, first, last, count):
+    a = [i for i, l in enumerate(lines) if l == anchor]
+    if len(a) != 1:
+        raise ValueError("anchor not unique: %r" % anchor)
+    end = next((i for i in range(a[0] + 1, len(lines)) if lines[i] == b"}"), None)
+    if end is None:
+        raise ValueError("function end not found: %r" % anchor)
+    f = [i for i in range(a[0], end + 1) if lines[i] == first]
+    if len(f) != 1:
+        raise ValueError("first line not unique in function: %r" % first)
+    l = next((i for i in range(f[0], end + 1) if lines[i] == last), None)
+    if l is None:
+        raise ValueError("last line not found: %r" % last)
+    block = lines[f[0]:l + 1]
+    if len(block) != count:
+        raise ValueError("block line count %d != %d: %r" % (len(block), count, first))
+    return b"\n".join(block) + b"\n", f[0] + 1
+
+
+def divide_block(raw):
+    # As build_t2_fixture.r3.py: from 's_gte_div_table' through the closing brace of gte_divide.
+    lines = lf_lines(raw, "gte.cpp")
+    starts = [i for i, l in enumerate(lines) if l == b"static uint8_t s_gte_div_table[0x101];"]
+    div = [i for i, l in enumerate(lines) if l.startswith(b"static int32_t gte_divide(")]
+    if len(starts) != 1 or len(div) != 1 or div[0] <= starts[0]:
+        raise ValueError("divide block anchors not unique/ordered")
+    end = next((i for i in range(div[0], len(lines)) if lines[i] == b"}"), None)
+    if end is None:
+        raise ValueError("gte_divide closing brace not found")
+    return b"\n".join(lines[starts[0]:end + 1]) + b"\n"
+
+
+# ---- end of byte copies ----
+
+
+def derive_pgxp(raw):
+    # Called only after the raw-byte pin check. One comment-only byte replacement; nothing else changes.
+    if raw.count(PGXP_DELTA_OLD) != 1 or raw.find(PGXP_DELTA_OLD) != PGXP_DELTA_OFFSET:
+        raise ValueError("pgxp.h comment token not unique at the pinned offset")
+    derived = raw[:PGXP_DELTA_OFFSET] + PGXP_DELTA_NEW + raw[PGXP_DELTA_OFFSET + len(PGXP_DELTA_OLD):]
+    if sha(derived) != PGXP_DERIVED_SHA:
+        raise ValueError("derived pgxp.h sha mismatch")
+    return derived
+
+
+def write_exact(path, data):
+    with open(path, "xb") as f:
+        f.write(data)
+    if sha(Path(path).read_bytes()) != sha(data):
+        raise ValueError("copy sha mismatch: " + str(path))
+    return sha(data)
+
+
+def run_child(label, argv, cwd, expected, cap, out, rows):
+    row = dict(label=label, argv=[str(a) for a in argv], expected_exit=expected, cap_seconds=cap,
+               pid=None, creation_unix=None, exit=None, timed_out=None, seconds=None, passed=False)
+    rows.append(row)
+    t = time.monotonic()
+    with open(out / f"{label}.log", "x", encoding="utf-8") as stream:
+        child = subprocess.Popen(argv, cwd=cwd, stdout=stream, stderr=subprocess.STDOUT,
+                                 creationflags=HIDDEN_BELOW_NORMAL)
+        row["pid"] = child.pid
+        try:
+            row["creation_unix"] = psutil.Process(child.pid).create_time()
+        except psutil.Error:
+            pass
+        try:
+            row["exit"] = child.wait(timeout=cap)
+            row["timed_out"] = False
+        except subprocess.TimeoutExpired:
+            row["timed_out"] = True
+            child.kill()
+            try:
+                row["exit"] = child.wait(timeout=5)
+            except subprocess.TimeoutExpired:
+                row["exit"] = None
+    row["seconds"] = round(time.monotonic() - t, 3)
+    row["output_tail"] = (out / f"{label}.log").read_text(encoding="utf-8", errors="replace")[-3000:]
+    row["passed"] = row["exit"] == expected and row["timed_out"] is False
+    return row["passed"]
+
+
+def fixture_ok(rows, out, key):
+    name, checks = FIXTURES[key]
+    try:
+        line = json.loads((out / f"fixture-{key}.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError) as error:
+        rows[-1]["passed"] = False
+        rows[-1]["fixture_error"] = repr(error)
+        return False
+    rows[-1]["fixture"] = line
+    rows[-1]["passed"] = (line.get("fixture") == name and line.get("revision") == "r1" and line.get("failures") == 0
+                          and line.get("checks") == checks and line.get("passed") is True
+                          and line.get("gl_used") is False and line.get("sdk_used") is False)
+    return rows[-1]["passed"]
+
+
+def deps_ok(row, dep_file, roots):
+    # Hermeticity: every dependency named in the -MF file must resolve inside one of the allowed roots.
+    try:
+        text = Path(dep_file).read_text(encoding="utf-8", errors="replace")
+    except OSError as error:
+        row["deps_error"] = repr(error)
+        return False
+    text = text.replace("\\\r\n", " ").replace("\\\n", " ")
+    cut = text.find(": ")
+    deps = text[cut + 2:].split() if cut >= 0 else []
+    allowed = [os.path.normcase(os.path.realpath(r)) for r in roots]
+    outside = []
+    for d in deps:
+        p = os.path.normcase(os.path.realpath(d))
+        if not any(p == a or p.startswith(a + os.sep) for a in allowed):
+            outside.append(d)
+    row["deps_count"] = len(deps)
+    row["deps_outside"] = outside
+    return bool(deps) and not outside
+
+
+def toolchain_closure_ok(row, dep_file, toolchain_roots, recorded):
+    # r1: every toolchain dependency must appear in the recorded v69 build.debug closure with an identical sha256.
+    text = Path(dep_file).read_text(encoding="utf-8", errors="replace")
+    text = text.replace("\\\r\n", " ").replace("\\\n", " ")
+    cut = text.find(": ")
+    deps = text[cut + 2:].split() if cut >= 0 else []
+    rec = {os.path.normcase(os.path.normpath(k)): v for k, v in recorded.items()}
+    tool = [os.path.normcase(os.path.realpath(r)) for r in toolchain_roots]
+    checked, unrecorded, differing = 0, [], []
+    for d in deps:
+        real = os.path.normcase(os.path.realpath(d))
+        if not any(real == t or real.startswith(t + os.sep) for t in tool):
+            continue
+        checked += 1
+        key = os.path.normcase(os.path.normpath(d))
+        if key not in rec:
+            unrecorded.append(d)
+        elif sha(Path(d).read_bytes()) != rec[key]:
+            differing.append(d)
+    row["toolchain_deps_checked"] = checked
+    row["toolchain_deps_unrecorded"] = unrecorded
+    row["toolchain_deps_differing"] = differing
+    return checked > 0 and not unrecorded and not differing
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--cpu", type=int, required=True)
+    ap.add_argument("--out-root", required=True)
+    a = ap.parse_args()
+    root = Path(a.out_root)
+    if not root.is_absolute():
+        raise SystemExit("--out-root must be absolute")
+    out = root.resolve() / datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out.mkdir(parents=True, exist_ok=False)
+    result = dict(tool=Path(__file__).name, builder_sha256=sha(Path(__file__).read_bytes()), cpu=a.cpu,
+                  out=str(out), started_utc=now(), gl_used=False, sdk_used=False, steps=[], passed=False,
+                  exception=None, envelope_required=dict(
+                      path="remaster-audit/cpu-source-review-20261114/claude-support/run_rc2_envelope_r1.py",
+                      sha256="fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+                      options=["--cpu", str(a.cpu), "--timeout", "120", "--max-job-mib", "1024", "--no-window"],
+                      verified_by_this_driver=False))
+    rows = result["steps"]
+    try:
+        me = psutil.Process()
+        me.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+        me.cpu_affinity([a.cpu])
+        data = {}
+        for name, (path, pin) in INPUTS.items():
+            blob = Path(path).read_bytes()          # the only read of each input
+            if not pin or sha(blob) != pin:
+                raise ValueError("input pin mismatch: " + name)
+            data[name] = blob
+        result["inputs"] = {n: dict(path=str(p), sha256=s) for n, (p, s) in INPUTS.items()}
+        # r1: the recorded v69 debug build (object, depfile, closure) and the base-header equivalence.
+        recorded = json.loads(data["v69_manifest.json"].decode("utf-8"))["build"]["debug"]
+        if recorded.get("obj_sha256") != V69_DEBUG_OBJ_SHA or recorded.get("depfile_sha256") != V69_DEBUG_DEPFILE_SHA:
+            raise ValueError("v69 manifest debug record mismatch")
+        recorded_closure = recorded["closure"]
+        rec_norm = {os.path.normcase(os.path.normpath(k)): v for k, v in recorded_closure.items()}
+        for n, (rel, pin) in DEBUG_HEADERS.items():
+            if rec_norm.get(os.path.normcase(os.path.normpath(str(V67 / rel)))) != pin:
+                raise ValueError("debug header not recorded with this pin: " + n)
+        if DEBUG_HEADERS["scene_runtime.h"][1] != INPUTS["base_scene_runtime.h"][1] or \
+                DEBUG_HEADERS["scene_capture.h"][1] != INPUTS["scene_capture.h"][1]:
+            raise ValueError("v69 debug consumer did not see the glue r2 base headers")
+        result["v69_debug_record"] = dict(obj_sha256=V69_DEBUG_OBJ_SHA, depfile_sha256=V69_DEBUG_DEPFILE_SHA,
+                                          closure_count=len(recorded_closure), project_headers=len(DEBUG_HEADERS))
+        native = {n: lf_lines(data[n], n) for n in ("gpu.c", "gpu_gl_renderer.c")}
+        ext = dict(label="extract", normalization="raw pin, then CRLF->LF bytes, then anchors", blocks={})
+        rows.append(ext)
+        inc = TEMPLATE
+        for name, (src, anchor, first, last, count, pin) in BLOCKS.items():
+            block, line_no = native_block(native[src], anchor, first, last, count)
+            ext["blocks"][name] = dict(source=src, first_line=line_no, lines=count, sha256=sha(block),
+                                       pinned=pin, passed=sha(block) == pin)
+            marker = b"@" + name.encode() + b"@\n"
+            if inc.count(marker) != 1:
+                raise ValueError("template marker not unique: " + name)
+            wrapped = (b"// BEGIN " + src.encode() + b" " + name.encode() + b" (sha256 " + pin.encode() + b")\n" +
+                       block + b"// END " + name.encode() + b"\n")
+            inc = inc.replace(marker, wrapped)
+        if any(b"@" + n.encode() + b"@" in inc for n in BLOCKS):
+            raise ValueError("unreplaced template marker")
+        div61 = divide_block(data["gte_v61.cpp"])
+        divcan = divide_block(data["gte_canonical.cpp"])
+        derived_pgxp = derive_pgxp(data["include/pgxp.h"])
+        ext["divide_block"] = dict(sha256=sha(div61), v61_equals_canonical=div61 == divcan)
+        ext["pgxp_derivation"] = dict(original_sha256=sha(data["include/pgxp.h"]), derived_sha256=sha(derived_pgxp),
+                                      offset=PGXP_DELTA_OFFSET, old=PGXP_DELTA_OLD.decode("ascii"),
+                                      new=PGXP_DELTA_NEW.decode("ascii"))
+        ext["passed"] = (all(b["passed"] for b in ext["blocks"].values()) and div61 == divcan
+                         and sha(div61) == DIVIDE_BLOCK_SHA)
+        if not ext["passed"]:
+            return 1
+        dirs = {d: out / d for d in ("gpu-include", "gpu-base", "gpu-patched", "native", "strict", "obj",
+                                     "dbg-base", "dbg-base-include", "dbg-patched", "dbg-patched-include")}
+        for d in dirs.values():
+            d.mkdir()
+        layout = {}
+        for n in GPU_HEADERS:
+            layout["gpu-include/" + n] = data["include/" + n]                       # raw, as natively
+        layout.update({
+            "gpu-base/gpu.c": data["gpu.c"], "gpu-base/scene_runtime.h": data["base_scene_runtime.h"],
+            "gpu-base/scene_capture.h": data["scene_capture.h"],
+            "gpu-patched/gpu.c": data["glue_gpu.c"], "gpu-patched/scene_runtime.h": data["glue_scene_runtime.h"],
+            "gpu-patched/scene_capture.h": data["scene_capture.h"], "gpu-patched/scene_ledger.r3.h": data["scene_ledger.r3.h"],
+            "native/scene_capture.cpp": data["scene_capture.cpp"], "native/scene_json.cpp": data["scene_json.cpp"],
+            "native/scene_capture.h": data["scene_capture.h"], "native/pgxp.h": data["include/pgxp.h"],
+            "strict/pgxp.h": derived_pgxp, "strict/scene_capture.h": data["scene_capture.h"],
+            "strict/gte_divide_extracted.inc": div61, "strict/remix_t1_reproject.r1.h": data["remix_t1_reproject.r1.h"],
+            "strict/remix_t2.r3.h": data["remix_t2.r3.h"], "strict/remix_t2.r4.h": data["remix_t2.r4.h"],
+            "strict/remix_t2.r6.h": data["remix_t2.r6.h"],
+            "strict/scene_ledger.r3.h": data["scene_ledger.r3.h"], "strict/scene_ledger.r3.cpp": data["scene_ledger.r3.cpp"],
+            "strict/scene_ledger_t2.r0.h": data["scene_ledger_t2.r0.h"], "strict/scene_ledger_native_unpack.inc": inc,
+            "strict/scene_runtime.h": data["glue_scene_runtime.h"], "strict/scene_runtime.cpp": data["glue_scene_runtime.cpp"],
+            "strict/scene_t2_bridge.r3.h": data["scene_t2_bridge.r3.h"],
+            "strict/scene_t2_bridge.r3.cpp": data["scene_t2_bridge.r3.cpp"],
+            "strict/executed-test-glue.cpp": data["test_glue.r1.cpp"],
+        })
+        for n in DEBUG_HEADERS:                                             # r1: the v69 debug consumer, raw headers
+            layout["dbg-base-include/" + n] = data["dbg/" + n]
+            if n != "scene_runtime.h":
+                layout["dbg-patched-include/" + n] = data["dbg/" + n]
+        layout.update({
+            "dbg-base/debug_server.c": data["v69_debug_server.c"], "dbg-patched/debug_server.c": data["v69_debug_server.c"],
+            "dbg-patched-include/scene_runtime.h": data["glue_scene_runtime.h"],
+            "dbg-patched-include/scene_ledger.r3.h": data["scene_ledger.r3.h"],
+        })
+        result["executed_copies"] = {rel: write_exact(out / rel, blob) for rel, blob in layout.items()}
+        real_dir = Path(os.path.realpath(CC)).parent
+        tools = {n: dict(path=str(real_dir / n), sha256=sha((real_dir / n).read_bytes())) for n in TOOLCHAIN}
+        result["toolchain"] = dict(invoked=[str(CC), str(C_CC)], invoked_sha256=[sha(CC.read_bytes()), sha(C_CC.read_bytes())],
+                                   files=tools)
+        if result["toolchain"]["invoked_sha256"] != [TOOLCHAIN["clang++.exe"], TOOLCHAIN["clang.exe"]] or \
+                any(tools[n]["sha256"] != s for n, s in TOOLCHAIN.items()):
+            raise ValueError("compiler pin mismatch")
+        roots = [out, TOOLBIN.parent, real_dir.parent]
+        result["hermetic_roots"] = [str(r) for r in roots]
+        o = dirs["obj"]
+        gpu_c = [C_CC, *NATIVE_DEFINES, *NATIVE_C, "-I", dirs["gpu-include"]]
+        native_cxx = [CC, *NATIVE_DEFINES, *NATIVE_CXX, "-I", dirs["native"]]
+        strict = [CC, *FLAGS, "-I", dirs["strict"]]
+        # r1: the v69 build:debug defines/flags and -isystem, with the pinned header set as the only -I directory.
+        debug_base = [C_CC, "-I", dirs["dbg-base-include"], *NATIVE_DEFINES, "-isystem", DEBUG_ISYSTEM, *NATIVE_C]
+        debug_patched = [C_CC, "-I", dirs["dbg-patched-include"], *NATIVE_DEFINES, "-isystem", DEBUG_ISYSTEM, *NATIVE_C]
+        compiles = [
+            ("compile-gpu-base", gpu_c, dirs["gpu-base"] / "gpu.c", o / "gpu-base.o"),
+            ("compile-gpu-patched", gpu_c, dirs["gpu-patched"] / "gpu.c", o / "gpu-patched.o"),
+            ("compile-debug-base", debug_base, dirs["dbg-base"] / "debug_server.c", o / "debug-base.o"),
+            ("compile-debug-patched", debug_patched, dirs["dbg-patched"] / "debug_server.c", o / "debug-patched.o"),
+            ("compile-native-capture", native_cxx, dirs["native"] / "scene_capture.cpp", o / "scene_capture.o"),
+            ("compile-native-json", native_cxx, dirs["native"] / "scene_json.cpp", o / "scene_json.o"),
+            ("compile-ledger", strict, dirs["strict"] / "scene_ledger.r3.cpp", o / "scene_ledger.o"),
+            ("compile-runtime", strict, dirs["strict"] / "scene_runtime.cpp", o / "scene_runtime.o"),
+            ("compile-bridge", strict, dirs["strict"] / "scene_t2_bridge.r3.cpp", o / "scene_t2_bridge.o"),
+            ("compile-harness", strict, dirs["strict"] / "executed-test-glue.cpp", o / "test_glue.o"),
+        ]
+        result["object_sha256"] = {}
+        for label, base, src, obj in compiles:
+            if not run_child(label, [*base, "-MD", "-MF", f"{obj}.d", "-c", src, "-o", obj], out, 0, 45, out, rows):
+                return 1
+            row = rows[-1]
+            row["object_sha256"] = result["object_sha256"][label] = sha(obj.read_bytes())
+            row["passed"] = deps_ok(row, f"{obj}.d", roots)
+            if not row["passed"]:
+                return 1
+            if label.startswith("compile-debug"):                         # r1
+                row["passed"] = toolchain_closure_ok(row, f"{obj}.d", [TOOLBIN.parent, real_dir.parent], recorded_closure)
+                if label == "compile-debug-base":
+                    row["equals_v69_object"] = row["object_sha256"] == V69_DEBUG_OBJ_SHA   # information only
+                if not row["passed"]:
+                    return 1
+        exe = out / "test-glue-r1.exe"
+        objs = [o / n for n in ("scene_capture.o", "scene_json.o", "scene_ledger.o", "scene_runtime.o",
+                                "scene_t2_bridge.o", "test_glue.o")]
+        if not run_child("link", [CC, *objs, "-o", exe], out, 0, 45, out, rows):
+            return 1
+        result["exe_sha256"] = {"glue": sha(exe.read_bytes())}
+        os.environ["PSXRECOMP_SCENE_CAPTURE"] = "1"     # the runtime's capture switch, inherited by run-glue only
+        result["run_env"] = {"PSXRECOMP_SCENE_CAPTURE": "1"}
+        if not run_child("run-glue", [exe, out / "fixture-glue.json"], out, 0, 10, out, rows):
+            return 1
+        if not fixture_ok(rows, out, "glue"):
+            return 1
+        result["passed"] = all(r.get("passed") for r in rows)
+        return 0 if result["passed"] else 1
+    except BaseException as error:
+        result["exception"] = "".join(traceback.format_exception(type(error), error, error.__traceback__))[-4000:]
+        return 1
+    finally:
+        result["ended_utc"] = now()
+        with open(out / "result.json", "x", encoding="utf-8") as f:
+            json.dump(result, f, indent=1)
+            f.write("\n")
+            f.flush()
+            os.fsync(f.fileno())
+        print(json.dumps(dict(out=str(out), passed=result["passed"], steps={r["label"]: r.get("passed") for r in rows})))
+
+
+if __name__ == "__main__":
+    sys.exit(main())
