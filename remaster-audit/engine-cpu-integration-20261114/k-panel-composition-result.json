@@ -1,0 +1,44 @@
+{
+  "at_utc": "2026-11-14T09:17:39.420638+00:00",
+  "gpu_work": false,
+  "game_executed": false,
+  "one_logical_cpu": [
+    15
+  ],
+  "below_normal": true,
+  "commands": [
+    {
+      "args": [
+        "python",
+        "-X",
+        "utf8",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\cpu-remix-integration-20261114\\k-panel-plan.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4"
+      ],
+      "exit": 0,
+      "seconds": 5.615,
+      "log": "k-panel-compose-0.log"
+    },
+    {
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v4\\pack",
+        "1699"
+      ],
+      "exit": 0,
+      "seconds": 0.202,
+      "log": "k-panel-compose-1.log"
+    }
+  ],
+  "candidate_sha256": "a890af1e7fe78d2568c7362a1a3c0da3984fa6411fe6389529867e2cdb412799",
+  "key": "95A3BCF8-723E222C.png",
+  "composed_png_sha256": "f17632027bbbd232167d2c5b76f84c872617f9af50c1677a557affe70ae6e30e",
+  "input_png_sha256": "791c01a86dbf12167dee22738de654043f4f548de59d0cb4dfa3a573423cc020",
+  "parent_retained": true,
+  "user_gpu_hold_unchanged": true,
+  "production_installed": false,
+  "live_visual_accepted": false
+}

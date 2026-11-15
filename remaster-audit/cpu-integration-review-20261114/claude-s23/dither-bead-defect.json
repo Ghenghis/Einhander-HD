@@ -1,0 +1,27 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T20:55:00Z",
+ "scope": "SOURCE-ONLY record during the hold: evidence = the already-rendered J9 review sheet viewed at ~18:35Z plus a read-only code hand-trace (review round 1, ~18:55Z); no new decode, import, test or child process",
+ "defect": "Isolated 1-texel features (stipple/dither and the checkerboard alpha fringe at cutout silhouettes) are turned into round 'beads' at 8x by the J5/J7/J9 Scale2x cascade; native shows square dither texels. The beads read as a different (softer, blobby) material than the native stipple.",
+ "evidence": {
+  "sheet": {"path": "remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/review-native-j9-s1.png",
+            "sha256": "f8f93bf6afc44cbbdc6ef98ac8699a4e8e50da4c607d770b0c7e3b9f090e16ee"},
+  "rows": ["87F01A0F-D1B4140B uv[110,105,158,137]: native 8x | J9 (bottom fringe of the debris cloud: native square dither texels -> J9 round beads)",
+           "87F01A0F-D9554B55 uv[110,105,158,137]: same geometry, second CLUT"],
+  "mechanism_trace": "j5_s3_scale2x.py:111-121 + up_isolated cascade: pass 1 leaves an isolated texel / checkerboard unchanged (act false), producing 2x2 blocks; passes 2 and 3 see those 2x2 blocks as convex corners and bevel them (old Scale2x), so each native texel becomes a rounded dot at 8x. The J5 docstring claim (lines 16-17) that isolated texels and checkerboard dither 'stay exactly native' holds for one pass only."
+ },
+ "proof_state": {
+  "87F01A0F-D1B4140B": "s23 private J9 proposal only; live_drawn 2 draws (draws-s2), TEX likely -> live key + CLUT confirm required",
+  "87F01A0F-D9554B55": "s23 private J9 proposal only; live_drawn 51 draws, TEX likely",
+  "pack_or_candidate_reference": "none"
+ },
+ "relation_to_J10": "J10 / scale2x_cg (0c0517d3...) deliberately leaves 1-texel features identical to J5 (review option a), so J10 does NOT fix this; it only fixes right angles of features >= 2 texels.",
+ "repair_options": [
+  {"id": "A (recommended)", "rule": "treat cutout-silhouette alpha dither and isolated-texel stipple as native cells (exact native texels at 8x), extending the existing J2/J7/J9 noise-cell family (D mask) with a fringe/stipple detector",
+   "effect": "local: only detected stipple/fringe cells become square native texels; everything else unchanged"},
+  {"id": "B", "rule": "scale_aware guard variant with inside run k = 1..max(1, m-1) (review round 2 option b): single texels and 1-texel lines stay nearest at every pass",
+   "effect": "global: all 1-texel features stay square, including thin lines that Scale2x currently smooths"}
+ ],
+ "next_bounded_step": "after J10 preview r2 has run and been viewed by root: a source-only design of option A, then a two-key preview (87F01A0F-D1B4140B + one S3 signage stipple key) under its own grant; no batch, no new variants beyond A",
+ "status": "RECORD ONLY: no code written for the repair, nothing run, not admission"
+}

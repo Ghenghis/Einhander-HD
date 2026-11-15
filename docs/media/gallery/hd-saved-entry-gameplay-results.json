@@ -1,0 +1,1249 @@
+{
+  "started_utc": "2026-11-14T08:20:00.309778+00:00",
+  "errors": [],
+  "entry": {
+    "source_sha256": "e4015831fdab754ec3e20a31c8337de2cdd522d8819103b2ec6c85d441a1e82b",
+    "prepared": {
+      "arguments": [
+        "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "--no-launcher",
+        "--renderer",
+        "opengl",
+        "--game",
+        "C:\\github\\Einhander\\windows-x64\\game.toml",
+        "--disc",
+        "C:\\github\\Einhander\\ROM\\Einhander (USA).cue",
+        "--bios",
+        "C:\\github\\Einhander\\windows-x64\\build-release\\bios\\SCPH1001.BIN"
+      ],
+      "cwd": "C:\\github\\Einhander\\windows-x64",
+      "environment_overrides": {
+        "EIN_DEV_URL": "http://127.0.0.1:8094",
+        "EIN_DEBUG_PORT": "4370",
+        "PSX_DISPLAY_RING": "0",
+        "PSXRECOMP_SKIN_PROFILE": "aurora-teal",
+        "PSXRECOMP_SKIN_KEYS": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894",
+        "PSXRECOMP_SKIN_STRENGTH": "0.750000",
+        "PSXRECOMP_SKIN_ENEMY_PROFILE": "crimson-red",
+        "PSXRECOMP_SKIN_ENEMY_KEYS": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9",
+        "PSXRECOMP_SKIN_ENEMY_STRENGTH": "0.750000",
+        "PSXRECOMP_SKIN_DETAIL_PATH": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\titanium-teal-nanoceramic.png",
+        "PSXRECOMP_SKIN_DETAIL_STRENGTH": "0.120000",
+        "PSXRECOMP_SKIN_DETAIL_SCALE": "8.000000",
+        "PSXRECOMP_SKIN_ENEMY_DETAIL_PATH": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\crimson-gold-plating.png",
+        "PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH": "0.120000",
+        "PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE": "8.000000",
+        "PSXRECOMP_HD_TEXTURE_ROOT": "C:\\github\\Einhander\\windows-x64\\hd-textures\\stage1-v1",
+        "PSXRECOMP_HD_PAGE_FALLBACK": "1",
+        "PSXRECOMP_HD_DECODE_BUDGET_MB": "256",
+        "PSXRECOMP_HD_CPU_AUTHORITY": "0",
+        "PSXRECOMP_HD_DUMP": "",
+        "PSXRECOMP_HD_SOURCE_SIDECARS": "",
+        "PSXRECOMP_HD_PROOF_LOG": "",
+        "PSXRECOMP_HD_PROOF_CONTROL": ""
+      },
+      "runtime": {
+        "receipt_path": "C:\\github\\Einhander\\windows-x64\\tools\\material-runtime.json",
+        "receipt_present": true,
+        "ready": true,
+        "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+        "executable_hash_verified": true,
+        "dual_profiles": true,
+        "player_keys": [
+          "5CC44E5F-053D9A00",
+          "724E77DA-21FDE894",
+          "7E3ADD56-21FDE894",
+          "B16492B1-21FDE894",
+          "E2F3477C-21FDE894"
+        ],
+        "enemy_keys": [
+          "3594C110-527B28B9",
+          "3FE0776D-527B28B9",
+          "6BB2A2A3-527B28B9",
+          "784BFD39-527B28B9",
+          "DEA9D15C-527B28B9",
+          "05C32A1E-527B28B9"
+        ],
+        "profiles": [
+          "stock",
+          "aurora-teal",
+          "solar-orange",
+          "ultraviolet-violet",
+          "glacier-blue",
+          "crimson-red",
+          "toxic-lime",
+          "gold-obsidian",
+          "pearl-magenta",
+          "aurora-gilt",
+          "crimson-regalia",
+          "glacier-gilt",
+          "neon-circuit",
+          "ultraviolet-grid",
+          "reactor-lime"
+        ],
+        "detail_maps": true,
+        "reason": "Build receipt exists. In-game material validation remains pending; this API has not launched a game."
+      },
+      "profile": "aurora-teal",
+      "strength": 0.75,
+      "targets": [
+        "724E77DA-21FDE894",
+        "7E3ADD56-21FDE894",
+        "B16492B1-21FDE894",
+        "E2F3477C-21FDE894"
+      ],
+      "enemy_profile": "crimson-red",
+      "enemy_strength": 0.75,
+      "enemy_targets": [
+        "3594C110-527B28B9",
+        "3FE0776D-527B28B9",
+        "6BB2A2A3-527B28B9",
+        "784BFD39-527B28B9",
+        "DEA9D15C-527B28B9",
+        "05C32A1E-527B28B9"
+      ],
+      "authored_detail": {
+        "player": {
+          "id": "titanium-teal-nanoceramic",
+          "path": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\titanium-teal-nanoceramic.png",
+          "sha256": "60be37a0c813d6f6ab0790974db7abd5554d18007fcd9d2b4f7a7cf1d5c65aa9",
+          "strength": 0.12,
+          "scale": 8.0,
+          "wrap": "mirrored_repeat",
+          "width": 1254,
+          "height": 1254
+        },
+        "enemy": {
+          "id": "crimson-gold-plating",
+          "path": "C:\\github\\Einhander\\windows-x64\\tools\\skin_collection\\materials\\crimson-gold-plating.png",
+          "sha256": "fc53a8174abbf2221ef3f87a5ea7af3514e320a501d53be3404a65d4d1675ec1",
+          "strength": 0.12,
+          "scale": 8.0,
+          "wrap": "mirrored_repeat",
+          "width": 1254,
+          "height": 1254
+        }
+      },
+      "status": "validated_not_launched",
+      "selection_source": "explicit_saved_preset",
+      "saved_descriptor": "C:\\github\\Einhander\\windows-x64\\tools\\material-profiles\\aurora-teal-20261112-144941-2dc37129\\material.json"
+    },
+    "scope": "Newentryconfigurationexecutedprivately; byteidenticalb287+owncache;privatecards/settings/debugport/windowtitle/native-menugate. NotliteralCMDlaunchwithusercards."
+  },
+  "ram_writes": false,
+  "state_loads": false,
+  "full_skin_acceptance": false,
+  "performance_acceptance": false,
+  "pid": 11856,
+  "route": {
+    "ok": true,
+    "debug_port": 4376,
+    "evidence": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623",
+    "helper": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\native_ui_facade_route.py",
+      "sha256": "851d1a7bd70488d8f47f24641f9531040586bf756df09616e078ca532c07935b"
+    },
+    "references": {
+      "title": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\native-reference-v1\\title.png",
+        "sha256": "821a55f6cfc7873d593b5c3deae020a50f63dafac154ab6cfbc9d7af1dccb790",
+        "dimensions": [
+          320,
+          240
+        ]
+      },
+      "fighter": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\native-reference-v1\\fighter.png",
+        "sha256": "884fb004ef5fdc1f9f16c2054d7aec0bbe57829c87299f19b868c7bc9ed0f43a",
+        "dimensions": [
+          320,
+          240
+        ]
+      },
+      "arm": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\native-reference-v1\\arm.png",
+        "sha256": "753f73dbc0c2fb03f850704c6d89304283e108a1e6a5b0c05d39d28aefee50ce",
+        "dimensions": [
+          320,
+          240
+        ]
+      },
+      "city": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\..\\docs\\media\\gallery\\native-city-scale2-reference.png",
+        "sha256": "456335062c4fc5c505adaf4655660b21ce3b33147b6e5d7d8bee47eb424f3aa3",
+        "dimensions": [
+          320,
+          240
+        ]
+      }
+    },
+    "reference_profile": "native-stock-scale2",
+    "requested_craft": "mk2",
+    "craft_references": {},
+    "arm_references": {},
+    "observations": [
+      {
+        "sequence": 1,
+        "stage": "title-game-start",
+        "frame": 2011,
+        "elapsed": 34707.7500229,
+        "state": "title",
+        "fighter_header": 0.2461038961038961,
+        "arm_header": 0.24904507257448433,
+        "mk2_label": 0.0,
+        "game_start": 0.9625884732052579,
+        "title_cyan": 7159,
+        "city_hud_x": 0.0,
+        "scene_detail": 7.730774832969191
+      },
+      {
+        "sequence": 2,
+        "stage": "title-game-start",
+        "frame": 2029,
+        "elapsed": 34708.0528195,
+        "state": "title",
+        "fighter_header": 0.2461038961038961,
+        "arm_header": 0.24904507257448433,
+        "mk2_label": 0.0,
+        "game_start": 0.9625884732052579,
+        "title_cyan": 7159,
+        "city_hud_x": 0.0,
+        "scene_detail": 7.750837528893955
+      },
+      {
+        "sequence": 3,
+        "stage": "title-game-start",
+        "frame": 2047,
+        "elapsed": 34708.3528318,
+        "state": "title",
+        "fighter_header": 0.2461038961038961,
+        "arm_header": 0.24904507257448433,
+        "mk2_label": 0.0,
+        "game_start": 0.9625884732052579,
+        "title_cyan": 7159,
+        "city_hud_x": 0.0,
+        "scene_detail": 7.758133054684778
+      },
+      {
+        "sequence": 4,
+        "stage": "fighter-mk2",
+        "frame": 2061,
+        "elapsed": 34708.5833854,
+        "state": "unknown",
+        "fighter_header": 0.17615847187831624,
+        "arm_header": 0.19112050739957717,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 5971,
+        "city_hud_x": 0.0,
+        "scene_detail": 5.331002818150154
+      },
+      {
+        "sequence": 5,
+        "stage": "fighter-mk2",
+        "frame": 2079,
+        "elapsed": 34708.8858882,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 1003,
+        "city_hud_x": 0.0,
+        "scene_detail": 1.7715968462049967
+      },
+      {
+        "sequence": 6,
+        "stage": "fighter-mk2",
+        "frame": 2096,
+        "elapsed": 34709.1665019,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 7,
+        "stage": "fighter-mk2",
+        "frame": 2114,
+        "elapsed": 34709.4703501,
+        "state": "unknown",
+        "fighter_header": 0.05342524773804395,
+        "arm_header": 0.006455083378160301,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 1098,
+        "city_hud_x": 0.0,
+        "scene_detail": 3.918051993287103
+      },
+      {
+        "sequence": 8,
+        "stage": "fighter-mk2",
+        "frame": 2132,
+        "elapsed": 34709.7705793,
+        "state": "unknown",
+        "fighter_header": 0.04283216783216783,
+        "arm_header": 0.05147864184008762,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 1010,
+        "city_hud_x": 0.0,
+        "scene_detail": 5.103980241284317
+      },
+      {
+        "sequence": 9,
+        "stage": "fighter-mk2",
+        "frame": 2150,
+        "elapsed": 34710.0668073,
+        "state": "unknown",
+        "fighter_header": 0.5464625131995776,
+        "arm_header": 0.5153337342152736,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 853,
+        "city_hud_x": 0.0,
+        "scene_detail": 3.3655172413793104
+      },
+      {
+        "sequence": 10,
+        "stage": "fighter-mk2",
+        "frame": 2167,
+        "elapsed": 34710.3625723,
+        "state": "fighter",
+        "fighter_header": 0.9653027039961714,
+        "arm_header": 0.4939467312348668,
+        "mk2_label": 0.9442755825734549,
+        "game_start": 0.011363636363636364,
+        "title_cyan": 7802,
+        "city_hud_x": 0.0,
+        "scene_detail": 13.96622019568728
+      },
+      {
+        "sequence": 11,
+        "stage": "fighter-mk2",
+        "frame": 2185,
+        "elapsed": 34710.6563429,
+        "state": "fighter",
+        "fighter_header": 0.9653027039961714,
+        "arm_header": 0.4939467312348668,
+        "mk2_label": 0.9442755825734549,
+        "game_start": 0.011363636363636364,
+        "title_cyan": 7813,
+        "city_hud_x": 0.0,
+        "scene_detail": 13.9581140559197
+      },
+      {
+        "sequence": 12,
+        "stage": "fighter-mk2",
+        "frame": 2203,
+        "elapsed": 34710.9570737,
+        "state": "fighter",
+        "fighter_header": 0.9653027039961714,
+        "arm_header": 0.4939467312348668,
+        "mk2_label": 0.9442755825734549,
+        "game_start": 0.011363636363636364,
+        "title_cyan": 7992,
+        "city_hud_x": 0.0,
+        "scene_detail": 13.725670498084291
+      },
+      {
+        "sequence": 13,
+        "stage": "after-fighter",
+        "frame": 2218,
+        "elapsed": 34711.199929,
+        "state": "unknown",
+        "fighter_header": 0.41779141104294476,
+        "arm_header": 0.5132237312365976,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 853,
+        "city_hud_x": 0.0,
+        "scene_detail": 3.3655172413793104
+      },
+      {
+        "sequence": 14,
+        "stage": "after-fighter",
+        "frame": 2235,
+        "elapsed": 34711.4832201,
+        "state": "arm",
+        "fighter_header": 0.4917156600748263,
+        "arm_header": 0.9640243902439024,
+        "mk2_label": 0.18890200708382526,
+        "game_start": 0.0,
+        "title_cyan": 6374,
+        "city_hud_x": 0.36363636363636365,
+        "scene_detail": 7.943054368132738
+      },
+      {
+        "sequence": 15,
+        "stage": "after-fighter",
+        "frame": 2252,
+        "elapsed": 34711.7699236,
+        "state": "arm",
+        "fighter_header": 0.4917156600748263,
+        "arm_header": 0.9640243902439024,
+        "mk2_label": 0.18890200708382526,
+        "game_start": 0.0,
+        "title_cyan": 6305,
+        "city_hud_x": 0.36363636363636365,
+        "scene_detail": 8.118856274342168
+      },
+      {
+        "sequence": 16,
+        "stage": "after-fighter",
+        "frame": 2270,
+        "elapsed": 34712.0675791,
+        "state": "arm",
+        "fighter_header": 0.4917156600748263,
+        "arm_header": 0.9640243902439024,
+        "mk2_label": 0.18890200708382526,
+        "game_start": 0.0,
+        "title_cyan": 6025,
+        "city_hud_x": 0.36363636363636365,
+        "scene_detail": 8.585263291219404
+      },
+      {
+        "sequence": 17,
+        "stage": "city-hud",
+        "frame": 2284,
+        "elapsed": 34712.3056805,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 3852,
+        "city_hud_x": 0.0,
+        "scene_detail": 5.883132263069567
+      },
+      {
+        "sequence": 18,
+        "stage": "city-hud",
+        "frame": 2302,
+        "elapsed": 34712.6062183,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 1838,
+        "city_hud_x": 0.0,
+        "scene_detail": 3.176897501662392
+      },
+      {
+        "sequence": 19,
+        "stage": "city-hud",
+        "frame": 2320,
+        "elapsed": 34712.9058919,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 1154,
+        "city_hud_x": 0.0,
+        "scene_detail": 1.3448085874418163
+      },
+      {
+        "sequence": 20,
+        "stage": "city-hud",
+        "frame": 2337,
+        "elapsed": 34713.1895582,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.10831829264431145
+      },
+      {
+        "sequence": 21,
+        "stage": "city-hud",
+        "frame": 2354,
+        "elapsed": 34713.4702428,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 22,
+        "stage": "city-hud",
+        "frame": 2373,
+        "elapsed": 34713.7832328,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 23,
+        "stage": "city-hud",
+        "frame": 2391,
+        "elapsed": 34714.0879197,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 24,
+        "stage": "city-hud",
+        "frame": 2408,
+        "elapsed": 34714.3733294,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 25,
+        "stage": "city-hud",
+        "frame": 2426,
+        "elapsed": 34714.6700877,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 26,
+        "stage": "city-hud",
+        "frame": 2445,
+        "elapsed": 34714.9832947,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 27,
+        "stage": "city-hud",
+        "frame": 2463,
+        "elapsed": 34715.2871539,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 28,
+        "stage": "city-hud",
+        "frame": 2481,
+        "elapsed": 34715.586695,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 29,
+        "stage": "city-hud",
+        "frame": 2500,
+        "elapsed": 34715.9001064,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 30,
+        "stage": "city-hud",
+        "frame": 2518,
+        "elapsed": 34716.2049738,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 31,
+        "stage": "city-hud",
+        "frame": 2536,
+        "elapsed": 34716.5036732,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 32,
+        "stage": "city-hud",
+        "frame": 2555,
+        "elapsed": 34716.8208443,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 33,
+        "stage": "city-hud",
+        "frame": 2572,
+        "elapsed": 34717.099821,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 34,
+        "stage": "city-hud",
+        "frame": 2589,
+        "elapsed": 34717.3834002,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 35,
+        "stage": "city-hud",
+        "frame": 2606,
+        "elapsed": 34717.6672543,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 36,
+        "stage": "city-hud",
+        "frame": 2624,
+        "elapsed": 34717.9667318,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 37,
+        "stage": "city-hud",
+        "frame": 2641,
+        "elapsed": 34718.2542982,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 38,
+        "stage": "city-hud",
+        "frame": 2660,
+        "elapsed": 34718.5723042,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 39,
+        "stage": "city-hud",
+        "frame": 2678,
+        "elapsed": 34718.8746485,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 40,
+        "stage": "city-hud",
+        "frame": 2696,
+        "elapsed": 34719.1665511,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 41,
+        "stage": "city-hud",
+        "frame": 2713,
+        "elapsed": 34719.4526507,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 42,
+        "stage": "city-hud",
+        "frame": 2730,
+        "elapsed": 34719.7422816,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 43,
+        "stage": "city-hud",
+        "frame": 2748,
+        "elapsed": 34720.0360538,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 44,
+        "stage": "city-hud",
+        "frame": 2765,
+        "elapsed": 34720.3192806,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 45,
+        "stage": "city-hud",
+        "frame": 2782,
+        "elapsed": 34720.6058385,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 46,
+        "stage": "city-hud",
+        "frame": 2799,
+        "elapsed": 34720.8845196,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 47,
+        "stage": "city-hud",
+        "frame": 2816,
+        "elapsed": 34721.1670426,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 48,
+        "stage": "city-hud",
+        "frame": 2833,
+        "elapsed": 34721.4525779,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 49,
+        "stage": "city-hud",
+        "frame": 2850,
+        "elapsed": 34721.7543173,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.0
+      },
+      {
+        "sequence": 50,
+        "stage": "city-hud",
+        "frame": 2867,
+        "elapsed": 34722.0459833,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 51,
+        "city_hud_x": 0.0,
+        "scene_detail": 0.5258351540483202
+      },
+      {
+        "sequence": 51,
+        "stage": "city-hud",
+        "frame": 2888,
+        "elapsed": 34722.3682517,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 1.0,
+        "scene_detail": 2.740331211804566
+      },
+      {
+        "sequence": 52,
+        "stage": "city-hud",
+        "frame": 2905,
+        "elapsed": 34722.6553219,
+        "state": "city",
+        "fighter_header": 0.0018475750577367205,
+        "arm_header": 0.0,
+        "mk2_label": 0.0150093808630394,
+        "game_start": 0.0,
+        "title_cyan": 541,
+        "city_hud_x": 1.0,
+        "scene_detail": 3.0864127165067603
+      },
+      {
+        "sequence": 53,
+        "stage": "city-hud",
+        "frame": 2921,
+        "elapsed": 34722.9274166,
+        "state": "unknown",
+        "fighter_header": 0.009157509157509158,
+        "arm_header": 0.0,
+        "mk2_label": 0.032490974729241874,
+        "game_start": 0.007858546168958742,
+        "title_cyan": 362,
+        "city_hud_x": 1.0,
+        "scene_detail": 2.233038852474589
+      },
+      {
+        "sequence": 54,
+        "stage": "city-hud",
+        "frame": 2938,
+        "elapsed": 34723.2014771,
+        "state": "unknown",
+        "fighter_header": 0.006436781609195402,
+        "arm_header": 0.009340338587273789,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 260,
+        "city_hud_x": 1.0,
+        "scene_detail": 2.1311548082707956
+      },
+      {
+        "sequence": 55,
+        "stage": "city-hud",
+        "frame": 2957,
+        "elapsed": 34723.5219556,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.06871609403254973,
+        "title_cyan": 482,
+        "city_hud_x": 1.0,
+        "scene_detail": 1.6601880877742947
+      },
+      {
+        "sequence": 56,
+        "stage": "city-hud",
+        "frame": 2974,
+        "elapsed": 34723.8049211,
+        "state": "unknown",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 0,
+        "city_hud_x": 1.0,
+        "scene_detail": 1.4215129349925588
+      },
+      {
+        "sequence": 57,
+        "stage": "city-hud",
+        "frame": 2991,
+        "elapsed": 34724.0830493,
+        "state": "unknown",
+        "fighter_header": 0.002770083102493075,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.0,
+        "title_cyan": 4,
+        "city_hud_x": 1.0,
+        "scene_detail": 2.436654950761534
+      },
+      {
+        "sequence": 58,
+        "stage": "city-hud",
+        "frame": 3008,
+        "elapsed": 34724.372557,
+        "state": "city",
+        "fighter_header": 0.0,
+        "arm_header": 0.0,
+        "mk2_label": 0.04814814814814815,
+        "game_start": 0.2975486052409129,
+        "title_cyan": 3,
+        "city_hud_x": 1.0,
+        "scene_detail": 3.4803711092112346
+      },
+      {
+        "sequence": 59,
+        "stage": "city-hud",
+        "frame": 3026,
+        "elapsed": 34724.6664476,
+        "state": "city",
+        "fighter_header": 0.0008892841262783459,
+        "arm_header": 0.0,
+        "mk2_label": 0.0,
+        "game_start": 0.33175355450236965,
+        "title_cyan": 62,
+        "city_hud_x": 1.0,
+        "scene_detail": 4.153180709920522
+      },
+      {
+        "sequence": 60,
+        "stage": "city-hud",
+        "frame": 3042,
+        "elapsed": 34724.9483798,
+        "state": "city",
+        "fighter_header": 0.055531824006834686,
+        "arm_header": 0.012772751463544438,
+        "mk2_label": 0.07262569832402235,
+        "game_start": 0.0,
+        "title_cyan": 94,
+        "city_hud_x": 1.0,
+        "scene_detail": 4.188594408030145
+      }
+    ],
+    "gates": [
+      {
+        "stage": "title-game-start",
+        "observed": "title",
+        "consecutive": 3,
+        "captures": [
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\title-game-start-1.png",
+            "sha256": "1a490136f73cc444b9a5d2f7adfc532505e2e7b61af0654583343b6ae10b82f1",
+            "frame": 2011
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\title-game-start-2.png",
+            "sha256": "37dc0a9674b741caf75fbf0693f5010b007b97d9bc80f623bea1262757e2ff9d",
+            "frame": 2029
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\title-game-start-3.png",
+            "sha256": "ef595700528df256b3bb34483a7b0905cbc5ee6770e09502a8102ad511ff0b48",
+            "frame": 2047
+          }
+        ]
+      },
+      {
+        "stage": "fighter-mk2",
+        "observed": "fighter",
+        "consecutive": 3,
+        "captures": [
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\fighter-mk2-1.png",
+            "sha256": "2bfb02c2c4656f5b1a975720ae760780cdcccdab5f945ed9e6661c3b0c3e0421",
+            "frame": 2167
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\fighter-mk2-2.png",
+            "sha256": "af35798d1b13bbb770d4dabfbcb42de6d9521ab3613b36de0238803405c69108",
+            "frame": 2185
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\fighter-mk2-3.png",
+            "sha256": "51f7515458d8c54d1d6de5cfcb3a7725bfc818084aaf9dd449b89d6556199fd6",
+            "frame": 2203
+          }
+        ]
+      },
+      {
+        "stage": "after-fighter",
+        "observed": "arm",
+        "consecutive": 3,
+        "captures": [
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\after-fighter-1.png",
+            "sha256": "d0a4c4245cfefe784ee89d839e502df15e84e907b23e6e5ab306b41ed6a282b3",
+            "frame": 2235
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\after-fighter-2.png",
+            "sha256": "a94d5d1767edad82380d5b4c682bb866c4e9b24bc497cf0bebbb150cd99c4e0e",
+            "frame": 2252
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\after-fighter-3.png",
+            "sha256": "ebb179b134de2a02ab99b13b43f990434a4980d9f84dd9e877765519ae8ce9c5",
+            "frame": 2270
+          }
+        ]
+      },
+      {
+        "stage": "city-hud",
+        "observed": "city",
+        "consecutive": 3,
+        "captures": [
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\city-hud-1.png",
+            "sha256": "1c038c82d02b94dc76ccab356be604f7f770d3bf04eac8c599a1420fd75da716",
+            "frame": 3008
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\city-hud-2.png",
+            "sha256": "172bedb6ee4dcb7f5eb0ba0dc2151580aa4f8cc8b43296e919060e9b36004a82",
+            "frame": 3026
+          },
+          {
+            "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\native-facade-route-20261114-082042-969623\\city-hud-3.png",
+            "sha256": "a3b96dd6190b0c5af1ed94433eca8530e10cf54a28eb2033bae037ed955e498d",
+            "frame": 3042
+          }
+        ]
+      }
+    ],
+    "inputs": [
+      {
+        "after_state": "title",
+        "button": "confirm",
+        "duration_seconds": 0.15,
+        "press": {
+          "id": 1,
+          "ok": true
+        },
+        "release": {
+          "id": 1,
+          "ok": true
+        }
+      },
+      {
+        "after_state": "fighter",
+        "button": "confirm",
+        "duration_seconds": 0.15,
+        "press": {
+          "id": 1,
+          "ok": true
+        },
+        "release": {
+          "id": 1,
+          "ok": true
+        }
+      },
+      {
+        "after_state": "arm",
+        "button": "confirm",
+        "duration_seconds": 0.15,
+        "press": {
+          "id": 1,
+          "ok": true
+        },
+        "release": {
+          "id": 1,
+          "ok": true
+        }
+      }
+    ],
+    "ram_writes": false,
+    "state_loads": false,
+    "turbo_changed": false,
+    "final_state": "city",
+    "final_input_release": {
+      "id": 1,
+      "ok": true
+    }
+  },
+  "input": {
+    "id": 1,
+    "ok": true
+  },
+  "material": {
+    "id": 1,
+    "ok": true,
+    "contract": "ein-material-v3",
+    "live_palette": true,
+    "ready": true,
+    "opengl_ready": true,
+    "hd_ready": true,
+    "renderer": "opengl",
+    "applied": false,
+    "generation": 0,
+    "frame": 3591,
+    "apply_scope": "color_only_next_draw",
+    "detail_changes": "next_launch_only",
+    "diagnostic_scope_supported": true,
+    "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+    "player": {
+      "profile": "aurora-teal",
+      "strength_percent": 75,
+      "key_count": 4,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+    },
+    "enemy": {
+      "profile": "crimson-red",
+      "strength_percent": 75,
+      "key_count": 6,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+    },
+    "supported_profiles": [
+      "stock",
+      "aurora-teal",
+      "solar-orange",
+      "ultraviolet-violet",
+      "glacier-blue",
+      "crimson-red",
+      "toxic-lime",
+      "gold-obsidian",
+      "pearl-magenta",
+      "aurora-gilt",
+      "crimson-regalia",
+      "glacier-gilt",
+      "neon-circuit",
+      "ultraviolet-grid",
+      "reactor-lime"
+    ]
+  },
+  "capture": {
+    "at_utc": "2026-11-14T08:21:10.769797+00:00",
+    "label": "saved-entry-gameplay",
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\hd-saved-entry-private-r2\\hd-on_rewind-on\\captures\\saved-entry-gameplay.png",
+    "width": 1920,
+    "height": 1440,
+    "sha256": "cd116b67e44c560d32c034dbe8c53806cdb267e866a9de078dc3a077362fcb5d",
+    "frame_before": 3591,
+    "frame_after": 3594,
+    "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+  },
+  "close": {
+    "pid": 11856,
+    "clear_input": {
+      "id": 1,
+      "ok": true
+    },
+    "quit_reply": {
+      "ok": false,
+      "err": "emu busy or frozen"
+    },
+    "port_closed": true
+  },
+  "exit": 0,
+  "forbidden_mutations": [],
+  "ended_utc": "2026-11-14T08:21:14.018882+00:00"
+}

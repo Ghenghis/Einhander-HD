@@ -1,0 +1,58 @@
+--- /c/github/Einhander/remaster-audit/parallel-stages-20261114/s45/menu-hud/tools/s45_menu_primary_audit_v3.py	2026-11-14 09:05:08.353156700 -0700
++++ /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/tools/ui_menu_primary_audit_v4.py	2026-11-14 09:26:16.509725100 -0700
+@@ -12,8 +12,11 @@
+ Read-only on every audited file. Batches: --lanes / --folders / --dirs, --resume-from a previous result.json (files with the
+ same folder, path and sha256 are skipped and counted), --no-s2 (primary only), and --budget-seconds stops cleanly between
+ files and lists every unprocessed file (status partial). v3: one global queue over all selected folders, ordered by export
+-dir priority (runtime-2048, region-8x, runtime-1024, region-4x, region, pack, region-16x); optional --shard k/n. Writes ONLY s45/menu-hud/primary-audit/<UTC>/result.json (+ class_mip copy).
+-One process; the CPU is chosen by the launcher (affinity inherited)."""
++dir priority (runtime-2048, region-8x, runtime-1024, region-4x, region, pack, region-16x); optional --shard k/n. (v3 wrote s45/menu-hud/primary-audit/<UTC>/; v4 output: see below.)
++One process; the CPU is chosen by the launcher (affinity inherited).
++ui v4 (claude-einhander-ui, EIN-MENU-HUD-20261114): copy of s45 v3 (sha256 8d20c548...) with ONLY the write location and the
++owner/job labels changed. It writes ONLY <--out-root>/<UTC>/ (pid.txt, tool/class_mip copies, class_mip.dll, plan.json or
++result.json); --out-root must lie inside the registered claude-einhander-ui output. Audit logic, inputs and policy unchanged."""
+ import argparse
+ import ctypes
+ import datetime
+@@ -34,7 +37,8 @@
+ Image.MAX_IMAGE_PIXELS = 64_000_000
+ RA = Path("C:/github/Einhander/remaster-audit")
+ CA = RA / "comfy-authoring"
+-S45 = RA / "parallel-stages-20261114/s45"
++UI_OUT = Path("C:/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui")
++V3_SHA256 = "8d20c54860d20bf31a15b776b8fe07fe43f0ba04655377aa72f48bc1b0b28678"
+ W6T = CA / "w6-hud-fades/tools"
+ PROTO = RA / "claude-backlog/class-mip/frozen/class-mip-v2b-breakdown-v1/proto-v2b"
+ CLANG = "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe"
+@@ -66,7 +70,12 @@
+     ap.add_argument("--shard", default=None, help="k/n: process only queue items with index modulo n == k")
+     ap.add_argument("--plan-only", action="store_true", help="build the queue (no image decode, no DLL), write plan.json, exit")
+     ap.add_argument("--no-s2", action="store_true", help="skip the s/2 diagnostic pass (primary needs only R1 + conn-only)")
++    ap.add_argument("--out-root", default=str(UI_OUT / "primary-audit"),
++                    help="run folders are created here; must be inside the registered claude-einhander-ui output")
+     a = ap.parse_args()
++    out_root = Path(a.out_root).resolve()
++    if os.path.commonpath([str(out_root).lower(), str(UI_OUT.resolve()).lower()]) != str(UI_OUT.resolve()).lower():
++        raise SystemExit(f"--out-root {out_root} is outside the registered output {UI_OUT}")
+     t0 = time.time()
+     if a.plan_only:   # light mode: one CPU other than 13/15, below normal
+         import psutil
+@@ -74,7 +83,7 @@
+         me.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+         me.cpu_affinity([c for c in me.cpu_affinity() if c not in (13, 15)][:1])
+     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+-    rd = S45 / "menu-hud/primary-audit" / stamp
++    rd = out_root / stamp
+     rd.mkdir(parents=True, exist_ok=False)
+     (rd / "pid.txt").write_text(f"{os.getpid()} {stamp}\n", encoding="utf-8")
+     print("PID", os.getpid(), "run", rd, flush=True)
+@@ -233,7 +242,8 @@
+                w6_centre_exact=sum(r["summary"]["w6_centre_exact"] for r in results.values()),
+                centre_exact_but_primary_fail=sum(r["summary"]["centre_exact_but_primary_fail"] for r in results.values()),
+                unresolved=sum(r["summary"]["unresolved"] for r in results.values()), by_dir=by_dir, remaining_files=len(remaining))
+-    out = dict(run=stamp, owner="claude-einhander-s45", task="EIN-MENU-HUD-20261114", job="J-L v3 (priority-sharded, resumable)",
++    out = dict(run=stamp, owner="claude-einhander-ui", task="EIN-MENU-HUD-20261114",
++               job="J-L3 ui v4 (= s45 v3 8d20c548 logic; own output root)", derived_from_tool_sha256=V3_SHA256,
+                status="partial" if partial else "complete", remaining=remaining, args=vars(a),
+                policy="primary = R1 == 0 and conn-only(bound 1e9) == 0; s2 (bound 0.5) diagnostic; w6 centre check for comparison",
+                tool_sha256=sha(Path(__file__)), w6_tools_read_only=tool_hashes, class_mip_c_sha256=sha(PROTO / "class_mip.c"),

@@ -1,0 +1,238 @@
+{
+ "owner": "claude-einhander-s23",
+ "name": "j10-preview-2152",
+ "revision": "j10_preview_r2",
+ "started_utc": "2026-11-14T21:53:33.486509+00:00",
+ "pid": 11944,
+ "affinity": "12",
+ "budget_s": 110.0,
+ "status": "PREVIEW (private; not frozen; not for import)",
+ "keys": [
+  "28127931-7C2D834A",
+  "59B55BC8-89C297ED"
+ ],
+ "code_pins": {
+  "s23lib": "e26b2fbe0f5632c121e254e284be68eace8b54f5425cb785b9f53d9504a972b7",
+  "scale2x_cg": "0c0517d37b033f469330c65d1bd533cd69bf210a4fbb2688fafae0d2954cd7ee",
+  "j2_s3_dither_hybrid": "ba450150580c96c24973ecf632917a04074ac1928d1bfa80edb69eecbf5f33ab",
+  "j5_s3_scale2x": "143a95af12f9c3adbf093f2dd4dd18629e59a6c65de82e74d0baad11cf442a90",
+  "j7_s3_hybrid": "cdf9ff185917971e80b95839f3a7e584002edb383b0bf59d2ac16b77692d8b05",
+  "j9_s2_drawn_authoring": "374af13cbf252cf0db4294afdf500ca91fcd09a1d7125c2a12bef82b592a6021",
+  "j10_corner_guard": "e392a84335434ac9073670bce31d9fa50d8acf5986a3c7eecaa9c8ed7518210d",
+  "build_stage1_frozen_candidate": "c8c3cca561ef01a662b5ae8c43fe79e3830b4550136b7e8ef7dda677bc0df699"
+ },
+ "data_pins": {
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/manifest.json": "5b2f15b5894efe593176d89bece4a3ab69c218a0f1e6f31dcf27fe2b3b2f0b9c",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z/manifest.json": "22370974abccc6d5868d021c48d1ccee27fa5e0eaafdce1ae9cb4eb372f9128e",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-hybrid-20261114T155630Z/manifest.json": "b71851546ff48e41a02449abb833aa5712d1e4a8e2fa0c10a1e0e1842008875f",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-trains-scale2x-20261114T160110Z/manifest.json": "46c26204d95de0d85182074528121afa9789f9df5801e7706d9c4478dd0c0871",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/fullstage-20261114T171029Z/fullstage-coverage.json": "2e93fba0b817eb5b94aa0886b3ab627432c46c11c0bfa5bf32fc811401801692",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage2/keys-live.json": "a227087745ba3859d7c1032cc1b7970860b4a0877ec08aee41eefd83fc953928",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures.json": "fd2ec38057af96c69b3f7924faca1898d1c86672d8c2902ce1ec2b77ce6d7eeb",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/cluts.json": "4f861e86ec603c88410790c4f64b632e7c092d83aeb216302319d4fc3a25dfa4",
+  "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures/28127931.words.bin": "0e110d9503fb351bd5848129120cb20af1b405fa7afc17726d579fdacdbf4358",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/keys/page2048/28127931-7C2D834A.png": "a6801c466ebe0f3ba4b22cb617d481c146b0a05656bd96a20a1b81ba58f422b2",
+  "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/frozen/stage3-machinery-walls-v1/manifest.json": "184e8ad8558826ca75177d3e05293d279d4aa6b28eb4eab2a6c6050ba58cd1e0",
+  "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/59B55BC8.words.bin": "4562f9978b4c551dc7fbb476374df24c8564c9086ebb3b56fef09c247f04306a",
+  "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/frozen/stage3-machinery-walls-v1/master/59B55BC8-cells-32grid.npy": "f78debb18b14da791f6bc4c38bb642ef2e3c7bc0073f1f4f0d59694b2ae00679",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z/keys/page2048/59B55BC8-89C297ED.png": "68326064de4fde1150c2bb26af4417653a6df299cc7d938111813bc397ce42ae"
+ },
+ "steps": {
+  "selftest": {
+   "started_s": 0.59,
+   "passed": true,
+   "finished_s": 0.75
+  },
+  "fixtures": {
+   "started_s": 0.75,
+   "finished_s": 0.81
+  },
+  "s3_key": {
+   "started_s": 0.81,
+   "finished_s": 2.79
+  },
+  "s2_key": {
+   "started_s": 2.79,
+   "finished_s": 6.9
+  },
+  "compare": {
+   "started_s": 6.9,
+   "finished_s": 7.39
+  },
+  "plan": {
+   "started_s": 7.39,
+   "finished_s": 7.41
+  }
+ },
+ "key_errors": {},
+ "self": {
+  "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/tools/j10_preview_r2.py",
+  "sha256": "1aa511ee4e0574cd3e3cf8c856aa89036ea9fe2cc9e638b86122f9dd20dd9f46"
+ },
+ "third_party": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "pillow": "12.3.0",
+  "scipy": "1.17.1"
+ },
+ "selftest": {
+  "path": "selftest.json",
+  "sha256": "57367fada01797ff2cf470bd738ffd4056319504b81ef17062413e6c6b324273",
+  "passed": true
+ },
+ "fixtures": {
+  "npz": {
+   "path": "fixtures.npz",
+   "sha256": "4eb087e2b220f763219ca940ba1b6d02353e1b57c86992fa84b9b0e51ea2f795"
+  },
+  "sheet": {
+   "path": "fixtures.png",
+   "sha256": "ff46c157fa64e0ad686ec83cdcf68083e576cdd8ead17a24c1d84227bd357905",
+   "layout": "rows block, step_L, single_texel, edge45, edge2to1, checker; columns nearest | J5 cascade | J10 cascade at 8x"
+  },
+  "stats": {
+   "block": {
+    "j5_vs_nearest_px": 84,
+    "j10_vs_nearest_px": 0,
+    "j10_vs_j5_px": 84
+   },
+   "step_L": {
+    "j5_vs_nearest_px": 126,
+    "j10_vs_nearest_px": 0,
+    "j10_vs_j5_px": 126
+   },
+   "single_texel": {
+    "j5_vs_nearest_px": 20,
+    "j10_vs_nearest_px": 20,
+    "j10_vs_j5_px": 0
+   },
+   "edge45": {
+    "j5_vs_nearest_px": 505,
+    "j10_vs_nearest_px": 505,
+    "j10_vs_j5_px": 0
+   },
+   "edge2to1": {
+    "j5_vs_nearest_px": 352,
+    "j10_vs_nearest_px": 352,
+    "j10_vs_j5_px": 0
+   },
+   "checker": {
+    "j5_vs_nearest_px": 2912,
+    "j10_vs_nearest_px": 2880,
+    "j10_vs_j5_px": 136
+   }
+  }
+ },
+ "keys_result": {
+  "59B55BC8-89C297ED": {
+   "manifest": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s3-59B55BC8-89C297ED/manifest.json",
+    "sha256": "1300b02da1a53d9e98bf2f5141f181ae5921f16ccb5dc8744677113205e6b443"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "dc22491756ddebdfad2ff3fae65f7181b1046818d428f524450b2d144233b218",
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-89C297ED.png",
+     "sha256": "6fee91f644df9a79dda9c8d6e082b41bae8a5186c5d1e3f778e8f02240815b45",
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   },
+   "corner_check": [
+    {
+     "times": 3,
+     "corners_total": 1169,
+     "corner_quadrant_differs_total": 0
+    },
+    {
+     "times": 2,
+     "corners_total": 1169,
+     "corner_quadrant_differs_total": 0
+    }
+   ]
+  },
+  "28127931-7C2D834A": {
+   "manifest": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s2-28127931-7C2D834A/manifest.json",
+    "sha256": "b120e83c45560405fbf36cb659f5c22092b9f6871ff929519df0b60b47580226"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/28127931-7C2D834A.png",
+     "sha256": "40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a",
+     "strict_pass": true,
+     "r5_zero": true
+    },
+    "page1024": {
+     "path": "keys/page1024/28127931-7C2D834A.png",
+     "sha256": "a80e702e10fd7b6e6c47f8a6f5d20337412147fff688a4bcb9c532c7a953433c",
+     "strict_pass": true,
+     "r5_zero": true
+    }
+   },
+   "corner_check": [
+    {
+     "times": 3,
+     "corners_total": 435,
+     "corner_quadrant_differs_total": 0
+    },
+    {
+     "times": 2,
+     "corners_total": 435,
+     "corner_quadrant_differs_total": 0
+    }
+   ]
+  }
+ },
+ "compare": {
+  "path": "compare.png",
+  "sha256": "6b886b4802728d84f4e8814d5efc14e469f9136f3981513ac87ea36a34f335ef",
+  "rows": [
+   "28127931-7C2D834A uv[128, 136, 176, 168]: native 8x | previous | J10",
+   "59B55BC8-89C297ED uv[103, 111, 151, 143]: native 8x | previous | J10"
+  ]
+ },
+ "diff_vs_previous": {
+  "28127931-7C2D834A": {
+   "alpha_px": 6515,
+   "visible_rgb_px": 911,
+   "previous": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/keys/page2048/28127931-7C2D834A.png",
+    "sha256": "a6801c466ebe0f3ba4b22cb617d481c146b0a05656bd96a20a1b81ba58f422b2"
+   }
+  },
+  "59B55BC8-89C297ED": {
+   "alpha_px": 0,
+   "visible_rgb_px": 24988,
+   "previous": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z/keys/page2048/59B55BC8-89C297ED.png",
+    "sha256": "68326064de4fde1150c2bb26af4417653a6df299cc7d938111813bc397ce42ae"
+   }
+  }
+ },
+ "plan": {
+  "path": "plan-preview-2keys.json",
+  "sha256": "69600db8157df0071af92eca224a1e920b634b91014acb6a2ba6cfdb16de0e1c",
+  "entries": 2
+ },
+ "checks": {
+  "both_keys": true,
+  "files": 4,
+  "strict_pass": true,
+  "r5_zero": true,
+  "corner_calls": 4,
+  "corner_quadrant_differs_total": 0,
+  "corners_total": 3208,
+  "plan_entries": 2
+ },
+ "ok": true,
+ "exit_code": 0,
+ "seconds": 7.41,
+ "finished_utc": "2026-11-14T21:53:40.888949+00:00"
+}

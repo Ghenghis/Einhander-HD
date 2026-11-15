@@ -1,0 +1,144 @@
+# Green and pink sign quality — November 14, 2026
+
+## Combined ROI candidate admitted —17:26 UTC
+
+The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).
+
+No GPU/game/audio run or installation. Live motion/look, full fidelity and seven-stage acceptance remain open; the earlier modern Remix failure and P/Q scheduling violation remain preserved. Metadata monitor PID42612 ends17:58:03.357 UTC and proves monitoring only. Older dated checkpoints below are historical.
+
+## Verified region-O integration —17:02 UTC
+
+The private O ROI composition passes: 1,699 page hashes checked, 1,697 unchanged PNGs, two size-neutral corrected pages with identical alpha and all outside-region pixels retained. Composer source and a real CLI fixture are checked; runtime admission/live motion remain pending. The scoped menu census finds only 19/261 primary passes and preserves visual repair failures. Timeout validation passes 72/72 in author and independent runs, without establishing a stage clear. [Actual results and unfinished work](../docs/ROI-COMPOSITION-RESULTS-20261114.md).
+
+No new GPU/game/audio run or installation. M/I/J/P/Q freezes are verified; eight-ROI composition remains pending after a prestart runner-pin refusal. The P/Q late-start violation is preserved. The failed modern Remix GPU result is preserved. Metadata monitor PID38020 is bounded to17:33:42.232 UTC and proves monitoring only. Earlier dated paragraphs below are historical.
+
+## Actual modern GPU result —16:35UTC
+
+The private modern Remix probe ran on3090Ti and FAILED: three identical outputs with zero expected triangle pixels; Shutdown exceeded its15-second deadline, child exit30/40.159s, wrapper exit1/41.681s. Startup/frame return codes and the initial GL readback pass do not establish rendering. Both processes are absent, markers removed and shared grant explicitly released revision10. [Actual evidence and remaining work](../docs/MODERN-REMIX-GPU-RESULT-20261114.md).
+
+Root continues CPU-only diagnosis/publication; bounded Claude texture/HUD work resumes. No game/audio test, installed runtime, RT/DLSS gameplay or full remaster acceptance is claimed. Six native sessions are registered. Metadata monitor PID37252 ends17:06:21.828UTC and proves monitoring only. Earlier dated checkpoints below are historical.
+
+## Current frontend/tracker checkpoint —16:06UTC
+
+Development launch now uses validated saved materials, explicit stock recovery and correct custom-port links. Nine unit cases and actual CPU validation/PowerShell/Windows-argv controls pass; saved pointer unchanged. The exact v67 pack passes16 tracker/save-state/decode fixture processes in6.037s. Region-O9pins/all11files are preserved in canonical C: storage; ROI-only integration/sidecar refresh and live look remain pending. [Actual code, checks and newer art/menu failures](../docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md).
+
+No game/GPU/audio/browser/bridge test ran. Modern GPU qualification is the next controlled gate after explicit shared grant and current resource checks; elapsed time alone grants nothing. Full remaster/stage acceptance remains open. Metadata monitor PID37556 is bounded to16:17:23.189UTC; older checkpoints below are historical.
+
+## Current verified CPU checkpoint —15:37UTC
+
+Root independently replays v6:7,534 fixtures,16 recording-GL cases/425 checks and92 worker identity checks pass; bounded outer exit0/13.865s. Private v67r3 now compiles/links (EXE8bc3ac3d...), with8 adapter controls and a real growth mutation caught. It freshly builds debug/pack, retains the rebuilt r2 renderer and other pinned objects; not a clean full-source build. No game/GPU/audio run or installation. Tracker/save-state regressions and all live acceptance remain open. [Actual results and preserved failures](../docs/DECODE-WORKER-RESULTS-20261114.md).
+
+The canonical native primary replacement has actual own hook/inbox/checkpoint proof; original history is retained and its worktree guard respected. Metadata monitor PID36052 is bounded to15:49:33.939UTC. CPU-only work continues; no GPU grant is inferred from elapsed time. Older checkpoint paragraphs below are historical. HUD derived candidates still require source/look/live acceptance; full skins/menu/audio and seven-stage completion are not claimed.
+
+## Resource and native-worker update —15:06UTC
+
+Pizza explicitly released its shared GPU grant14:56:05UTC; coordinator independently checked parent/child absence14:57:01. Root's legacy marker is still pending reconciliation; no new Einhander GPU/game/audio test ran. [Shared-resource controls and limits](../docs/SHARED-GPU-RESULTS-20261114.md) pass on CPU. The metadata monitor PID31968 is bounded to15:23:29.643UTC and proves monitoring only. Original native primary retired from new assignments with a durable handoff; supported canonical-root replacement remains pending. Other three workers continue stage/UI repairs. HUD152 derived fade-key candidates are not source/live admission; S23 phase silhouette defects and S67 native smoke-fill repairs remain subject to actual acceptance.
+
+## Latest texture/engine CPU checkpoint
+
+The 3090 Ti was handed back to Pizza Tycoon at14:38:45UTC; the modern GPU test never started and a new user-project hold blocks launches until release. CPU work continues. New private RISE composition replaces33 variants, preserves1,666 other images and passes native admission for1,699 entries, without installation/live acceptance. Opt-in composition fill passes10 controls and removes100,550 measured border flags on a real audit probe while preserving alpha/visible RGB.
+
+Root verifies1,111 v6 freeze pins; author host report passes7,534 fixtures plus mutation/glue/pack checks, but its outer process exit was not captured and root replay/private game link remain pending. Modern GL r4 compiles and passes14 CPU contracts,12 image controls and7 cleanup controls; actual modern GPU images/lifecycle and in-game RT/DLSS remain NOT RUN. Later-stage repaired copies still require source/colour/live review; current policy corrections and failures are retained. [Actual source, checks, failures and limits](../remaster-audit/texture-composer-followup-20261114/README.md).
+
+## Resource release and actual monitor renewal — November 14
+
+**Latest resource update:** the user explicitly released the RTX 3090 Ti in the other Einhander chat; root verified the actual human message and archived/removed the old hold at14:03:44 UTC. Reuse still requires root coordination, a quiet resource window and reviewed source. No new GPU test has started at this checkpoint; no power/driver setting was changed. Older reservation paragraphs below are historical and superseded. Native workers remain CPU-only without individual grants.
+
+Published checkpoint `ee7824a4e4e869972045b914225cfdf1efab8fcc` is remote-verified in draft PR1:189 new packet pins,2,243 historical/new pins verified;55 documents,89 JSON reports,970 references,0 issues. Its immutable packet preserves failures. The later RISE float32 correction is local:33/33 class checks pass and approved reference is byte-identical; composition/live acceptance remains pending.
+
+The owned metadata monitor was actually renewed: PID26032, first snapshot14:01:10 UTC, bound14:31:09.548 UTC; receipt `remaster-audit/runtime-review/gpu-texture-remix-20261114/monitor-renewal-20261114T140109Z/result.json`. It proves metadata monitoring only. Main continues actual inbox turns. The crash-check coordinator schedules bounded texture jobs; root retains v6/runtime/GPU/build/publication. Whole remaster remains incomplete.
+
+## Latest CPU verification — November 14, 2026
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
+**Latest resource instruction, verified in the user's crash-status chat:** the 3090Ti is reserved for Pizza Tycoon HD until **at least 07:00 Phoenix / 14:00 UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
+
+## Current verified state — reviewed scene capture, modern SDK and restart recovery, November 14
+
+Historical earlier policy: the one-hour reservation ended 12:44:30 UTC. The latest hold above supersedes reuse authorization. No owned renderer/game process remains. Current work is CPU-only integrity recovery and implementation, sequential and below normal, from C:. [Actual source, raw checks, failed controls and payload limits](../remaster-audit/scene-texture-followup-20261114/README.md).
+
+Private v66r3 now compiles/links, with exact per-word GP0 sources, generation/complete gates, native raster eligibility and omitted-family diagnostics. Actual CPU checks pass 2,932 enabled / 6 disabled; the exact handler/Windows adapter passes 14 RPC cases plus foreign-thread control; an independent snapshot oracle rejects 28 negative mutations. The executable has **not run**; retained parent objects prevent a clean full-source rebuild claim. World/camera/material mapping and scene submission remain incomplete.
+
+One permitted 3060 SDK attempt was guard-aborted when its owned PID appeared on both GPU contexts; no image result. After the hour, an old-runtime 3090 direct-device control passed initial magenta readback but returned only fallback magenta for SDK output and stalled Shutdown; the 45 s watchdog closed it. A privately staged official runtime with matching API 0.16.1 header now passes CPU function-table initialization only. Startup/Submit/Present and modern-runtime rendering have not run. Ray tracing/DLSS are not working in-game.
+
+Windows restarted 12:49:22 UTC. Scoped integrity checks found 90 all-zero text files, all in unpublished frozen v5; preserve the failed freeze and the recovered NEW revision passes root CPU replay. All 990 published file pins match Git/root/publication copies. Native Claude's original session has resumed real recovery work. V5 GPU/live qualification, RISE lettering, opaque far-background signs/buildings and full coverage remain unaccepted. Skins/selectors, HUD/menus, audio remastering and seven-stage acceptance remain unfinished. No new gameplay/audio test ran; prior v61 audio/smoothness failure remains open.
+
+Root has now independently verified the recovered v5-r2 freeze:874 pins, 7,520 fixture checks and 14 GL-stub cases/352 checks pass; no GPU/game acceptance. All874 failed-predecessor hashes also remain unchanged, including263 all-zero files. Fsync/readback is a precaution; the crash/corruption cause remains unknown. Later-stage scope is concurrent: S2–S7 selected candidates 39/39/11/12/101/26 keys have 28 manifests reverified and concrete CPU whole-cell/fringe audits queued. None of the seven stages is fully accepted.
+
+<details>
+<summary>Earlier checkpoints — superseded resource policy and retained historical evidence</summary>
+
+## Current verified state — GPU tests ended; CPU-only hold November 14
+
+The user has now taken the RTX 3090 Ti for another project (11:30 UTC). All owned GPU/game tests have ended; a new user reservation has no automatic expiry. Further GPU work waits for explicit return. Continue CPU-only work from C:, below normal; leave the RTX 3060 project untouched. The [GPU integration packet](../remaster-audit/gpu-integration-20261114/README.md) records actual results and preserved failures.
+
+Private v61 now ran in-game: a 30-second early-city diagnostic found 99.16% all-hit textured-triangle calls, with every successful vertex lookup exactly one frame old. The private adapter now supports explicit maximum lag one and passes 86 host checks; it is not connected to the game frame hook. This uncached diagnostic **fails audio/smoothness acceptance** (+480 frontend underruns, +287,368 bridge counter; later slowdown). Phase rows returned the boot window, so they cannot attribute the slowdown.
+
+Real Remix GPU Startup/resource/camera/draw/Present/external-image calls return success, but output is black and Shutdown stalls, including separate-window/FBO/alpha-test/240-frame controls. Every owned probe is closed; this is a failed backend qualification, not ray-traced gameplay or DLSS integration. Shader readiness remains unmeasured. Existing texture ingestion is separate from this renderer failure.
+
+Claude's frozen class-aware mip prototype passes root's independent 7,410-check replay. Its partial Stage1 analysis flags 241 drawn texture keys under a documented policy; that is not a distinct-sign total or automatic art rejection. Strict native-authority sidecars and private renderer integration are being implemented, with GL/full-link/in-game acceptance still pending. The distant green/pink signs, whole-cell masks, background coverage, realistic ship/gun/enemy/boss skins and selectors, modern HUD/menus, audio remastering and seven-stage acceptance remain unfinished. Full remaster completion is not claimed.
+
+Follow-up actual GPU shader testing now shows stable synthetic strokes at4×/8×, but still fails at12× and retains the LOD0 fringe; overall exit1. Root also rejected synchronous95–344ms mip generation on the draw thread. Native Remix presentation without OpenGL/custom material still fails image/lifecycle qualification. A newer official SDK0.16.1 header is incompatible with the installed renderer (CPU probe error8); it has not been installed. [Raw follow-up evidence and review](../remaster-audit/gpu-shader-followup-20261114/README.md). No private class-mip game executable is accepted.
+
+A separate default-off RGB edge-filter prototype now removes the synthetic LOD0 fringe on the3090Ti, including fractional LOD controls, while preserving tested cutout/STP support and point sampling. This narrower GPU goal passes; the original overall suite still fails at12×/LOD0 identity, and no game integration or performance acceptance is claimed. Exact source/results are in the follow-up packet above.
+
+The guarded RGB variant now preserves the tested all-opaque result exactly, including mixed-STP controls. A separate default-off level0 RGB-only private v62 executable compiles/links (two TUs rebuilt, pinned parent objects retained) and its preprocessed shader matches the GPU-tested branch. A short visual candidate was prepared but **not launched before the user took the GPU**. No new in-game fidelity/performance/audio acceptance is claimed.
+
+CPU-only follow-up: Claude v3 now precomputes mip levels offline and preloads a bounded cache. Root verifies212 frozen pins and independently recompiles/replays6,182 fixture checks plus28 opt-in/2 opt-out GL-stub checks, all passing with the user GPU hold unchanged. These are CPU stubs, not GPU/game acceptance. Region O gets no useful class-mip benefit; eight verified cutout keys replace that initial target. V4 RGB integration remains ongoing. Source/evidence and local-payload omissions are explicit in the follow-up packet.
+
+<details>
+<summary>Earlier checkpoints and evidence — historical, before the GPU return above</summary>
+
+Further CPU integration is verified: the real GTE RTPT → SWC2/PGXP DATAFLOW → SDK-layout staging host test passes **85 checks** with synthetic guest input and a dummy material. Claude's v3 census adds lag/flag/projection diagnostics; root verifies its frozen run4 pins, reruns all four host executables (74/137 checks plus controls) and compiles/links a new private v61 executable. It has not been launched, and the mesh adapter is not connected to its runtime frame hook. Failed TCP/mutation controls and the rejected stale runner hash remain explicit in the [CPU metrics packet](../remaster-audit/engine-cpu-metrics-20261114/README.md). No GPU work, scene rendering, ray tracing, DLSS or new in-game performance/audio acceptance is claimed.
+
+The follow-up [CPU review packet](../remaster-audit/engine-cpu-review-20261114/README.md) preserves Claude's independent mesh review and root's revised adapter: **71 host checks pass** with transform-hash and command/lane validation. Strict world-v3 class audit: 1,182 pass, **299 mismatch**, 218 lack a qualifying native source in the audit; 142,550 mismatching native centres. Root's 13 audit controls and source-hash/complete-word proof checks pass. These are explicit inherited defects, not full-pack acceptance; some older prepared fixes only stamp centre pixels. GPU/game hold remains in force. The newer v3 host delivery and private compile/link above supersede that preparation checkpoint; live measurements remain pending.
+
+The newest CPU-only world-v4 adds the teal K-panel revision after proving 3,550 class mismatches in its world-v3 page. Both frozen size alternatives preserve all 65,536 native-centre classes; the private 2048 composition passes 1,699-key/226-region native admission. RGB edits stay inside K. It has not run in-game. Distant green/pink dot-grid region O already has t3 artwork and needs sampling/footprint/motion validation; it is distinct from the previously unauthored teal region K. The strict world-v3 audit and first mesh review are now complete, with defects and revised host checks recorded above; later integration remains underway. [Actual checks and retained limits](../remaster-audit/engine-cpu-integration-20261114/README.md).
+
+CPU-only addendum after the user reserved the RTX 3090 Ti: the newest private world-v3 candidate has 1,699 keys after resolving the remaining source bindings and Uhu companion family. Both additional composition rounds passed native admission and 3,874,816 native-centre class checks across 63 entries with zero failures. It now targets all 21 absent and 126 legacy-with-unused-art keys in the earlier sampled census. This is a bounded integration list, not full-world or 4K fidelity acceptance. No new game or GPU test ran; the last live world-v1 audio failure remains open. Resolution alternatives, derived strip provenance, the missing Uhu CLUT and distant window defects are explicit in the [CPU addendum](../remaster-audit/world-cpu-completion-20261114/README.md). The user GPU reservation remains active until explicit return/authorization.
+
+Live-tested world-v1 integration: [actual candidate and live results](../remaster-audit/engine-foundation-world-20261114/README.md) cover 161 patches and 1,698 total keys, including the four existing W5 cube/sign-row cells. Native admission and class checks passed; 140 changed keys uploaded during 120s of private gameplay. No per-key draw or final visual approval was established. That live-tested candidate retained the distant95A3BCF8 atlas; the newer K/O findings and unrun revision above supersede its authoring status. Audio added 3,351 starved samples in the first measured second, so this run does not pass audio acceptance.
+
+Broader world census: the distant green/pink panels inspected in `world-075` and `world-090` map by layout/UV and retained older draw logs to the `95A3BCF8` city window-light atlas, not lettering. The teal `723E222C`, green `60245B3A` and pink/orange/white `07A9568D` palettes have soft/grainy selected replacements. This is a cross-run mapping, not atomic draw-to-pixel proof. That earlier broad authoring diagnosis is superseded by the K/O distinction above; authored region O still needs actual motion/sampling qualification. The [world census](../remaster-audit/world-sign-census-20261114/WORLD-SIGN-CENSUS.md) also found 21 drawn keys absent from the tested pack and 126 drawn legacy keys with deliverable candidates not integrated. These are sampled texture-key counts, not a complete distinct-sign count. The four cube/sign-row cells previously called authoring gaps already have W5 candidates; their remaining work is integration and live validation.
+
+Latest continuation: five private class-preserving sign revisions (boards 4, 9, 10, 12 and 26) passed native pack admission and ran through a light 120-second gameplay check. Sparse captures still show uneven quality; the distant green/pink signs and potentially untreated buildings remain open. No full visual acceptance or production installation is claimed. [Actual live results](media/gallery/sign-crisp-v2-live-results.json) and [full 4K/Remix implementation scope](4K-REMIX-IMPLEMENTATION-PLAN.md) supersede the earlier four-board prepared-only snapshot below.
+
+The remaining distinct-sign total is **unknown**. The older register has 37 rows: 29 numbered boards, three posters and five request rows; later W4 work resolves some requests, so these are not five current missing signs. Two numbered entries are an indicator and a backing panel, leaving 30 named sign/poster rows. The 42 artwork entry records include variants and cannot serve as a distinct-sign denominator. Four cube/sign-row cells already have W5 candidates and now enter the private world composition; live look validation remains open. Eleven late-city source/phase records require resolution. These units overlap and must not be summed. [Source-bound census receipt](media/gallery/sign-census-progress-results.json).
+
+**The washed-out signs are unresolved visual defects. They were not accepted as finished HD artwork.** The user's smoother gameplay report does not approve the sign artwork. There is no verified fraction of all signs completed; the existing 42 authored sign entry records are not a complete sign/state denominator.
+
+Claude performed a C-only source/pack audit and built private alternatives without GPU generation. Root inspected the green-sign comparison. The exact native glyph reading is unverified; no new Japanese/Chinese text was invented.
+
+## Identified targets and current assets
+
+- Green three-glyph board 9: exact-region key `0FB1EFC5-F6269484`, native 64 x 48 texels.
+- Pink glyph column board 4: `7A652858-600290FE`, native 32 x 64 texels. Its earlier ledger already left blotchy lettering open.
+- Red script banner board 10: `67DC56D7-8D0C6ABE`, native 64 x 48 texels; lower lettering remained lumpy.
+- Magenta oval board 12: `327E6D9E-89C41FFB`, native 64 x 32 texels.
+
+These four boards share FD81C3C7 atlas layout and palette-phase identities. The installed 964-PNG pack contains older full-page replacements; it has no exact-region overrides for these boards. Its sampled native texel centres remain close to native colors. This is a static source observation, not fresh in-game appearance acceptance.
+
+The larger frozen `frozen-w3-lit-v1` candidate used in the latest gameplay diagnostics contains the W3 exact-region overrides. Their glyph contours are rounded/softened and their shading is pale, which is visible in the comparisons below. Correct alpha-class checks had passed, but those checks did not establish legibility or visual quality. A ledger selection marked USE must not be treated as final visual approval.
+
+Each comparison shows **native source on the left, the current frozen override in the middle, and an unaccepted sharper alternative on the right**. Alpha is displayed using the game's class interpretation, not ordinary image opacity.
+
+![Green board: native, current soft override, private sharper alternative](media/gallery/sign-b09-green-three-glyph-comparison.png)
+
+![Pink glyph column: native, current soft override, private sharper alternative](media/gallery/sign-b04-pink-glyph-column-comparison.png)
+
+## What was created, checked and still needs work
+
+The private `fd-glyph-boards-crisp-v1` alternative applies class-aware EPX/Scale2x four times to each board's source words and CLUT. It uses neighboring source colors/classes and preserves native texel-centre classes. Claude's four-board report records zero new colors/classes and zero native-centre class mismatches. Same output dimensions and keys make private composition possible; they do not establish visual acceptance. Native dither remains busy and can form distracting shapes. This is a sharper source-based alternative, not newly reconstructed HD lettering.
+
+The original W3 files, native inputs and alternatives remain preserved. No alternative was installed, and no new in-game A/B ran during the Remix setup. The next gate is a hash-pinned private composition and a light same-route visual comparison at gameplay size, including the green/pink boards, their palette states, UV edges and motion. Compare improvements per board instead of applying a global sharpening filter or accepting every alternative together. Board 26's yellow-on-magenta glyphs remained outside this initial four-board snapshot.
+
+Local audit: `C:/github/Einhander/remaster-audit/claude-backlog/sign-washout-audit/AUDIT.md`, with `stats.json`, `candidates-report.json`, the source-based builder, comparisons and `frozen/fd-glyph-boards-crisp-v1/manifest.json`. The [published audit receipt](media/gallery/sign-quality-audit-results.json) binds selected local source hashes and the two included comparisons. This does not make the local full artwork pack a portable release.
+
+The [Remix conversion check](RTX-REMIX-SETUP-20261114.md) successfully converted an existing W3 sign to DDS and preserved the original. That conversion did not repair the soft artwork and is not installed in the game. [Overall artwork scope](ARTWORK-STATUS-20261113.md), later stages and normal full-stage acceptance remain incomplete.
+
+</details>
+
+</details>

@@ -1,0 +1,1 @@
+Root replay harness error: opaque sidecar dimensions decoded as uint32 instead of native uint16 fields. First five glue modes and fixtures ran; opaque control failed due to wrong replay arguments. This is not evidence of a renderer defect. Preserved and superseded by corrected r2.

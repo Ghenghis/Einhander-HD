@@ -1,0 +1,14 @@
+In file included from C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\selftest\20261114T113152Z\gl_selftest_classmips.c:36:
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\selftest\20261114T113152Z/hd_class_mips.inc:165:12: warning: unused function 'hdcm_sidecar_admit' [-Wunused-function]
+  165 | static int hdcm_sidecar_admit(const HdcmSidecar *sc, uint32_t th, uint32_t ph, uint32_t native_w, uint32_t native_h,
+      |            ^~~~~~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\selftest\20261114T113152Z/hd_class_mips.inc:207:13: warning: unused function 'hdcm_cache_init' [-Wunused-function]
+  207 | static void hdcm_cache_init(HdcmCache *c, size_t cap_bytes) { memset(c, 0, sizeof *c); c->cap_bytes = cap_bytes; }
+      |             ^~~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\selftest\20261114T113152Z/hd_class_mips.inc:212:12: warning: unused function 'hdcm_cache_add' [-Wunused-function]
+  212 | static int hdcm_cache_add(HdcmCache *c, uint32_t th, uint32_t ph, uint8_t *buf, size_t len) {
+      |            ^~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\selftest\20261114T113152Z/hd_class_mips.inc:228:27: warning: unused function 'hdcm_cache_find' [-Wunused-function]
+  228 | static const HdcmSidecar *hdcm_cache_find(const HdcmCache *c, uint32_t th, uint32_t ph) {
+      |                           ^~~~~~~~~~~~~~~
+4 warnings generated.

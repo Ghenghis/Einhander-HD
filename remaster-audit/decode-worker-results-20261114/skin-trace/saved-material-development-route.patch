@@ -1,0 +1,53 @@
+--- a/windows-x64/tools/launch_hd.py
++++ b/windows-x64/tools/launch_hd.py
+@@ -15,7 +15,7 @@
+ from material_profiles import DEFAULT_PLAYER_KEYS, ENEMY_KEYS, environment, saved_selection
+ 
+ 
+-def prepare_hd_launch(root, *, stock=False, game_arguments=()):
++def prepare_hd_launch(root, *, stock=False, frontend=False, game_arguments=()):
+     root = Path(root).resolve()
+     saved = saved_selection(root) if not stock else {"exists": False}
+     if saved.get("exists"):
+@@ -44,6 +44,9 @@
+                 "stock", 0, list(DEFAULT_PLAYER_KEYS), root, "stock", 0, list(ENEMY_KEYS)),
+             profile="stock", enemy_profile="stock", selection_source="explicit_stock" if stock else "no_saved_preset",
+             status="validated_not_launched")
++    if frontend:
++        slot = prepared["arguments"].index("--no-launcher")
++        prepared["arguments"][slot] = "--launcher"
+     prepared["arguments"].extend(game_arguments)
+     prepared["environment_overrides"]["PSX_DISPLAY_RING"] = os.environ.get("PSX_DISPLAY_RING", "0")
+     return prepared
+@@ -53,9 +56,10 @@
+     parser = argparse.ArgumentParser(description=__doc__)
+     parser.add_argument("--check", action="store_true")
+     parser.add_argument("--stock", action="store_true")
++    parser.add_argument("--frontend", action="store_true", help="Open the launcher with the validated saved material preset")
+     args, game_arguments = parser.parse_known_args(argv)
+     try:
+-        prepared = prepare_hd_launch(Path(__file__).resolve().parents[1], stock=args.stock,
++        prepared = prepare_hd_launch(Path(__file__).resolve().parents[1], stock=args.stock, frontend=args.frontend,
+                                      game_arguments=game_arguments)
+         if args.check:
+             print(json.dumps(dict(ok=True, game_launched=False, **prepared), indent=2))
+--- a/windows-x64/tools/Start-Development.ps1
++++ b/windows-x64/tools/Start-Development.ps1
+@@ -71,5 +71,16 @@
+     $env:PSXRECOMP_HD_CPU_AUTHORITY = '0'
+     # The launcher is interactive and intentionally visible. Its normal Play
+     # action owns game startup and settings persistence.
+-    Start-Process -FilePath $runtimePath -ArgumentList @('--game', '"' + $gamePath + '"', '--disc', '"' + $discPath + '"', '--bios', '"' + $biosPath + '"') -WorkingDirectory $projectRoot
++    $launchPlanText = & python (Join-Path $PSScriptRoot 'launch_hd.py') --check --frontend
++    if ($LASTEXITCODE -ne 0) { throw "Saved material launch validation failed: $launchPlanText" }
++    $launchPlan = ($launchPlanText -join "`n") | ConvertFrom-Json
++    foreach ($entry in $launchPlan.environment_overrides.PSObject.Properties) {
++        [Environment]::SetEnvironmentVariable($entry.Name, [string]$entry.Value, 'Process')
++    }
++    # These validated arguments contain switches and local file paths, with no embedded quotes.
++    $launchArgs = @($launchPlan.arguments | Select-Object -Skip 1 | ForEach-Object {
++        if ([string]$_ -match '"') { throw 'Unexpected quote in validated launch argument' }
++        '"' + [string]$_ + '"'
++    })
++    Start-Process -FilePath ([string]$launchPlan.arguments[0]) -ArgumentList $launchArgs -WorkingDirectory ([string]$launchPlan.cwd)
+ }

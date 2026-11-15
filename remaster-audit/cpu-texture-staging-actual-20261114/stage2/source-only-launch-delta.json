@@ -1,0 +1,81 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T23:02:00Z",
+ "status": "SPEC ONLY (machine-readable launch deltas for the launch owner; no loader, driver, test, copy or run). Decisions from codex-einhander-crash-check msg_f948486c0904e614.",
+ "staged_tree": {
+  "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255",
+  "receipt": {"path": "PILOT-STAGE.json", "sha256": "9dcd225db562892944abdff6f8064077d26921f2f9be75ef25a98f75d0021a8e"},
+  "immutable": "do NOT launch from, write into, or edit this tree (the game would write state/, logs/ and possibly runtime/cache/); every run gets its own run-private copy",
+  "pins": {
+   "hdroot/28127931-7C2D834A.png": "40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a",
+   "runtime/Einhander_Recompiled.exe": "5c1436ff778701d981410da61046aca60c0da60215a5f724523197b58199dfaa",
+   "runtime/settings.toml": "cecc4f2b85bddf30f07e70d30ae4b26badd7f5cc4564260eb5894051c1099095",
+   "state/card1.mcd (closed seed for both runs)": "8156843599078d7776e54a385ffbb523415bd5ad32eeb0cd47fba44e362b2595",
+   "runtime/cache (copy, 4405 files / 239111587 B)": "manifest bbcb9abeecb227d5e29705584f6955a06b06386c414c2298933d917b917e9b9f (runs/j10-cache-qualify-2255/cache-manifest.json): CURRENT v68 inventory only, NOT ABI qualification"
+  }
+ },
+ "run_private_layout": {
+  "why": "settings.toml is anchored next to the exe (main.cpp exe_dir_from_argv), so each run needs its own exe folder: <run>/runtime/{Einhander_Recompiled.exe, settings.toml, cache/} + <run>/state/card1.mcd + <run>/logs/ (+ <run>/hdroot for the pilot run only)",
+  "copy_from": "the staged tree, verified against the pins above (exe, cache manifest, card1); about 260 MB per run",
+  "card2": "no card2.mcd is copied or invented"
+ },
+ "settings_deltas": {
+  "base": "staged runtime/settings.toml cecc4f2b... (CRLF, 60 lines); anchor each line exactly once in its section, every other byte identical",
+  "pilot_run": [
+   {"section": "[video]", "assert_unchanged": "hd_textures = true"},
+   {"section": "[video]", "from": "hd_texture_root = \"<staged>/hdroot\"", "to": "hd_texture_root = \"<run>/hdroot\""},
+   {"section": "[memcard]", "from": "dir = \"<staged>/state\"", "to": "dir = \"<run>/state\""},
+   {"section": "[memcard]", "from": "card1 = \"<staged>/state/card1.mcd\"", "to": "card1 = \"<run>/state/card1.mcd\""},
+   {"section": "[memcard]", "from": "card2 = \"<staged>/state/card2.mcd\"", "to": "card2 = \"<run>/state/card2.mcd\""},
+   {"section": "[memcard]", "from": "enable2 = true", "to": "enable2 = false"}
+  ],
+  "native_baseline_run": [
+   {"section": "[video]", "from": "hd_textures = true", "to": "hd_textures = false"},
+   {"section": "[video]", "from": "hd_texture_root = \"<staged>/hdroot\"", "to": "hd_texture_root = \"<run>/hdroot-unused\"", "note": "masked by hd_textures = false; keep it pointing inside the run so no shared root is referenced"},
+   {"section": "[memcard]", "from": "dir / card1 / card2 = <staged>/state...", "to": "<run>/state..."},
+   {"section": "[memcard]", "from": "enable2 = true", "to": "enable2 = false"}
+  ],
+  "unchanged_inherited": {
+   "[bios] path": "C:/github/Einhander/windows-x64/build-release/bios/SCPH1001.BIN sha256 42e4124be7623e2e28b1db0d8d426539646faee49d74b71166d8ba5bd7c472ed",
+   "[disc] path": "C:/github/Einhander/ROM/Einhander (USA).cue sha256 4386f5e6843f17cac92d97d794f5a39c9abcd9c80bce31c21426e3b483724f51",
+   "cue .bin": "C:/github/Einhander/ROM/Einhander (USA).bin, 653493792 B, NOT YET HASHED: hash it ONCE in the owned launch binding (not per worker)"
+  }
+ },
+ "environment": {
+  "strip_all_inherited": {
+   "PSXRECOMP_HD_*": ["PSXRECOMP_HD_TEXTURE_ROOT", "PSXRECOMP_HD_PROOF_LOG", "PSXRECOMP_HD_PROOF_CONTROL", "PSXRECOMP_HD_DUMP", "PSXRECOMP_HD_EMISSIVE",
+                     "PSXRECOMP_HD_REGION_INDEX", "PSXRECOMP_HD_PAGE_FALLBACK", "PSXRECOMP_HD_SOURCE_SIDECARS", "PSXRECOMP_HD_SOURCE_CACHE_KEYS",
+                     "PSXRECOMP_HD_WORLD_SAMPLING", "PSXRECOMP_HD_FACADE_MOTION", "PSXRECOMP_HD_FILTER_STATE_CACHE", "PSXRECOMP_HD_KEEP_BRACKET",
+                     "PSXRECOMP_HD_OPAQUE_BATCH", "PSXRECOMP_HD_SHORT_UPLOAD_PRIORITY", "PSXRECOMP_HD_DECODE_BUDGET_MB", "PSXRECOMP_HD_CPU_PROFILE",
+                     "PSXRECOMP_HD_CPU_AUTHORITY"],
+   "PSXRECOMP_SKIN_*": ["PSXRECOMP_SKIN_PROFILE", "PSXRECOMP_SKIN_KEYS", "PSXRECOMP_SKIN_STRENGTH", "PSXRECOMP_SKIN_ENEMY_PROFILE",
+                        "PSXRECOMP_SKIN_ENEMY_KEYS", "PSXRECOMP_SKIN_ENEMY_STRENGTH", "PSXRECOMP_SKIN_DETAIL_PATH", "PSXRECOMP_SKIN_DETAIL_STRENGTH",
+                        "PSXRECOMP_SKIN_DETAIL_SCALE", "PSXRECOMP_SKIN_ENEMY_DETAIL_PATH", "PSXRECOMP_SKIN_ENEMY_DETAIL_STRENGTH", "PSXRECOMP_SKIN_ENEMY_DETAIL_SCALE"],
+   "source": "getenv names in windows-x64/psxrecomp/runtime/src (gpu_gl_renderer.c, hd_texture_pack.cpp, hd_skin_*.h) as of 2026-11-14; also strip any other PSXRECOMP_HD_* / PSXRECOMP_SKIN_* present"
+  },
+  "then_set_explicitly": {
+   "pilot_run": {"PSXRECOMP_HD_PROOF_LOG": "<run>/logs/hd-proof.jsonl (must not exist before launch; the runtime appends)"},
+   "native_baseline_run": {"PSXRECOMP_HD_PROOF_LOG": "<run>/logs/hd-proof.jsonl (optional: HD is off, so it documents no replacement)"},
+   "telemetry_and_route_outputs": "<run>/logs only (launch owner selects which recorder variables)"
+  },
+  "not_set": "PSXRECOMP_HD_TEXTURE_ROOT (the root is forced in settings; settings override env)"
+ },
+ "route": {
+  "owner": "codex-einhander (AQ-01 acquisition; docs/MASTER-ACTION-PLAN.html sha256 c1da8507...: 'Codex now, Claude after handoff')",
+  "definition": {"path": "C:/github/Einhander/remaster-audit/fullgame-prep/LEDGER.md", "line": 77, "sha256": "23cca4db21f58b4cc8047a23aa7e75c0e3cf60975d0d331c052908dcf59dba92",
+                 "text": "AQ-01: Drache (all modes), post-Drache, the Stage 1 tally and Stage 2 entry by ordinary play."},
+  "historical_capture": {"path": "C:/github/Einhander/windows-x64/tools/research-runs/research-20261112-153406-11eebc24/manifest.json",
+                         "sha256": "de585718c6b6a95113c4bfd6daf0b7ee7e23590d7b2d3c7dd9a3f5d052306f60",
+                         "native_capture": {"path": "native/capture.jsonl", "sha256": "90fd3c3e36258ca8081d51758f36c22b169eaf159e3e5e7598383ddf74a00e70"},
+                         "scenario": "stage1_completion_pass", "label": "MkII after Greif toward Level1 end, linked to 153038",
+                         "kind": "ordinary-play research capture (not a replayable input script)"},
+  "key_draw_window": "28127931-7C2D834A drew 13 times in that capture at frames 40717..41099 (draws-s2.json), i.e. just after Stage 2 entry; these are historical targets, NOT a replay identity",
+  "replay_harness": "none exists in the repository (no AQ-01 input script found); reaching Stage 2 entry is the launch owner's ordinary-play / recorder procedure"
+ },
+ "acceptance": [
+  "pilot proof log contains 28127931-7C2D834A with a replacement (replacement_size [2048,2048], native_words [64,256]); if absent, the key did not match or was not drawn: inconclusive, native fallback",
+  "composed crop comparison pilot vs native baseline on this key's draws, every other key native in both",
+  "run-private copies verified against the staged pins before launch; the staged tree unchanged after the runs",
+  "not composed-art, audio or ABI acceptance"
+ ]
+}

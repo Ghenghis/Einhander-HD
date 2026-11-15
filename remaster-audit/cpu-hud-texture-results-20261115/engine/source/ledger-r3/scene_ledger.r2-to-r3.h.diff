@@ -1,0 +1,13 @@
+1,2c1,2
+< #ifndef EINHD_SCENE_LEDGER_R2_H
+< #define EINHD_SCENE_LEDGER_R2_H
+---
+> #ifndef EINHD_SCENE_LEDGER_R3_H
+> #define EINHD_SCENE_LEDGER_R3_H
+7a8,9
+>  * r3 (claude-einhander, 2026-11-15): CORRECTION of r2 9bcb4ea1 per root msg_2fe98abb: a pure footprint treats a
+>  * draw as mapped only when native_screen_mapping == 1 exactly (identity); every other value is unknown.
+147c149
+<  *               no state, or a draw with native_screen_mapping == 0;
+---
+>  *               no state, or a draw with native_screen_mapping != 1 (r3: identity is exactly 1);

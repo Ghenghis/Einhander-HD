@@ -1,0 +1,359 @@
+{
+  "at_utc": "2026-11-14T21:47:02.737260+00:00",
+  "sources": [
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/manifest.json",
+      "published": "audio/manifest.json",
+      "sha256": "f92094c4229e3eccafcb1906452f6caac506577ba88a093559a386a83fdba63a",
+      "bytes": 9432
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-Dr2-806b-envelope.json",
+      "published": "audio/envelope.json",
+      "sha256": "8b7c7348d4a9c634fe9ea66c4b6f6bf7b1702272cd0d1796d394b0cb158db302",
+      "bytes": 2451
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/combined_getters.extracted.inc",
+      "published": "audio/executed-source/combined_getters.extracted.inc",
+      "sha256": "fa7feb4b4540a7614b12ba760dcdc09a2c3424a8f38a6f9eea16ab759ef68d3f",
+      "bytes": 3640
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/main.cpp.proposed",
+      "published": "audio/executed-source/main.cpp.proposed",
+      "sha256": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36",
+      "bytes": 693743
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/pump_after_push.extracted.inc",
+      "published": "audio/executed-source/pump_after_push.extracted.inc",
+      "sha256": "2ca3702e8b1cd500e0141ee74f85e0a93bd3c36347d17f26d7653ce313a183d6",
+      "bytes": 772
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/recomp_audio_drc.h",
+      "published": "audio/executed-source/recomp_audio_drc.h",
+      "sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "bytes": 20376
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/test_combined_getters_r1.cpp",
+      "published": "audio/executed-source/test_combined_getters_r1.cpp",
+      "sha256": "c698ca22c933d635beb411334783fc94b31a8e1ff72189b55a9e7c4101f55368",
+      "bytes": 16521
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/runs/audio-telemetry-combined-r2-806b/src/test_pump_after_push.cpp",
+      "published": "audio/executed-source/test_pump_after_push.cpp",
+      "sha256": "e6355f83142dbc776443915330a859770a2c1739708f408b6f261ad8f10d452d",
+      "bytes": 3452
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/run_combined_r2.py",
+      "published": "audio/run_combined_r2.py",
+      "sha256": "a3def870c5acb192c9622685a8be566d7132638ddca57a83fcc84a7fde760ecd",
+      "bytes": 12281
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/debug_server.c.vs-r0.diff",
+      "published": "audio/proposal-review/debug_server.c.vs-r0.diff",
+      "sha256": "8028a0e1d89734ebb10152cfebe713ff482c103ef2625f2b298f035ae131b2e0",
+      "bytes": 2069
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/main.cpp.vs-r0.diff",
+      "published": "audio/proposal-review/main.cpp.vs-r0.diff",
+      "sha256": "b4c9369ce2c2c8127393e6d9d2a0c56b16fe7cc12e20bb6bcce2b9e33afd438c",
+      "bytes": 2152
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/recomp_audio_drc.h.vs-r0.diff",
+      "published": "audio/proposal-review/recomp_audio_drc.h.vs-r0.diff",
+      "sha256": "be088581e7d6ef89381df95361308eeb2c214ed2bac5bfdf94aa3b207f17c5dc",
+      "bytes": 2715
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/run_combined_r2.vs-r1.diff",
+      "published": "audio/proposal-review/run_combined_r2.vs-r1.diff",
+      "sha256": "bc7486c217fce6ff605f4fe354eb27edddfdbf2a081a074fc5207862c7c9e969",
+      "bytes": 5595
+    },
+    {
+      "source": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/README.md",
+      "published": "audio/proposal-review/README.md",
+      "sha256": "6e2aa2ab3822bc54a822404f21f92688b747f33c315be41402d27d13d09a07f4",
+      "bytes": 6689
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/verify_audio_dr2_actual.py",
+      "published": "root/verify_audio_dr2_actual.py",
+      "sha256": "ca0977f06e7cf4e230f920c8089bdeace51628d71e50bda4f8dd195bccf9cf76",
+      "bytes": 4283
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/audio-dr2-independent-readback-r1/result.json",
+      "published": "root/audio-dr2-independent-readback-r1/result.json",
+      "sha256": "447f5b30aaaaaeeeff90613104e1a9044647f3d52f9ebe8ca57e7a684c13e510",
+      "bytes": 4955
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/F1.log",
+      "published": "collector/original-run/controls/F1.log",
+      "sha256": "3f4f2fc8407ca2366d30174bee49e874eda39f9fb5492c59c210e06b1e8c9b91",
+      "bytes": 230
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/F2.log",
+      "published": "collector/original-run/controls/F2.log",
+      "sha256": "3f4f2fc8407ca2366d30174bee49e874eda39f9fb5492c59c210e06b1e8c9b91",
+      "bytes": 230
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/F3a.log",
+      "published": "collector/original-run/controls/F3a.log",
+      "sha256": "ebcc13924f8ed72a467981383aae0fcdc25e78358df6a5b19f1fda120dfb277d",
+      "bytes": 233
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/F3b.log",
+      "published": "collector/original-run/controls/F3b.log",
+      "sha256": "a73173cba6f67215557d2b50539650f66f19d71468869d0d3dea217d6fadeedf",
+      "bytes": 275
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/L1.log",
+      "published": "collector/original-run/controls/L1.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/L2.log",
+      "published": "collector/original-run/controls/L2.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/L3.log",
+      "published": "collector/original-run/controls/L3.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O1.log",
+      "published": "collector/original-run/controls/O1.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O10.log",
+      "published": "collector/original-run/controls/O10.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O2.log",
+      "published": "collector/original-run/controls/O2.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O3.log",
+      "published": "collector/original-run/controls/O3.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O4.log",
+      "published": "collector/original-run/controls/O4.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O5.log",
+      "published": "collector/original-run/controls/O5.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O6.log",
+      "published": "collector/original-run/controls/O6.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O7.log",
+      "published": "collector/original-run/controls/O7.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O8.log",
+      "published": "collector/original-run/controls/O8.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/O9.log",
+      "published": "collector/original-run/controls/O9.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/result.json",
+      "published": "collector/original-run/controls/result.json",
+      "sha256": "62fa00eead2669ae90f92e04fec64ba21f5302155fc91014230c766fb6faff73",
+      "bytes": 13064
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/S1.log",
+      "published": "collector/original-run/controls/S1.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/S2.log",
+      "published": "collector/original-run/controls/S2.log",
+      "sha256": "a7462593d012e5dbd7f98e49cf3ab4cabf06489cc3a932aae6cf05fd01ecf95d",
+      "bytes": 36
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/S6.log",
+      "published": "collector/original-run/controls/S6.log",
+      "sha256": "026a183ea6ccb7eae41afb239355c873ddab934d211027b686dc1e40e3f6bb02",
+      "bytes": 19
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/controls/S7.log",
+      "published": "collector/original-run/controls/S7.log",
+      "sha256": "ec1c52a9002444a7c1ac9745ae9a26a267f1f9d4fdca36c96c7dec39f2da589b",
+      "bytes": 18
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/envelope.json",
+      "published": "collector/original-run/envelope.json",
+      "sha256": "0a882af347e1d1e9688836142851ace5197e8db3d1a7ef6e0c052ca4346600fa",
+      "bytes": 2158
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/executed-controls.py",
+      "published": "collector/original-run/executed-controls.py",
+      "sha256": "f8b517c11cb32f0d3b2cfcee3ba51ebbf6cb2f5c13498cc2d9caff8bc223a907",
+      "bytes": 32280
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/executed-launcher.py",
+      "published": "collector/original-run/executed-launcher.py",
+      "sha256": "949d4f9736f481484a833886a129081c44c6ab86090906af4fae6553a5135e5c",
+      "bytes": 8793
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/executed-watchdog.py",
+      "published": "collector/original-run/executed-watchdog.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/launcher.json",
+      "published": "collector/original-run/launcher.json",
+      "sha256": "0b15464fa64cc90d8ac8d282e69e957d9e652fe552c7c9c50db11af105f1803e",
+      "bytes": 21385
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/stderr.log",
+      "published": "collector/original-run/stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-run-r1/stdout.log",
+      "published": "collector/original-run/stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/readback_collector_controls_r1.py",
+      "published": "collector/readback_collector_controls_r1.py",
+      "sha256": "126fca746101a8bd9dc77796a83087a28bd5295df29641bdbc3076ec644421ea",
+      "bytes": 4119
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/collector-controls-independent-readback-r1/result.json",
+      "published": "collector/later-independent-readback.json",
+      "sha256": "b7f7974bdc5f4c763be82907c4769a1f073b4bb82f6966a1e24a6ba38ad30c54",
+      "bytes": 3082
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/run_collector_controls_once.py",
+      "published": "collector/source-only-next-launcher.py",
+      "sha256": "14317586c806899cf2d9459185fabd108b1c84593e33e3e2cac6ce143540be31",
+      "bytes": 9693
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/probe_wrapper_handle_lifetime.py",
+      "published": "collector/source-only-lifetime-probe.py",
+      "sha256": "20ce148b071c8354d927d241b76aae4e79e0f6f7dde17084ae46a5af14b8bf65",
+      "bytes": 6186
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-probe-r5/runs/PR7-1-20261114T210152Z-rc.json",
+      "published": "remix/pr7-resource-refusal-210153.json",
+      "sha256": "7d7dae89cb87e64ff0d5d7e8447cf2676c4475d5bc1930f27db58d229ead94a3",
+      "bytes": 917
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/cpu-followup-readback-r2/executed-reader.py",
+      "published": "remix/independent-refusal-readback/executed-reader.py",
+      "sha256": "ae3baafacee8dab61658f7a33d67676de9f936a8b6f739b5d01bd385369b2fa8",
+      "bytes": 3464
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/cpu-followup-readback-r2/result.json",
+      "published": "remix/independent-refusal-readback/result.json",
+      "sha256": "9fb6e51efecd65d7be393dec5de0a4e82392d0f45265660defe2516832fa6152",
+      "bytes": 3955
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/remix_t2.r3.h",
+      "published": "remix/source-reviewed-unrun-t2-r3/remix_t2.r3.h",
+      "sha256": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+      "bytes": 29214
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/test_t2.r3.cpp",
+      "published": "remix/source-reviewed-unrun-t2-r3/test_t2.r3.cpp",
+      "sha256": "215df688a16079308e66a4c2b89fd4ab46ac32a7c5075cf8aa9f0744bdc4fff4",
+      "bytes": 26604
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/build_t2_fixture.r3.py",
+      "published": "remix/source-reviewed-unrun-t2-r3/build_t2_fixture.r3.py",
+      "sha256": "fe89c15f33354259dcd6ec346e8475363b6ce9f9e7373794fa6e0c446ba705bc",
+      "bytes": 11286
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/remix_t2.r2-to-r3.diff",
+      "published": "remix/source-reviewed-unrun-t2-r3/remix_t2.r2-to-r3.diff",
+      "sha256": "26c32ec73c822725c8219e98fdd1613bc43899be4e3c5ece1cbd57024604bb4a",
+      "bytes": 1866
+    },
+    {
+      "source": ".claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/t2/test_t2.r2-to-r3.diff",
+      "published": "remix/source-reviewed-unrun-t2-r3/test_t2.r2-to-r3.diff",
+      "sha256": "d17f240374930e51e2602955ea7c0702aafecb09f3de433b3646b795dd03190d",
+      "bytes": 1641
+    },
+    {
+      "source": "remaster-audit/runtime-review/gpu-texture-remix-20261114/monitor-renewal-20261114T214416Z/result.json",
+      "published": "monitor/renewal.json",
+      "sha256": "635d087f02122a173e3b7af1b3d2bf05d1dd749faf11c0c90eb6b791610e10c5",
+      "bytes": 7660
+    }
+  ],
+  "actual_audio_fixture_pass": true,
+  "actual_collector_fixture_pass": true,
+  "original_collector_launcher_pass": false,
+  "game_run": false,
+  "gpu_run": false,
+  "installed": false
+}

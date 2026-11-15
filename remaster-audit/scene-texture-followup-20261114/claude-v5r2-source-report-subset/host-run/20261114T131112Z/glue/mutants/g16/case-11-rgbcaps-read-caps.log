@@ -1,0 +1,6 @@
+TIMING preload_total_ms 5.236 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 10.365 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 10.053 min 9.801 max 10.183 (21 fresh slots, warm)
+checks 39 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g16\glue_harness.c:361: g_n_alloc + g_n_free == (d0).heap && g_n_fopen == (d0).fopens && g_fread_bytes == (d0).fread_bytes

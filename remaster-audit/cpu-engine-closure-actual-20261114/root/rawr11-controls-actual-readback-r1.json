@@ -1,0 +1,46 @@
+{
+  "at_utc": "2026-11-15T00:00:49.665144+00:00",
+  "pins": [
+    {
+      "path": "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\controls-r9-window-20261114T235819Z\\receipt.json",
+      "sha256": "c2def76ce24e0cfc896931666aab93a02ff730ec13ca24151bc871a6965adb2d",
+      "bytes": 888
+    },
+    {
+      "path": "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\controls-r9-window-20261114T235819Z\\eligibility-1.json",
+      "sha256": "8cb4ff0d186c4bcd0299fe3c12e0bc4e13ce124415aac7b971952af95320eee9",
+      "bytes": 2429
+    },
+    {
+      "path": "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\controls-r9-window-20261114T235819Z\\controls.log",
+      "sha256": "9cf03e9e237843dc6a24cd3c2e8dd5b06b7afa24f837792611f0e7db1c6066f9",
+      "bytes": 409
+    }
+  ],
+  "known_identities": [
+    {
+      "kind": "wrapper",
+      "pid": 49576,
+      "creation_unix": 1794700699.9001389,
+      "identity_absent": true
+    },
+    {
+      "kind": "child",
+      "pid": 15300,
+      "creation_unix": 1794700701.0562067,
+      "identity_absent": true
+    }
+  ],
+  "actual_summary": {
+    "checks": 79,
+    "failures": [],
+    "result": "PASS"
+  },
+  "elapsed_s": 2.371,
+  "peak_job_memory_bytes": 20307968,
+  "cpu": 14,
+  "wrapper_job_empty": true,
+  "tests_replayed": false,
+  "socket_game_gpu_used": false,
+  "scope": "79 pure test-double controls; expected argparse error is a negative control. Earlier failedfixture and CPU refusals retained. No real peer/network/GUI/audio/RT/DLSS acceptance."
+}

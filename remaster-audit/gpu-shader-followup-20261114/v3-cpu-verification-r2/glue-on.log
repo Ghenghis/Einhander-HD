@@ -1,0 +1,4 @@
+TIMING preload_total_ms 40.297 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 8 bytes 25774976
+TIMING draw_admit_ms 1.029 (cache lookup + level-0 hash + R1 + 4 stub uploads; real GL upload time is GPU-measured)
+checks 28 failures 0

@@ -1,0 +1,65 @@
+{
+  "at_utc": "2026-11-14T16:00:59.812762+00:00",
+  "passed": true,
+  "source_normalized_sha256": {
+    "windows-x64/tools/launch_hd.py": "08f590ec8d49f7069b5dfce558f343c32d1f1043f08587d91963df5a80ce77ed",
+    "windows-x64/tools/Start-Development.ps1": "40878f7d24deb8d7ad6c4ff7191e55eacae608bfa6a1578bb45abb65829bdc8a",
+    "windows-x64/tools/test_launch_hd.py": "6b69cb84c1343bf3cc21edf787f159b706816b82af89f2d2bcf615e9f26bd846"
+  },
+  "commands": [
+    {
+      "label": "powershell-arguments",
+      "args": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-Command",
+        "$tokens=$null; $errors=$null\n$ast=[System.Management.Automation.Language.Parser]::ParseFile('C:/github/Einhander/windows-x64/tools/Start-Development.ps1',[ref]$tokens,[ref]$errors)\nif($errors.Count){$errors | ConvertTo-Json -Compress; exit 1}\n$fn=$ast.Find({param($item) $item -is [System.Management.Automation.Language.FunctionDefinitionAst] -and $item.Name -eq 'ConvertTo-DevelopmentRuntimeArguments'},$true)\nif(-not $fn){throw 'Missing argument helper'}\n. ([scriptblock]::Create($fn.Extent.Text))\n$quoted=@(ConvertTo-DevelopmentRuntimeArguments -RuntimeArguments @('--game','C:\\Project With Spaces\\game.toml','--disc','C:\\ROM\\Disc Name.cue'))\n$rejects=@()\nforeach($bad in @('bad\"quote','C:\\tail\\')){try{ConvertTo-DevelopmentRuntimeArguments -RuntimeArguments @($bad) | Out-Null; $rejects+=$false}catch{$rejects+=$true}}\n@{syntax_ok=$true; quoted=$quoted; rejects=$rejects} | ConvertTo-Json -Compress\n"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "saved-port",
+      "args": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "C:\\github\\Einhander\\windows-x64\\tools\\Start-Development.ps1",
+        "-Check",
+        "-Port",
+        "9000"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "stock-port",
+      "args": [
+        "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+        "-NoProfile",
+        "-NonInteractive",
+        "-File",
+        "C:\\github\\Einhander\\windows-x64\\tools\\Start-Development.ps1",
+        "-Check",
+        "-Port",
+        "9000",
+        "-Stock"
+      ],
+      "exit": 0
+    }
+  ],
+  "retained_python_unit_cases": 9,
+  "python_units_replayed": false,
+  "windows_argv_roundtrip": true,
+  "quote_and_trailing_slash_rejected": true,
+  "actual_custom_port_saved_and_stock": true,
+  "saved_pointer_unchanged": true,
+  "affinity": [
+    11
+  ],
+  "below_normal": true,
+  "game_run": false,
+  "gpu_run": false,
+  "browser_or_bridge_started": false,
+  "live_frontend_acceptance": false
+}

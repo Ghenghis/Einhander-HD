@@ -1,0 +1,46 @@
+{
+ "kind": "private source candidate v2 (not built into a game, not live-tested)",
+ "default": "OFF",
+ "canonical_untouched": true,
+ "v1_folder_untouched": true,
+ "host_tests": {
+  "verdict": "pass",
+  "v2_checks": "58/58",
+  "v1_on_v2": "137/137",
+  "canonical_controls": "pgxp_test + gte_register_access_test pass on v2",
+  "syntax": "gpu.c + debug_server.c: no new diagnostics (real build argv)",
+  "tcp": "5 replies parsed and checked",
+  "mutants": "13/13"
+ },
+ "new_runtime_source": "src/pgxp_view_census.cpp",
+ "files": {
+  "HANDOFF.md": "9ac640c9579e2109a97efa4115103260b3fe97253b5d5e8cf43ce5c002511472",
+  "make_view_provenance_v2_patch.py": "5e7fe50185865eb14fed7ad9b3f71fe6642d5c925dda33d936f50904ccd68940",
+  "run_host_test_v2.py": "7c18b7e685be84069296e87c04f3d6b9199bc7caecad058bd780fb6c01092b84",
+  "tests/test_pgxp_view_v2.cpp": "1f4ce34e4ec9aa0d1fd55f4e7c776ac180886c71699df25ec0651a570675fca5",
+  "tests/gpu_census_harness.c": "7f1d2766cc17394871804740812b40b6426018cfccd9850607e12a5e4287d48d",
+  "src/gte.cpp": "1d6760582edd8625758053c127a0c234d213343846339dde7c0266e778da4216",
+  "src/pgxp.cpp": "c46cbe4f25a9e39404a90140d022803762f407d2d64e8931cf95f3c906fc087b",
+  "src/pgxp_view_census.cpp": "ab91ed318d424599564022a7bb88f8c8250415f45ff7eda74ab4569e6d0f64b0",
+  "src/gpu.c": "0175da5b631d64900218406f75fb3767779e71a8f25d50c6ab1e55258eb7215c",
+  "src/debug_server.c": "6942a1efd49a068e38b83de057095a736554e1ecd5b9a0b72e5f184568ccbc6e",
+  "include/pgxp.h": "a9b658729d4f60f5d7b2a58e68c449a3c303b7e4f8d789db81e908b53c84108e",
+  "include/gpu.h": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405",
+  "diffs/gte.cpp.diff": "c51019998db12869f4f0ab657b3c04c2845dddf35d56cb8670baaecb3984eacf",
+  "diffs/pgxp.cpp.diff": "4ebaa4c9a10782e27bac93f0054da75351337c7d9a0d0a8402c607d351d70020",
+  "diffs/pgxp.h.diff": "c64aa0d7456120f4a088f7858990beedef2aec8136407172b262cd521ef0a320",
+  "diffs/gpu.c.diff": "1ecaad399db1c8a869790a2ba212faabfc9a7e049ff7859ace2b438f15776dc3",
+  "diffs/gpu.h.diff": "151cb201f69614ee1bf766614fb350cfd2db06bcaef2a1ff52f5409596f699a0",
+  "diffs/debug_server.c.diff": "ea15385ef7050c18e80d5d5ac03a88abc3d0f57e1acb92ac34132d020a0f301d",
+  "patch-receipt.json": "a1f7234ffb91aef706d0561bcf55a087cd36081c04b34ae1d53a34c239e106d3",
+  "host-test-v2.json": "f42fdb66731befea2e2943db3b4ef4b91eb1d299e8c07126b0faa04e1d567bec",
+  "tcp-replies.json": "3efcee7d891d44cd06674c90c028cd38a24b20590c14d0004b9caae98ef01ded"
+ },
+ "not_claimed": [
+  "ray tracing",
+  "Remix backend",
+  "world space / camera separation",
+  "live Einhander coverage",
+  "untextured primitives in census"
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "owner": "claude-einhander-s23",
+ "launcher": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\run_granted.py",
+ "cmd": [
+  "python",
+  "-I",
+  "tools/j5_s3_scale2x.py",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z",
+  "230",
+  "s3"
+ ],
+ "cpu": 15,
+ "cap_s": 240.0,
+ "precheck_utc": "2026-11-14T15:45:34.694955+00:00",
+ "precheck": {
+  "cpu_percent": 16.2,
+  "free_gib": 76.8,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "ok": true
+ },
+ "start_utc": "2026-11-14T15:45:35.702096+00:00",
+ "pid": 33448,
+ "pid_create_utc": "2026-11-14T15:45:35.696591+00:00",
+ "affinity_after_spawn": [
+  15
+ ],
+ "priority_after_spawn": 16384,
+ "status": "exited",
+ "exit_code": 0,
+ "wall_s": 136.19,
+ "end_utc": "2026-11-14T15:47:51.888584+00:00",
+ "pid_exists_after": false,
+ "pid_number_reused_by_other_process": false,
+ "children_seen": [],
+ "children_alive_after": []
+}

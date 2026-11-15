@@ -1,0 +1,10 @@
+TIMING preload_total_ms 6.852 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 1 bytes 5570672
+TIMING draw_admit_ms 0.000 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)
+checks 25 failures 5
+FAIL C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\v4-cpu-verification-r1\glue_harness.c:134: s_hdcm_diag.admitted == 1
+FAIL C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\v4-cpu-verification-r1\glue_harness.c:146: s_hdcm_diag.rgb_edge_slots == (uint64_t)EXPECT_RGB && s_hdcm_diag.rgb_opaque_skipped == (uint64_t)!EXPECT_RGB
+FAIL C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\v4-cpu-verification-r1\glue_harness.c:203: s_hdcm_diag.rejected[HDCM_E_LEVEL0] == 1 && g_teximage == 0 && g_texparam == 0 && s3.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\v4-cpu-verification-r1\glue_harness.c:216: s_hdcm_diag.rejected[HDCM_E_HD_DIMS] == 1 && g_teximage == 0 && s5.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\v4-cpu-verification-r1\glue_harness.c:231: out[10 + HDCM_REASONS + HDCM_E_LEVEL0] == 1

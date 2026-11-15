@@ -1,0 +1,103 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/tools/s45_diag_bands_r4.py",
+  "--fixtures"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-4-5-f992fe",
+ "wrapper_pid": 43896,
+ "wrapper_create_time": 1794698935.5882697,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 60.0,
+ "rc": 3,
+ "created_utc": "2026-11-14T23:28:55.701472+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "8000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 28.0,
+  "free_gib": 57.59,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T23:28:56.702864+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 32768,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 32768,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 34480,
+ "child_create_time": 1794698936.7039497,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  15
+ ],
+ "child_affinity_set_to": [
+  15
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   15
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T23:28:56.708976+00:00",
+ "child_exit_code": 3,
+ "timeout_killed": false,
+ "elapsed_s": 1.538,
+ "end_utc": "2026-11-14T23:28:58.249820+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 1.203125,
+  "kernel_s": 0.140625
+ },
+ "peak_job_memory_bytes": 84549632,
+ "peak_process_memory_bytes": 83177472,
+ "descendants_seen": [
+  49884
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 3
+}

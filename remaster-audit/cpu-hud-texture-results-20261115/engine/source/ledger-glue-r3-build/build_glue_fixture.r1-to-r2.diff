@@ -1,0 +1,100 @@
+1c1,12
+< """CPU-only build-closure driver r1 for the FROZEN ledger glue r2 (claude-einhander), per root msg_31e3312e and
+---
+> """CPU-only build-closure driver r2 for the FROZEN glue r3 (claude-einhander), per root msg_b02d1bcc, msg_08008ad5
+> and msg_2fe98abb. r2 = closure r1 (8c7bbfb8, preserved) with the glue r3 sources in place of the glue r2 ones:
+>   - scene_runtime.cpp / .h r3 (b0d820a7 / 6c69adcb) and scene_t2_bridge.r3.cpp / .h (5182d80d / f09f3296);
+>   - ledger r3 (scene_ledger.r3.h 9a0af4a9, .cpp 23499310) in place of ledger r0; scene_ledger_t2.r0.h (94bc9c24)
+>     is unchanged; the native unpack BLOCKS/TEMPLATE are identical to the ledger r3 driver's (f08a5a2e lines 84-176);
+>   - T2 r6 (remix_t2.r6.h 419dea94) added to the strict closure beside T2 r3 / r4;
+>   - harness test_glue.r1.cpp (44ab03a6): fixture glue, revision r1, 19 authored checks.
+> gpu.c stays the glue r2 de9dfd77 (glue r3 needs no new hook); compile-gpu-patched and compile-debug-patched now see
+> scene_runtime.h r3, which includes scene_ledger.r3.h. Everything else is r1 unchanged: native/strict split, raw pins,
+> hermetic roots, the v69 toolchain-closure equality, PSXRECOMP_SCENE_CAPTURE=1 for run-glue only, no GL/SDK/GPU/game.
+> r1 docstring follows.
+> CPU-only build-closure driver r1 for the FROZEN ledger glue r2 (claude-einhander), per root msg_31e3312e and
+48,49c59,63
+< LEDGER = CAPTURE / "ledger-r0"
+< GLUE = CAPTURE / "ledger-glue-r2" / "patched"
+---
+> LEDGER = CAPTURE / "ledger-r3"                       # r2: ledger r3
+> LEDGER0 = CAPTURE / "ledger-r0"                      # r2: scene_ledger_t2.r0.h only
+> GLUE2 = CAPTURE / "ledger-glue-r2" / "patched"       # r2: gpu.c de9dfd77 only
+> GLUE = CAPTURE / "ledger-glue-r3" / "patched"        # r2: glue r3
+> T2R6 = T2DIR / "r6"                                  # r2: T2 r6
+92,94c106,108
+<     "glue_gpu.c": (GLUE / "gpu.c", "de9dfd7742d337d94811dca542043d18d8fb330352474d67bda64a2b3dd88335"),
+<     "glue_scene_runtime.cpp": (GLUE / "scene_runtime.cpp",
+<                                "3bbc68218ad9e7e2d5cbb925b2a5db9d68e8fb7581b6f70fd8105b0461baea00"),
+---
+>     "glue_gpu.c": (GLUE2 / "gpu.c", "de9dfd7742d337d94811dca542043d18d8fb330352474d67bda64a2b3dd88335"),  # glue r2
+>     "glue_scene_runtime.cpp": (GLUE / "scene_runtime.cpp",                                   # r2: glue r3
+>                                "b0d820a705714fa024475393ce3359f1d8a5a0764f75dccb0cf4e2990e9895b4"),
+96,104c110,118
+<                              "730b5b4f76afe22ef14102aa4f62985a49f67c77cdf22940d9f3c9fe0c3fdd98"),
+<     "scene_t2_bridge.r2.cpp": (GLUE / "scene_t2_bridge.r2.cpp",
+<                                "a88b69112ff59468609ab0e316c01c7c0afa164b84dee0365177ebaa95d99736"),
+<     "scene_t2_bridge.r2.h": (GLUE / "scene_t2_bridge.r2.h",
+<                              "c6a59759e36449b5f8f44487070a09670605f37377fa35d8adc121ccc7bd7c64"),
+<     "scene_ledger.r0.h": (LEDGER / "scene_ledger.r0.h", "220d1a5e8426ffe20a7d9abb776f629dc08b51be76188ef29d37e6bb7455adbc"),
+<     "scene_ledger.r0.cpp": (LEDGER / "scene_ledger.r0.cpp",
+<                             "9614a6a81bd2175418a68551044601cba85c1621e6a91d2c3dcba2b4e88be62c"),
+<     "scene_ledger_t2.r0.h": (LEDGER / "scene_ledger_t2.r0.h",
+---
+>                              "6c69adcbe2dc078c4062734bf09bf5b3e1c75e7ac45cbddbdf8b437b36076dfc"),
+>     "scene_t2_bridge.r3.cpp": (GLUE / "scene_t2_bridge.r3.cpp",
+>                                "5182d80ddb8c4aa6bde518be23ccc54157f21c693d643c222d7d67a97f0476cb"),
+>     "scene_t2_bridge.r3.h": (GLUE / "scene_t2_bridge.r3.h",
+>                              "f09f3296bb2894fd228799e34bc047d7d655cc87dc88199539f7702cb5156c73"),
+>     "scene_ledger.r3.h": (LEDGER / "scene_ledger.r3.h", "9a0af4a903cfbd653ed858cec2f23e71ade8322fe6e55255e1dbddff833073fd"),
+>     "scene_ledger.r3.cpp": (LEDGER / "scene_ledger.r3.cpp",
+>                             "234993106083f7ed5633d50b6a0872851397c8d6198bc8f508ecb1cb4564513e"),
+>     "scene_ledger_t2.r0.h": (LEDGER0 / "scene_ledger_t2.r0.h",
+110,111c124,126
+<     "test_glue.r0.cpp": (CAPTURE / "ledger-glue-r2-build" / "test_glue.r0.cpp",   # r1: the frozen r0 harness
+<                          "7cce4f6b163ec606296b9e3cb03e45cae56ba3058c85d4414062e13abbde5f3c"),
+---
+>     "remix_t2.r6.h": (T2R6 / "remix_t2.r6.h", "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd"),  # r2
+>     "test_glue.r1.cpp": (CAPTURE / "ledger-glue-r3" / "test_glue.r1.cpp",          # r2: the frozen r1 harness
+>                          "44ab03a6ef6e76e340750ff5d45ad4864f061727729d1d6384f3fc5056be62cf"),
+211c226
+< FIXTURES = {"glue": ("glue", 28)}
+---
+> FIXTURES = {"glue": ("glue", 19)}                     # r2: harness r1
+419c434
+<     rows[-1]["passed"] = (line.get("fixture") == name and line.get("revision") == "r0" and line.get("failures") == 0
+---
+>     rows[-1]["passed"] = (line.get("fixture") == name and line.get("revision") == "r1" and line.get("failures") == 0
+552c567
+<             "gpu-patched/scene_capture.h": data["scene_capture.h"], "gpu-patched/scene_ledger.r0.h": data["scene_ledger.r0.h"],
+---
+>             "gpu-patched/scene_capture.h": data["scene_capture.h"], "gpu-patched/scene_ledger.r3.h": data["scene_ledger.r3.h"],
+558c573,574
+<             "strict/scene_ledger.r0.h": data["scene_ledger.r0.h"], "strict/scene_ledger.r0.cpp": data["scene_ledger.r0.cpp"],
+---
+>             "strict/remix_t2.r6.h": data["remix_t2.r6.h"],
+>             "strict/scene_ledger.r3.h": data["scene_ledger.r3.h"], "strict/scene_ledger.r3.cpp": data["scene_ledger.r3.cpp"],
+561,563c577,579
+<             "strict/scene_t2_bridge.r2.h": data["scene_t2_bridge.r2.h"],
+<             "strict/scene_t2_bridge.r2.cpp": data["scene_t2_bridge.r2.cpp"],
+<             "strict/executed-test-glue.cpp": data["test_glue.r0.cpp"],
+---
+>             "strict/scene_t2_bridge.r3.h": data["scene_t2_bridge.r3.h"],
+>             "strict/scene_t2_bridge.r3.cpp": data["scene_t2_bridge.r3.cpp"],
+>             "strict/executed-test-glue.cpp": data["test_glue.r1.cpp"],
+572c588
+<             "dbg-patched-include/scene_ledger.r0.h": data["scene_ledger.r0.h"],
+---
+>             "dbg-patched-include/scene_ledger.r3.h": data["scene_ledger.r3.h"],
+598c614
+<             ("compile-ledger", strict, dirs["strict"] / "scene_ledger.r0.cpp", o / "scene_ledger.o"),
+---
+>             ("compile-ledger", strict, dirs["strict"] / "scene_ledger.r3.cpp", o / "scene_ledger.o"),
+600c616
+<             ("compile-bridge", strict, dirs["strict"] / "scene_t2_bridge.r2.cpp", o / "scene_t2_bridge.o"),
+---
+>             ("compile-bridge", strict, dirs["strict"] / "scene_t2_bridge.r3.cpp", o / "scene_t2_bridge.o"),
+618c634
+<         exe = out / "test-glue-r0.exe"
+---
+>         exe = out / "test-glue-r1.exe"

@@ -1,0 +1,3962 @@
+{
+ "name": "s4-effects-2-13-v3",
+ "track": "w7-stage4 (claude-einhander)",
+ "task": "lane-s4 coordinator request 2026-11-13 (after msg_641075cfeab7076b): crisp small spiky sprites (label_rects) and line strokes; CPU only",
+ "family": "s4-effects-main",
+ "status": "candidate",
+ "frozen_utc": "2026-11-13T23:38:56.869131+00:00",
+ "title": "Stage 4 effects, stage-entry member 2/13: two 4bpp effect pages (384,256 and 448,256) as FX-contract index masters; v3: crisp small spiky sprites on B305DC32",
+ "import_rule": "predicted-static; import only after live capture: the stage-4 acquisition run must list every key of this deliverable as key-confirmed (byte-identical words and CLUT) in validate_predicted.py confirm, and validate_predicted.py gate must pass for the pack that installs it",
+ "key_status": "predicted-static; import only after live capture",
+ "supersedes": {
+  "revision": "s4-effects-2-13-v2",
+  "manifest_sha256": "0d056a66ac4d59fbeef78020d1703c9a123a05264a59aa73ea0ed41419645faa",
+  "why": "v2 blurred the small spiky mine/star sprites of B305DC32 into soft blobs (the continuous index smooths 1-texel spikes away). v3 renders that sprite row from crisp categorical labels; everything else is v2."
+ },
+ "sources": {
+  "kind": "shared immutable static export (exact-static disc strips, member-pure pages)",
+  "export_build": "2026-11-13T15:06:28Z",
+  "textures_json_sha256": "e6a3899099f3b5f7d04ed7a60661c1271dbc1bb7d19f5f8a9f1d6a0d68f31e1a",
+  "keys_json_sha256": "bc74b684b30d195353fcc0df68f512908e0ddaf99ce0ceb76670c76ac63944c2",
+  "cluts_json_sha256": "0fc9b4580ad107a6156624bdc544d9053ba6c01a8e068e88fa0d628b2c649615",
+  "review": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage4/READINESS.md",
+  "palette_review_sha256": "dd01e2796e190147f974b52f6994d6c69a4bdc67678168513da68fd5f3e03f60"
+ },
+ "gpu": "none: CPU-only index-space authoring; no ComfyUI call in this revision (GPU-RESERVED respected)",
+ "comfyui_graphs": [],
+ "reused_generated_swatches": {
+  "note": "no generated swatch used",
+  "files_sha256": {}
+ },
+ "method": "FX contract: alpha = classes of the categorical soft-label master (tone-group version, label-exact centres), identical for every CLUT with the same transparent entries; RGB free of class thresholds = continuous index field t (normalised convolution of the native index inside the opaque silhouette, sigma 0.55 texel: low frequencies locked to native) + band-limited turbulence (0.35 index steps) when the CLUT is a luminance ramp (Spearman >= 0.85), else categorical soft labels; glow break (new in v2): where two adjacent native indices are joined by a palette path that leaves the straight colour segment between them by more than 48 RGB under any rendered CLUT (an off-ramp entry, e.g. the grey-brown index 0 next to the red ramp on AFCCB3B5), the render uses the crisp categorical labels instead of the continuous index (soft weight over about half a texel), so no false bright halo appears between unrelated tones; per 32x32-texel cell light-energy gate vs native, applied as a smooth gain field (new in v2: per-cell log-gains bilinear between cell centres, 4 iterations, gains clamped 0.5..2; cells that are all black natively are zeroed hard because their light is only leakage), so no straight brightness step appears at cell borders inside a sprite. No material layer and no generated detail in this revision. v3: on B305DC32 the row of small spiky sprites (texel rect 0,232,256,16) is rendered from the categorical soft labels (crisp silhouettes, 1-texel line strokes) instead of the continuous index (soft blend over 0.35 texel at the rect edge); soft.strokes is on for both pages (it only changes label-rendered areas).",
+ "render_formula": "t = smoothed native index (+ turbulence); rgb = lerp(P[floor t], P[ceil t]) inside the opaque silhouette, blended with the categorical label render by the glow-break weight (master/<TEX>-glowweight16-u8.npy); class = class(P[l_0]) of the soft-label master; smooth per-cell energy gain field; class stamped at every texel centre",
+ "class_validation": {
+  "file": "native-class-validation.json",
+  "total_mismatches": 0,
+  "exports": 4,
+  "convention": "class at pixel floor((i+0.5)*scale) of every native texel == class(CLUT[native index]); class 0 = raw 0x0000, 255 = STP, 127 = opaque"
+ },
+ "alpha_channel": "categorical PSX classes (0 = raw 0x0000, 127 opaque, 255 STP), NOT opacity; exact at every native texel centre",
+ "pages": {
+  "B305DC32": {
+   "member": "2/13",
+   "page_xy": [
+    384,
+    256
+   ],
+   "mode": "effect",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage4/textures/B305DC32.words.bin",
+    "sha256": "a7e06abe0742a58200748feadd1437e63980fa380aa6043a40b37c162d2537aa",
+    "crc32": "B305DC32",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "B305DC32-2EC288F8",
+     "clut_xy": [
+      208,
+      489
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/B305DC32-2EC288F8.png",
+      "sha256": "9c9e1103f1dc207a90a9c8dcb4364a3ed15b71adf7138bb539a498d56692f286",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/B305DC32-2EC288F8.png",
+      "sha256": "0488d53784aafffd5a486064e3ebd3074f8dcf17e4e80a61f233a358ce576924",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": {
+      "2048": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.97,
+        "gain_centre": 1.0309,
+        "ratio_after": 0.9977,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9711,
+        "gain_centre": 1.0,
+        "ratio_after": 0.977,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.989,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9895,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.991,
+        "gain_centre": 1.0,
+        "ratio_after": 0.991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9891,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9891,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9945,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9946,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9769,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9776,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9944,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9948,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9687,
+        "gain_centre": 1.0323,
+        "ratio_after": 1.0,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9677,
+        "gain_centre": 1.0334,
+        "ratio_after": 0.9961,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9793,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9823,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9783,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9881,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9902,
+        "gain_centre": 1.0,
+        "ratio_after": 0.991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9824,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9847,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9653,
+        "gain_centre": 1.036,
+        "ratio_after": 0.982,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9744,
+        "gain_centre": 1.0,
+        "ratio_after": 0.978,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9444,
+        "gain_centre": 1.0588,
+        "ratio_after": 0.9854,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9572,
+        "gain_centre": 1.0447,
+        "ratio_after": 0.9909,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9677,
+        "gain_centre": 1.0334,
+        "ratio_after": 0.991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9481,
+        "gain_centre": 1.0547,
+        "ratio_after": 0.9753,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9715,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9778,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9903,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9908,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9864,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9899,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9816,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9823,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9785,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9849,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9819,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9898,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9859,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9901,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "gain_centre": 1.0,
+        "ratio_after": 1.005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9873,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9873,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9806,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9806,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9738,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9738,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9763,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9763,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.973,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9773,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9686,
+        "gain_centre": 1.0324,
+        "ratio_after": 0.9944,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9826,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9995,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9835,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0054,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9821,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9892,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9954,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0027,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9967,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9975,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9912,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9912,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.7362,
+        "gain_centre": 1.4624,
+        "ratio_after": 0.9726,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.8752,
+        "gain_centre": 1.1426,
+        "ratio_after": 0.9882,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.7914,
+        "gain_centre": 1.3891,
+        "ratio_after": 0.9866,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.8109,
+        "gain_centre": 1.309,
+        "ratio_after": 0.9755,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9366,
+        "gain_centre": 1.0677,
+        "ratio_after": 0.9808,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9416,
+        "gain_centre": 1.0621,
+        "ratio_after": 0.9728,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9736,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9833,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9791,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0217,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9413,
+        "gain_centre": 1.0305,
+        "ratio_after": 1.009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9667,
+        "gain_centre": 1.0345,
+        "ratio_after": 1.026,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.939,
+        "gain_centre": 1.0333,
+        "ratio_after": 1.0131,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.8986,
+        "gain_centre": 1.1129,
+        "ratio_after": 1.001,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 3143.3105,
+        "gain_centre": 0.0,
+        "ratio_after": null,
+        "native_black": true,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 5447.3877,
+        "gain_centre": 0.0,
+        "ratio_after": null,
+        "native_black": true,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9553,
+        "gain_centre": 1.0467,
+        "ratio_after": 0.9838,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.8018,
+        "gain_centre": 1.4464,
+        "ratio_after": 0.9785,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9637,
+        "gain_centre": 1.0376,
+        "ratio_after": 0.9992,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9693,
+        "gain_centre": 1.0317,
+        "ratio_after": 1.001,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9674,
+        "gain_centre": 1.0337,
+        "ratio_after": 0.9997,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.969,
+        "gain_centre": 1.032,
+        "ratio_after": 1.0009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.968,
+        "gain_centre": 1.0331,
+        "ratio_after": 0.9958,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9722,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9762,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.973,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9739,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9726,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9752,
+        "native_black": false,
+        "mode": "smooth"
+       }
+      ],
+      "1024": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.97,
+        "gain_centre": 1.031,
+        "ratio_after": 0.9977,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.971,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9769,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9886,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9891,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9911,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9911,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9891,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9891,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9943,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9944,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.977,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9776,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9945,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9948,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9687,
+        "gain_centre": 1.0323,
+        "ratio_after": 1.0,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9677,
+        "gain_centre": 1.0334,
+        "ratio_after": 0.9961,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9792,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9823,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9783,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9881,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9901,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9909,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9824,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9847,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9652,
+        "gain_centre": 1.036,
+        "ratio_after": 0.9819,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9744,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9779,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9443,
+        "gain_centre": 1.059,
+        "ratio_after": 0.9854,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9571,
+        "gain_centre": 1.0449,
+        "ratio_after": 0.9908,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9676,
+        "gain_centre": 1.0335,
+        "ratio_after": 0.991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.948,
+        "gain_centre": 1.0549,
+        "ratio_after": 0.9752,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9715,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9778,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9903,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9907,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9862,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9897,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9815,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9823,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9784,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9848,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9818,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9897,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9857,
+        "gain_centre": 1.0,
+        "ratio_after": 0.99,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0049,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9872,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9873,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9806,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9806,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9737,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9737,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9762,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9762,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.973,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9773,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9685,
+        "gain_centre": 1.0326,
+        "ratio_after": 0.9944,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9825,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9995,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9834,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0053,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.982,
+        "gain_centre": 1.0,
+        "ratio_after": 0.989,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9953,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0026,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9966,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9974,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9911,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9911,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.7349,
+        "gain_centre": 1.4657,
+        "ratio_after": 0.9723,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.8743,
+        "gain_centre": 1.1438,
+        "ratio_after": 0.988,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.7906,
+        "gain_centre": 1.3915,
+        "ratio_after": 0.9865,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.8107,
+        "gain_centre": 1.3094,
+        "ratio_after": 0.9755,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9368,
+        "gain_centre": 1.0674,
+        "ratio_after": 0.981,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9413,
+        "gain_centre": 1.0624,
+        "ratio_after": 0.9727,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9734,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9831,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.979,
+        "gain_centre": 1.0,
+        "ratio_after": 1.022,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9412,
+        "gain_centre": 1.0303,
+        "ratio_after": 1.0091,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9666,
+        "gain_centre": 1.0345,
+        "ratio_after": 1.0262,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.939,
+        "gain_centre": 1.033,
+        "ratio_after": 1.0133,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.8983,
+        "gain_centre": 1.1132,
+        "ratio_after": 1.001,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 3051.7578,
+        "gain_centre": 0.0,
+        "ratio_after": null,
+        "native_black": true,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 5004.8828,
+        "gain_centre": 0.0,
+        "ratio_after": null,
+        "native_black": true,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9551,
+        "gain_centre": 1.0471,
+        "ratio_after": 0.9837,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.8005,
+        "gain_centre": 1.4504,
+        "ratio_after": 0.9784,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9622,
+        "gain_centre": 1.0393,
+        "ratio_after": 0.9992,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9672,
+        "gain_centre": 1.0339,
+        "ratio_after": 1.0009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9654,
+        "gain_centre": 1.0359,
+        "ratio_after": 0.9996,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9672,
+        "gain_centre": 1.0339,
+        "ratio_after": 1.0009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9661,
+        "gain_centre": 1.0351,
+        "ratio_after": 0.9955,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9702,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9744,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9713,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9723,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9706,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9731,
+        "native_black": false,
+        "mode": "smooth"
+       }
+      ]
+     },
+     "review": {
+      "path": "review/B305DC32-2EC288F8-review.png",
+      "sha256": "a4bf3cf346d688724f0393b0035614977e4ae2dc9e0b6ab74c4e912a267ffad9"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "B305DC32-B97C22B4",
+     "clut_xy": [
+      80,
+      506
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "B305DC32-A9651F8C",
+     "clut_xy": [
+      304,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "B305DC32-C12DB7DC",
+     "clut_xy": [
+      272,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    }
+   ],
+   "palette_hold_keys": [
+    "B305DC32-190A55AD",
+    "B305DC32-A9651F8C",
+    "B305DC32-C12DB7DC"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     0,
+     508
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "B305DC32-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v3-strokes",
+    "centre_labels_forced": 1313,
+    "lost_texel_cores": 1313,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0972442626953125,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 25,
+    "strokes": {
+     "runs": 137,
+     "texels": 618,
+     "multi_tone_runs": 137,
+     "min_len": 3,
+     "profile": [
+      0.5,
+      0.62,
+      6.0
+     ],
+     "multi_tone_only": true,
+     "bg_change_max": 0.25
+    },
+    "near_matrix_cluts": 4
+   },
+   "glow": {
+    "ramp_spearman_min": 1.0,
+    "opaque_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "transparency_consistent": true,
+    "used": "glow with break weight (labels where the index path leaves the colour segment); categorical labels inside label_rects",
+    "glow_break_T": 48,
+    "broken_pairs": [],
+    "broken_texels": 0,
+    "glow_weight_mean": 0.9375,
+    "label_rects": [
+     [
+      0,
+      232,
+      256,
+      16
+     ]
+    ]
+   },
+   "material": null,
+   "logD_p1_p99": null
+  },
+  "AFCCB3B5": {
+   "member": "2/13",
+   "page_xy": [
+    448,
+    256
+   ],
+   "mode": "effect",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage4/textures/AFCCB3B5.words.bin",
+    "sha256": "2560ba663cc740efca890eb1cdf147e7bca8aed64379b4ae28d4a1ab003917e3",
+    "crc32": "AFCCB3B5",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "AFCCB3B5-8DD9DD06",
+     "clut_xy": [
+      160,
+      495
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/AFCCB3B5-8DD9DD06.png",
+      "sha256": "3fec0e6efe14ff7f08c676aa62969c6bbaa4f9c60d41076365e5ec9358009770",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/AFCCB3B5-8DD9DD06.png",
+      "sha256": "2c983205584cef87cbbbbd76020be3b84ae3cbc3d28f08b1852bc4f6893c8efb",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": {
+      "2048": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0036,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0036,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0007,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0007,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9988,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0056,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0056,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0103,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0103,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9907,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9907,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9948,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9948,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9928,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9928,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0028,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0028,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0025,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0025,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9997,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0003,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9993,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0066,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0066,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9944,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9944,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0004,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0023,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0023,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9996,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9913,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9913,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0055,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0055,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0061,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0061,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9993,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.008,
+        "gain_centre": 1.0,
+        "ratio_after": 1.008,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0021,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0021,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0073,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0073,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.002,
+        "gain_centre": 1.0,
+        "ratio_after": 1.002,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0016,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.003,
+        "gain_centre": 1.0,
+        "ratio_after": 1.003,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0062,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0062,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0102,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0102,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0015,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9975,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9975,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.009,
+        "gain_centre": 1.0,
+        "ratio_after": 1.009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0061,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0061,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0092,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0092,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0003,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0015,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0043,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0043,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.002,
+        "gain_centre": 1.0,
+        "ratio_after": 1.002,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9958,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9958,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0025,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0025,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9974,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9974,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0089,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0089,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0034,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0034,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0085,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0085,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0103,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0103,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0089,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0089,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9925,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9925,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0014,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0014,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0001,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9982,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0044,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0044,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0055,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0055,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0047,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0047,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0061,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0061,
+        "native_black": false,
+        "mode": "smooth"
+       }
+      ],
+      "1024": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0035,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0035,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0007,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0007,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9987,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0057,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0057,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0103,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0103,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9908,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9908,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9991,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9948,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9948,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9928,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9928,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0028,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0028,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0025,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0025,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9997,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0002,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0002,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0067,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0067,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9944,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9944,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0004,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0023,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0023,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9996,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9913,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9913,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0055,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0055,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.006,
+        "gain_centre": 1.0,
+        "ratio_after": 1.006,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9993,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.008,
+        "gain_centre": 1.0,
+        "ratio_after": 1.008,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0005,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0022,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0022,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0073,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0073,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.002,
+        "gain_centre": 1.0,
+        "ratio_after": 1.002,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0016,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.003,
+        "gain_centre": 1.0,
+        "ratio_after": 1.003,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0062,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0062,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0006,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0006,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0102,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0102,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0015,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9975,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9975,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.009,
+        "gain_centre": 1.0,
+        "ratio_after": 1.009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0061,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0061,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0092,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0092,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0003,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0015,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0043,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0043,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.002,
+        "gain_centre": 1.0,
+        "ratio_after": 1.002,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9958,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9958,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0026,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0026,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9973,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9973,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0088,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0088,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.994,
+        "gain_centre": 1.0,
+        "ratio_after": 0.994,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9993,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0034,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0034,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0084,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0084,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0103,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0103,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.009,
+        "gain_centre": 1.0,
+        "ratio_after": 1.009,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9925,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9925,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0013,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0001,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "gain_centre": 1.0,
+        "ratio_after": 0.9982,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0043,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0043,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0055,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0055,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0047,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0047,
+        "native_black": false,
+        "mode": "smooth"
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0061,
+        "gain_centre": 1.0,
+        "ratio_after": 1.0061,
+        "native_black": false,
+        "mode": "smooth"
+       }
+      ]
+     },
+     "review": {
+      "path": "review/AFCCB3B5-8DD9DD06-review.png",
+      "sha256": "684bf7646e4d3ff663c5741809cb8fedfd238ddb44f07beab6bb25d8f119adf0"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "AFCCB3B5-C12DB7DC",
+     "clut_xy": [
+      272,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "AFCCB3B5-70EEEA84",
+     "clut_xy": [
+      208,
+      503
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "AFCCB3B5-B4B798B5",
+     "clut_xy": [
+      256,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "AFCCB3B5-0DF30EDD",
+     "clut_xy": [
+      272,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    }
+   ],
+   "palette_hold_keys": [
+    "AFCCB3B5-0DF30EDD",
+    "AFCCB3B5-190A55AD",
+    "AFCCB3B5-70EEEA84",
+    "AFCCB3B5-B4B798B5",
+    "AFCCB3B5-C12DB7DC"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     0,
+     511
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "AFCCB3B5-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v3-strokes",
+    "centre_labels_forced": 1700,
+    "lost_texel_cores": 1700,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.1852874755859375,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 20,
+    "strokes": {
+     "runs": 145,
+     "texels": 1416,
+     "multi_tone_runs": 145,
+     "min_len": 3,
+     "profile": [
+      0.5,
+      0.62,
+      6.0
+     ],
+     "multi_tone_only": true,
+     "bg_change_max": 0.25
+    },
+    "near_matrix_cluts": 5
+   },
+   "glow": {
+    "ramp_spearman_min": 0.962,
+    "opaque_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "transparency_consistent": true,
+    "used": "glow with break weight (labels where the index path leaves the colour segment)",
+    "glow_break_T": 48,
+    "broken_pairs": [
+     [
+      0,
+      5
+     ],
+     [
+      0,
+      6
+     ],
+     [
+      0,
+      7
+     ],
+     [
+      0,
+      8
+     ],
+     [
+      0,
+      9
+     ],
+     [
+      0,
+      10
+     ],
+     [
+      0,
+      11
+     ],
+     [
+      0,
+      12
+     ],
+     [
+      0,
+      13
+     ],
+     [
+      0,
+      14
+     ],
+     [
+      0,
+      15
+     ],
+     [
+      1,
+      5
+     ],
+     [
+      1,
+      6
+     ],
+     [
+      1,
+      7
+     ],
+     [
+      1,
+      8
+     ],
+     [
+      1,
+      9
+     ],
+     [
+      1,
+      10
+     ],
+     [
+      1,
+      11
+     ],
+     [
+      1,
+      12
+     ],
+     [
+      1,
+      13
+     ],
+     [
+      1,
+      14
+     ],
+     [
+      1,
+      15
+     ]
+    ],
+    "broken_texels": 2738,
+    "glow_weight_mean": 0.9397
+   },
+   "material": null,
+   "logD_p1_p99": null
+  }
+ },
+ "builder_scripts": {
+  "build_w7.py": "f1e0ca39a0784b0508b54a153731a360957684824593c53b14e22e827955dab1",
+  "freeze_w7.py": "96404eb2c18dbd7faea51f492d725dcdfd00a514d00d842bbdcac7fc48b5adf6",
+  "s4-effects-2-13-v3.json": "df14427b7a00a36507a8101a243123ab295dbb48d699b09c310f6ee8060cedb3",
+  "w7lib.py": "e628962eb0907b8f5da697ff0070d24118633651f2ec21b54f4331ade543b2f6"
+ },
+ "build_record": "build-record.json",
+ "honest_read": [
+  "B305DC32 small spiky mine/star sprites (texel rows 232-247) now render from crisp categorical labels: silhouettes and 1-texel spikes read clearly, close to the native shapes, where v2 had soft blobs. Inside each sprite the grey tones posterise into rounded patches: a smoothed pixel-art look, not a photographic one.",
+  "Motion SIMULATION (review/motion-sim-v2-v3.*): the crisp sprites twinkle more than v2: 0.026 vs 0.012 at 9 px/texel and 0.117 vs 0.028 at 3 px/texel (native nearest 0.129 / 0.230). If these sprites are mostly seen small on screen, the soft v2 is the steadier choice; decide when AQ-03 shows their on-screen size.",
+  "Smoke, flames and the AFCCB3B5 page are unchanged from v2 (smoke control twinkle identical: 0.0015 / 0.0052). Strokes are on for both pages but only change label-rendered areas (the sprite row and the AFCCB3B5 glow-break regions).",
+  "Class-exact: 0 centre-class mismatches in 4 exports.",
+  "AFCCB3B5: index 0 (grey-brown) is off the red ramp. In the first v2 build the continuous index drew a bright pink halo wherever index 0 met the dark reds. The glow-break weight now renders those 2738 texels with crisp categorical labels, and the halo is gone.",
+  "The light-energy gate is a smooth gain field (gains 1.0..1.48). Every cell lands within 3 % of native mean light, and no straight brightness step remains at the 32-texel cell borders. The old scalar gate left 7-18 % steps there. Two cells that are all black natively are zeroed: their light was only leakage from neighbours.",
+  "No generated detail: the planned FX v2 SDXL img2img pass for these pages has not run."
+ ],
+ "known_limits": [
+  "All keys are predicted-static: none has been seen live. The review CLUT is the static CLUT that draws the most of the page (a 'likely' pairing), not a proven one, so the colours on the review sheets may be wrong for the real enemy. Import only after the stage-4 run confirms each key.",
+  "One render per page (the review CLUT); the other static predicted keys are listed as renderable_later and render from the same master once captured; palette-hold keys (runtime-written or multi-candidate CLUT positions) wait for AQ-05 phase lists.",
+  "Review panel C is a SIMULATION (bilinear from runtime-2048, no mips, 9 px per texel); no in-game capture exists.",
+  "320,256 (B55A0A46) is runtime-composed (2/25 raw uploads) and is excluded.",
+  "The 2/22 section-b versions of these columns (04010B4F, A5ECBA22) are not covered.",
+  "Supersedes the unfrozen s4-effects-2-13-v1 scratch folder (only B305DC32 had rendered, no build record, never frozen).",
+  "label_rects is a hand-chosen texel rect (0,232,256,16) for the sprite row; other small sprites elsewhere on the pages still use the continuous index."
+ ],
+ "integration_notes": {
+  "install": "do not install before the stage-4 acquisition run; then install only keys listed key-confirmed by validate_predicted.py confirm",
+  "runtime": "runtime-1024 recommended for effects (soft content); runtime-2048 provided",
+  "alpha": "PNG alpha = exact PSX classes (categorical)",
+  "index_path": "master/<TEX>-labels16.npz + <TEX>-glow16-f16.npy + <TEX>-glowweight16-u8.npy render any ramp CLUT with w7lib.render(glow=..., glow_mask=weight/255); then apply the energy gain; glowweight16 includes the label_rects (0 inside)"
+ },
+ "reuse": null,
+ "files": {
+  "build-record.json": {
+   "sha256": "1a6e7015b5375526d37c606defccb5d159d03dbf1eb02fce35dd2f492715e5f9",
+   "bytes": 83475
+  },
+  "builder/build_w7.py": {
+   "sha256": "f1e0ca39a0784b0508b54a153731a360957684824593c53b14e22e827955dab1",
+   "bytes": 20764
+  },
+  "builder/freeze_w7.py": {
+   "sha256": "96404eb2c18dbd7faea51f492d725dcdfd00a514d00d842bbdcac7fc48b5adf6",
+   "bytes": 6015
+  },
+  "builder/s4-effects-2-13-v3.json": {
+   "sha256": "df14427b7a00a36507a8101a243123ab295dbb48d699b09c310f6ee8060cedb3",
+   "bytes": 3426
+  },
+  "builder/w7lib.py": {
+   "sha256": "e628962eb0907b8f5da697ff0070d24118633651f2ec21b54f4331ade543b2f6",
+   "bytes": 33742
+  },
+  "master/AFCCB3B5-glow16-f16.npy": {
+   "sha256": "fc8914619a01135c111da659014efeebd179e28ee9dad6af1ea798c421ca6f6d",
+   "bytes": 33554560
+  },
+  "master/AFCCB3B5-glowweight16-u8.npy": {
+   "sha256": "0d93c5c93332a727c5bfd33c7b1a3350da9ad83865d67e55bb3bb7568ae38a04",
+   "bytes": 16777344
+  },
+  "master/AFCCB3B5-labels16.npz": {
+   "sha256": "40b074304368552a943de8217e1770af8ff742ea94da1139bf13c2ef1ef71ee9",
+   "bytes": 13250188
+  },
+  "master/AFCCB3B5-native-idx.npy": {
+   "sha256": "7925ea546a945004d41f19f6d248ad89c79b4275fd006aa251dd42395f83471f",
+   "bytes": 65664
+  },
+  "master/B305DC32-glow16-f16.npy": {
+   "sha256": "9880c3186ec7e1c46f2b0d4eba33d4a6393e613df119c14900500e77a8d1e1a4",
+   "bytes": 33554560
+  },
+  "master/B305DC32-glowweight16-u8.npy": {
+   "sha256": "fdb76dd9f1bd4eae6193c06eda8575183d6f4002eaa80d56ad323e4ead23b258",
+   "bytes": 16777344
+  },
+  "master/B305DC32-labels16.npz": {
+   "sha256": "ecaeb73c3e08ad6aa0676317a609710ba1e58e21278369fc1229cadff9505438",
+   "bytes": 11224552
+  },
+  "master/B305DC32-native-idx.npy": {
+   "sha256": "cb42ba23225b13131d7cb04905a0a505eec54c2d28c4316d988e5fd8879164a0",
+   "bytes": 65664
+  },
+  "native-class-validation.json": {
+   "sha256": "a517c24d11e13e83ce4cbab6d8b797698c0f48cb7813771dd9350a32ac41ea0f",
+   "bytes": 1165
+  },
+  "review/AFCCB3B5-8DD9DD06-review.png": {
+   "sha256": "684bf7646e4d3ff663c5741809cb8fedfd238ddb44f07beab6bb25d8f119adf0",
+   "bytes": 573511
+  },
+  "review/B305DC32-2EC288F8-review.png": {
+   "sha256": "a4bf3cf346d688724f0393b0035614977e4ae2dc9e0b6ab74c4e912a267ffad9",
+   "bytes": 282112
+  },
+  "review/focus-B305DC32-sprites-v2-v3.png": {
+   "sha256": "78c19918388cd575d903885a113c8def626eb620d5959f639d7c7a428705e5be",
+   "bytes": 93551
+  },
+  "review/motion-sim-v2-v3.json": {
+   "sha256": "b0f3b49a7b1b0462a46600ab94b1e3f23aff47f34befcc4d8c6c16b990ef0b66",
+   "bytes": 2216
+  },
+  "review/motion-sim-v2-v3.png": {
+   "sha256": "ac535ff8a6c1040ff5904082bb3c6a5ff81bb9c16ce0efc591d6ce5d5dc223e1",
+   "bytes": 601883
+  },
+  "runtime-1024/AFCCB3B5-8DD9DD06.png": {
+   "sha256": "2c983205584cef87cbbbbd76020be3b84ae3cbc3d28f08b1852bc4f6893c8efb",
+   "bytes": 851500
+  },
+  "runtime-1024/B305DC32-2EC288F8.png": {
+   "sha256": "0488d53784aafffd5a486064e3ebd3074f8dcf17e4e80a61f233a358ce576924",
+   "bytes": 432207
+  },
+  "runtime-2048/AFCCB3B5-8DD9DD06.png": {
+   "sha256": "3fec0e6efe14ff7f08c676aa62969c6bbaa4f9c60d41076365e5ec9358009770",
+   "bytes": 2288681
+  },
+  "runtime-2048/B305DC32-2EC288F8.png": {
+   "sha256": "9c9e1103f1dc207a90a9c8dcb4364a3ed15b71adf7138bb539a498d56692f286",
+   "bytes": 1154554
+  }
+ }
+}

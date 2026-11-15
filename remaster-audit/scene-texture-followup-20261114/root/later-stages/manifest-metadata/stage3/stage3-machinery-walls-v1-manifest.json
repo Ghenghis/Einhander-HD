@@ -1,0 +1,2945 @@
+{
+ "name": "stage3-machinery-walls-v1",
+ "title": "Stage 3 machinery walls and walkways (2/1 world pages)",
+ "track": "w7-stage3",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 Stage 3 capture)",
+ "created_at_utc": "2026-11-13T21:35:59.383604+00:00",
+ "method": "W7-STAGE3 index masters (copy of w7-stage2/tools/s2master.py; imports s3lib): one CLUT-free master per 4bpp page, rendered through any CLUT.\n\nMaster (8 px/texel = the 2048 export grid; CPU only, deterministic, no AI, nothing added):\n  categorical layer  top-3 (label, weight u8) per pixel: for every native index i the one-hot mask is upsampled\n                     texel-centred (bilinear), gaussian-smoothed (sigma_cat texels) and raised to power_cat, then\n                     normalised (w7-stage7 build_s7 / w4-world catsoft method). It carries the class (alpha) of ANY\n                     CLUT: class = class of the strongest visible label where visible weight >= 0.5, else 0, so every\n                     CLUT gets its own native class map with smooth contours.\n  continuous layer   t (float16, NaN elsewhere) inside regions whose drawn CLUTs are monotone luminance ramps over the\n                     indices used there (palette-cycling lights, smoke and flame ramps): normalised convolution of the\n                     native index over the texels that are visible in that region (bilinear texel-centred upsample,\n                     gaussian sigma_t texels); render = lerp(P[floor t], P[ceil t]) (index_pipeline convention), t\n                     clamped to the CLUT's visible run.\nRender(CLUT) -> RGBA at 8 px/texel; the native class is then forced at every native texel centre floor((i+0.5)*s)\n(one pixel each, w6/w7 rule) and every export is re-read and validated (0 mismatches required).\nRegions come from the Stage 2 draw records (work/draws-s2.json): every drawn uv rect of every key of the page whose CLUT\nwords are known (static export CLUT or CRC-validated recovered phase).",
+ "builder_doc": "W7-STAGE3 builder: first Stage 3 art families on exact-static, single-writer pages of the frozen stages-v4 export.\n\n    python -I build_s3.py <family> [freeze]      family = walls | signage\n    -> staging/<name>/ (default) or frozen/<name>/ (freeze: immutable, refuses to overwrite)\n\nState of every key: predicted-static; import only after live capture confirms the key (validate_predicted.py confirm +\ngate on the AQ-03 Stage 3 capture).  No Stage 3 capture exists, so there are no draw records and no runtime CLUT phases:\n  * pages: exact-static TEX with a single writer (2/1, the main member that carries the stage CLUT block); words from\n    stages-v4/stage3/textures (crc32 == TEX and sha256 == FREEZE.json re-checked);\n  * keys: listed predictions of those pages whose CLUT is a static stage-owned CLUT (owner 2/1 = stage CLUT block, or\n    2/0 = 16x1 records of the stage overlay), not all-transparent, with the highest coverage = pair_count (how often the\n    CLUT/page pair occurs in the stage model data) >= MIN_PAIRS and visible texels >= MIN_VIS of the page.  The all-zero\n    CLUT 190A55AD keys that the export labels exact-static are transparent and are not exported;\n  * cells: inferred from page content (s3cells.py, calibrated on Stage 2 draw rects, work/cells-calibration.json) and\n    rendered in isolation, the Stage 2 v2 rule; replaced by real UV rects once AQ-03 exists.\nMethod (Stage 2 method, w7-stage2 s2master copied as s3master): CLUT-free categorical index master at 8 px/texel\n(sigma 0.30 texel, power 4.0: exact native colours on plateaus, smooth contours), class forced and validated at every\nnative texel centre.  CPU only, deterministic; no generated imagery; nothing invented (no new text, colours or pixels).",
+ "cells_doc": "Static cell inference for atlas pages without draw records (Stage 3 has no capture yet).\n\nStage 2 draw records showed world atlas cells are rectangles on the 32-texel grid (plus small sprites).  Without UVs, a\n32x32 block grid is joined into cells: two neighbouring blocks belong to one cell unless the 32-texel segment between\nthem is a content seam, i.e. the mean absolute index jump ACROSS the line is clearly larger than the jumps on the two\ncolumn (row) pairs next to it on either side:  across > ratio * max(within_a, within_b) and across > min_jump.\nA continuous texture (a tiling wall, one big panel) has no seam inside, so it stays one cell; a change of texture at a\ngrid line separates the cells.  Cells are connected components of blocks (any shape); render isolation uses the\ncomponent mask (texels outside the component are filled with the nearest component texel before rendering, and only\nthe component's own pixels are pasted).  This is an inference: it is replaced by real UV rects after the AQ-03 capture.",
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3",
+  "freeze": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/FREEZE.json",
+   "sha256": "4c1641ea961fdc3838fa9f58b58b09354edf026a211d742613dab5cb88d8815f"
+  },
+  "build": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/BUILD.json",
+   "sha256": "aaa5779c39781375b0e425d2ca1cf04768c54498b0887eafde32b1f21ff0b862"
+  },
+  "files_checked_against_freeze": {
+   "textures.json": {
+    "sha256": "f0f35207bbeee560e199bfa0b6eeabbbe14f2b42023a7be7ee8ced7efee7a75a",
+    "freeze_sha256": "f0f35207bbeee560e199bfa0b6eeabbbe14f2b42023a7be7ee8ced7efee7a75a"
+   },
+   "keys.json": {
+    "sha256": "638a6ebb055adcad895c4ce73c6da2bd39b3af61558a0302e0a58a48b2e3f82f",
+    "freeze_sha256": "638a6ebb055adcad895c4ce73c6da2bd39b3af61558a0302e0a58a48b2e3f82f"
+   },
+   "cluts.json": {
+    "sha256": "e456105ece1762f7ea123db8ca56dc28d9a8dae747aaf9601b47bf01425ea08f",
+    "freeze_sha256": "e456105ece1762f7ea123db8ca56dc28d9a8dae747aaf9601b47bf01425ea08f"
+   },
+   "manifest.json": {
+    "sha256": "a54e351910ce9d655267026a382948c20582ac297900514e9bedf8bae47d0fe4",
+    "freeze_sha256": "a54e351910ce9d655267026a382948c20582ac297900514e9bedf8bae47d0fe4"
+   }
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage3/readiness.json",
+  "sha256": "878f82833c7550d087eb03f87787f8bd3c7c9c3c7a8ac33def3c113db5bd1613"
+ },
+ "cells_calibration": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/work/cells-calibration.json",
+  "sha256": "fc0bd408ef490ede48d9b7f92dd315e1a7eb13797e631314d3888461a9b6603b",
+  "chosen_ratio": 1.6
+ },
+ "selection": {
+  "min_pair_count": 20,
+  "min_visible_fraction": 0.05,
+  "clut_owners": [
+   "(2, 1)",
+   "(2, 0)"
+  ],
+  "excluded": "all-zero CLUT 190A55AD keys (labelled exact-static by the export, render fully transparent); front-end-owned CLUTs (0/10, 0/12) at the same positions"
+ },
+ "boss_identity": "Gecko (SPKB-08, mid-boss) and Gustav (PR-01, boss) cannot be told apart from static data. The boss-candidate pages are 2/8 on 320-576,0 (hull plates, triangular plates with an alpha emblem and \"177\", slit lenses), with the 2/6 opening set as the other candidate. No name is assigned to any page or key here; no 2/6 or 2/8 page is authored in this batch. AQ-03 boss marks decide.",
+ "live_evidence": null,
+ "generated_imagery": null,
+ "comfyui": null,
+ "gpu": null,
+ "supersedes": null,
+ "pages": {
+  "B53A4C57": {
+   "member": "2/1",
+   "writers": [
+    "2/1"
+   ],
+   "vram_rect_words": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/B53A4C57.words.bin",
+    "sha256": "c06475d65b29f4fb9ef0a46a428bdb276a8e7bd82d2d7f6e2954f0c630b13d64",
+    "crc32": "B53A4C57",
+    "freeze_sha256": "c06475d65b29f4fb9ef0a46a428bdb276a8e7bd82d2d7f6e2954f0c630b13d64"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0,
+    "seam_ratio": 1.6,
+    "seam_min_jump": 0.75
+   },
+   "master": {
+    "path": "master/B53A4C57-index-master-8x.npz",
+    "sha256": "cd4831a37a15f3d4a1695099bb06b0198471ba8d6d031605dd42bdf0ca9c32b2"
+   },
+   "cells": {
+    "file": "master/B53A4C57-cells-32grid.npy",
+    "sha256": "b705ac6fa98ef4a1487271f787ef14df85e5d0a39f92c0ebb620e2e3191ebebb",
+    "count": 10,
+    "cells": [
+     {
+      "cell": 1,
+      "blocks": 4,
+      "bbox_texels": [
+       0,
+       0,
+       64,
+       64
+      ]
+     },
+     {
+      "cell": 2,
+      "blocks": 4,
+      "bbox_texels": [
+       64,
+       0,
+       96,
+       128
+      ]
+     },
+     {
+      "cell": 3,
+      "blocks": 22,
+      "bbox_texels": [
+       96,
+       0,
+       256,
+       192
+      ]
+     },
+     {
+      "cell": 4,
+      "blocks": 22,
+      "bbox_texels": [
+       0,
+       64,
+       256,
+       256
+      ]
+     },
+     {
+      "cell": 5,
+      "blocks": 2,
+      "bbox_texels": [
+       96,
+       128,
+       128,
+       192
+      ]
+     },
+     {
+      "cell": 6,
+      "blocks": 2,
+      "bbox_texels": [
+       128,
+       128,
+       160,
+       192
+      ]
+     },
+     {
+      "cell": 7,
+      "blocks": 4,
+      "bbox_texels": [
+       160,
+       128,
+       224,
+       192
+      ]
+     },
+     {
+      "cell": 8,
+      "blocks": 1,
+      "bbox_texels": [
+       128,
+       224,
+       160,
+       256
+      ]
+     },
+     {
+      "cell": 9,
+      "blocks": 2,
+      "bbox_texels": [
+       160,
+       224,
+       224,
+       256
+      ]
+     },
+     {
+      "cell": 10,
+      "blocks": 1,
+      "bbox_texels": [
+       224,
+       224,
+       256,
+       256
+      ]
+     }
+    ],
+    "seams": 43,
+    "lines": 112
+   }
+  },
+  "59B55BC8": {
+   "member": "2/1",
+   "writers": [
+    "2/1"
+   ],
+   "vram_rect_words": [
+    704,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/59B55BC8.words.bin",
+    "sha256": "4562f9978b4c551dc7fbb476374df24c8564c9086ebb3b56fef09c247f04306a",
+    "crc32": "59B55BC8",
+    "freeze_sha256": "4562f9978b4c551dc7fbb476374df24c8564c9086ebb3b56fef09c247f04306a"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0,
+    "seam_ratio": 1.6,
+    "seam_min_jump": 0.75
+   },
+   "master": {
+    "path": "master/59B55BC8-index-master-8x.npz",
+    "sha256": "a9f33f08124ad45a978fa3fb54f598de6ca329ee62173122951f6888a1657175"
+   },
+   "cells": {
+    "file": "master/59B55BC8-cells-32grid.npy",
+    "sha256": "f78debb18b14da791f6bc4c38bb642ef2e3c7bc0073f1f4f0d59694b2ae00679",
+    "count": 1,
+    "cells": [
+     {
+      "cell": 1,
+      "blocks": 64,
+      "bbox_texels": [
+       0,
+       0,
+       256,
+       256
+      ]
+     }
+    ],
+    "seams": 9,
+    "lines": 112
+   }
+  },
+  "66A350AA": {
+   "member": "2/1",
+   "writers": [
+    "2/1"
+   ],
+   "vram_rect_words": [
+    896,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/66A350AA.words.bin",
+    "sha256": "12f975790dde9b78926852d05c54508adb6958ee42c5896796deea8e7e2c3e02",
+    "crc32": "66A350AA",
+    "freeze_sha256": "12f975790dde9b78926852d05c54508adb6958ee42c5896796deea8e7e2c3e02"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0,
+    "seam_ratio": 1.6,
+    "seam_min_jump": 0.75
+   },
+   "master": {
+    "path": "master/66A350AA-index-master-8x.npz",
+    "sha256": "7721235c638ceabbf5476121b76ea6a896dba15c208c5a107d4ff2d98cb445e8"
+   },
+   "cells": {
+    "file": "master/66A350AA-cells-32grid.npy",
+    "sha256": "0f243b2594ffc7208bcc68ed84b33c14d477a1b2170759b35b1bb1a21c4df12d",
+    "count": 2,
+    "cells": [
+     {
+      "cell": 1,
+      "blocks": 60,
+      "bbox_texels": [
+       0,
+       0,
+       256,
+       256
+      ]
+     },
+     {
+      "cell": 2,
+      "blocks": 4,
+      "bbox_texels": [
+       192,
+       128,
+       256,
+       192
+      ]
+     }
+    ],
+    "seams": 22,
+    "lines": 112
+   }
+  }
+ },
+ "keys": {
+  "B53A4C57-0584767D": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "0584767D",
+    "words_hex": "00000000d0420000000000000822000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     80,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      80,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.079,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-0584767D.png",
+     "sha256": "38c0ef29bf73e5b02b113043cfadcadf98682a2d8af95ea751a13a965e4d3290",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-0584767D.png",
+     "sha256": "b44bfecbdcdfc9896c33eb161d46b3cef677baa1f16fecd41367c51c3ba5a8e8",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 175
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 22
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 50
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 27
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 183
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 62
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 5208,
+    "centre_rgb_equals_native": 5180,
+    "share": 0.9946
+   }
+  },
+  "B53A4C57-114545DB": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "114545DB",
+    "words_hex": "0000000000000100000000000000010000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     96,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 23,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      96,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.083,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-114545DB.png",
+     "sha256": "67e78b44c95de78a8c74f963153ad94efe6759174a0b03927a89a5182acca2c0",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-114545DB.png",
+     "sha256": "4046009471996c99bd130abc93fe062c1ddbe9743d8340af9db1ceb823c162eb",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 169
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 56
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 4
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 31
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 126
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 103
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 40
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 5417,
+    "centre_rgb_equals_native": 5417,
+    "share": 1.0
+   }
+  },
+  "B53A4C57-16F284C3": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "16F284C3",
+    "words_hex": "396715041f213146ce396b2d29250821e71cc6188410630c132e6f21eb146708",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 108,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-16F284C3.png",
+     "sha256": "75fc4609577307bfd9fad426b3529bdfd3837965da84c94296c0222e5404629f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-16F284C3.png",
+     "sha256": "5a16949eca7890b0a05b8fc626455b82df1fa5158734896c597602e59be09df0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 3572
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 7616
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 9445
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 16534
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 6718
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 2849
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 6755
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2390
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 2275
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 965
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 59126,
+    "share": 0.9022
+   }
+  },
+  "B53A4C57-1E925EC8": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "1E925EC8",
+    "words_hex": "0000210400000000000021040000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     64,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      64,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.065,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-1E925EC8.png",
+     "sha256": "9f921283c77126f26ec859148bf5a0a765f1aee22c0a165912459a3eaa76785e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-1E925EC8.png",
+     "sha256": "bed6192763900a807ab417fe339afd6d2ffd0d0ae413655e9c074ed117def99e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 50
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 139
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 117
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 2
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 49
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 42
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 4268,
+    "centre_rgb_equals_native": 4268,
+    "share": 1.0
+   }
+  },
+  "B53A4C57-322D3997": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "322D3997",
+    "words_hex": "cd358b2d49252821e618c514830c620829290821e71cc618a5148410bb16f201",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     489
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 125,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-322D3997.png",
+     "sha256": "e1cf26c32be60320f3edaa5b7e79dbf67432afbe370f009bc6b9fae7baa51ad5",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-322D3997.png",
+     "sha256": "b22997dfdec307408aedf5560cf257368a95ece1c043b2dc815536d5da34098d",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 3645
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 6347
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 9566
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 18107
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 5316
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 3651
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 7110
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2164
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 1782
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 1222
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 60027,
+    "share": 0.9159
+   }
+  },
+  "B53A4C57-4C904F50": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "4C904F50",
+    "words_hex": "ffffdf47fe823c8279811681b480928071804e802c8009800680048003800080",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     492
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 89,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "common"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-4C904F50.png",
+     "sha256": "da61e6b442d75e12502eec893f2d50f01bb7f20621c76ed117fe15059fb4249c",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-4C904F50.png",
+     "sha256": "22bd28df72bdfe01e269cc921a8c890b5439cccef7bba1cc2193e6883e2668ed",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 4233
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 7999
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 9840
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 14334
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 5596
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 3483
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 7841
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2535
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 2428
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 682
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 58317,
+    "share": 0.8898
+   }
+  },
+  "B53A4C57-558EE0EC": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "558EE0EC",
+    "words_hex": "0000000000000000210400000000000021040000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     488
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     224,
+     488,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 21,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      224,
+      488,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.11,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-558EE0EC.png",
+     "sha256": "a8ee5df888e683dbb89a25166e795bc5a67480656f6168cfba12f5d873169f59",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-558EE0EC.png",
+     "sha256": "be38bbab758439593fb413caac79ad9fdc20062fb6426f76875b762222de0740",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 119
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 78
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 17
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 30
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 16
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 152
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 105
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 48
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 15
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 7230,
+    "centre_rgb_equals_native": 7230,
+    "share": 1.0
+   }
+  },
+  "B53A4C57-5626D039": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "5626D039",
+    "words_hex": "945231461042ef3dce39ad358c316b2d4a2929250821c6188410420821042104",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 20,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-5626D039.png",
+     "sha256": "e0efaae3f76daf9c8191748bd0c2884f185ffa99c9b7faf20eba30bc6f1ddd91",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-5626D039.png",
+     "sha256": "2072896057be27a87304f600815529636d0ffbea039044c1a144f7f61410e6ca",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 3262
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 6485
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 7581
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 13071
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 4463
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 2870
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 6925
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2043
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 1958
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 582
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 62208,
+    "share": 0.9492
+   }
+  },
+  "B53A4C57-680BF5CF": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "680BF5CF",
+    "words_hex": "84188418a51cc620e7240829292d4a314a316b358c39ad3dce41ef45104a314e",
+    "kind": "static",
+    "vram_xy": [
+     48,
+     497
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 28,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-680BF5CF.png",
+     "sha256": "169df8bfbf41edb870f0b811802a2078feffb72db7e6f3254216e2ee63c01813",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-680BF5CF.png",
+     "sha256": "212af0d776c6220e25c78466e33cbf7f695988fec71dd81bc9a999b1098dce61",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 2910
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 6066
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6891
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 11980
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 5066
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 2657
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 6638
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 1809
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 1784
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 622
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63145,
+    "share": 0.9635
+   }
+  },
+  "B53A4C57-77620CF9": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "77620CF9",
+    "words_hex": "00000000000017000000000000000c0000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     96,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 23,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      96,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.083,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-77620CF9.png",
+     "sha256": "80fdefd2f65ecce09c3160b20f214c503ab5268f0fdea54954aef68a7d1cfcd8",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-77620CF9.png",
+     "sha256": "772dba1e6a4f6279d3093fbbd1f24dba475428346407f04fc1c51bbeb9d2b346",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 171
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 56
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 4
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 31
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 170
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 103
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 40
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 5417,
+    "centre_rgb_equals_native": 5390,
+    "share": 0.995
+   }
+  },
+  "B53A4C57-A02A0ECB": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "A02A0ECB",
+    "words_hex": "524a1e00ff630500e00c6229a22de235223e6246c24a0253425b8263e36b0000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 70,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.835,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-A02A0ECB.png",
+     "sha256": "b78b9ec7b79523c75ad6a54f48170a802634bbd4faeddf9c9ed6b8ccadcf7c35",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-A02A0ECB.png",
+     "sha256": "9e93e284513852102b9c910b2fd7f2cbeda8a38aa5fa3c661c4bea5284cf188c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 4222
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 6792
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 4254
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 13290
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 3247
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 4
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 3562
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2276
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 2417
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 621
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 54729,
+    "centre_rgb_equals_native": 47989,
+    "share": 0.8768
+   }
+  },
+  "B53A4C57-D9B206FA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "D9B206FA",
+    "words_hex": "0000000021040000000000002104000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     80,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      80,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.079,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-D9B206FA.png",
+     "sha256": "c4af33d452ae6e1b48b2d593bc3a1b60f28a33aaf6ef944202e81806fba68aff",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-D9B206FA.png",
+     "sha256": "a95ca1f545373164fd2d129760a506e7aa87cf9baa8881187326396345e26f6e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 175
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 22
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 50
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 27
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 158
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 62
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 5208,
+    "centre_rgb_equals_native": 5208,
+    "share": 1.0
+   }
+  },
+  "B53A4C57-EB67ADAA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "EB67ADAA",
+    "words_hex": "5f837c82ba811581b1808f806d804b8029802780068004800380028001800000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     492
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 31,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "common"
+   },
+   "visible_fraction": 0.835,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-EB67ADAA.png",
+     "sha256": "3ba07875ea06ca45ebe00433bdd7c3600ca1c2ed1ebf9302ed46d171bdb6121a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-EB67ADAA.png",
+     "sha256": "00b8e89fc7d5d5207a9932d70615d164a8ea38916105941a5ca9bf3c1d13287c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 3978
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 6434
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 3599
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 12514
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 3748
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 4
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 3590
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 2100
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 2157
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 458
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 54729,
+    "centre_rgb_equals_native": 50215,
+    "share": 0.9175
+   }
+  },
+  "B53A4C57-F63AB6BA": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "F63AB6BA",
+    "words_hex": "0000000000000000f72a0000000000004d0d0000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     488
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     224,
+     488,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 21,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      224,
+      488,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.11,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-F63AB6BA.png",
+     "sha256": "d8f9b850216b6a517c363472ad18ae86ecbc6ced65a4079e3a360b51c72fb026",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-F63AB6BA.png",
+     "sha256": "f110ed150748e3ea38a54f4863745dada65115d0b3c6067134ee65f677424c90",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 119
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 78
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 17
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 61
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 16
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 152
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 105
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 48
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 15
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 7230,
+    "centre_rgb_equals_native": 7186,
+    "share": 0.9939
+   }
+  },
+  "B53A4C57-FFF96EC9": {
+   "tex": "B53A4C57",
+   "clut": {
+    "crc32": "FFF96EC9",
+    "words_hex": "0000e741000000000000c3550000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     489
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     64,
+     489,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      64,
+      489,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.065,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/B53A4C57-FFF96EC9.png",
+     "sha256": "ac79317ecde0be8e6fe7c4db0ab3ebf63ef581085a33166189fdacb97fef0083",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/B53A4C57-FFF96EC9.png",
+     "sha256": "51c49eb77d19d25b8281628c902f100a46ffaaa045299ac25a2efe84bea1f65b",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 50
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 139
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 117
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 5,
+     "px_changed_vs_page_render": 2
+    },
+    {
+     "cell": 6,
+     "px_changed_vs_page_render": 0
+    },
+    {
+     "cell": 7,
+     "px_changed_vs_page_render": 52
+    },
+    {
+     "cell": 8,
+     "px_changed_vs_page_render": 49
+    },
+    {
+     "cell": 9,
+     "px_changed_vs_page_render": 42
+    },
+    {
+     "cell": 10,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 4268,
+    "centre_rgb_equals_native": 4263,
+    "share": 0.9988
+   }
+  },
+  "59B55BC8-89C297ED": {
+   "tex": "59B55BC8",
+   "clut": {
+    "crc32": "89C297ED",
+    "words_hex": "ce3dad396b314a2d29290825e720c61ca51884146310ee16e7150025c01c8014",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 100,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "b09808812aba4854fe734acc2def83fde34b064428e54e2a6cf126f4728cfff5",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-89C297ED.png",
+     "sha256": "8a1d3a27631f7bb09f3299e65c483925af50e82a3991ed1de13823266945d968",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 62132,
+    "share": 0.9481
+   }
+  },
+  "59B55BC8-F41BCBCE": {
+   "tex": "59B55BC8",
+   "clut": {
+    "crc32": "F41BCBCE",
+    "words_hex": "ce3dad396b314a2d29290825e720c61ca51884146310ee18ab10680ce9007001",
+    "kind": "static",
+    "vram_xy": [
+     192,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 114,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/59B55BC8-F41BCBCE.png",
+     "sha256": "162a70416b8bd6b3722b2445d892ceaee356fa114cb809bc6c08993b1b13ea37",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/59B55BC8-F41BCBCE.png",
+     "sha256": "09c16f52c0db081e0a035d916d9e16e3d836aedd5ed7b3e3bfc998a8bb4e4076",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 0
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 62119,
+    "share": 0.9479
+   }
+  },
+  "66A350AA-31A4CB98": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "31A4CB98",
+    "words_hex": "fa0093004c00050094523146ce396b2d29250821e71cc618a5148410630c2104",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 51,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-31A4CB98.png",
+     "sha256": "8229e8316118ec36c03a98dd878f56a7545277622b1ab54a46ffb877e7b1c4f2",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-31A4CB98.png",
+     "sha256": "d3424a63a374127b62b9b8bbbbc46455003245cf3d6cf070bd4bf5ecb323e4ea",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6432
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3249
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 56742,
+    "share": 0.8658
+   }
+  },
+  "66A350AA-37F29357": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "37F29357",
+    "words_hex": "d936132a4d1da71094525246ee396b2d29250821e71cc618a5148410830c2104",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 49,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-37F29357.png",
+     "sha256": "4f926d4f628098ef78a5a17474f5b15a155944ec894d5375c9c2441c3b3e8c1d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-37F29357.png",
+     "sha256": "b7aea61d1b803375d874a3ac915c4756d5e6436223db614e96e1c7c9aaa66249",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6459
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3234
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 57164,
+    "share": 0.8723
+   }
+  },
+  "66A350AA-553101F0": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "553101F0",
+    "words_hex": "6b2d0821c618a5148410630c630c42082104d60d930994908cb1e0831f800080",
+    "kind": "static",
+    "vram_xy": [
+     112,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 40,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-553101F0.png",
+     "sha256": "10cd48e0061374cbaced706697bff033015721b87ace0b5ac727a789c92b2c19",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-553101F0.png",
+     "sha256": "aba66fbc5f8cffc7e1669ae2f978600d3bfb74ab45c593816c880057c3f4fdc6",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 4828
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2908
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 54600,
+    "share": 0.8331
+   }
+  },
+  "66A350AA-66C9758A": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "66C9758A",
+    "words_hex": "103ead358c316b2d4b294a25e71ca5148510630c93094208d6092104941031c6",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 63,
+    "pal_candidates_at_position": 3,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-66C9758A.png",
+     "sha256": "672384d2ec5ca5bb7b5f81de53ae716c06dc798eeb107b3314d586526203341b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-66C9758A.png",
+     "sha256": "a379e727ea9466181e8d09259583559392eb414a3495660ad54ab18455014511",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5525
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3013
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 56049,
+    "share": 0.8552
+   }
+  },
+  "66A350AA-A91A16A0": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "A91A16A0",
+    "words_hex": "1042ce398c316b2d29250821e71cc618a5148410840c630c4208420021049452",
+    "kind": "static",
+    "vram_xy": [
+     48,
+     488
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 42,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-A91A16A0.png",
+     "sha256": "53b5723c9814ac8c9904d5bdb6ac867c4ac357d45d4d1fe30342a6a90b1c8884",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-A91A16A0.png",
+     "sha256": "e13a050f08d76c1c5f3e1bb7734cb318d58a1d0d80e7ea431c47041524f8d098",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5477
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3113
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 59823,
+    "share": 0.9128
+   }
+  },
+  "66A350AA-C822BCCF": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "C822BCCF",
+    "words_hex": "d6099605b21d9601911d74092a1ded084208040003008dad8490008000800080",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 55,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C822BCCF.png",
+     "sha256": "4032228bb79544c01aca5124dd19b8ad8da914b74f1a1c6ea9d5821df3741fce",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C822BCCF.png",
+     "sha256": "76dc8ca7eba79a599cea02d331a7d2fed6f908b7e8406a7de2c08800d02bcfc0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5907
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2863
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 54405,
+    "share": 0.8302
+   }
+  },
+  "66A350AA-C984F8E7": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "C984F8E7",
+    "words_hex": "1c00190017001500120010000e000b0009000700000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     486
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 24,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.555,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-C984F8E7.png",
+     "sha256": "6e23ffb08110c4aecfc9c61b867b45db5a67c4a79baccf3a5f3301db78b1034e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-C984F8E7.png",
+     "sha256": "dd68cd8e87b17f5d3124cc7d45b0f7d4dc0e325dda447c8023f9134ef9faf5f2",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 3869
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 1741
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 36345,
+    "centre_rgb_equals_native": 33081,
+    "share": 0.9102
+   }
+  },
+  "66A350AA-FCA3E805": {
+   "tex": "66A350AA",
+   "clut": {
+    "crc32": "FCA3E805",
+    "words_hex": "ad35d609e71c85108410630c42084208420821048d2d1480efbd31c694d20080",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 20,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/66A350AA-FCA3E805.png",
+     "sha256": "eb32ca7c470e0d2395e17585e50056d083b20017de547eee337893a99136041d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/66A350AA-FCA3E805.png",
+     "sha256": "72324055be7107cfae5e3cd55c9ea1845de73c01d1f9cbcd872f9898f7af3546",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5331
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2992
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 56084,
+    "share": 0.8558
+   }
+  }
+ },
+ "review": {
+  "sheets": [
+   "review/native-vs-hd-01.png",
+   "review/native-vs-hd-02.png",
+   "review/native-vs-hd-03.png",
+   "review/native-vs-hd-04.png",
+   "review/native-vs-hd-05.png",
+   "review/native-vs-hd-06.png",
+   "review/native-vs-hd-07.png",
+   "review/native-vs-hd-08.png",
+   "review/native-vs-hd-09.png",
+   "review/native-vs-hd-10.png",
+   "review/native-vs-hd-11.png",
+   "review/native-vs-hd-12.png",
+   "review/native-vs-hd-13.png"
+  ],
+  "note": "native | HD: full page at 2 px/texel, a 16x crop of the most detailed window, and a 64x64 window at 9 screen px per texel (2160-line in-game size) labelled SIMULATION (bilinear RGB, nearest class, no mips). No live frame exists for Stage 3."
+ },
+ "builder": {
+  "build_s3.py": "c75f16cd51c7536bf24d2730af4bcc73860f7f1a2b8e5b83cf240ec92a07e899",
+  "s3master.py": "8166aa31ca2ccc70375bd90069894dc28e5b8fd37b58381835c6c452aabed0a6",
+  "s3lib.py": "b55ac06cc90cb1bfa79e1213e416f24c2f5e5627a84aa2b741cb492c63800937",
+  "s3cells.py": "0086ccb19a02e0f8b3f3ccdaad7c20add6134969e5358946b23d8c86aed51425",
+  "calib_cells.py": "afbb1e2975d5ebf4be7d5e6c9bc9f62a6b2da703fed0ee3e5c67f86986195ca1"
+ },
+ "builder_origin": {
+  "note": "s3lib/s3master are copies of w7-stage2/tools/s2lib.py and s2master.py (paths, freeze check, review crop scoring changed)",
+  "w7_stage2_s2master": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "w7_stage2_s2lib": "bd6a99cde59d18c011528362c2d9d7bbe15ae195428f006131ccdb59df617fd3"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 = 0x0000, 255 = STP, 127 = opaque); every export re-read from disk",
+  "files": 50,
+  "mismatches": 0
+ },
+ "known_limits": [
+  "predicted keys only: no Stage 3 capture exists; PAL pairings are candidates from the model data (Stage 1 calibration: 160 of 3,052 likely page keys were observed), so some exported keys may never be drawn",
+  "cells are inferred from content on the 32-texel grid (calibration on Stage 2 draw rects at ratio 1.6: 12 of 208 interior lines falsely cut, 216 of 437 drawn-rect edges detected); small sprites inside a block are not isolated",
+  "categorical master: exact native colours and smooth contours, no generated material detail (CPU only; the GPU is down)"
+ ],
+ "honest_read": "Inspected staging review sheets 01-13 (2026-11-13, lane-s3). What it is: a contour-smoothed native, not a remastered surface. Colours are the exact native CLUT entries and the class map is exact (50 files, 0 mismatches), but there is no new material detail: every flat plateau is perfectly flat, so plates read as smooth plastic at 4K. At the 9 px/texel in-game SIMULATION it is clean and no longer blocky, and slightly softer than native. At 16x the weaknesses show: 1-texel lines (66A350AA vertical stripes, 59B55BC8 trim) bead and pinch, dithered stipple (66A350AA plate grime, B53A4C57 lower panels) becomes rounded blob mottling, and diagonal hazard stripes become rounded lozenges. Small native digits on 59B55BC8 (\"1910\"-like plate marks) keep their topology but get rounded corners. 8 of the 25 keys (B53A4C57 with 0584767D, 114545DB, 1E925EC8, 558EE0EC, 77620CF9, D9B206FA, F63AB6BA, FFF96EC9 at 7-11% visible) are 2-entry CLUTs: only two indices are visible, as scattered specks (near-black 8,8,8 for 1E925EC8/558EE0EC/D9B206FA, a dark-red pair for 114545DB, green/red/yellow/blue indicator pairs for the others). They are probably indicator-light or overlay passes, or wrong PAL pairings; harmless, but whether they are drawn is unknown. Whole-page renders under a non-owning CLUT (for example B53A4C57-A02A0ECB, all teal) only matter in the cells that CLUT really draws, which is unknown until AQ-03. Verdict: usable baseline that removes blockiness, not an HD surface; material layering is required before this can be called a remaster.",
+ "gpu_jobs_after_reboot": [
+  "material layering for the machinery walls and walkways (facade_chain s2c-style tileable swatches: painted steel, grating, hazard paint; reuse cached t7-enemies/facade swatches first, generate only missing ones): ~3-5 SDXL jobs, 1 slot",
+  "optional detail pass on the CAUTION sign plate and props (no glyph change; vector_typography for the letters): ~2 jobs"
+ ]
+}

@@ -1,0 +1,398 @@
+{
+  "driver": "run_rab_gap_r5.py",
+  "driver_sha256": "d84fee7e096997dd7a4ec520f0da9fbbd1003d94b4133f34f26b2becf3935ff2",
+  "supersedes": "run_rab_gap_r4.py 5d75f375, run_rab_gap_r3.py 3f74854d",
+  "patched_target": "CURRENT COMBINED header audio-telemetry-combined-r1 c84258e1 (not old gap-only 7de21fb8)",
+  "grant_id": "msg_b2b1e01caf214831",
+  "out": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147",
+  "started_utc": "2026-11-14T21:48:35Z",
+  "envelope_s": 105,
+  "caps_s": {
+    "compile:base": 25,
+    "run:base": 15,
+    "compile:patched": 25,
+    "run:patched": 15
+  },
+  "inputs": {
+    "toolchain": {
+      "invoked": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+      "invoked_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "real_dir": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin",
+      "files": {
+        "clang.exe": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang.exe",
+          "sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+          "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+        },
+        "clang-22.exe": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\clang-22.exe",
+          "sha256": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
+          "expected": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+        },
+        "libclang-cpp.dll": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libclang-cpp.dll",
+          "sha256": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
+          "expected": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+        },
+        "libLLVM-22.dll": {
+          "path": "C:\\Users\\Admin\\AppData\\Local\\retcomm\\toolchains\\cmake-clang-v1\\.staging-host\\bin\\libLLVM-22.dll",
+          "sha256": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+          "expected": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+        }
+      }
+    },
+    "fixture": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-gap-counter\\test_rab_gap_r3.c",
+      "read_sha256": "397202b9c22631a1732dada485c833bac727c5c5d4afda5dccb49f454c97aecf",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\test_rab_gap_r3.c",
+      "copy_sha256": "397202b9c22631a1732dada485c833bac727c5c5d4afda5dccb49f454c97aecf",
+      "expected": "397202b9c22631a1732dada485c833bac727c5c5d4afda5dccb49f454c97aecf"
+    },
+    "base_header": {
+      "original": "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\recomp_audio_drc.h",
+      "read_sha256": "70cb5acd5219d7bd2387757dc54072ae42bfcd158f8e3e24108971339ecc7a29",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\base_inc\\recomp_audio_drc.h",
+      "copy_sha256": "70cb5acd5219d7bd2387757dc54072ae42bfcd158f8e3e24108971339ecc7a29",
+      "expected": "70cb5acd5219d7bd2387757dc54072ae42bfcd158f8e3e24108971339ecc7a29"
+    },
+    "patched_header": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\recomp_audio_drc.h.proposed",
+      "read_sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "copy": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\patched_inc\\recomp_audio_drc.h",
+      "copy_sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c",
+      "expected": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    "base_exe": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\base.exe",
+      "sha256": "84a6c104d9653282f73e0c1fdeb7670dbd1549ab6d557af550cbf1d88aecbd9f"
+    },
+    "patched_exe": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\patched.exe",
+      "sha256": "204e316b92b5d9f52264e38104b19b9ae59c04e20e246023b4da0effb0a3c945"
+    }
+  },
+  "children": [
+    {
+      "step": "compile:base",
+      "argv": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+        "-O2",
+        "-std=c11",
+        "-Wall",
+        "-IC:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\base_inc",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\test_rab_gap_r3.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\base.exe"
+      ],
+      "start_utc": "2026-11-14T21:48:36Z",
+      "pid": 15608,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 25,
+      "creation_unix": 1794692916.1184185,
+      "elapsed_s": 0.374,
+      "stdout": "",
+      "stderr": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\test_rab_gap_r3.c:198:13: warning: unused variable 'mx' [-Wunused-variable]\r\n  198 |         ull mx = Lpost > 100 ? Lpost : 100;\r\n      |             ^~\r\n1 warning generated.\r\n"
+    },
+    {
+      "step": "run:base",
+      "argv": [
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\base.exe",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\base_run"
+      ],
+      "start_utc": "2026-11-14T21:48:36Z",
+      "pid": 13012,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 15,
+      "creation_unix": 1794692916.5131629,
+      "elapsed_s": 0.106,
+      "stdout": "{\"case\":\"unprimed_starvation\",\"build\":\"base\",\"marks\":[0]}\r\n{\"case\":\"one_gap\",\"build\":\"base\",\"marks\":[0,40836]}\r\n{\"case\":\"recovery\",\"build\":\"base\",\"marks\":[40836,40836]}\r\n{\"case\":\"multiple_gaps\",\"build\":\"base\",\"marks\":[0,40836,40836,81563,81563,122269,122269]}\r\n{\"case\":\"gap_split_across_callbacks\",\"build\":\"base\",\"marks\":[0,40838]}\r\n{\"case\":\"mute_then_unmute_reset\",\"build\":\"base\",\"marks\":[40836,40836,40936,40936,84063]}\r\n{\"case\":\"reset_by_init\",\"build\":\"base\",\"marks\":[40836,0]}\r\n",
+      "stderr": "RESULT PASS\r\n"
+    },
+    {
+      "step": "compile:patched",
+      "argv": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+        "-O2",
+        "-std=c11",
+        "-Wall",
+        "-DRAB_HAS_GAP",
+        "-IC:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\patched_inc",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\src\\test_rab_gap_r3.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\patched.exe"
+      ],
+      "start_utc": "2026-11-14T21:48:36Z",
+      "pid": 22924,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 25,
+      "creation_unix": 1794692916.6089933,
+      "elapsed_s": 0.457,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "step": "run:patched",
+      "argv": [
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\patched.exe",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-gap-Dr5-2147\\patched_run"
+      ],
+      "start_utc": "2026-11-14T21:48:37Z",
+      "pid": 42384,
+      "rc": 0,
+      "timed_out": false,
+      "timeout_s": 15,
+      "creation_unix": 1794692917.076079,
+      "elapsed_s": 0.12,
+      "stdout": "{\"case\":\"unprimed_starvation\",\"build\":\"patched\",\"marks\":[0],\"gaps\":0,\"max_gap\":0,\"cur_gap\":0,\"epoch\":0}\r\n{\"case\":\"one_gap\",\"build\":\"patched\",\"marks\":[0,40836],\"gaps\":1,\"max_gap\":40836,\"cur_gap\":40836,\"epoch\":0}\r\n{\"case\":\"recovery\",\"build\":\"patched\",\"marks\":[40836,40836],\"gaps\":1,\"max_gap\":40836,\"cur_gap\":0,\"epoch\":0}\r\n{\"case\":\"multiple_gaps\",\"build\":\"patched\",\"marks\":[0,40836,40836,81563,81563,122269,122269],\"gaps\":3,\"max_gap\":40836,\"cur_gap\":0,\"epoch\":0}\r\n{\"case\":\"gap_split_across_callbacks\",\"build\":\"patched\",\"marks\":[0,40838],\"gaps\":1,\"max_gap\":40838,\"cur_gap\":40838,\"epoch\":0}\r\n{\"case\":\"mute_then_unmute_reset\",\"build\":\"patched\",\"marks\":[40836,40836,40936,40936,84063],\"gaps\":2,\"max_gap\":43127,\"cur_gap\":43127,\"epoch\":1}\r\n{\"case\":\"reset_by_init\",\"build\":\"patched\",\"marks\":[40836,0],\"gaps\":0,\"max_gap\":0,\"cur_gap\":0,\"epoch\":0}\r\n",
+      "stderr": "RESULT PASS\r\n"
+    }
+  ],
+  "cases": {
+    "unprimed_starvation": {
+      "base": {
+        "pcm_sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
+        "pcm_bytes": 16384,
+        "line": {
+          "case": "unprimed_starvation",
+          "build": "base",
+          "marks": [
+            0
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
+        "pcm_bytes": 16384,
+        "line": {
+          "case": "unprimed_starvation",
+          "build": "patched",
+          "marks": [
+            0
+          ],
+          "gaps": 0,
+          "max_gap": 0,
+          "cur_gap": 0,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "one_gap": {
+      "base": {
+        "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "one_gap",
+          "build": "base",
+          "marks": [
+            0,
+            40836
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "one_gap",
+          "build": "patched",
+          "marks": [
+            0,
+            40836
+          ],
+          "gaps": 1,
+          "max_gap": 40836,
+          "cur_gap": 40836,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "recovery": {
+      "base": {
+        "pcm_sha256": "fd7d9624aec55dc2bff9f8255e8b90a7481fb6f394a9a03655263c32c470723c",
+        "pcm_bytes": 230400,
+        "line": {
+          "case": "recovery",
+          "build": "base",
+          "marks": [
+            40836,
+            40836
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "fd7d9624aec55dc2bff9f8255e8b90a7481fb6f394a9a03655263c32c470723c",
+        "pcm_bytes": 230400,
+        "line": {
+          "case": "recovery",
+          "build": "patched",
+          "marks": [
+            40836,
+            40836
+          ],
+          "gaps": 1,
+          "max_gap": 40836,
+          "cur_gap": 0,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "multiple_gaps": {
+      "base": {
+        "pcm_sha256": "1071dabc0708267b43cbd3c6d3dea237486e30c603a1fb41e2fb5546ab035f46",
+        "pcm_bytes": 624000,
+        "line": {
+          "case": "multiple_gaps",
+          "build": "base",
+          "marks": [
+            0,
+            40836,
+            40836,
+            81563,
+            81563,
+            122269,
+            122269
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "1071dabc0708267b43cbd3c6d3dea237486e30c603a1fb41e2fb5546ab035f46",
+        "pcm_bytes": 624000,
+        "line": {
+          "case": "multiple_gaps",
+          "build": "patched",
+          "marks": [
+            0,
+            40836,
+            40836,
+            81563,
+            81563,
+            122269,
+            122269
+          ],
+          "gaps": 3,
+          "max_gap": 40836,
+          "cur_gap": 0,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "gap_split_across_callbacks": {
+      "base": {
+        "pcm_sha256": "e5e35c7ea73dc702c0cd0c515271308256df62645e159243002b545d024309f5",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "gap_split_across_callbacks",
+          "build": "base",
+          "marks": [
+            0,
+            40838
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "e5e35c7ea73dc702c0cd0c515271308256df62645e159243002b545d024309f5",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "gap_split_across_callbacks",
+          "build": "patched",
+          "marks": [
+            0,
+            40838
+          ],
+          "gaps": 1,
+          "max_gap": 40838,
+          "cur_gap": 40838,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "mute_then_unmute_reset": {
+      "base": {
+        "pcm_sha256": "a82b95ea67ee2ebf926333abd491d920f509c6910704ffc27558a59eee6c60e8",
+        "pcm_bytes": 422800,
+        "line": {
+          "case": "mute_then_unmute_reset",
+          "build": "base",
+          "marks": [
+            40836,
+            40836,
+            40936,
+            40936,
+            84063
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "a82b95ea67ee2ebf926333abd491d920f509c6910704ffc27558a59eee6c60e8",
+        "pcm_bytes": 422800,
+        "line": {
+          "case": "mute_then_unmute_reset",
+          "build": "patched",
+          "marks": [
+            40836,
+            40836,
+            40936,
+            40936,
+            84063
+          ],
+          "gaps": 2,
+          "max_gap": 43127,
+          "cur_gap": 43127,
+          "epoch": 1
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    },
+    "reset_by_init": {
+      "base": {
+        "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "reset_by_init",
+          "build": "base",
+          "marks": [
+            40836,
+            0
+          ]
+        }
+      },
+      "patched": {
+        "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+        "pcm_bytes": 211200,
+        "line": {
+          "case": "reset_by_init",
+          "build": "patched",
+          "marks": [
+            40836,
+            0
+          ],
+          "gaps": 0,
+          "max_gap": 0,
+          "cur_gap": 0,
+          "epoch": 0
+        }
+      },
+      "pcm_equal": true,
+      "old_counter_marks_equal": true
+    }
+  },
+  "verdict": "PASS",
+  "reasons": [],
+  "errors": [],
+  "note": "outer Job receipt is authoritative for wall/memory limits",
+  "finished_utc": "2026-11-14T21:48:37Z"
+}

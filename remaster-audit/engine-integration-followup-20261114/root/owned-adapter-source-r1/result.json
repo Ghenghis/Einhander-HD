@@ -1,0 +1,28 @@
+{
+  "at_utc": "2026-11-14T20:03:15.669772+00:00",
+  "source": "C:\\github\\Einhander\\remaster-audit\\owned_gl_adapter_observation.py",
+  "sha256": "b0c24540ac378e9f36425ace54fac6bfebd81449a8bb885ba700fc7601983021",
+  "bytes": 9471,
+  "syntax_valid": true,
+  "imported": false,
+  "tests_executed": false,
+  "os_observation_executed": false,
+  "socket_query_executed": false,
+  "game_run": false,
+  "gpu_run": false,
+  "integrated_into_runner": false,
+  "peer_review": "requested from actual native Claude support",
+  "contracts": [
+    "retained Popen identity+executable; no launch/kill",
+    "global TCP metadata to reject duplicate/wildcard/foreign listener",
+    "exact IPv4 loopback port; two n=1 requests only; no retry",
+    "RPC2s/16KiB; listener1s acceptance deadline, external Job still required for blocked OS calls",
+    "partial failure receipts; bounded full startup bytes; pure-validator final acceptance"
+  ],
+  "remaining": [
+    "native source review",
+    "focused synthetic listener/transport failure controls on a fresh grant",
+    "actual owned-child listener test on a fresh grant",
+    "wire explicit private-game qualification; build identity patch and qualify real game"
+  ]
+}

@@ -1,0 +1,3939 @@
+{
+ "name": "stage2-train-cars-v4",
+ "title": "Stage 2 train-car set pieces: contrast-adaptive shape pass + toned material layer over stage2-train-cars-v3",
+ "track": "w7-stage2",
+ "lane": "lane-s2",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-01/AQ-03 Stage 2 capture)",
+ "created_at_utc": "2026-11-13T23:37:12.225550+00:00",
+ "method": "W7-STAGE2 train-car per-panel shape pass (lane-s2, claude-einhander).  CPU only, deterministic, nothing generated.\n\nProblem (v2 / v3): the categorical master turns the native low-contrast dither / weathering grain inside the car panels\n(isolated 1-3 texel specks of a neighbouring tone) into small hard-edged rounded blobs: a 'melted camouflage' look at 4K.\nOn the PSX that grain was never a shape; it was tonal mottling.\n\nPass, per drawn static key (its CLUT), per drawn cell (cell isolation, own texels only):\n  grain   4-connected components of equal native COLOUR with <= GRAIN_MAX texels and a bbox <= 2 x 2, low contrast to\n          their 3x3 surround (|dL| <= DL_MAX and RGB distance <= DC_MAX), opaque (class 127) with an all-opaque 3x3\n          surround, outside the protected lettering rects.  High-contrast specks (rivets, bolts, lamps, arrows, marking\n          dashes) and every larger shape keep the categorical render.\n  soft    RGB_soft = normalised gaussian (SIGMA_SOFT texels) of the native colours of the cell's opaque texels,\n          texel-centred bilinear 8x upsample.\n  blend   w = gaussian-feathered (FEATHER texel) grain mask; RGB = v3 + w * (RGB_soft - v2) * factor, factor = the v3\n          material layer (frozen/stage2-train-cars-v3/master/<TEX>-material-factor-8x.npz); where w == 0, v4 == v3 bit for bit.\n  alpha   bit-identical to v3 (= v2); class re-validated at every native texel centre on re-read.\nProtected: 1BC35EBE uv [64,96,128,128] (painted lettering + eye emblem): no shape change in that cell, and the glyph\npixels carry factor 1 (mat_layer glyph protection), so every glyph pixel equals v2 / v3 exactly (checked per build).\nv4 option K_LP: the material layer is rebuilt with a weaker large-blotch mottling (k_lp 0.15 -> 0.08), same swatch.\nusage: python -I shape_pass.py build <run> | freeze <run> <cfg.json>",
+ "supersedes": "stage2-train-cars-v3 RGB of all 20 keys (alpha planes bit-identical to v3 / v2). v3 stays untouched.",
+ "base": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/frozen/stage2-train-cars-v3",
+  "manifest_sha256": "00e168a89413c8490bddab3abfae80ea5627a422c14897fe9dd1085f57e82bfa"
+ },
+ "params": {
+  "MODE": "contrast",
+  "DC_LO": 24.0,
+  "DC_HI": 48.0,
+  "SIGMA_SOFT": 0.7,
+  "K_LP": 0.08
+ },
+ "protect": {
+  "1BC35EBE": [
+   [
+    64,
+    96,
+    128,
+    128
+   ]
+  ]
+ },
+ "generated_imagery": "none new (swatch grey_deck_v3a from stage2-train-cars-v3 comfy/)",
+ "comfyui": null,
+ "gpu": null,
+ "pages": {
+  "0F01F0FA": {
+   "material_layer": {
+    "path": "master/0F01F0FA-material-factor-8x.npz",
+    "sha256": "a8fc51c143b32d86e72d0edb37ffa9cd9f79f81c43c443ac0a44b55d27e6aefb",
+    "k_lp": 0.08
+   },
+   "index_master_from": {
+    "frozen": "stage2-train-cars-v2",
+    "entry": {
+     "path": "master/0F01F0FA-index-master-8x.npz",
+     "sha256": "e72c0c684bdf2160f414f9a49ae5ebcf66ad1555084f74343bf4c65fa42ae2fb"
+    }
+   }
+  },
+  "1BC35EBE": {
+   "material_layer": {
+    "path": "master/1BC35EBE-material-factor-8x.npz",
+    "sha256": "0448840c24b28135acf363c63565c4055ae78a57ddacfa8371066a9743b2f139",
+    "k_lp": 0.08
+   },
+   "index_master_from": {
+    "frozen": "stage2-train-cars-v2",
+    "entry": {
+     "path": "master/1BC35EBE-index-master-8x.npz",
+     "sha256": "5847b20bb91d6133b5029a8e793d2f1633bca2c8a0fa42fe2a187412b7f7fd01"
+    }
+   }
+  },
+  "6C5AC447": {
+   "material_layer": {
+    "path": "master/6C5AC447-material-factor-8x.npz",
+    "sha256": "a8fc51c143b32d86e72d0edb37ffa9cd9f79f81c43c443ac0a44b55d27e6aefb",
+    "k_lp": 0.08
+   },
+   "index_master_from": {
+    "frozen": "stage2-train-cars-v2",
+    "entry": {
+     "path": "master/6C5AC447-index-master-8x.npz",
+     "sha256": "b2527c74f05346ed1e9f639b84e5664b585e824c1050e7bd167d0504766f0d16"
+    }
+   }
+  }
+ },
+ "keys": {
+  "0F01F0FA-8FD3DE52": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "8FD3DE52",
+    "words_hex": "1f007342523a1032ef2dce29ad29ad258c214a1d4a21e70ca514840c630c2104",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 5,
+    "frames": [
+     97851,
+     98091
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      0,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       193,
+       65,
+       255,
+       95
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       65,
+       255,
+       95
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       96,
+       255,
+       127
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       96,
+       254,
+       127
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       64,
+       255,
+       95
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-8FD3DE52.png",
+     "sha256": "bd9d41346c4a0fb5ae37fe54a5bafb11b0275620633a284856f26787671f14cb",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-8FD3DE52.png",
+     "sha256": "44b38aa50102316bfb3c5607c0cfb46adcaec817a2787f80afd28752b23a844e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 639,
+      "texels": 2048,
+      "rect": [
+       192,
+       64,
+       256,
+       96
+      ]
+     },
+     {
+      "soft_texels": 1082,
+      "texels": 2048,
+      "rect": [
+       192,
+       96,
+       256,
+       128
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3061630,
+     "mean_lum_ratio_v4_v3": 1.0008,
+     "mean_abs_lum_change": 1.51,
+     "weight_px": 160773,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      64,
+      256,
+      96
+     ],
+     "px_changed_vs_page_render": 5122,
+     "max_abs_diff": 100
+    },
+    {
+     "rect": [
+      192,
+      96,
+      256,
+      128
+     ],
+     "px_changed_vs_page_render": 4806,
+     "max_abs_diff": 115
+    }
+   ]
+  },
+  "0F01F0FA-B692B4C2": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "B692B4C2",
+    "words_hex": "ef2dce29ad29ad258c216b1d4a254a19291508210815e71cc618a51484104208",
+    "kind": "static",
+    "vram_xy": [
+     112,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 3,
+    "frames": [
+     97916,
+     98046
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      112,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       128,
+       255,
+       191
+      ],
+      2
+     ],
+     [
+      [
+       192,
+       129,
+       255,
+       191
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-B692B4C2.png",
+     "sha256": "deda6079fedc08b63919c99f37cc04dbcd665b28c249379977f66959b61a0e36",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-B692B4C2.png",
+     "sha256": "56cafc86902d5d70332cdf6586b3394cf7211f2650f1dd22fc5b104d02c5d0a6",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 1324,
+      "texels": 4096,
+      "rect": [
+       192,
+       128,
+       256,
+       192
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3068356,
+     "mean_lum_ratio_v4_v3": 1.0001,
+     "mean_abs_lum_change": 1.35,
+     "weight_px": 172910,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      128,
+      256,
+      192
+     ],
+     "px_changed_vs_page_render": 5385,
+     "max_abs_diff": 77
+    }
+   ]
+  },
+  "0F01F0FA-BE954EE4": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "BE954EE4",
+    "words_hex": "7342ef2dce29ad258c258c216b216b1d4a1d4a192919291508150811e710a50c",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 3,
+    "frames": [
+     97934,
+     98054
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      224,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       0,
+       0,
+       63,
+       62
+      ],
+      1
+     ],
+     [
+      [
+       64,
+       64,
+       127,
+       127
+      ],
+      1
+     ],
+     [
+      [
+       63,
+       0,
+       127,
+       62
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-BE954EE4.png",
+     "sha256": "c25ce4512ab52cae5e370e520e22ba3f3fb7c48ba00f3afb55aefcf2eb7a27f1",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-BE954EE4.png",
+     "sha256": "df00534756b80fb47780ac94b6983d55b71b70b0540915450d1232a9ca00ab9e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 4745,
+      "texels": 8064,
+      "rect": [
+       0,
+       0,
+       128,
+       63
+      ]
+     },
+     {
+      "soft_texels": 2315,
+      "texels": 4096,
+      "rect": [
+       64,
+       64,
+       128,
+       128
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3481946,
+     "mean_lum_ratio_v4_v3": 1.0003,
+     "mean_abs_lum_change": 1.62,
+     "weight_px": 599552,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      0,
+      0,
+      128,
+      63
+     ],
+     "px_changed_vs_page_render": 2744,
+     "max_abs_diff": 30
+    },
+    {
+     "rect": [
+      64,
+      64,
+      128,
+      128
+     ],
+     "px_changed_vs_page_render": 6973,
+     "max_abs_diff": 93
+    }
+   ]
+  },
+  "0F01F0FA-CDBFF4CE": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "CDBFF4CE",
+    "words_hex": "313aef2dce29ad29ad258c256b214a294a190815e71cc618a5148410630c4208",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 5,
+    "frames": [
+     97851,
+     98091
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      32,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       64,
+       128,
+       127,
+       158
+      ],
+      2
+     ],
+     [
+      [
+       64,
+       128,
+       126,
+       159
+      ],
+      1
+     ],
+     [
+      [
+       64,
+       128,
+       126,
+       158
+      ],
+      1
+     ],
+     [
+      [
+       0,
+       128,
+       63,
+       191
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-CDBFF4CE.png",
+     "sha256": "d7ef34f6f16bdd851f23e34bc00497cc7505149d2cc8a17db27a1b57aeaa8501",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-CDBFF4CE.png",
+     "sha256": "5d06d9e8748ec18ce798b73c27e2dac53e86d77f5119e94fb38ecf1f15e30e8c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 693,
+      "texels": 2048,
+      "rect": [
+       64,
+       128,
+       128,
+       160
+      ]
+     },
+     {
+      "soft_texels": 1664,
+      "texels": 4096,
+      "rect": [
+       0,
+       128,
+       64,
+       192
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3037525,
+     "mean_lum_ratio_v4_v3": 1.0002,
+     "mean_abs_lum_change": 1.42,
+     "weight_px": 255105,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      64,
+      128,
+      128,
+      160
+     ],
+     "px_changed_vs_page_render": 3623,
+     "max_abs_diff": 88
+    },
+    {
+     "rect": [
+      0,
+      128,
+      64,
+      192
+     ],
+     "px_changed_vs_page_render": 4903,
+     "max_abs_diff": 36
+    }
+   ]
+  },
+  "0F01F0FA-E8247720": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "E8247720",
+    "words_hex": "733eef2dad29ad258c258c216b256b216b1d4a1d29190815e714e710c610a508",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 5,
+    "frames": [
+     97851,
+     98091
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      240,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       193,
+       0,
+       255,
+       63
+      ],
+      3
+     ],
+     [
+      [
+       192,
+       0,
+       255,
+       63
+      ],
+      2
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-E8247720.png",
+     "sha256": "6a2db92d418acbb3ee3d96f7ffe9eb8b7ed2129126cb3979a376d3107702b91a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-E8247720.png",
+     "sha256": "eac902d07b273c8ab0e924758fbb96cdb984382b71acc211bcc408b24d855e80",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 2301,
+      "texels": 4096,
+      "rect": [
+       192,
+       0,
+       256,
+       64
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3378011,
+     "mean_lum_ratio_v4_v3": 1.0002,
+     "mean_abs_lum_change": 1.52,
+     "weight_px": 207165,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      0,
+      256,
+      64
+     ],
+     "px_changed_vs_page_render": 1620,
+     "max_abs_diff": 23
+    }
+   ]
+  },
+  "0F01F0FA-F11578EE": {
+   "tex": "0F01F0FA",
+   "clut": {
+    "crc32": "F11578EE",
+    "words_hex": "ff7fe07f00000000000000000000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     16,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 3,
+    "frames": [
+     97934,
+     98054
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      16,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       128,
+       128,
+       191,
+       190
+      ],
+      2
+     ],
+     [
+      [
+       128,
+       128,
+       191,
+       191
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/0F01F0FA-F11578EE.png",
+     "sha256": "144a2a9dd5220c24a10ba77449ec9f6990ad355362b77f1b9066e9f148b9d5c4",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/0F01F0FA-F11578EE.png",
+     "sha256": "05f510d8cde35181e325e20eead36d63a46f838c4af783c924333e47455bd81a",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 0,
+      "texels": 4096,
+      "rect": [
+       128,
+       128,
+       192,
+       192
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 242060,
+     "mean_lum_ratio_v4_v3": 1.0059,
+     "mean_abs_lum_change": 2.94,
+     "weight_px": 0,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      128,
+      128,
+      192,
+      192
+     ],
+     "px_changed_vs_page_render": 0,
+     "max_abs_diff": 0
+    }
+   ]
+  },
+  "1BC35EBE-0A8C366F": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "0A8C366F",
+    "words_hex": "ff7f733e3136ef2dad258c216b296b1d4a19291d291508150811a514a50c0080",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 7,
+    "frames": [
+     97556,
+     97916
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      144,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       80,
+       32,
+       127,
+       63
+      ],
+      3
+     ],
+     [
+      [
+       64,
+       17,
+       127,
+       31
+      ],
+      2
+     ],
+     [
+      [
+       80,
+       32,
+       126,
+       63
+      ],
+      1
+     ],
+     [
+      [
+       0,
+       0,
+       63,
+       63
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-0A8C366F.png",
+     "sha256": "895989c47d649e8a263a587c8472f956891ee40a9344b5ffefbe8b9053f7834d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-0A8C366F.png",
+     "sha256": "af7239a8589a2b6289c88f07fef6b99fc1d1bacb375340e50a3b7147409b21bb",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 427,
+      "texels": 1536,
+      "rect": [
+       80,
+       32,
+       128,
+       64
+      ]
+     },
+     {
+      "soft_texels": 274,
+      "texels": 960,
+      "rect": [
+       64,
+       17,
+       128,
+       32
+      ]
+     },
+     {
+      "soft_texels": 1414,
+      "texels": 4096,
+      "rect": [
+       0,
+       0,
+       64,
+       64
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2719151,
+     "mean_lum_ratio_v4_v3": 1.0042,
+     "mean_abs_lum_change": 2.15,
+     "weight_px": 214784,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 9390,
+      "max_diff_vs_v2": 0,
+      "max_diff_vs_v3": 0
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      80,
+      32,
+      128,
+      64
+     ],
+     "px_changed_vs_page_render": 3993,
+     "max_abs_diff": 80
+    },
+    {
+     "rect": [
+      64,
+      17,
+      128,
+      32
+     ],
+     "px_changed_vs_page_render": 2532,
+     "max_abs_diff": 93
+    },
+    {
+     "rect": [
+      0,
+      0,
+      64,
+      64
+     ],
+     "px_changed_vs_page_render": 2175,
+     "max_abs_diff": 22
+    }
+   ]
+  },
+  "1BC35EBE-0E52E513": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "0E52E513",
+    "words_hex": "ff7f1032ce35ce29ad2d8c216b1d2925291508210811e71ce710a514630c4208",
+    "kind": "static",
+    "vram_xy": [
+     112,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 8,
+    "frames": [
+     97569,
+     97989
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      112,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       128,
+       32,
+       191,
+       63
+      ],
+      7
+     ],
+     [
+      [
+       128,
+       0,
+       191,
+       31
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-0E52E513.png",
+     "sha256": "1bb6376910ae6fc26c872d0a3b8e9373b2ba483a057851205023993c75bb6f25",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-0E52E513.png",
+     "sha256": "812166110342b439968f0ea3f4f5fc52a2769a2887bf14c07a3ec4748383327f",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 126,
+      "texels": 2048,
+      "rect": [
+       128,
+       32,
+       192,
+       64
+      ]
+     },
+     {
+      "soft_texels": 471,
+      "texels": 2048,
+      "rect": [
+       128,
+       0,
+       192,
+       32
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2652832,
+     "mean_lum_ratio_v4_v3": 1.004,
+     "mean_abs_lum_change": 2.06,
+     "weight_px": 115288,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 9261,
+      "max_diff_vs_v2": 0,
+      "max_diff_vs_v3": 0
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      128,
+      32,
+      192,
+      64
+     ],
+     "px_changed_vs_page_render": 7097,
+     "max_abs_diff": 168
+    },
+    {
+     "rect": [
+      128,
+      0,
+      192,
+      32
+     ],
+     "px_changed_vs_page_render": 3829,
+     "max_abs_diff": 47
+    }
+   ]
+  },
+  "1BC35EBE-34F92FE6": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "34F92FE6",
+    "words_hex": "ff7f851022042b19e814b01dd11d8e1d351ebe57be4bdf33df23bd67de3b0000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 8,
+    "frames": [
+     97545,
+     97965
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      128,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       225,
+       32,
+       239,
+       46
+      ],
+      5
+     ],
+     [
+      [
+       224,
+       32,
+       239,
+       46
+      ],
+      2
+     ],
+     [
+      [
+       225,
+       0,
+       255,
+       31
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-34F92FE6.png",
+     "sha256": "e75a04c7cf7ff2f4382771dd4ff64afe3dc7d67cb6da1b3b1c7f5f0df8e30816",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-34F92FE6.png",
+     "sha256": "e9934aff2174f255ae8f1f222cea0856a3592829bee8f17341104eb3576b7408",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 13,
+      "texels": 240,
+      "rect": [
+       224,
+       32,
+       240,
+       47
+      ]
+     },
+     {
+      "soft_texels": 0,
+      "texels": 992,
+      "rect": [
+       225,
+       0,
+       256,
+       32
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2713927,
+     "mean_lum_ratio_v4_v3": 1.0035,
+     "mean_abs_lum_change": 2.37,
+     "weight_px": 2502,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 110112,
+      "max_diff_vs_v2": 73,
+      "max_diff_vs_v3": 12
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      224,
+      32,
+      240,
+      47
+     ],
+     "px_changed_vs_page_render": 1112,
+     "max_abs_diff": 31
+    },
+    {
+     "rect": [
+      225,
+      0,
+      256,
+      32
+     ],
+     "px_changed_vs_page_render": 56,
+     "max_abs_diff": 127
+    }
+   ]
+  },
+  "1BC35EBE-A537C5E8": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "A537C5E8",
+    "words_hex": "ff7fff4300000000000000000000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     483
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 7,
+    "frames": [
+     97556,
+     97916
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      128,
+      483
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       129,
+       64,
+       191,
+       80
+      ],
+      3
+     ],
+     [
+      [
+       129,
+       64,
+       191,
+       81
+      ],
+      2
+     ],
+     [
+      [
+       128,
+       64,
+       191,
+       80
+      ],
+      1
+     ],
+     [
+      [
+       128,
+       64,
+       191,
+       81
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-A537C5E8.png",
+     "sha256": "c249bf38fc751c3a4cf7957a724227c1303a788d5f7bbfbab3f23104a69a4bcb",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-A537C5E8.png",
+     "sha256": "09b8bcc10a0e7816b9caa474de97695d8f287537e309a97e62939ed432b60960",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 0,
+      "texels": 1152,
+      "rect": [
+       128,
+       64,
+       192,
+       82
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 1323159,
+     "mean_lum_ratio_v4_v3": 1.0044,
+     "mean_abs_lum_change": 2.74,
+     "weight_px": 0,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 15612,
+      "max_diff_vs_v2": 37,
+      "max_diff_vs_v3": 10
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      128,
+      64,
+      192,
+      82
+     ],
+     "px_changed_vs_page_render": 3,
+     "max_abs_diff": 248
+    }
+   ]
+  },
+  "1BC35EBE-B4827EFC": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "B4827EFC",
+    "words_hex": "ff7f1036ad258c216b1d4a192919291508150811e710c60ca50ca50884086304",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 12,
+    "frames": [
+     97587,
+     98020
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      64,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       64,
+       128,
+       127,
+       159
+      ],
+      8
+     ],
+     [
+      [
+       64,
+       96,
+       127,
+       127
+      ],
+      3
+     ],
+     [
+      [
+       64,
+       96,
+       126,
+       127
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-B4827EFC.png",
+     "sha256": "31d52d2284638862e25d4902802b93d3dfb168251d3d6ab5a78cb0b592b40f58",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-B4827EFC.png",
+     "sha256": "086c87c3cc03f99c4a8f1af89577c14589b2970066f613ed57a233b267125b92",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 1189,
+      "texels": 2048,
+      "rect": [
+       64,
+       128,
+       128,
+       160
+      ]
+     },
+     {
+      "soft_texels": 695,
+      "texels": 2048,
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2653497,
+     "mean_lum_ratio_v4_v3": 1.0041,
+     "mean_abs_lum_change": 2.0,
+     "weight_px": 105758,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 9106,
+      "max_diff_vs_v2": 0,
+      "max_diff_vs_v3": 0
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      64,
+      128,
+      128,
+      160
+     ],
+     "px_changed_vs_page_render": 6921,
+     "max_abs_diff": 138
+    },
+    {
+     "rect": [
+      64,
+      96,
+      128,
+      128
+     ],
+     "px_changed_vs_page_render": 6136,
+     "max_abs_diff": 60
+    }
+   ]
+  },
+  "1BC35EBE-F954F9F4": {
+   "tex": "1BC35EBE",
+   "clut": {
+    "crc32": "F954F9F4",
+    "words_hex": "ff7f1f007342523a31361032ef2dce29ad29ad258c216b216b1d4a1d29156300",
+    "kind": "static",
+    "vram_xy": [
+     160,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 8,
+    "frames": [
+     97572,
+     97992
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      160,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       208,
+       16,
+       223,
+       31
+      ],
+      6
+     ],
+     [
+      [
+       208,
+       16,
+       222,
+       31
+      ],
+      1
+     ],
+     [
+      [
+       209,
+       16,
+       223,
+       31
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/1BC35EBE-F954F9F4.png",
+     "sha256": "85d6ab3b43f19ede24033758f8bb66e582f0c6155579e4c12d58ce32ad90fe76",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/1BC35EBE-F954F9F4.png",
+     "sha256": "d1532ecdcb6e2f75f64c859365126fdf18ff5aa526fc1972dde0928997299095",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 82,
+      "texels": 256,
+      "rect": [
+       208,
+       16,
+       224,
+       32
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2822404,
+     "mean_lum_ratio_v4_v3": 1.004,
+     "mean_abs_lum_change": 2.26,
+     "weight_px": 11693,
+     "lettering": {
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ],
+      "glyph_px": 9424,
+      "max_diff_vs_v2": 0,
+      "max_diff_vs_v3": 0
+     }
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      208,
+      16,
+      224,
+      32
+     ],
+     "px_changed_vs_page_render": 1160,
+     "max_abs_diff": 93
+    }
+   ]
+  },
+  "6C5AC447-01E11FC0": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "01E11FC0",
+    "words_hex": "ff7f2925e71cc618a514630c4208000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     96,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 7,
+    "frames": [
+     97588,
+     97948
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      96,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       224,
+       192,
+       255,
+       224
+      ],
+      5
+     ],
+     [
+      [
+       225,
+       211,
+       255,
+       236
+      ],
+      1
+     ],
+     [
+      [
+       224,
+       211,
+       255,
+       236
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-01E11FC0.png",
+     "sha256": "d75efed2eb9f6423cb882e6c356168779015b092181bfdbcee6d12107c0ad9bb",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-01E11FC0.png",
+     "sha256": "1089c77b1ab829cea5405858a8b4507f81f026dff56cafc73163c774d5710293",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 242,
+      "texels": 1440,
+      "rect": [
+       224,
+       192,
+       256,
+       237
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 1229810,
+     "mean_lum_ratio_v4_v3": 0.9987,
+     "mean_abs_lum_change": 0.9,
+     "weight_px": 26040,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      224,
+      192,
+      256,
+      237
+     ],
+     "px_changed_vs_page_render": 441,
+     "max_abs_diff": 15
+    }
+   ]
+  },
+  "6C5AC447-1930C7FD": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "1930C7FD",
+    "words_hex": "ff7f21044208630c8410a514c618e71c082129254a296b2d8c31ad35ce39ef3d",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 10,
+    "frames": [
+     97545,
+     98085
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      0,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       168,
+       223,
+       191
+      ],
+      6
+     ],
+     [
+      [
+       192,
+       128,
+       254,
+       159
+      ],
+      2
+     ],
+     [
+      [
+       128,
+       128,
+       191,
+       159
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       128,
+       255,
+       159
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-1930C7FD.png",
+     "sha256": "40e73178dddabb2f49929e2117a07a57ecd31c9614750ee21e78d846f408d763",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-1930C7FD.png",
+     "sha256": "e9e09ace5219bcd2114fb9987ccd55267f3d16350a1a0f1a9c8b3088f6e504fd",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 367,
+      "texels": 768,
+      "rect": [
+       192,
+       168,
+       224,
+       192
+      ]
+     },
+     {
+      "soft_texels": 671,
+      "texels": 2048,
+      "rect": [
+       192,
+       128,
+       256,
+       160
+      ]
+     },
+     {
+      "soft_texels": 1164,
+      "texels": 2048,
+      "rect": [
+       128,
+       128,
+       192,
+       160
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2588657,
+     "mean_lum_ratio_v4_v3": 1.0001,
+     "mean_abs_lum_change": 1.09,
+     "weight_px": 202717,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      168,
+      224,
+      192
+     ],
+     "px_changed_vs_page_render": 2670,
+     "max_abs_diff": 71
+    },
+    {
+     "rect": [
+      192,
+      128,
+      256,
+      160
+     ],
+     "px_changed_vs_page_render": 3514,
+     "max_abs_diff": 113
+    },
+    {
+     "rect": [
+      128,
+      128,
+      192,
+      160
+     ],
+     "px_changed_vs_page_render": 3662,
+     "max_abs_diff": 59
+    }
+   ]
+  },
+  "6C5AC447-413E2F28": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "413E2F28",
+    "words_hex": "4208630c8410a514c618e71c082129254a296b2dad351f008410000000000000",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 9,
+    "frames": [
+     97576,
+     98056
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      80,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       96,
+       224,
+       127,
+       239
+      ],
+      6
+     ],
+     [
+      [
+       0,
+       192,
+       63,
+       255
+      ],
+      3
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-413E2F28.png",
+     "sha256": "20fea8a9a61ba3a77e7cd6921685798fc127861dd74ba03429d41f546ea2e8e5",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-413E2F28.png",
+     "sha256": "6342fb3d2adc3c8f9f8fea54d14b234b5ac3ef0bcbf20e4040811b2859ab1d5f",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 224,
+      "texels": 512,
+      "rect": [
+       96,
+       224,
+       128,
+       240
+      ]
+     },
+     {
+      "soft_texels": 1181,
+      "texels": 4096,
+      "rect": [
+       0,
+       192,
+       64,
+       256
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2433028,
+     "mean_lum_ratio_v4_v3": 1.0014,
+     "mean_abs_lum_change": 1.02,
+     "weight_px": 146972,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      96,
+      224,
+      128,
+      240
+     ],
+     "px_changed_vs_page_render": 1787,
+     "max_abs_diff": 50
+    },
+    {
+     "rect": [
+      0,
+      192,
+      64,
+      256
+     ],
+     "px_changed_vs_page_render": 1289,
+     "max_abs_diff": 127
+    }
+   ]
+  },
+  "6C5AC447-58B6A90A": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "58B6A90A",
+    "words_hex": "733e1032ef2dce35ce29ad258c216b216b1d4a192925291929150821081da50c",
+    "kind": "static",
+    "vram_xy": [
+     224,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 10,
+    "frames": [
+     97589,
+     98129
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      224,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       64,
+       96,
+       127,
+       127
+      ],
+      7
+     ],
+     [
+      [
+       0,
+       0,
+       63,
+       63
+      ],
+      1
+     ],
+     [
+      [
+       65,
+       96,
+       127,
+       127
+      ],
+      1
+     ],
+     [
+      [
+       64,
+       64,
+       126,
+       95
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-58B6A90A.png",
+     "sha256": "c56742d8a06ef2c3a555d235db1c4719e438e1bac773d8583dea9bdcd734b5dc",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-58B6A90A.png",
+     "sha256": "d10255e8aa5e0546e86b0cbcbf49a2a2b6d4a07d0abbb65679844cebed84a2e8",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 906,
+      "texels": 2048,
+      "rect": [
+       64,
+       96,
+       128,
+       128
+      ]
+     },
+     {
+      "soft_texels": 1651,
+      "texels": 4096,
+      "rect": [
+       0,
+       0,
+       64,
+       64
+      ]
+     },
+     {
+      "soft_texels": 1085,
+      "texels": 2016,
+      "rect": [
+       64,
+       64,
+       127,
+       96
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3472722,
+     "mean_lum_ratio_v4_v3": 0.9998,
+     "mean_abs_lum_change": 1.71,
+     "weight_px": 334489,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      64,
+      96,
+      128,
+      128
+     ],
+     "px_changed_vs_page_render": 5327,
+     "max_abs_diff": 80
+    },
+    {
+     "rect": [
+      0,
+      0,
+      64,
+      64
+     ],
+     "px_changed_vs_page_render": 4199,
+     "max_abs_diff": 52
+    },
+    {
+     "rect": [
+      64,
+      64,
+      127,
+      96
+     ],
+     "px_changed_vs_page_render": 4675,
+     "max_abs_diff": 71
+    }
+   ]
+  },
+  "6C5AC447-706102D6": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "706102D6",
+    "words_hex": "523eef2dce29ad29ad258c258c216b216b1d4a1d4a1908210811e71cc618a510",
+    "kind": "static",
+    "vram_xy": [
+     32,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 9,
+    "frames": [
+     97540,
+     98020
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      32,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       64,
+       255,
+       95
+      ],
+      3
+     ],
+     [
+      [
+       128,
+       64,
+       191,
+       127
+      ],
+      3
+     ],
+     [
+      [
+       192,
+       64,
+       254,
+       95
+      ],
+      2
+     ],
+     [
+      [
+       224,
+       96,
+       255,
+       127
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-706102D6.png",
+     "sha256": "aa275abcd7ecbcc57e3b601dd6374b72dfd9058e8f8b564107467c68c98d43fa",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-706102D6.png",
+     "sha256": "36ac4ade887dd406a6357148c743608eedccff3917508d8e896f3407445d6ce5",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 1086,
+      "texels": 2048,
+      "rect": [
+       192,
+       64,
+       256,
+       96
+      ]
+     },
+     {
+      "soft_texels": 1822,
+      "texels": 4096,
+      "rect": [
+       128,
+       64,
+       192,
+       128
+      ]
+     },
+     {
+      "soft_texels": 381,
+      "texels": 1024,
+      "rect": [
+       224,
+       96,
+       256,
+       128
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3412297,
+     "mean_lum_ratio_v4_v3": 0.9999,
+     "mean_abs_lum_change": 1.65,
+     "weight_px": 328018,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      64,
+      256,
+      96
+     ],
+     "px_changed_vs_page_render": 4065,
+     "max_abs_diff": 87
+    },
+    {
+     "rect": [
+      128,
+      64,
+      192,
+      128
+     ],
+     "px_changed_vs_page_render": 6405,
+     "max_abs_diff": 67
+    },
+    {
+     "rect": [
+      224,
+      96,
+      256,
+      128
+     ],
+     "px_changed_vs_page_render": 3246,
+     "max_abs_diff": 80
+    }
+   ]
+  },
+  "6C5AC447-96F7C884": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "96F7C884",
+    "words_hex": "ff7f733e1032ef2dce29ad29ad258c258c216b216b1d4a1929150811e710a508",
+    "kind": "static",
+    "vram_xy": [
+     16,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 8,
+    "frames": [
+     97559,
+     97979
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      16,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       0,
+       160,
+       63,
+       191
+      ],
+      3
+     ],
+     [
+      [
+       64,
+       160,
+       127,
+       178
+      ],
+      2
+     ],
+     [
+      [
+       64,
+       160,
+       127,
+       181
+      ],
+      2
+     ],
+     [
+      [
+       64,
+       160,
+       127,
+       177
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-96F7C884.png",
+     "sha256": "31956b990c7463f791b61385f4612d0c3a61d4d6eba94240c3c1aec2f0c47c3a",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-96F7C884.png",
+     "sha256": "f2f384605bea8a6f0640d533ba6d594750a467b442619d3666c4bf4b614f2be2",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 908,
+      "texels": 2048,
+      "rect": [
+       0,
+       160,
+       64,
+       192
+      ]
+     },
+     {
+      "soft_texels": 606,
+      "texels": 1408,
+      "rect": [
+       64,
+       160,
+       128,
+       182
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3491479,
+     "mean_lum_ratio_v4_v3": 0.9999,
+     "mean_abs_lum_change": 1.84,
+     "weight_px": 161390,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      0,
+      160,
+      64,
+      192
+     ],
+     "px_changed_vs_page_render": 1852,
+     "max_abs_diff": 81
+    },
+    {
+     "rect": [
+      64,
+      160,
+      128,
+      182
+     ],
+     "px_changed_vs_page_render": 2286,
+     "max_abs_diff": 105
+    }
+   ]
+  },
+  "6C5AC447-A318595A": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "A318595A",
+    "words_hex": "ef2d4208630c8410a514c618e71c082129254a296b2d8c31ad351f0000000000",
+    "kind": "static",
+    "vram_xy": [
+     48,
+     482
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 8,
+    "frames": [
+     97559,
+     97979
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      48,
+      482
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       128,
+       224,
+       159,
+       255
+      ],
+      3
+     ],
+     [
+      [
+       129,
+       224,
+       159,
+       254
+      ],
+      2
+     ],
+     [
+      [
+       129,
+       224,
+       159,
+       255
+      ],
+      2
+     ],
+     [
+      [
+       160,
+       224,
+       190,
+       255
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-A318595A.png",
+     "sha256": "a69c45dcc8cb05cf2fd8ae920896504b174ef462822c345eb527faeb8e8538f9",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-A318595A.png",
+     "sha256": "5239c5b7577d54ad32a2b7afd7ec8c11ed37ea70e5b085b3b8085da9b1a75dd3",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 139,
+      "texels": 1024,
+      "rect": [
+       128,
+       224,
+       160,
+       256
+      ]
+     },
+     {
+      "soft_texels": 352,
+      "texels": 992,
+      "rect": [
+       160,
+       224,
+       191,
+       256
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 2546100,
+     "mean_lum_ratio_v4_v3": 1.0005,
+     "mean_abs_lum_change": 1.04,
+     "weight_px": 66143,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      128,
+      224,
+      160,
+      256
+     ],
+     "px_changed_vs_page_render": 2933,
+     "max_abs_diff": 49
+    },
+    {
+     "rect": [
+      160,
+      224,
+      191,
+      256
+     ],
+     "px_changed_vs_page_render": 2641,
+     "max_abs_diff": 42
+    }
+   ]
+  },
+  "6C5AC447-C0539880": {
+   "tex": "6C5AC447",
+   "clut": {
+    "crc32": "C0539880",
+    "words_hex": "ff7f3136ef2dce29ad258c216b216b1d4a1d4a192919291508150811c60c8404",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     481
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 4,
+    "frames": [
+     97893,
+     98073
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      240,
+      481
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       0,
+       255,
+       54
+      ],
+      2
+     ],
+     [
+      [
+       128,
+       41,
+       191,
+       63
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       0,
+       254,
+       54
+      ],
+      1
+     ]
+    ]
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6C5AC447-C0539880.png",
+     "sha256": "ae457b5a38e4d750007b7091d04569db0aee1732ee5f8a444d1481d6076e8f47",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6C5AC447-C0539880.png",
+     "sha256": "16b28d4d87b57575ab472d373c7fa36bd97414f28c1d7741154fa1d779444a30",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "alpha_identical_to_v3": {
+    "page2048": true,
+    "page1024": true
+   },
+   "shape": {
+    "cells": [
+     {
+      "soft_texels": 2023,
+      "texels": 3520,
+      "rect": [
+       192,
+       0,
+       256,
+       55
+      ]
+     },
+     {
+      "soft_texels": 724,
+      "texels": 1472,
+      "rect": [
+       128,
+       41,
+       192,
+       64
+      ]
+     }
+    ],
+    "change": {
+     "px_changed_vs_v3": 3418504,
+     "mean_lum_ratio_v4_v3": 1.0,
+     "mean_abs_lum_change": 1.68,
+     "weight_px": 221401,
+     "lettering": null
+    }
+   },
+   "cells": [
+    {
+     "rect": [
+      192,
+      0,
+      256,
+      55
+     ],
+     "px_changed_vs_page_render": 1712,
+     "max_abs_diff": 40
+    },
+    {
+     "rect": [
+      128,
+      41,
+      192,
+      64
+     ],
+     "px_changed_vs_page_render": 3363,
+     "max_abs_diff": 66
+    }
+   ]
+  }
+ },
+ "honest_read": "Two changes over v3. (1) Contrast-adaptive shape pass: low-contrast native tonal mottling (3x3 max colour distance <= 24, ramp to 48) is rendered as soft tonal variation instead of the categorical master's small hard-edged rounded blobs; panel lines, rivets, hatches, grilles, markings and every high-contrast edge stay crisp categorical. (2) The material layer's large-blotch mottling is toned down (k_lp 0.15 -> 0.08, same swatch, repeat and band limit), so the grime no longer reads as extra camouflage spots painted over hatches (worst on 6C5AC447). Result: the panels read as weathered painted steel with soft paint variation instead of 'melted camo blobs'; grille slats lose the rounded light-blob pattern. Weak points: low-contrast panel interiors are softer than v3 (a mild soft-CG risk on the lightest panels; structure stays crisp, the grime layer keeps fine detail); some large grime blotches remain via the high-pass; the marking cell 1BC35EBE [64,96,128,128] gets no shape change (lettering + emblem untouched: 9106 glyph pixels equal v2/v3 exactly). Brightness is not the gain: mean luminance v4/v3 = 0.999-1.006 per key. Flip-book replay of the logged draws (SIMULATION, 1080p): shimmer below v3 on 17 of 20 keys, median v4/v3 0.971, v4/v2 1.012, v4/stock 0.56; three thin edge-on draws (0F01F0FA-B692B4C2 / 8FD3DE52 / F11578EE) shimmer as much as stock in every version (extreme minification of the replay quads: only mipmaps would fix those).",
+ "known_limits": [
+  "predicted-static: import only after a live Stage 2 capture confirms key and CLUT (validate_predicted.py confirm + gate); area-versioned pages bind only to the 1/26 TEX",
+  "the shape weight is computed from each CLUT's native colours (a CLUT-specific RGB pass); class / alpha untouched",
+  "no new generated imagery; the material swatch is grey_deck_v3a (stage2-train-cars-v3 comfy/), rebuilt as a factor with k_lp 0.08",
+  "flip-book replay uses the sampled draw log (about one record per key per 60 frames) and approximates 3D triangles as parallelograms over the uv bounds: right order, positions and scale, not exact UV mapping",
+  "review and replay are SIMULATIONS (bilinear, no mips); no in-game capture exists"
+ ],
+ "failed_experiments": {
+  "work/shape/s2 (grain mode)": "FAILED: only isolated 1-3 texel grain was softened; most rounded blobs come from larger low-contrast clusters, so the change was nearly invisible and left small soft halos",
+  "work/shape/s3 (contrast mode, v3 factor)": "superseded by s4/s5: blob contours softened, but the v3 grime blotches still read as camouflage spots on 6C5AC447",
+  "work/shape/s4": "superseded by s5 (s4 copied the whole 1BC35EBE marking cell from v3, so its grime strength differed from the neighbouring quads; s5 relies on the glyph protection instead, glyph pixels still exact)"
+ },
+ "review": {
+  "sheets": [
+   "review/0F01F0FA-8FD3DE52-native-v3-v4.png",
+   "review/0F01F0FA-CDBFF4CE-native-v3-v4.png",
+   "review/1BC35EBE-0E52E513-native-v3-v4.png",
+   "review/1BC35EBE-B4827EFC-native-v3-v4.png",
+   "review/6C5AC447-1930C7FD-native-v3-v4.png",
+   "review/6C5AC447-58B6A90A-native-v3-v4.png",
+   "review/train-mp4-0F01F0FA-B692B4C2-flipbook-1080p-SIMULATION.mp4",
+   "review/train-mp4-1BC35EBE-B4827EFC-flipbook-1080p-SIMULATION.mp4"
+  ],
+  "flipbook_replay_SIMULATION": {
+   "source": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/flip/train-ground-r1/flipbook-shimmer.json",
+   "sha256": "2ced9b9be6c9d1bef00c3e08c201f575b2a7cf181de3f914dcf902d082617f13",
+   "results": {
+    "train-mp4": {
+     "1BC35EBE-B4827EFC": {
+      "1080p": {
+       "stock": {
+        "shimmer": 3.862,
+        "alias": 2.031,
+        "draws": 12,
+        "quad_px": 273968
+       },
+       "v2": {
+        "shimmer": 1.632,
+        "alias": 0.839,
+        "draws": 12,
+        "quad_px": 273968
+       },
+       "v3": {
+        "shimmer": 1.747,
+        "alias": 0.928,
+        "draws": 12,
+        "quad_px": 273968
+       },
+       "v4-candidate": {
+        "shimmer": 1.648,
+        "alias": 0.863,
+        "draws": 12,
+        "quad_px": 273968
+       }
+      }
+     },
+     "0F01F0FA-B692B4C2": {
+      "1080p": {
+       "stock": {
+        "shimmer": 23.734,
+        "alias": 16.664,
+        "draws": 3,
+        "quad_px": 2764
+       },
+       "v2": {
+        "shimmer": 23.287,
+        "alias": 16.084,
+        "draws": 3,
+        "quad_px": 2764
+       },
+       "v3": {
+        "shimmer": 23.524,
+        "alias": 16.216,
+        "draws": 3,
+        "quad_px": 2764
+       },
+       "v4-candidate": {
+        "shimmer": 23.11,
+        "alias": 15.65,
+        "draws": 3,
+        "quad_px": 2764
+       }
+      }
+     }
+    },
+    "train": {
+     "0F01F0FA-8FD3DE52": {
+      "1080p": {
+       "stock": {
+        "shimmer": 8.877,
+        "alias": 5.663,
+        "draws": 5,
+        "quad_px": 9040
+       },
+       "v2": {
+        "shimmer": 8.153,
+        "alias": 5.197,
+        "draws": 5,
+        "quad_px": 9040
+       },
+       "v3": {
+        "shimmer": 8.766,
+        "alias": 5.696,
+        "draws": 5,
+        "quad_px": 9040
+       },
+       "v4-candidate": {
+        "shimmer": 8.228,
+        "alias": 5.269,
+        "draws": 5,
+        "quad_px": 9040
+       }
+      }
+     },
+     "0F01F0FA-BE954EE4": {
+      "1080p": {
+       "stock": {
+        "shimmer": 15.277,
+        "alias": 12.821,
+        "draws": 3,
+        "quad_px": 752
+       },
+       "v2": {
+        "shimmer": 13.257,
+        "alias": 10.858,
+        "draws": 3,
+        "quad_px": 752
+       },
+       "v3": {
+        "shimmer": 12.581,
+        "alias": 9.861,
+        "draws": 3,
+        "quad_px": 752
+       },
+       "v4-candidate": {
+        "shimmer": 12.96,
+        "alias": 10.178,
+        "draws": 3,
+        "quad_px": 752
+       }
+      }
+     },
+     "0F01F0FA-CDBFF4CE": {
+      "1080p": {
+       "stock": {
+        "shimmer": 2.608,
+        "alias": 1.681,
+        "draws": 5,
+        "quad_px": 36257
+       },
+       "v2": {
+        "shimmer": 1.505,
+        "alias": 0.975,
+        "draws": 5,
+        "quad_px": 36257
+       },
+       "v3": {
+        "shimmer": 1.708,
+        "alias": 1.122,
+        "draws": 5,
+        "quad_px": 36257
+       },
+       "v4-candidate": {
+        "shimmer": 1.637,
+        "alias": 1.058,
+        "draws": 5,
+        "quad_px": 36257
+       }
+      }
+     },
+     "0F01F0FA-E8247720": {
+      "1080p": {
+       "stock": {
+        "shimmer": 6.331,
+        "alias": 3.547,
+        "draws": 5,
+        "quad_px": 49021
+       },
+       "v2": {
+        "shimmer": 4.099,
+        "alias": 2.18,
+        "draws": 5,
+        "quad_px": 49021
+       },
+       "v3": {
+        "shimmer": 4.272,
+        "alias": 2.393,
+        "draws": 5,
+        "quad_px": 49021
+       },
+       "v4-candidate": {
+        "shimmer": 3.955,
+        "alias": 2.146,
+        "draws": 5,
+        "quad_px": 49021
+       }
+      }
+     },
+     "0F01F0FA-F11578EE": {
+      "1080p": {
+       "stock": {
+        "shimmer": 0.722,
+        "alias": 0.468,
+        "draws": 3,
+        "quad_px": 5462
+       },
+       "v2": {
+        "shimmer": 0.691,
+        "alias": 0.442,
+        "draws": 3,
+        "quad_px": 5462
+       },
+       "v3": {
+        "shimmer": 0.649,
+        "alias": 0.396,
+        "draws": 3,
+        "quad_px": 5462
+       },
+       "v4-candidate": {
+        "shimmer": 0.661,
+        "alias": 0.406,
+        "draws": 3,
+        "quad_px": 5462
+       }
+      }
+     },
+     "1BC35EBE-0A8C366F": {
+      "1080p": {
+       "stock": {
+        "shimmer": 7.196,
+        "alias": 4.07,
+        "draws": 7,
+        "quad_px": 36707
+       },
+       "v2": {
+        "shimmer": 5.419,
+        "alias": 2.977,
+        "draws": 7,
+        "quad_px": 36707
+       },
+       "v3": {
+        "shimmer": 5.685,
+        "alias": 3.244,
+        "draws": 7,
+        "quad_px": 36707
+       },
+       "v4-candidate": {
+        "shimmer": 5.491,
+        "alias": 3.103,
+        "draws": 7,
+        "quad_px": 36707
+       }
+      }
+     },
+     "1BC35EBE-0E52E513": {
+      "1080p": {
+       "stock": {
+        "shimmer": 5.643,
+        "alias": 3.212,
+        "draws": 8,
+        "quad_px": 115703
+       },
+       "v2": {
+        "shimmer": 2.173,
+        "alias": 1.309,
+        "draws": 8,
+        "quad_px": 115703
+       },
+       "v3": {
+        "shimmer": 2.196,
+        "alias": 1.348,
+        "draws": 8,
+        "quad_px": 115703
+       },
+       "v4-candidate": {
+        "shimmer": 2.188,
+        "alias": 1.34,
+        "draws": 8,
+        "quad_px": 115703
+       }
+      }
+     },
+     "1BC35EBE-34F92FE6": {
+      "1080p": {
+       "stock": {
+        "shimmer": 5.835,
+        "alias": 3.165,
+        "draws": 8,
+        "quad_px": 45810
+       },
+       "v2": {
+        "shimmer": 1.094,
+        "alias": 0.607,
+        "draws": 8,
+        "quad_px": 45810
+       },
+       "v3": {
+        "shimmer": 1.181,
+        "alias": 0.659,
+        "draws": 8,
+        "quad_px": 45810
+       },
+       "v4-candidate": {
+        "shimmer": 1.16,
+        "alias": 0.65,
+        "draws": 8,
+        "quad_px": 45810
+       }
+      }
+     },
+     "1BC35EBE-A537C5E8": {
+      "1080p": {
+       "stock": {
+        "shimmer": 3.337,
+        "alias": 1.763,
+        "draws": 7,
+        "quad_px": 180873
+       },
+       "v2": {
+        "shimmer": 1.769,
+        "alias": 0.949,
+        "draws": 7,
+        "quad_px": 180873
+       },
+       "v3": {
+        "shimmer": 1.676,
+        "alias": 0.902,
+        "draws": 7,
+        "quad_px": 180873
+       },
+       "v4-candidate": {
+        "shimmer": 1.702,
+        "alias": 0.916,
+        "draws": 7,
+        "quad_px": 180873
+       }
+      }
+     },
+     "1BC35EBE-F954F9F4": {
+      "1080p": {
+       "stock": {
+        "shimmer": 14.799,
+        "alias": 8.233,
+        "draws": 8,
+        "quad_px": 10240
+       },
+       "v2": {
+        "shimmer": 11.488,
+        "alias": 6.031,
+        "draws": 8,
+        "quad_px": 10240
+       },
+       "v3": {
+        "shimmer": 11.669,
+        "alias": 6.268,
+        "draws": 8,
+        "quad_px": 10240
+       },
+       "v4-candidate": {
+        "shimmer": 11.581,
+        "alias": 6.133,
+        "draws": 8,
+        "quad_px": 10240
+       }
+      }
+     },
+     "6C5AC447-01E11FC0": {
+      "1080p": {
+       "stock": {
+        "shimmer": 0.764,
+        "alias": 0.352,
+        "draws": 7,
+        "quad_px": 75566
+       },
+       "v2": {
+        "shimmer": 0.497,
+        "alias": 0.208,
+        "draws": 7,
+        "quad_px": 75566
+       },
+       "v3": {
+        "shimmer": 0.615,
+        "alias": 0.29,
+        "draws": 7,
+        "quad_px": 75566
+       },
+       "v4-candidate": {
+        "shimmer": 0.554,
+        "alias": 0.254,
+        "draws": 7,
+        "quad_px": 75566
+       }
+      }
+     },
+     "6C5AC447-1930C7FD": {
+      "1080p": {
+       "stock": {
+        "shimmer": 2.367,
+        "alias": 1.317,
+        "draws": 10,
+        "quad_px": 104319
+       },
+       "v2": {
+        "shimmer": 1.097,
+        "alias": 0.582,
+        "draws": 10,
+        "quad_px": 104319
+       },
+       "v3": {
+        "shimmer": 1.206,
+        "alias": 0.668,
+        "draws": 10,
+        "quad_px": 104319
+       },
+       "v4-candidate": {
+        "shimmer": 1.178,
+        "alias": 0.647,
+        "draws": 10,
+        "quad_px": 104319
+       }
+      }
+     },
+     "6C5AC447-413E2F28": {
+      "1080p": {
+       "stock": {
+        "shimmer": 1.165,
+        "alias": 0.618,
+        "draws": 9,
+        "quad_px": 209654
+       },
+       "v2": {
+        "shimmer": 0.515,
+        "alias": 0.263,
+        "draws": 9,
+        "quad_px": 209654
+       },
+       "v3": {
+        "shimmer": 0.631,
+        "alias": 0.355,
+        "draws": 9,
+        "quad_px": 209654
+       },
+       "v4-candidate": {
+        "shimmer": 0.587,
+        "alias": 0.324,
+        "draws": 9,
+        "quad_px": 209654
+       }
+      }
+     },
+     "6C5AC447-58B6A90A": {
+      "1080p": {
+       "stock": {
+        "shimmer": 2.108,
+        "alias": 0.996,
+        "draws": 10,
+        "quad_px": 521268
+       },
+       "v2": {
+        "shimmer": 0.773,
+        "alias": 0.335,
+        "draws": 10,
+        "quad_px": 521268
+       },
+       "v3": {
+        "shimmer": 0.843,
+        "alias": 0.389,
+        "draws": 10,
+        "quad_px": 521268
+       },
+       "v4-candidate": {
+        "shimmer": 0.823,
+        "alias": 0.376,
+        "draws": 10,
+        "quad_px": 521268
+       }
+      }
+     },
+     "6C5AC447-706102D6": {
+      "1080p": {
+       "stock": {
+        "shimmer": 2.572,
+        "alias": 1.464,
+        "draws": 9,
+        "quad_px": 143448
+       },
+       "v2": {
+        "shimmer": 1.378,
+        "alias": 0.784,
+        "draws": 9,
+        "quad_px": 143448
+       },
+       "v3": {
+        "shimmer": 1.512,
+        "alias": 0.911,
+        "draws": 9,
+        "quad_px": 143448
+       },
+       "v4-candidate": {
+        "shimmer": 1.367,
+        "alias": 0.801,
+        "draws": 9,
+        "quad_px": 143448
+       }
+      }
+     },
+     "6C5AC447-96F7C884": {
+      "1080p": {
+       "stock": {
+        "shimmer": 3.351,
+        "alias": 1.823,
+        "draws": 8,
+        "quad_px": 81787
+       },
+       "v2": {
+        "shimmer": 1.898,
+        "alias": 1.058,
+        "draws": 8,
+        "quad_px": 81787
+       },
+       "v3": {
+        "shimmer": 2.105,
+        "alias": 1.281,
+        "draws": 8,
+        "quad_px": 81787
+       },
+       "v4-candidate": {
+        "shimmer": 1.986,
+        "alias": 1.177,
+        "draws": 8,
+        "quad_px": 81787
+       }
+      }
+     },
+     "6C5AC447-A318595A": {
+      "1080p": {
+       "stock": {
+        "shimmer": 7.763,
+        "alias": 3.83,
+        "draws": 8,
+        "quad_px": 44633
+       },
+       "v2": {
+        "shimmer": 3.331,
+        "alias": 1.651,
+        "draws": 8,
+        "quad_px": 44633
+       },
+       "v3": {
+        "shimmer": 3.497,
+        "alias": 1.76,
+        "draws": 8,
+        "quad_px": 44633
+       },
+       "v4-candidate": {
+        "shimmer": 3.416,
+        "alias": 1.72,
+        "draws": 8,
+        "quad_px": 44633
+       }
+      }
+     },
+     "6C5AC447-C0539880": {
+      "1080p": {
+       "stock": {
+        "shimmer": 2.782,
+        "alias": 1.513,
+        "draws": 4,
+        "quad_px": 99055
+       },
+       "v2": {
+        "shimmer": 1.206,
+        "alias": 0.597,
+        "draws": 4,
+        "quad_px": 99055
+       },
+       "v3": {
+        "shimmer": 1.331,
+        "alias": 0.7,
+        "draws": 4,
+        "quad_px": 99055
+       },
+       "v4-candidate": {
+        "shimmer": 1.274,
+        "alias": 0.659,
+        "draws": 4,
+        "quad_px": 99055
+       }
+      }
+     }
+    },
+    "ground": {
+     "6AE78470-95905651": {
+      "1080p": {
+       "stock": {
+        "shimmer": 1.586,
+        "alias": 0.727,
+        "draws": 10,
+        "quad_px": 64739
+       },
+       "v2": {
+        "shimmer": 0.951,
+        "alias": 0.409,
+        "draws": 10,
+        "quad_px": 64739
+       },
+       "v3": {
+        "shimmer": 1.109,
+        "alias": 0.536,
+        "draws": 10,
+        "quad_px": 64739
+       }
+      }
+     },
+     "6AE78470-BE14F28C": {
+      "1080p": {
+       "stock": {
+        "shimmer": 0.428,
+        "alias": 0.245,
+        "draws": 5,
+        "quad_px": 38090
+       },
+       "v2": {
+        "shimmer": 0.33,
+        "alias": 0.196,
+        "draws": 5,
+        "quad_px": 38090
+       },
+       "v3": {
+        "shimmer": 0.334,
+        "alias": 0.198,
+        "draws": 5,
+        "quad_px": 38090
+       }
+      }
+     },
+     "6AE78470-D4D43BA5": {
+      "1080p": {
+       "stock": {
+        "shimmer": 5.662,
+        "alias": 3.264,
+        "draws": 12,
+        "quad_px": 30515
+       },
+       "v2": {
+        "shimmer": 3.911,
+        "alias": 2.207,
+        "draws": 12,
+        "quad_px": 30515
+       },
+       "v3": {
+        "shimmer": 3.907,
+        "alias": 2.23,
+        "draws": 12,
+        "quad_px": 30515
+       }
+      }
+     }
+    }
+   },
+   "method": "tools/flipbook.py: logged Stage 2 draws (runs A frames >= 39883 and B), real order and quads, T = 6 frames per draw at the measured velocity, 1080p (4.5 px / PSX unit); shimmer = mean |e_t - e_(t-1)|, e = bilinear-no-mip render - 2x2 supersampled reference; versions stock (nearest), v2, v3, v4 candidate (work/shape/s5)"
+  },
+  "note": "native | v3 | v4: drawn cells at 2 px/texel, a 16x crop, the biggest cell at 9 px/texel (4K) and 4.5 px/texel (1080p), bilinear, no mips: SIMULATIONS. Flip-book: the logged Stage 2 draws replayed (tools/flipbook.py), shimmer = mean |e_t - e_(t-1)|, e = bilinear-no-mip render - 2x2 supersampled reference, inside the quads; lower is calmer."
+ },
+ "builder": {
+  "shape_pass.py": "1f562873526b05ec176dae7ce1091aed71219941d46b5804bd7a63d3115ba1bd",
+  "mat_layer.py": "5a4bc5a9d02ab80150e51315af565d123a8c8f5dadc7339f04768676cd7c6eba",
+  "flipbook.py": "5a49706d2bed69a063385a23d78d5c8e39be30fbe7f6af517e932586d1c01919",
+  "freeze_v2.py": "a6ea0a1b489dd279ddc49002a25e6c3da4a46f31390315e7c349a3dcb31c836b",
+  "s2master.py": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "s2lib.py": "9f59400390ccdf76e6e40a088757d0bd4b72664c23784cec33bc9f8f5df95c48",
+  "s2review.py": "7ef9f13a090ce84f0ddde0c455f8ddb19bea3a33af6dbbaa23b2442355dfbfc0"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 / 127 / 255); every export re-read from disk; alpha planes bit-identical to the base frozen exports",
+  "files": 40,
+  "mismatches": 0
+ }
+}

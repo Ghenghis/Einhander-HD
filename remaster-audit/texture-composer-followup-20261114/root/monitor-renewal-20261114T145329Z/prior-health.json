@@ -1,0 +1,90 @@
+{
+  "observed_utc": "2026-11-14T14:53:26.700Z",
+  "watcher_pid": 1652,
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "observations": 57,
+  "bound_end_utc": "2026-11-14T14:55:21.254Z",
+  "roster_sha256": "e40e05914f406d250f8448ebb906dfcc01489b5e8e33ae9ff617fe58599bb4b2",
+  "sessions": [
+    {
+      "owner": "claude-einhander",
+      "session_id": "11357b05-21ce-4470-8da8-e1597e772a7f",
+      "roster_state": "existing_actual_model_verified",
+      "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "85ac708426c88761841695635738f9e87efcac66e50800f4ab9a7b8e417585aa",
+      "checkpoint_utc": "2026-11-14T14:52:43Z",
+      "checkpoint_age_seconds": 44,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "95A3BCF8 region O distant-window rebuild: freeze awaits coordinator grant (request msg_567c4e7d); preview 95a3-o-city/preview/20261114T144212Z",
+        "v66 review: wait for root's published v66 actual CPU results",
+        "Stage1 FX pixel audit of s67 r1b 10932164 x4 (static review sent msg_ac9d22d6; grant request B)",
+        "Verify project-root switch: change_directory(C:/github/Einhander) called ~14:50Z in THIS session; check get_session cwd + activity-1a5b43b8c45bc6cd.json next turn"
+      ],
+      "next_action": "On grant: run o_city_rebuild.py --freeze via run_rc.py, report PID within 60 s, then send READY/hashes.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s23",
+      "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:19:09.094Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "44a596f2c99f2d70c921e46ed6b1783ae592f6066595fe09dc4c8b373aad4ef1",
+      "checkpoint_utc": "2026-11-14T14:51:46.000Z",
+      "checkpoint_age_seconds": 101,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S2-WHOLE-CELL-20261114",
+        "EIN-S3-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On grant: run the granted job only (J3 < 60 s, J6 selftest ~1-2 min, J5 ~2-3 min) with S23_CPU pin; report PID/exit/manifests. Light meanwhile: none pending beyond inbox handling.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s45",
+      "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:37:44.240Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "d0f43bf1688b927a0bb7db89caef0e606216349c36c71c7a8da4eb60d6b4a2ee",
+      "checkpoint_utc": "2026-11-14T14:38:41.000Z",
+      "checkpoint_age_seconds": 886,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S4-WHOLE-CELL-20261114",
+        "EIN-S5-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On next grant use launch_method. Queue: J-D2 (s4-effects v3 AFCCB3B5 probe), J-C (8bpp rank), V1/V2/V3 (w7m/w7m2 equivalence). Light meanwhile: none blocking; reply to mail.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s67",
+      "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:16:54.748Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "954411acd1740732c07300c034e19d9ebc8ca28786dc2fa0b93a681877399870",
+      "checkpoint_utc": "2026-11-14T14:52:42Z",
+      "checkpoint_age_seconds": 45,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S6-WHOLE-CELL-20261114",
+        "EIN-S7-WHOLE-CELL-20261114",
+        "EIN-S6-TIMEOUT-PROFILE-20261114"
+      ],
+      "next_action": "On grants: r2 native-fill (D552405C), A5969BC9 de-dither, 30BB2999 bursts (each with --cpu=lane bootstrap). On review notes: fix in new revisions.",
+      "status": "checkpoint_available"
+    }
+  ]
+}

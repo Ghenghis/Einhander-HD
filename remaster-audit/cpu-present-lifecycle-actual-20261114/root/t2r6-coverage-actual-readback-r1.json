@@ -1,0 +1,114 @@
+{
+  "at_utc": "2026-11-14T23:14:20.391114+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "t2r6": {
+      "envelope_sha256": "423ade12a8c081de636effd650ed39559c1e0a4891338a2251db3f348acb1f03",
+      "elapsed_s": 1.517,
+      "peak_job_memory_bytes": 94818304,
+      "checks": 50,
+      "failures": 0,
+      "executed_copies": 8,
+      "source_inputs": 9,
+      "compiler_libraries_rehashed_by_root": false,
+      "synthetic_only": true
+    },
+    "coverage": {
+      "envelope_sha256": "6ec6c1bfe3214e6764674d472fe94c96ddaaf38e219fad8639e3e64099808fff",
+      "elapsed_s": 3.114,
+      "peak_job_memory_bytes": 57597952,
+      "stages": {
+        "stage2": {
+          "keys": 2321,
+          "overrides": 21,
+          "candidate_provenance_only": 1,
+          "drawn_without_authored": 75
+        },
+        "stage3": {
+          "keys": 2289,
+          "overrides": 11,
+          "candidate_provenance_only": 1,
+          "drawn_without_authored": 0
+        }
+      },
+      "transient_gaps_preserved": 4,
+      "all_manifest_inputs_rehashed_by_root": false,
+      "scope": "ownership/provenance accounting only; no new assets or live acceptance"
+    }
+  },
+  "pins": {
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1-envelope.json": "423ade12a8c081de636effd650ed39559c1e0a4891338a2251db3f348acb1f03",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\result.json": "d5f7a5fd752316e4820e8f7eea29b10abb98501a850410b182ef7abfc61be90f",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\include\\pgxp.h": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gte.cpp": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\gte.cpp": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\remix_t1_reproject.r1.h": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\src\\scene_capture.h": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\remix_t2.r3.h": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r4\\remix_t2.r4.h": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r6\\remix_t2.r6.h": "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r6\\test_t2.r6.cpp": "06d3b8f0749876a2746c3a425e648f3b1731b9c683883743f05359222508fc94",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\gte_divide_extracted.inc": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\pgxp.h": "50a6ef6d335c7b6cd678ed50c17f4a4c506ed868537439e6b01e2dacaaa88e52",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\remix_t1_reproject.r1.h": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\scene_capture.h": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\remix_t2.r3.h": "8baba81cdbb402585f4f535d830cea822ca9b81f963fb64bc809f53ff019911b",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\remix_t2.r4.h": "eebb2c8fd26a2df58bd6748cfefe7a670e236029cd6dcffe279617abd8478a96",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\remix_t2.r6.h": "419dea9499010e5f5524b3913f81b09db0279ce87a25861a2cb49c17554f76dd",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\executed-test-unit.cpp": "06d3b8f0749876a2746c3a425e648f3b1731b9c683883743f05359222508fc94",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2\\r6\\build_t2_fixture.r6.py": "7d9f6beec484d73403514de8f5f668c9f1b4be858f47231babfbe27bc3a6dd6f",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1-runner\\executed-watchdog.py": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\fixture-unit.json": "34bdb9aa2e5872310ada7e6365d79a73921d414534e0ff4479f5bed343cdcb66",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\test-t2r6-unit.exe": "a5c6c02c1eefcb711943aa7eac687ab19021cc24d5e5e4da3fe795b982089f46",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\compile-unit.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t2r6-run1\\20261114T231146Z\\run-unit.log": "4cd796f054683e9ae21df4f829ccc768467ec661bb245775c3ad106fa968b667",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\covr3-2311-envelope.json": "6ec6c1bfe3214e6764674d472fe94c96ddaaf38e219fad8639e3e64099808fff",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\fullstage_coverage_r3.py": "4c40c85b43d5b8228fa2bc1b1858c097afb3a486742d2611dc49404a599b3f90",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\covr3-2311-runner\\executed-watchdog.py": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\fullstage-r3-2311\\fullstage-coverage.json": "ef8ff7519743d6f829fda8f7fb785644bbe93422556921534fd7bb7403b73c46",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\fullstage-20261114T182734Z\\fullstage-coverage.json": "5555d17ce7f56e9b97a05c4b0559969379632e0da7683e32151448af2847b3a6",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\fullstage-r3-2311\\FULLSTAGE-COVERAGE.md": "27575fafbcfb509fb287fd0bef3d5ca77f824134b41d6184a31f8cf339a349bd"
+  },
+  "known_identities": [
+    {
+      "label": "t2r6/wrapper",
+      "pid": 45604,
+      "creation_unix": 1794697905.668096,
+      "identity_absent": true
+    },
+    {
+      "label": "t2r6/child",
+      "pid": 45996,
+      "creation_unix": 1794697906.7900345,
+      "identity_absent": true
+    },
+    {
+      "label": "t2r6/compile-unit",
+      "pid": 45764,
+      "creation_unix": 1794697907.109203,
+      "identity_absent": true
+    },
+    {
+      "label": "t2r6/run-unit",
+      "pid": 46676,
+      "creation_unix": 1794697908.1905236,
+      "identity_absent": true
+    },
+    {
+      "label": "coverage/wrapper",
+      "pid": 13612,
+      "creation_unix": 1794697847.0208411,
+      "identity_absent": true
+    },
+    {
+      "label": "coverage/child",
+      "pid": 40036,
+      "creation_unix": 1794697848.1345804,
+      "identity_absent": true
+    }
+  ],
+  "compiler_or_fixture_replayed": false,
+  "game_launched": false,
+  "gpu_used": false,
+  "art_admitted": false
+}

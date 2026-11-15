@@ -1,0 +1,148 @@
+{
+  "started_utc": "2026-11-14T10:53:57.991441+00:00",
+  "source_sha256": "6eb16cad7d90e87057cc398196db87bc556002309ec632f240ec041a9cd87175",
+  "runner_sha256": "f3b7827295b989b8d5901b123d2273de247ebce2c24c29fb6cffb636a2160f78",
+  "dll_sha256": "ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1",
+  "header_sha256": "a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d",
+  "priority": "below normal",
+  "cpu_affinity": [
+    14,
+    15
+  ],
+  "resolution": [
+    640,
+    360
+  ],
+  "frame_limit": 24,
+  "gameplay": false,
+  "build": {
+    "args": [
+      "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+      "-std=c++17",
+      "-O1",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_probe.cpp",
+      "-o",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe",
+      "-luser32",
+      "-lgdi32",
+      "-lopengl32"
+    ],
+    "exit": 0,
+    "seconds": 1.3227542999957222
+  },
+  "preflight": {
+    "checked_at_utc": "2026-11-14T10:54:00.623209+00:00",
+    "reservation_sha256": "a538366b1879f553160509ec7b229bb85b62e3fa09157ae3386ccee659ea67e5",
+    "active_holder": false,
+    "comfy_server_reachable": false,
+    "queue_running": 0,
+    "queue_pending": 0
+  },
+  "process_environment_overrides": {
+    "DXVK_FILTER_DEVICE_NAME": "NVIDIA GeForce RTX 3090 Ti",
+    "DXVK_LOG_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3",
+    "DXVK_CONFIG_FILE": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\dxvk.conf",
+    "DXVK_STATE_CACHE_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3"
+  },
+  "exe_sha256": "d2c6b14a01a7d4bca417f37f455adb943860d3231ac882c7a4cd46f6f7a9c1ca",
+  "pid": 29464,
+  "command": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\interop.ppm"
+  ],
+  "watchdog_terminated": true,
+  "exit": 1,
+  "seconds": 60.314,
+  "gpu_process_samples": [
+    {
+      "seconds": 0.031,
+      "matching_process_rows": []
+    },
+    {
+      "seconds": 5.058,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 10.066,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 15.15,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 20.16,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 25.186,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 30.231,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 35.329,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 40.348,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 45.441,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 50.452,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    },
+    {
+      "seconds": 55.467,
+      "matching_process_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 29464, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-interop-r3\\sdk-probe.exe"
+      ]
+    }
+  ],
+  "passed": false,
+  "image_sha256": "875ae034f610b37a76e8fe9bb8f21972b49f1d33da4531c4332382a96b3a2fe7",
+  "rgb_extrema": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ]
+  ],
+  "green_pixels": 0,
+  "process_gone": true,
+  "reservation_released": true,
+  "ended_utc": "2026-11-14T10:55:01.064957+00:00"
+}

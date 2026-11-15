@@ -1,0 +1,791 @@
+"""raw37c_driver_r11.py - s67 W1 r11 = r10 022708eb plus the two live-mode-review fixes (msg_15151f4c):
+  (1) immediately before sendall, after the settle, the owned listener set and owned create_time are re-verified
+      and the remaining request and global deadline must be > 0 (an expired request is never sent);
+  (2) _post_reply refuses MULTIPLE rows for the exact 4-tuple (ambiguous), allowing 0 rows or one legitimate
+      closing row owned by the game pid or by pid 0/None.
+Disclosure: NNN-raw.json stores lossy UTF-8 text plus the sha256/length of the original received bytes. That is
+not byte-exact preservation of invalid UTF-8 payloads.
+r10 header (kept): raw37c_driver_r10.py - s67 W1 r10 = r9 9ed4d2d8 plus persistence ordering per root msg_7aa48a52: the received
+bytes are written FIRST as NNN-raw.json {received_sha256, bytes, text, qualified:false}, before JSON parsing and
+before the post-reply bracket. Only after the bracket passes (no foreign/ambiguous 4-tuple holder, owned listener
+and create_time unchanged) is NNN-reply.json written with qualified:true. A post-check abort therefore leaves the
+raw unqualified reply and no validated result. Pre-send binding, settle bounds and everything else are as in r9.
+r9 header (kept): raw37c_driver_r9.py - s67 W1 r9 = r8 265da98b (WITHDRAWN before review) with the post-reply check corrected
+(crash-check msg_98ad673e). The debug server is one-shot: its I/O thread accept()s, answers, then sock_close()s
+(debug_server.c ~14445-14484), so the server-side row of a finished request is legitimately closed or closing.
+r7 (and r8) demanded an ESTABLISHED owned row AFTER the reply, which a correct one-shot server cannot satisfy;
+the 23:35:21Z abort is consistent with that but its phase was not persisted, so it stays unproven. r9:
+  * BEFORE send (unchanged from r8): the exact owned 4-tuple on this one socket, bounded settle while missing,
+    immediate refusal if ambiguous or foreign, audited select_owned_tcp_peer record;
+  * the reply receipt (reply + peer_before) is written IMMEDIATELY after the newline is received;
+  * AFTER the reply: no ESTABLISHED requirement. Any row for this 4-tuple owned by another live pid aborts; the
+    owned listener set and owned create_time are re-verified; the scoped rows/state are written to NNN-post.json.
+r8 header (kept): raw37c_driver_r8.py - s67 W1 r8 = r7 4dbc93d9 plus ONE Debug change (crash-check msg_490992c4). The actual
+coordinator run at 23:35:21Z launched the game (pid 7116) and aborted on the FIRST request: the audited peer lookup
+raised "connected debug TCP peer missing or ambiguous" immediately after connect, before send. The game accept()s
+from its frame poll (debug_server.c:14445), so the server-side row may not be visible yet. r8 classifies the OS
+table itself on the SAME connected socket: 0 server-side rows -> bounded wait (settle_s, within the request and
+global deadline, 50 ms polls, a scoped 127.0.0.1:4376 snapshot recorded); >1 -> refuse at once (ambiguous); 1 row
+with a foreign pid -> refuse at once; exactly 1 owned row -> the audited select_owned_tcp_peer record is taken
+from that same table snapshot. The same check runs after the reply, then the owned create_time is rechecked. No
+reconnect, no send before an owned peer, no listener probing. Nothing else changes.
+r7 header (kept): raw37c_driver_r7.py - s67 W1 r7 = r6 21daa0f4 plus ONE run-side import fix (crash-check msg_a8242067). The actual
+coordinator run at 23:32:36Z (evidence 8c8363a8) aborted before any game Popen: ModuleNotFoundError
+gl_adapter_identity_guard while importing holder r0 8aff. Holder load-time closure (same AST method as r6; search
+order support adapter-binding/, then remaster-audit/): owned_gl_adapter_observation_audited_r1 9f455093 (support),
+unassisted_command_guard_adapter_r1 05f7f7d1 (support), gl_adapter_identity_guard c78300cb (remaster-audit).
+All three are sha-pinned by exact path BEFORE the holder import, remaster-audit/ is placed on sys.path behind the
+support dir, and each must resolve to exactly its pinned file afterwards. The GPU guard cb767d1f imports only
+stdlib. -I is kept. Staging (--stage) code and run logic are otherwise unchanged.
+r6 header (kept): raw37c_driver_r6.py - s67 W1 r6 = r5 b72bceab with the closure CLASSIFICATION fixed.
+r5 treated ui_native_journey as load-time (it is only imported by lazy observe_native_boot, so r5 would abort), and
+missed windows-x64/tools modules (launch_ui_candidate puts tools/ on sys.path at module level). r6 closure is the AST
+reachability over imports executed at module load (module body, including top-level if/try; not function bodies),
+searched in remaster-audit/ then windows-x64/tools/: 11 LOAD-TIME modules (9 remaster-audit + launch_material and
+material_profiles in tools/) and 4 LAZY ones (devtools_service, observe_native_boot, run_h24_facade_review,
+ui_native_journey). All 15 are sha-pinned by exact path BEFORE the import. Only the 11 load-time modules must be
+present afterwards, from exactly their pinned files; the lazy ones are recorded with an imported flag. Scope: local
+source only. Third-party packages (numpy, PIL, psutil) are provenance-limited, not pinned.
+r5 header (kept): raw37c_driver_r5.py - s67 W1 r5 = r4 288d92c6 with the pacing import closure PINNED.
+The static local closure of pacing-own-cache.py (AST walk over remaster-audit/*.py imports) is 12 modules: 10 at top
+level and 2 lazy (observe_native_boot, run_h24_facade_review). Every one is sha-verified BEFORE the import; a mismatch
+or missing file aborts. After the import, every top-level module must resolve to exactly its pinned file, and any
+other module loaded from remaster-audit/ is recorded. -I is kept; no PYTHONPATH or global environment edit.
+r4 header (kept): raw37c_driver_r4.py - s67 W1 r4 = r3 9ee0b4fe plus ONE import-path fix. The actual granted --stage at 23:23:10Z
+(log raw37c-stage-r3-2323.log) failed with ModuleNotFoundError build_facade_ab_candidates: pacing-own-cache.py imports
+siblings that live in remaster-audit/, not in its own directory, and under python -I that directory was not on
+sys.path. stage() now also puts remaster-audit/ on sys.path for that load, and records the sha256 of every
+sibling module actually imported (dependency pins). No other logic change.
+r3 header (kept): raw37c_driver_r3.py - s67 W1 r3 = r2 d6e925d9 plus ONLY a logging prefix in the __main__ block (no other logic change).
+`--log <exclusive path>` is removed from argv before argparse and redirects this process's stdout, stderr and any
+uncaught traceback to that file, because fa5 --no-window children have no usable inherited stdio. The game's own
+stdout/stderr were already private files and are unchanged.
+r2 header (kept): raw37c_driver_r2.py - s67 W1 r2 (r0 fcd5dd1a and r1 48bf9e72 frozen, unchanged).
+r2 vs r1 (root msg_667df9f8 / crash-check msg_042f15aa): (a) the broker START schema is the real one: guard
+    cb767d1f returns allowed=first.get("allowed") and shared-gpu.mjs start returns {ok,event,...} with NO allowed
+    field, so a successful start is allowed=None/committed=True. r2 requires action=="start", exit==0 and
+    committed is True (r1 also required allowed is True, which aborts every real start). The CHECK still
+    requires action=="check", exit==0 and allowed is True. The broker, tokens and grant policy are unchanged.
+(b) Staging records the launch source chain once: game.toml, BIOS, disc .cue, every .bin the cue names (hashed
+    ONCE at staging) and card1. --run re-hashes the small files (game.toml, BIOS, cue, card1); the BIN is not
+    re-hashed per run. Adapter-dependent results remain unqualified without actual adapter evidence.
+r1 notes follow. SOURCE ONLY, NOT RUN. Raw data only, never acceptance.
+
+r1 fixes, per root msg_e0e58389:
+ (1) Staging stores the exact pinned PNG map {relative path: sha256}. reverify() checks every staged PNG's name AND
+     hash against that map (set equality) and every non-PNG file's hash. The pins are split accurately: 1699 from
+     candidate.files and 2 from candidate.emissive_files. Both are sha-pinned in the candidate; emissive stays off
+     (PSXRECOMP_HD_EMISSIVE=0).
+ (2) Inherited environment: every key whose upper-cased name starts with PSX, EIN or SDL_ is dropped
+     (case-insensitive; this includes PSXRECOMP_SKIN_*, HD, proof and telemetry controls and EINHANDER_SHARED_GPU_TOKEN).
+     The reviewed spec overrides are then overlaid case-insensitively, minus the deleted keys. Dropped names are
+     recorded; values never are.
+ (3) Settings resolution is source-bound, not assumed. Staging pins the actual 37c main source d8abf287 and requires
+     its exe-dir anchor `exe_dir_from_argv(argv[0]) / "settings.toml"` (GetModuleFileNameW on Windows). argv[0] is
+     the absolute staged exe. cwd is NOT changed (precedent windows-x64, recorded for any relative outputs). The
+     private settings sha is checked before launch and recorded after exit; logs are scanned for the private path
+     as a config marker (recorded, not assumed). card2 is disabled (enable2 = false) and its private path stays
+     absent.
+ (4) Every debug connection verifies the owned endpoint. Before connecting, the 4376 listener set must be exactly
+     the owned pid with an unchanged create_time. After connecting and after the reply, support audited r1
+     select_owned_tcp_peer (9f455093) must show this socket's server peer is the owned pid. No foreign-pid or
+     network edits are made.
+ (5) The recv timeout is recomputed from the remaining request and global budget on every recv. Gate poll sleeps
+     are bounded by the remaining time.
+ (6) If holder.cleanup() raises, the failure is recorded as cleanup FAIL, and the exclusive evidence is still
+     written.
+ Also: game stdout/stderr go to private files under <EV> (hash-recorded), so an adapter proof can bind the same
+ image and log. G1 waits, bounded, for a skin_material reply with ready, opengl_ready and hd_ready all true. Title
+ screen is NOT proven by this; the G1 operator screenshot is the only visual evidence.
+Modes: --stage (CPU staging grant) / --run (GPU+game grant; Job child of normal wrapper c1fc81d4). The operator does
+ALL UI through CUA. This driver sends no input and does no capture or close. Verdicts: RAW-COLLECTED or ABORTED.
+"""
+import argparse, ctypes, hashlib, importlib.util, json, math, os, re, shutil, socket, subprocess, sys, time
+from ctypes import wintypes
+from pathlib import Path
+
+GH = Path("C:/github/Einhander")
+HERE = Path(__file__).resolve().parent
+N = GH / "remaster-audit/runtime-review/gpu-texture-remix-20261114"
+UI = GH / ".claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui"
+SUP = GH / ".claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/adapter-binding"
+PRECEDENT = GH / "remaster-audit/dev-center-evidence/stage1-completion-20261112/v68-unassisted-r1/hd-on_rewind-off/candidate.json"
+PINS = {
+    "pacing_own_cache": (N / "pacing-own-cache.py", "a6e25f8330c4a43846d1b7882232cc019b0a240161420388349e25b052caa4d7"),
+    "precedent_candidate": (PRECEDENT, "261dc3d2ab2675dce8d99e0f14bd6af8eb2e0d245346985b755a78e9204007aa"),
+    "runtime_receipt": (HERE / "p1-37c-runtime.json", "1eafad2a2e359318164766d3dccf75d767b60a83da4315e2607c055e56e6fa40"),
+    "ui_live_check_plan": (UI / "proposals/p1-player-color/build/LIVE-CHECK-PLAN-p1-v69-2240.md",
+                           "d0bb13e577b2b87aa2943e8e406026def70cd931478dfbb3562d6db8d8e8032c"),
+    "owner_build_receipt": (UI / "proposals/p1-player-color/build/BUILD-RECEIPT-p1-v69-2240.md",
+                            "97c1da1f6bca8061a255f9679a160d5c4f93edba39ebdd3c797acf2dceb1a821"),
+    "holder": (SUP / "owned_process_cleanup_r0.py", "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84"),
+    "audited_r1": (SUP / "owned_gl_adapter_observation_audited_r1.py",
+                   "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"),
+    "p1_main_source": (UI / "builds/p1-v69-2240/src/main.cpp",
+                       "d8abf287ee313e15b8dbe01837b1a217ef13f57d290e51d2d47947671c82e144"),
+    "gpu_guard": (GH / "tools/coordination/shared_gpu_guard.py",
+                  "cb767d1f5cf4c1795eb46d369a558bdfedf33c9e51b529123893c53c47685ac7"),
+}
+TOKEN_ENV = "EINHANDER_SHARED_GPU_TOKEN"   # read from the driver's own environment; never recorded, never given to the game
+PACING_CLOSURE = {'build_facade_ab_candidates': ('remaster-audit/build_facade_ab_candidates.py', '09736514fe63f9611daf786c69e862423f5baf782637ff6aabf905f205d59d8e'), 'gpu_capture_guard': ('remaster-audit/gpu_capture_guard.py', '86f2c819d45232f41b08adb77adc84f4712f8e16c9ea13fa262cdcb843422201'), 'launch_material': ('windows-x64/tools/launch_material.py', '648ae54a57611975fc67b0e18b318e570cc19ae6cfecd8a0708df6cdbd87ad75'), 'launch_ui_candidate': ('remaster-audit/launch_ui_candidate.py', 'b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752'), 'material_profiles': ('windows-x64/tools/material_profiles.py', '540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4'), 'native_ui_facade_route': ('remaster-audit/native_ui_facade_route.py', '851d1a7bd70488d8f47f24641f9531040586bf756df09616e078ca532c07935b'), 'private_process_checks': ('remaster-audit/private_process_checks.py', '7274e5c011da1bf659ad0a3ffa3074b2c11dcd8fce8899befa9edb5a7366c3fc'), 'run_facade_ab_probe': ('remaster-audit/run_facade_ab_probe.py', '0c049a7a1ebfc5dab66bc114db3e80dfe4f6a91b129041d6f910651f1c9aacc8'), 'stage_world_candidate': ('remaster-audit/stage_world_candidate.py', '6a3dd216dd3cfd210b035497c1d93a52c232dbbc3017eb017e283fd3669bf498'), 'ui_candidate_probe': ('remaster-audit/ui_candidate_probe.py', '5cf1986cd2df68164a149e75b4b3f6a8f921fc7634d512537013d0b0562f80a3'), 'verify_world_source_backlog': ('remaster-audit/verify_world_source_backlog.py', '11abf66dcead722c8bd7f4bafaa8a69a4545bd52a8ebe66feda522d462db4ad3')}
+PACING_CLOSURE_LAZY = {'devtools_service': ('windows-x64/tools/devtools_service.py', 'c1e64fa6b37dd20ed58befdc8b6dc7b98b6ad6f2d4cf22729c549b737e22f02f'), 'observe_native_boot': ('remaster-audit/observe_native_boot.py', 'fbb463737c1960c582d653271c10d1308b2b92c15c441ce323f3e650474d94c0'), 'run_h24_facade_review': ('remaster-audit/run_h24_facade_review.py', '0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2'), 'ui_native_journey': ('remaster-audit/ui_native_journey.py', 'a6764c1725c395de1c96785c999a3ec431eeac2908af14b92bde8f2a47a289dd')}
+HOLDER_CLOSURE = {
+    "owned_gl_adapter_observation_audited_r1": (SUP / "owned_gl_adapter_observation_audited_r1.py",
+        "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"),
+    "unassisted_command_guard_adapter_r1": (SUP / "unassisted_command_guard_adapter_r1.py",
+        "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee"),
+    "gl_adapter_identity_guard": (GH / "remaster-audit/gl_adapter_identity_guard.py",
+        "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08"),
+}
+SETTINGS_ANCHOR = 'exe_dir_from_argv(argv[0]) / "settings.toml"'
+EXE_SHA = "37c137e8af8c53d141d53623f9dafa8ce59555cc6a365152098fa49f1be4d9cc"
+LEG = "hd-on_rewind-off"
+PORT = 4376
+DELETE_ENV = ("PSX_LOAD_SLOT", "PSX_HLE_SCHEDULER")
+INHERIT_DROP_PREFIXES = ("PSX", "EIN", "SDL_")
+ALLOW = {"skin_material": frozenset(), "audio_stats": frozenset(), "present_shot": frozenset({"path"}),
+         "present_shot_seq": frozenset()}
+REPLY_CAP = 8 * 2 ** 20
+GATES = [("G1", ["F6"], True), ("G2", ["Right", "Right", "Enter"], False), ("G3a", ["F6"], True),
+         ("G3b", ["Esc"], False), ("END", ["Alt+F4"], False)]
+NOT_RUN = {"L5": "held F6: no supported CUA hold API", "L6": "held steering: no supported CUA hold API",
+           "L7": "held fire: no supported CUA hold API", "L8": "follow-up profile", "L9": "follow-up profile",
+           "L10": "needs a second launch", "L11": "follow-up profile (quit while open)"}
+
+
+class Abort(Exception):
+    pass
+
+
+def sha(p):
+    h = hashlib.sha256()
+    with open(p, "rb") as f:
+        for b in iter(lambda: f.read(1 << 20), b""):
+            h.update(b)
+    return h.hexdigest()
+
+
+def utc():
+    return time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime()) + f".{int(time.time() * 1000) % 1000:03d}Z"
+
+
+def write_x(path, obj):
+    with open(path, "xb") as f:
+        f.write((json.dumps(obj, indent=2, default=str) + "\n").encode("utf-8"))
+        f.flush()
+        os.fsync(f.fileno())
+
+
+def verify_pins(names):
+    got = {}
+    for n in names:
+        p, want = PINS[n]
+        h = sha(p)
+        if h != want:
+            raise Abort(f"pin {n} {p} is {h}, want {want}")
+        got[n] = {"path": str(p), "sha256": h}
+    return got
+
+
+def inside(child, parent):
+    try:
+        Path(child).resolve().relative_to(Path(parent).resolve())
+        return True
+    except ValueError:
+        return False
+
+
+def load_module(name, path, extra_path=None):
+    if extra_path:
+        sys.path.insert(0, str(extra_path))
+    spec = importlib.util.spec_from_file_location(name, path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+class Budget:
+    def __init__(self, seconds):
+        self.end = time.monotonic() + seconds
+
+    def left(self):
+        return self.end - time.monotonic()
+
+    def need(self, what):
+        left = self.left()
+        if left <= 0:
+            raise Abort(f"global budget exhausted at {what}")
+        return left
+
+
+# ---------------------------------------------------------------- staging (CPU grant)
+def copy_pack(src, dst, pins):
+    """pins {relative posix path: sha256} for every PNG. Returns {png: {rel: sha}, unpinned_nonpng: {rel: sha}}."""
+    png, unpinned, bad = {}, {}, []
+    for p in sorted(Path(src).rglob("*")):
+        if not p.is_file():
+            continue
+        rel = p.relative_to(src).as_posix()
+        out = Path(dst) / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(p, out)
+        h = sha(out)
+        if rel.lower().endswith(".png"):
+            if pins.get(rel) != h:
+                bad.append(rel)
+            png[rel] = h
+        else:
+            unpinned[rel] = h
+    missing = sorted(set(pins) - set(png))
+    if bad or missing:
+        raise Abort(f"pack verify failed: {len(bad)} unpinned/mismatched PNG (first {bad[:5]}), "
+                    f"{len(missing)} pinned missing (first {missing[:5]})")
+    return {"png": png, "unpinned_nonpng": unpinned}
+
+
+def set_setting(text, name, value, raw=False):
+    text, n = re.subn(r"(?m)^" + name + r"\s*=.*$", name + " = " + (value if raw else json.dumps(value)), text)
+    if n != 1:
+        raise Abort(f"ambiguous setting {name}")
+    return text
+
+
+def arg_value(args, flag):
+    if args.count(flag) != 1:
+        raise Abort(f"launch argument {flag} missing or repeated")
+    return Path(args[args.index(flag) + 1])
+
+
+def launch_binding(spec, card1):
+    """Hash the launch source chain once: game.toml, BIOS, disc cue, each .bin named by the cue, card1."""
+    args = spec["arguments"]
+    game, bios, cue = arg_value(args, "--game"), arg_value(args, "--bios"), arg_value(args, "--disc")
+    bins = []
+    for line in cue.read_text(encoding="utf-8", errors="replace").splitlines():
+        m = re.match(r'\s*FILE\s+"([^"]+)"', line, re.I)
+        if m:
+            b = cue.parent / m.group(1)
+            if not b.is_file():
+                raise Abort(f"cue names a missing file: {b}")
+            bins.append({"path": str(b), "sha256": sha(b), "bytes": b.stat().st_size})
+    if not bins:
+        raise Abort("cue names no data file")
+    small = {"game_toml": game, "bios": bios, "cue": cue, "card1": Path(card1)}
+    return {"small": {k: {"path": str(p), "sha256": sha(p)} for k, p in small.items()}, "bins": bins,
+            "note": "BIN hashed once at staging; --run re-hashes only the small files"}
+
+
+def stage(batch):
+    pins = verify_pins(["pacing_own_cache", "precedent_candidate", "runtime_receipt", "ui_live_check_plan",
+                        "owner_build_receipt", "p1_main_source"])
+    src_lines = PINS["p1_main_source"][0].read_text(encoding="utf-8", errors="replace").splitlines()
+    anchor_lines = [i + 1 for i, line in enumerate(src_lines) if SETTINGS_ANCHOR in line]
+    if not anchor_lines:
+        raise Abort("37c main source has no exe-dir settings anchor")
+    t0 = time.monotonic()
+    ra = GH / "remaster-audit"
+    for name, (rel, want) in {**PACING_CLOSURE, **PACING_CLOSURE_LAZY}.items():   # r6: pin by exact path before import
+        f = GH / rel
+        if not f.is_file() or sha(f) != want:
+            raise Abort(f"pacing closure module {name} ({rel}) missing or not pinned {want[:12]}")
+    sys.path.insert(0, str(ra))
+    pacing = load_module("pacing_own_cache", PINS["pacing_own_cache"][0], N)
+    imported_deps = {}
+    for name, (rel, want) in PACING_CLOSURE.items():
+        m = sys.modules.get(name)
+        if m is None or Path(m.__file__).resolve() != (GH / rel).resolve() or sha(m.__file__) != want:
+            raise Abort(f"load-time dependency {name} not imported from its pinned file {rel}")
+        imported_deps[name] = {"path": str(GH / rel), "sha256": want, "load_time": True}
+    for name, (rel, want) in PACING_CLOSURE_LAZY.items():
+        m = sys.modules.get(name)
+        if m is not None and Path(m.__file__).resolve() != (GH / rel).resolve():
+            raise Abort(f"lazy dependency {name} imported from an unpinned file {m.__file__}")
+        imported_deps[name] = {"path": str(GH / rel), "sha256": want, "lazy": True, "imported": m is not None}
+    imported_deps["_other_local_modules"] = sorted(
+        n for n, m in list(sys.modules.items())
+        if getattr(m, "__file__", None) and (inside(m.__file__, ra) or inside(m.__file__, GH / "windows-x64/tools"))
+        and n not in PACING_CLOSURE and n not in PACING_CLOSURE_LAZY and n != "pacing_own_cache")
+    imported_deps["_scope"] = "local source closure only; third-party packages provenance-limited, not pinned"
+    ns = argparse.Namespace(batch=batch, runtime=PINS["runtime_receipt"][0], candidate=PRECEDENT, supersampling=2,
+                            gpu_queries=0, world_sampling=0, native_menus=False, guest_frames=0, emissive=0)
+    report = pacing.prepare(LEG, ns)                      # prepare() only: never run()/launch()
+    d = Path(report["evidence"])
+    spec = report["launches"]["candidate"]
+    exe = Path(spec["arguments"][0])
+    if not exe.is_absolute() or sha(exe) != EXE_SHA or spec["executable_sha256"] != EXE_SHA:
+        raise Abort("staged executable is not an absolute 37c137e8")
+    if any((exe.parent / "cache").iterdir()):
+        raise Abort("own cache is not empty")
+    env = spec["environment_overrides"]
+    src = Path(env["PSXRECOMP_HD_TEXTURE_ROOT"])
+    rel = lambda row: Path(row["composed_path"]).relative_to(src).as_posix()
+    files = {rel(r): r["sha256"] for r in report["files"]}
+    emissive = {rel(r): r["sha256"] for r in report.get("emissive_files", [])}
+    if set(files) & set(emissive):
+        raise Abort("files and emissive pins overlap")
+    pack = copy_pack(src, d / "pack", {**files, **emissive})
+    deleted = {k: any(e.upper() == k for e in env) for k in DELETE_ENV}
+    for k in [e for e in env if e.upper() in DELETE_ENV]:
+        env.pop(k)
+    env["PSXRECOMP_HD_TEXTURE_ROOT"] = str(d / "pack")
+    if env.get("PSXRECOMP_HD_PROOF_CONTROL", "") != "" or (d / "replacement-control.txt").exists():
+        raise Abort("HD state not owned: a replacement control is present")
+    if env.get("PSXRECOMP_HD_EMISSIVE") != "0":
+        raise Abort("emissive must stay off")
+    settings_path = exe.parent / "settings.toml"
+    text = settings_path.read_text(encoding="utf-8")
+    text = set_setting(text, "hd_texture_root", (d / "pack").as_posix())
+    text = set_setting(text, "enable2", "false", raw=True)
+    settings_path.write_text(text, encoding="utf-8")
+    cards = {}
+    for name in ("card1", "card2"):
+        m = re.search(r"(?m)^" + name + r"\s*=\s*\"(.*)\"\s*$", text)
+        if not m or not inside(m.group(1), d / "state"):
+            raise Abort(f"{name} path is not private")
+        cards[name] = {"path": m.group(1), "exists": Path(m.group(1)).exists()}
+    if cards["card2"]["exists"]:
+        raise Abort("card2 unexpectedly present")
+    cards["enable2"] = False
+    if not cards["card1"]["exists"]:
+        raise Abort("private card1 seed missing")
+    binding = launch_binding(spec, cards["card1"]["path"])
+    spec["settings_sha256"] = sha(settings_path)
+    rec = {"schema": "s67-raw37c-staging-r6", "launch_binding": binding, "pacing_dependencies": imported_deps, "batch": batch, "directory": str(d), "pins": pins, "spec": spec,
+           "executable_sha256": EXE_SHA, "cwd": {"value": spec["cwd"], "changed": False,
+           "note": "precedent cwd kept; recorded for any relative outputs (present_shot uses an absolute path)"},
+           "settings": {"path": str(settings_path), "sha256": spec["settings_sha256"],
+                        "source_binding": {"file": str(PINS["p1_main_source"][0]), "sha256": PINS["p1_main_source"][1],
+                                           "anchor": SETTINGS_ANCHOR, "lines": anchor_lines},
+                        "argv0_absolute_staged_exe": str(exe)},
+           "own_cache": {"path": str(exe.parent / "cache"), "empty_at_stage": True,
+                         "note": "cold cache: startup compile load expected and recorded at run; no v68 cache"},
+           "pack": {"root": str(d / "pack"), "source_root": str(src), "png_pins": pack["png"],
+                    "pinned_from_candidate_files": len(files),
+                    "pinned_from_candidate_emissive_files": sorted(emissive),
+                    "unpinned_nonpng": pack["unpinned_nonpng"],
+                    "note": "every PNG sha-pinned by the candidate (files + emissive_files); emissive OFF; non-PNG "
+                            "files are not pinned by the candidate and are hash-recorded only; no immutable claim"},
+           "env_deleted": deleted, "hd_state": "on from boot; no replacement-control; PROOF_CONTROL empty",
+           "cards": cards, "stage_seconds": round(time.monotonic() - t0, 3), "at_utc": utc()}
+    write_x(d / "raw37c-staging.json", rec)
+    return d / "raw37c-staging.json"
+
+
+# ---------------------------------------------------------------- run (GPU+game grant)
+def reverify(staging):
+    st = json.loads(Path(staging).read_bytes())
+    spec = st["spec"]
+    exe = Path(spec["arguments"][0])
+    if not exe.is_absolute() or sha(exe) != EXE_SHA:
+        raise Abort("staged exe changed")
+    if Path(st["settings"]["path"]).resolve() != (exe.parent / "settings.toml").resolve():
+        raise Abort("recorded settings path is not the staged exe-dir settings")
+    if sha(exe.parent / "settings.toml") != st["settings"]["sha256"]:
+        raise Abort("private settings changed")
+    for k, v in st["launch_binding"]["small"].items():
+        if sha(v["path"]) != v["sha256"]:
+            raise Abort(f"launch source {k} changed")
+    root = Path(st["pack"]["root"])
+    seen = {p.relative_to(root).as_posix(): p for p in root.rglob("*") if p.is_file()}
+    want = {**st["pack"]["png_pins"], **st["pack"]["unpinned_nonpng"]}
+    if set(seen) != set(want):
+        raise Abort(f"private pack file set changed: +{sorted(set(seen) - set(want))[:5]} "
+                    f"-{sorted(set(want) - set(seen))[:5]}")
+    for r, h in want.items():
+        if sha(seen[r]) != h:
+            raise Abort(f"pack file changed: {r}")
+    return st
+
+
+def build_env(overrides, base=None):
+    base = os.environ if base is None else base
+    dropped = sorted(k for k in base if k.upper().startswith(INHERIT_DROP_PREFIXES))
+    env = {k: v for k, v in base.items() if not k.upper().startswith(INHERIT_DROP_PREFIXES)}
+    for k, v in overrides.items():
+        if k.upper() in DELETE_ENV:
+            continue
+        for e in [e for e in env if e.upper() == k.upper()]:
+            env.pop(e)
+        env[k] = v
+    if any(k.upper() in DELETE_ENV for k in env):
+        raise Abort("deleted env key survived")
+    return env, dropped
+
+
+def listeners(port, conns):
+    return [c.pid for c in conns() if c.laddr and c.laddr.port == port and c.status == "LISTEN"]
+
+
+def foreground_pid():
+    user32 = ctypes.WinDLL("user32", use_last_error=True)
+    hwnd = user32.GetForegroundWindow()
+    pid = wintypes.DWORD(0)
+    user32.GetWindowThreadProcessId(hwnd, ctypes.byref(pid))
+    return int(pid.value)
+
+
+def job_active_processes_self_inclusive():
+    """Accounting of this driver's own Job (NULL handle). Includes the driver. A fact only; never fed to the holder."""
+    class ACC(ctypes.Structure):
+        _fields_ = [("TotalUserTime", ctypes.c_longlong), ("TotalKernelTime", ctypes.c_longlong),
+                    ("ThisPeriodTotalUserTime", ctypes.c_longlong), ("ThisPeriodTotalKernelTime", ctypes.c_longlong),
+                    ("TotalPageFaultCount", wintypes.DWORD), ("TotalProcesses", wintypes.DWORD),
+                    ("ActiveProcesses", wintypes.DWORD), ("TotalTerminatedProcesses", wintypes.DWORD)]
+    a = ACC()
+    k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    if not k32.QueryInformationJobObject(None, 1, ctypes.byref(a), ctypes.sizeof(a), None):
+        return None
+    return int(a.ActiveProcesses)
+
+
+class Debug:
+    """Allowlisted client. owner=(pid, create_time). conns() -> psutil-like connections; ctime(pid) -> create_time;
+    select(conns, server=, client=, owned_pid=) -> audited peer record or raises."""
+
+    def __init__(self, ev, budget, owner, conns, ctime, select, port=PORT, connect=None, request_s=15.0,
+                 settle_s=3.0, settle_poll=0.05):
+        self.settle_s, self.settle_poll = settle_s, settle_poll
+        self.ev, self.budget, self.owner, self.port, self.n = Path(ev), budget, owner, port, 0
+        self.conns, self.ctime, self.select = conns, ctime, select
+        self.connect = connect or socket.create_connection
+        self.request_s = request_s
+        (self.ev / "commands").mkdir(exist_ok=True)
+
+    def _owned_listener(self, what):
+        pid, ct = self.owner
+        if self.ctime(pid) != ct:
+            raise Abort(f"{what}: owned identity changed")
+        owners = set(listeners(self.port, self.conns))
+        if owners != {pid}:
+            raise Abort(f"{what}: {self.port} listener set {sorted(owners)} is not exactly the owned pid")
+
+    def _scoped(self, conns):
+        rows = []
+        for c in conns:
+            la, ra = getattr(c, "laddr", None), getattr(c, "raddr", None)
+            lp = getattr(la, "port", None) if la else None
+            rp = getattr(ra, "port", None) if ra else None
+            if self.port in (lp, rp):
+                rows.append({"laddr": list(la) if la else None, "raddr": list(ra) if ra else None,
+                             "status": getattr(c, "status", None), "pid": getattr(c, "pid", None)})
+        return rows
+
+    def _settled_peer(self, client, end, what):
+        """r8: bounded wait while the server-side row of THIS socket is missing; refuse ambiguous or foreign at once."""
+        pid = self.owner[0]
+        server = ("127.0.0.1", self.port)
+        stop = min(end, time.monotonic() + self.settle_s)
+        polls = 0
+        while True:
+            conns = list(self.conns())
+            polls += 1
+            rows = [c for c in conns if getattr(c, "status", None) == "ESTABLISHED"
+                    and getattr(c, "family", None) == socket.AF_INET and getattr(c, "laddr", None)
+                    and getattr(c, "raddr", None) and tuple(c.laddr) == server and tuple(c.raddr) == client]
+            if len(rows) > 1:
+                raise Abort(f"{what}: connected peer ambiguous ({len(rows)} rows): {self._scoped(conns)}")
+            if len(rows) == 1:
+                if rows[0].pid != pid:
+                    raise Abort(f"{what}: connected peer belongs to pid {rows[0].pid}, not owned {pid}")
+                rec = self.select(conns, server=server, client=client, owned_pid=pid)
+                return dict(rec, settle_polls=polls)
+            if time.monotonic() >= stop or self.budget.left() <= 0:
+                raise Abort(f"{what}: owned peer not visible within settle window after {polls} polls: "
+                            f"{self._scoped(conns)}")
+            time.sleep(min(self.settle_poll, max(0.0, stop - time.monotonic())))
+
+    def _post_reply(self, client, what):
+        """r9: one-shot server has closed its side; record the state, refuse a foreign holder, re-verify ownership."""
+        pid = self.owner[0]
+        server = ("127.0.0.1", self.port)
+        conns = list(self.conns())
+        rows = [c for c in conns if getattr(c, "laddr", None) and getattr(c, "raddr", None)
+                and tuple(c.laddr) == server and tuple(c.raddr) == client]
+        if len(rows) > 1:                              # r11: ambiguous post-reply holder
+            raise Abort(f"{what}: {len(rows)} rows hold the 4-tuple after reply (ambiguous): {self._scoped(conns)}")
+        foreign = [c.pid for c in rows if getattr(c, "pid", None) not in (pid, 0, None)]
+        if foreign:
+            raise Abort(f"{what}: 4-tuple held by foreign pid(s) {foreign} after reply")
+        self._owned_listener(what)                    # listener set == {owned pid} and owned create_time unchanged
+        return {"rows": [{"status": getattr(c, "status", None), "pid": getattr(c, "pid", None)} for c in rows],
+                "scoped": self._scoped(conns), "owned_listener_and_ctime": True, "at_utc": utc(),
+                "note": "one-shot server closes after reply; a missing/closing server row is expected"}
+
+    def __call__(self, cmd, **kw):
+        if cmd not in ALLOW or not set(kw) <= ALLOW[cmd]:
+            raise Abort(f"refused before send: {cmd} {sorted(kw)}")
+        if cmd == "present_shot" and not inside(kw["path"], self.ev):
+            raise Abort("refused before send: present_shot path outside evidence")
+        self.n += 1
+        req = dict(kw, cmd=cmd, id=self.n)
+        write_x(self.ev / "commands" / f"{self.n:03d}-intent.json", {"at_utc": utc(), "port": self.port, "request": req})
+        end = time.monotonic() + min(self.request_s, self.budget.need(cmd))
+        self._owned_listener(cmd)
+        with self.connect(("127.0.0.1", self.port), timeout=max(0.05, min(8.0, end - time.monotonic()))) as c:
+            client = tuple(c.getsockname()[:2])
+            peer_before = self._settled_peer(client, end, cmd + " before send")
+            self._owned_listener(cmd + " pre-send recheck")       # r11: identity/listener may change during settle
+            if end - time.monotonic() <= 0 or self.budget.left() <= 0:
+                raise Abort(f"{cmd}: request or global deadline passed before send")
+            c.sendall(json.dumps(req).encode("utf-8") + b"\n")
+            buf = bytearray()
+            while b"\n" not in buf:
+                left = min(end - time.monotonic(), self.budget.need(cmd))
+                if left <= 0:
+                    raise Abort(f"{cmd}: request deadline passed during recv")
+                c.settimeout(max(0.05, left))
+                b = c.recv(65536)
+                if not b:
+                    raise Abort(f"{cmd}: connection closed without reply")
+                buf.extend(b)
+                if len(buf) > REPLY_CAP:
+                    raise Abort(f"{cmd}: reply exceeded cap")
+        line = bytes(buf.split(b"\n", 1)[0])
+        write_x(self.ev / "commands" / f"{self.n:03d}-raw.json",
+                {"at_utc": utc(), "received_sha256": hashlib.sha256(bytes(buf)).hexdigest(), "bytes": len(buf),
+                 "text": bytes(buf).decode("utf-8", errors="replace"), "qualified": False,
+                 "peer_before": peer_before})
+        post = self._post_reply(client, cmd + " after reply")
+        write_x(self.ev / "commands" / f"{self.n:03d}-post.json", post)
+        reply = json.loads(line)
+        write_x(self.ev / "commands" / f"{self.n:03d}-reply.json",
+                {"at_utc": utc(), "reply": reply, "qualified": True, "peer_before": peer_before,
+                 "raw_sha256": hashlib.sha256(bytes(buf)).hexdigest()})
+        return reply
+
+
+def gate(name, keys, shot, ev, owned_pid, budget, timeout, fg=foreground_pid, poll=0.25):
+    if fg() != owned_pid:
+        raise Abort(f"{name}: owned game is not foreground before gate")
+    ready, done = Path(ev) / f"gate-{name}.ready", Path(ev) / f"gate-{name}.done"
+    write_x(ready, {"gate": name, "expect_keys": keys, "screenshot_required": shot, "at_utc": utc(),
+                    "note": "operator: supported CUA keypress only; no hold; App.getScreenshot of the owned window"})
+    end = time.monotonic() + min(timeout, budget.need(name))
+    while not done.exists():
+        left = min(end - time.monotonic(), budget.left())
+        if left <= 0:
+            raise Abort(f"{name}: operator gate timed out")
+        time.sleep(min(poll, left))
+    d = json.loads(done.read_bytes())
+    if d.get("gate") != name or d.get("keys") != keys:
+        raise Abort(f"{name}: done receipt keys {d.get('keys')} != expected {keys}")
+    shots = []
+    for s in d.get("screenshots", []):
+        if not inside(s["path"], ev) or not Path(s["path"]).is_file():
+            raise Abort(f"{name}: screenshot missing or outside evidence")
+        shots.append(dict(s, sha256=sha(s["path"])))
+    if shot and not shots:
+        raise Abort(f"{name}: required screenshot not recorded")
+    after = None
+    if name != "END":
+        after = fg()
+        if after != owned_pid:
+            raise Abort(f"{name}: owned game lost foreground during gate")
+    return {"gate": name, "done": d, "screenshots": shots, "done_sha256": sha(done), "fg_after": after}
+
+
+def wait_ready(dbg, budget, limit_s, poll=1.0):
+    """Bounded poll of skin_material until ready, opengl_ready and hd_ready are all true. Title is not proven."""
+    end = time.monotonic() + min(limit_s, budget.need("ready"))
+    tries = []
+    while True:
+        r = dbg("skin_material")
+        out = r.get("out", r) if isinstance(r, dict) else {}
+        flags = {k: out.get(k) for k in ("ready", "opengl_ready", "hd_ready")}
+        tries.append(flags)
+        if all(v is True for v in flags.values()):
+            return {"attempts": len(tries), "flags": flags}
+        left = min(end - time.monotonic(), budget.left())
+        if left <= 0:
+            raise Abort(f"skin_material never reported ready/opengl_ready/hd_ready: last {flags}")
+        time.sleep(min(poll, left))
+
+
+def audio_and_skin(dbg, tag, out):
+    out[tag] = {"audio_stats": dbg("audio_stats"), "skin_material": dbg("skin_material"), "at_utc": utc()}
+
+
+def fence_before_launch(guard, token, ev):
+    """Existing coordinator fence (as run_stage1_unassisted_review uses it): current permission, then broker check.
+    Private broker args are transient (guard cb767d1f TemporaryDirectory); the token is never recorded."""
+    if not token:
+        raise Abort(f"{TOKEN_ENV} absent: no current GPU grant for this driver")
+    perm = guard.current_permission(token)
+    if not isinstance(perm, dict) or perm.get("allowed") is not True:
+        raise Abort(f"shared GPU permission not allowed: {(perm or {}).get('errors')}")
+    check = guard.broker_action("check", token, ev)
+    if check.get("action") != "check" or check.get("exit") != 0 or check.get("allowed") is not True:
+        raise Abort("shared GPU broker check not allowed")
+    return {"permission": {"allowed": True, "owner": perm.get("owner")}, "check": check}
+
+
+def fence_register_game(guard, token, ev, pid, create_time, cmdline):
+    """Register the ACTUAL game pid as soon as Popen exists, before any debug collection (same fields as the
+    existing runner's start: pid, command, created_utc). A refusal aborts and the holder cleans up."""
+    created = time.strftime("%Y-%m-%dT%H:%M:%S", time.gmtime(create_time)) + f".{int(create_time * 1e6) % 1000000:06d}+00:00"
+    start = guard.broker_action("start", token, ev, pid=pid, command=" ".join(cmdline), created_utc=created)
+    # real start schema: {action:"start", exit:0, allowed:None, committed:True, event_id:...} (no allowed field)
+    if start.get("action") != "start" or start.get("exit") != 0 or start.get("committed") is not True:
+        raise Abort("shared GPU broker start (game registration) not committed")
+    return dict(start, registered_pid=pid, registered_create_time=create_time,
+                note="grant never implicitly released; coordinator verifies absence before explicit release")
+
+
+def run(staging, ev, budget_s, gate_timeout, ready_s=90.0):
+    import psutil
+    budget = Budget(budget_s)
+    ev = Path(ev)
+    ev.mkdir(parents=True, exist_ok=False)
+    rec = {"schema": "s67-raw37c-evidence-r2", "verdict": "ABORTED", "not_run": NOT_RUN, "steps": {},
+           "claims": "raw observations only; no acceptance, PCM, listening, pacing or performance claim; title not "
+                     "proven", "started_utc": utc()}
+    holder, logs = None, []
+    try:
+        rec["pins"] = verify_pins(["holder", "audited_r1", "ui_live_check_plan", "owner_build_receipt", "gpu_guard"])
+        st = reverify(staging)
+        rec["staging"] = {"path": str(staging), "sha256": sha(staging)}
+        spec = st["spec"]
+        conns = lambda: psutil.net_connections(kind="tcp")
+        if listeners(PORT, conns):
+            raise Abort(f"port {PORT} already has a listener before launch")
+        for name, (f, want) in HOLDER_CLOSURE.items():               # r7: pin holder closure before import
+            if not f.is_file() or sha(f) != want:
+                raise Abort(f"holder dependency {name} missing or not pinned {want[:12]}")
+        sys.path.insert(0, str(GH / "remaster-audit"))
+        hmod = load_module("owned_process_cleanup_r0", PINS["holder"][0], SUP)   # SUP inserted ahead of remaster-audit
+        for name, (f, want) in HOLDER_CLOSURE.items():
+            m = sys.modules.get(name)
+            if m is None or Path(m.__file__).resolve() != f.resolve() or sha(m.__file__) != want:
+                raise Abort(f"holder dependency {name} not imported from its pinned file")
+        rec["holder_closure"] = {n: {"path": str(f), "sha256": w} for n, (f, w) in HOLDER_CLOSURE.items()}
+        audited = hmod.audited
+        if sha(audited.__file__) != PINS["audited_r1"][1]:
+            raise Abort("holder imported a different audited module")
+        env, dropped = build_env(spec["environment_overrides"])
+        rec["env"] = {"inherited_dropped_names": dropped, "overrides_applied": sorted(spec["environment_overrides"]),
+                      "deleted": list(DELETE_ENV)}
+        guard = load_module("shared_gpu_guard", PINS["gpu_guard"][0])
+        token = os.environ.get(TOKEN_ENV, "")
+        rec["fence"] = {"before_launch": fence_before_launch(guard, token, ev)}
+        out_f = open(ev / "game.stdout.log", "xb")
+        err_f = open(ev / "game.stderr.log", "xb")
+        logs = [out_f, err_f]
+        t_launch = time.monotonic()
+        holder = hmod.OwnedProcessHolder(subprocess.Popen(spec["arguments"], cwd=spec["cwd"], env=env,
+                                                          stdout=out_f, stderr=err_f))
+        p = psutil.Process(holder.pid)
+        rec["fence"]["game_registration"] = fence_register_game(guard, token, ev, holder.pid, holder.create_time,
+                                                                p.cmdline())
+        token = None
+        rec["steps"]["S0"] = {"pid": holder.pid, "create_time": holder.create_time, "exe": p.exe(),
+                              "exe_sha256": sha(p.exe()), "cmdline": p.cmdline(), "cwd": p.cwd(), "nice": p.nice(),
+                              "cpu_affinity": p.cpu_affinity(), "at_utc": utc()}
+        if Path(p.exe()).resolve() != Path(spec["arguments"][0]).resolve() or rec["steps"]["S0"]["exe_sha256"] != EXE_SHA:
+            raise Abort("launched image is not the staged 37c exe")
+        while True:
+            owners = listeners(PORT, conns)
+            if owners and set(owners) != {holder.pid}:
+                raise Abort(f"port {PORT} listener is not the owned game: {owners}")
+            if owners:
+                break
+            if holder.process.poll() is not None:
+                raise Abort("game exited before its debug listener appeared")
+            time.sleep(min(0.25, max(0.0, budget.need("listener"))))
+        rec["steps"]["S0"]["listener_seconds_cold_cache"] = round(time.monotonic() - t_launch, 3)
+        dbg = Debug(ev, budget, holder.identity, conns, lambda pid: psutil.Process(pid).create_time(),
+                    audited.select_owned_tcp_peer)
+        rec["steps"]["ready"] = wait_ready(dbg, budget, ready_s)
+        rec["steps"]["ready"]["seconds_from_launch"] = round(time.monotonic() - t_launch, 3)
+        audio_and_skin(dbg, "A0", rec["steps"])
+        for name, keys, shot in GATES:
+            rec["steps"][name] = gate(name, keys, shot, ev, holder.pid, budget, gate_timeout)
+            if name == "G2":
+                audio_and_skin(dbg, "A1", rec["steps"])
+                seq0 = dbg("present_shot_seq")
+                rec["steps"]["A1"]["present_shot"] = dbg("present_shot", path=str(ev / "present-A1.png"))
+                seqs = [seq0]
+                for _ in range(40):
+                    seqs.append(dbg("present_shot_seq"))
+                    if seqs[-1].get("seq") != seq0.get("seq"):
+                        break
+                    time.sleep(min(0.05, max(0.0, budget.need("present_shot_seq"))))
+                rec["steps"]["A1"]["present_shot_seq"] = seqs
+            if name == "G3b":
+                audio_and_skin(dbg, "A2", rec["steps"])
+        try:
+            rc = holder.process.wait(timeout=max(0.1, min(15.0, budget.need("exit"))))
+        except subprocess.TimeoutExpired:
+            raise Abort("game did not exit after operator Alt+F4")
+        rec["steps"]["exit"] = {"returncode": rc, "at_utc": utc()}
+        rec["verdict"] = "RAW-COLLECTED"
+    except Abort as e:
+        rec["abort"] = str(e)
+    except Exception as e:  # noqa: BLE001 - recorded, verdict stays ABORTED
+        rec["abort"] = f"{type(e).__name__}: {e}"
+    finally:
+        if holder is not None:
+            try:
+                rec["cleanup_holder"] = holder.cleanup(deadline_s=5.0)
+            except Exception as e:  # noqa: BLE001 - cleanup FAIL recorded; evidence still written
+                rec["cleanup_holder"] = {"verdict": "CLEANUP-FAIL", "error": f"{type(e).__name__}: {e}",
+                                         "identity_absent": False, "tree_absent": False}
+                rec["verdict"] = "ABORTED"
+            rec["cleanup_holder_facts"] = getattr(holder, "facts", None)
+        for f in logs:
+            try:
+                f.close()
+            except Exception:  # noqa: BLE001
+                pass
+        rec["logs"] = {n: (sha(ev / n) if (ev / n).is_file() else None) for n in ("game.stdout.log", "game.stderr.log")}
+        try:  # config marker: does any captured log line name the private staged dir? recorded, never assumed
+            st_dir = json.loads(Path(rec["staging"]["path"]).read_bytes())["directory"] if "staging" in rec else None
+            text = "".join((ev / n).read_text(encoding="utf-8", errors="replace") for n in rec["logs"] if rec["logs"][n])
+            norm = text.replace("\\", "/").lower()
+            rec["config_marker"] = {"private_dir_in_logs": bool(st_dir) and st_dir.replace("\\", "/").lower() in norm}
+        except Exception as e:  # noqa: BLE001
+            rec["config_marker"] = {"error": f"{type(e).__name__}"}
+        try:
+            st_path = Path(rec.get("staging", {}).get("path", ""))
+            sp = Path(json.loads(st_path.read_bytes())["settings"]["path"]) if st_path.is_file() else None
+            rec["settings_sha256_after"] = sha(sp) if sp and sp.is_file() else None
+        except Exception as e:  # noqa: BLE001
+            rec["settings_sha256_after"] = f"unreadable: {type(e).__name__}"
+        try:
+            rec["job_active_processes_self_inclusive"] = job_active_processes_self_inclusive()
+        except Exception as e:  # noqa: BLE001
+            rec["job_active_processes_self_inclusive"] = f"error: {type(e).__name__}"
+        rec["cleanup_qualification"] = ("join required: holder identity_absent here AND the wrapper's Job-empty/"
+                                        "tree-absent receipt for this pid/ctime; holder tree_absent is False inside "
+                                        "the Job by design")
+        rec["ended_utc"] = utc()
+        write_x(ev / "raw37c-evidence.json", rec)
+    return 0 if rec["verdict"] == "RAW-COLLECTED" else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser()
+    m = ap.add_mutually_exclusive_group(required=True)
+    m.add_argument("--stage", metavar="BATCH")
+    m.add_argument("--run", metavar="STAGING_JSON")
+    ap.add_argument("--evidence")
+    ap.add_argument("--budget", type=float, default=200.0)
+    ap.add_argument("--gate-timeout", type=float, default=30.0)
+    ap.add_argument("--ready-timeout", type=float, default=90.0)
+    a = ap.parse_args(argv)
+    if a.stage:
+        print(json.dumps({"staging": str(stage(a.stage))}))
+        return 0
+    if not a.evidence or not math.isfinite(a.budget) or not (0 < a.budget <= 230):
+        ap.error("--run needs --evidence and 0 < --budget <= 230 (inside the 240 s wrapper timeout)")
+    return run(Path(a.run), Path(a.evidence), a.budget, a.gate_timeout, a.ready_timeout)
+
+
+if __name__ == "__main__":
+    if "--log" in sys.argv:
+        _i = sys.argv.index("--log")
+        if _i + 1 >= len(sys.argv):
+            raise SystemExit("--log needs a path")
+        _LOG = open(sys.argv[_i + 1], "x", encoding="utf-8", buffering=1)
+        del sys.argv[_i:_i + 2]
+        sys.stdout = sys.stderr = _LOG
+    sys.exit(main())

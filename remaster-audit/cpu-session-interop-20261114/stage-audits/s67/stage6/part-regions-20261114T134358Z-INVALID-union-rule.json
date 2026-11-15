@@ -1,0 +1,323 @@
+{
+ "run": "20261114T134358Z",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S6-WHOLE-CELL-20261114",
+ "selection_map": {
+  "path": "remaster-audit/parallel-stages-20261114/s67/stage6/selection-map-20261114T133638Z.json",
+  "sha256": "3d0961e7f734a173b0dd161ceb7951776024a5f727cebb5dcad882bda0312eb7"
+ },
+ "rule": "visible = index maps to a non-zero CLUT word under any selected CLUT; 8-connected components >= 12 texels",
+ "pages": {
+  "CB07BBCB": {
+   "keys": [
+    "CB07BBCB-8513C505",
+    "CB07BBCB-6CFD44D8",
+    "CB07BBCB-0344ADB9",
+    "CB07BBCB-6F28D777",
+    "CB07BBCB-0717A4D3",
+    "CB07BBCB-A12BB890"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-camo-craft-CB07BBCB-v1/source/CB07BBCB.words.bin",
+   "words_sha256": "2b1a600dd23c3950851c39b033a64fe16f1abd6f1d1714c4463b0d18539d0109"
+  },
+  "43C26C42": {
+   "keys": [
+    "43C26C42-521B0B1A",
+    "43C26C42-2B66A97F",
+    "43C26C42-6EDE7B7C",
+    "43C26C42-25C360FE",
+    "43C26C42-870A1255",
+    "43C26C42-FFF1C1BF",
+    "43C26C42-3C7F8A8F",
+    "43C26C42-60579FEB",
+    "43C26C42-1E4043BA",
+    "43C26C42-4CAF3E0F"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\failed\\stage6-vram320-0-43C26C42-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram320-0-43C26C42-61A869E5-v1/source/43C26C42.words.bin",
+   "words_sha256": "2eca2cdd6d3d716be178fb6a08bf45fbfb24dbda7ca86521dc411b873e277707"
+  },
+  "61A869E5": {
+   "keys": [
+    "61A869E5-11674191",
+    "61A869E5-FF01A5DB",
+    "61A869E5-9F20800F",
+    "61A869E5-334D9EFF",
+    "61A869E5-3E21CF50",
+    "61A869E5-05C38755",
+    "61A869E5-5FA94A42",
+    "61A869E5-09E96477",
+    "61A869E5-F2E4A647",
+    "61A869E5-47823F21",
+    "61A869E5-2E90A992",
+    "61A869E5-1689DF90",
+    "61A869E5-8D920799",
+    "61A869E5-3F02B716",
+    "61A869E5-B97689E3",
+    "61A869E5-B675A0C2",
+    "61A869E5-BD161002",
+    "61A869E5-AB139F82",
+    "61A869E5-DE388F4C"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram320-0-43C26C42-61A869E5-v1/source/61A869E5.words.bin",
+   "words_sha256": "c585929af4eafad543d138f63b2b261adaf5d67ce146f666f468455b01e3341a"
+  },
+  "8F498326": {
+   "keys": [
+    "8F498326-870A1255",
+    "8F498326-847D772B",
+    "8F498326-899D7E1D",
+    "8F498326-0344ADB9",
+    "8F498326-31689705",
+    "8F498326-0F04A907",
+    "8F498326-4CAF3E0F"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [
+    [
+     0,
+     125,
+     99,
+     216
+    ]
+   ],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram384-0-8F498326-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram384-0-8F498326-fx-v2/source/8F498326.words.bin",
+   "words_sha256": "c8e755faab4142ac53954c8264190d9d58da6d8c176989a64773a3dd0887a04e"
+  },
+  "F07625EE": {
+   "keys": [
+    "F07625EE-AA609B3E",
+    "F07625EE-0DD8FE23",
+    "F07625EE-0902919B",
+    "F07625EE-E2432AE9",
+    "F07625EE-46EBDEF1",
+    "F07625EE-55345BAD",
+    "F07625EE-995DA972",
+    "F07625EE-C157881A",
+    "F07625EE-4FB18FAB",
+    "F07625EE-34CF1D58",
+    "F07625EE-19BC58B9",
+    "F07625EE-47CC0499",
+    "F07625EE-328481EB",
+    "F07625EE-AB139F82",
+    "F07625EE-A3ED112B",
+    "F07625EE-DB8D9451"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram384-0-8F498326-F07625EE-v1/source/F07625EE.words.bin",
+   "words_sha256": "8b61986c35ec4a7828db85daec67a231e24ddd5f4dc6ae12cad106b2c93d1931"
+  },
+  "03F5CF11": {
+   "keys": [
+    "03F5CF11-870A1255",
+    "03F5CF11-AA87046E",
+    "03F5CF11-111CA9A9",
+    "03F5CF11-61869F1D",
+    "03F5CF11-3C7F8A8F",
+    "03F5CF11-810A0B32",
+    "03F5CF11-0B9F0CD2"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram448-0-03F5CF11-A5969BC9-v1/source/03F5CF11.words.bin",
+   "words_sha256": "4922aa3a668e0b527540834a5c665866fd01dcd68cfae7a0d9a3cfa64de59c49"
+  },
+  "A5969BC9": {
+   "keys": [
+    "A5969BC9-FD5E0863",
+    "A5969BC9-28E85C14",
+    "A5969BC9-B675A0C2",
+    "A5969BC9-CD90D27E",
+    "A5969BC9-F3BEA083",
+    "A5969BC9-7DFC973F",
+    "A5969BC9-B3A5B734",
+    "A5969BC9-AD6DB7AA",
+    "A5969BC9-4FB18FAB",
+    "A5969BC9-165DD2B8",
+    "A5969BC9-3A9A151E",
+    "A5969BC9-995DA972",
+    "A5969BC9-98C90B96",
+    "A5969BC9-AB139F82"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram448-0-03F5CF11-A5969BC9-v1/source/A5969BC9.words.bin",
+   "words_sha256": "ce97622a1642fb65fe8b941b20bc011e49e8819d258af0cef1ecb0a7cfe4931e"
+  },
+  "20961255": {
+   "keys": [
+    "20961255-810A0B32",
+    "20961255-EE2BAE09",
+    "20961255-A83C5B65"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [
+    [
+     145,
+     0,
+     243,
+     255
+    ]
+   ],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram704-0-20961255-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram704-0-20961255-fx-v2/source/20961255.words.bin",
+   "words_sha256": "3c3d5165fd5addd2c78b4c89eae8ad808b34873b853a84a6fa35cb95602a0df0"
+  },
+  "E0849F81": {
+   "keys": [
+    "E0849F81-F3BEA083",
+    "E0849F81-7DFC973F",
+    "E0849F81-5379DE11",
+    "E0849F81-AA609B3E",
+    "E0849F81-0902919B",
+    "E0849F81-47823F21",
+    "E0849F81-98C90B96"
+   ],
+   "visible_texels": 65536,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 65536,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram704-0-20961255-E0849F81-v1/source/E0849F81.words.bin",
+   "words_sha256": "6ee0a23b5776e9589b01d2b94e215cb5c917b0c1f4939a972e78ac8e099043dc"
+  }
+ },
+ "status": "DATA ONLY; candidate part regions for CR-S6-3 sizing, NOT part masks"
+}

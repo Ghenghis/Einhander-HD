@@ -1,0 +1,54 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-B",
+  "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\fake-transport-ft1-r1\\fake_transport_default_path.r0.py",
+  "--out-root",
+  "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\fake-transport-ft1-r1\\runs",
+  "--expect-runner-sha",
+  "c47b10929c318280b471cc60dc84a89f3b8fe4db59f325e7630dee482d1939a5",
+  "--expect-guard-sha",
+  "9e6ca8159a2f471fcbbde996464a6ba2eb6a51846c44567eefdb6e5cceaa2240"
+ ],
+ "cwd": "C:\\github\\Einhander",
+ "wrapper_pid": 33384,
+ "wrapper_create_time": 1794680223.3964996,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 90.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T18:17:03.553059+00:00",
+ "precheck": {
+  "system_cpu_pct": 39.2,
+  "free_gib": 68.26,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T18:17:04.554361+00:00"
+ },
+ "child_pid": 40660,
+ "child_create_time": 1794680224.555366,
+ "job_assigned_before_resume": true,
+ "start_utc": "2026-11-14T18:17:04.562407+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 10.349,
+ "end_utc": "2026-11-14T18:17:14.913140+00:00",
+ "job": {
+  "active": 0,
+  "total": 1,
+  "terminated": 0,
+  "user_s": 1.296875,
+  "kernel_s": 1.6875
+ },
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

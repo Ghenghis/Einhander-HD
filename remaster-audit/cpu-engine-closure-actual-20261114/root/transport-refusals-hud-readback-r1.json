@@ -1,0 +1,142 @@
+{
+  "at_utc": "2026-11-14T23:59:06.045192+00:00",
+  "pins": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\raw37c_driver_r11.py",
+      "sha256": "8f753ce74ad3ab4728a0b5b485bab5764cf34294ad1de17d394e44001e4dd17d",
+      "bytes": 49813,
+      "matched_reported_pin": true
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\test_raw37c_driver_r8.py",
+      "sha256": "fe9f5467a480cb6c56ffa73f95ab4a92ea8e787933afc2b73915360df7677869",
+      "bytes": 24539,
+      "matched_reported_pin": true
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\test_raw37c_driver_r9.py",
+      "sha256": "f2634fd68a486fc31e421f9507d8333cdddc8f588a481ed8b67b176298ffb6b9",
+      "bytes": 26791,
+      "matched_reported_pin": true
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r8-2349-envelope.json",
+      "sha256": "a497a5e5adbb0682a2de4036052e08f5cd561e8c47269755fcc48f2e2564c368",
+      "bytes": 2208,
+      "matched_reported_pin": true
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r8-2349.log",
+      "sha256": "b8022ef9071648050e257a842789c19a054a5ff3f6157b11e179e304e2b0106f",
+      "bytes": 440,
+      "matched_reported_pin": true
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r9-2352-envelope.json",
+      "sha256": "d7ac6ac5005ab8d5a9697d6502f1005a2e2d50f893dbf8629ceda73b02af825f",
+      "bytes": 1184,
+      "matched_reported_pin": true
+    }
+  ],
+  "identities": [
+    {
+      "kind": "wrapper",
+      "pid": 9112,
+      "creation_unix": 1794700075.112252,
+      "identity_absent": true
+    },
+    {
+      "kind": "child",
+      "pid": 14484,
+      "creation_unix": 1794700076.234861,
+      "identity_absent": true
+    }
+  ],
+  "raw_controls_r8": "FAIL no final checkcounts; source fixture closure omission, not game failure",
+  "declines": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r9-2352-envelope.json",
+      "sha256": "d7ac6ac5005ab8d5a9697d6502f1005a2e2d50f893dbf8629ceda73b02af825f",
+      "cpu": 71.8,
+      "child_started": false,
+      "at_utc": "2026-11-14T23:50:41.903649+00:00"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r9-2353-coordinator-envelope.json",
+      "sha256": "9a93531ebe093a601bb0268a4626ffc6446e11e3343e8e7fa014189f3345995b",
+      "cpu": 67.6,
+      "child_started": false,
+      "at_utc": "2026-11-14T23:53:33.861898+00:00"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\runs\\diagbands-r5-fixtures-envelope.json",
+      "sha256": "7d31a580500d2b5bca98edebd8cfa612fbb06aaca28fcdf42ce72b404845c63c",
+      "cpu": 85.0,
+      "child_started": false,
+      "at_utc": "2026-11-14T23:49:00.918445+00:00"
+    }
+  ],
+  "hud": [
+    {
+      "key": "44C16454-72FBA1C5",
+      "coherent_v4_path": "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\44C16454-72FBA1C5.png",
+      "coherent_v4_sha256": "f9d459b45d3a6ae1c191b9a2a455da34107081c9077512264c84a0a50ea380d7",
+      "staged": [
+        {
+          "relative": "einhander-texture-replacements/44C16454-72FBA1C5.png",
+          "sha256": "f9d459b45d3a6ae1c191b9a2a455da34107081c9077512264c84a0a50ea380d7",
+          "equals_coherent_v4": true
+        }
+      ],
+      "decoded": false
+    },
+    {
+      "key": "8BA3BB4D-190A55AD",
+      "coherent_v4_path": "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-190A55AD.png",
+      "coherent_v4_sha256": "9511a22f75360eab0bda10888422b7ff8c6ac825fa270c63f885e8f56afea0b5",
+      "staged": [
+        {
+          "relative": "einhander-texture-replacements/8BA3BB4D-190A55AD.png",
+          "sha256": "9511a22f75360eab0bda10888422b7ff8c6ac825fa270c63f885e8f56afea0b5",
+          "equals_coherent_v4": true
+        }
+      ],
+      "decoded": false
+    },
+    {
+      "key": "8BA3BB4D-36D62A31",
+      "coherent_v4_path": "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-36D62A31.png",
+      "coherent_v4_sha256": "4255b3e5102cb78b26c06c6618b9fdff9203a23f57fde6e8bca67f6f6bbef3c1",
+      "staged": [
+        {
+          "relative": "einhander-texture-replacements/8BA3BB4D-36D62A31.png",
+          "sha256": "4255b3e5102cb78b26c06c6618b9fdff9203a23f57fde6e8bca67f6f6bbef3c1",
+          "equals_coherent_v4": true
+        }
+      ],
+      "decoded": false
+    },
+    {
+      "key": "8BA3BB4D-E0AE221F",
+      "coherent_v4_path": "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-E0AE221F.png",
+      "coherent_v4_sha256": "c82058bfb3a14257d46a39355692560f8cede710f1163b7d3c565fe4bf04afb9",
+      "staged": [
+        {
+          "relative": "einhander-texture-replacements/8BA3BB4D-E0AE221F.png",
+          "sha256": "c82058bfb3a14257d46a39355692560f8cede710f1163b7d3c565fe4bf04afb9",
+          "equals_coherent_v4": true
+        }
+      ],
+      "decoded": false
+    }
+  ],
+  "staging_receipt_sha256": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79",
+  "tests_replayed": false,
+  "gpu_game_used": false,
+  "limits": [
+    "Known wrapper/child identities only; sampled descendant withoutctime not an independentidentityproof.",
+    "Three resource declines are nochild refusals, not controls executed/failing.",
+    "Four currentstaged PNG hashes only; no decode/class/readability/visual/live or installedrelease proof.",
+    "Historical v4 test/visual records not replayed."
+  ]
+}

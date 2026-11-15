@@ -1,0 +1,159 @@
+{
+  "at_utc": "2026-11-14T21:51:20.258816+00:00",
+  "passed": true,
+  "metadata_and_pcm_hashes_only": true,
+  "envelope_sha256": "b6311948bce3a5f07790097f2bdad2559c362c8979403c02ca48a9d05dac15a3",
+  "manifest_sha256": "f0ec68c98f3dd5622c7f36601fb78cbefeb6511eff3557d5080230c036488433",
+  "inputs": [
+    {
+      "kind": "fixture",
+      "path": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-gap-counter/test_rab_gap_r3.c",
+      "sha256": "397202b9c22631a1732dada485c833bac727c5c5d4afda5dccb49f454c97aecf"
+    },
+    {
+      "kind": "fixture",
+      "path": "remaster-audit/parallel-stages-20261114/s67/runs/audio-gap-Dr5-2147/src/test_rab_gap_r3.c",
+      "sha256": "397202b9c22631a1732dada485c833bac727c5c5d4afda5dccb49f454c97aecf"
+    },
+    {
+      "kind": "base_header",
+      "path": "windows-x64/psxrecomp/runtime/src/recomp_audio_drc.h",
+      "sha256": "70cb5acd5219d7bd2387757dc54072ae42bfcd158f8e3e24108971339ecc7a29"
+    },
+    {
+      "kind": "base_header",
+      "path": "remaster-audit/parallel-stages-20261114/s67/runs/audio-gap-Dr5-2147/src/base_inc/recomp_audio_drc.h",
+      "sha256": "70cb5acd5219d7bd2387757dc54072ae42bfcd158f8e3e24108971339ecc7a29"
+    },
+    {
+      "kind": "patched_header",
+      "path": "remaster-audit/parallel-stages-20261114/s67/proposals/audio-telemetry-combined-r1/recomp_audio_drc.h.proposed",
+      "sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    {
+      "kind": "patched_header",
+      "path": "remaster-audit/parallel-stages-20261114/s67/runs/audio-gap-Dr5-2147/src/patched_inc/recomp_audio_drc.h",
+      "sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    }
+  ],
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 45120,
+      "creation_unix": 1794692914.6426227,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 43608,
+      "creation_unix": 1794692915.7946515,
+      "identity_absent": true
+    },
+    {
+      "label": "compile:base",
+      "pid": 15608,
+      "creation_unix": 1794692916.1184185,
+      "identity_absent": true
+    },
+    {
+      "label": "run:base",
+      "pid": 13012,
+      "creation_unix": 1794692916.5131629,
+      "identity_absent": true
+    },
+    {
+      "label": "compile:patched",
+      "pid": 22924,
+      "creation_unix": 1794692916.6089933,
+      "identity_absent": true
+    },
+    {
+      "label": "run:patched",
+      "pid": 42384,
+      "creation_unix": 1794692917.076079,
+      "identity_absent": true
+    }
+  ],
+  "cases": [
+    {
+      "case": "unprimed_starvation",
+      "pcm_sha256": "4fe7b59af6de3b665b67788cc2f99892ab827efae3a467342b3bb4e3bc8e5bfe",
+      "bytes": 16384,
+      "old_counter_marks": [
+        0
+      ]
+    },
+    {
+      "case": "one_gap",
+      "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+      "bytes": 211200,
+      "old_counter_marks": [
+        0,
+        40836
+      ]
+    },
+    {
+      "case": "recovery",
+      "pcm_sha256": "fd7d9624aec55dc2bff9f8255e8b90a7481fb6f394a9a03655263c32c470723c",
+      "bytes": 230400,
+      "old_counter_marks": [
+        40836,
+        40836
+      ]
+    },
+    {
+      "case": "multiple_gaps",
+      "pcm_sha256": "1071dabc0708267b43cbd3c6d3dea237486e30c603a1fb41e2fb5546ab035f46",
+      "bytes": 624000,
+      "old_counter_marks": [
+        0,
+        40836,
+        40836,
+        81563,
+        81563,
+        122269,
+        122269
+      ]
+    },
+    {
+      "case": "gap_split_across_callbacks",
+      "pcm_sha256": "e5e35c7ea73dc702c0cd0c515271308256df62645e159243002b545d024309f5",
+      "bytes": 211200,
+      "old_counter_marks": [
+        0,
+        40838
+      ]
+    },
+    {
+      "case": "mute_then_unmute_reset",
+      "pcm_sha256": "a82b95ea67ee2ebf926333abd491d920f509c6910704ffc27558a59eee6c60e8",
+      "bytes": 422800,
+      "old_counter_marks": [
+        40836,
+        40836,
+        40936,
+        40936,
+        84063
+      ]
+    },
+    {
+      "case": "reset_by_init",
+      "pcm_sha256": "dff36dc3a2098797d205eb9d8097acd0f61177bd4ec3037fc049d5e30dff6c58",
+      "bytes": 211200,
+      "old_counter_marks": [
+        40836,
+        0
+      ]
+    }
+  ],
+  "actual_grant": "msg_b2b1e01caf214831",
+  "relayed_same_slot_grant": "msg_35c1f60f7fa0733c",
+  "attempt_count": 1,
+  "fixture_replayed": false,
+  "toolchain_files_rehashed_by_readback": false,
+  "real_sdl": false,
+  "listening": false,
+  "game_run": false,
+  "gpu_run": false,
+  "performance_gain_proved": false
+}

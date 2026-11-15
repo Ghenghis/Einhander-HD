@@ -1,0 +1,6 @@
+TIMING preload_total_ms 23.757 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 8 bytes 25774976
+TIMING draw_admit_ms 0.395 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 0.375 min 0.370 max 0.435 (21 fresh slots, warm)
+checks 30 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g02\glue_harness.c:467: g_min == -7 && g_u[LOC_CLASS] == 0 && g_u[LOC_RGB] == 0

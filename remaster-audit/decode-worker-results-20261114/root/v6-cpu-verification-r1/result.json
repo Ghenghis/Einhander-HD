@@ -1,0 +1,567 @@
+{
+  "at_utc": "2026-11-14T15:18:18.345395+00:00",
+  "frozen_files_verified": 1111,
+  "ready_sha256": "33ccad7e67b77cce354a8586b7bf5eab1f864e1ec41b935ac0bf9f6eb01344a0",
+  "manifest_sha256": "904cc6bc33510f1e6c205d5a7201f7e81875e71f19120b3a7ae967d5ed2b8af9",
+  "all_zero_files": [],
+  "fixture_checks": 7534,
+  "glue_cases": 16,
+  "glue_checks": 425,
+  "pack_checks": 92,
+  "pack_source_recompiled": true,
+  "commands": [
+    {
+      "label": "compile-fixture",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-function",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\test_hd_class_mips.c",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\class_mip.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\fixture.exe"
+      ],
+      "exit": 0,
+      "stdout_tail": []
+    },
+    {
+      "label": "fixture",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\fixture.exe"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "HASHVEC rows3x64s64 8736e55f4fcf2637",
+        "HASHVEC x4empty 8810b468969ff0fb",
+        "HASHVEC x4w1h1s4 fd45f7575450682a",
+        "HASHVEC x4w7h3s32 9d4ca7b29e4b04e5",
+        "HASHVEC x4w9h2s40 b798115c3dfdc7bd",
+        "HASHVEC x4w16h3s64 367c9ce74bd54faf",
+        "METRIC equivalence_levels_differing 0",
+        "checks 7534 failures 0"
+      ]
+    },
+    {
+      "label": "compile-glue",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-std=c11",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-unused-function",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue_harness.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe"
+      ],
+      "exit": 0,
+      "stdout_tail": []
+    },
+    {
+      "label": "glue-00-off",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "off",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 5 failures 0"
+      ]
+    },
+    {
+      "label": "glue-01-badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "badenv",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 5 failures 0"
+      ]
+    },
+    {
+      "label": "glue-02-on",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "on",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 25.025 (index + file reads + full verification of every listed sidecar, at init)",
+        "PRELOAD ok 8 bytes 25774976",
+        "TIMING draw_admit_ms 0.388 (cache lookup + level-0 hash + R1 + stub level uploads)",
+        "TIMING draw_admit_ms_median 0.370 min 0.366 max 0.397 (21 fresh slots, warm)",
+        "checks 40 failures 0"
+      ]
+    },
+    {
+      "label": "glue-03-levels",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "levels",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 23.528 (index + file reads + full verification of every listed sidecar, at init)",
+        "PRELOAD ok 8 bytes 25774976",
+        "TIMING draw_admit_ms 0.382 (cache lookup + level-0 hash + R1 + stub level uploads)",
+        "TIMING draw_admit_ms_median 0.368 min 0.362 max 0.409 (21 fresh slots, warm)",
+        "checks 39 failures 0"
+      ]
+    },
+    {
+      "label": "glue-04-rgb",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgb",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 24.069 (index + file reads + full verification of every listed sidecar, at init)",
+        "PRELOAD ok 8 bytes 25774976",
+        "TIMING draw_admit_ms 0.393 (cache lookup + level-0 hash + R1)",
+        "TIMING draw_admit_ms_median 0.366 min 0.362 max 0.370 (21 fresh slots, warm)",
+        "checks 31 failures 0"
+      ]
+    },
+    {
+      "label": "glue-05-rgb",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgb",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-opaque.bin",
+        "2048",
+        "2048",
+        "95A3BCF8",
+        "60245B3A",
+        "256",
+        "256",
+        "2",
+        "256",
+        "3",
+        "1",
+        "0"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 5.485 (index + file reads + full verification of every listed sidecar, at init)",
+        "PRELOAD ok 1 bytes 5570672",
+        "TIMING draw_admit_ms 3.081 (cache lookup + level-0 hash + R1)",
+        "TIMING draw_admit_ms_median 2.988 min 2.961 max 3.143 (21 fresh slots, warm)",
+        "checks 31 failures 0"
+      ]
+    },
+    {
+      "label": "glue-06-badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "badenv",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 5 failures 0"
+      ]
+    },
+    {
+      "label": "glue-07-badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "badenv",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 5 failures 0"
+      ]
+    },
+    {
+      "label": "glue-08-badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "badenv",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "2",
+        "64",
+        "4",
+        "8",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 5 failures 0"
+      ]
+    },
+    {
+      "label": "glue-09-rgbdir",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbdir",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "136",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 9.557 (index + 136 RGB-only reads + verification, at init)",
+        "PRELOAD rgbonly_ok 136 class_ok 0 bytes 6528",
+        "TIMING draw_admit_ms 7.245 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 6.080 min 5.879 max 14.375 (21 fresh slots, warm)",
+        "checks 39 failures 0"
+      ]
+    },
+    {
+      "label": "glue-10-rgbfalse",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbfalse",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "1",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 0.175 (index + 1 RGB-only reads + verification, at init)",
+        "PRELOAD rgbonly_ok 1 class_ok 0 bytes 48",
+        "TIMING draw_admit_ms 0.000 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)",
+        "checks 34 failures 0"
+      ]
+    },
+    {
+      "label": "glue-11-rgbcaps",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbcaps",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "1",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 6.270 (index + 1 RGB-only reads + verification, at init)",
+        "PRELOAD rgbonly_ok 1 class_ok 0 bytes 48",
+        "TIMING draw_admit_ms 6.385 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 6.147 min 5.896 max 8.120 (21 fresh slots, warm)",
+        "checks 40 failures 0"
+      ]
+    },
+    {
+      "label": "glue-12-both",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "both",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "2",
+        "1",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba.bin",
+        "1024",
+        "512",
+        "11CFE2E3",
+        "0E09E912",
+        "64",
+        "32",
+        "4",
+        "8"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 24.089 (index + 2 RGB-only reads + verification + class sidecars, at init)",
+        "PRELOAD rgbonly_ok 2 class_ok 8 bytes 25775072",
+        "TIMING draw_admit_ms 6.162 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 6.148 min 5.939 max 7.566 (21 fresh slots, warm)",
+        "checks 49 failures 0"
+      ]
+    },
+    {
+      "label": "glue-13-rgbopaque",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbopaque",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-opaque.bin",
+        "2048",
+        "2048",
+        "95A3BCF8",
+        "60245B3A",
+        "256",
+        "256",
+        "2",
+        "256",
+        "1",
+        "0"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 0.169 (index + 1 RGB-only reads + verification, at init)",
+        "PRELOAD rgbonly_ok 1 class_ok 0 bytes 48",
+        "TIMING draw_admit_ms 1.470 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 1.373 min 1.358 max 1.636 (21 fresh slots, warm)",
+        "checks 38 failures 0"
+      ]
+    },
+    {
+      "label": "glue-14-rgbid",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbid",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "136",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)",
+        "TIMING note: identity admission reads no pixel (sentinel rgba)",
+        "checks 20 failures 0"
+      ]
+    },
+    {
+      "label": "glue-15-rgbdir",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\glue.exe",
+        "rgbdir",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\glue\\rgba-rgb.bin",
+        "4096",
+        "4096",
+        "BDAE4156",
+        "E21112A6",
+        "256",
+        "256",
+        "2",
+        "256",
+        "136",
+        "1"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "TIMING preload_total_ms 8.756 (index + 136 RGB-only reads + verification, at init)",
+        "PRELOAD rgbonly_ok 136 class_ok 0 bytes 6528",
+        "TIMING draw_admit_ms 6.250 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)",
+        "TIMING draw_admit_ms_median 6.006 min 5.747 max 6.876 (21 fresh slots, warm)",
+        "checks 39 failures 0"
+      ]
+    },
+    {
+      "label": "compile-pack-stb",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-std=c11",
+        "-O1",
+        "-c",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\third_party",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\inputs\\stb_impl.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\stb_impl.o"
+      ],
+      "exit": 0,
+      "stdout_tail": []
+    },
+    {
+      "label": "compile-pack",
+      "args": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-IC:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-v6",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\include",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-pack-base-from-v48\\src",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-v6\\hd_texture_pack.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\inputs\\pack_identity_test.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\stb_impl.o",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\pack_identity_test.exe"
+      ],
+      "exit": 0,
+      "stdout_tail": []
+    },
+    {
+      "label": "pack-on",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\pack_identity_test.exe",
+        "on",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\pack",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\expected.tsv"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "IDENTITY 3068759C-D0F6E018 5b40117eeb027ed6 cut 1 1024x32",
+        "IDENTITY 63B35393-3C49F3D7 a2ddc5ffc9a00ed4 cut 1 1024x256",
+        "IDENTITY 93F0FC72-024FAA77 7769ad7dadbaf4d9 cut 1 512x512",
+        "IDENTITY 95A3BCF8-60245B3A 6fd75c354de2617a cut 0 2048x2048",
+        "checks 56 failures 0"
+      ]
+    },
+    {
+      "label": "pack-off-unset",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\pack_identity_test.exe",
+        "off",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\pack",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\expected.tsv"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 18 failures 0"
+      ]
+    },
+    {
+      "label": "pack-off-true",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v6-cpu-verification-r1\\pack_identity_test.exe",
+        "off",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\pack",
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v6\\host-run\\20261114T142204Z\\pack-test\\expected.tsv"
+      ],
+      "exit": 0,
+      "stdout_tail": [
+        "checks 18 failures 0"
+      ]
+    }
+  ],
+  "gpu_executed": false,
+  "recording_gl_stubs_only": true,
+  "mutants_replayed": false,
+  "real_page_author_benchmarks_replayed": false,
+  "marker_unchanged": true,
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "below_normal": true,
+  "cpu_affinity": [
+    15
+  ],
+  "passed": true
+}

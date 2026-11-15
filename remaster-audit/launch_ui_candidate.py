@@ -1285,7 +1285,9 @@ def prepare(report):
         state.mkdir()
         pack = evidence / "pack" if mode == "candidate" else BASE
         overrides = dict(report["environment_overrides"])
-        overrides.update(PSXRECOMP_HD_TEXTURE_ROOT=str(pack), PSXRECOMP_HD_SOURCE_SIDECARS="1",
+        # This is a forensic capture session; normal gameplay leaves history off.
+        overrides.update(PSX_DISPLAY_RING="1", PSXRECOMP_HD_TEXTURE_ROOT=str(pack),
+                         PSXRECOMP_HD_SOURCE_SIDECARS="1",
                          EIN_DEBUG_PORT=str(PORT), EIN_DEV_URL="",
                          PSX_OVERLAY_CAPTURES=str(runtime / "overlay_captures.json"),
                          PSX_OVERLAY_AUTOCOMPILE_OFF="1")

@@ -1,0 +1,27 @@
+# CPU gameplay preparation and menu integrity correction
+
+No game or GPU was launched in this continuation. The user reserves the RTX3090 Ti for one hour; the conservative local hold is until18:37:05UTC and future launches additionally require a fresh shared broker grant. The3060 is permitted only through separate concrete coordination; it was not used.
+
+## Actual passing CPU controls
+
+The separate unassisted stock/OpenGL review runner defaults to60-second telemetry, render scale2 and no timer aid. Its pre-send allowlist rejects actual `savestate` and other unlisted mutators. A uniquely named, fsynced request intent is written before transport, so a timeout cannot erase the attempted command. Audit failures are collected without preventing other cleanup. Broker fenced arguments now use an external temporary directory removed in finally on success/refusal/timeout; live tokens never enter new evidence files. A canonical current-user-hold file replaces the hardcoded dated snapshot.
+
+Twelve CPU-only controls pass: child22900 exit0 in0.496s, outer0/1.808s, oneCPU11 BelowNormal, no active JobObject processes or descendants. Fresh gate57.9%CPU/69.88GiB free. Tests cover real mutator names, bounded arguments/paths, durable intent on transport timeout, malformed audits, transient broker cleanup and hold/grant refusals. They mock transport and do not mutate the live broker. The first run's11passes/one import error is preserved (child20472 exit1/0.452s); only the missing test import path was corrected before a fresh passing run.
+
+Native Claude's original source-only review blocks GPU readiness. B1/B2/B3 are addressed by the new source and scoped tests, but independent follow-up review, parser/CLI defaults, full owned process-tree watchdog behavior, actual staging and in-game qualification remain open. The runner is not live-qualified. Source/video recording and extra diagnostic profiles currently fail closed. Optional assistance is rejected by the CLI. Existing old assisted runners and all failed evidence are preserved. Registered broker owner is the Einhander project participant; actor identity remains distinguishable in command/PID evidence. Existing old private fenced-argument files were not read or published; their historical grants have been explicitly released.
+
+## Actual menu readback failure
+
+The author-reported72/72 and118/118 menu file summaries are INVALID for file admission. Root's first independent readback exits1 on a PNG hash mismatch: a runtime-1024 reference points to a2048x64 file, with different bytes from the recorded hash. Full conservative readback requests354 candidate/noR5/CLUT checks:106 actual PNG mismatches and54 outside-project CLUT reads refused. Those54 sources are on C:/github/REMASTER_STAGING, not D:. The combined160 count is not160 failed textures.106 paths carry conflicting expected hashes; these are references/variants, not unique objects.
+
+Claude confirms its output names omitted the export scale. Later writes overwrote earlier variants while reports retained in-memory hashes. Its broader author readback reports318/708 variant references mismatched across three runs; that denominator differs from root's118-member summary check. Single-resolution J-R1/J-R2 are author-reported unaffected. None of these invalid batches is integrated or installed. Old folders and published historical packets remain unchanged.
+
+New v5 source includes export directory in names, case-insensitive destination collision checks before writing and exclusive PNG creation. Its summary builder rehashes on-disk files and rejects duplicate/conflicting paths. The tool is under a fresh bounded rebuild grant; this packet does not claim a completed rebuild, look acceptance or in-game use. Pack pilot and conflict-sheet review stay suspended until a new independently backed summary exists.51 substantial-error units,41 pack units, roughly1400 out-of-census images and all live menu interactions remain open.
+
+## Concrete next gameplay gates
+
+PLAN.json pins v67r3 EXE8bc3ac3d and the903bd84a private1699-entry pack. The source snapshot in that plan is the original review version and is superseded by source/ in this packet. It separates private qualification, short unassisted timing, later mini-boss timing and source/look review, plus exact later-stage capture triggers. Preparation commands were not executed: no cache/card/runtime staging and no game launch. Qualification/watchdog and any source-recorder correction are explicitly unfinished. A60-second Stage1 run cannot establish later-stage coverage or guarantee reaching the mini-boss.
+
+The independent earlier1699-entry/226-region CPU pack admission remains valid for the world candidate; this menu failure is a different candidate set. No new PNG/hash replay of that whole pack is claimed here. Modern Remix's last actual GPU probe remains FAILED (black output/no expected triangle; Shutdown deadline). No accepted in-game ray tracing, DLSS, remastered audio, final skins/selectors,4K release, stage clear or seven-stage completion. F3 recorder reproduction and menu rebuild are running under separate fresh CPU grants; unreturned jobs are not results.
+
+The metadata monitor was actually replaced: old42612 verified/terminated, new39432 first observed17:55:13.706UTC, bound18:25:12.652UTC. It proves metadata monitoring only. Only source, reports and hashes are published; no generated artwork, native binary captures, SDK/executables, ROM/BIOS/cards, user state or live tokens.

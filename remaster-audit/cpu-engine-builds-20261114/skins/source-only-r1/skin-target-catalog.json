@@ -1,0 +1,551 @@
+{
+  "contract": "ein-skin-targets-v0r1-proposal",
+  "supersedes": "skin-targets/skin-target-catalog.json 7157be87 (kept unchanged)",
+  "owner": "claude-einhander-s67",
+  "created_utc": "2026-11-14T21:41:40Z",
+  "scope": "SOURCE/JSON metadata only; PNG IHDR bytes read, no pixel decode; nothing compiled, imported or run",
+  "not_a_claim": "palette tint of existing HD atlases; NOT authored PBR / realistic 4K skins (missing until assets exist and are live-accepted); not a named craft",
+  "inputs_sha256": {
+    "gpu_gl_renderer.c": "92d080578d2a3d734160deae1d67ae186b08f4e9f7ca2d5ecdd3d5344b37d03c",
+    "hd_skin_material.h": "59565481657298ffb50eaa71f34544ef98e7ee7ecf5f9cf1789ec2e588fdb774",
+    "hd_skin_detail.h": "e2eca3c98e892f6bd01f19db5dabf0ef2bd985c7a8218e8438ec4a01528b0b38",
+    "hd_texture_pack.h": "f921262ad9955717ec06c83cad8f7faf761009104c31ab98b561a880e5a18199",
+    "skin-visibility-map.json": "75ec2f80e75a35e85987821e92089a5b201b61e025bba2be5cb4c7540d54a569",
+    "draws-s2.json": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+    "pack manifest.json": "560fbbb5218f5c80093ddbf0732c261f3bedcd4729b54c6e458619910627ff80",
+    "r0 catalog": "7157be87938ef7a83b680d1c11b71acbec5bfc9d4b862519142f5c87eb505044"
+  },
+  "modes": {
+    "UNSET": "PSXRECOMP_SKIN_TARGETS absent/empty -> existing behaviour unchanged",
+    "INVALID": "non-empty but rejected -> fail closed: every skin material stock, legacy suppressed",
+    "VALID": "target mode; target=stock validly disables that target; no cross-target fallback"
+  },
+  "gates": {
+    "qualified_at_draw": [
+      "exact key",
+      "upload_serial != 0",
+      "native upload size",
+      "page",
+      "CLUT",
+      "UV bounds inside ONE vetted rectangle",
+      "material generation == commit generation"
+    ],
+    "unqualified": [
+      "HD image: only replacement-sampled + IHDR size; native alpha and frozen admitted identity NOT proven (no trusted pack-entry admission identity bound at load)",
+      "rect lists are S2 observation provenance, not exclusive actor ownership; native 64x64 is a code constraint (hd_skin_detail.h:122), not observed"
+    ],
+    "open": [
+      "target re-commit after a live material change (generation bump ~gpu_gl_renderer.c:3557) is NOT implemented: target mode stays stock until restart",
+      "proof receipts are deduplicated first-of-kind evidence (4096 entries), not a complete per-draw record"
+    ]
+  },
+  "targets": {
+    "player.hull.shared_candidate": {
+      "status": "BOUND",
+      "label": "generic shared player-hull candidate (not a named craft; not live-accepted)",
+      "provenance": [
+        "legacy player allowlist hd_skin_material.h:48-52",
+        "S2 draws-s2.json observation"
+      ],
+      "keys": {
+        "724E77DA-21FDE894": {
+          "observed": {
+            "draws": 65,
+            "rects": [
+              [
+                156,
+                24,
+                190,
+                43
+              ],
+              [
+                153,
+                45,
+                190,
+                51
+              ],
+              [
+                130,
+                25,
+                139,
+                43
+              ],
+              [
+                140,
+                21,
+                157,
+                43
+              ],
+              [
+                171,
+                54,
+                190,
+                60
+              ]
+            ],
+            "rect_counts": [
+              48,
+              7,
+              6,
+              3,
+              1
+            ],
+            "clut_xy": [
+              [
+                288,
+                488
+              ]
+            ],
+            "page_xy": [
+              [
+                832,
+                256
+              ]
+            ],
+            "semi": [
+              -1
+            ],
+            "basis": "every distinct S2-observed box (uv_distinct == rect count; counts sum to draws); observation provenance, not exclusive actor ownership"
+          },
+          "hd_image": {
+            "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/einhander-texture-replacements/724E77DA-21FDE894.png",
+            "bytes": 976094,
+            "sha256": "b2a3dc58f872d2cc77632b0a228997fbba63e4cefd1b024266f72ebb77971850",
+            "ihdr": [
+              1024,
+              1024
+            ],
+            "bit_depth": 8,
+            "color_type": 6,
+            "gate": "UNQUALIFIED: size/colour-type header only; does NOT prove native alpha preservation or frozen admitted identity"
+          },
+          "native_upload_required": [
+            64,
+            64
+          ]
+        },
+        "7E3ADD56-21FDE894": {
+          "observed": {
+            "draws": 61,
+            "rects": [
+              [
+                213,
+                227,
+                233,
+                230
+              ],
+              [
+                192,
+                208,
+                216,
+                215
+              ],
+              [
+                194,
+                242,
+                245,
+                247
+              ],
+              [
+                248,
+                232,
+                251,
+                249
+              ],
+              [
+                196,
+                222,
+                200,
+                223
+              ],
+              [
+                196,
+                222,
+                203,
+                228
+              ],
+              [
+                198,
+                242,
+                244,
+                247
+              ],
+              [
+                248,
+                232,
+                253,
+                252
+              ],
+              [
+                248,
+                233,
+                254,
+                254
+              ]
+            ],
+            "rect_counts": [
+              41,
+              12,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "clut_xy": [
+              [
+                288,
+                488
+              ]
+            ],
+            "page_xy": [
+              [
+                832,
+                256
+              ]
+            ],
+            "semi": [
+              -1
+            ],
+            "basis": "every distinct S2-observed box (uv_distinct == rect count; counts sum to draws); observation provenance, not exclusive actor ownership"
+          },
+          "hd_image": {
+            "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/einhander-texture-replacements/7E3ADD56-21FDE894.png",
+            "bytes": 1610604,
+            "sha256": "3c596f6d3704ca2d28785d7de12bc7194c527acc43b1b60dc607c223fe3f01ac",
+            "ihdr": [
+              1024,
+              1024
+            ],
+            "bit_depth": 8,
+            "color_type": 6,
+            "gate": "UNQUALIFIED: size/colour-type header only; does NOT prove native alpha preservation or frozen admitted identity"
+          },
+          "native_upload_required": [
+            64,
+            64
+          ]
+        },
+        "B16492B1-21FDE894": {
+          "observed": {
+            "draws": 55,
+            "rects": [
+              [
+                193,
+                193,
+                254,
+                228
+              ],
+              [
+                223,
+                234,
+                251,
+                245
+              ],
+              [
+                194,
+                229,
+                209,
+                252
+              ],
+              [
+                237,
+                195,
+                252,
+                206
+              ],
+              [
+                237,
+                195,
+                246,
+                206
+              ],
+              [
+                214,
+                248,
+                250,
+                254
+              ]
+            ],
+            "rect_counts": [
+              47,
+              2,
+              2,
+              2,
+              1,
+              1
+            ],
+            "clut_xy": [
+              [
+                288,
+                488
+              ]
+            ],
+            "page_xy": [
+              [
+                896,
+                256
+              ]
+            ],
+            "semi": [
+              -1
+            ],
+            "basis": "every distinct S2-observed box (uv_distinct == rect count; counts sum to draws); observation provenance, not exclusive actor ownership"
+          },
+          "hd_image": {
+            "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/einhander-texture-replacements/B16492B1-21FDE894.png",
+            "bytes": 1296291,
+            "sha256": "087f1d8e74e86e6d8caabf9bb68add88924e33bb87c8439dc2e4808c27ae1de0",
+            "ihdr": [
+              1024,
+              1024
+            ],
+            "bit_depth": 8,
+            "color_type": 6,
+            "gate": "UNQUALIFIED: size/colour-type header only; does NOT prove native alpha preservation or frozen admitted identity"
+          },
+          "native_upload_required": [
+            64,
+            64
+          ]
+        },
+        "E2F3477C-21FDE894": {
+          "observed": {
+            "draws": 59,
+            "rects": [
+              [
+                1,
+                221,
+                32,
+                238
+              ],
+              [
+                28,
+                195,
+                61,
+                215
+              ],
+              [
+                1,
+                193,
+                28,
+                212
+              ],
+              [
+                32,
+                217,
+                38,
+                238
+              ],
+              [
+                1,
+                244,
+                34,
+                253
+              ],
+              [
+                1,
+                243,
+                34,
+                253
+              ],
+              [
+                38,
+                217,
+                61,
+                238
+              ]
+            ],
+            "rect_counts": [
+              35,
+              13,
+              6,
+              2,
+              1,
+              1,
+              1
+            ],
+            "clut_xy": [
+              [
+                288,
+                488
+              ]
+            ],
+            "page_xy": [
+              [
+                896,
+                256
+              ]
+            ],
+            "semi": [
+              -1
+            ],
+            "basis": "every distinct S2-observed box (uv_distinct == rect count; counts sum to draws); observation provenance, not exclusive actor ownership"
+          },
+          "hd_image": {
+            "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/einhander-texture-replacements/E2F3477C-21FDE894.png",
+            "bytes": 1205074,
+            "sha256": "0f990b9280e29b867bbc9a04d631ae9189d765dc8ff4f86fac6560a4b124b0dc",
+            "ihdr": [
+              1024,
+              1024
+            ],
+            "bit_depth": 8,
+            "color_type": 6,
+            "gate": "UNQUALIFIED: size/colour-type header only; does NOT prove native alpha preservation or frozen admitted identity"
+          },
+          "native_upload_required": [
+            64,
+            64
+          ]
+        }
+      }
+    },
+    "player.mechanical_sheet": {
+      "status": "UNRESOLVED",
+      "candidate_keys": {
+        "5CC44E5F-053D9A00": {
+          "observed": {
+            "draws": 56,
+            "rects": [
+              [
+                159,
+                104,
+                161,
+                115
+              ],
+              [
+                164,
+                105,
+                168,
+                123
+              ],
+              [
+                164,
+                106,
+                168,
+                123
+              ],
+              [
+                164,
+                105,
+                169,
+                123
+              ],
+              [
+                149,
+                104,
+                160,
+                125
+              ],
+              [
+                161,
+                116,
+                162,
+                124
+              ],
+              [
+                131,
+                65,
+                141,
+                70
+              ],
+              [
+                159,
+                104,
+                162,
+                125
+              ],
+              [
+                129,
+                65,
+                142,
+                100
+              ],
+              [
+                164,
+                106,
+                169,
+                123
+              ],
+              [
+                131,
+                65,
+                142,
+                71
+              ]
+            ],
+            "rect_counts": [
+              40,
+              5,
+              2,
+              2,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "clut_xy": [
+              [
+                304,
+                510
+              ]
+            ],
+            "page_xy": [
+              [
+                832,
+                256
+              ]
+            ],
+            "semi": [
+              -1
+            ],
+            "basis": "every distinct S2-observed box (uv_distinct == rect count; counts sum to draws); observation provenance, not exclusive actor ownership"
+          },
+          "hd_image": {
+            "path": "C:/github/Einhander/windows-x64/hd-textures/stage1-v1/einhander-texture-replacements/5CC44E5F-053D9A00.png",
+            "bytes": 1471344,
+            "sha256": "6b11d746cfb9d1713081741f9c00cf7d350e50bf65448b4f13f8f7f50ae4a79d",
+            "ihdr": [
+              1024,
+              1024
+            ],
+            "bit_depth": 8,
+            "color_type": 6,
+            "gate": "UNQUALIFIED: size/colour-type header only; does NOT prove native alpha preservation or frozen admitted identity"
+          }
+        }
+      },
+      "reason": "shared mechanical sheet; actor-part ownership unproven"
+    },
+    "player.craft.named": {
+      "status": "UNRESOLVED",
+      "reason": "no craft->key ownership proof"
+    },
+    "player.gunpods": {
+      "status": "UNRESOLVED",
+      "reason": "S2 0223BCEF/B24C6DA2 families: no key+CLUT+rect proof"
+    },
+    "enemy.stage1.strips": {
+      "status": "UNRESOLVED",
+      "reason": "no page/CLUT/UV draw records in hand; 0 S2 draws; cross-stage exclusivity unproven"
+    },
+    "enemy.stage2.families": {
+      "status": "UNRESOLVED",
+      "reason": "family level only"
+    },
+    "boss": {
+      "status": "UNRESOLVED",
+      "reason": "0 drawn, 0 authored HD images"
+    },
+    "weapons.effects": {
+      "status": "UNRESOLVED",
+      "reason": "no identity mapping"
+    }
+  }
+}

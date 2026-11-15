@@ -1,0 +1,359 @@
+{
+ "work": "C:/Users/Admin/AppData/Local/Temp/claude/e5fad2775628cc35/00b8d103-2731-4007-9483-52e8168f2e8e/scratchpad/timeout-leg-work-r2",
+ "cases": 38,
+ "passed": 38,
+ "all_ok": true,
+ "results": [
+  {
+   "case": "clean",
+   "expect": "pass",
+   "rc": 0,
+   "ok": true,
+   "failing": []
+  },
+  {
+   "case": "claims a stage clear",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "clear recorded",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "RAM writes",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "timer touched",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no Stage 5 lineage",
+   "expect": "R",
+   "rc": 1,
+   "failing": [
+    "R"
+   ],
+   "ok": true
+  },
+  {
+   "case": "expiry only from RAM",
+   "expect": "TX",
+   "rc": 1,
+   "failing": [
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no expiry capture",
+   "expect": "TX",
+   "rc": 1,
+   "failing": [
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "movie neither recorded nor denied",
+   "expect": "MV",
+   "rc": 1,
+   "failing": [
+    "MV"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no passage index",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "narration neither recorded nor denied",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "residency TEX without a draw row",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no Game Over capture",
+   "expect": "GO",
+   "rc": 1,
+   "failing": [
+    "GO"
+   ],
+   "ok": true
+  },
+  {
+   "case": "no next screen",
+   "expect": "NS",
+   "rc": 1,
+   "failing": [
+    "NS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "movie before expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "tally after expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "hash mismatch",
+   "expect": "H",
+   "rc": 1,
+   "failing": [
+    "H"
+   ],
+   "ok": true
+  },
+  {
+   "case": "user card mounted",
+   "expect": "C",
+   "rc": 1,
+   "failing": [
+    "C"
+   ],
+   "ok": true
+  },
+  {
+   "case": "sources missing",
+   "expect": "K",
+   "rc": 1,
+   "failing": [
+    "K"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 declared stage 5",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number missing",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number bool",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 stage number string",
+   "expect": "M",
+   "rc": 1,
+   "failing": [
+    "M"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration without frame_range",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration invalid range",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 observed narration outside capture span",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "NA",
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration searched outside window",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration partial search",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 not-observed narration search beyond capture span",
+   "expect": "NA",
+   "rc": 1,
+   "failing": [
+    "NA"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 timer expiry outside capture span",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O",
+    "RS",
+    "TX"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 entry equals timer expiry",
+   "expect": "O",
+   "rc": 1,
+   "failing": [
+    "O"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 residency frame before expiry",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "O",
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 residency frame not bound to a draw row",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 unknown residency basis",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "RS"
+   ],
+   "ok": true
+  },
+  {
+   "case": "r2 positive: not-observed narration covering expiry..last end state",
+   "expect": "pass",
+   "rc": 0,
+   "failing": [],
+   "ok": true
+  },
+  {
+   "case": "r2 ambiguous 704,256 residency",
+   "expect": "RS",
+   "rc": 1,
+   "failing": [
+    "K",
+    "RS"
+   ],
+   "report_written": true,
+   "ok": true
+  },
+  {
+   "case": "r2 non-object JSON rows",
+   "expect": "K",
+   "rc": 1,
+   "failing": [
+    "K",
+    "O"
+   ],
+   "report_written": true,
+   "ok": true
+  },
+  {
+   "case": "canonical validator on the timeout leg",
+   "expect": "fails X and T",
+   "rc": 1,
+   "failing": [
+    "F",
+    "L",
+    "M",
+    "S",
+    "T",
+    "X"
+   ],
+   "ok": true
+  }
+ ]
+}

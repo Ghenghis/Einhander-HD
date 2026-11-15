@@ -1,0 +1,146 @@
+{
+ "run": "20261114T143557Z-cmrepair-3D108041-BE3400E6",
+ "owner": "claude-einhander-s45",
+ "input": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T141451Z-s5",
+ "input_kind": "audit probe run",
+ "key": "3D108041-BE3400E6",
+ "clut_xy": [
+  32,
+  482
+ ],
+ "input_record_sha256": "9e138d586edd945f9c340ba990717b72e2ab485f2e81d187fa4defbaf95bbf37",
+ "rows": [
+  {
+   "file": "png_2048",
+   "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T141451Z-s5\\s5-duerer-armour-v2\\3D108041-BE3400E6-PROBE-2048.png",
+   "source_sha256": "a8806388e2ffcf8dcaa78cf947cd3cbce3df11c77095efb8ff8ad95516d6c9b2",
+   "scale": 8,
+   "repair_rc": 0,
+   "repair_stats": {
+    "class_changed": 9846,
+    "became_visible": 9846,
+    "became_cutout": 0,
+    "rgb_from_cell": 9846,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 1261480,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "before": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 9846,
+    "r3_uniform_bad_px": 219,
+    "r4_island_px": 1,
+    "r5_fringe_px": 25574,
+    "cells_bad": 865,
+    "pinhole_cells": 865,
+    "nonclass_px": 0,
+    "s2_viol_px": 9846,
+    "conn_viol_px": 220,
+    "centre_class_mismatch": 0,
+    "alpha_values": [
+     0,
+     127
+    ]
+   },
+   "after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "centre_class_mismatch": 0,
+    "alpha_values": [
+     0,
+     127
+    ]
+   },
+   "diff": {
+    "class_changed_px": 9846,
+    "rgb_changed_px": 1271326,
+    "rgb_changed_on_visible_both": 0
+   },
+   "output": "3D108041-BE3400E6-2048-cmrepair.png",
+   "output_sha256": "ead12396ee7c457909cba7790d725649a5804768397b7c4c2fbc2c36d3ddc642",
+   "clean_after": true,
+   "proof_visible_rgb_unchanged": true
+  },
+  {
+   "file": "png_1024",
+   "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T141451Z-s5\\s5-duerer-armour-v2\\3D108041-BE3400E6-PROBE-1024.png",
+   "source_sha256": "2a8b223b65122673d8eac1c5291e99037c994d6501209f1c20270f177a74cbbe",
+   "scale": 4,
+   "repair_rc": 0,
+   "repair_stats": {
+    "class_changed": 2238,
+    "became_visible": 2238,
+    "became_cutout": 0,
+    "rgb_from_cell": 2238,
+    "rgb_from_native": 0,
+    "cutout_rgb_filled": 314712,
+    "visible_rgb_changed": 0,
+    "passes": 1,
+    "residual_violations": 0
+   },
+   "before": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 2238,
+    "r3_uniform_bad_px": 43,
+    "r4_island_px": 0,
+    "r5_fringe_px": 13292,
+    "cells_bad": 703,
+    "pinhole_cells": 703,
+    "nonclass_px": 0,
+    "s2_viol_px": 2238,
+    "conn_viol_px": 43,
+    "centre_class_mismatch": 0,
+    "alpha_values": [
+     0,
+     127
+    ]
+   },
+   "after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "s2_viol_px": 0,
+    "conn_viol_px": 0,
+    "centre_class_mismatch": 0,
+    "alpha_values": [
+     0,
+     127
+    ]
+   },
+   "diff": {
+    "class_changed_px": 2238,
+    "rgb_changed_px": 316950,
+    "rgb_changed_on_visible_both": 0
+   },
+   "output": "3D108041-BE3400E6-1024-cmrepair.png",
+   "output_sha256": "152065a0cc2e8c7eb58c4f0919a5d9adfe6cc321b75f848248f4c0bfb9513662",
+   "clean_after": true,
+   "proof_visible_rgb_unchanged": true
+  }
+ ],
+ "seconds": 1.7,
+ "status": "CANDIDATE REPAIR COPY for review; frozen originals untouched; predicted-static key, not installable"
+}

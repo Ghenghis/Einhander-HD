@@ -1,0 +1,103 @@
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:13:17: error: no member named 'source_frame' in 'einhd::MeshPacket'
+   13 |   std::memset(o.source_frame,0,sizeof o.source_frame);std::memset(o.source_lag,0,sizeof o.source_lag);
+      |               ~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:13:41: error: no member named 'source_frame' in 'einhd::MeshPacket'
+   13 |   std::memset(o.source_frame,0,sizeof o.source_frame);std::memset(o.source_lag,0,sizeof o.source_lag);
+      |                                       ~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:13:69: error: no member named 'source_lag' in 'einhd::MeshPacket'
+   13 |   std::memset(o.source_frame,0,sizeof o.source_frame);std::memset(o.source_lag,0,sizeof o.source_lag);
+      |                                                                   ~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:13:91: error: no member named 'source_lag' in 'einhd::MeshPacket'
+   13 |   std::memset(o.source_frame,0,sizeof o.source_frame);std::memset(o.source_lag,0,sizeof o.source_lag);
+      |                                                                                         ~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:33:9: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+   33 |   if(in.max_frame_lag>1)return MeshReject::FramePolicyInvalid;
+      |      ~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:33:44: error: no member named 'FramePolicyInvalid' in 'einhd::MeshReject'
+   33 |   if(in.max_frame_lag>1)return MeshReject::FramePolicyInvalid;
+      |                                            ^~~~~~~~~~~~~~~~~~
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:44:38: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+   44 |     if(uint32_t(in.frame-v.frame)>in.max_frame_lag)return MeshReject::StaleFrame;
+      |                                   ~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:82:9: error: no member named 'source_frame' in 'einhd::MeshPacket'
+   82 |     out.source_frame[i]=view[i].frame;out.source_lag[i]=uint8_t(uint32_t(in.frame-view[i].frame));
+      |     ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:82:43: error: no member named 'source_lag' in 'einhd::MeshPacket'
+   82 |     out.source_frame[i]=view[i].frame;out.source_lag[i]=uint8_t(uint32_t(in.frame-view[i].frame));
+      |                                       ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\remix_mesh_packet.cpp:97:96: error: no member named 'FramePolicyInvalid' in 'einhd::MeshReject'
+   97 |     REJECT(MixedTransform);REJECT(TransformHashMismatch);REJECT(CommandMetadataInvalid);REJECT(FramePolicyInvalid);REJECT(MacMismatch);REJECT(InvalidUv);REJECT(MaterialNotReady);REJECT(Degenerate);
+      |                                                                                                ^~~~~~~~~~~~~~~~~~
+4 warnings and 10 errors generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:2:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:2:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:117:71: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+  117 |   {Fixture f;f.input.frame++;reject(f,MeshReject::StaleFrame);f.input.max_frame_lag=1;
+      |                                                               ~~~~~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:119:14: error: no member named 'source_lag' in 'einhd::MeshPacket'
+  119 |    CHECK(out.source_lag[0]==1&&out.source_lag[2]==1&&out.source_frame[1]==42);
+      |          ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:119:36: error: no member named 'source_lag' in 'einhd::MeshPacket'
+  119 |    CHECK(out.source_lag[0]==1&&out.source_lag[2]==1&&out.source_frame[1]==42);
+      |                                ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:119:58: error: no member named 'source_frame' in 'einhd::MeshPacket'
+  119 |    CHECK(out.source_lag[0]==1&&out.source_lag[2]==1&&out.source_frame[1]==42);
+      |                                                      ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:121:14: error: no member named 'source_lag' in 'einhd::MeshPacket'
+  121 |    CHECK(out.source_lag[0]==0&&out.source_frame[1]==0);}
+      |          ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:121:36: error: no member named 'source_frame' in 'einhd::MeshPacket'
+  121 |    CHECK(out.source_lag[0]==0&&out.source_frame[1]==0);}
+      |                                ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:122:38: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+  122 |   {Fixture f;f.input.frame--;f.input.max_frame_lag=1;reject(f,MeshReject::StaleFrame);}
+      |                              ~~~~~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:123:38: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+  123 |   {Fixture f;f.input.frame=0;f.input.max_frame_lag=1;for(auto& v:f.views)v.frame=UINT32_MAX;
+      |                              ~~~~~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:125:14: error: no member named 'source_lag' in 'einhd::MeshPacket'
+  125 |    CHECK(out.source_lag[0]==1&&out.source_frame[2]==UINT32_MAX);}
+      |          ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:125:36: error: no member named 'source_frame' in 'einhd::MeshPacket'
+  125 |    CHECK(out.source_lag[0]==1&&out.source_frame[2]==UINT32_MAX);}
+      |                                ~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:126:47: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+  126 |   {Fixture f;f.input.frame=UINT32_MAX;f.input.max_frame_lag=1;for(auto& v:f.views)v.frame=0;
+      |                                       ~~~~~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:128:22: error: no member named 'max_frame_lag' in 'einhd::MeshInput'
+  128 |   {Fixture f;f.input.max_frame_lag=2;reject(f,MeshReject::FramePolicyInvalid);}
+      |              ~~~~~~~ ^
+C:\github\Einhander\remaster-audit\runtime-review\gpu-texture-remix-20261114\scene-packet-lag1\test_remix_mesh_packet.cpp:128:59: error: no member named 'FramePolicyInvalid' in 'einhd::MeshReject'
+  128 |   {Fixture f;f.input.max_frame_lag=2;reject(f,MeshReject::FramePolicyInvalid);}
+      |                                                           ^~~~~~~~~~~~~~~~~~
+4 warnings and 13 errors generated.

@@ -1,0 +1,26 @@
+--- /c/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/capture/ledger-glue-r2/patched/scene_runtime.h	2026-11-14 15:38:57.400608300 -0700
++++ /c/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/capture/ledger-glue-r3/patched/scene_runtime.h	2026-11-14 17:14:21.230995800 -0700
+@@ -1,7 +1,7 @@
+ #ifndef EINHD_SCENE_RUNTIME_H
+ #define EINHD_SCENE_RUNTIME_H
+ #include "scene_capture.h"
+-#include "scene_ledger.r0.h"   /* PRIVATE ledger r0 glue proposal (claude-einhander), source only */
++#include "scene_ledger.r3.h"   /* PRIVATE glue r3 (claude-einhander), source only: ledger r3 = r0 + r1 + r2 + correction */
+ #ifdef __cplusplus
+ extern "C" {
+ #endif
+@@ -19,8 +19,13 @@
+  * (hres1, hres2, vres, video mode, depth, interlace, reverse), disable. */
+ enum { SCENE_SCANOUT_WORDS = 8 };
+ void gpu_scene_scanout_state(uint32_t s[SCENE_SCANOUT_WORDS]);   /* gpu.c, emulation owner */
+-/* gpu.c GP1(03/05/06/07/08), emulation owner: any raw change (or a first, unknown prior state) invalidates. */
++/* gpu.c GP1(03/05/06/07/08), emulation owner. Glue r3: T2 r6 PresentState::observe_scanout; every change except
++ * the bound candidate's exact expected flip (and every first observation) bumps the epoch. */
+ void scene_runtime_scanout_changed(const uint32_t s[SCENE_SCANOUT_WORDS]);
++/* Glue r3, owner only: ledger r1 display hazard and ledger r2 drawing-area constancy of the sealed generation. */
++int scene_runtime_ledger_display_hazard(uint32_t generation,const uint32_t *ordinals,uint32_t count,const int32_t rect[4],
++                                        SceneLedgerVerdict *out);
++int scene_runtime_ledger_draw_area(uint32_t generation,uint32_t *constant,uint16_t area[4]);
+ /* Owner-only copy of one record of the SEALED, complete capture generation (scene_capture_get). */
+ int scene_runtime_capture_get(uint32_t index,uint32_t generation,ScenePrimitive *out);
+ void scene_runtime_command(uint32_t frame,const uint32_t *words,int count,const uint32_t *word_sources,const SceneDrawState *state);

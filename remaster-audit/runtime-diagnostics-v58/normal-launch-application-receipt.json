@@ -1,0 +1,89 @@
+{
+  "applied_at_utc": "2026-11-14T02:51:06.302Z",
+  "path": "C:/github/Einhander/windows-x64/Play-HD.cmd",
+  "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/Play-HD.before.cmd",
+  "before_sha256": "779921a4d7993657a957aa4daea42768608c062ae0d396510a9e5e3fbfb4d2c5",
+  "after_sha256": "70c8cf1ed895f4782b07a6cbd6aefb22768efc779a5448e99fbaee9799b9277d",
+  "behavior": "Default PSX_DISPLAY_RING=0 only when unset/empty, preserve explicit diagnostic choice. Local ignored launcher change only; no executable/settings/cache/card changes.",
+  "basis": "normal-playhd-ring0-r2: existing runtime, installed pack, normal scale2/rewind50/15, 350 contiguous boss frames, max21ms, zero measured starvation; originals verified unchanged before launcher edit.",
+  "applied": true,
+  "additional_launch_sources": [
+    {
+      "path": "windows-x64/tools/material_profiles.py",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material_profiles.py.before",
+      "before_sha256": "d70b7b7293bc6e7ce8bca01c599f0f3bee1ae1ccf6f41f36828a76e4b162f3e6",
+      "after_sha256": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4"
+    },
+    {
+      "path": "windows-x64/tools/Start-Development.ps1",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/Start-Development.ps1.before",
+      "before_sha256": "291b138eb659079879294fa44b6fec2e0f9aba8e1dc7e4cace38c0dcd97dbde1",
+      "after_sha256": "bfdffa7647a551f0b1084efbbd1c9197053bd4e7532852ca8e0bf85eefab0ac5"
+    }
+  ],
+  "scope": "Normal Play-HD, material environment and Development game start disable continuous forensic GPU readback; binaries/assets/settings/cards unchanged. Material gameplay audio remains unresolved.",
+  "forensic_and_pacing_sources": [
+    {
+      "path": "remaster-audit/launch_ui_candidate.py",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/launch_ui_candidate.py.before",
+      "before_sha256": "025751689293ccad86e80c49b85f8a8602180b7527ba5d7127ede6ad63d81fb6",
+      "after_sha256": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752"
+    },
+    {
+      "path": "remaster-audit/run_stage1_pacing_ab.py",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/run_stage1_pacing_ab.py.before",
+      "before_sha256": "ef9f493ed3a4b0ef353db9d5fef260ae2da4622d0d3a7abdc042894f83830502",
+      "after_sha256": "98864c9400913bd1a18b395c575c55894929e0a92da1d3e35569387386cc1484"
+    }
+  ],
+  "material_runtime_binding": {
+    "path": "C:/github/Einhander/windows-x64/tools/material-runtime.json",
+    "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before.json",
+    "before_sha256": "9d80a09e38ddc4089cf803482fc3026e37a5842dbdbf2e2060da278e54c39b69",
+    "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+    "from_executable": "C:\\github\\REMASTER_STAGING\\full-remaster\\devtools-build\\Einhander_Recompiled.exe",
+    "to_executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+    "to_executable_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+    "reason": "Use runtime/cache combination that passed exact saved-profile live state and boss timing. Existing binaries/cache/assets/settings not replaced.",
+    "shared_settings": {
+      "path": "C:/github/Einhander/windows-x64/build-release/settings.toml",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/settings.shared-before.toml",
+      "sha256": "68f831cda591f1b5649714f9b8895ed2962f66436d3452906a7019f950d75f20",
+      "behavior": "Material and Play-HD now use the existing build-release settings. Future frontend preference edits apply to both; current settings unchanged."
+    },
+    "lifecycle": "Existing runtime hash is checked at every material launch; replacing that executable requires a new verified receipt.",
+    "shortcut_validation": [
+      {
+        "config": "aurora-teal-20261112-144639-5807813a",
+        "ok": true,
+        "profile": "aurora-teal",
+        "enemy_profile": "crimson-red",
+        "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "ring": "0"
+      },
+      {
+        "config": "aurora-teal-20261112-144639-a5d808a5",
+        "ok": true,
+        "profile": "aurora-teal",
+        "enemy_profile": "gold-obsidian",
+        "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "ring": "0"
+      },
+      {
+        "config": "neon-circuit-20261112-144639-8852b8b8",
+        "ok": true,
+        "profile": "neon-circuit",
+        "enemy_profile": "ultraviolet-grid",
+        "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "ring": "0"
+      }
+    ],
+    "other_profile_live_verification": "Title+5second functionalsmokes only; fullstagefalse",
+    "functional_evidence_update": {
+      "before_sha256": "3335962504f38e2ab37a6f6152d298c1d711449e710e408dd2dc5ff211a85bf1",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before-functional-evidence.json",
+      "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+      "scope": "Attach completed frontend/shortcut checks; executable binding unchanged"
+    }
+  }
+}

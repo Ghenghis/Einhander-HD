@@ -1,0 +1,1253 @@
+{
+ "name": "stage7-fleet-parts-v1",
+ "family": "fleetparts",
+ "status": "candidate",
+ "state": "predicted-static: import only after a live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 stage 7 capture)",
+ "created_at_utc": "2026-11-13T16:25:24.848542+00:00",
+ "method": "W7-STAGE7: first stage 7 art from the shared static export (predicted-static; import only after a live capture confirms the key).\nusage: python build_s7.py planet|explosion|hulls [freeze]     -> staging/<name>/  (freeze: frozen/<name>/, immutable)\n\nSource: remaster-audit/fullgame-prep/static-extraction/stages/stage7 (textures/<TEX>.words.bin exact-static, cluts.json; the\nstage CLUT block 4/18 at (0,480,256,20)+(0,504,256,8)); crc32 of the words == TEX and of every CLUT == PAL re-checked.\n\nIndex master (CLUT-free, one per page, 8 px/texel = the 2048 export grid): per-index soft weights.  For every native index i the\none-hot mask is upsampled texel-centred (bilinear), gaussian-smoothed (sigma, texels) and raised to a power, then normalised; the\nmaster keeps the top-K labels and weights per pixel (u8).  Any CLUT renders it: RGB = weighted mix of the CLUT entries of the\nvisible labels; alpha either 'soft' (visibility = weight of visible labels >= 0.5, class of the strongest visible label) or\n'native' (the native class map, nearest).  Then the native class is forced at every native texel centre floor((i+0.5)*scale)\n(one pixel each) and validated (0 mismatches).\nRecipes (all CPU, deterministic, no AI, nothing added):\n  planet    sigma 0.90, power 1.0, top-4, alpha native: the limb pages are ordered-dithered tone images with stippled\n            (alternating transparent column) fades; a linear soft mix of the visible labels turns the dither into continuous\n            tone (motion-safe); the stipple columns are the native class map (they cannot become partial alpha: classes are\n            categorical).\n  explosion sigma 0.45, power 1.5, top-4, alpha native (w2-effects FX contract: alpha = native class map, RGB free); per frame\n            cell the light energy of every preview render is checked against native (0.95-1.05).\n  hulls     sigma 0.30, power 4.0, top-3, alpha soft (w4-world catsoft: plateaus keep exact native colours, stair steps\n            become smooth contours).\nKey exports only for listed predicted keys with a real (non-zero) CLUT; renders with other stage CLUTs are review previews.",
+ "recipe": {
+  "sigma_texel": 0.3,
+  "power": 4.0,
+  "top_labels": 3,
+  "alpha": "soft",
+  "master_px_per_texel": 8
+ },
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7",
+  "freeze": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/FREEZE.json",
+   "sha256": "c77d3597a00df843b02d9bf0daa02b3915cab76d3a93796ce84f5d470f1ab136"
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage7/readiness.json",
+  "sha256": "f217d8c6bbebb9b65d9d3ab17ebee6b000a630035208e763fe2693d63f54bfe4"
+ },
+ "pages": {
+  "87C91293": {
+   "member": "4/18",
+   "vram_rect_words": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7/textures/87C91293.words.bin",
+    "sha256": "d612efda94588b406523f1ce5f8b007ddd08f4d6c2b1fe92f1b63e520a13d150",
+    "crc32": "87C91293"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/87C91293-index-master-8x.npz",
+    "sha256": "875ff0b102436c9f878c6362bb40e008d2fe3d9ac101080826fe7b6b0d074973"
+   },
+   "listed_keys": [
+    "87C91293-0C8CA585",
+    "87C91293-12C7B356",
+    "87C91293-190A55AD",
+    "87C91293-1A936C79",
+    "87C91293-1BBE215A",
+    "87C91293-75F7637D",
+    "87C91293-88CA44C9",
+    "87C91293-B74D9780",
+    "87C91293-BE3400E6",
+    "87C91293-F3AFE548"
+   ]
+  },
+  "675828CE": {
+   "member": "4/17",
+   "vram_rect_words": [
+    512,
+    0,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7/textures/675828CE.words.bin",
+    "sha256": "838193f5cc1cb72021d1397b734179a2682ff6ca21d0a0163631bfe081e1426e",
+    "crc32": "675828CE"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/675828CE-index-master-8x.npz",
+    "sha256": "0e9517f75fc0004b9813b33947642edecbd3de5f48543d4742dbcc047ce9d36b"
+   },
+   "listed_keys": [
+    "675828CE-166E4BE3",
+    "675828CE-190A55AD",
+    "675828CE-1E4E0007",
+    "675828CE-3AA54201",
+    "675828CE-418C69D6",
+    "675828CE-439A4C04",
+    "675828CE-46E5B9B2",
+    "675828CE-6424F31E",
+    "675828CE-77D0BEF4",
+    "675828CE-91ABD69A",
+    "675828CE-A9651F8C",
+    "675828CE-AFB5BE8D",
+    "675828CE-B4B798B5",
+    "675828CE-C04F65C0",
+    "675828CE-C7E093D3",
+    "675828CE-E5350920",
+    "675828CE-EAD968A1"
+   ]
+  },
+  "D887C7F4": {
+   "member": "4/18",
+   "vram_rect_words": [
+    320,
+    256,
+    64,
+    256
+   ],
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage7/textures/D887C7F4.words.bin",
+    "sha256": "2b2a4d2b1e7110162a997ae0caf804495a5bd54d9878f149a87416b35c313bf7",
+    "crc32": "D887C7F4"
+   },
+   "confidence": "exact-static",
+   "master": {
+    "path": "master/D887C7F4-index-master-8x.npz",
+    "sha256": "0c9dfacf3f6240d1e622cecf9917dd702f9630a104faad5e546d58f31c232a72"
+   },
+   "listed_keys": [
+    "D887C7F4-12044A4C",
+    "D887C7F4-190A55AD",
+    "D887C7F4-75F7637D",
+    "D887C7F4-A7B73265",
+    "D887C7F4-A9651F8C",
+    "D887C7F4-C609A046",
+    "D887C7F4-C636C9C6"
+   ]
+  }
+ },
+ "keys": {
+  "87C91293-0C8CA585": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [48, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "0C8CA585",
+    "vram_xy": [
+     48,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "f72e7322ef196b0d08059c77396bd65e7352104aad3d4a31e724a51c7b5b2104"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-0C8CA585.png",
+     "sha256": "3f6e7060923b99fbd471f0c303c84bd6bcd12358587e09b888ee0de6ca877a17",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-0C8CA585.png",
+     "sha256": "b8d8fad6ffdad77845148f86204c4f309247f6400a022ecc0e2f3ea4a2812391",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-12C7B356": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [112, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "12C7B356",
+    "vram_xy": [
+     112,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "ff7fff63df2f1f235c223f16de115c0df808b3046e044b002700040002000000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-12C7B356.png",
+     "sha256": "f0a68b1d4de0a927a740ef4859c8108558882d9811163eadc61340fa28bc2972",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-12C7B356.png",
+     "sha256": "492f315e454f3a73f94ded3b30ada465dec676713409560e562c45206bde48b3",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-1A936C79": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [96, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "1A936C79",
+    "vram_xy": [
+     96,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "21040f0017001d0000000000000000000000000000000000000000000000ff7f"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-1A936C79.png",
+     "sha256": "aabf7390693afa0bd84f6943cec4d96558d8d06e33172426f7792aaeca39f3d1",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-1A936C79.png",
+     "sha256": "9749c0b66aa088f6f580fc9b90608301c42f7c4d64ed95cfbdbce5af9106b1d0",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-1BBE215A": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [32, 483])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "1BBE215A",
+    "vram_xy": [
+     32,
+     483
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "2104a0202036e05300000000000000000000000000000000000000000000ff7f"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-1BBE215A.png",
+     "sha256": "3048c949be9237dcb8ec981869c5a65476cab559d79de935d96bae1056beda5c",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-1BBE215A.png",
+     "sha256": "b1494cca322140d08ad7e56d905ce4e2b8cc06412fff2ac06de006080fc6c05e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-75F7637D": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [80, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "75F7637D",
+    "vram_xy": [
+     80,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "210494524a292925de7b0821e71c8c31c618a5146b2d8410630cad353967ef3d"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-75F7637D.png",
+     "sha256": "8367a235a6e9ddc99085a4edc9f245676dfccf6ac39a74b42905146751f25735",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-75F7637D.png",
+     "sha256": "1f436a5730dea3d4d472ff7008d1b948924edf946dd3737ee239de31ee901887",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-88CA44C9": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [16, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "88CA44C9",
+    "vram_xy": [
+     16,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "3e0a056a645de35063449c77396bd65e7352104aad3d4a31e724a51cba092104"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-88CA44C9.png",
+     "sha256": "ada8cd4f180e6636375216f3fd0ce8920b04cd783d82697079ad776cd1e82d0f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-88CA44C9.png",
+     "sha256": "a5dd94b311a49cfc52bc7b79591f41ad26d12ad4af7d51d22bbbdb3c5462b6c8",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-B74D9780": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [16, 483])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "B74D9780",
+    "vram_xy": [
+     16,
+     483
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "21049452b5149310de7b710c4f081b212d040b00f91c07000500d71839673d25"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-B74D9780.png",
+     "sha256": "949f4adab0b817dd0f373aac6ad63ab115680139b731a02505d65aa04b0c9208",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-B74D9780.png",
+     "sha256": "4ee9f654861ac3fd64000ad75f4fd471335c9adc6463364472e7e6abf84ed3e6",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-BE3400E6": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [32, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "BE3400E6",
+    "vram_xy": [
+     32,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "66436747694b6b4f8d538e57905bb25fb463b667b76bd96fdb73dd77ff7f0000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-BE3400E6.png",
+     "sha256": "c41e6da78b986f957dc7a9dbef0f87c58c68321f85dcb4bfac681d73bb312ba9",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-BE3400E6.png",
+     "sha256": "a5c9a26c414887c6bba7a6d5f7f5797ccf3c685cd8e078b697ac9055a1ad0117",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "87C91293-F3AFE548": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [0, 483])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "F3AFE548",
+    "vram_xy": [
+     0,
+     483
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "a51c1a42772df41c710c9c77396bd65e7352104aad3d0a00070005004a312104"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/87C91293-F3AFE548.png",
+     "sha256": "67d951f9a3074d87a5769fb3bfde3de2065fe7ddbbe67c6853a4acac57682056",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/87C91293-F3AFE548.png",
+     "sha256": "52b47c9ed8bb6d53c67d19ba0928a621646401545589dd31ecbff67b5320fc76",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-418C69D6": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [160, 488])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "418C69D6",
+    "vram_xy": [
+     160,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "c618260806080408c310c0088004000000000000000000000000000000000000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-418C69D6.png",
+     "sha256": "ea87f429f1420cbb61a265fd89a9704aa1bbb7d7200c964dc223da3fe2b8eae4",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-418C69D6.png",
+     "sha256": "5d9b627544d54b47c62ce48ec6016128450f87ca662b2090690b324e14a86cd9",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-439A4C04": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [128, 488])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "439A4C04",
+    "vram_xy": [
+     128,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "ff7f7b6f396bf762945a524e1046ad3d292de724c6206310c23c210400180000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-439A4C04.png",
+     "sha256": "d04508c01df5918aafe11f36771f723201585fd516174481f4b416e03022bd54",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-439A4C04.png",
+     "sha256": "903bf9a6aeb2362f4d19979f03fb09a42cfdfdf0895278d973c9a254928beec4",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-46E5B9B2": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [112, 488])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "46E5B9B2",
+    "vram_xy": [
+     112,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "ff7fe03c6939664deb5925412e5e0441894da230c23c8134602c202000180004"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-46E5B9B2.png",
+     "sha256": "aba609b6b1fb88780463a77dd876d4736824d16f406bf03764bc6e666a89e523",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-46E5B9B2.png",
+     "sha256": "fc7e5b68e9d03e0e74f34eaf1e1a4683ecb8a3a8b2172782ef154627f4a3c7fc",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-77D0BEF4": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [240, 490])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "77D0BEF4",
+    "vram_xy": [
+     240,
+     490
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "2184218421842184218421842184218421842184218421842184218421840000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-77D0BEF4.png",
+     "sha256": "9bbc67e2510bd596fd4a737d09e95c7fb4cdcdce84780d4ac4fc1e519cacf837",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-77D0BEF4.png",
+     "sha256": "22c443c174c793ec261c28d58043dd17bfef0d18411ef0a54ced8c12eac24f63",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-91ABD69A": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [240, 481])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "91ABD69A",
+    "vram_xy": [
+     240,
+     481
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "ff7f1867f72eb55a941e314e310eef45ad3dad0d4a310801a51c631021082104"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-91ABD69A.png",
+     "sha256": "ee3c9f76c43335498e63f17b0b409129c99626b33d31196bc2a8ee66bd5ffc76",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-91ABD69A.png",
+     "sha256": "37a48a44d57af835b13244163a7e4feb385afe156e846779b4a6b32ff6649e04",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-AFB5BE8D": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [144, 488])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "AFB5BE8D",
+    "vram_xy": [
+     144,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "ff7f1867b55af762945a7356314ece41ad3d6b35292de724a51c631421082104"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-AFB5BE8D.png",
+     "sha256": "0c251537206088ed7cf97cdd2d41f60a52b66fc3d4cd875e05115103a8d675ca",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-AFB5BE8D.png",
+     "sha256": "22f5eff2d1c9c5565cc72622e7d89b6b3b68d0756465e7373bc10daef0594dc5",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-E5350920": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [0, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "E5350920",
+    "vram_xy": [
+     0,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "2104b55e7356314e104aef45ad3d6b35292d0829a51c420cad0d100ed5263847"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-E5350920.png",
+     "sha256": "99dbeca04378bffa182edf156180da85c319ff8bc774f5221bcec28b8ad668db",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-E5350920.png",
+     "sha256": "20773478952c20957ef5f49e1146104c477f61b09fd187b9159a30e0406b01d3",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "675828CE-EAD968A1": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [0, 504])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "EAD968A1",
+    "vram_xy": [
+     0,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ],
+    "hex": "ff7fdf7bde7bbe7bbe77dd77bd779d7b9d779d73bc7bbc779c77bb77bb739a77"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/675828CE-EAD968A1.png",
+     "sha256": "da86803eb1362b09812f20e87e29160f050666a3a60eb8bdfe855c4a531d6e02",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/675828CE-EAD968A1.png",
+     "sha256": "12087b060bb1effb652d75b6b64c2c115444a8b6230850330e6d3cc0b2dcacab",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "D887C7F4-12044A4C": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [192, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "12044A4C",
+    "vram_xy": [
+     192,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "21049452e63c2925de7b4649e71c8c31a855a5146b2d6d72630cad353967ef3d"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/D887C7F4-12044A4C.png",
+     "sha256": "73987d13c678dd03103ad2716dace91ea716236c207299c63818f8562d98b29d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/D887C7F4-12044A4C.png",
+     "sha256": "6ca8edab332f4df3a62a8f85e5bf4638956643343a7f436929dc5a53fedd9236",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "D887C7F4-75F7637D": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [144, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "75F7637D",
+    "vram_xy": [
+     80,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "210494524a292925de7b0821e71c8c31c618a5146b2d8410630cad353967ef3d"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/D887C7F4-75F7637D.png",
+     "sha256": "a81649c9a9e4e6eabc1cc2f97848000784f15ac4e85deb7ab77fafbae62f9b04",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/D887C7F4-75F7637D.png",
+     "sha256": "c431275b0de8a2e1124fdefed0473e8a8b98051635f02cd85b376d311f54947f",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "D887C7F4-A7B73265": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [224, 504])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "A7B73265",
+    "vram_xy": [
+     224,
+     504
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     504,
+     256,
+     8
+    ],
+    "hex": "e034e030c038c034c02cc024a034a030a02ca028a024a0208028802480206024"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/D887C7F4-A7B73265.png",
+     "sha256": "e180aef416990e2bbd8236fd2bd2f5bb2087ccd3f5fb10fcb2d5039a1b94b422",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/D887C7F4-A7B73265.png",
+     "sha256": "49226a6c80663e9fba5ffeb583db3236cf46d79ec8725214e25c83c0eba7520d",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "D887C7F4-C609A046": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [176, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "C609A046",
+    "vram_xy": [
+     176,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "210494524a292925de7b5608e71c8c315e08a5146b2dfe3d8410ad353967ef3d"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/D887C7F4-C609A046.png",
+     "sha256": "658fdbca189ddcf0478c5225a040cc15c5f819846e49b1bb9048437e2fe1a413",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/D887C7F4-C609A046.png",
+     "sha256": "50537ce99c45388adbb2625d328041bac6a25cb147d2bd8d56450fbdf113a9dc",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  },
+  "D887C7F4-C636C9C6": {
+   "why": "listed key (likely, CLUT from the 4/18 stage block at [160, 482])",
+   "listed": true,
+   "listed_confidence": "likely",
+   "clut": {
+    "crc32": "C636C9C6",
+    "vram_xy": [
+     160,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ],
+    "hex": "bd77ff7fbd5f7b4399225705ff7fbf7f32538e420b326725e414610820040000"
+   },
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/D887C7F4-C636C9C6.png",
+     "sha256": "1e30ad380be092330de46f859d1150a87c4f85a6023aac7049348be9d273996d",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    },
+    "page1024": {
+     "path": "keys/page1024/D887C7F4-C636C9C6.png",
+     "sha256": "f3b879d86a0a45a2fb0e4e8578d4cb09f7efe54343c978ef1f21978881b9af25",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0
+    }
+   },
+   "state": "predicted-static"
+  }
+ },
+ "previews": {
+  "87C91293-0C8CA585": {
+   "clut": {
+    "crc32": "0C8CA585",
+    "vram_xy": [
+     48,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "87C91293-12C7B356": {
+   "clut": {
+    "crc32": "12C7B356",
+    "vram_xy": [
+     112,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "675828CE-418C69D6": {
+   "clut": {
+    "crc32": "418C69D6",
+    "vram_xy": [
+     160,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "675828CE-439A4C04": {
+   "clut": {
+    "crc32": "439A4C04",
+    "vram_xy": [
+     128,
+     488
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "D887C7F4-12044A4C": {
+   "clut": {
+    "crc32": "12044A4C",
+    "vram_xy": [
+     192,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  },
+  "D887C7F4-75F7637D": {
+   "clut": {
+    "crc32": "75F7637D",
+    "vram_xy": [
+     80,
+     482
+    ],
+    "owner": "(4, 18)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "forced_texel_centres": 0,
+   "class_mismatches": 0,
+   "key_listed": true
+  }
+ },
+ "generated_imagery": null,
+ "comfyui": null,
+ "review": [
+  "review/native-vs-hd-16x-and-page-01.png",
+  "review/native-vs-hd-16x-and-page-02.png",
+  "review/native-vs-hd-16x-and-page-03.png",
+  "review/native-vs-hd-ingame-2160-SIMULATION-01.png",
+  "review/native-vs-hd-ingame-2160-SIMULATION-02.png"
+ ],
+ "builder": {
+  "build_s7.py": "6e184bb413cb9f5b96cffa979bc900bbaee67a3b3e4f32a2e0b2cee455bc6c56",
+  "gaplib.py": "32159ba54cd79f4ba7647554a16b29cdc471905bf2398e5e4fcaf852bc10da7d",
+  "w4lib.py": "18ddffa6f983e1037826bf824baad4824e96df75386fff6c9b98ad146aacaa4d"
+ },
+ "class_validation": {
+  "key_files": 44,
+  "key_file_mismatches": 0,
+  "previews": 6,
+  "preview_mismatches": 0
+ }
+}

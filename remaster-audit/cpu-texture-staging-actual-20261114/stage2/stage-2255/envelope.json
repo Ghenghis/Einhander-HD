@@ -1,0 +1,106 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/tools/pilot_stage_onekey_r2.py",
+  "stage",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/j10-cache-qualify-2255/cache-manifest.json",
+  "bbcb9abeecb227d5e29705584f6955a06b06386c414c2298933d917b917e9b9f"
+ ],
+ "cwd": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23",
+ "wrapper_pid": 45536,
+ "wrapper_create_time": 1794696969.591478,
+ "cpu": 12,
+ "affinity": [
+  12
+ ],
+ "priority": 16384,
+ "timeout_s": 120.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T22:56:09.723402+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "1000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 44.9,
+  "free_gib": 58.62,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T22:56:10.724623+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 30572,
+ "child_create_time": 1794696970.725799,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  12
+ ],
+ "child_affinity_set_to": [
+  12
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   12
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T22:56:10.734022+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 55.228,
+ "end_utc": "2026-11-14T22:57:05.965810+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 2.125,
+  "kernel_s": 12.5625
+ },
+ "peak_job_memory_bytes": 21921792,
+ "peak_process_memory_bytes": 20598784,
+ "descendants_seen": [
+  40052
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

@@ -1,29 +1,15 @@
 # Remaining work and completion gates
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 November 13, 2026. Stage 1 and the full remaster remain incomplete. There is no
 verified whole-project completion percentage or reliable final delivery date.
 Claude has claimed twelve durable production/review workstreams; a claim is not
 a completed deliverable. The detailed brief is
 [the Claude execution backlog](../coordination/CLAUDE-WORK-QUEUE.md).
 
-- **Runtime and audio — Codex, with Claude's independent review.** Highest
-  priority: pre-Greif travel, arrival and weapon-fire stalls, plus FMV playback.
-  Normal preference2 controls still starve audio, including with rewind off.
-  A deferred-clock timestamp defect now passes its regression; one measured
-  hot routine passes native/interpreter correctness under the corrected build.
-  Other cached entries and actual audio remain unaccepted. A native-texture v40
-  control sustained about60fps without new starvation; foreground batching
-  controls improved from49.43 to55.86fps but both still starved. The normal
-  launcher leaves experimental batching off. The process-audio observer now
-  captures the owned game tree with its verified Windows console child.
-  The narrower rewind classifier and actual capture counters are committed and
-  pass 52 real-unit checks plus registered CTest. Live gameplay now reports zero
-  movie-classified frames; one snapshot was stored and 2,731 unsafe-context
-  attempts refused. Audio still starves. Expanded batch boundaries pass the
-  fresh 1,525/1,527-check GL modes; no whole-game speed benefit is accepted.
-  Next gates: combine verified options, isolate expensive work, verify each
-  change against a control, preserve
-  actual host audio, then demonstrate sustained normal gameplay and FMV output.
+- **Runtime and audio — Codex with Claude review.** Normal installed-pack bounded tests now have zero new gameplay starvation and boss-window maxima21ms (Play-HD) and20ms (saved material). Normal launchers disable continuous forensic readback; the material receipt uses the tested existing b287 runtime/own cache with rollback. The larger frozen artwork still fails: v57 OFF/ON full-run maxima85/184ms, ON703 starved sample frames. v58 raw CPU phase capture builds and passes source checks; its first live timing attempt was rejected after3seconds for focus loss. The next diagnostic is prepared, not run. Foreground/unassisted full-stage, listening, FMV, progression and all seven-stage acceptance remain open. See the canonical handoff for exact hashes, failures, evidence and the smallest next test.
+
 - **Robin and progression — Codex, with enemy/weak-point review from Claude.**
   Actual targeting, firing, weapon pickup and evasion are observed. Lives are
   still lost; Greif defeat and Stage 1 clear remain unverified. Complete boss,

@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\test_raw37c_driver_r3.py", line 140, in <module>
+    check("reverify_ok", drv.reverify(put(st))["pack"]["png_pins"] == st["pack"]["png_pins"])
+                         ~~~~~~~~~~~~^^^^^^^^^
+  File "C:\github\Einhander\remaster-audit\parallel-stages-20261114\s67\proposals\raw37c-diagnostic\raw37c_driver_r2.py", line 290, in reverify
+    raise Abort("private settings changed")
+drv.Abort: private settings changed

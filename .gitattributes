@@ -1,0 +1,81 @@
+
+# Frozen diagnostic evidence is byte-hashed; preserve original line endings.
+remaster-audit/runtime-diagnostics-v58/** -text -whitespace
+
+# Preserve the exact metadata-only artwork census and its producing script.
+docs/media/gallery/artwork-frozen-inventory-snapshot.json -text -whitespace
+remaster-audit/art_inventory_snapshot.py -text -whitespace
+remaster-audit/runtime-results-v58/** -text -whitespace
+remaster-audit/runtime-power-pair-v58/** -text -whitespace
+
+remaster-audit/runtime-sign-live-v58/** -text -whitespace
+
+remaster-audit/remix-sdk-qualification-20261114/** -text -whitespace
+remaster-audit/world-sign-census-20261114/** -text -whitespace
+
+windows-x64/Play-HD.cmd -text -whitespace
+
+remaster-audit/engine-foundation-world-20261114/** -text -whitespace
+
+remaster-audit/world-cpu-completion-20261114/** -text -whitespace
+
+remaster-audit/engine-provenance-v2-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-integration-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-review-20261114/** -text -whitespace
+
+remaster-audit/engine-cpu-metrics-20261114/** -text -whitespace
+remaster-audit/gpu-integration-20261114/** -text -whitespace
+remaster-audit/gpu-shader-followup-20261114/** -text -whitespace
+
+remaster-audit/cpu-hour-integration-20261114/** -text -whitespace
+
+/remaster-audit/scene-texture-followup-20261114/** -text -whitespace
+
+/remaster-audit/cpu-session-interop-20261114/** -text -whitespace
+
+/remaster-audit/texture-composer-followup-20261114/** -text -whitespace
+
+/remaster-audit/decode-worker-results-20261114/** -text -whitespace
+
+/remaster-audit/frontend-tracker-results-20261114/** -text -whitespace
+
+/remaster-audit/modern-remix-gpu-result-20261114/** -text -whitespace
+
+/remaster-audit/roi-menu-results-20261114/** -text -whitespace
+
+/remaster-audit/roi-native-admission-20261114/** -text -whitespace
+
+/remaster-audit/cpu-gameplay-correction-20261114/** -text -whitespace
+
+/remaster-audit/recorder-menu-results-20261114/** -text -whitespace
+
+/remaster-audit/unassisted-route-results-20261114/** -text -whitespace
+
+/remaster-audit/cpu-texture-remix-results-20261114/** -text -whitespace
+
+/remaster-audit/cpu-source-review-20261114/** -text -whitespace
+
+/remaster-audit/engine-source-continuation-20261114/** -text -whitespace
+
+/remaster-audit/engine-integration-followup-20261114/** -text -whitespace
+/remaster-audit/gl_adapter_identity_guard.py -text
+/remaster-audit/test_gl_adapter_identity_guard.py -text
+/remaster-audit/owned_gl_adapter_observation.py -text
+
+/remaster-audit/cpu-integration-review-20261114/** -text -whitespace
+
+/remaster-audit/cpu-audio-actual-20261114/** -text -whitespace
+
+/remaster-audit/cpu-engine-builds-20261114/** -text -whitespace
+
+/remaster-audit/cpu-transport-actual-20261114/** -text -whitespace
+
+/remaster-audit/cpu-texture-staging-actual-20261114/** -text -whitespace
+
+/remaster-audit/cpu-present-lifecycle-actual-20261114/** -text -whitespace
+
+/remaster-audit/cpu-engine-closure-actual-20261114/** -text -whitespace
+
+/remaster-audit/cpu-hud-texture-results-20261115/** -text -whitespace

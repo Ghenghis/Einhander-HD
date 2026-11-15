@@ -1,0 +1,48 @@
+{
+ "scope": "Four-board CPU/source audit and private alternatives; no new live comparison, installation or visual acceptance",
+ "sources": [
+  {
+   "local_path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\AUDIT.md",
+   "bytes": 4630,
+   "sha256": "df20b6f64e58c5c08517df8a63473406ef8d494209f8624a755f594229e741cb"
+  },
+  {
+   "local_path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\stats.json",
+   "bytes": 6033,
+   "sha256": "c256ba85b3e854afd51996c5290a8c5c431678dd3015dc3055c52bf8a22cd57c"
+  },
+  {
+   "local_path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\candidates-report.json",
+   "bytes": 2477,
+   "sha256": "e0cc33f04a65bc2d136a5e82d1619145d95ca8e68c1ab743e40d51e388e76edf"
+  },
+  {
+   "local_path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\build_crisp_boards.py",
+   "bytes": 6724,
+   "sha256": "433f9ac0a91db67e1b7693db570ecdb7b7e1e305ec3a62ead8f517da808e40ed"
+  },
+  {
+   "local_path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\frozen\\fd-glyph-boards-crisp-v1\\manifest.json",
+   "bytes": 2827,
+   "sha256": "87bd18ecd26fc44ce456c4665d79207f5d94a2eb490ddae55d7565ccb4b565ba"
+  }
+ ],
+ "comparisons": [
+  {
+   "file": "sign-b04-pink-glyph-column-comparison.png",
+   "bytes": 293228,
+   "sha256": "b16f798eb0dcec0b7b5d62cdfd38596d62bbe5eba6dd463204962ef091b69033",
+   "left": "Native source enlarged",
+   "middle": "Current frozen W3 override",
+   "right": "Unaccepted class-aware EPX alternative"
+  },
+  {
+   "file": "sign-b09-green-three-glyph-comparison.png",
+   "bytes": 405023,
+   "sha256": "8ef117c4095e42266b3d6de746d4bbb0f8cdc28d08297634c7173669da395d8d",
+   "left": "Native source enlarged",
+   "middle": "Current frozen W3 override",
+   "right": "Unaccepted class-aware EPX alternative"
+  }
+ ]
+}

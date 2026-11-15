@@ -1,0 +1,23 @@
+{
+  "at_utc": "2026-11-14T14:03:44.892593+00:00",
+  "release": {
+    "verified_utc": "2026-11-14T14:03:44.792234+00:00",
+    "source_chat": "01a1da2a-6273-7051-92a9-fc914070d84e",
+    "source_user_message": "01a1da5d-d9df-7000-95e5-44b85363c268",
+    "user_text": "I don\u2019t need any more time on the 3090 Ti: I finished with it at about 6:55. ComfyUI is stopped and the card is back at its normal 450 W, so the other project can have it now.",
+    "verification": "Root read actual userMessage via Codex read_thread, not only forwarded agent mail.",
+    "user_power_report": "450 W; not independently measured and no setting changed",
+    "gpu_test_run": false
+  },
+  "archived_hold_sha256": "64f6472862310facb2a0f0247d0470ea3da2b8b5b88915f9b6a6be46249443b6",
+  "marker_removed": true,
+  "inventory_command": [
+    "nvidia-smi",
+    "--query-gpu=uuid,name,memory.used,memory.total,utilization.gpu,power.limit",
+    "--format=csv,noheader,nounits"
+  ],
+  "inventory_exit": 0,
+  "inventory": "GPU-ff51fa52-74c8-c785-e000-53fe58844033, NVIDIA GeForce RTX 3090 Ti, 1788, 24564, 41, 450.00\nGPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa, NVIDIA GeForce RTX 3060, 28, 12288, 0, 120.00\n",
+  "driver_power_setting_changed": false,
+  "gpu_render_started": false
+}

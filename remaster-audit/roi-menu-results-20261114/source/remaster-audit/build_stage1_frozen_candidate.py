@@ -1,0 +1,308 @@
+"""Compose a pinned artwork plan into a fresh private candidate, never install it.
+
+Plan: parent={path,sha256}; entries=[{manifest:{path,sha256}, key, image:
+{path,sha256}, optional exact:{source_words:{path,sha256}, source_clut:
+{path,sha256}, source_shape_words:[w,h], page_xy:[x,y], uv:[l,t,r,b],
+depth:0|1|2, clut_xy:[x,y]}}]. Exact images already cover the UV rectangle.
+Full-upload entries may instead provide native_source with source_words,
+source_clut, source_shape_words and depth; CRC and image geometry are checked.
+Every image must use categorical alpha. Hashes pin inputs; output receipts
+record lineage, retained limitations, and pending live acceptance.
+"""
+from __future__ import annotations
+import argparse
+import copy
+import ctypes
+from datetime import datetime, timezone
+import hashlib
+import io
+import json
+import os
+from pathlib import Path
+import re
+import shutil
+import struct
+import zlib
+from PIL import Image
+import numpy as np
+
+ROOT=Path(__file__).resolve().parents[1]
+EVIDENCE=ROOT/'remaster-audit/dev-center-evidence/stage1-completion-20261112'
+KEY=re.compile(r'[0-9A-F]{8}-[0-9A-F]{8}')
+
+def sha(path):
+    with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
+
+def pinned(ref):
+    path=Path(ref['path']).resolve()
+    if sha(path)!=ref['sha256']:raise ValueError('Pinned input changed: '+str(path))
+    return path
+
+def atomic(path,data):
+    # Break immutable parent hardlinks before replacing any candidate file.
+    temporary=path.with_name(path.name+'.new')
+    with temporary.open('xb') as stream:stream.write(data);stream.flush();os.fsync(stream.fileno())
+    temporary.replace(path)
+
+def load_cutout_rgb_fill(policy):
+    """Explicit opt-in CPU library, with pinned build/source provenance in the plan."""
+    if policy is None:return None
+    if policy.get('method')!='cm_fill_cutout_rgb-v2b':raise ValueError('Unsupported cutout RGB fill method')
+    library=pinned(policy['library'])
+    for field in ('source','header','build_receipt'):pinned(policy[field])
+    dll=ctypes.CDLL(str(library));function=dll.cm_fill_cutout_rgb
+    function.argtypes=[ctypes.c_void_p,ctypes.c_int,ctypes.c_int];function.restype=ctypes.c_int64
+    return dll,function
+
+def apply_cutout_rgb_fill(image,function):
+    """Fill invisible RGB only; reject a function that changes alpha or visible RGB."""
+    before=np.array(image.convert('RGBA'),dtype=np.uint8,copy=True)
+    if not set(np.unique(before[:,:,3])).issubset({0,127,255}):raise ValueError('Noncategorical fill input alpha')
+    if not np.any(before[:,:,3]==0):
+        return image,dict(applied=False,reason='No cutout pixels',rgb_pixels_changed=0,alpha_unchanged=True,visible_rgb_unchanged=True)
+    after=before.copy();count=function(after.ctypes.data,image.width,image.height)
+    if count<0:raise ValueError('Cutout RGB fill failed')
+    visible=before[:,:,3]!=0
+    if not np.array_equal(before[:,:,3],after[:,:,3]):raise ValueError('Cutout RGB fill changed alpha')
+    if not np.array_equal(before[:,:,:3][visible],after[:,:,:3][visible]):raise ValueError('Cutout RGB fill changed visible RGB')
+    changed=int(np.any(before[:,:,:3]!=after[:,:,:3],axis=2).sum())
+    return Image.fromarray(after),dict(applied=True,rgb_pixels_changed=changed,alpha_unchanged=True,visible_rgb_unchanged=True)
+
+def apply_roi_overlay(parent,authored,policy):
+    """Replace one native half-open rectangle; preserve the latest parent's other pixels."""
+    if not isinstance(policy,dict) or set(policy)!={'native_size','uv'}:
+        raise ValueError('ROI overlay needs exactly native_size and uv')
+    native=policy['native_size'];uv=policy['uv']
+    if not isinstance(native,list) or len(native)!=2 or not isinstance(uv,list) or len(uv)!=4:
+        raise ValueError('Malformed native ROI geometry')
+    if any(type(v) is not int for v in [*native,*uv]):
+        raise ValueError('Native ROI coordinates must be integers')
+    nw,nh=native;l,t,right,bottom=uv
+    if not (1<=nw<=4096 and 1<=nh<=4096 and 0<=l<right<=nw and 0<=t<bottom<=nh):
+        raise ValueError('Native ROI is empty or outside its page')
+    if parent.mode!='RGBA' or authored.mode!='RGBA':
+        raise ValueError('ROI overlay requires native RGBA inputs')
+    if parent.size!=authored.size or not (1<=parent.width<=4096 and 1<=parent.height<=4096):
+        raise ValueError('ROI overlay requires identical supported page dimensions')
+    if parent.width%nw or parent.height%nh or parent.width//nw!=parent.height//nh:
+        raise ValueError('ROI overlay needs one integer native scale')
+    scale=parent.width//nw
+    if scale<1:raise ValueError('ROI overlay cannot downscale native data')
+    box=(l*scale,t*scale,right*scale,bottom*scale)
+    before=np.array(parent.convert('RGBA'),copy=True)
+    after=before.copy();patch=np.asarray(authored.convert('RGBA'))
+    x0,y0,x1,y1=box
+    after[y0:y1,x0:x1]=patch[y0:y1,x0:x1]
+    outside=np.ones(before.shape[:2],dtype=bool);outside[y0:y1,x0:x1]=False
+    if not np.array_equal(after[outside],before[outside]):
+        raise ValueError('ROI overlay changed an outside pixel')
+    return Image.fromarray(after),dict(native_size=native,uv_half_open=uv,pixel_box=list(box),
+        outside_rgba_identical=True,outside_pixels=int(outside.sum()),
+        roi_pixels_changed=int(np.any(after[y0:y1,x0:x1]!=before[y0:y1,x0:x1],axis=2).sum()))
+
+
+def validate_roi_artifact(metadata,key,policy,authored):
+    """Bind a frozen ROI and its delta to its pinned baseline, not a newer parent."""
+    region=metadata.get('region','')
+    match=re.search(r'\buv\s*\[(\d+),(\d+)\]-\[(\d+),(\d+)\]\s+half-open\b',region)
+    if not match or list(map(int,match.groups()))!=policy['uv']:
+        raise ValueError('ROI differs from frozen manifest region')
+    baseline=metadata.get('keys',{}).get(key,{}).get('live')
+    if not isinstance(baseline,dict):raise ValueError('ROI artifact has no pinned original baseline')
+    with Image.open(pinned(baseline)) as old:
+        # Reuse the exact geometry/mode checks without accepting unbound coordinates.
+        _,geometry=apply_roi_overlay(old,authored,policy)
+        x0,y0,x1,y1=geometry['pixel_box']
+        before=np.asarray(old);patch=np.asarray(authored)
+        outside=np.ones(before.shape[:2],dtype=bool);outside[y0:y1,x0:x1]=False
+        if not np.array_equal(before[outside],patch[outside]):
+            raise ValueError('Frozen artwork changes pixels outside its declared ROI baseline')
+    return dict(manifest_region=region,original_baseline=baseline,authored_outside_baseline_identical=True)
+
+
+def verified_native_source(source,key):
+    words=pinned(source['source_words']).read_bytes();clut=pinned(source['source_clut']).read_bytes()
+    w,h=source['source_shape_words'];depth=source['depth']
+    if depth not in (0,1,2) or not (1<=w<=1024 and 1<=h<=512) or len(words)!=w*h*2:
+        raise ValueError('Invalid full-upload native source dimensions/depth')
+    if len(clut)!=(32 if depth==0 else 512 if depth==1 else 0):raise ValueError('Invalid native CLUT size')
+    actual=f'{zlib.crc32(words):08X}-{zlib.crc32(clut) if depth<2 else 0:08X}'
+    if actual!=key:raise ValueError('Full-upload native source does not match '+key)
+    return dict(key=key,source_shape_words=[w,h],depth=depth,
+        native_dimensions=[w*(4>>depth),h],words_sha256=hashlib.sha256(words).hexdigest(),
+        clut_sha256=hashlib.sha256(clut).hexdigest())
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--plan',type=Path,required=True)
+    parser.add_argument('--output',type=Path,required=True)
+    args=parser.parse_args();out=args.output.resolve()
+    if out.parent!=EVIDENCE.resolve() or out.exists():raise ValueError('Use a fresh direct child of private completion evidence')
+    plan_path=args.plan.resolve();plan=json.loads(plan_path.read_bytes())
+    fill_policy=plan.get('cutout_rgb_fill');fill=load_cutout_rgb_fill(fill_policy);fill_rows=[]
+    parent_path=pinned(plan['parent']);parent=json.loads(parent_path.read_bytes())
+    parent_pack=Path(parent['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT'])
+    manifest_refs={}
+    for row in plan['entries']:
+        path=pinned(row['manifest']);metadata=json.loads(path.read_bytes())
+        manifest_refs[str(path)]=dict(sha256=sha(path),metadata=metadata)
+        pinned(row['image'])
+        if row.get('emissive'):pinned(row['emissive'])
+        if row.get('alpha'):pinned(row['alpha'])
+        if row.get('source_handoff'):pinned(row['source_handoff'])
+        if row.get('roi_overlay') is not None:
+            if any(row.get(k) is not None for k in ('exact','image_uv','alpha','emissive')) or fill:
+                raise ValueError('ROI overlay cannot mix cropping, alpha/mask replacement or whole-page RGB fill')
+        if not KEY.fullmatch(row['key']):raise ValueError('Invalid exact key')
+        if row.get('native_source'):verified_native_source(row['native_source'],row['key'])
+        declared=metadata.get('keys',{})
+        if isinstance(declared,dict) and row['key'] in declared:
+            native=declared[row['key']]
+            if all(k in native for k in ('words','words_sha256','clut','clut_sha256')):
+                words=pinned(dict(path=native['words'],sha256=native['words_sha256'])).read_bytes()
+                clut=pinned(dict(path=native['clut'],sha256=native['clut_sha256'])).read_bytes()
+                if f'{zlib.crc32(words):08X}-{zlib.crc32(clut):08X}'!=row['key']:
+                    raise ValueError('Manifest native source pair does not match its key')
+    out.mkdir();pack=out/'pack'
+    snapshots=out/'input-manifests';snapshots.mkdir()
+    for path,ref in manifest_refs.items():
+        data=Path(path).read_bytes()
+        if hashlib.sha256(data).hexdigest()!=ref['sha256']:raise ValueError('Manifest changed before snapshot')
+        snapshot=snapshots/(ref['sha256']+'.json');snapshot.write_bytes(data)
+        ref['snapshot']=str(snapshot)
+    def link_or_copy(source,target):
+        try:os.link(source,target)
+        except OSError:shutil.copy2(source,target)
+        return target
+    shutil.copytree(parent_pack,pack,copy_function=link_or_copy)
+    replacements=pack/'einhander-texture-replacements'
+    if not replacements.is_dir():raise ValueError('Expected one canonical replacement directory')
+    ledger={}
+    for row in parent['files']:
+        path=replacements/row['name']
+        if sha(path)!=row['sha256']:raise ValueError('Parent ledger differs: '+row['name'])
+        ledger[row['name']]=dict(row,composed_path=str(path),origin='unchanged immutable parent',
+            parent=dict(path=row['composed_path'],sha256=row['sha256']))
+    exact_file=pack/'ExactRegions.tsv'
+    exact_lines=exact_file.read_text().splitlines() if exact_file.exists() else ['EIN_EXACT_REGIONS_V1']
+    masks={}
+    for item in parent.get('emissive_files',[]):
+        if sha(item['composed_path'])!=item['sha256']:raise ValueError('Parent mask changed')
+        masks[item['name']]=dict(item,composed_path=str(replacements/item['name']))
+    chosen=set();pixel_equal_reused=0
+    for row in plan['entries']:
+        image_path=pinned(row['image']);key=row['key'];exact=row.get('exact')
+        source_proof=verified_native_source(row['native_source'],key) if row.get('native_source') else None
+        if exact and row.get('native_source'):raise ValueError('Use either exact or full-upload source proof')
+        if exact:
+            words=pinned(exact['source_words']).read_bytes();clut=pinned(exact['source_clut']).read_bytes()
+            w,h=exact['source_shape_words'];depth=exact['depth'];ppw=4>>depth
+            if depth not in (0,1,2) or len(words)!=w*h*2:raise ValueError('Invalid source dimensions/depth')
+            if f'{zlib.crc32(words):08X}-{zlib.crc32(clut) if depth<2 else 0:08X}'!=key:
+                raise ValueError('Source words or full CLUT do not match declared native key')
+            if len(clut)!=(32 if depth==0 else 512 if depth==1 else 0):raise ValueError('Invalid full CLUT size')
+            l,t,r,b=exact['uv']
+            if not (0<=l<r<=w*ppw and 0<=t<b<=h and l%ppw==0 and r%ppw==0):raise ValueError('Unaligned/outside exact rectangle')
+            cropped=b''.join(words[(y*w+l//ppw)*2:(y*w+r//ppw)*2] for y in range(t,b))
+            key=f'{zlib.crc32(cropped):08X}-{zlib.crc32(clut) if depth<2 else 0:08X}'
+            x=exact['page_xy'][0]+l//ppw;y=exact['page_xy'][1]+t
+            rw=(r-l)//ppw;rh=b-t;cx,cy=exact['clut_xy']
+            if x<320 or x+rw>1024 or y<0 or y+rh>512:raise ValueError('Exact rectangle outside texture VRAM')
+            for suffix,data in [('words.bin',cropped),('clut.bin',clut),('valid.bin',bytes([1])*(rw*rh))]:
+                atomic(pack/(key+'.'+suffix),data)
+            line='\t'.join(map(str,[key,x,y,rw,rh,depth,cx,cy]))
+            if line not in exact_lines:exact_lines.append(line)
+            source_proof=dict(fullpage_key=row['key'],region_key=key,rectangle_words=[x,y,rw,rh],
+                uv_half_open=[l,t,r,b],depth=depth,clut_xy=[cx,cy],words_sha256=hashlib.sha256(cropped).hexdigest(),
+                clut_sha256=hashlib.sha256(clut).hexdigest(),source_words=row['exact']['source_words'])
+        if key in chosen:raise ValueError('Conflicting plan entries for '+key)
+        chosen.add(key)
+        name=key+'.png';target=replacements/name;previous=ledger.get(name);encoded=None;reuse=False;overlay_result=None
+        with Image.open(image_path) as opened:
+            image=opened.convert('RGBA')
+            if row.get('image_uv'):
+                nw,nh=row['image_space_native'];l0,t0,r0,b0=row['image_uv']
+                if image.width%nw or image.height%nh:raise ValueError('Image crop has a noninteger native scale')
+                sx,sy=image.width//nw,image.height//nh
+                image=image.crop((l0*sx,t0*sy,r0*sx,b0*sy))
+            width,height=image.size
+            if row.get('native_source'):
+                nw,nh=source_proof['native_dimensions']
+                if width%nw or height%nh or width//nw!=height//nh:
+                    raise ValueError('Artwork scale does not match its native upload')
+            if row.get('alpha'):
+                with Image.open(pinned(row['alpha'])) as source_alpha:
+                    alpha=source_alpha.getchannel('A') if source_alpha.mode=='RGBA' else source_alpha.convert('L')
+                    if row.get('alpha_uv'):alpha=alpha.crop(tuple(row['alpha_uv']))
+                    if not set(np.unique(np.asarray(alpha))).issubset({0,127,255}):
+                        raise ValueError('Native alpha plane is not categorical')
+                    if alpha.width*height!=alpha.height*width:raise ValueError('Native alpha plane aspect differs')
+                    image.putalpha(alpha.resize(image.size,Image.Resampling.NEAREST))
+            if exact and (width%(r-l) or height%(b-t) or width//(r-l)!=height//(b-t)):
+                raise ValueError('Exact artwork scale does not match its native rectangle')
+            classes=np.unique(np.asarray(image.getchannel('A')))
+            if not set(classes).issubset({0,127,255}):raise ValueError('Noncategorical alpha: '+str(image_path))
+            if not (1<=width<=4096 and 1<=height<=4096):raise ValueError('Image exceeds renderer dimensions')
+            if fill:
+                image,fill_result=apply_cutout_rgb_fill(image,fill[1])
+                fill_rows.append(dict(key=key,**fill_result))
+            if row.get('roi_overlay') is not None:
+                if not previous:raise ValueError('ROI overlay needs an existing pinned parent page')
+                metadata=manifest_refs[str(Path(row['manifest']['path']).resolve())]['metadata']
+                binding=validate_roi_artifact(metadata,key,row['roi_overlay'],image)
+                with Image.open(target) as old:
+                    image,overlay_result=apply_roi_overlay(old,image,row['roi_overlay'])
+                overlay_result.update(binding)
+                classes=np.unique(np.asarray(image.getchannel('A')))
+                if not set(classes).issubset({0,127,255}):raise ValueError('ROI overlay parent has noncategorical alpha')
+            # Validate and transform every input first. Reuse the parent's
+            # already-pinned encoded PNG only after comparing all final RGBA
+            # pixels; changed builders or inputs cannot bypass validation.
+            if previous:
+                with Image.open(target) as old:
+                    reuse=old.size==image.size and np.array_equal(np.asarray(old.convert('RGBA')),np.asarray(image))
+            if not reuse:
+                buffer=io.BytesIO();image.save(buffer,format='PNG');encoded=buffer.getvalue()
+        if reuse:pixel_equal_reused+=1
+        else:atomic(target,encoded)
+        mask_name=key+'-emissive.png';mask_target=replacements/mask_name
+        if row.get('emissive'):
+            with Image.open(pinned(row['emissive'])) as mask,Image.open(image_path) as rgb_source:
+                if mask.mode!='L' or mask.size!=rgb_source.size:raise ValueError('Mask must be8-bit grayscale with source PNG dimensions')
+                if row.get('image_uv'):
+                    nw,nh=row['image_space_native'];l0,t0,r0,b0=row['image_uv'];sx,sy=mask.width//nw,mask.height//nh
+                    mask=mask.crop((l0*sx,t0*sy,r0*sx,b0*sy))
+                if mask.size!=(width,height):raise ValueError('Final mask and replacement dimensions differ')
+                buffer=io.BytesIO();mask.save(buffer,format='PNG');atomic(mask_target,buffer.getvalue())
+            masks[mask_name]=dict(name=mask_name,composed_path=str(mask_target),sha256=sha(mask_target),bytes=mask_target.stat().st_size,
+                dimensions=[width,height],input=row['emissive'],encoding='8-bit grayscale; RGB modulation only')
+        elif mask_target.exists() and not reuse:
+            raise ValueError('Changed replacement needs an explicit companion mask: '+key)
+        ledger[name]=dict(name=name,composed_path=str(target),sha256=sha(target),dimensions=[width,height],
+            bytes=target.stat().st_size,origin='frozen artwork candidate',input=row,
+            previous_sha256=previous['sha256'] if previous else None,source_proof=source_proof,
+            alpha_classes=classes.tolist(),pixel_equal_parent_png_reused=reuse,
+            roi_overlay=overlay_result,live_verified=False)
+    atomic(exact_file,('\n'.join(exact_lines)+'\n').encode())
+    report=copy.deepcopy(parent)
+    report.update(evidence=str(out),variant=out.name,files=sorted(ledger.values(),key=lambda row:row['name']),
+        final_count=len(ledger),composition_plan=dict(path=str(plan_path),sha256=sha(plan_path)),
+        frozen_manifests=manifest_refs,parent_candidate=dict(path=str(parent_path),sha256=sha(parent_path)),
+        authored_entries=len(plan['entries']),live_visual_accepted=False,production_installed=False,
+        pixel_equal_parent_pngs_reused=pixel_equal_reused,
+        cutout_rgb_fill=dict(policy=fill_policy,rows=fill_rows) if fill else None,
+        emissive_files=sorted(masks.values(),key=lambda x:x['name']),
+        composed_at_utc=datetime.now(timezone.utc).isoformat())
+    report['launches']['candidate']['environment_overrides']['PSXRECOMP_HD_TEXTURE_ROOT']=str(pack)
+    report['launches']['candidate']['environment_overrides'].update(PSXRECOMP_SKIN_ENEMY_PROFILE='stock',PSXRECOMP_SKIN_ENEMY_DETAIL_PATH='')
+    # Verify parent identities again after every atomic candidate replacement.
+    for row in parent['files']:
+        if sha(row['composed_path'])!=row['sha256']:raise ValueError('Parent was changed during composition')
+    for row in parent.get('emissive_files',[]):
+        if sha(row['composed_path'])!=row['sha256']:raise ValueError('Parent mask was changed during composition')
+    for row in masks.values():
+        if sha(row['composed_path'])!=row['sha256']:raise ValueError('Composed mask changed before receipt')
+    (out/'candidate.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
+    print(json.dumps(dict(candidate=str(out/'candidate.json'),files=len(ledger),authored_entries=len(plan['entries']),production_installed=False)))
+
+if __name__=='__main__':main()

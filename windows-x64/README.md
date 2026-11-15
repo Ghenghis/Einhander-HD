@@ -1,5 +1,7 @@
 # Einhander
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](../docs/RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 Static recompilation of **Einhander** built on
 [psxrecomp](https://github.com/mstan/psxrecomp) and
 [recomp-ui](https://github.com/mstan/recomp-ui).

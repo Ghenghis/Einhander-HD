@@ -1,0 +1,11 @@
+TIMING preload_total_ms 0.228 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 1.608 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 1.437 min 1.381 max 2.530 (21 fresh slots, warm)
+checks 38 failures 6
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:247: s_hdcm_diag.rgbonly_admitted == 1 && (int)slot.rgb_edges == EXPECT_CUT
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:248: s_hdcm_diag.rgbonly_opaque_bypass == (uint64_t)!EXPECT_CUT && sum_reasons(s_hdcm_diag.rgbonly_rejected) == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:255: g_u[LOC_CLASS] == 0 && g_u[LOC_RGB] == rg && g_min == -7 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:258: g_u[LOC_CLASS] == 0 && g_u[LOC_RGB] == rg && g_min == -7
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:277: s_hdcm_diag.rgbonly_admitted == 2 && (int)slot.rgb_edges == EXPECT_CUT && g_teximage == 0 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g09\glue_harness.c:278: s_hdcm_diag.rgbonly_opaque_bypass == 2ull * (uint64_t)!EXPECT_CUT

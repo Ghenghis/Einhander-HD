@@ -1,0 +1,2618 @@
+{
+ "name": "stage6-vram320-0-43C26C42-61A869E5-v1",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "task": "stage 6 batch 2: next families by coverage (CPU only; GPU lost)",
+ "created_utc": "2026-11-13T21:45:37.630202+00:00",
+ "provenance": "predicted-static (static-extraction/stages-v4/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "vram_page": "320,0",
+ "both_sets_authored": true,
+ "method": "Categorical soft index master (w4-world catsoft, as w7-stage7 hulls): for every native index the one-hot mask is upsampled texel-centred (bilinear), gaussian smoothed (sigma 0.30 texel), raised to power 4 and normalised; top-3 labels and u8 weights per 2048 px. Render per CLUT: RGB = weighted mix of the visible labels; class = class of the strongest visible label where the visible weight >= 0.5. Plateaus keep the exact native colours; stair steps become smooth contours. The native class is then forced at the 2x2 px straddling every texel centre (0 forced pixels expected: the strongest label equals the native index there for every CLUT).",
+ "params": {
+  "sigma": 0.3,
+  "power": 4.0,
+  "K": 3
+ },
+ "export_rule": "keys exported only where the CLUT comes from the texture's own set CLUT block (4/6 for set A, 4/10 for set B), is not all-zero / all-black and does not show a coloured page background; every other CLUT renders from the master",
+ "textures": {
+  "43C26C42": {
+   "set": "set A (4/0 + 4/6, CLUT block 4/6)",
+   "member": "4/6",
+   "vram_rect_words": [
+    320,
+    0,
+    64,
+    256
+   ],
+   "writers": [
+    "4/6",
+    "4/10"
+   ],
+   "texture_confidence": "likely",
+   "texture_confidence_meaning": "'likely' = one of two area versions of this VRAM page; the words of THIS version are exact",
+   "identity": {
+    "family": "effects",
+    "sub": "debris and particles",
+    "desc": "debris chunks, particle sprites, smoke plumes, star bursts, a few small mechanical parts",
+    "set": "A",
+    "confidence": "medium"
+   },
+   "coverage_pairs": 1673,
+   "background": {
+    "mode_index": 0,
+    "mode_share": 0.296,
+    "background_index": null
+   },
+   "index_master": {
+    "files": {
+     "master/43C26C42-hull-master.npz": "97238691e29718c443b3376d846bb2cf2b4998db26911c71c3c018b44fdd817f",
+     "master/43C26C42-hull.json": "2d07d7edcb28593ebb3bd037212fe0da417cc9930e102eb2e82ed5360155bc99"
+    },
+    "proof": {
+     "params": {
+      "sigma": 0.3,
+      "power": 4.0,
+      "K": 3
+     },
+     "strongest_label_equals_native_at_centres": 65536,
+     "texels": 65536,
+     "any_clut_class_exact_before_forcing": true
+    }
+   },
+   "cluts_delivered": [
+    "521B0B1A",
+    "2B66A97F",
+    "6EDE7B7C",
+    "25C360FE",
+    "870A1255",
+    "FFF1C1BF",
+    "3C7F8A8F",
+    "60579FEB",
+    "1E4043BA",
+    "4CAF3E0F"
+   ],
+   "cluts_not_delivered": {
+    "190A55AD": "all 16 entries are 0x0000 (fully transparent)",
+    "9A82F173": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "11674191": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "FF01A5DB": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "1B8869C9": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "0ADAA698": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "899D7E1D": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "B1A7C447": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "46255F34": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "9F20800F": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "84A1CEF3": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "334D9EFF": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "3E21CF50": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "05C38755": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "5FA94A42": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "09E96477": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "5E251958": "CLUT from another set or record (['(4, 4)']): preview from the master only",
+    "F2E4A647": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "611C5290": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "47823F21": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "2E90A992": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "1689DF90": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "B50CC230": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "8D920799": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "3F02B716": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "B97689E3": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "B675A0C2": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "BD161002": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "CAFC4AA7": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "461D4812": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "C12DB7DC": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "3441F7C3": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "AB139F82": "CLUT from another set or record (['(4, 10)']): preview from the master only",
+    "718199E6": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "1E4E0007": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "DE388F4C": "CLUT from another set or record (['(4, 10)']): preview from the master only"
+   },
+   "sources": {
+    "checks": {
+     "words": {
+      "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage6/textures/43C26C42.words.bin",
+      "sha256": "2eca2cdd6d3d716be178fb6a08bf45fbfb24dbda7ca86521dc411b873e277707",
+      "crc32": "43C26C42",
+      "crc_equals_tex": true,
+      "texture_confidence": "likely",
+      "member": "4/6",
+      "vram_rect_words": [
+       320,
+       0,
+       64,
+       256
+      ]
+     },
+     "cluts": {
+      "521B0B1A": {
+       "crc32": "521B0B1A",
+       "crc_equals_pal": true,
+       "words_hex": "1f003f015b6b1863b65a7452324af041ae396b312929e720a51863102108c082",
+       "clut_xy": [
+        32,
+        495
+       ],
+       "clut_xy_all": [
+        [
+         32,
+         495
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "2B66A97F": {
+       "crc32": "2B66A97F",
+       "crc_equals_pal": true,
+       "words_hex": "ffffdefbddf7bcf379e716dbd3ceb1c64ebeebad88a14699e490a28840800000",
+       "clut_xy": [
+        128,
+        511
+       ],
+       "clut_xy_all": [
+        [
+         128,
+         511
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "6EDE7B7C": {
+       "crc32": "6EDE7B7C",
+       "crc_equals_pal": true,
+       "words_hex": "ff7fff73ff67ff5bff4fff43ff37bf2f7f273f23ff1abf127f0e3f061f022104",
+       "clut_xy": [
+        240,
+        495
+       ],
+       "clut_xy_all": [
+        [
+         240,
+         495
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "25C360FE": {
+       "crc32": "25C360FE",
+       "crc_equals_pal": true,
+       "words_hex": "fff7dfebbfdb7fcb3eb3dea69e969e8a3d82fc897b81d98054800c8004800000",
+       "clut_xy": [
+        160,
+        495
+       ],
+       "clut_xy_all": [
+        [
+         160,
+         495
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "870A1255": {
+       "crc32": "870A1255",
+       "crc_equals_pal": true,
+       "words_hex": "94521042ef3dad356b2d4a2929250821e71cc618a5148410630c420821042104",
+       "clut_xy": [
+        48,
+        494
+       ],
+       "clut_xy_all": [
+        [
+         48,
+         494
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "FFF1C1BF": {
+       "crc32": "FFF1C1BF",
+       "crc_equals_pal": true,
+       "words_hex": "9c735a6b1863d65a9452524a1042ce398c314a290821c618a514630c1f009f81",
+       "clut_xy": [
+        16,
+        511
+       ],
+       "clut_xy_all": [
+        [
+         16,
+         511
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "3C7F8A8F": {
+       "crc32": "3C7F8A8F",
+       "crc_equals_pal": true,
+       "words_hex": "8cb16bad4aa929a508a1e79cc698a5948490638c4288218405801f80bf820000",
+       "clut_xy": [
+        48,
+        495
+       ],
+       "clut_xy_all": [
+        [
+         48,
+         495
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "60579FEB": {
+       "crc32": "60579FEB",
+       "crc_equals_pal": true,
+       "words_hex": "f75ed65a9452734e31461042ce398c316b2d4a290821e71cc618630c42082104",
+       "clut_xy": [
+        0,
+        510
+       ],
+       "clut_xy_all": [
+        [
+         0,
+         510
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "1E4043BA": {
+       "crc32": "1E4043BA",
+       "crc_equals_pal": true,
+       "words_hex": "1042ef3dce398c316b2d4a2929250821e71cc618a5148410630c420821040080",
+       "clut_xy": [
+        240,
+        511
+       ],
+       "clut_xy_all": [
+        [
+         240,
+         511
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "4CAF3E0F": {
+       "crc32": "4CAF3E0F",
+       "crc_equals_pal": true,
+       "words_hex": "f562b35a7256504e0f46cd41ac396a35492d0829c620a51cdf0179145f100000",
+       "clut_xy": [
+        224,
+        511
+       ],
+       "clut_xy_all": [
+        [
+         224,
+         511
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 6)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      }
+     }
+    },
+    "copies": {
+     "43C26C42.words.bin": "2eca2cdd6d3d716be178fb6a08bf45fbfb24dbda7ca86521dc411b873e277707",
+     "43C26C42-521B0B1A.clut.bin": "785d443052c36bee798e49a92a3e4e9237969ffc9524dd44ce451dc4f85b962b",
+     "43C26C42-2B66A97F.clut.bin": "6219f5bd84048a1b83045380cff7d20a7edb3cac2afa8e2d9244fadc60fb6b99",
+     "43C26C42-6EDE7B7C.clut.bin": "c52124b0f4e177bad965b9d7f63ffbecb4fe55347a29e5e348f81b1433318396",
+     "43C26C42-25C360FE.clut.bin": "344b918546c81a65efd3bb183e29bba7a6845126097280f1a6983a0001cce9d7",
+     "43C26C42-870A1255.clut.bin": "d2affda5724c351aa51d85e93b66c8c5b9e6491876827056f62b44b2c8401b9c",
+     "43C26C42-FFF1C1BF.clut.bin": "b851c91860f55e61379d26bb8929277b301b6f26b9a78eb35e1dfc1680835170",
+     "43C26C42-3C7F8A8F.clut.bin": "24ebb03d4eee095e7420c6c59bc972cae79b876da870476515638027db82f1d5",
+     "43C26C42-60579FEB.clut.bin": "0dc5b20a96cee6d0da52d709e82154984aa227cdc8abdd68c53a11fc2b0f56d3",
+     "43C26C42-1E4043BA.clut.bin": "115a931b456af03f85f87eb7ef34c92c78d3b539c5004268b28db29a3e197196",
+     "43C26C42-4CAF3E0F.clut.bin": "6a973c24beee6a29a5e8af4a49d71a17e24aa46ab7ea9c908a33fdc4f3e8d192",
+     "43C26C42-bundle.json": "96cba2d43a41a51996740e3fd1a1c9e931ad52491679e6d38aa62a6296096260"
+    }
+   },
+   "review": [
+    "review/43C26C42-521B0B1A-tile.png",
+    "review/43C26C42-521B0B1A-close-16x.png",
+    "review/43C26C42-521B0B1A-ingame-SIMULATION.png",
+    "review/43C26C42-2B66A97F-tile.png",
+    "review/43C26C42-2B66A97F-close-16x.png",
+    "review/43C26C42-2B66A97F-ingame-SIMULATION.png"
+   ]
+  },
+  "61A869E5": {
+   "set": "set B (4/10 + 4/11, CLUT block 4/10)",
+   "member": "4/10",
+   "vram_rect_words": [
+    320,
+    0,
+    64,
+    256
+   ],
+   "writers": [
+    "4/6",
+    "4/10"
+   ],
+   "texture_confidence": "likely",
+   "texture_confidence_meaning": "'likely' = one of two area versions of this VRAM page; the words of THIS version are exact",
+   "identity": {
+    "family": "boss",
+    "sub": "Schwarzgeist candidate: disks",
+    "desc": "radial disks, round hatches, gauge dials, circular panels, star flare",
+    "set": "B",
+    "confidence": "low"
+   },
+   "coverage_pairs": 1673,
+   "background": {
+    "mode_index": 15,
+    "mode_share": 0.323,
+    "background_index": null
+   },
+   "index_master": {
+    "files": {
+     "master/61A869E5-hull-master.npz": "cfaae32a99e4c46d0adebe22da15f37634b0c1f058dcde8b8e22f98bcf7c0b93",
+     "master/61A869E5-hull.json": "2d07d7edcb28593ebb3bd037212fe0da417cc9930e102eb2e82ed5360155bc99"
+    },
+    "proof": {
+     "params": {
+      "sigma": 0.3,
+      "power": 4.0,
+      "K": 3
+     },
+     "strongest_label_equals_native_at_centres": 65536,
+     "texels": 65536,
+     "any_clut_class_exact_before_forcing": true
+    }
+   },
+   "cluts_delivered": [
+    "11674191",
+    "FF01A5DB",
+    "9F20800F",
+    "334D9EFF",
+    "3E21CF50",
+    "05C38755",
+    "5FA94A42",
+    "09E96477",
+    "F2E4A647",
+    "47823F21",
+    "2E90A992",
+    "1689DF90",
+    "8D920799",
+    "3F02B716",
+    "B97689E3",
+    "B675A0C2",
+    "BD161002",
+    "AB139F82",
+    "DE388F4C"
+   ],
+   "cluts_not_delivered": {
+    "0ADAA698": "all entries black (STP black adds nothing): invisible",
+    "9A82F173": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "1B8869C9": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "899D7E1D": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "B1A7C447": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "46255F34": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "84A1CEF3": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "521B0B1A": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "2B66A97F": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "6EDE7B7C": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "25C360FE": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "870A1255": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "FFF1C1BF": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "5E251958": "CLUT from another set or record (['(4, 4)']): preview from the master only",
+    "611C5290": "CLUT from another set or record (['(0, 7)']): preview from the master only",
+    "3C7F8A8F": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "B50CC230": "CLUT from another set or record (['(4, 7)']): preview from the master only",
+    "60579FEB": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "1E4043BA": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "CAFC4AA7": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "461D4812": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "C12DB7DC": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "3441F7C3": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "718199E6": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "1E4E0007": "CLUT from another set or record (['(0, 14)']): preview from the master only",
+    "4CAF3E0F": "CLUT from another set or record (['(4, 6)']): preview from the master only",
+    "190A55AD": "CLUT from another set or record (['(4, 6)']): preview from the master only"
+   },
+   "sources": {
+    "checks": {
+     "words": {
+      "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage6/textures/61A869E5.words.bin",
+      "sha256": "c585929af4eafad543d138f63b2b261adaf5d67ce146f666f468455b01e3341a",
+      "crc32": "61A869E5",
+      "crc_equals_tex": true,
+      "texture_confidence": "likely",
+      "member": "4/10",
+      "vram_rect_words": [
+       320,
+       0,
+       64,
+       256
+      ]
+     },
+     "cluts": {
+      "11674191": {
+       "crc32": "11674191",
+       "crc_equals_pal": true,
+       "words_hex": "945e52563152ef49ce458c416b3929350831c628a524841c421821141f0c0080",
+       "clut_xy": [
+        16,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         16,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "FF01A5DB": {
+       "crc32": "FF01A5DB",
+       "crc_equals_pal": true,
+       "words_hex": "fc7f977b346fb15e4f520d4aaa3d893548312729e620c51ca414631021080080",
+       "clut_xy": [
+        96,
+        497
+       ],
+       "clut_xy_all": [
+        [
+         96,
+         497
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "9F20800F": {
+       "crc32": "9F20800F",
+       "crc_equals_pal": true,
+       "words_hex": "bfe39fd37fc75fb73fab1f9fbd9a5c9afb959a953891d790928c6d8828840000",
+       "clut_xy": [
+        0,
+        497
+       ],
+       "clut_xy_all": [
+        [
+         0,
+         497
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "334D9EFF": {
+       "crc32": "334D9EFF",
+       "crc_equals_pal": true,
+       "words_hex": "ff7fde7f735aad3d6b350829e724c620a520841c421421108147ff031f040080",
+       "clut_xy": [
+        64,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         64,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "3E21CF50": {
+       "crc32": "3E21CF50",
+       "crc_equals_pal": true,
+       "words_hex": "cf496b394a31292d0829e724c620a51c84186314421421100b0c15081f040080",
+       "clut_xy": [
+        80,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         80,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "05C38755": {
+       "crc32": "05C38755",
+       "crc_equals_pal": true,
+       "words_hex": "0e46cc3d8b396a31282de724c620ffb35eabdda25d9ebc953c91bb883b842104",
+       "clut_xy": [
+        32,
+        490
+       ],
+       "clut_xy_all": [
+        [
+         32,
+         490
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "5FA94A42": {
+       "crc32": "5FA94A42",
+       "crc_equals_pal": true,
+       "words_hex": "fe7b7b6f3967f65eb462725a304eee45ac3d6a35282de624a41c6214200c0080",
+       "clut_xy": [
+        112,
+        491
+       ],
+       "clut_xy_all": [
+        [
+         112,
+         491
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "09E96477": {
+       "crc32": "09E96477",
+       "crc_equals_pal": true,
+       "words_hex": "ac35ac358c358c358b358b358c358b358b318b358b318b316b316b316a316a31",
+       "clut_xy": [
+        16,
+        511
+       ],
+       "clut_xy_all": [
+        [
+         16,
+         511
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "F2E4A647": {
+       "crc32": "F2E4A647",
+       "crc_equals_pal": true,
+       "words_hex": "ffeb9fd39fc37fb37fa37f937f83fe829e823d82dd815d81f78092802d840000",
+       "clut_xy": [
+        160,
+        497
+       ],
+       "clut_xy_all": [
+        [
+         160,
+         497
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "47823F21": {
+       "crc32": "47823F21",
+       "crc_equals_pal": true,
+       "words_hex": "ee41cd3dab398a356931482d27290725e620e520c51ca4189214bd115f080080",
+       "clut_xy": [
+        160,
+        510
+       ],
+       "clut_xy_all": [
+        [
+         160,
+         510
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "2E90A992": {
+       "crc32": "2E90A992",
+       "crc_equals_pal": true,
+       "words_hex": "1f00ff9b7f931f8f9f8a3f86df81ea636857074f8642253aa42d432542080000",
+       "clut_xy": [
+        112,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         112,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "1689DF90": {
+       "crc32": "1689DF90",
+       "crc_equals_pal": true,
+       "words_hex": "ff7f5a6bd65a524aad39292921049f147c10790c5608530430002e004b080000",
+       "clut_xy": [
+        144,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         144,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "8D920799": {
+       "crc32": "8D920799",
+       "crc_equals_pal": true,
+       "words_hex": "ffffffbfffa39d8ffa86f68152811081ef80ad808b8069802880068000000000",
+       "clut_xy": [
+        0,
+        510
+       ],
+       "clut_xy_all": [
+        [
+         0,
+         510
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "3F02B716": {
+       "crc32": "3F02B716",
+       "crc_equals_pal": true,
+       "words_hex": "f77ff67fd47fb27f907f8f7f6d7f4b7f2a7f297f087f067fe57ec47ea17ea07e",
+       "clut_xy": [
+        160,
+        491
+       ],
+       "clut_xy_all": [
+        [
+         160,
+         491
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "B97689E3": {
+       "crc32": "B97689E3",
+       "crc_equals_pal": true,
+       "words_hex": "ff7f9c733967f75e744e15361146b81dce39d4544c319304e71c2e0084100a00",
+       "clut_xy": [
+        48,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         48,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "B675A0C2": {
+       "crc32": "B675A0C2",
+       "crc_equals_pal": true,
+       "words_hex": "9f811b819880158011800e800b80088074ff4cff27ff65f2a3e9e15c20d40000",
+       "clut_xy": [
+        96,
+        491
+       ],
+       "clut_xy_all": [
+        [
+         96,
+         491
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "BD161002": {
+       "crc32": "BD161002",
+       "crc_equals_pal": true,
+       "words_hex": "ff7f5a6bd65a524aad392929a5189f147c10790c5608530430002e0042080000",
+       "clut_xy": [
+        128,
+        496
+       ],
+       "clut_xy_all": [
+        [
+         128,
+         496
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          480,
+          256,
+          20
+         ]
+        }
+       ]
+      },
+      "AB139F82": {
+       "crc32": "AB139F82",
+       "crc_equals_pal": true,
+       "words_hex": "ff7f210c42102108841c6314a520c624420c8418a51c6310c620524a31461042",
+       "clut_xy": [
+        0,
+        508
+       ],
+       "clut_xy_all": [
+        [
+         0,
+         508
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      },
+      "DE388F4C": {
+       "crc32": "DE388F4C",
+       "crc_equals_pal": true,
+       "words_hex": "ef3dce39ad358c316b2d4a2929250821e71cc618a5148410630c420821040004",
+       "clut_xy": [
+        16,
+        508
+       ],
+       "clut_xy_all": [
+        [
+         16,
+         508
+        ]
+       ],
+       "key_confidence": [
+        "likely"
+       ],
+       "pal_sources": [
+        {
+         "owner": "(4, 10)",
+         "common": false,
+         "record": [
+          0,
+          504,
+          256,
+          8
+         ]
+        }
+       ]
+      }
+     }
+    },
+    "copies": {
+     "61A869E5.words.bin": "c585929af4eafad543d138f63b2b261adaf5d67ce146f666f468455b01e3341a",
+     "61A869E5-11674191.clut.bin": "98e57db00ce86c82eb796215bbed74ee0f9f9e6da5269653e268cf29597366dd",
+     "61A869E5-FF01A5DB.clut.bin": "fc233a01550365edac5082e6fc7d48353df44babd8507b012886a1ddf247f957",
+     "61A869E5-9F20800F.clut.bin": "c1e9c2bee355a66df79d627365f286d06be72805f01562747fc2e9d49f6b4bd2",
+     "61A869E5-334D9EFF.clut.bin": "50c75cf0f2679ecd44813496831769e0ac00fedf2fea42dedfea79b748a27521",
+     "61A869E5-3E21CF50.clut.bin": "abbcda8c4994d1ba054d304286a55762b69c1193fe04ea62f4ba3238a19f67c5",
+     "61A869E5-05C38755.clut.bin": "a2e5d6aeb819f0f6c83334c52e6fc17d97fa056dda33bf9c8c5813894f303832",
+     "61A869E5-5FA94A42.clut.bin": "bb579de541f6e3140f16645aaaf99ba6923e9da517cd34d657ac8330eb96f514",
+     "61A869E5-09E96477.clut.bin": "f4ddff1b9fed4c58cd0e5983b504d0dcc01133ff65d8bcc80795e4894d5f0881",
+     "61A869E5-F2E4A647.clut.bin": "dfdcccd8288966530a24a9cab1aec3bf84f53e3211bafd1ee2c1cd68609191ed",
+     "61A869E5-47823F21.clut.bin": "218821b258df7a21360360f30e68390b7f514e47d9c9dc3cb4028c82983d3875",
+     "61A869E5-2E90A992.clut.bin": "e34af71e212e80f844ee3f671a397129a038a72c79de3ced0dfc7af9e5cf88a1",
+     "61A869E5-1689DF90.clut.bin": "a558a12d610715099a167099be8d1ff632549abdf0051b56adf870fac575e28c",
+     "61A869E5-8D920799.clut.bin": "f30da72073ebd0708a9d4419d2c87b7fdc0488634846073dff1e8d1c8b006f4f",
+     "61A869E5-3F02B716.clut.bin": "1bd02a961ea707839ab22b352266665feda20bdfa6b7c422de3d677be7d9df23",
+     "61A869E5-B97689E3.clut.bin": "8f0bb175ec13e38534909c5fd77e693597f5266b029a81730ec1b383bab984ad",
+     "61A869E5-B675A0C2.clut.bin": "ebe41c08240b282f7fa20b9ee33620bbc14fb888ded89c36450fb741e6ee67ee",
+     "61A869E5-BD161002.clut.bin": "feb2c8588edaec2dc89c182a9d055f436905d840a7e12935b5af57786a384372",
+     "61A869E5-AB139F82.clut.bin": "b3a4ee30b3b8c0562504832d49b51533d304b1ce9510c52ce125fdbcc45a19e7",
+     "61A869E5-DE388F4C.clut.bin": "ce3faf3dba13d9e38fdd7db1d5dfa46c978a4d3bd6a034d81001beb82b579f05",
+     "61A869E5-bundle.json": "34cc6f1989204c7b521eb816e829689dfef83da39bc81d9a7f79dea25b695ac2"
+    }
+   },
+   "review": [
+    "review/61A869E5-11674191-tile.png",
+    "review/61A869E5-11674191-close-16x.png",
+    "review/61A869E5-11674191-ingame-SIMULATION.png",
+    "review/61A869E5-FF01A5DB-tile.png",
+    "review/61A869E5-FF01A5DB-close-16x.png",
+    "review/61A869E5-FF01A5DB-ingame-SIMULATION.png"
+   ]
+  }
+ },
+ "keys": [
+  {
+   "key": "43C26C42-521B0B1A",
+   "clut": "521B0B1A",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    56
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.01,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-521B0B1A.png",
+    "sha256": "560a113f09dd9f3ab653accba2f500a3243adef1914b87ecd09bf81d3384720e",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-521B0B1A.png",
+    "sha256": "f295c334eb3f717f8e4fbf81e8799def9e89d6c61c440d0b63321d8f1ef0086a",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-2B66A97F",
+   "clut": "2B66A97F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    32
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.33,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-2B66A97F.png",
+    "sha256": "46b6779e8cc1ac8b9104b42d794d4434d1faae77991456eea49f18f9e95145c3",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-2B66A97F.png",
+    "sha256": "9adb27627a47b8b8a23679cfe16d71984900981a7a33c3a408e8f673dd839bec",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-6EDE7B7C",
+   "clut": "6EDE7B7C",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    32
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.29,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-6EDE7B7C.png",
+    "sha256": "02d4bf812f783e0ae6d7be3cbf7822f12af2dacadd948777b806a48efff2cf3c",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-6EDE7B7C.png",
+    "sha256": "f46ba275f0b8cdc649cf3f9a8c2ac00e9ca8668a02f7fc7e30ffe54724151535",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-25C360FE",
+   "clut": "25C360FE",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    32
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.31,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-25C360FE.png",
+    "sha256": "e6c4446d2db36e76561346d9f9481fce1f3cd19e818bbdf9e01793c6f11fab2b",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-25C360FE.png",
+    "sha256": "b78afd0f29557261bea33022896fdb2ecdde7edf6504c125b548c35e2db315f6",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-870A1255",
+   "clut": "870A1255",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    32
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.06,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-870A1255.png",
+    "sha256": "64f4d9a2f1e3bfa3a934d50168f7b15ae2e640a410d7ec8cccdddd4e459cba3c",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-870A1255.png",
+    "sha256": "f32017b0b11dba2ede46c98739d5f3dedf4c9145f98bf1565160ad0a4c2ed8d1",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-FFF1C1BF",
+   "clut": "FFF1C1BF",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    18
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.23,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-FFF1C1BF.png",
+    "sha256": "d9ca9617157104459359d8f8422e6f8bad52cba488d0c13fbb7419eabeb98d1e",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-FFF1C1BF.png",
+    "sha256": "b6474d0f4637ff067ca9a2407081feabec3e8aada4319ea49350045e120422bc",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-3C7F8A8F",
+   "clut": "3C7F8A8F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.14,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-3C7F8A8F.png",
+    "sha256": "fffb6fc28cebd24e5446106c73618875bde62aeed6be7d9d29214dd641c085f7",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-3C7F8A8F.png",
+    "sha256": "b6880ebb878e4022fdeb60f3a37c2710c4e9be77e20b4abd2e3726f231785a16",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-60579FEB",
+   "clut": "60579FEB",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.0,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-60579FEB.png",
+    "sha256": "26cb38e41fd0617ff5150f77af6b90ce885dbfb1723be55dda50932687846048",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-60579FEB.png",
+    "sha256": "513d62958b3f0fd45cf9f9beb96cac12c01b4cbd2b7a790f98f9e8692278bec1",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-1E4043BA",
+   "clut": "1E4043BA",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.01,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-1E4043BA.png",
+    "sha256": "8d45e9649d21165f9d274b194278ea43da394ebd273cbff93987dd651e03be53",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-1E4043BA.png",
+    "sha256": "576d8f1b78b3298946206b6a1626da61014be2663adc39b1d46e5917d08997ce",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "43C26C42-4CAF3E0F",
+   "clut": "4CAF3E0F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 6)"
+   ],
+   "pair_count": [
+    2
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.24,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/43C26C42-4CAF3E0F.png",
+    "sha256": "b83f80a342ad6dad0cf72cfeab55741e9a3d9812e9062867d080a6a900e7e0e2",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/43C26C42-4CAF3E0F.png",
+    "sha256": "dea2516fa94c63786768cf2109143a30f4bb02bcd0b58b951962f8273d89168a",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-11674191",
+   "clut": "11674191",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    153
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.19,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-11674191.png",
+    "sha256": "5b3908e80e192546140e9e89a55441f3184f27c70fc2d8d133d0890493fdcfff",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-11674191.png",
+    "sha256": "b7ca8bc36e56e1a58426bce113d764b64815209341bd4b59cda747c5b797784f",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-FF01A5DB",
+   "clut": "FF01A5DB",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    96
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.2,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-FF01A5DB.png",
+    "sha256": "d54fdf10b222667733114e329323187f8e8beba4fe9ec8cbf60f397060d87dc9",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-FF01A5DB.png",
+    "sha256": "d666a56688db5a45a2ca1c620fc82b3ac07e39af178b811e1300f208470cdb16",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-9F20800F",
+   "clut": "9F20800F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    64
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.19,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-9F20800F.png",
+    "sha256": "b921d31b5b33d70044f00978ec5810711bd815147d6818ed6d7f0a2212275d56",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-9F20800F.png",
+    "sha256": "708333270b9f1910060af5f270cf978d21abd5bc749a5ccd1440e09e1a789c9a",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-334D9EFF",
+   "clut": "334D9EFF",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    64
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.2,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-334D9EFF.png",
+    "sha256": "b58aaab56bbfc50ea4ce49f4c043111dbd63bd5c4cf88580e4d35fd26153dd30",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-334D9EFF.png",
+    "sha256": "d11fba5b16d1c1325cbd57fd8248243027f5bc3809bc5fa7b33c675b2e9a40dc",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-3E21CF50",
+   "clut": "3E21CF50",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    48
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.12,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-3E21CF50.png",
+    "sha256": "198fe0d0e170bc88e1de8cf2461d59b3b6b147a78bd7050502b18be573f38c39",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-3E21CF50.png",
+    "sha256": "6a3bec82397b779c41dbb606f008fccc874dd9716e5bfd21751afc386145a7b4",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-05C38755",
+   "clut": "05C38755",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    42
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.24,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-05C38755.png",
+    "sha256": "677479c86a3f96cb01f9cfb6ca82be221d9654f321eec97fe9b7bd84b7d861f6",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-05C38755.png",
+    "sha256": "3636bba5bcefa7fd2919c833f7ccf625d3c96ac28a347d81e6e1c734c7c92200",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-5FA94A42",
+   "clut": "5FA94A42",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    20
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.24,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-5FA94A42.png",
+    "sha256": "5df856a73c339fd33b9f8c453f78341a02f10df158cd2b8b4480924bfffd0719",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-5FA94A42.png",
+    "sha256": "2145372c8e1a0682286abb909973a520f5efd5f9d4306fa11f7248a47c7de07b",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-09E96477",
+   "clut": "09E96477",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    18
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.02,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-09E96477.png",
+    "sha256": "91bec08ce9ad059dff09584527d27f9bea45facfd8c669e34f47fc74f0b6ebdd",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-09E96477.png",
+    "sha256": "28fc28933fa89c7c259ac1ed8d8592e95897fd5a54059147e14b5094d4ed1aa5",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-F2E4A647",
+   "clut": "F2E4A647",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    16
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.19,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-F2E4A647.png",
+    "sha256": "90a4a780bf32acf3771ba10bf97be3f65766b837c703c02504a25a7025189bad",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-F2E4A647.png",
+    "sha256": "73045e5d474938e36d508e6624be1b42563f73d987c69cbdbbb76a9b30193870",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-47823F21",
+   "clut": "47823F21",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    15
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.2,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-47823F21.png",
+    "sha256": "911a967400ecc27a0a6c6373661bc044803b38e13c69e0164775718a76774b82",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-47823F21.png",
+    "sha256": "2c68a29d322e461182ed9dab930a986600ebfde6bc4d343d5f5411d96b42eca5",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-2E90A992",
+   "clut": "2E90A992",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    10
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.04,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-2E90A992.png",
+    "sha256": "51af473af42ad0a81a852bfe63246e2fe2426a3135401747fcfae9ef3f68a595",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-2E90A992.png",
+    "sha256": "76d17b9ca66e8c7a0051a1e28f7561bf7ca15b60189f6a73f641a0dd36a6afe9",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-1689DF90",
+   "clut": "1689DF90",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    9
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.25,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-1689DF90.png",
+    "sha256": "50f9856462e3ba5ff2ac85e1121a6aa42fdd0cc55c95a459d023c7d5a18111b4",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-1689DF90.png",
+    "sha256": "7aeb15bb1ed3825dacae4dcd8463c0038d68072e4813c96188617c6ec9d89ac8",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-8D920799",
+   "clut": "8D920799",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.13,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-8D920799.png",
+    "sha256": "937489e784b54f64d267addf694c400e46cd05e68274d50a862aadb4cc304c84",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-8D920799.png",
+    "sha256": "9064d08c3556a5c67880fdd8883aabd6510249f9ac391a7cc159fec7df5258e2",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-3F02B716",
+   "clut": "3F02B716",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.1,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-3F02B716.png",
+    "sha256": "a89c249993fbc32b34090260d1b4dca6ff1bc046bce4af9e8376da82772e8711",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-3F02B716.png",
+    "sha256": "b070c0e0fab523c681cce6b7584f0e279a8111ca2b1f7471786ef2b568e88920",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-B97689E3",
+   "clut": "B97689E3",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    8
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.2,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-B97689E3.png",
+    "sha256": "43078bd769fb12fce669cab1cdf82a8f726454a4fdfa70eb42b9e0a74321ef01",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-B97689E3.png",
+    "sha256": "0b7708b881ae8c88c472d04fb9a4f34f1b97ee40b1a89e4329350cd5d033c3f4",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-B675A0C2",
+   "clut": "B675A0C2",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    4
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.06,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-B675A0C2.png",
+    "sha256": "94fb31ede713217dad18dca8b8353753b4887fb10fd1500585c015b90efe0e49",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-B675A0C2.png",
+    "sha256": "f182c5a560be71e5a53f9408d83f9e8cacc2b25ce5cac96fd06fe7ea3221292e",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-BD161002",
+   "clut": "BD161002",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    4
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.26,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-BD161002.png",
+    "sha256": "7b14e5893d28cf87f4025fd7a59ecb6095c50e012b6a2b97cd43a93c8c9db142",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-BD161002.png",
+    "sha256": "3c312b6b6a0111079b80ccaaa274825ff0ffe92476660295051f4f8c5ce6c2f0",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-AB139F82",
+   "clut": "AB139F82",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    2
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.27,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-AB139F82.png",
+    "sha256": "f70d1ae522f0d29b21980f13ff6f355294870f7858c3540835793327a23d5d2c",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-AB139F82.png",
+    "sha256": "1851920c60508baf6df58b7b47b9906f85decb6d9d25da4c9383a754d81248bc",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "61A869E5-DE388F4C",
+   "clut": "DE388F4C",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "clut_source_owner": [
+    "(4, 10)"
+   ],
+   "pair_count": [
+    2
+   ],
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.13,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/61A869E5-DE388F4C.png",
+    "sha256": "b443d596ac00fedfca7b7c6e4a3228f48bab169c1af5b7b5b770e7723a2bc048",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/61A869E5-DE388F4C.png",
+    "sha256": "3d5707400f848b6ae988d7b14cdee684b828bf006db21590f4506968912491fd",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "class_check": {
+  "rule": "class at the 2x2 px straddling every native texel centre == native class, whole page, 2048 and 1024",
+  "texel_centres_per_size": 65536,
+  "size_checks": 58,
+  "size_checks_with_zero_mismatches": 58
+ },
+ "builder_scripts": {
+  "s6_batch2.py": "7c9818985d4ada0da5692d0483dc66b91caa8cb2ed311715b70ae9b8c5885dbb",
+  "s6_build.py": "25d5c5ac7bcab00b55963148de0b8985836cb5323702bdb1c33e2c56c2de2dec",
+  "s6lib.py": "e826967604aa831ff02f6d8a64c0182d63d647b6f3c6d5f3176c9df475577438",
+  "s6_source.py": "6159748ec454005da659755b10e188bcc242e0b366c620ccecc62d689ca67810",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213"
+ },
+ "review_note": "review sheets for the two highest-coverage keys per texture: native | HD tile, 16x close crops, in-game size; all SIMULATION",
+ "known_limits": [
+  "Index master only: plateaus keep the exact native colours and stair steps become smoother contours, but diagonals stay visibly stepped at close range and no material, seam or gas detail is added. The GPU detail passes are listed in w7-stage6/GPU-RESUME.json.",
+  "Effect sprites on these mixed pages (plumes, smoke, debris) keep their native banding in this master; their FX detail pass is GPU work.",
+  "Predicted-static: which CLUTs the game really uses is unknown; the export rule keeps only own-set CLUT-block palettes. Set A / set B residency per segment is unknown until AQ-03 segment marks.",
+  "Identity labels are visual candidates (readiness review), not capture-proven.",
+  "Review composites are SIMULATIONS (semi mode unknown: shown as PSX average)."
+ ]
+}

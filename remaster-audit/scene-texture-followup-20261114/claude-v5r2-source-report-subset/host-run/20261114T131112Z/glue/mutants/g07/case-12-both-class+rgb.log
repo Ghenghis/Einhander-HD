@@ -1,0 +1,6 @@
+TIMING preload_total_ms 23.727 (index + 2 RGB-only reads + verification + class sidecars, at init)
+PRELOAD rgbonly_ok 2 class_ok 8 bytes 25775072
+TIMING draw_admit_ms 6.648 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 5.957 min 5.796 max 6.308 (21 fresh slots, warm)
+checks 48 failures 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g07\glue_harness.c:347: s_hdcm_diag.rejected[HDCM_E_LEVEL0] == 1 && c2.rgb_edges == 0 && c2.class_mip_levels == 0 && g_teximage == 0

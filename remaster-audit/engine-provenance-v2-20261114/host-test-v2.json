@@ -1,0 +1,171 @@
+{
+ "compiler": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)",
+ "below_normal": true,
+ "runs": [
+  {
+   "name": "view_v2_test",
+   "compile_rc": 0,
+   "exe_sha256": "432ec4e70900003a584ee5d5cc42aac1367c14ac2b273f3108373c79aa04f750",
+   "run_rc": 0,
+   "fail_lines": [],
+   "tcp_errors": [],
+   "stdout_tail": [
+    "checks 58 failures 0"
+   ]
+  },
+  {
+   "name": "v1_test_on_v2_sources",
+   "compile_rc": 0,
+   "exe_sha256": "97fee49053a97524ea25475b58f57c3c472015447449ff29ffdee8d38aa6bde2",
+   "run_rc": 0,
+   "stdout_tail": [
+    "view storage: record 80 B x 65536 + RAM tags 2 MiB = 7340032 B allocated",
+    "checks 137 failures 0 | produced 327721 commit_ok 327707 commit_mismatch 4 hits 23 evicted 1 no_view 2 value_mismatch 1 incoherent 0"
+   ],
+   "fail_lines": []
+  },
+  {
+   "name": "pgxp_test_on_v2",
+   "compile_rc": 0,
+   "exe_sha256": "a31abb2bf1c68efcf293413d8c0d403137fe7cfe032abec7574a90ed2a7b3193",
+   "run_rc": 0,
+   "stdout_tail": [
+    "test_pgxp: all checks passed"
+   ],
+   "fail_lines": []
+  },
+  {
+   "name": "gte_register_access_test_on_v2",
+   "compile_rc": 0,
+   "exe_sha256": "62a8682eb38e098c369a2d99a621cc525b687308777a34063b8bd4b03c2c2e49",
+   "run_rc": 0,
+   "stdout_tail": [
+    "PASS: canonical GTE register helpers match GTEState transfer oracle"
+   ],
+   "fail_lines": []
+  }
+ ],
+ "syntax": {
+  "gpu.c": {
+   "canonical_exit": 0,
+   "v2_exit": 0,
+   "new_build_diagnostics": [],
+   "new_wall_diagnostics": []
+  },
+  "debug_server.c": {
+   "canonical_exit": 0,
+   "v2_exit": 0,
+   "new_build_diagnostics": [],
+   "new_wall_diagnostics": []
+  }
+ },
+ "mutants": [
+  {
+   "label": "MAC 44-bit bound off by one",
+   "file": "src/gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:153: (v.flags & PGXP_VIEW_MAC1_OVF44) && (v.flags & PGXP_VIEW_MAC1_WRAP32)"
+  },
+  {
+   "label": "WRAP32 ignores sf",
+   "file": "src/gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:170: v.mac[0] == 0x80000000ll && (v.flags & PGXP_VIEW_MAC1_WRAP32) && !(v.flags & PGXP_VIEW_MAC1_OVF44)"
+  },
+  {
+   "label": "WRAP32 checks only the positive side",
+   "file": "src/gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:163: (v.flags & PGXP_VIEW_MAC1_OVF44) && (v.flags & PGXP_VIEW_MAC1_WRAP32)"
+  },
+  {
+   "label": "census counts misses as hits",
+   "file": "src/pgxp_view_census.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:241: c.kind[PGXP_VIEW_CENSUS_TRI].prims == 1 && c.kind[0].all_hit == 1 && c.kind[0].all_hit_one_command == 1"
+  },
+  {
+   "label": "miss reason collapsed",
+   "file": "src/pgxp_view_census.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:266: c.kind[0].partial == 1 && c.kind[0].miss[PGXP_VIEW_MISS_VALUE_MISMATCH] == 1"
+  },
+  {
+   "label": "one-command ignores rtp_seq",
+   "file": "src/pgxp_view_census.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:255: c.kind[PGXP_VIEW_CENSUS_QUAD].prims == 1 && c.kind[1].all_hit == 1 && c.kind[1].all_hit_one_command == 0"
+  },
+  {
+   "label": "immediate word reported as no_shadow",
+   "file": "src/pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:284: c.kind[0].none == 1 && c.kind[0].miss[PGXP_VIEW_MISS_NO_SOURCE] == 3"
+  },
+  {
+   "label": "census does not arm the transport",
+   "file": "src/gpu.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:117: pgxp_enabled() == 1"
+  },
+  {
+   "label": "disarm does not re-derive the user's transport",
+   "file": "src/gpu.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:117: pgxp_enabled() == 1"
+  },
+  {
+   "label": "payload allocation failure fails open",
+   "file": "src/gpu.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:109: gpu_view_census_enabled() == 0 && pgxp_view_payload() == 0 && pgxp_enabled() == 0"
+  },
+  {
+   "label": "census hook touches the renderer",
+   "file": "src/gpu.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:220: g_persp_calls - calls0 == (tex ? 2 : 1)"
+  },
+  {
+   "label": "TCP reset ignored",
+   "file": "src/debug_server.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:321: pgxp_enabled() == 1 && gpu_view_census_enabled() == 1 && census().kind[0].prims == 0"
+  },
+  {
+   "label": "TCP disarm ignored",
+   "file": "src/debug_server.c",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\tests\\test_pgxp_view_v2.cpp:319: pgxp_enabled() == 0 && gpu_view_census_enabled() == 0"
+  }
+ ],
+ "mutants_caught": 13,
+ "mutants_total": 13,
+ "verdict": "pass"
+}

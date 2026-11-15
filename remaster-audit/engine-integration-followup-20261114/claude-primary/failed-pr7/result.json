@@ -1,0 +1,65 @@
+{
+ "tool": "build_r7_cpu.py",
+ "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp",
+ "source_sha256": "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05",
+ "header_sha256": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c",
+ "builder_sha256": "a9475b3c0f7e4c59f637fbcab23f690c63393aa91bccf9c14210289aaebf1b4c",
+ "cpu": 15,
+ "started_utc": "2026-11-14T20:24:36.324995+00:00",
+ "gpu_executed": false,
+ "dll_loaded": false,
+ "steps": [
+  {
+   "label": "syntax",
+   "args": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-missing-field-initializers",
+    "-I",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+    "-fsyntax-only",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp"
+   ],
+   "pid": 38848,
+   "expected_exit": 0,
+   "cap_seconds": 45,
+   "timed_out": false,
+   "exit": 0,
+   "seconds": 1.382,
+   "output": "",
+   "passed": true
+  },
+  {
+   "label": "compile-object",
+   "args": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Werror",
+    "-Wno-missing-field-initializers",
+    "-I",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+    "-O0",
+    "-c",
+    "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-probe-r5\\sdk_modern_gl_probe.r7.cpp",
+    "-o",
+    "remix-probe-r5\\runs\\PR7-1-20261114T202434Z\\20261114T202436Z\\probe.obj"
+   ],
+   "pid": 8804,
+   "expected_exit": 0,
+   "cap_seconds": 60,
+   "timed_out": false,
+   "exit": 1,
+   "seconds": 0.048,
+   "output": "error: unable to open output file 'remix-probe-r5\\runs\\PR7-1-20261114T202434Z\\20261114T202436Z\\probe.obj': 'No such file or directory'\n1 error generated.\n",
+   "passed": false
+  }
+ ],
+ "passed": false,
+ "exe_sha256": null,
+ "ended_utc": "2026-11-14T20:24:37.761988+00:00"
+}

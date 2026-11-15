@@ -1,0 +1,60 @@
+{
+  "at_utc": "2026-11-14T22:46:08.458871+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "stripe": {
+      "envelope_sha256": "fbb37c291d62965d1e07d106a1ec8cf07ba14a281da326ed1168b3b1fd95133f",
+      "elapsed_s": 1.532,
+      "peak_job_memory_bytes": 82542592,
+      "cases": 16,
+      "result_sha256": "d94445ae0e590bcc9db9425c1a6e892044ad15c2fcf6f395e11f15e04fcff13e",
+      "fixtures_sha256": "681e255c38ffe6e071faf8fceadcf2b4839d73cb0fa8c4fa6ae32e16d4b6b5e1",
+      "art_admitted": false,
+      "key_repairs_run": false
+    },
+    "settings": {
+      "envelope_sha256": "eed607658a2ed219f9453e65a7639e8c339b16f250fed7e8bea0822d065f11fd",
+      "elapsed_s": 0.106,
+      "peak_job_memory_bytes": 14073856,
+      "conditions": 7,
+      "result_sha256": "cca53c7de3763277d96f7aeabb281fbf26ad9cb2e950167db3703a38d18d28e0",
+      "cache_qualified": false,
+      "pilot_staged": false
+    }
+  },
+  "known_identities": [
+    {
+      "run": "stripe",
+      "label": "wrapper",
+      "pid": 13920,
+      "creation_unix": 1794695915.5513232,
+      "identity_absent": true
+    },
+    {
+      "run": "stripe",
+      "label": "driver",
+      "pid": 24344,
+      "creation_unix": 1794695916.686167,
+      "identity_absent": true
+    },
+    {
+      "run": "settings",
+      "label": "wrapper",
+      "pid": 33872,
+      "creation_unix": 1794696232.391054,
+      "identity_absent": true
+    },
+    {
+      "run": "settings",
+      "label": "driver",
+      "pid": 46504,
+      "creation_unix": 1794696233.5187612,
+      "identity_absent": true
+    }
+  ],
+  "fixtures_replayed": false,
+  "image_processing_run": false,
+  "game_launched": false,
+  "gpu_used": false,
+  "art_admitted": false
+}

@@ -1,0 +1,90 @@
+{
+ "name": "95A3BCF8-O-city-v1",
+ "status": "candidate (private; not integrated, not live-tested)",
+ "owner": "claude-einhander",
+ "gpu": "none: CPU-only RGB authoring of native texels (no ComfyUI, no generated imagery, no fonts)",
+ "region": "O_dotted_city_mass uv [176,112]-[240,176] half-open (t3-green-lights/regions.json)",
+ "why": "the user's distant green/pink \"signs\" are this region (claude-backlog/sign-census/WORLD-SIGN-CENSUS.md section 4). It is\ndrawn ONLY with palettes 60245B3A (green, 714 draws, max quad 13,932 native px^2 ~ 118 px) and 07A9568D (pink/orange/white,\n510 draws), both fully opaque (stp 0, no raw 0x0000 colour => class 127 at every texel). At a 4K output the largest draw is\n~1,000 px for 64 texels, so a 16x page is shown ~1:1; the live 2048 page (w2-v2) renders every window texel as a flat\nrectangle with a faint vertical stripe.",
+ "method": "authored in RGB per palette (the palettes are NOT brightness ramps, so index interpolation would invent hues):\n  * every native texel keeps its own cell; no window is added, removed or moved;\n  * wall texels (index 13/14) and building-structure texels (index 15) keep their exact native colour;\n  * every window texel (index 0..12) becomes a pane: a thin frame (left/right 1/16, lintel 1.5/16, sill 2/16 of a texel) in a\n    dark mix of the window colour and its wall (0.3 C + 0.7 W; W = mean colour of its non-window 4-neighbours), and glass with\n    a vertical light falloff (ceiling brighter, sill darker; lit windows 0..8 also get a ceiling light strip);\n  * the glass level is solved per texel and channel so the cell MEAN equals the native colour (minified/mipped look ==\n    native), clipped at 255 (deviation reported);\n  * 4x4 supersampling per output pixel (anti-aliased frames); alpha = 127 (native class) on every pixel.",
+ "pane": {
+  "frame_left": 0.0625,
+  "frame_right": 0.0625,
+  "lintel": 0.09375,
+  "sill": 0.125,
+  "top_gain": 1.12,
+  "bottom_gain": 0.9,
+  "lit_strip": 0.0625,
+  "lit_strip_gain": 1.25,
+  "supersample": 4
+ },
+ "keys": {
+  "95A3BCF8-60245B3A": {
+   "region_draws": 714,
+   "draws": 714,
+   "uv_union": [
+    176,
+    112,
+    239,
+    175
+   ],
+   "max_quad_area": 13932,
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-60245B3A.png",
+    "sha256": "1f7436c2878452cf161d798c944b5802327e4f9ac351ec17418e9b59afb04391"
+   }
+  },
+  "95A3BCF8-07A9568D": {
+   "region_draws": 510,
+   "draws": 510,
+   "uv_union": [
+    176,
+    112,
+    239,
+    175
+   ],
+   "max_quad_area": 8091,
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-07A9568D.png",
+    "sha256": "aa2a6f0cb2013689bff55ea7afec6c3537c0fc24bf9cc039cd686b461796b851"
+   }
+  }
+ },
+ "validation_passed": true,
+ "integration": "drop-in: replace pack files 95A3BCF8-60245B3A.png and 95A3BCF8-07A9568D.png with page2048/ (same size as live; only region O RGB differs) or page4096/ (4K option: 4x the upload bytes; the rest of the page is re-rendered from the w2-v2 float master, see validation outside_O_box2_vs_live2048_*)",
+ "known_limits": [
+  "faithful re-rendering of the native window texels: no window is invented; each lit window reads as one framed pane, not a detailed room",
+  "the w3-emissive set 95A3BCF8-O-emissive-v1 derives its masks from the w2-v2 PNGs; it does NOT match this rebuild. Regenerate masks from these pages before using emissive with them",
+  "no runtime mipmaps by default: crisp frames can shimmer when the region is minified; the private v5/v6 RGB-only class-mip sidecars address that",
+  "page4096 raises upload size (stutter risk on first use); page2048 is the size-neutral option",
+  "SIMULATION only: not integrated, not seen live"
+ ],
+ "sources": {
+  "indices": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\indices-256.npy",
+   "sha256": "5da75af150796f75fce5e35f3838e25921df9b089e10d3fbab908dbb42bbbb19"
+  },
+  "palettes": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\palettes.json",
+   "sha256": "47ee9709fc3390bf765623bbf67ddf09dcecf83f41f76653f960ed7256ebd680"
+  },
+  "census": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\draw-census.json",
+   "sha256": "a698ca0f5cc5a92031d6fe1561334b9a5f825634ea93e73beeeff8b91daf2218"
+  },
+  "w2_master": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-polish\\frozen\\atlas-95A3BCF8-w2-v2\\master\\master-w2-v2.npy",
+   "sha256": "c63021e3bfdfd1117c2123c3652c29e66f17e0b38c4e959962ac955bbb98d7e2"
+  },
+  "builder": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-o-city\\o_city_rebuild.py",
+   "sha256": "8df06be07732687fff9bf88ab6f5c9200361629ed0859d43f4700bfc608c1d4c"
+  }
+ },
+ "pin": {
+  "priority": 16384,
+  "affinity": [
+   13
+  ]
+ },
+ "built_utc": "2026-11-14T15:46:54.852085+00:00"
+}

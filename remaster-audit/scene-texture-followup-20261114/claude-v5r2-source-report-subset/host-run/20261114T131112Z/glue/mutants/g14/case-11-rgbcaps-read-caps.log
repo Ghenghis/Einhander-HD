@@ -1,0 +1,8 @@
+TIMING preload_total_ms 5.676 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 5.875 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 5.671 min 5.459 max 6.614 (21 fresh slots, warm)
+checks 39 failures 3
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g14\glue_harness.c:204: r[HDCM_E_SIZE] == 2 && r[HDCM_E_NOFILE] == 1 + 245 && r[HDCM_E_KEY] == 2 && r[HDCM_E_SELFHASH] == 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g14\glue_harness.c:205: r[HDCM_E_FLAGS] == 1 && r[HDCM_E_MAGIC] == 1 && r[HDCM_E_SCALE] == 1 && sum_reasons(r) == 2 + 246 + 2 + 4
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g14\glue_harness.c:206: p1.fopens - p0.fopens == 1 + 10 + 245

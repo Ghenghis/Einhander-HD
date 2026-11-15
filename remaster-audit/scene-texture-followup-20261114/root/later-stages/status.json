@@ -1,0 +1,127 @@
+{
+  "observed_utc": "2026-11-14T13:15:42.652102+00:00",
+  "owner": "codex-einhander-crash-check",
+  "plan": {
+    "source": "docs/MASTER-ACTION-PLAN.html",
+    "acquisition": "Starts now, in parallel with phase 1",
+    "production": "HD art and audio for stages 2\u20137 simultaneously, one squad per stage",
+    "source_gate": "Per stage, as soon as that stage's sources validate",
+    "capacity": "CPU authoring/validation may overlap; GPU generation and live timing use coordinated windows."
+  },
+  "stage1": {
+    "status": "Playable installed HD baseline; expanded remaster integration and full-stage acceptance incomplete.",
+    "installed_baseline_pngs": 964,
+    "private_world_candidate_keys": 1699,
+    "remaining": [
+      "Expanded-pack pacing/audio",
+      "Art/class/background and state coverage",
+      "Complete skins/selectors and HUD/menus",
+      "Boss/clear/results and ordinary-input gameplay acceptance",
+      "Remastered audio/listening",
+      "Qualified Remix rendering and scene submission"
+    ]
+  },
+  "later_stages": [
+    {
+      "stage": 2,
+      "selected_candidate_keys": 39,
+      "selected_runtime_pngs": 78,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage2\\LEDGER.md",
+      "ledger_sha256": "56a3d8673e03ed533773af7e8016cbbcf72c1f0888d6748e62c234aa8741317f",
+      "ledger_mtime_utc": "2026-11-13T23:38:40.284853+00:00",
+      "next_live_gate": "Live key/palette confirmation; train/ground motion and shimmer; integration.",
+      "capture_gate_key_count": 39,
+      "capture_gate_matches_selected_count": true
+    },
+    {
+      "stage": 3,
+      "selected_candidate_keys": 39,
+      "selected_runtime_pngs": 78,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage3\\LEDGER.md",
+      "ledger_sha256": "6723fcb440ee10c02296f9fe60cfb6ed8eeaecb8ac67f7f1f2fc5142717170ff",
+      "ledger_mtime_utc": "2026-11-13T21:49:41.430404+00:00",
+      "next_live_gate": "Live UV and palette confirmation; machinery/signage look and motion; integration.",
+      "capture_gate_key_count": 39,
+      "capture_gate_matches_selected_count": true
+    },
+    {
+      "stage": 4,
+      "selected_candidate_keys": 11,
+      "selected_runtime_pngs": 22,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage4\\STATE.md",
+      "ledger_sha256": "eda7c762589b8ad600daba0f8403743b0ea615c7dc6469d7b7e51c033837912e",
+      "ledger_mtime_utc": "2026-11-13T23:40:41.783872+00:00",
+      "next_live_gate": "Live source capture; shared panorama and deferred world/actor families; integration.",
+      "capture_gate_key_count": 11,
+      "capture_gate_matches_selected_count": true
+    },
+    {
+      "stage": 5,
+      "selected_candidate_keys": 12,
+      "selected_runtime_pngs": 24,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage5\\STATE.md",
+      "ledger_sha256": "ac85392999e947cebda9daf0746791eecc0b99ce347f4f74cf1170c58d78f729",
+      "ledger_mtime_utc": "2026-11-13T23:36:17.152534+00:00",
+      "next_live_gate": "Live source capture; three unresolved 8bpp boss regions and shared panorama; integration.",
+      "capture_gate_key_count": 12,
+      "capture_gate_matches_selected_count": true
+    },
+    {
+      "stage": 6,
+      "selected_candidate_keys": 101,
+      "selected_runtime_pngs": 202,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage6\\LEDGER.json",
+      "ledger_sha256": "c4200e3b21f421cc685af59101cecff6ac30b1cb33192f1f381fb0cd02004ae9",
+      "ledger_mtime_utc": "2026-11-13T23:48:33.872182+00:00",
+      "next_live_gate": "Live part masks, residency/animation and timeout outcome; integration.",
+      "capture_gate_key_count": 101,
+      "capture_gate_matches_selected_count": true
+    },
+    {
+      "stage": 7,
+      "selected_candidate_keys": 26,
+      "selected_runtime_pngs": 52,
+      "counts_source": "docs/ARTWORK-STATUS-20261113.md (selected metadata snapshot, not a full inventory)",
+      "live_stage_acceptance": false,
+      "installed_as_complete_stage": false,
+      "ledger_path": "remaster-audit\\comfy-authoring\\w7-stage7\\LEDGER.md",
+      "ledger_sha256": "2324a7a1c52a886fc82b3c6a70281172107e66e562d4af90ddde8c3de07d239b",
+      "ledger_mtime_utc": "2026-11-13T22:28:56.680772+00:00",
+      "next_live_gate": "Live palettes; keyed hull/explosion/transmission exports, ending/destruction states; integration."
+    }
+  ],
+  "complete_stages": 0,
+  "completion_percent": null,
+  "reliable_finish_date": null,
+  "assessment": "Parallel production is documented and retained candidates exist for every stage. Equal completion timing is not established; recent visible work concentrates on shared runtime and crash recovery.",
+  "limitations": [
+    "Candidate keys include palette/state variants, not unique objects.",
+    "Full required asset/state denominator is unknown; no percentage inferred.",
+    "No later-stage art, gameplay or GPU test executed by this snapshot.",
+    "Ledger mtimes do not alone prove model inactivity or exclude shared-engine progress.",
+    "This snapshot does not modify the project plan, install content or mark any stage complete."
+  ],
+  "source_sha256": {
+    "docs/MASTER-ACTION-PLAN.html": "c1da8507142748af981f5d5cc1a97efffc877d4b47e9f2ff1018dd375ee05f17",
+    "docs/ARTWORK-STATUS-20261113.md": "68c207792f426952d82cdb16646513fcddeb211eb0574c7a2f438c27be3887fe",
+    "docs/RUNTIME-CONTINUATION-20261113.md": "4f10949ebc54e63fe727e5b610281206c21f416801932ee8c834059a45a0db08",
+    "docs/STAGE1-COMPLETION-STATUS.md": "033a43da1c3ec730480725ab2192c8a635c07784ff55fa88a9fc2e33a731d5a2",
+    "docs/SKIN-FACTORY-MENU-GAPS.md": "45b4e4ce71ab76697f8ed5fe98ddd1c1490eedee1f9f024c710dd30ecf4d29d9",
+    "remaster-audit/runtime-diagnostics-v58/capture-checklists/INDEX.md": "fa867bf4437497c1ea06a740893d9f5a1aa2b741800451e677a495e1a2238d4e"
+  }
+}

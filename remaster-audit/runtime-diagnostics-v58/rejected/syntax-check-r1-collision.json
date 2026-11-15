@@ -1,0 +1,84 @@
+{
+  "below_normal": true,
+  "sequential": true,
+  "files": {
+    "debug_server.c": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\native-upload-stream\\new\\debug_server.c",
+      "original_exit": 0,
+      "patched_exit": 1,
+      "new_build_diagnostics": [
+        [
+          "debug_server.c",
+          "error",
+          "assigning to 'FramePhaseRecord' from incompatible type 'FpEntry'"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "incompatible pointer types initializing 'FramePhaseRecord *' with an expression of type 'FpEntry *' [-Wincompatible-pointer-types]"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "no member named 'flags' in 'FpEntry'"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "redefinition of 's_fp_ring' with a different type: 'FramePhaseRecord[16384]' vs 'FpEntry[32768]'"
+        ]
+      ],
+      "new_wall_diagnostics": [
+        [
+          "debug_server.c",
+          "error",
+          "assigning to 'FramePhaseRecord' from incompatible type 'FpEntry'"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "incompatible pointer types initializing 'FramePhaseRecord *' with an expression of type 'FpEntry *' [-Wincompatible-pointer-types]"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "no member named 'flags' in 'FpEntry'"
+        ],
+        [
+          "debug_server.c",
+          "error",
+          "redefinition of 's_fp_ring' with a different type: 'FramePhaseRecord[16384]' vs 'FpEntry[32768]'"
+        ]
+      ],
+      "patched_build_tail": [
+        " 9497 |     FramePhaseRecord *r = &s_fp_ring[(s_fp_seq - 1) % FRAME_PHASE_RING_CAP];",
+        "      |                       ^   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\frame-phase-ring\\new\\debug_server.c:9525:10: error: assigning to 'FramePhaseRecord' from incompatible type 'FpEntry'",
+        " 9525 |     *out = s_fp_ring[seq % FRAME_PHASE_RING_CAP];",
+        "      |          ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~",
+        "1 warning and 5 errors generated."
+      ]
+    },
+    "gpu_gl_renderer.c": {
+      "original": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\native-upload-stream\\new\\gpu_gl_renderer.c",
+      "original_exit": 0,
+      "patched_exit": 0,
+      "new_build_diagnostics": [],
+      "new_wall_diagnostics": [],
+      "patched_build_tail": []
+    },
+    "main.cpp": {
+      "original": "C:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src\\main.cpp",
+      "original_exit": 0,
+      "patched_exit": 0,
+      "new_build_diagnostics": [],
+      "new_wall_diagnostics": [],
+      "patched_build_tail": []
+    }
+  },
+  "flags": {
+    "c": "v54 compile-debug_server.c argv minus -MD/-MT/-MF/-o/-c, plus -fsyntax-only",
+    "main": "v47 compile-runtime-main argv, runtime remapped to upload-index-hitch worktree (v48 rule), minus -MD/-MT/-MF/-o/-c, plus -fsyntax-only"
+  },
+  "passed": false
+}

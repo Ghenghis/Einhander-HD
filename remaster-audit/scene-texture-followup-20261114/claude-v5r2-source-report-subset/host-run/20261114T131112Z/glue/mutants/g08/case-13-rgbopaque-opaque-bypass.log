@@ -1,0 +1,8 @@
+TIMING preload_total_ms 0.154 (index + 1 RGB-only reads + verification, at init)
+PRELOAD rgbonly_ok 1 class_ok 0 bytes 48
+TIMING draw_admit_ms 1.499 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 1.362 min 1.350 max 1.462 (21 fresh slots, warm)
+checks 37 failures 3
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g08\glue_harness.c:275: s_hdcm_diag.rgbonly_rejected[HDCM_E_LEVEL0] == l0 + 1 && s3.rgb_edges == 0 && g_teximage == 0 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g08\glue_harness.c:301: s_hdcm_diag.rgbonly_rejected[HDCM_E_NATIVE_DIMS] == 1 && s6.rgb_edges == 0 && g_teximage == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g08\glue_harness.c:368: out[13 + 3 * HDCM_REASONS + HDCM_E_LEVEL0] == 1 && out[13 + 3 * HDCM_REASONS + HDCM_E_NATIVE_DIMS] == 1

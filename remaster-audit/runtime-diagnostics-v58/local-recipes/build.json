@@ -1,0 +1,873 @@
+{
+  "scope": "v57 exact parent inputs with opt-in CPU-only per-frame phase timestamps; no timing or render behavior change",
+  "production_installed": false,
+  "parent_runtime_sha256": "efde4724c391bed59393e16573e5831999848fb261e9dad5ca88061f3d75656d",
+  "patch_receipt": {
+    "main.cpp": {
+      "base": "C:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src\\main.cpp",
+      "base_sha256": "f4ecc89c69b394ca3c334fdfd54958bf496f5573c03a54c5c79cb96892c67b9c",
+      "base_crlf": true,
+      "new_sha256": "5c94d2dd17f52338515ac52df4f8fde04b4eb269ee49ba6bc42b6924bc6523c0",
+      "diff_sha256": "942a2fd7dd456648cd03a5c9b33665bb99a92141be421d0ae011ed188121d4f8",
+      "edits": 10
+    },
+    "gpu_gl_renderer.c": {
+      "base": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\native-upload-stream\\new\\gpu_gl_renderer.c",
+      "base_sha256": "4a19590b0a80e9431eb116af321367e9eef1532e2fadea12f9e5e6bcd1e7dbc8",
+      "base_crlf": true,
+      "new_sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1",
+      "diff_sha256": "e860e1b4e8549670807c5b1808256b293c110c8d68790dd6fa85aca976163e1f",
+      "edits": 3
+    },
+    "debug_server.c": {
+      "base": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\native-upload-stream\\new\\debug_server.c",
+      "base_sha256": "5365caa1d464d99183d10e6fb971ac07a201e0c0c9280789559dcc81d66e4640",
+      "base_crlf": true,
+      "new_sha256": "3217e4d7da546c6a876a4bf8f04e6a7bb270929533abc9bc559f6da28b843bb0",
+      "diff_sha256": "08a61edd54ac2950db98faed083a08006033172089ebb765dbe70b312908a46c",
+      "edits": 3
+    },
+    "frame_phase_ring.h": {
+      "new_sha256": "c307ae7f0937521106af9f7ebc511de10fbc23d49a55dcc77f2f22994492eef7",
+      "new_file": true,
+      "target": "windows-x64/psxrecomp/runtime/src/frame_phase_ring.h"
+    },
+    "native_upload_ledger.h (unchanged v57 dependency, copied for include resolution)": {
+      "sha256": "72150915c1d70a5f2ccd203a5cf0bcad702e51e0091829881d5a28cf823c09a6"
+    }
+  },
+  "sources": {
+    "main.cpp": "5c94d2dd17f52338515ac52df4f8fde04b4eb269ee49ba6bc42b6924bc6523c0",
+    "gpu_gl_renderer.c": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1",
+    "debug_server.c": "3217e4d7da546c6a876a4bf8f04e6a7bb270929533abc9bc559f6da28b843bb0",
+    "frame_phase_ring.h": "c307ae7f0937521106af9f7ebc511de10fbc23d49a55dcc77f2f22994492eef7",
+    "native_upload_ledger.h": "72150915c1d70a5f2ccd203a5cf0bcad702e51e0091829881d5a28cf823c09a6",
+    "hd_upload_ledger.h": "fd3848ba5aa3423766c42bd69f08ee8dc4b76910e1f6babffd5f45523c827ef6"
+  },
+  "commands": [
+    {
+      "label": "compile-gpu_gl_renderer.c",
+      "arguments": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src",
+        "-DDEFAULT_DEBUG_PORT=4370",
+        "-DFMT_HEADER_ONLY=1",
+        "-DLNG_SDL3=1",
+        "-DNOMINMAX",
+        "-DPSX_BUNDLED_BIOS_PATH=\"bios/openbios.bin\"",
+        "-DPSX_DEFAULT_BIOS_PATH=\"bios/SCPH1001.BIN\"",
+        "-DPSX_DEFAULT_GAME_CONFIG_PATH=\"game.toml\"",
+        "-DPSX_ENABLE_BLOCK_CYCLES=1",
+        "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+        "-DPSX_HAS_GAME_CODEGEN=1",
+        "-DPSX_HAS_GAME_DISPATCH=1",
+        "-DPSX_HAS_RBENGINE_SNAP=1",
+        "-DPSX_HAS_SETUP_WIZARD=1",
+        "-DPSX_HAVE_VULKAN=1",
+        "-DPSX_MAX_PLAYERS=1",
+        "-DPSX_NATIVE_BUILD=1",
+        "-DPSX_SDL3=1",
+        "-DPSX_WINDOW_TITLE=\"Einhander Recompiled\"",
+        "-DRECOMP_LAUNCHER",
+        "-DRECOMP_UI_ENABLE_MODS=1",
+        "-DRECOMP_UI_PSX_HAS_REWIND=1",
+        "-DSDL_MAIN_HANDLED",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/src",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/fmt/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/toml11",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/lib/retcomm-rbengine/include",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/common",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui/backends",
+        "-IC:/VulkanSDK/1.4.363.0/Include",
+        "-IC:/github/Einhander/windows-x64/build-ss8c/psx-runtime_vkgen",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/host",
+        "-isystem",
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/deps/include",
+        "-O3",
+        "-DNDEBUG",
+        "-fzero-initialized-in-bss",
+        "-MD",
+        "-MT",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\gpu_gl_renderer.c.obj",
+        "-MF",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\gpu_gl_renderer.c.obj.d",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\gpu_gl_renderer.c.obj",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/src",
+        "-IC:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v47-attrib",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\gpu_gl_renderer.c"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "exit": 0
+    },
+    {
+      "label": "compile-debug_server.c",
+      "arguments": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src",
+        "-DDEFAULT_DEBUG_PORT=4370",
+        "-DFMT_HEADER_ONLY=1",
+        "-DLNG_SDL3=1",
+        "-DNOMINMAX",
+        "-DPSX_BUNDLED_BIOS_PATH=\"bios/openbios.bin\"",
+        "-DPSX_DEFAULT_BIOS_PATH=\"bios/SCPH1001.BIN\"",
+        "-DPSX_DEFAULT_GAME_CONFIG_PATH=\"game.toml\"",
+        "-DPSX_ENABLE_BLOCK_CYCLES=1",
+        "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+        "-DPSX_HAS_GAME_CODEGEN=1",
+        "-DPSX_HAS_GAME_DISPATCH=1",
+        "-DPSX_HAS_RBENGINE_SNAP=1",
+        "-DPSX_HAS_SETUP_WIZARD=1",
+        "-DPSX_HAVE_VULKAN=1",
+        "-DPSX_MAX_PLAYERS=1",
+        "-DPSX_NATIVE_BUILD=1",
+        "-DPSX_SDL3=1",
+        "-DPSX_WINDOW_TITLE=\"Einhander Recompiled\"",
+        "-DRECOMP_LAUNCHER",
+        "-DRECOMP_UI_ENABLE_MODS=1",
+        "-DRECOMP_UI_PSX_HAS_REWIND=1",
+        "-DSDL_MAIN_HANDLED",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/src",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/fmt/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/toml11",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/lib/retcomm-rbengine/include",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/common",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui/backends",
+        "-IC:/VulkanSDK/1.4.363.0/Include",
+        "-IC:/github/Einhander/windows-x64/build-ss8c/psx-runtime_vkgen",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/host",
+        "-isystem",
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/deps/include",
+        "-O3",
+        "-DNDEBUG",
+        "-fzero-initialized-in-bss",
+        "-MD",
+        "-MT",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\debug_server.c.obj",
+        "-MF",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\debug_server.c.obj.d",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\debug_server.c.obj",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/src",
+        "-IC:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v47-attrib",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\debug_server.c"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "exit": 0
+    },
+    {
+      "label": "compile-main.cpp",
+      "arguments": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src",
+        "-DDEFAULT_DEBUG_PORT=4370",
+        "-DFMT_HEADER_ONLY=1",
+        "-DLNG_SDL3=1",
+        "-DNOMINMAX",
+        "-DPSX_BUNDLED_BIOS_PATH=\"bios/openbios.bin\"",
+        "-DPSX_DEFAULT_BIOS_PATH=\"bios/SCPH1001.BIN\"",
+        "-DPSX_DEFAULT_GAME_CONFIG_PATH=\"game.toml\"",
+        "-DPSX_ENABLE_BLOCK_CYCLES=1",
+        "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+        "-DPSX_HAS_GAME_CODEGEN=1",
+        "-DPSX_HAS_GAME_DISPATCH=1",
+        "-DPSX_HAS_RBENGINE_SNAP=1",
+        "-DPSX_HAS_SETUP_WIZARD=1",
+        "-DPSX_HAVE_VULKAN=1",
+        "-DPSX_MAX_PLAYERS=1",
+        "-DPSX_NATIVE_BUILD=1",
+        "-DPSX_SDL3=1",
+        "-DPSX_WINDOW_TITLE=\"Einhander Recompiled\"",
+        "-DRECOMP_LAUNCHER",
+        "-DRECOMP_UI_ENABLE_MODS=1",
+        "-DRECOMP_UI_PSX_HAS_REWIND=1",
+        "-DSDL_MAIN_HANDLED",
+        "-O3",
+        "-DNDEBUG",
+        "-std=gnu++17",
+        "-fzero-initialized-in-bss",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/src",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/fmt/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/toml11",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/lib/retcomm-rbengine/include",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/common",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui/backends",
+        "-IC:/VulkanSDK/1.4.363.0/Include",
+        "-IC:/github/Einhander/windows-x64/build-ss8c/psx-runtime_vkgen",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/host",
+        "-isystem",
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/deps/include",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\main.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\main.cpp.obj"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "exit": 0
+    },
+    {
+      "label": "link-Einhander_Recompiled",
+      "arguments": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-O3",
+        "-static",
+        "-Wl,--stack,67108864",
+        "@C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\Einhander_Recompiled.rsp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\Einhander_Recompiled.exe"
+      ],
+      "cwd": "C:\\github\\Einhander\\windows-x64\\build-ss8c",
+      "exit": 0
+    }
+  ],
+  "link_inputs": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\main.cpp.obj",
+      "sha256": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_window_icon.cpp.obj",
+      "sha256": "ce0be101a02933645f0b7a981883d6695224c973e51fe40ee0494abac01b9044"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_sdl_audio.cpp.obj",
+      "sha256": "ee778e96c8fcfa92a4238ac28146f817db25969fd02b5d97611fcb6129c7423d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_stick.c.obj",
+      "sha256": "b25dc2551fd557fa1079c8436a7e7be94eb67c9effd44521275f7db9b8157b4b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\memory.c.obj",
+      "sha256": "82ae1a628a5ef570ee2524860b3bf44e75adbd8c6c3944c5c337ed42be31547a"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\stage01_city\\build\\gpu.c.obj",
+      "sha256": "237c37e99028726c391e20f80a49efaa47eab5865f8c0b3438bf80f9d5eff8b6"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\ws_ui_group.c.obj",
+      "sha256": "e41148c491941690ac4d450329eb06602b10c2f6a273af989f45e61741fa961c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\ws_aspect_cone_math.c.obj",
+      "sha256": "9ab0be869aa5a85b86a3d951d5dca474a5375c2330373dcbf13472d116cb53f0"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\gpu_sw_renderer.c.obj",
+      "sha256": "65aa26279bdcb24086daa035a08c559880ce250422d94a64ba41a5dfa14f0ca1"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\gpu_vram_dirty.c.obj",
+      "sha256": "0c13cbc26d44b7c70d3e6a8acb6ab1679f3d54edd0465d7900631109b2885776"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\gpu_render.c.obj",
+      "sha256": "887ec3e1bb2553587b426fa281378dd7c5d9134a0e81a928b845f8be9d208c26"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\gpu_gl_renderer.c.obj",
+      "sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\gpu_vk_renderer.c.obj",
+      "sha256": "31eed14b4fc18179964c39fe0b3b54e514844ffc8b88b00ee2273eb25d4da133"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\dma.c.obj",
+      "sha256": "d57ecaa1df5ceb25e762dd167ecbc1288cae3adbd2ec8fbabd9be97ea2419bd8"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mdec.c.obj",
+      "sha256": "bc0c7dcc9a0de52df430e4c48c85a17a56f6be8ed8c83d16289061f7d9fcc423"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\timers.c.obj",
+      "sha256": "59f32172cd64c39479c1eaff84be046c0650bbf8f015fb15ead027458bef8cc0"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\interrupts.c.obj",
+      "sha256": "11cd4b3fbf4dfe4d13146e2d9d145abd1d21a78c5fe3288854422e89855cb522"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\frame_pacing.c.obj",
+      "sha256": "e80cf05bb00d24da82d1fbf48ae62733bfbc1440c851088081c3bb13ac8dced7"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\frame_interpolation.c.obj",
+      "sha256": "fa84086c3597f13a489b2c211fd86c2edddd70e0a46c0d0f24c02449ddcfc3ab"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\host_time.c.obj",
+      "sha256": "185020d4223d5a825c6ec94d4f87fefefe753234dfc08a8fc72bef233569aea4"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_fiber.c.obj",
+      "sha256": "f8f44bc15d17c99883a369e91c08280fc8b8f850bfd1a6267b0262e728937fd9"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\sio.c.obj",
+      "sha256": "57acc96c32c35e0f422a659a3c2f28d67b4ca0b684d08cab94e707b8ce8c003f"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\memcard.c.obj",
+      "sha256": "2b0802dc599292de42eedd54493ae2d047c04cd95ae5b69d9d0381308b8fab13"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\debug_server.c.obj",
+      "sha256": "75c13812c9aa2406dff2dbc07326fb5d010b835f21d6b3ae80aed3f69fda0b4a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\debug_trace_ranges.c.obj",
+      "sha256": "15c1841ae72007d4b6a906d40a915202ed879ac10993793b370b8c979ac8b000"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\dirty_ram_interp.c.obj",
+      "sha256": "45cedf0c3207e88cd98b84442ca3551ec4b5895963cb96f4147b892f96135aa5"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\game_dispatch_compat.c.obj",
+      "sha256": "2e9a8b7d4b1c3d58d60e890708b907edd25f69c53f68894105b991699c79527d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\fntrace.c.obj",
+      "sha256": "f1c23986f31585aa1f029fcf1c17b86e7c49926f8d3ac88091990b8867792201"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\text_xlate.cpp.obj",
+      "sha256": "8c1fd105f5ca0a7c0b234d605a0bac41f74e1a9eeb7afde5037f1420effb4d1b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v48-upload-index\\hd_texture_pack.cpp.obj",
+      "sha256": "1259bf5113d9cf8a08d0bc930c617213ee173dc5b9d50f5ee4efd03380163755"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\parity_trace.c.obj",
+      "sha256": "8e48e63537cfb6bccda527066acc5062712be719bdb5dc0ab54c5cf547ce1940"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\device_trace.c.obj",
+      "sha256": "682fdb292dccfd9da14a7e9887578079b93c275fc2ab49e52cf17164e6dc7387"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\boot_state.c.obj",
+      "sha256": "2b7d75be1ca56afa35c1f1ec58e568ae2225c384f94d098c776cc6c64aed6ef4"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\netplay_snap_ring.c.obj",
+      "sha256": "ab11662f2c6c07155785f8de18fed5c98e5b515bee9cdfc593561c4d4d96e0cb"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\netplay_state_digest.c.obj",
+      "sha256": "447b6369a8d7841a30fda3a216044084f87b5aead3d64cc78271db1b5100d076"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\netplay_input_hist.c.obj",
+      "sha256": "6a9b3af88c7661c560a2808211fe3df8567d6ba307e0e8ab9592a4a2abfc406d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_netplay_rb.c.obj",
+      "sha256": "94bbc05f231b8c87db7e747057cd0ac4e4d52fadc9d170193e0b962a51a1a753"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_netplay_sched.c.obj",
+      "sha256": "4350663de7c9dbea7c33e93e67529a6aa3a184f96c4985be172809376825426b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_selfcheck.c.obj",
+      "sha256": "0b0e210cd24ebe4196f5f877e586b757b79de9dd8102d60f75481f1a9444a7a5"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\bios_hle.c.obj",
+      "sha256": "72604a23771aa090b8a7b34977080d2e497809c632e0e459fa5a95408017d7c8"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\bios_hle_plan.c.obj",
+      "sha256": "1af0e291de7211ad35484684a655b677d5a22e808a46c62852650ee44088ad0c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\savestate.c.obj",
+      "sha256": "8c213bc6dbdbb1d9961a5394756f11ed71717192f9a580617fb4abb32ed66d1d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_savestate_menu.c.obj",
+      "sha256": "f6edbf5c01617509fc746d12843e6d7ae3527511158548defe680f4b860a030c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\psx_rewind.c.obj",
+      "sha256": "7f6093a3a21310ad0996790b936c9087ab712644ed2dd676398cfc8a0017ea62"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\host_osd.c.obj",
+      "sha256": "122c3bbbc942a4cef57aa0423e94fdd7e1aaacc28f97f2092dedbd90e1f582cf"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\host_keymap.c.obj",
+      "sha256": "e03f07c5eba4cc93611584f96929a0bccf98aeeb41763b4890c9460b73d3fa89"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\cosim_state.c.obj",
+      "sha256": "dc6f4a721064c837150d52d01d4f77780f98ab935fafc146a7878b47aefb6a72"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\cosim.c.obj",
+      "sha256": "2c243fabe2983d979a527e0cce90fd5c8bd6e7176efebad4f52507803883e243"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\traps.c.obj",
+      "sha256": "40ca6ad46c3aadacd59953b773259bde6e2185a0c720497a229bedc0e449803b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\crash_trace.c.obj",
+      "sha256": "889a14684e5dae05a9d540b36940f4ae2da571d32fe6619211e0278e42e2031c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\freeze_heartbeat.c.obj",
+      "sha256": "1d56cddf77dbab6c7d15990577095f9e4bdc8bd3982eb69a37c95e2909aa48d4"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\gte.cpp.obj",
+      "sha256": "be23941212488438edcc4018ac2ddabda5d552a0d5713b97fc0a783a01e51382"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\pgxp.cpp.obj",
+      "sha256": "1d5821010b51e2a92db19b043242d0e83be5328da44e79e13a6b5e24168c7831"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\nd_intro_ot.c.obj",
+      "sha256": "12b356e0d67de03812fbadf59b17714a9cdbf768e72fab8faa624bfaa16f5c6f"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\crc32.c.obj",
+      "sha256": "01f4bc085dad0a1f064205ee6df1e34f0f23bf4dc4f9659f89a1f4f688eecac3"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_sha256.c.obj",
+      "sha256": "613ecb3a40e98b34166d49c62bcb2e452100948879b71176b1c48fa9bc717d0b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\disc_identity.cpp.obj",
+      "sha256": "6d1fa0fd424087c100f6c15a427f6313e187da567b758f18b936f532bcd3826d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\cue_sheet.cpp.obj",
+      "sha256": "c641f9f3d0c00c19ad1a13540b58cc2e9f2aa4104e2880e45bd3aa0654bf2296"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\disc_path.cpp.obj",
+      "sha256": "21491ccf4a423a0b1046c53a55a10598c1b5fd2f601cbe99e3d5dd5851adc2aa"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\cdrom.c.obj",
+      "sha256": "72d963eedba8c05481a38849b8d3536e5de9b3852838c8ed4c359d34822ab38f"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\spu.c.obj",
+      "sha256": "9a375d11b07deb5e6ebfc6b7a3cc88069658968df35cdd861095ff5966cae109"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\spu_shadow.c.obj",
+      "sha256": "75880c8a152e2e8155ed083bb32a42ebe80148e07f38b3eea9d806114b568430"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\audio_shadow.c.obj",
+      "sha256": "93833738e3e94f5cfa13b5c171bc107c722ab3d30d5c80acd02664b9bdc65f9b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\audio_trace.c.obj",
+      "sha256": "ead54cae169234862bd7ab2bc5e02f528e7195d32463f1ac436eae359d812413"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\color_lut.c.obj",
+      "sha256": "e5cb7d1744ca817365e7675a88e91f82e88ed983520cb4f292eb5d84b80f6436"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\iso_reader.cpp.obj",
+      "sha256": "6f4e4a0f61a43d1fa6f3f17216c1c3e76789976e540ceffc21416019e07a7d29"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\iso_reader_c.cpp.obj",
+      "sha256": "f67a76ac55ae85daa06e7fb2d72daced8d6ef068bf666aa0dd1467cb77215e6f"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\psx_cycles.c.obj",
+      "sha256": "64ae8dabd1baa70e67f11dd7631bba11588688012f1ef9cb6d3d996d0f98b7a5"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_icache.c.obj",
+      "sha256": "22486d6fb8afa4ae40aadcbad655e20b31b5b3d4d6d5e6c3df44ed6592623ded"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\starvation_ring.c.obj",
+      "sha256": "67a4cda7b35bc7bdbce0ca12fc83004e0e618324c98687f6f44c02ac7fec1060"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\latency_ring.c.obj",
+      "sha256": "33c0cc9eb4467157f74dd81e607bf0d463c785ee4c65e4489a71c4b9dd63f018"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\data_shards.c.obj",
+      "sha256": "27d0fd2f6fc0947d0a05756f98478c484cd3957aecd7186b2f1c8910fa128254"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\load_accel.c.obj",
+      "sha256": "afc9b64ffb10b36aa14744c8f69d53f2854d63105cb72cc2308430f12a34e147"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\card_read_summary.c.obj",
+      "sha256": "8f32cdff012fdc79bd84ec3a45b6660788147abc14be1ebb83f5b26be628f97e"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\card_data_writes.c.obj",
+      "sha256": "77f445d798f71bbd3312bb03fca3b386c96402fbf1fbb69644409a6e8f554a74"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\overlay_capture.c.obj",
+      "sha256": "8433ebb924690709214447fcb6d6a6001ef4189e44249600033f9fdff20f7fb9"
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v47-attrib\\overlay_loader.c.obj",
+      "sha256": "1d220207e065d8e887c5a77c34d76da7a4ba3319f58e88ca42e571151b6f7cba"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\overlay_path_canon.c.obj",
+      "sha256": "8546e15158eccbf7b0cb832d63d0caba4ce2239f75e22f62f0d4ada383cd4368"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\overlay_posix.c.obj",
+      "sha256": "3448d19afadd07b5d74bc22bd6b18037b19c0437eb97be212d9da979f7e4a548"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\overlay_backend.c.obj",
+      "sha256": "d174912d7af92d32a7b56ebb87146f0757cb8ebc44f9d4f7364d8d084050d226"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\autocompile.c.obj",
+      "sha256": "fb5d2bb7eb7744727c832629b144e0889d345c3a0c6443cb2e0f48c1e7691351"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\code_provider.c.obj",
+      "sha256": "65eebb6e8e1520af38815b5d591ff52b45d0c49890d52ca0ff17bb4192542120"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\event_ring.c.obj",
+      "sha256": "2562bf6d58df08187fcc02d92417561a18477288e6aaaa95e011a6591d78291e"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\game_options.c.obj",
+      "sha256": "444932dd794e766b1e90f81b596aebd5e269b41ae403130e5d2ea93b5c97d407"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mod_builtin_speed.c.obj",
+      "sha256": "119f4d514941dc87f261c3fc05ff4290319cfc1a083b99212d0ccdd915aa8eff"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mod_builtin_pgxp.c.obj",
+      "sha256": "859a8b553e9067dff84f68d3d3617a8f45e8984e98fa00dff5f6c98467f8892c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mod_builtin_bezel.c.obj",
+      "sha256": "b84efdba35d57d04de949e493f38276ac92f8efb0ac46fa4c2379a72a29cc148"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mod_packages.cpp.obj",
+      "sha256": "09b952e51f409cb96ffa7954507504c59ae8f523e014ea130a27cac3a1251b21"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\mod_runtime.cpp.obj",
+      "sha256": "0eb2fe01bc6ae1358e18894de710499a862149949872c13033b6abd0414c7995"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_keybinds.c.obj",
+      "sha256": "a335f1cf9b82fdc7630491532901e0fe34aa55eb8f8e51afeb2612ee1b4d60ce"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_bios_backend.c.obj",
+      "sha256": "2024b788681bd50af8b7b5c36cfce80a53fee57fde8bd1f0cadb6364f1c16bdb"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_netplay.c.obj",
+      "sha256": "ca0fc79ca7d6a438c31833c04887e14acf8bb5ce24ce0121746ba96fce371631"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\psx_lobby_client.c.obj",
+      "sha256": "f2e0cea09b1fef8a75da8a8334c2b7f9c1cf209ce3aab6f277d65ef0b1551548"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\recompiler\\src\\config_loader.cpp.obj",
+      "sha256": "f208b39f9ae99bfe2e4dbc9ee549f310814bd46c45cebb88668e335202caccca"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\recompiler\\src\\ps1_exe_parser.cpp.obj",
+      "sha256": "b1b4c4d85c876bdd8b893b4b3e918094178a92f4f6f4a48a739ea6ac8c9b62c6"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\lib\\retcomm-rbengine\\src\\snap\\rbe_snap_ring.c.obj",
+      "sha256": "15fe9c52e40fae914fadb502f8edca1c796710c1f40c7196a573f94566a80dbc"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\runtime\\src\\stub_interpreter.c.obj",
+      "sha256": "f374dd5b009344472093fda07ac6f625dc06fdebf6fa7ebb4cc1481b5e09ba57"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\generated\\OpenBIOS_full.c.obj",
+      "sha256": "dbab4e002e0c786dd9b5c5443cc7d018a4decee0be9153bf2b79e1bb0238b00c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\generated\\OpenBIOS_dispatch.c.obj",
+      "sha256": "3f44ee95cca442c19272f93dd4cb9ecdbc90d7081d3bb2c46d0dfaf1f1882564"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\generated\\SCPH1001_full.c.obj",
+      "sha256": "57ad825bb5da84d5621e395875a93a8e2fb8ccc1727236be03df40b61040e1d6"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\save-fix\\bios-seed\\SCPH1001_dispatch.c.obj",
+      "sha256": "4ad82bce3b629cbf1d5697df0bd1f35073a9dbd0ae13ddc2fe001ef2774831e4"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psx_bios_registry.c.obj",
+      "sha256": "da9532fcbed04fddd6d16ba6515e271b848de11fee0960fd271d70fcbbd050c0"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_full_00.c.obj",
+      "sha256": "12e27f189fca7dca1ff7e00a0c43a1a7864ac3f330b1888d913b76bd8a5e7fde"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_full_01.c.obj",
+      "sha256": "035bd4f570176f7bde979d0e0b23c527a50c4fedac47f4adc9fd450988eb333a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_full_02.c.obj",
+      "sha256": "42d1e751cc735d7cd4e7381b7f4ea2d8c819595a0d877643c9ad2c2f36b2098c"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_full_03.c.obj",
+      "sha256": "ee23e822e652186074550bebbbe4d306d289b5f5801086b913908c3b23345080"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_full_04.c.obj",
+      "sha256": "6e3dbd5affee2fd53c89df0aacb27ccc546251684e7324add718c9df74941fc3"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\generated\\SCUS_942.43_dispatch.c.obj",
+      "sha256": "7fc7ab44effed935920443879ad819edca6c3cd442284d023322e0e7df3d4aa1"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\codegen_setup.c.obj",
+      "sha256": "eab7baf510bd7de9d07270ad6ee0c6c8d69ce2832762eb37f96e3df36daa35ca"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\psxrecomp\\host\\psxrecomp_codegen_host.c.obj",
+      "sha256": "3948c9fc93a3938a17faef7ef8e2a7f7296de9dbcc3020d49cc500fe62425ff6"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-hires-build-20261112\\launcher_model.c.obj",
+      "sha256": "386ef5004e41f2c9e7b89e2c365e5ab6bdfcbb9fe80abcda57d3f2d7ba683802"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_platform_sdl3.c.obj",
+      "sha256": "e41677e7c93df37448b1d18b55313fcfea35900fa52a383639e349eadfdb155e"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_gl.c.obj",
+      "sha256": "093b515a43dd9a2ccd41519e24a904f922245d4c22394f86a084af2529de4234"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_input.c.obj",
+      "sha256": "1c5e0983a50431dc5de31538ace0965ab4f2ffe00b5f979e0f3dfeb88a8b763a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_files.c.obj",
+      "sha256": "ff2a3f155c3373c89908fde189dd8cb36828ed19ee5fe27d1eff7bc1392fa49a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_debug.c.obj",
+      "sha256": "a8148fd823d03127b1bff7931d2191501926a65b7ce2cbd4f15883a82900bea8"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_binds.c.obj",
+      "sha256": "64e9d5cc520eb9420fa9a5f4519b37b2663aa37ced4408e856068b92b4250f07"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_udp_port.c.obj",
+      "sha256": "bde6e388303b917aa6bb11aa0c53abbfb62ebc7e2ed0badfeeed8c7b8208e155"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\recomp_runtime_ui.c.obj",
+      "sha256": "51c3dfbd7cbe65db02cbfbef09dbc1013d1dc9114891e6704729ae9ed5b6791d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\recomp_runtime_settings.c.obj",
+      "sha256": "7abd18ff4bd0effeb0ac5a3241f36268424fcd007056ee2c485fe49d401e2c79"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_boot_timing.c.obj",
+      "sha256": "ac28b4f1f212e6701ca45b54029ce655ff91ebfe8f9ca0f13c1c5642a3bd7dea"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\launcher_ng_capi.c.obj",
+      "sha256": "0efc608a4c4d5ab3f2d92311d16f90b664252d448453e73dd590565f17cfefa4"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\tinyfiledialogs.c.obj",
+      "sha256": "1e72235248214384a970e45b4decce11fdcbdbbaa062c51407862ce9cd734efb"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\psx\\memcard_format.c.obj",
+      "sha256": "90d99131dfe6b5a40a39774e496d88fa5d4dc700b05bfde695219ba45156e8d8"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\psx\\psx_binds.c.obj",
+      "sha256": "296fa9ecfaeb59343041b36fd001d4f49d5c59615e135c0aab2bf986d38ff193"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\psx\\psx_pad_binds.c.obj",
+      "sha256": "0146ecb3723139f47e3ccddb4a8d2d7eb1dc4001051726daa41dd82301a0b113"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\n64\\n64_binds.c.obj",
+      "sha256": "eb57087c1c12fdf765af67db3b46b52c46318106e967564a2bb55aa2a1358289"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\nes\\nes_binds.c.obj",
+      "sha256": "f5d328fd0e28a53faa7348646e0b4542fdea6a97c6a421ac6c3aef0e5d41dd41"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\genesis\\genesis_binds.c.obj",
+      "sha256": "2f473693f041d5fddcccff0ffc8d30e61a2ae76c0676f985c60d441167bd2425"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\consoles\\gb\\gb_binds.c.obj",
+      "sha256": "268c4a324fe48fa1c38d3dea67e74dade19f0e536f4f2fa6ad74583a4bcfe32d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\crc32.c.obj",
+      "sha256": "577ec305ac9f7a9359cf44123e0a617cef2ddcdedae84e1dc77a6913aedae320"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\sha256.c.obj",
+      "sha256": "3890026bddac57762514999eafb271c3514a6453da590352304834b944076dda"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\sha1.c.obj",
+      "sha256": "f9112b3b01823694920662d670bbc0e297eb054c95b9dfb28f6c6d9550795c14"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\keybinds.c.obj",
+      "sha256": "ea87429155b23e23a8458f6b61b1a129f7e011aa2f38a33d8c8d4ba9b0b16166"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\ips_patch.c.obj",
+      "sha256": "f48b7b9a788beb7fcf2b0b95f4a443369a5e8cf4aa4e1c66891d9c80a8e42b16"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-hires-build-20261112\\launcher_imgui.cpp.obj",
+      "sha256": "505a31752b2761a23f7de7ebc6fca0369ae22bbbdf3a6b67915d8b562ce176cf"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\common\\backends\\imgui\\runtime_ui_imgui.cpp.obj",
+      "sha256": "7f1e7fa3579c0596395145dc0a5c5c9f3daba89e43947ed47ecfb3c77cc6b75e"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\imgui.cpp.obj",
+      "sha256": "0acdde5276f53b1ebbb378a07c2434b54963df7842048302d155d4cc14d1821b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\imgui_draw.cpp.obj",
+      "sha256": "c2b4887e530b467f2a3b0c479591260d09524418c72fcb3aa3f14ea3ba64c7ec"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\imgui_tables.cpp.obj",
+      "sha256": "1526a8827ba037befa718fcea880d7871c5ac540cda336f9fb40ade7beb5fd2b"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\imgui_widgets.cpp.obj",
+      "sha256": "d67a7093ab18b839f8f6573b7eb8f68c1e4b4fc811739e0834870cfcfe3aad21"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\backends\\imgui_impl_sdl3.cpp.obj",
+      "sha256": "deed34dfba20b25f404fca4a4c9f43a139ff447045b546b57bf5d22f2d34d9e7"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\CMakeFiles\\psx-runtime.dir\\recomp-ui\\src\\third_party\\imgui\\backends\\imgui_impl_opengl3.cpp.obj",
+      "sha256": "720780f393099a23c90bb987871cb8dbd892465f1b7e7833a3bbd430196d0b74"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\_deps\\psx_libchdr-build\\libchdr-static.a",
+      "sha256": "3dced69044221bd73a28afcda2a6240e1641eda1105894f795a30795ba6f5542"
+    },
+    {
+      "path": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\deps\\lib\\libSDL3.a",
+      "sha256": "5316825fd642510c380fd9ddccdd03602c99a0f3b5126867b23b994e8a9a4943"
+    },
+    {
+      "path": "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\deps\\lib\\libz.a",
+      "sha256": "ab6f6cf41c6a0b0778a1dbab1c273dd728f1ac2e5ccd8815a893a5e73d7df15d"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\_deps\\psx_libchdr-build\\deps\\lzma-25.01\\libchdr-lzma.a",
+      "sha256": "ccb27e041af87f3575e9c2a5fe7a91c2bd29025f542d71f455c4bc62abbd2f2a"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\_deps\\psx_libchdr-build\\deps\\miniz-3.1.1\\libminiz.a",
+      "sha256": "61875a68b594f3bde377dfe0611693075e95fdde77aef7840ed889aa70ce5ba9"
+    },
+    {
+      "path": "C:\\github\\Einhander\\windows-x64\\build-ss8c\\_deps\\psx_libchdr-build\\deps\\zstd-1.5.7\\libzstd.a",
+      "sha256": "d000528377d55b8f180b96498c8115b085e6c40e3edad48f70ea4e68e3d9ab8a"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-hires-build-20261112\\launcher_devtools.cpp.obj",
+      "sha256": "1648b28a3b8ddecd2ea7f735239c8c0b981a3fc922172a55070fefe419761e4e"
+    },
+    {
+      "path": "C:\\github\\REMASTER_STAGING\\save-fix\\bios-seed\\SCPH1001_save_support.c.obj",
+      "sha256": "1dc542f6b51106f5b8f6ec614b84eee35bb38a21b6fd331c3c7df1292803861b"
+    }
+  ],
+  "replaced_actual_linked_objects": [
+    {
+      "old": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v48-upload-index/runtime-main.cpp.obj",
+      "old_sha256": "bcbb763457446a25a992d62bd670ff76ed0d13aa1c3b07d4658bbb0356d1449d",
+      "new": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v58-frame-phases/main.cpp.obj",
+      "new_sha256": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3"
+    },
+    {
+      "old": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v57-native-upload/gpu_gl_renderer.c.obj",
+      "old_sha256": "1ec4a824c7eb4718497839214eaddd789d1191b80134f9b9e5f4c9aa6838c663",
+      "new": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v58-frame-phases/gpu_gl_renderer.c.obj",
+      "new_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a"
+    },
+    {
+      "old": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v57-native-upload/debug_server.c.obj",
+      "old_sha256": "296662141f44bce8a626c27b987e8d24aee5fe35a49f4e9f2f0dfada65385766",
+      "new": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v58-frame-phases/debug_server.c.obj",
+      "new_sha256": "75c13812c9aa2406dff2dbc07326fb5d010b835f21d6b3ae80aed3f69fda0b4a"
+    }
+  ],
+  "response_sha256": "23d07ef22d645394edeca1ce7fc0b25cdaa19f92b0a20326e3fb4d6700bbe3ef",
+  "executable": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases\\Einhander_Recompiled.exe",
+  "executable_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+  "build_complete": true
+}

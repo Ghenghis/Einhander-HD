@@ -1,0 +1,60 @@
+{
+  "at_utc": "2026-11-14T08:06:38.937085+00:00",
+  "upstream_combined_repo_submodule": {
+    "name": "dxvk-remix",
+    "path": "dxvk-remix",
+    "sha": "0a6cd5b1ee814ec390c358e0c9c32ece8895ddc0",
+    "size": 0,
+    "url": "https://api.github.com/repos/NVIDIAGameWorks/rtx-remix/contents/dxvk-remix?ref=main",
+    "html_url": "https://github.com/NVIDIAGameWorks/dxvk-remix/tree/0a6cd5b1ee814ec390c358e0c9c32ece8895ddc0",
+    "git_url": "https://api.github.com/repos/NVIDIAGameWorks/dxvk-remix/git/trees/0a6cd5b1ee814ec390c358e0c9c32ece8895ddc0",
+    "download_url": null,
+    "type": "submodule",
+    "submodule_git_url": "https://github.com/NVIDIAGameWorks/dxvk-remix/",
+    "_links": {
+      "self": "https://api.github.com/repos/NVIDIAGameWorks/rtx-remix/contents/dxvk-remix?ref=main",
+      "git": "https://api.github.com/repos/NVIDIAGameWorks/dxvk-remix/git/trees/0a6cd5b1ee814ec390c358e0c9c32ece8895ddc0",
+      "html": "https://github.com/NVIDIAGameWorks/dxvk-remix/tree/0a6cd5b1ee814ec390c358e0c9c32ece8895ddc0"
+    }
+  },
+  "upstream_commit": "42b54bbe2a9280f7720e5b64415c78aa3e15224f",
+  "first_attempt": "Combined stable submodule reference fetch returned404 for oneSDKpath; exactpath unavailable in initialstdout. Repeated against separately pinned current upstream HEAD.",
+  "files": [
+    {
+      "path": "remix_c.h",
+      "source": "https://raw.githubusercontent.com/NVIDIAGameWorks/dxvk-remix/42b54bbe2a9280f7720e5b64415c78aa3e15224f/public/include/remix/remix_c.h",
+      "sha256": "a3f40860e643127dfd3bee1afee04a8715704d322a8b16d5bd542852f863501d",
+      "bytes": 46169
+    },
+    {
+      "path": "RemixSDK.md",
+      "source": "https://raw.githubusercontent.com/NVIDIAGameWorks/dxvk-remix/42b54bbe2a9280f7720e5b64415c78aa3e15224f/documentation/RemixSDK.md",
+      "sha256": "bbf37c2b62f6d53b5a0c9ab2237276b5c4e72698b1bf2b75b069e3ee56db2608",
+      "bytes": 11953
+    },
+    {
+      "path": "remixapi_example_c.c",
+      "source": "https://raw.githubusercontent.com/NVIDIAGameWorks/dxvk-remix/42b54bbe2a9280f7720e5b64415c78aa3e15224f/tests/rtx/apps/RemixAPI_C/remixapi_example_c.c",
+      "sha256": "869a06ea29832984b57a5b17bcdb834342bb7e30d085c51f78ef364756f23ef7",
+      "bytes": 8312
+    },
+    {
+      "path": "CHANGELOG.md",
+      "source": "https://raw.githubusercontent.com/NVIDIAGameWorks/dxvk-remix/42b54bbe2a9280f7720e5b64415c78aa3e15224f/CHANGELOG.md",
+      "sha256": "0bf56de0c779b75e1fc775be9c98e77921917e9441aabc37780bf874fa021400",
+      "bytes": 189
+    }
+  ],
+  "errors": [],
+  "installed_dll": {
+    "path": "C:\\Program Files\\NVIDIA Corporation\\RTX Remix\\deps\\remix_runtime\\runtime\\.trex\\d3d9.dll",
+    "sha256": "ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1",
+    "bytes": 282883696,
+    "machine": "0x8664",
+    "x64": true
+  },
+  "downloaded_code_executed": false,
+  "gpu_started": false,
+  "api_abi_match_verified": false,
+  "dependency_status": "Private SDK evaluation only; no installed game dependency or driver changes."
+}

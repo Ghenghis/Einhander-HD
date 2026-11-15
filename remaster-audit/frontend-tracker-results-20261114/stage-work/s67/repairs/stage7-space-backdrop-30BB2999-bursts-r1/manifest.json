@@ -1,0 +1,451 @@
+{
+ "name": "stage7-space-backdrop-30BB2999-bursts-r1",
+ "status": "proposal (s67 repair r1; NOT frozen lane art; NOT accepted)",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S7-WHOLE-CELL-20261114",
+ "created_utc": "2026-11-14T16:00:52.943040+00:00",
+ "base": {
+  "folder": "remaster-audit/comfy-authoring/w7-stage7/frozen/stage7-space-backdrop-30BB2999-v1",
+  "manifest_sha256": "fe7129c59135c6b7cf39bd2eb294b0e162aa57fa9f81758ac5af7bc5d5e92798"
+ },
+ "method": "s67 isolated REPAIR PROPOSAL r1: 30BB2999 (Stage 7 space backdrop, VRAM 576,0) star bursts as analytic radial shapes.\n\nDefect (lane LEDGER w7-stage7 + review/native-vs-hd-16x-and-page-01.png): the four star-burst sprites (u0-127, v218-247)\n'became soft blobs' in v1 (index master sigma 0.6). The lane names 'CPU analytic shapes' as the next step.\nEvidence (s67 repairs/30BB2999-burst-fit-*.json): each burst is a Euclidean digital disc centred at (16/48/80/112, 231); off the\naxis band the native index falls monotonically with radius (<= 8 order violations of 344-507 ring texels).\nMethod (CPU, deterministic, no AI, no new palette, CLUT-free):\n  * per sprite, from off-axis-band native texels only: a monotone piecewise-linear radial index field g(r) through the median\n    radius of each index (isotonic), and a silhouette radius R_out with the background index outside;\n  * EXCEPTION cells keep v1 bytes (per key CLUT): the axis band (|du| <= BAND or |dv| <= BAND texels: the spikes and the '+'\n    core); every texel whose model CLASS differs from the native class at its centre or straddling pixels; and every texel\n    whose model index differs from the native index by >= 2 (a real feature; +-1 is ring quantisation jitter, which is what\n    the smooth rebuild intentionally removes). Elsewhere in the sprite box:\n      class = class of round(g) under the key's CLUT (cutout/STP/opaque); the class at every texel centre (and its straddling\n      pixels) equals the native class by construction; RGB = linear interpolation between the CLUT colours of floor(g) and ceil(g) when both have the same\n      class, else the colour of round(g); cutout pixels keep their v1 RGB;\n  * outside the four sprite boxes every byte stays v1.\nWhole-cell strict validation (frozen proto-v2b cm_validate, DLL already compiled in the s67 audit run) gates the output.\nNot an acceptance: drawn CLUTs, motion and live A/B are still unknown (CR7-1..5).\nusage: python -B -I s7_burst_rebuild.py preview   (LIGHT: native-region render at 8x for both CLUTs, centre check, review PNG)\n       python -B -I s7_burst_rebuild.py build     (HEAVY: 2 keys x 2 sizes from the frozen v1 PNGs; needs a granted CPU slot)\nWrites ONLY C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/repairs/(30BB2999-burst-preview-<UTC>.png|\nstage7-space-backdrop-30BB2999-bursts-r1/).",
+ "fits": [
+  {
+   "centre": [
+    16,
+    231
+   ],
+   "bg": 15,
+   "knots_r": [
+    2.8284271247461903,
+    3.605551275463989,
+    4.47213595499958,
+    5.0,
+    5.656854249492381,
+    6.4031242374328485,
+    7.615773105863909,
+    8.94427190999916,
+    10.198039027185569,
+    12.649110640673518
+   ],
+   "knots_i": [
+    11.0,
+    10.0,
+    8.0,
+    7.0,
+    6.0,
+    5.0,
+    4.0,
+    3.0,
+    2.0,
+    1.0
+   ],
+   "r_out": 13.962670403551895,
+   "silhouette_misclassified": 7,
+   "points": [
+    [
+     12.649110640673518,
+     1,
+     207
+    ],
+    [
+     10.198039027185569,
+     2,
+     84
+    ],
+    [
+     8.94427190999916,
+     3,
+     45
+    ],
+    [
+     7.615773105863909,
+     4,
+     51
+    ],
+    [
+     6.4031242374328485,
+     5,
+     24
+    ],
+    [
+     5.656854249492381,
+     6,
+     20
+    ],
+    [
+     5.0,
+     7,
+     8
+    ],
+    [
+     4.47213595499958,
+     8,
+     12
+    ],
+    [
+     3.605551275463989,
+     10,
+     8
+    ],
+    [
+     2.8284271247461903,
+     11,
+     4
+    ]
+   ],
+   "exception_texels": 280,
+   "box_texels": 928
+  },
+  {
+   "centre": [
+    48,
+    231
+   ],
+   "bg": 15,
+   "knots_r": [
+    2.8284271247461903,
+    3.605551275463989,
+    4.242640687119285,
+    4.47213595499958,
+    5.192582403567252,
+    6.324555320336759,
+    7.211102550927978,
+    8.246211251235321,
+    9.486832980505138,
+    12.041594578792296
+   ],
+   "knots_i": [
+    11.0,
+    9.0,
+    8.0,
+    7.0,
+    6.0,
+    5.0,
+    4.0,
+    3.0,
+    2.0,
+    1.0
+   ],
+   "r_out": 13.152946437965905,
+   "silhouette_misclassified": 0,
+   "points": [
+    [
+     12.041594578792296,
+     1,
+     176
+    ],
+    [
+     9.486832980505138,
+     2,
+     76
+    ],
+    [
+     8.246211251235321,
+     3,
+     44
+    ],
+    [
+     7.211102550927978,
+     4,
+     36
+    ],
+    [
+     6.324555320336759,
+     5,
+     28
+    ],
+    [
+     5.192582403567252,
+     6,
+     16
+    ],
+    [
+     4.47213595499958,
+     7,
+     8
+    ],
+    [
+     4.242640687119285,
+     8,
+     4
+    ],
+    [
+     3.605551275463989,
+     9,
+     8
+    ],
+    [
+     2.8284271247461903,
+     11,
+     4
+    ]
+   ],
+   "exception_texels": 294,
+   "box_texels": 928
+  },
+  {
+   "centre": [
+    80,
+    231
+   ],
+   "bg": 15,
+   "knots_r": [
+    2.8284271247461903,
+    3.605551275463989,
+    4.47213595499958,
+    5.0,
+    5.656854249492381,
+    6.555664084966109,
+    7.615773105863909,
+    8.94427190999916,
+    11.180339887498949
+   ],
+   "knots_i": [
+    10.0,
+    9.0,
+    7.0,
+    6.0,
+    5.0,
+    4.0,
+    3.0,
+    2.0,
+    1.0
+   ],
+   "r_out": 12.36931687685298,
+   "silhouette_misclassified": 0,
+   "points": [
+    [
+     11.180339887498949,
+     1,
+     160
+    ],
+    [
+     8.94427190999916,
+     2,
+     68
+    ],
+    [
+     7.615773105863909,
+     3,
+     36
+    ],
+    [
+     6.555664084966109,
+     4,
+     32
+    ],
+    [
+     5.656854249492381,
+     5,
+     20
+    ],
+    [
+     5.0,
+     6,
+     8
+    ],
+    [
+     4.47213595499958,
+     7,
+     12
+    ],
+    [
+     3.605551275463989,
+     9,
+     8
+    ],
+    [
+     2.8284271247461903,
+     10,
+     4
+    ]
+   ],
+   "exception_texels": 258,
+   "box_texels": 928
+  },
+  {
+   "centre": [
+    112,
+    231
+   ],
+   "bg": 15,
+   "knots_r": [
+    2.8284271247461903,
+    3.605551275463989,
+    4.47213595499958,
+    5.192582403567252,
+    6.324555320336759,
+    7.211102550927978,
+    8.246211251235321,
+    10.367968324948777
+   ],
+   "knots_i": [
+    10.0,
+    8.0,
+    6.0,
+    5.0,
+    4.0,
+    3.0,
+    2.0,
+    1.0
+   ],
+   "r_out": 11.40175425099138,
+   "silhouette_misclassified": 0,
+   "points": [
+    [
+     10.367968324948777,
+     1,
+     136
+    ],
+    [
+     8.246211251235321,
+     2,
+     60
+    ],
+    [
+     7.211102550927978,
+     3,
+     28
+    ],
+    [
+     6.324555320336759,
+     4,
+     28
+    ],
+    [
+     5.192582403567252,
+     5,
+     16
+    ],
+    [
+     4.47213595499958,
+     6,
+     12
+    ],
+    [
+     3.605551275463989,
+     8,
+     8
+    ],
+    [
+     2.8284271247461903,
+     10,
+     4
+    ]
+   ],
+   "exception_texels": 266,
+   "box_texels": 928
+  }
+ ],
+ "priority": {
+  "pid": 32400,
+  "nice": "below_normal",
+  "affinity": [
+   15
+  ]
+ },
+ "elapsed_s": 1.42,
+ "rows": [
+  {
+   "key": "30BB2999-418C69D6",
+   "file": "page1024",
+   "src_sha256": "0b380a23ae3fd87c1395f5027311303c7dc98e7ed3205bc2ad99831898524255",
+   "out": "keys/page1024/30BB2999-418C69D6.png",
+   "out_sha256": "d2866e9060d9c4a6094961f6c8b862f4aeeeb770c656369f77dde8a332966247",
+   "scale": 4,
+   "pixels_changed": 21370,
+   "alpha_changed_px": 473,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 2,
+    "r5_fringe_px": 8561,
+    "cells_bad": 2,
+    "pinhole_cells": 2,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": false
+  },
+  {
+   "key": "30BB2999-418C69D6",
+   "file": "page2048",
+   "src_sha256": "845de370902f00b0ac2d7b4f3cf1f48d3f4bfde1b9d5234aa1879ca0b679938a",
+   "out": "keys/page2048/30BB2999-418C69D6.png",
+   "out_sha256": "60248d4c56e32c4dc1bfd791713040140a1b1e1e4f00ad51c0f647f52f4b6077",
+   "scale": 8,
+   "pixels_changed": 85378,
+   "alpha_changed_px": 1763,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 6,
+    "r5_fringe_px": 16789,
+    "cells_bad": 2,
+    "pinhole_cells": 2,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": false
+  },
+  {
+   "key": "30BB2999-FBFE075D",
+   "file": "page1024",
+   "src_sha256": "9e3d4f4c5692bb7c1d0029fa605f679ad7343bfcdeb4b108686049ba5d28c2c1",
+   "out": "keys/page1024/30BB2999-FBFE075D.png",
+   "out_sha256": "edd0d8d20c54b7bdcdd4f78da4314dd0ec5e731340c4ed6172ec1083bbb1af2e",
+   "scale": 4,
+   "pixels_changed": 48144,
+   "alpha_changed_px": 0,
+   "v2_after": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true
+  },
+  {
+   "key": "30BB2999-FBFE075D",
+   "file": "page2048",
+   "src_sha256": "e78cf174c4fd0f3522fd0c52194765c8bd6e3edc139f557fd9ac31581d206877",
+   "out": "keys/page2048/30BB2999-FBFE075D.png",
+   "out_sha256": "41aed7ec592fb89fa7a0088905192e44def27a599715577256a80eb781173094",
+   "scale": 8,
+   "pixels_changed": 192576,
+   "alpha_changed_px": 0,
+   "v2_after": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "whole_cell_strict_pass": true
+  }
+ ],
+ "validator_dll": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\20261114T135603Z\\class_mip.dll",
+  "sha256": "0456654b5ed6e750a83a1aa52e73d456f99598d575b0fdefbab8f6389da175d1"
+ },
+ "builder": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\tools\\s7_burst_rebuild.py",
+  "sha256": "450adf52c8ca9e95841b5f6792fd4ff0b9eb9eec9f15e4215bed53c587dec567"
+ }
+}

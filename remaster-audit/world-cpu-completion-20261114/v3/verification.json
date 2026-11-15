@@ -1,0 +1,105 @@
+{
+  "at_utc": "2026-11-14T08:51:03.302191+00:00",
+  "candidate_sha256": "47a5dd57a831e49c2c83d63e78d54834db5f2813f2c46539f19151d268d2851c",
+  "parent_candidate_sha256": "b0e4769db4cd59527bcf65dac513b9b1988aa40694c96fd7952bbd058a92891b",
+  "final_key_count": 1699,
+  "patch_count": 53,
+  "added_keys": [
+    "B5207452-190A55AD.png"
+  ],
+  "changed_existing_keys": [
+    "57AC02A0-022CDB4A.png",
+    "57AC02A0-16E490AC.png",
+    "57AC02A0-190A55AD.png",
+    "57AC02A0-22E302F5.png",
+    "57AC02A0-268BC144.png",
+    "57AC02A0-2818F5FF.png",
+    "57AC02A0-2A3AA175.png",
+    "57AC02A0-2D65A98D.png",
+    "57AC02A0-3E316D35.png",
+    "57AC02A0-40CED612.png",
+    "57AC02A0-474AAE1E.png",
+    "57AC02A0-4A1EBB3E.png",
+    "57AC02A0-4E8C3E86.png",
+    "57AC02A0-4F6B2941.png",
+    "57AC02A0-568E2660.png",
+    "57AC02A0-5ACD2D4B.png",
+    "57AC02A0-5BD22668.png",
+    "57AC02A0-6C019D57.png",
+    "57AC02A0-74DED242.png",
+    "57AC02A0-760BBA00.png",
+    "57AC02A0-7C0771C2.png",
+    "57AC02A0-82EECB15.png",
+    "57AC02A0-88BEE652.png",
+    "57AC02A0-934762A6.png",
+    "57AC02A0-9392A1B9.png",
+    "57AC02A0-959B0337.png",
+    "57AC02A0-9B75745F.png",
+    "57AC02A0-9F4668DC.png",
+    "57AC02A0-A8D8C1E2.png",
+    "57AC02A0-A92C6DC0.png",
+    "57AC02A0-AE04A073.png",
+    "57AC02A0-B6B94CE1.png",
+    "57AC02A0-B95B4485.png",
+    "57AC02A0-BD15870F.png",
+    "57AC02A0-C2A4C2A3.png",
+    "57AC02A0-C41E039E.png",
+    "57AC02A0-C994D89E.png",
+    "57AC02A0-CA4B766A.png",
+    "57AC02A0-D286045A.png",
+    "57AC02A0-D4D5D2DC.png",
+    "57AC02A0-D533A575.png",
+    "57AC02A0-DE15B529.png",
+    "57AC02A0-DF2CDE10.png",
+    "57AC02A0-E94A60FD.png",
+    "57AC02A0-EA101E4A.png",
+    "57AC02A0-ECF4FDA5.png",
+    "57AC02A0-F1D4D52E.png",
+    "57AC02A0-F20B7BDA.png",
+    "57AC02A0-F7FC2E92.png",
+    "57AC02A0-F90C4EB4.png",
+    "AB2DB563-B869F949.png",
+    "B5207452-B6B94CE1.png"
+  ],
+  "protected_crisp_signs": {
+    "0FB1EFC5-F6269484.png": "82ad1d6ab191c73150c6598742b209d7b9ccd7ef13821923f0dce3c71fe4ecdf",
+    "327E6D9E-89C41FFB.png": "5c5296e68d4bee7cb2d41b4338fac1dad6e37a80cb91284a062ad874c144f736",
+    "67DC56D7-8D0C6ABE.png": "7e94330b75f8e80b4e1dba747c5cc5b737ec24f8e71eea186786c41558e52726",
+    "7A652858-600290FE.png": "a212a5c99c39c4d957d1299fe58e54f2cbc25125ed76923908d66cefb45c924e",
+    "CBF6CACF-7BEF165F.png": "5590b58b978f64d176215b2e296cb3995b22634f199c7bb65a637b6d682b6857"
+  },
+  "pinned_mismatches": [],
+  "native": [
+    {
+      "label": "new",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v3\\pack",
+        "1699"
+      ],
+      "exit": 0,
+      "stdout": "{\"keys\":1699,\"region_checks\":226,\"failures\":0}",
+      "stderr": ""
+    },
+    {
+      "label": "parent",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\sign-washout-audit\\verifier-build\\verify_native.exe",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-crisp-v2\\pack",
+        "1698"
+      ],
+      "exit": 0,
+      "stdout": "{\"keys\":1698,\"region_checks\":226,\"failures\":0}",
+      "stderr": ""
+    }
+  ],
+  "class_check": {
+    "keys": 53,
+    "native_centres_checked": 3346432,
+    "failures": 0
+  },
+  "manifest_files": 2389,
+  "pack_root_sha256": "39d7bef0bfc00ea6b884a9c5b619753e26af64772e67ba7e8623ee1965c41567",
+  "all_checks_pass": true,
+  "scope": "Admission, native class preservation, hash/source/parent integrity only. Live appearance, gameplay, timing and complete scene coverage NOT accepted."
+}

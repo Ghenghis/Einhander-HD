@@ -1,0 +1,8 @@
+In file included from C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\mutants\m32\test_hd_class_mips.c:10:
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\mutants\m32/hd_class_mips.inc:344:88: warning: unused parameter 'native_w' [-Wunused-parameter]
+  344 | static int hdcm_rgb_admit(const HdcmRgbSidecar *sc, uint32_t th, uint32_t ph, uint32_t native_w, uint32_t native_h,
+      |                                                                                        ^
+C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\mutants\m32/hd_class_mips.inc:344:107: warning: unused parameter 'native_h' [-Wunused-parameter]
+  344 | static int hdcm_rgb_admit(const HdcmRgbSidecar *sc, uint32_t th, uint32_t ph, uint32_t native_w, uint32_t native_h,
+      |                                                                                                           ^
+2 warnings generated.

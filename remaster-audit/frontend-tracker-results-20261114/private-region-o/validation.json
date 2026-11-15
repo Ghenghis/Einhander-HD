@@ -1,0 +1,83 @@
+{
+ "passed": true,
+ "keys": {
+  "95A3BCF8-60245B3A": {
+   "page2048": {
+    "readback_equals_written": true,
+    "outside_O_rgb_identical_to_live": true,
+    "live_alpha_values": [
+     127
+    ],
+    "alpha_all_127": true,
+    "centre_class_mismatches": 0,
+    "region_cell_mean_vs_native": {
+     "max_abs": 0.3125,
+     "mean_abs_windows": 0.07304822043628013,
+     "cells_over_2": 0,
+     "cells_over_8": 0,
+     "window_cells": 871
+    },
+    "current_region_cell_mean_vs_native": {
+     "max_abs": 72.59375,
+     "mean_abs_windows": 8.599956946039036,
+     "cells_over_2": 2713,
+     "cells_over_8": 1244,
+     "window_cells": 871
+    }
+   },
+   "page4096": {
+    "readback_equals_written": true,
+    "alpha_all_127": true,
+    "centre_class_mismatches": 0,
+    "region_cell_mean_vs_native": {
+     "max_abs": 0.3125,
+     "mean_abs_windows": 0.08168293149636434,
+     "cells_over_2": 0,
+     "cells_over_8": 0,
+     "window_cells": 871
+    },
+    "outside_O_box2_vs_live2048_mean_abs": 0.6218060387505425,
+    "outside_O_box2_vs_live2048_max_abs": 98.0
+   }
+  },
+  "95A3BCF8-07A9568D": {
+   "page2048": {
+    "readback_equals_written": true,
+    "outside_O_rgb_identical_to_live": true,
+    "live_alpha_values": [
+     127
+    ],
+    "alpha_all_127": true,
+    "centre_class_mismatches": 0,
+    "region_cell_mean_vs_native": {
+     "max_abs": 0.3125,
+     "mean_abs_windows": 0.07767652123995407,
+     "cells_over_2": 0,
+     "cells_over_8": 0,
+     "window_cells": 871
+    },
+    "current_region_cell_mean_vs_native": {
+     "max_abs": 85.21875,
+     "mean_abs_windows": 7.102821230386529,
+     "cells_over_2": 2698,
+     "cells_over_8": 1056,
+     "window_cells": 871
+    }
+   },
+   "page4096": {
+    "readback_equals_written": true,
+    "alpha_all_127": true,
+    "centre_class_mismatches": 0,
+    "region_cell_mean_vs_native": {
+     "max_abs": 0.3125,
+     "mean_abs_windows": 0.07790375047837735,
+     "cells_over_2": 0,
+     "cells_over_8": 0,
+     "window_cells": 871
+    },
+    "outside_O_box2_vs_live2048_mean_abs": 0.5435047149658203,
+    "outside_O_box2_vs_live2048_max_abs": 76.0
+   }
+  }
+ }
+}

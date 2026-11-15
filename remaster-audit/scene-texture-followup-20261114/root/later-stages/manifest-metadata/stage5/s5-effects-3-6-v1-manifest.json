@@ -1,0 +1,3210 @@
+{
+ "name": "s5-effects-3-6-v1",
+ "track": "w7-stage5 (claude-einhander lane-s5)",
+ "task": "w7-stage4 + w7-stage5 first art (coordinator request 2026-11-13, after EIN-STAGE4/5-SOURCE-REVIEW-20261113)",
+ "family": "s5-effects-set",
+ "status": "candidate",
+ "frozen_utc": "2026-11-13T21:53:30.769838+00:00",
+ "title": "Stage 5 effects set, member 3/6 (512-576,0): smoke, burst discs, fire ring and flame cones as palette-independent FX index masters",
+ "import_rule": "predicted-static; import only after live capture: the stage-5 acquisition run must list every key of this deliverable as key-confirmed (byte-identical words and CLUT) in validate_predicted.py confirm, and validate_predicted.py gate must pass for the pack that installs it",
+ "key_status": "predicted-static; import only after live capture",
+ "supersedes": null,
+ "sources": {
+  "kind": "shared immutable static export (exact-static disc strips, member-pure pages)",
+  "export_build": "2026-11-13T15:06:28Z",
+  "textures_json_sha256": "ded574f6ea713ee74201a0d16ebc238a6de08696b2233ab88d965de76d21fa8e",
+  "keys_json_sha256": "486a55ca3af40ef141433cf4081d6d08c132cd21575d060705690b9edfdba8ad",
+  "cluts_json_sha256": "38652bd766b842071ab01097ce35191aaf26b08f067a6418d73b39998540e58c",
+  "review": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage5/READINESS.md",
+  "palette_review_sha256": "16585a35d7f022703209b6bbcdf4c6a207e91937d28c6aad3e642ebf07dd0b93"
+ },
+ "gpu": "none: CPU-only index-space authoring; no ComfyUI call in this revision (GPU-RESERVED respected)",
+ "comfyui_graphs": [],
+ "reused_generated_swatches": {
+  "note": "Stage 1 JuggernautXL tileable swatches reused as luminance detail only (graphs/history copied in comfy/ where they exist)",
+  "files_sha256": {}
+ },
+ "method": "FX contract: alpha = classes of the categorical soft-label master (tone-group version, label-exact centres), identical for every CLUT with the same transparent entries; RGB free of class thresholds = continuous index field t (normalised convolution of the native index inside the opaque silhouette, sigma 0.55 texel: low frequencies locked to native) + band-limited turbulence (0.35 index steps) when the CLUT is a luminance ramp (Spearman >= 0.85), else categorical soft labels; per 32x32-texel cell light-energy gate vs native (scalar correction outside +-6 %). No material layer and no generated detail in this revision.",
+ "render_formula": "t = smoothed native index (+ turbulence); rgb = lerp(P[floor t], P[ceil t]) inside the opaque silhouette; class = class(P[l_0]) of the soft-label master; energy gate per cell; class stamped at every texel centre",
+ "class_validation": {
+  "file": "native-class-validation.json",
+  "total_mismatches": 0,
+  "exports": 4,
+  "convention": "class at pixel floor((i+0.5)*scale) of every native texel == class(CLUT[native index]); class 0 = raw 0x0000, 255 = STP, 127 = opaque"
+ },
+ "alpha_channel": "categorical PSX classes (0 = raw 0x0000, 127 opaque, 255 STP), NOT opacity; exact at every native texel centre",
+ "pages": {
+  "5C04E373": {
+   "member": "3/6",
+   "page_xy": [
+    512,
+    0
+   ],
+   "mode": "effect",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/5C04E373.words.bin",
+    "sha256": "6ca819afb7e9616b12be676a799737d8952ce2f869f4f086d00bb104ec9d4548",
+    "crc32": "5C04E373",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "5C04E373-3FF2DBD5",
+     "clut_xy": [
+      128,
+      484
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/5C04E373-3FF2DBD5.png",
+      "sha256": "37a2d194a640d4d12980b24835a7c7d204f718d27416904b413058202219080a",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/5C04E373-3FF2DBD5.png",
+      "sha256": "e73d0733c1133159ac447314a78c41f364c8a82ee6e0d0a0ec759dc990062316",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": {
+      "2048": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0007,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0012,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9972,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9984,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0018,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0044,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0011,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9979,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9971,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9981,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9974,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0014,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0007,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       }
+      ],
+      "1024": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0007,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9986,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0012,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0005,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9972,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9985,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0016,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0018,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0044,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0011,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9979,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9981,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9974,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9997,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9991,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9987,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9989,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0014,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0004,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0013,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9996,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       }
+      ]
+     },
+     "review": {
+      "path": "review/5C04E373-3FF2DBD5-review.png",
+      "sha256": "9a6d83019b1fe3aaa091cd556e55b8edd8943cdc56875850bbcee06186d3d860"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "5C04E373-382D7BFF",
+     "clut_xy": [
+      144,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-F819AA88",
+     "clut_xy": [
+      240,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-264276C9",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-62027D2B",
+     "clut_xy": [
+      16,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-526CBC12",
+     "clut_xy": [
+      128,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-3091E9CA",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-656BE56D",
+     "clut_xy": [
+      160,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-3ADA9277",
+     "clut_xy": [
+      32,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-105461A4",
+     "clut_xy": [
+      64,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-02491337",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "5C04E373-2C49B2AB",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "5C04E373-CDB19517",
+     "clut_xy": [
+      32,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-B4B798B5",
+     "clut_xy": [
+      256,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "5C04E373-CE4D993E",
+     "clut_xy": [
+      64,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-E505E02F",
+     "clut_xy": [
+      96,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "5C04E373-1E4E0007",
+     "clut_xy": [
+      256,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    }
+   ],
+   "palette_hold_keys": [
+    "5C04E373-02491337",
+    "5C04E373-190A55AD",
+    "5C04E373-1E4E0007",
+    "5C04E373-2C49B2AB",
+    "5C04E373-B4B798B5"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     256,
+     511
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "5C04E373-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 10,
+    "lost_texel_cores": 10,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0091400146484375,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 10,
+    "near_matrix_cluts": 19
+   },
+   "glow": {
+    "ramp_spearman_min": 0.635,
+    "opaque_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "transparency_consistent": true,
+    "used": "shape (palette is not a ramp: categorical soft labels)"
+   },
+   "material": null,
+   "logD_p1_p99": null
+  },
+  "BD968A3C": {
+   "member": "3/6",
+   "page_xy": [
+    576,
+    0
+   ],
+   "mode": "effect",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/BD968A3C.words.bin",
+    "sha256": "5c09abac52641eaa1370a0837ec58a70611f8d8737a8effcadbca9802834c10f",
+    "crc32": "BD968A3C",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "BD968A3C-A132B3B3",
+     "clut_xy": [
+      96,
+      493
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/BD968A3C-A132B3B3.png",
+      "sha256": "a7c0caf5a95fe553eff1d6ce314f7a4785c18d3f367c2b265dd041ce4d2e5b16",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/BD968A3C-A132B3B3.png",
+      "sha256": "4d57db7baf0e2cb69b5552a2c8fa3fdb6c93798e7b619e4ec9383c7f053fe83b",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127,
+        255
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": {
+      "2048": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0044,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0028,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9985,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.973,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9773,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9893,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0006,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9981,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9982,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0025,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0026,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0076,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9978,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9966,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9948,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0002,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0018,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.008,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0089,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9966,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9867,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9993,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.988,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9963,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       }
+      ],
+      "1024": [
+       {
+        "cell": [
+         0,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0017,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9974,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9984,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9628,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9757,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         0,
+         32,
+         32
+        ],
+        "ratio_before": 0.9865,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9963,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0066,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9977,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 0.9979,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         32,
+         32,
+         32
+        ],
+        "ratio_before": 1.003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9972,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9984,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9972,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0001,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         64,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.007,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9979,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0009,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9975,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 0.9968,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0015,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         96,
+         32,
+         32
+        ],
+        "ratio_before": 1.0002,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9998,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0029,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0085,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 1.0095,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9969,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9871,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9995,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         128,
+         32,
+         32
+        ],
+        "ratio_before": 0.9992,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9859,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 0.9999,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         160,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 0.9948,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         192,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         0,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0003,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         32,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         64,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         96,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         128,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         160,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         192,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       },
+       {
+        "cell": [
+         224,
+         224,
+         32,
+         32
+        ],
+        "ratio_before": 1.0,
+        "scale_applied": 1.0
+       }
+      ]
+     },
+     "review": {
+      "path": "review/BD968A3C-A132B3B3-review.png",
+      "sha256": "8f671622dafa922f194be27f0a65ebb983fca7290eee040f0110e829e3b603d0"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "BD968A3C-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-0ADAA698",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-4DC90157",
+     "clut_xy": [
+      0,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-361A4661",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-066C0B81",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-8808F70A",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-E7FB5B71",
+     "clut_xy": [
+      48,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "BD968A3C-D786D485",
+     "clut_xy": [
+      224,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "BD968A3C-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 134,
+    "lost_texel_cores": 134,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0255889892578125,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 21,
+    "near_matrix_cluts": 10
+   },
+   "glow": {
+    "ramp_spearman_min": 0.309,
+    "opaque_indices": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12,
+     13,
+     14,
+     15
+    ],
+    "transparency_consistent": true,
+    "used": "shape (palette is not a ramp: categorical soft labels)"
+   },
+   "material": null,
+   "logD_p1_p99": null
+  }
+ },
+ "builder_scripts": {
+  "build_w7.py": "fe1b686d5a5472211b14494d7d5cd91aebc292eb75c9d3cd28295ecb4c653b96",
+  "freeze_w7.py": "713ff8aa6ceb493852369e2edb15bd935db6873b1eb305f0a8911bb94ee3132e",
+  "glyph_check.py": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+  "s5-effects-3-6-v1.json": "68e94bde712fe55c8e8e1229f5ec041a0e7f9e037f2aa181b69e6a75f33382c0",
+  "verify_frozen.py": "1a7d3e1ca7b1f4a912830d97b3aa388b9ce4ae433763089b8bfcd8666ce17d84",
+  "w7lib.py": "af3c2ec93d790f3251257bbbe3e9db253a12ae0d1e8b39153c1125e35c22c8ba"
+ },
+ "build_record": "build-record.json",
+ "honest_read": [
+  "Class-exact and native-faithful: silhouettes, holes and transparent texels are exact at every texel centre; at in-game size (panel C) the sprites read as a cleaner, slightly softer version of native.",
+  "Neither review CLUT is a luminance ramp (5C04E373 grey 3FF2DBD5, BD968A3C lavender/red A132B3B3), so the continuous glow field was not used: radial gradients (the burst discs on 5C04E373) become terraced octagonal tone plateaus at 16x, i.e. visible banding, and smoke becomes posterised blobs.",
+  "High-contrast speckle (the BD968A3C fire ring, flame-cone edges) is not blended (the speckle colours are not near under the page CLUTs), so it becomes rounded dots at 16x; in motion this speckle may twinkle like the native does.",
+  "No generated detail: this is not the fx_v2 SDXL-detail look of the Stage 1 effects; flames and smoke have no internal structure beyond the native tones.",
+  "The A132B3B3 render of BD968A3C (lavender fill around red/orange fire) looks like a wrong pairing; colours come only from the captured CLUT phases."
+ ],
+ "known_limits": [
+  "All keys are predicted-static (likely pairings); import only after the stage-5 run confirms each key. The flaming spinning disks almost certainly use runtime CLUT phases (AQ-05): render only the captured phases from the master.",
+  "One render per page; 27 further static predicted keys render from the same masters later; 5 palette-hold keys wait for AQ-05.",
+  "Energy gate per 32x32 cell holds the light energy within +-6 % of native for the review CLUT only.",
+  "FX v2 SDXL img2img detail (GPU) for 512 and 576 is not done.",
+  "Review panel C is a SIMULATION (bilinear from runtime-2048, no mips, 9 px per texel); no in-game capture exists."
+ ],
+ "integration_notes": {
+  "install": "do not install before the stage-5 acquisition run; then install only keys listed key-confirmed by validate_predicted.py confirm",
+  "runtime": "runtime-1024 is enough for effects; runtime-2048 provided",
+  "alpha": "PNG alpha = exact PSX classes (categorical), not opacity",
+  "index_path": "master/<TEX>-labels16.npz render any CLUT with builder/w7lib.py render (glow field only when that CLUT is a ramp, as build_w7.py decides)"
+ },
+ "reuse": null,
+ "shared_pages_referenced_not_built": null,
+ "glyph_check": null,
+ "files": {
+  "build-record.json": {
+   "sha256": "fc72b78b244f8fe7e2061d17f92ce7bfde74ec8b94daa0b395d0e88a2e8ed961",
+   "bytes": 59344
+  },
+  "builder/build_w7.py": {
+   "sha256": "fe1b686d5a5472211b14494d7d5cd91aebc292eb75c9d3cd28295ecb4c653b96",
+   "bytes": 16822
+  },
+  "builder/freeze_w7.py": {
+   "sha256": "713ff8aa6ceb493852369e2edb15bd935db6873b1eb305f0a8911bb94ee3132e",
+   "bytes": 5538
+  },
+  "builder/glyph_check.py": {
+   "sha256": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+   "bytes": 8967
+  },
+  "builder/s5-effects-3-6-v1.json": {
+   "sha256": "68e94bde712fe55c8e8e1229f5ec041a0e7f9e037f2aa181b69e6a75f33382c0",
+   "bytes": 1606
+  },
+  "builder/verify_frozen.py": {
+   "sha256": "1a7d3e1ca7b1f4a912830d97b3aa388b9ce4ae433763089b8bfcd8666ce17d84",
+   "bytes": 5159
+  },
+  "builder/w7lib.py": {
+   "sha256": "af3c2ec93d790f3251257bbbe3e9db253a12ae0d1e8b39153c1125e35c22c8ba",
+   "bytes": 25024
+  },
+  "master/5C04E373-labels16.npz": {
+   "sha256": "1e4d76c18e3f6537bb0d59d310e31883e95f4048f16f086dc027adf608f5129d",
+   "bytes": 5617545
+  },
+  "master/5C04E373-native-idx.npy": {
+   "sha256": "524b12afcc46cb2de7b3dbf0c7854d6490d0e193577dc28e543b0285b0280579",
+   "bytes": 65664
+  },
+  "master/BD968A3C-labels16.npz": {
+   "sha256": "76ec770b1bd408f0b9306846c7318a7d82e85639756fda89eac01d676f2cba91",
+   "bytes": 5021864
+  },
+  "master/BD968A3C-native-idx.npy": {
+   "sha256": "dc7d41b3e7cfcc98a147361ae31ae016d6cf42bf8b611a057376077e8f2e53ad",
+   "bytes": 65664
+  },
+  "native-class-validation.json": {
+   "sha256": "5947f8238bf07b4189de01a3f5dd0aadf4a7ddd32828b79c5f488f70ae62e321",
+   "bytes": 1165
+  },
+  "review/5C04E373-3FF2DBD5-review.png": {
+   "sha256": "9a6d83019b1fe3aaa091cd556e55b8edd8943cdc56875850bbcee06186d3d860",
+   "bytes": 219457
+  },
+  "review/BD968A3C-A132B3B3-review.png": {
+   "sha256": "8f671622dafa922f194be27f0a65ebb983fca7290eee040f0110e829e3b603d0",
+   "bytes": 176334
+  },
+  "runtime-1024/5C04E373-3FF2DBD5.png": {
+   "sha256": "e73d0733c1133159ac447314a78c41f364c8a82ee6e0d0a0ec759dc990062316",
+   "bytes": 190356
+  },
+  "runtime-1024/BD968A3C-A132B3B3.png": {
+   "sha256": "4d57db7baf0e2cb69b5552a2c8fa3fdb6c93798e7b619e4ec9383c7f053fe83b",
+   "bytes": 254973
+  },
+  "runtime-2048/5C04E373-3FF2DBD5.png": {
+   "sha256": "37a2d194a640d4d12980b24835a7c7d204f718d27416904b413058202219080a",
+   "bytes": 519182
+  },
+  "runtime-2048/BD968A3C-A132B3B3.png": {
+   "sha256": "a7c0caf5a95fe553eff1d6ce314f7a4785c18d3f367c2b265dd041ce4d2e5b16",
+   "bytes": 715656
+  }
+ }
+}

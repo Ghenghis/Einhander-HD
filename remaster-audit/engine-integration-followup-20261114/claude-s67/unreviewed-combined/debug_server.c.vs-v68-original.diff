@@ -1,0 +1,62 @@
+--- a/debug_server.c
++++ b/debug_server.c
+@@ -6900,6 +6900,17 @@
+                                uint64_t *underruns,
+                                uint64_t *overflow_drops, double *correction,
+                                int *legacy, int *host_rate);
++/* Gap counters of the bridge (main.cpp; C linkage). Returns 0 if unavailable. */
++extern int psx_audio_out_gap_stats(uint64_t *gaps, uint64_t *max_gap_frames,
++                                   uint64_t *cur_gap_frames, uint64_t *gap_epoch);
++/* s67 combined: old out.* fields and gap fields from ONE locked snapshot. */
++extern int psx_audio_out_stats_ex(double *fill_ms, double *target_ms,
++                                  uint64_t *underruns,
++                                  uint64_t *overflow_drops, double *correction,
++                                  int *legacy, int *host_rate,
++                                  uint64_t *gaps, uint64_t *max_gap_frames,
++                                  uint64_t *cur_gap_frames, uint64_t *gap_epoch,
++                                  uint64_t *bridge_generation, int *gap_ok);
+ 
+ static void handle_audio_stats(int id, const char *json)
+ {
+@@ -6909,9 +6920,12 @@
+     double fill_ms = 0.0, target_ms = 0.0, correction = 0.0;
+     uint64_t out_underruns = 0, overflow_drops = 0;
+     int legacy = 1, host_rate = 44100;
+-    int out_ok = psx_audio_out_stats(&fill_ms, &target_ms, &out_underruns,
+-                                     &overflow_drops, &correction, &legacy,
+-                                     &host_rate);
++    uint64_t gaps = 0, max_gap = 0, cur_gap = 0, gap_epoch = 0, generation = 0;
++    int gap_ok = 0;
++    int out_ok = psx_audio_out_stats_ex(&fill_ms, &target_ms, &out_underruns,
++                                        &overflow_drops, &correction, &legacy,
++                                        &host_rate, &gaps, &max_gap, &cur_gap,
++                                        &gap_epoch, &generation, &gap_ok);
+     send_fmt("{\"id\":%d,\"ok\":true,"
+              "\"taps\":["
+              "{\"name\":\"spu_out\",\"frames\":%llu,\"nonzero\":%llu,"
+@@ -6926,7 +6940,11 @@
+              "\"out\":{\"active\":%d,\"mode\":\"%s\",\"host_rate\":%d,"
+              "\"fill_ms\":%.1f,\"target_ms\":%.1f,\"underruns\":%llu,"
+              "\"overflow_drops\":%llu,"
+-             "\"correction\":%.5f}}",
++             "\"correction\":%.5f,"
++             "\"gap_ok\":%d,\"gaps\":%llu,\"max_gap_frames\":%llu,"
++             "\"cur_gap_frames\":%llu,\"gap_epoch\":%llu,"
++             "\"bridge_generation\":%llu,\"snapshot\":\"single-lock-v1\","
++             "\"render_b\":\"%s\"}}",
+              id,
+              (unsigned long long)st.tap_frames[0],
+              (unsigned long long)st.tap_nonzero[0],
+@@ -6951,7 +6969,11 @@
+              fill_ms, target_ms,
+              (unsigned long long)out_underruns,
+              (unsigned long long)overflow_drops,
+-             correction);
++             correction,
++             gap_ok, (unsigned long long)gaps, (unsigned long long)max_gap,
++             (unsigned long long)cur_gap, (unsigned long long)gap_epoch,
++             (unsigned long long)generation,
++             legacy ? "legacy:queued-bytes-before" : "bridge:post-push-cached-fill-ms-v1");
+ }
+ 
+ static void handle_audio_wav(int id, const char *json)

@@ -1,0 +1,139 @@
+1c1,11
+< // T2 mesh/instance transport r0 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+---
+> // T2 mesh/instance transport r1 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+> // r1 applies root reviews msg_ae5bb832 and msg_51d69071 to r0 (ba059e13, preserved):
+> //   - exact canonical topology and opcode/tpage-derived consistency (no trusting duplicate flags);
+> //   - native eligibility from v66-r3 scene_capture.cpp 78c4158d :138-156 (every triangle eligible, mapping known,
+> //     no oversize/clip-out), packet word == view.packed, view.frame + lag == p.frame;
+> //   - coverage binds info.mode SEALED, malformed 0, info.frame; the ledger carries a provenance header;
+> //   - resolver initialized by construction, bounded retired-id list at commit, transform_changes (motion
+> //     UNQUALIFIED), partitioned reuse counts; classification vs final disposition counts.
+> // MaterialKey is a G2 placeholder (native draw state only), NOT content identity. G4 must bind per-draw
+> // texture/CLUT content hashes, upload serial, dimensions and an owned RGBA copy of the right draw generation.
+> // G4 is not implemented; no shader/PBR acceptance.
+14,16c24,26
+< // UNVERIFIED field semantics (scene_capture.cpp not reviewed): ScenePrimitive.qualified, .mixed_lag,
+< // .triangle_count/.indices, .frame/.generation, SceneVertex.lag. Every use below is a conservative gate
+< // (it can only send a primitive or frame native), never a reason to transport.
+---
+> // Field semantics read in v66-r3 scene_capture.cpp: qualified is cleared when any vertex reason != OK (:136);
+> // mixed_lag (:127); indices are fixed 0,1,2 / 2,1,3 (:115); oversize, clip_out and eligible masks per triangle
+> // (:151-156); screen_mapping_known = state.native_screen_mapping (:138); ordinal = textured_seen-1 (:110).
+36a47,50
+>     P_INCONSISTENT,          // a flag disagrees with what the opcode/tpage define
+>     P_NOT_ELIGIBLE,          // a native triangle is not eligible (oversize, clipped out, mapping unknown)
+>     P_PACKET_MAPPING,        // the GP0 packet word is not the view's SXY word
+>     P_LAG_BINDING,           // view.frame + lag != primitive frame
+49a64,66
+> // Provenance of a ledger: the same sealed frame and generation as the capture, completeness over ALL commands
+> // of the interval, and the full command count (not the textured count).
+> struct LedgerHeader { uint32_t frame, generation, command_count; uint8_t complete; };
+78c95,98
+<     uint32_t counts[16];                          // per PrimReason
+---
+>     // class_counts: the per-primitive classification; final_counts: the final dispositions after any
+>     // whole-frame fallback. They differ exactly when the frame fell back.
+>     static constexpr uint32_t kReasons = 24;
+>     uint32_t class_counts[kReasons], final_counts[kReasons];
+113,115c133,145
+<     if (p.nverts != 3 && p.nverts != 4) return P_BAD_TOPOLOGY;
+<     if (p.triangle_count != (p.nverts == 4 ? 2 : 1)) return P_BAD_TOPOLOGY;
+<     for (int i = 0; i < p.triangle_count * 3; i++) if (p.indices[i] >= p.nverts) return P_BAD_TOPOLOGY;
+---
+>     // Topology is defined by the opcode, never trusted from the stored flags.
+>     const uint8_t nverts = (p.opcode & 0x08) ? 4 : 3, tris = (uint8_t)(nverts - 2);
+>     if (p.nverts != nverts || p.triangle_count != tris) return P_BAD_TOPOLOGY;
+>     static const uint8_t kCanonical[6] = {0, 1, 2, 2, 1, 3};
+>     if (memcmp(p.indices, kCanonical, (size_t)tris * 3) != 0) return P_BAD_TOPOLOGY;
+>     // Duplicate flags must agree with the opcode and tpage that define them (capture :112-114).
+>     if (p.semi_trans != ((p.opcode >> 1) & 1) || p.raw_texture != (p.opcode & 1)) return P_INCONSISTENT;
+>     if (textured && (p.depth != ((p.tpage >> 7) & 3) || p.blend_mode != ((p.tpage >> 5) & 3))) return P_INCONSISTENT;
+>     // Native eligibility (capture :138-156): every native triangle eligible, mapping known, none oversize or
+>     // clipped out. A triangle the native GPU discards or never shows must not become transported geometry.
+>     const uint8_t all = (uint8_t)((1u << tris) - 1u);
+>     if (!p.screen_mapping_known || p.oversize_mask || p.clip_out_mask || (p.eligible_triangle_mask & all) != all)
+>         return P_NOT_ELIGIBLE;
+120a151,152
+>         if ((uint32_t)(v.view.frame + v.lag) != p.frame) return P_LAG_BINDING;   // declared lag, actually checked
+>         if (v.packet_word != v.view.packed) return P_PACKET_MAPPING;           // T1b: GP0 word is the SXY word
+162,163c194,196
+< inline void t2_build(const ScenePrimitive *prims, uint32_t count, const SceneCaptureInfo *info,
+<                      const LedgerEntry *ledger, uint32_t ledger_count, bool diagnostic, T2Frame *f) {
+---
+> inline void t2_build_impl(const ScenePrimitive *prims, uint32_t count, const SceneCaptureInfo *info,
+>                           const LedgerHeader *lh, const LedgerEntry *ledger, uint32_t ledger_count,
+>                           bool diagnostic, T2Frame *f) {
+172c205
+<         f->counts[f->disposition_reason[i]]++;
+---
+>         f->class_counts[f->disposition_reason[i]]++;
+175,176c208,210
+<     const bool coverage = info && info->complete && info->geometry_types_complete && info->overflow == 0 &&
+<                           info->count == count && info->generation == f->generation;
+---
+>     const bool coverage = info && info->mode == SCENE_SEALED && info->complete && info->malformed == 0 &&
+>                           info->geometry_types_complete && info->overflow == 0 && info->count == count &&
+>                           info->generation == f->generation && info->frame == f->frame_id;
+178a213,215
+>         // The ledger must prove the same sealed frame/generation and complete coverage of ALL its commands.
+>         if (!lh || !ledger || ledger_count > kMaxLedger || !lh->complete || lh->frame != f->frame_id ||
+>             lh->generation != f->generation || lh->command_count != ledger_count) { frame_native(f, F_UNORDERED); return; }
+180d216
+<         if (!ledger || ledger_count > kMaxLedger) { frame_native(f, F_UNORDERED); return; }
+246a283,292
+> // Public entry: build, then derive final disposition counts from the final dispositions (after any
+> // whole-frame fallback), separately from the classification counts.
+> inline void t2_build(const ScenePrimitive *prims, uint32_t count, const SceneCaptureInfo *info,
+>                      const LedgerHeader *lh, const LedgerEntry *ledger, uint32_t ledger_count,
+>                      bool diagnostic, T2Frame *f) {
+>     t2_build_impl(prims, count, info, lh, ledger, ledger_count, diagnostic, f);
+>     memset(f->final_counts, 0, sizeof f->final_counts);
+>     for (uint32_t i = 0; i < f->prim_count; i++) f->final_counts[f->disposition_reason[i]]++;
+> }
+> 
+255c301,309
+<     bool ok; uint32_t created, reused, retired, reassigned;
+---
+>     bool ok;
+>     uint32_t created;                 // groups that created a new mesh
+>     uint32_t reused;                  // groups mapped to a mesh that existed BEFORE this frame
+>     uint32_t duplicate_new;           // groups mapped to a mesh created earlier in THIS frame
+>     uint32_t transform_changes;       // (mesh id, run ordinal) seen last frame with a different transform.
+>                                       // This includes ordinary motion; it is NOT an identity-reassignment
+>                                       // measure and qualifies no motion vectors.
+>     uint32_t retired_count;           // meshes evicted at commit; the consumer must DestroyMesh exactly these
+>     uint64_t retired_ids[kCacheEntries];
+260c314,316
+<     MeshEntry entries[kCacheEntries];
+---
+>     // Initialized by construction (value-initialized arrays): a default-initialized or `new T2Resolver`
+>     // object never reads indeterminate used/refs/ids.
+>     MeshEntry entries[kCacheEntries] = {};
+263c319
+<     struct Prev { uint64_t id; uint32_t ordinal; TransformKey xf; } prev[kMaxGroups];
+---
+>     struct Prev { uint64_t id; uint32_t ordinal; TransformKey xf; } prev[kMaxGroups] = {};
+306c362
+<         for (uint32_t k = 0; k < need; k++) {
+---
+>         for (uint32_t k = 0; k < need; k++) {           // evictions: report the exact ids for DestroyMesh
+308c364
+<             if (e.used) r->retired++;
+---
+>             if (e.used) r->retired_ids[r->retired_count++] = e.id;
+323c379,380
+<             if (!created && !(slot_of[gi] <= -2)) r->reused++;
+---
+>             if (slot_of[gi] <= -2) r->duplicate_new++;
+>             else if (!created) r->reused++;
+331,332c388,389
+<         // Instance identity across frames: (mesh id, run ordinal); a different transform than last frame
+<         // for the same identity is counted as a reassignment.
+---
+>         // Instance identity across frames: (mesh id, run ordinal). A different transform than last frame for
+>         // the same identity is counted as a transform change (ordinary motion included; motion UNQUALIFIED).
+336c393
+<                     memcmp(&prev[pi].xf, &f.transforms[f.groups[gi].transform], sizeof(TransformKey)) != 0) r->reassigned++;
+---
+>                     memcmp(&prev[pi].xf, &f.transforms[f.groups[gi].transform], sizeof(TransformKey)) != 0) r->transform_changes++;

@@ -1,0 +1,58 @@
+{
+  "at_utc": "2026-11-14T19:53:15.522606+00:00",
+  "sources": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py",
+      "sha256": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+      "bytes": 7315
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\test_gl_adapter_identity_guard.py",
+      "sha256": "18977886193c7dd1bdeedb12bc7df30215e21765ec4c775ef7c75df1dda00503",
+      "bytes": 5627
+    }
+  ],
+  "syntax_valid": true,
+  "test_methods_declared": 21,
+  "test_method_names": [
+    "test_valid_model_and_advancing_owned_gl",
+    "test_empty_initial_ring_is_allowed",
+    "test_wrong_model",
+    "test_model_substring_does_not_accept_another_sku",
+    "test_missing_and_duplicate_identity",
+    "test_truncated_identity",
+    "test_ready_marker_is_required",
+    "test_software_fallback_rejects_even_matching_adapter",
+    "test_actual_software_fallback_text",
+    "test_identity_must_precede_ready",
+    "test_complete_model_case_is_normalized",
+    "test_actual_dual_raster_ready_variant",
+    "test_laptop_suffix_does_not_match",
+    "test_both_rpc_queries_require_owned_listener_brackets",
+    "test_strict_utf8_and_original_bytes_are_required",
+    "test_nonadvancing_or_decreasing_ring",
+    "test_reused_pid_or_other_process",
+    "test_incomplete_or_failed_ring",
+    "test_stale_gl_event",
+    "test_gl_error_and_blank_only_reject",
+    "test_invalid_fields_or_log_bound"
+  ],
+  "tests_executed": false,
+  "passing_tests": null,
+  "gpu_run": false,
+  "game_run": false,
+  "integrated_into_launcher": false,
+  "peer_review": "8a3c1e4e32b79ed3734d13a17ff40e4423d7f050530f3070d17007bba2a257c6",
+  "changes": [
+    "UTF-8 original bounded bytes; no silent startup truncation",
+    "identity must precede GL-ready; software fallback still rejects",
+    "listener PID/creation checked before AND after each of two RPC queries",
+    "extra controls for exact dual-raster marker, invalid decoding, ordering and model suffix"
+  ],
+  "remaining": [
+    "execute focused controls on a fresh grant",
+    "implement retained-process/exact-port listener sampling in real runner",
+    "compile one-time GL identity patch in a new private build",
+    "qualify actual game adapter/focus/frame progression separately from performance"
+  ]
+}

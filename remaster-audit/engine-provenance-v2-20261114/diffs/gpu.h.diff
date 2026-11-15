@@ -1,0 +1,15 @@
+--- a/windows-x64/psxrecomp/runtime/include/gpu.h
++++ b/windows-x64/psxrecomp/runtime/include/gpu.h
+@@ -47,6 +47,12 @@
+ void gpu_texture_correction_stats(uint64_t *attempts, uint64_t *armed,
+                                   uint64_t *no_correction,
+                                   uint64_t *no_source, uint64_t *no_depth);
++/* remix-provenance v2 (private, default off): per-primitive 3D view census.
++ * Arming enables the PGXP transport for collection without geometry or
++ * texture correction; disarming restores the transport the user's modes
++ * imply. Read it with the TCP verb pgxp_view. */
++void gpu_view_census_set(int enabled);
++int  gpu_view_census_enabled(void);
+ /* GP1(08h) bit4 — 24-bit display. Renderers skip FBO upload queues while set:
+  * packed RGB888 lives in the CPU mirror; treating A0 rects as 1555 FBO uploads
+  * both wastes bandwidth and force-flushes when UP_RECTS_MAX is hit (MotK FMV). */

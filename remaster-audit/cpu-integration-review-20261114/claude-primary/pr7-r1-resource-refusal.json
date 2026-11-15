@@ -1,0 +1,36 @@
+{
+ "tool": "run_rc2.py",
+ "revision": "r1",
+ "cmd": [
+  "python",
+  "remix-probe-r5/build_r7_cpu.r1.py",
+  "--cpu",
+  "15",
+  "--out-root",
+  "remix-probe-r5/runs/PR7-1-20261114T204240Z",
+  "--expect-source-sha",
+  "751d3231690d172590232dfbaf20710a9bdeac1b514f4d780bd7893be312fc05"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary",
+ "wrapper_pid": 28444,
+ "wrapper_create_time": 1794688960.8891988,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 120.0,
+ "rc": null,
+ "created_utc": "2026-11-14T20:42:41.173173+00:00",
+ "precheck": {
+  "system_cpu_pct": 78.6,
+  "free_gib": 54.98,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T20:42:42.179273+00:00"
+ },
+ "declined": true,
+ "child_pid": null,
+ "wrapper_exit": 3,
+ "end_utc": "2026-11-14T20:42:42.179286+00:00"
+}

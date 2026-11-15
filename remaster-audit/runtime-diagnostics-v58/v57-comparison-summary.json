@@ -1,0 +1,1448 @@
+{
+  "same_binary_sha256": "efde4724c391bed59393e16573e5831999848fb261e9dad5ca88061f3d75656d",
+  "off": {
+    "directory": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/display57-pbo-off-r3/hd-on_rewind-on",
+    "errors": [],
+    "exit": 0,
+    "port_closed": true,
+    "selftest": {
+      "id": 1,
+      "ok": true,
+      "pbo_requested_env": 0,
+      "pbo_state": 1,
+      "pbo_reason": "ready",
+      "pbo_verified": true,
+      "cases": 8,
+      "texels": 2048,
+      "on_vs_off_rgba": 0,
+      "on_vs_off_raw": 0,
+      "off_vs_model_rgba": 0,
+      "off_vs_model_raw": 0,
+      "on_vs_model_rgba": 0,
+      "on_vs_model_raw": 0,
+      "holes_changed": 0,
+      "first_mismatch_index": -1,
+      "preexisting_errors": 0,
+      "last_preexisting": 0,
+      "gl_error_test": 0,
+      "gl_error_restore": 0,
+      "state_restored": true,
+      "restore_mismatch_mask": 0,
+      "live_vram_touched": false
+    },
+    "focus_all": true,
+    "gameplay": {
+      "from_frame": 3798,
+      "to_frame": 10996,
+      "count": 7199,
+      "unique_frames": 7199,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 19,
+      "max_ms": 85,
+      "late_over25": [
+        {
+          "seq": 3381,
+          "frame": 3982,
+          "ms": 51
+        },
+        {
+          "seq": 3392,
+          "frame": 3993,
+          "ms": 71
+        },
+        {
+          "seq": 3963,
+          "frame": 4564,
+          "ms": 33
+        },
+        {
+          "seq": 3988,
+          "frame": 4589,
+          "ms": 26
+        },
+        {
+          "seq": 4066,
+          "frame": 4667,
+          "ms": 26
+        },
+        {
+          "seq": 4103,
+          "frame": 4704,
+          "ms": 85
+        },
+        {
+          "seq": 4160,
+          "frame": 4761,
+          "ms": 27
+        },
+        {
+          "seq": 4163,
+          "frame": 4764,
+          "ms": 29
+        },
+        {
+          "seq": 4289,
+          "frame": 4890,
+          "ms": 27
+        },
+        {
+          "seq": 4292,
+          "frame": 4893,
+          "ms": 30
+        },
+        {
+          "seq": 4393,
+          "frame": 4994,
+          "ms": 28
+        },
+        {
+          "seq": 5498,
+          "frame": 6099,
+          "ms": 28
+        },
+        {
+          "seq": 5992,
+          "frame": 6593,
+          "ms": 27
+        },
+        {
+          "seq": 5995,
+          "frame": 6596,
+          "ms": 75
+        },
+        {
+          "seq": 6105,
+          "frame": 6706,
+          "ms": 31
+        },
+        {
+          "seq": 6842,
+          "frame": 7443,
+          "ms": 28
+        },
+        {
+          "seq": 7561,
+          "frame": 8162,
+          "ms": 32
+        },
+        {
+          "seq": 7564,
+          "frame": 8165,
+          "ms": 27
+        },
+        {
+          "seq": 9102,
+          "frame": 9703,
+          "ms": 27
+        },
+        {
+          "seq": 9103,
+          "frame": 9704,
+          "ms": 41
+        },
+        {
+          "seq": 9640,
+          "frame": 10241,
+          "ms": 33
+        }
+      ]
+    },
+    "common_window": {
+      "from_frame": 4355,
+      "to_frame": 10996,
+      "count": 6642,
+      "unique_frames": 6642,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 19,
+      "max_ms": 85,
+      "late_over25": [
+        {
+          "seq": 3963,
+          "frame": 4564,
+          "ms": 33
+        },
+        {
+          "seq": 3988,
+          "frame": 4589,
+          "ms": 26
+        },
+        {
+          "seq": 4066,
+          "frame": 4667,
+          "ms": 26
+        },
+        {
+          "seq": 4103,
+          "frame": 4704,
+          "ms": 85
+        },
+        {
+          "seq": 4160,
+          "frame": 4761,
+          "ms": 27
+        },
+        {
+          "seq": 4163,
+          "frame": 4764,
+          "ms": 29
+        },
+        {
+          "seq": 4289,
+          "frame": 4890,
+          "ms": 27
+        },
+        {
+          "seq": 4292,
+          "frame": 4893,
+          "ms": 30
+        },
+        {
+          "seq": 4393,
+          "frame": 4994,
+          "ms": 28
+        },
+        {
+          "seq": 5498,
+          "frame": 6099,
+          "ms": 28
+        },
+        {
+          "seq": 5992,
+          "frame": 6593,
+          "ms": 27
+        },
+        {
+          "seq": 5995,
+          "frame": 6596,
+          "ms": 75
+        },
+        {
+          "seq": 6105,
+          "frame": 6706,
+          "ms": 31
+        },
+        {
+          "seq": 6842,
+          "frame": 7443,
+          "ms": 28
+        },
+        {
+          "seq": 7561,
+          "frame": 8162,
+          "ms": 32
+        },
+        {
+          "seq": 7564,
+          "frame": 8165,
+          "ms": 27
+        },
+        {
+          "seq": 9102,
+          "frame": 9703,
+          "ms": 27
+        },
+        {
+          "seq": 9103,
+          "frame": 9704,
+          "ms": 41
+        },
+        {
+          "seq": 9640,
+          "frame": 10241,
+          "ms": 33
+        }
+      ]
+    },
+    "boss": {
+      "from_frame": 9250,
+      "to_frame": 9599,
+      "count": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 17,
+      "max_ms": 17,
+      "late_over25": []
+    },
+    "audio": {
+      "new_starved_sample_frames": 0,
+      "first": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 178,
+        "target_ms": 180,
+        "underruns": 22830,
+        "overflow_drops": 22637,
+        "correction": 0.00015
+      },
+      "last": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 178.7,
+        "target_ms": 180,
+        "underruns": 22830,
+        "overflow_drops": 22637,
+        "correction": 0.00018
+      },
+      "increments": []
+    },
+    "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+    "native_counter_delta": {
+      "rects": 45351,
+      "pbo_rects": 0,
+      "fallback_rects": 0,
+      "slow_events": 43,
+      "staging_ticks": 0,
+      "state_ticks": 176327,
+      "rgba_upload_ticks": 154918,
+      "raw_upload_ticks": 27280891,
+      "total_ticks": 27635022
+    },
+    "native_max_cumulative": {
+      "frame": 6596,
+      "ms": 58.3144
+    },
+    "native_slow_events": [
+      [
+        0,
+        67,
+        2,
+        0,
+        2,
+        640,
+        0,
+        80,
+        480,
+        0,
+        0,
+        61,
+        521,
+        16932,
+        17515
+      ],
+      [
+        1,
+        1411,
+        49,
+        0,
+        1,
+        768,
+        128,
+        64,
+        32,
+        0,
+        0,
+        79,
+        54,
+        22801,
+        22935
+      ],
+      [
+        2,
+        1420,
+        58,
+        0,
+        1,
+        832,
+        160,
+        64,
+        32,
+        0,
+        0,
+        103,
+        81,
+        33833,
+        34018
+      ],
+      [
+        3,
+        3047,
+        521,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        11,
+        11,
+        11552,
+        11574
+      ],
+      [
+        4,
+        3050,
+        524,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        15,
+        9,
+        13598,
+        13622
+      ],
+      [
+        5,
+        3089,
+        563,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        18,
+        8,
+        377522,
+        377549
+      ],
+      [
+        6,
+        3091,
+        565,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        10,
+        7,
+        49607,
+        49626
+      ],
+      [
+        7,
+        3366,
+        840,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        88,
+        60,
+        10313,
+        10462
+      ],
+      [
+        8,
+        3368,
+        842,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        21,
+        9,
+        239385,
+        239416
+      ],
+      [
+        9,
+        3373,
+        847,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        4289,
+        27,
+        40582,
+        44902
+      ],
+      [
+        10,
+        3421,
+        895,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        58,
+        53,
+        11476,
+        11592
+      ],
+      [
+        11,
+        3544,
+        1018,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        51,
+        67,
+        12681,
+        12799
+      ],
+      [
+        12,
+        4564,
+        1914,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        36,
+        22,
+        156187,
+        156249
+      ],
+      [
+        13,
+        4585,
+        1935,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        28,
+        62,
+        11067,
+        11158
+      ],
+      [
+        14,
+        4589,
+        1939,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        20,
+        14,
+        92285,
+        92319
+      ],
+      [
+        15,
+        4615,
+        1965,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        13,
+        8,
+        78239,
+        78260
+      ],
+      [
+        16,
+        4640,
+        1990,
+        0,
+        5,
+        48,
+        510,
+        16,
+        1,
+        0,
+        0,
+        13,
+        7,
+        75087,
+        75107
+      ],
+      [
+        17,
+        4663,
+        2013,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        30,
+        26,
+        12988,
+        13044
+      ],
+      [
+        18,
+        4667,
+        2017,
+        0,
+        4,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        15,
+        11,
+        96919,
+        96946
+      ],
+      [
+        19,
+        4893,
+        2243,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        29,
+        23,
+        136848,
+        136900
+      ],
+      [
+        20,
+        4897,
+        2247,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        62,
+        13,
+        12765,
+        12840
+      ],
+      [
+        21,
+        4905,
+        2255,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        13,
+        11,
+        11100,
+        11126
+      ],
+      [
+        22,
+        4918,
+        2268,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        18,
+        14,
+        10667,
+        10700
+      ],
+      [
+        23,
+        4969,
+        2319,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        14,
+        8,
+        85406,
+        85429
+      ],
+      [
+        24,
+        4982,
+        2332,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        16,
+        9,
+        69100,
+        69126
+      ],
+      [
+        25,
+        4989,
+        2339,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        47,
+        46,
+        14685,
+        14780
+      ],
+      [
+        26,
+        4990,
+        2340,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        19,
+        38,
+        16795,
+        16853
+      ],
+      [
+        27,
+        4994,
+        2344,
+        0,
+        6,
+        16,
+        510,
+        16,
+        1,
+        0,
+        0,
+        11,
+        6,
+        110926,
+        110943
+      ],
+      [
+        28,
+        5003,
+        2353,
+        0,
+        7,
+        48,
+        510,
+        16,
+        1,
+        0,
+        0,
+        15,
+        8,
+        71671,
+        71695
+      ],
+      [
+        29,
+        6183,
+        3533,
+        0,
+        2,
+        272,
+        488,
+        4,
+        1,
+        0,
+        0,
+        13,
+        19,
+        10831,
+        10865
+      ],
+      [
+        30,
+        6596,
+        3946,
+        0,
+        7,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        393,
+        8,
+        582742,
+        583144
+      ],
+      [
+        31,
+        6711,
+        4061,
+        0,
+        8,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        13,
+        8,
+        84792,
+        84813
+      ],
+      [
+        32,
+        6920,
+        4270,
+        0,
+        5,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        11,
+        8,
+        63124,
+        63143
+      ],
+      [
+        33,
+        6968,
+        4318,
+        0,
+        5,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        11,
+        8,
+        24806,
+        24826
+      ],
+      [
+        34,
+        7463,
+        4813,
+        0,
+        5,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        12,
+        10,
+        11126,
+        11148
+      ],
+      [
+        35,
+        7483,
+        4833,
+        0,
+        4,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        26,
+        15,
+        10819,
+        10860
+      ],
+      [
+        36,
+        7501,
+        4851,
+        0,
+        4,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        20,
+        16,
+        12296,
+        12333
+      ],
+      [
+        37,
+        7531,
+        4881,
+        0,
+        4,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        21,
+        18,
+        10618,
+        10658
+      ],
+      [
+        38,
+        7980,
+        5330,
+        0,
+        4,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        26,
+        12,
+        11382,
+        11420
+      ],
+      [
+        39,
+        8002,
+        5352,
+        0,
+        4,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        9,
+        8,
+        10297,
+        10315
+      ],
+      [
+        40,
+        8165,
+        5515,
+        0,
+        7,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        13,
+        9,
+        111060,
+        111083
+      ],
+      [
+        41,
+        8307,
+        5657,
+        0,
+        7,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        15,
+        15,
+        84107,
+        84138
+      ],
+      [
+        42,
+        9616,
+        6966,
+        0,
+        5,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        17,
+        12,
+        10048,
+        10077
+      ],
+      [
+        43,
+        9629,
+        6979,
+        0,
+        5,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        16,
+        12,
+        10074,
+        10102
+      ],
+      [
+        44,
+        10244,
+        7594,
+        0,
+        8,
+        48,
+        487,
+        16,
+        1,
+        0,
+        0,
+        8,
+        10,
+        92018,
+        92038
+      ],
+      [
+        45,
+        10355,
+        7705,
+        0,
+        8,
+        208,
+        487,
+        32,
+        1,
+        0,
+        0,
+        14,
+        14,
+        72923,
+        72955
+      ]
+    ],
+    "ring": {
+      "id": 1,
+      "ok": true,
+      "total": 10402,
+      "now_ms": 189154,
+      "requested": 16384,
+      "returned": 10402,
+      "missing": 0,
+      "truncated": 0,
+      "capacity": 16384
+    },
+    "commands": {
+      "timer_write_requests": 608,
+      "successful_timer_writes": 608,
+      "forbidden_mutations": []
+    },
+    "acceptance": {
+      "full_smoothness": false,
+      "seven_stages": false,
+      "installed": false
+    }
+  },
+  "on": {
+    "directory": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/display57-pbo-on-r1/hd-on_rewind-on",
+    "errors": [],
+    "exit": 0,
+    "port_closed": true,
+    "selftest": {
+      "id": 1,
+      "ok": true,
+      "pbo_requested_env": 1,
+      "pbo_state": 1,
+      "pbo_reason": "ready",
+      "pbo_verified": true,
+      "cases": 8,
+      "texels": 2048,
+      "on_vs_off_rgba": 0,
+      "on_vs_off_raw": 0,
+      "off_vs_model_rgba": 0,
+      "off_vs_model_raw": 0,
+      "on_vs_model_rgba": 0,
+      "on_vs_model_raw": 0,
+      "holes_changed": 0,
+      "first_mismatch_index": -1,
+      "preexisting_errors": 0,
+      "last_preexisting": 0,
+      "gl_error_test": 0,
+      "gl_error_restore": 0,
+      "state_restored": true,
+      "restore_mismatch_mask": 0,
+      "live_vram_touched": false
+    },
+    "focus_all": true,
+    "gameplay": {
+      "from_frame": 4355,
+      "to_frame": 11552,
+      "count": 7198,
+      "unique_frames": 7198,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 20,
+      "max_ms": 184,
+      "late_over25": [
+        {
+          "seq": 5287,
+          "frame": 5888,
+          "ms": 35
+        },
+        {
+          "seq": 5981,
+          "frame": 6582,
+          "ms": 40
+        },
+        {
+          "seq": 5985,
+          "frame": 6586,
+          "ms": 184
+        },
+        {
+          "seq": 5989,
+          "frame": 6590,
+          "ms": 49
+        },
+        {
+          "seq": 6093,
+          "frame": 6694,
+          "ms": 26
+        },
+        {
+          "seq": 6830,
+          "frame": 7431,
+          "ms": 33
+        },
+        {
+          "seq": 6846,
+          "frame": 7447,
+          "ms": 28
+        },
+        {
+          "seq": 7550,
+          "frame": 8151,
+          "ms": 33
+        },
+        {
+          "seq": 7691,
+          "frame": 8292,
+          "ms": 27
+        },
+        {
+          "seq": 7695,
+          "frame": 8296,
+          "ms": 86
+        },
+        {
+          "seq": 8271,
+          "frame": 8872,
+          "ms": 26
+        },
+        {
+          "seq": 8306,
+          "frame": 8907,
+          "ms": 26
+        },
+        {
+          "seq": 9091,
+          "frame": 9692,
+          "ms": 41
+        },
+        {
+          "seq": 9638,
+          "frame": 10239,
+          "ms": 33
+        },
+        {
+          "seq": 9774,
+          "frame": 10375,
+          "ms": 32
+        },
+        {
+          "seq": 10144,
+          "frame": 10745,
+          "ms": 29
+        }
+      ]
+    },
+    "common_window": {
+      "from_frame": 4355,
+      "to_frame": 10996,
+      "count": 6642,
+      "unique_frames": 6642,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 20,
+      "max_ms": 184,
+      "late_over25": [
+        {
+          "seq": 5287,
+          "frame": 5888,
+          "ms": 35
+        },
+        {
+          "seq": 5981,
+          "frame": 6582,
+          "ms": 40
+        },
+        {
+          "seq": 5985,
+          "frame": 6586,
+          "ms": 184
+        },
+        {
+          "seq": 5989,
+          "frame": 6590,
+          "ms": 49
+        },
+        {
+          "seq": 6093,
+          "frame": 6694,
+          "ms": 26
+        },
+        {
+          "seq": 6830,
+          "frame": 7431,
+          "ms": 33
+        },
+        {
+          "seq": 6846,
+          "frame": 7447,
+          "ms": 28
+        },
+        {
+          "seq": 7550,
+          "frame": 8151,
+          "ms": 33
+        },
+        {
+          "seq": 7691,
+          "frame": 8292,
+          "ms": 27
+        },
+        {
+          "seq": 7695,
+          "frame": 8296,
+          "ms": 86
+        },
+        {
+          "seq": 8271,
+          "frame": 8872,
+          "ms": 26
+        },
+        {
+          "seq": 8306,
+          "frame": 8907,
+          "ms": 26
+        },
+        {
+          "seq": 9091,
+          "frame": 9692,
+          "ms": 41
+        },
+        {
+          "seq": 9638,
+          "frame": 10239,
+          "ms": 33
+        },
+        {
+          "seq": 9774,
+          "frame": 10375,
+          "ms": 32
+        },
+        {
+          "seq": 10144,
+          "frame": 10745,
+          "ms": 29
+        }
+      ]
+    },
+    "boss": {
+      "from_frame": 9250,
+      "to_frame": 9599,
+      "count": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 17,
+      "max_ms": 17,
+      "late_over25": []
+    },
+    "audio": {
+      "new_starved_sample_frames": 703,
+      "first": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 174,
+        "target_ms": 180,
+        "underruns": 20912,
+        "overflow_drops": 23074,
+        "correction": -0.00029
+      },
+      "last": {
+        "active": 1,
+        "mode": "bridge-pull",
+        "host_rate": 48000,
+        "fill_ms": 170.1,
+        "target_ms": 180,
+        "underruns": 21615,
+        "overflow_drops": 23074,
+        "correction": 0.00013
+      },
+      "increments": [
+        {
+          "elapsed": 38.00040330000047,
+          "frame": 6633,
+          "delta": 703
+        }
+      ]
+    },
+    "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+    "native_counter_delta": {
+      "rects": 48504,
+      "pbo_rects": 48504,
+      "fallback_rects": 0,
+      "slow_events": 0,
+      "staging_ticks": 304940,
+      "state_ticks": 133803,
+      "rgba_upload_ticks": 58126,
+      "raw_upload_ticks": 20540,
+      "total_ticks": 544772
+    },
+    "native_max_cumulative": {
+      "frame": 67,
+      "ms": 1.3337
+    },
+    "native_slow_events": [
+      [
+        0,
+        67,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1024,
+        512,
+        1,
+        12207,
+        25,
+        16,
+        0,
+        13337
+      ]
+    ],
+    "ring": {
+      "id": 1,
+      "ok": true,
+      "total": 10959,
+      "now_ms": 199743,
+      "requested": 16384,
+      "returned": 10959,
+      "missing": 0,
+      "truncated": 0,
+      "capacity": 16384
+    },
+    "commands": {
+      "timer_write_requests": 598,
+      "successful_timer_writes": 598,
+      "forbidden_mutations": []
+    },
+    "acceptance": {
+      "full_smoothness": false,
+      "seven_stages": false,
+      "installed": false
+    }
+  },
+  "limits": [
+    "one ordered live-input pair; different handoff delay and input timing",
+    "timer-only assistance, scale2, rewind50/15, frozen1669PNG pack,5120MiB HD cache",
+    "foreground-controlled diagnostic; no recorder/profiler/GLreadback during timing",
+    "actual GPU byte-equality selftest before timing may warm driver state",
+    "native totals include title/route/handoff, compare slow events by frame",
+    "not a claim of physical display visibility or hardware audible quality"
+  ]
+}

@@ -1,0 +1,64 @@
+{
+ "owner": "claude-einhander-s67",
+ "session_id": "local_4ea66aaa-8822-4352-9314-bc95cc950d9e",
+ "cli_session_id": "00b8d103-2731-4007-9483-52e8168f2e8e",
+ "session_title": "Einhander Stages 6-7",
+ "worktree": "C:/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db",
+ "started_utc": "2026-11-14T13:30:35.718Z",
+ "checkpoint_utc": "2026-11-14T13:42:50Z",
+ "phase": "working",
+ "pending_task_ids": [
+  "EIN-S6-WHOLE-CELL-20261114",
+  "EIN-S7-WHOLE-CELL-20261114"
+ ],
+ "claims": {
+  "EIN-S6-WHOLE-CELL-20261114": "2026-11-14T13:32:21.832Z",
+  "EIN-S7-WHOLE-CELL-20261114": "2026-11-14T13:32:26.001Z"
+ },
+ "locks": [
+  "remaster-audit/parallel-stages-20261114/s67",
+  ".hermes3d_orchestrator/continuity/claude-einhander-s67.json"
+ ],
+ "inputs": {
+  "lane_readiness": {
+   "path": "remaster-audit/runtime-review/seven-stage-status-20261114/lane-readiness-20261114T131712Z.json",
+   "sha256": "07cd9358083107da96bc209dc1bfa8685820c1316f1455c146c31ac6fc2283b8"
+  }
+ },
+ "messages_sent": [
+  "msg_9ce4ae21306423ff",
+  "msg_efc6642013839d5e",
+  "msg_62c4270d756e19a2",
+  "msg_ac1d8fb04c619936"
+ ],
+ "messages_acked": [
+  "msg_f6dc487265c534f6",
+  "msg_76e474773852e61b",
+  "msg_febdab42c2a4b606",
+  "msg_e123d0763d7540a3",
+  "msg_5bf01325ef36806b",
+  "msg_f4d0584acc290048"
+ ],
+ "latest_outputs": {
+  "remaster-audit/parallel-stages-20261114/s67/stage6/selection-map-20261114T133638Z.json": "3d0961e7f734a173b0dd161ceb7951776024a5f727cebb5dcad882bda0312eb7",
+  "remaster-audit/parallel-stages-20261114/s67/stage7/selection-map-20261114T133927Z.json": "1069a9044ec05bfd35faae8882c1ff3f7df14e1bc5de87c64d76225f86266da2",
+  "remaster-audit/parallel-stages-20261114/s67/runs/20261114T134056Z-dry/result.json": "9d57c65fbff1393dbeb6bda43e90bfcf02de561f94d3664a27102dcd57118d69",
+  "remaster-audit/parallel-stages-20261114/s67/tools/s6_selection_map.py": "ddba59fec8ecd7f324e50fb35572304ddc28d0062ccec19619e6d6a267f9e9c9",
+  "remaster-audit/parallel-stages-20261114/s67/tools/s7_selection_map.py": "912e0cb0dabe4a2904d2b232339efb0b7535c82e78a30817f1c0e37132a875be",
+  "remaster-audit/parallel-stages-20261114/s67/tools/s67_strict_audit.py": "cb2ebd9eba45a028d0f26f1003989a9f570bce641a9c64792c1a21a76d4c2425"
+ },
+ "resources": {
+  "gpu": "none (3090Ti user-reserved for Pizza Tycoon HD until explicit release)",
+  "heavy_cpu_slot": "REQUESTED 13:41:36Z (msg_62c4270d756e19a2) for s67_strict_audit.py full run (282 files, budget 270s); NOT granted yet; slot currently s23 J1"
+ },
+ "next_action": "On CPU grant: run s67_strict_audit.py (report PID/runfolder). Meanwhile draft s67 capture requests: S6 GP0 hull part-mask spec (CR-S6-3), S6 timeout/second-ending outcome capture (AQ-13) separate request, S7 source request; then repair-proposal triage from strict results.",
+ "continuation": {
+  "armed": false,
+  "monitor_task_id": null,
+  "next_wakeup_utc": null
+ },
+ "findings": {
+  "s6": "101 unique keys (83+18) == S6-gate-keys; 87 new + 14 replacement versions; 4 Stage1-reused 10932164 keys; words 101/101, CLUT 97/97 + 4 via Stage1 copy CRC-proven; lane-readiness omits 2 v1 folders holding 23 selected keys",
+  "s7": "26 keys == gate list; C4FDEDD2-EAD968A1 unlisted/inferred, slot 0,504 shared by 6 listed keys incl 89EA4685-6E066984; validate_predicted gate does not check clut_xy; 30BB2999-418C69D6 forced centres 75/124; 5 export-less master folders + 9B2F0BFD; 14 dense-kanji fallbacks"
+ }
+}

@@ -1,0 +1,893 @@
+{
+ "name": "stage6-vram448-0-A5969BC9-dedither-r2",
+ "status": "proposal (s67 repair r2; NOT frozen lane art; NOT accepted)",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S6-WHOLE-CELL-20261114",
+ "created_utc": "2026-11-14T15:50:19.193868+00:00",
+ "base": {
+  "folder": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram448-0-03F5CF11-A5969BC9-v1",
+  "manifest_sha256": "4fc87e9b04c02f993a3488910223e0f544a568c6f1c09017f302b866abc3dbc7"
+ },
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "provenance": "predicted-static (inherits v1); live key/CLUT unconfirmed",
+ "method": "s67 isolated REPAIR PROPOSAL r1: A5969BC9 (VRAM 448,0, set B) 1-texel column dither -> continuous tone, class plane untouched.\n\nDefect (lane LEDGER frozen_batch2.honest_look + review/A5969BC9-FD5E0863-close-16x.png): the frozen v1 keeps the native 1-texel\nvertical dither of the big orange disk (v0-127) as hard 8-px vertical bars at 2048 ('pipe organ'), a shimmer risk without mips.\nOn the native display the alternating columns read as one blended tone.\n\nMethod (CPU, deterministic, no AI, no new palette, no new identity):\n  * D (texel space) = every texel of a 1-texel column alternation a,b,a (a != b, idx[y,x] == idx[y,x+2]) held for >= 3 rows,\n    restricted to index pairs whose class (0 / 127 / 255) is equal under ALL 14 delivered CLUTs (CLUT-free condition);\n  * per delivered key and size, starting from the FROZEN v1 runtime PNG: inside D, RGB := normalised horizontal box mean over\n    exactly 2 texels, using only pixels of D with the same alpha class (cutout and STP never mix); feathered 0.5 texel at the\n    D border; outside D every byte stays v1;\n  * the alpha plane (PS1 class) is byte-identical to v1 at 2048 and 1024 (asserted), so every native-centre and whole-cell\n    class property of v1 is unchanged; mean light energy inside D is preserved by the box mean (reported).\nKnown deviation: inside D the texel-centre RGB becomes the pair mean, not the native per-texel colour. That is intended: it is\nthe perceived native tone. Class is never changed.\nREAD-ONLY on comfy-authoring/w7-stage6. Writes ONLY C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/repairs/<name>/.\nr2 (2026-11-14): same algorithm and bytes as r1; the per-pixel work runs in row strips (repair, STRIP rows) to cut peak\nmemory, arrays are released per key/size, an RSS guard (--rss-limit-mib, default 960, under the 1 GiB grant cap) stops cleanly,\nand a manifest is written even on failure (status FAILED (partial)). Output: repairs/stage6-vram448-0-A5969BC9-dedither-r2/.\nusage: python -B -I s6_dedither_A5969BC9.py mask      (light: texel-space mask + stats only)\n       python -B -I s6_dedither_A5969BC9.py build --cpu=N [--rss-limit-mib=960] [--budget-s=110]   (HEAVY: 14 keys x 2 sizes; needs a granted CPU slot)",
+ "mask": {
+  "D_texels": 18691,
+  "run_positions": 12292,
+  "excluded_class_changing_positions": 3867,
+  "D_bbox": [
+   0,
+   1,
+   255,
+   222
+  ],
+  "pairs": [
+   [
+    [
+     2,
+     6
+    ],
+    5545
+   ],
+   [
+    [
+     4,
+     8
+    ],
+    826
+   ],
+   [
+    [
+     4,
+     12
+    ],
+    821
+   ],
+   [
+    [
+     4,
+     5
+    ],
+    503
+   ],
+   [
+    [
+     5,
+     7
+    ],
+    450
+   ],
+   [
+    [
+     3,
+     6
+    ],
+    395
+   ],
+   [
+    [
+     3,
+     10
+    ],
+    331
+   ],
+   [
+    [
+     4,
+     9
+    ],
+    309
+   ],
+   [
+    [
+     3,
+     8
+    ],
+    295
+   ],
+   [
+    [
+     3,
+     11
+    ],
+    289
+   ],
+   [
+    [
+     4,
+     7
+    ],
+    288
+   ],
+   [
+    [
+     3,
+     5
+    ],
+    214
+   ],
+   [
+    [
+     0,
+     5
+    ],
+    209
+   ],
+   [
+    [
+     3,
+     7
+    ],
+    198
+   ],
+   [
+    [
+     0,
+     4
+    ],
+    191
+   ],
+   [
+    [
+     4,
+     10
+    ],
+    125
+   ],
+   [
+    [
+     1,
+     12
+    ],
+    118
+   ],
+   [
+    [
+     0,
+     3
+    ],
+    113
+   ],
+   [
+    [
+     2,
+     4
+    ],
+    111
+   ],
+   [
+    [
+     5,
+     8
+    ],
+    90
+   ],
+   [
+    [
+     3,
+     12
+    ],
+    80
+   ],
+   [
+    [
+     1,
+     4
+    ],
+    73
+   ],
+   [
+    [
+     5,
+     6
+    ],
+    72
+   ],
+   [
+    [
+     2,
+     11
+    ],
+    72
+   ],
+   [
+    [
+     2,
+     5
+    ],
+    71
+   ],
+   [
+    [
+     1,
+     7
+    ],
+    64
+   ],
+   [
+    [
+     3,
+     4
+    ],
+    51
+   ],
+   [
+    [
+     10,
+     11
+    ],
+    51
+   ],
+   [
+    [
+     1,
+     2
+    ],
+    39
+   ],
+   [
+    [
+     0,
+     1
+    ],
+    38
+   ],
+   [
+    [
+     2,
+     9
+    ],
+    37
+   ],
+   [
+    [
+     2,
+     3
+    ],
+    33
+   ],
+   [
+    [
+     2,
+     7
+    ],
+    25
+   ],
+   [
+    [
+     11,
+     12
+    ],
+    24
+   ],
+   [
+    [
+     1,
+     10
+    ],
+    20
+   ],
+   [
+    [
+     0,
+     2
+    ],
+    15
+   ],
+   [
+    [
+     8,
+     10
+    ],
+    14
+   ],
+   [
+    [
+     4,
+     6
+    ],
+    12
+   ],
+   [
+    [
+     1,
+     3
+    ],
+    10
+   ],
+   [
+    [
+     1,
+     9
+    ],
+    8
+   ],
+   [
+    [
+     0,
+     6
+    ],
+    8
+   ],
+   [
+    [
+     0,
+     7
+    ],
+    5
+   ],
+   [
+    [
+     0,
+     10
+    ],
+    5
+   ],
+   [
+    [
+     8,
+     9
+    ],
+    5
+   ],
+   [
+    [
+     1,
+     8
+    ],
+    4
+   ],
+   [
+    [
+     0,
+     8
+    ],
+    4
+   ],
+   [
+    [
+     7,
+     9
+    ],
+    4
+   ],
+   [
+    [
+     9,
+     10
+    ],
+    4
+   ],
+   [
+    [
+     0,
+     12
+    ],
+    3
+   ],
+   [
+    [
+     2,
+     8
+    ],
+    3
+   ],
+   [
+    [
+     2,
+     10
+    ],
+    3
+   ],
+   [
+    [
+     7,
+     10
+    ],
+    3
+   ],
+   [
+    [
+     3,
+     9
+    ],
+    2
+   ],
+   [
+    [
+     1,
+     6
+    ],
+    2
+   ],
+   [
+    [
+     0,
+     11
+    ],
+    2
+   ],
+   [
+    [
+     6,
+     7
+    ],
+    2
+   ],
+   [
+    [
+     1,
+     5
+    ],
+    1
+   ],
+   [
+    [
+     0,
+     9
+    ],
+    1
+   ],
+   [
+    [
+     8,
+     11
+    ],
+    1
+   ]
+  ]
+ },
+ "priority": {
+  "pid": 33576,
+  "nice": "below_normal",
+  "affinity": [
+   15
+  ]
+ },
+ "elapsed_s": 44.5,
+ "keys": [
+  {
+   "key": "A5969BC9-FD5E0863",
+   "clut": "FD5E0863",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-FD5E0863.png",
+     "sha256": "39f335c578eb4e1fbbd7d62bf83afec1f8a3b5414a0260f9191f03a2373e1fe4",
+     "v1_sha256": "e66e7d1d339882af9ffeeef719576e519934fbc00922db8b4cbf14905ab1be63",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 37.944,
+     "stripe_metric_r1": 3.594,
+     "D_lum_v1": 188.22042686123763,
+     "D_lum_r1": 188.0495474213716,
+     "pixels_changed": 1191823,
+     "pixels_equal_failed_r1_partial": true,
+     "failed_r1_partial_sha256": "39f335c578eb4e1fbbd7d62bf83afec1f8a3b5414a0260f9191f03a2373e1fe4"
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-FD5E0863.png",
+     "sha256": "2b775b6158c0b9defed01044f7a7a9d60a70063199b5fdd979e707d3b8b1f748",
+     "v1_sha256": "fb1dafb6528debdb622ca644e53f411aec6811190b4d532917c7ed56d78c6acd",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 37.925,
+     "stripe_metric_r1": 3.564,
+     "D_lum_v1": 188.22612696876178,
+     "D_lum_r1": 188.09905933467684,
+     "pixels_changed": 297929,
+     "pixels_equal_failed_r1_partial": true,
+     "failed_r1_partial_sha256": "2b775b6158c0b9defed01044f7a7a9d60a70063199b5fdd979e707d3b8b1f748"
+    }
+   },
+   "review": "A5969BC9-FD5E0863-v1-vs-r1_2048crop_r1crop_2pxTexel-v1_2pxTexel-r1.png"
+  },
+  {
+   "key": "A5969BC9-28E85C14",
+   "clut": "28E85C14",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-28E85C14.png",
+     "sha256": "cad63c8bbbf3552be6509db9c34d38c5d2d31dcd833ecf69bf8608666f31695b",
+     "v1_sha256": "86213e9c2dbbd4f13431fb7072986a7322286b4232967881c3b717e49657c89e",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 27.375,
+     "stripe_metric_r1": 2.734,
+     "D_lum_v1": 178.3460367228755,
+     "D_lum_r1": 178.19288243749833,
+     "pixels_changed": 1190917,
+     "pixels_equal_failed_r1_partial": true,
+     "failed_r1_partial_sha256": "cad63c8bbbf3552be6509db9c34d38c5d2d31dcd833ecf69bf8608666f31695b"
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-28E85C14.png",
+     "sha256": "39e9573ee29c4569a6f6d7f304ddfa778e78ae725b9784c6d958717f3e03de8e",
+     "v1_sha256": "a1d269ac84be6453ef6a5101acac62814e630ba478665f0cac646968a0b6ac40",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 27.35,
+     "stripe_metric_r1": 2.716,
+     "D_lum_v1": 178.35531347122324,
+     "D_lum_r1": 178.23006854976495,
+     "pixels_changed": 297574,
+     "pixels_equal_failed_r1_partial": true,
+     "failed_r1_partial_sha256": "39e9573ee29c4569a6f6d7f304ddfa778e78ae725b9784c6d958717f3e03de8e"
+    }
+   },
+   "review": "A5969BC9-28E85C14-v1-vs-r1_2048crop_r1crop_2pxTexel-v1_2pxTexel-r1.png"
+  },
+  {
+   "key": "A5969BC9-B675A0C2",
+   "clut": "B675A0C2",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-B675A0C2.png",
+     "sha256": "6144278c390b96a287184fe47cfe238fb5c0511cdadd02d857114fd86b294e10",
+     "v1_sha256": "3ea6f7a050e3745924e02e54f50872464502c11d8d79be954eeadd9af6312b2b",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 60.481,
+     "stripe_metric_r1": 7.622,
+     "D_lum_v1": 56.87621356235079,
+     "D_lum_r1": 57.220749194838184,
+     "pixels_changed": 1193147
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-B675A0C2.png",
+     "sha256": "d0f057576a0a68e01b973853d02990e239a1259c90e1f7f334f0885cdb93c6b3",
+     "v1_sha256": "f01fed104a1dba7007aeee32f85e054e97aa74bdd6b5ff453e3fa647c8601cc6",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 60.289,
+     "stripe_metric_r1": 7.554,
+     "D_lum_v1": 56.86642436830746,
+     "D_lum_r1": 57.22189623238946,
+     "pixels_changed": 298270
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-CD90D27E",
+   "clut": "CD90D27E",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-CD90D27E.png",
+     "sha256": "562f33995272b1cfaf2f058515ce4f881fdaef3ab2c9b353626f9f706fa422f8",
+     "v1_sha256": "a098b5527b11d267245f585d42327e417e30467a7fc2a86aa414b0b95e8c9d58",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 46.49,
+     "stripe_metric_r1": 4.805,
+     "D_lum_v1": 137.06234113958712,
+     "D_lum_r1": 136.84305980391164,
+     "pixels_changed": 1188329
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-CD90D27E.png",
+     "sha256": "c9e8388ae03d5ff6cd47e6c8b20317125d4d728b2786e73434da73fb2ca97b32",
+     "v1_sha256": "24bd31b50b89c5e2b39cc028dc6cfedce109672987cb69a4abeaaacbf21c959f",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 46.265,
+     "stripe_metric_r1": 4.759,
+     "D_lum_v1": 137.06633155648612,
+     "D_lum_r1": 136.90011302421337,
+     "pixels_changed": 296882
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-F3BEA083",
+   "clut": "F3BEA083",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-F3BEA083.png",
+     "sha256": "19b9685cc9a139d3ab8a4660cde034e5e850d14dbd822e8d1045e84acb2fb26b",
+     "v1_sha256": "61c7e8af5896fb96d14b90d0202fe25cd6d8bd9a474a6e5af4470b3bc448eb33",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 22.665,
+     "stripe_metric_r1": 2.556,
+     "D_lum_v1": 174.88472586777394,
+     "D_lum_r1": 174.7614101591223,
+     "pixels_changed": 1186206
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-F3BEA083.png",
+     "sha256": "7ba1c2d18770cc7f5f0abd97fdf0ad6fffafa46b685adfefb538356d305e01d7",
+     "v1_sha256": "cb0676d997430e9d2bb5efc860eb5fd6128c01e1ebe82282445ded0a4cb28ca0",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 22.497,
+     "stripe_metric_r1": 2.534,
+     "D_lum_v1": 174.88546905756877,
+     "D_lum_r1": 174.7968332340805,
+     "pixels_changed": 296660
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-7DFC973F",
+   "clut": "7DFC973F",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-7DFC973F.png",
+     "sha256": "82382f494384201ebb0ac08d767ebff6029500d81489eaaa887e51d00dcecf12",
+     "v1_sha256": "5fa3d109dd06d8a0ed5d56ea166a4d1477d685ff97259aea715e4c4489cf7719",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 62.052,
+     "stripe_metric_r1": 5.844,
+     "D_lum_v1": 139.28863919013756,
+     "D_lum_r1": 139.11889626780072,
+     "pixels_changed": 1190926
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-7DFC973F.png",
+     "sha256": "80c1818cf81637167ac6849e9107821b67459ef110b9d923a6cd3b1601d49cb4",
+     "v1_sha256": "692fb1bd7b04b6dce7c425d19b0a7dfcac6c4d40837ab889eaf0134fa638ffff",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 62.041,
+     "stripe_metric_r1": 5.793,
+     "D_lum_v1": 139.2915029168467,
+     "D_lum_r1": 139.18266418480093,
+     "pixels_changed": 297502
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-B3A5B734",
+   "clut": "B3A5B734",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-B3A5B734.png",
+     "sha256": "166938133cd1fb5fa3bd872de2d4e3edf0528970a8bd5cea7acd391eea832f7d",
+     "v1_sha256": "a152bde3646df637a25908db4a517c62173ba5c6a2ce2ebd35ed2cb322a1efca",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 15.239,
+     "stripe_metric_r1": 1.524,
+     "D_lum_v1": 26.060478305041816,
+     "D_lum_r1": 26.022907396018198,
+     "pixels_changed": 1184696
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-B3A5B734.png",
+     "sha256": "75e1c69e71f28a7d81f484dad6799a646126a2ea83504a9efef3fa48a9fccbcc",
+     "v1_sha256": "878efa8836938f19ed1def4424463141e00a937577eee75df582ada7a8fb5cee",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 15.218,
+     "stripe_metric_r1": 1.511,
+     "D_lum_v1": 26.059473111008153,
+     "D_lum_r1": 26.032581548963833,
+     "pixels_changed": 296286
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-AD6DB7AA",
+   "clut": "AD6DB7AA",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-AD6DB7AA.png",
+     "sha256": "f9531ad949dea7f328130460c094d3ebbfa7b1729c1b1a8e4307ce1240b71e5e",
+     "v1_sha256": "c5be9836e2ebf2a46801be5545897b2e1d96de0aefadd1528b3842c58e90d179",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 4.692,
+     "stripe_metric_r1": 0.524,
+     "D_lum_v1": 83.0884782303573,
+     "D_lum_r1": 83.0629741563874,
+     "pixels_changed": 1089757
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-AD6DB7AA.png",
+     "sha256": "021e8341686a51b0b7a1cb93fc48745a4b7fcd06850db8ddbe2340ee5f6f161d",
+     "v1_sha256": "ec845b538195145628fc796377ce39fc4a7309786c5a4496608c922110aa2f8f",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 4.566,
+     "stripe_metric_r1": 0.541,
+     "D_lum_v1": 83.08663804327898,
+     "D_lum_r1": 83.07098605505097,
+     "pixels_changed": 273280
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-4FB18FAB",
+   "clut": "4FB18FAB",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-4FB18FAB.png",
+     "sha256": "5b513e86af6ceff24e67999d18e6dd6fb880195e5704557ced8eadd0f3979049",
+     "v1_sha256": "f6d14411ee5f60a4739a0c8f664d222b977009d9192553ca71fa9ed713a0e1f2",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 24.718,
+     "stripe_metric_r1": 2.559,
+     "D_lum_v1": 216.31133891870184,
+     "D_lum_r1": 216.23911910022372,
+     "pixels_changed": 1186140
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-4FB18FAB.png",
+     "sha256": "7e68c6edee793a245555e2a2d9f0d9864b0b41a252d1f84540db744077ab773c",
+     "v1_sha256": "91db6b0553c8b12cc2c70c80b95af05b28827e3726be77fcae8bff53d4b32eb7",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 24.67,
+     "stripe_metric_r1": 2.546,
+     "D_lum_v1": 216.31084579105305,
+     "D_lum_r1": 216.2589858376918,
+     "pixels_changed": 296565
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-165DD2B8",
+   "clut": "165DD2B8",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-165DD2B8.png",
+     "sha256": "747c45aa5369f63130d430d3a0246d0366d6e5b9f9532a4452c010cf891bafc7",
+     "v1_sha256": "12b11f83749584540ded1d65a1682e385e88667231bf2d6e8439a51b40a0643d",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 29.838,
+     "stripe_metric_r1": 2.973,
+     "D_lum_v1": 58.98377568996675,
+     "D_lum_r1": 58.94693786327497,
+     "pixels_changed": 1190951
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-165DD2B8.png",
+     "sha256": "7f78361b2de8558987ced0593eede4886e2cfac45222aaf209595f358a4e9579",
+     "v1_sha256": "81f59b8909b06b0f8c8191815295a6b0ba8e114bdbcf02d5fd645f6f430f21c1",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 29.761,
+     "stripe_metric_r1": 2.949,
+     "D_lum_v1": 58.98222245131276,
+     "D_lum_r1": 58.98505236684629,
+     "pixels_changed": 297848
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-3A9A151E",
+   "clut": "3A9A151E",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-3A9A151E.png",
+     "sha256": "13a0b990d99c11278a3e27e9a988a0cf11563b8c3432896cae0ba55b7e56c134",
+     "v1_sha256": "12816f9dafc67f5eb8756e827035ae95f35aa943248cc99f4c0586deec4bf965",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 61.157,
+     "stripe_metric_r1": 7.838,
+     "D_lum_v1": 62.713701150792794,
+     "D_lum_r1": 63.147957475492106,
+     "pixels_changed": 1193133
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-3A9A151E.png",
+     "sha256": "c069561f86f28444996f93e09579e24e7c33ed887ef5827008377a0d814c978f",
+     "v1_sha256": "5967820ee43badfad13c03b1cc7b6253c5df3632af2ff97d5c9cabc9795cc84f",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 60.989,
+     "stripe_metric_r1": 7.768,
+     "D_lum_v1": 62.69994298172931,
+     "D_lum_r1": 63.13909529641507,
+     "pixels_changed": 298273
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-995DA972",
+   "clut": "995DA972",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-995DA972.png",
+     "sha256": "caae63c0dae102d92667da0bcff820106d0906d1c3762a790a895dda12d166cf",
+     "v1_sha256": "7eeba0b3b607834d0d9df271401835419c07fe8bb75e4bca64e8095b92c349e1",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 24.569,
+     "stripe_metric_r1": 2.41,
+     "D_lum_v1": 80.1185079950208,
+     "D_lum_r1": 80.03016660191116,
+     "pixels_changed": 1177601
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-995DA972.png",
+     "sha256": "5c79b6b09645c26e8331e58be684fecad7817f7a1256e34e3ce0ba91c2aaea8f",
+     "v1_sha256": "00d6c6d2f90a54ba2a0e736deae42e7a0f0124d333bcfea58277cf81dab78e24",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 24.523,
+     "stripe_metric_r1": 2.391,
+     "D_lum_v1": 80.12296027409744,
+     "D_lum_r1": 80.06736817655093,
+     "pixels_changed": 295313
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-98C90B96",
+   "clut": "98C90B96",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-98C90B96.png",
+     "sha256": "4ca4109120d8c0f84695d105c9103920fbe244a2b746b220cbad0e2393ed8b9c",
+     "v1_sha256": "04781fcdefa057e80ed197bf85645c787b5bc4f9623a72629c9847f21dcd74eb",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 49.3,
+     "stripe_metric_r1": 5.196,
+     "D_lum_v1": 153.9662170777906,
+     "D_lum_r1": 153.75526005298826,
+     "pixels_changed": 1189675
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-98C90B96.png",
+     "sha256": "d7379477f20c602f64df22e861d10938d712cbdabacfec421bd05fb3a9ff8833",
+     "v1_sha256": "cdcf04ec2dd8b4b589acd0aa95ba182e919531fe72ca1835c7bf5a03a753e9ec",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 49.13,
+     "stripe_metric_r1": 5.142,
+     "D_lum_v1": 153.96492807440757,
+     "D_lum_r1": 153.80781613080717,
+     "pixels_changed": 297328
+    }
+   }
+  },
+  {
+   "key": "A5969BC9-AB139F82",
+   "clut": "AB139F82",
+   "files": {
+    "2048": {
+     "path": "runtime-2048/A5969BC9-AB139F82.png",
+     "sha256": "6d8a269507497b42e0ac56e59eded0563c62e8fb2fa1a2ca0536a8342276ec5c",
+     "v1_sha256": "061a02390eb064b0a4fe12cf6fa549ec20caf37d964585d7cc97981d4f6a8330",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 26.325,
+     "stripe_metric_r1": 4.263,
+     "D_lum_v1": 34.071274430234965,
+     "D_lum_r1": 34.25368638938254,
+     "pixels_changed": 1179241
+    },
+    "1024": {
+     "path": "runtime-1024/A5969BC9-AB139F82.png",
+     "sha256": "c67fca4f331f9f7e29a23f6d490b03f3d3702ee0e8cbe2a8a78469fa6b4bf709",
+     "v1_sha256": "8ee0ebddd1dca9e85007c009f905cad8f9e319003caf2e6f3db4659abe69488c",
+     "alpha_identical_to_v1": true,
+     "outside_D_identical_to_v1": true,
+     "stripe_metric_v1": 26.235,
+     "stripe_metric_r1": 4.213,
+     "D_lum_v1": 34.06773949375467,
+     "D_lum_r1": 34.24214841863979,
+     "pixels_changed": 295596
+    }
+   }
+  }
+ ],
+ "error": null,
+ "complete": true,
+ "keys_done": 14,
+ "keys_total": 14,
+ "peak_rss_mib": 156.9,
+ "peak_rss_at": "strip 128",
+ "rss_limit_mib": 960.0,
+ "budget_s": 110.0,
+ "previous_failed_attempt": "repairs/stage6-vram448-0-A5969BC9-dedither-r1: killed by the grant memory watchdog at 421.1 MiB (cap 400 MiB) after 2 of 14 keys; no manifest; preserved unchanged",
+ "builder": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\tools\\s6_dedither_A5969BC9.py",
+  "sha256": "0cf58a1668dc3f70a8744fdd1cc3ec42b8acb3d31fd8e81f8a9848ddb739a7ad"
+ }
+}

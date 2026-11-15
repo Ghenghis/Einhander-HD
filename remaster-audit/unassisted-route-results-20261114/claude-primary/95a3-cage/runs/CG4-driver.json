@@ -1,0 +1,107 @@
+{
+ "grant": "msg_a00afb972cc88a2e",
+ "grant_utc": "2026-11-14T18:16:34.726000+00:00",
+ "driver": "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\e5fad2775628cc35\\1c56db97-2f5d-4f18-aece-e2a77dbf7a70\\scratchpad\\run_cg4.py",
+ "driver_sha256": "b219aa71600d790ded29495ecf45dd39ce350b94a00960343781313fd9298494",
+ "driver_pid": 39076,
+ "cpu": [
+  13
+ ],
+ "priority": 16384,
+ "steps": [
+  {
+   "gate": {
+    "name": "CG4-tests",
+    "at_utc": "2026-11-14T18:17:04.698840+00:00",
+    "hashes": {
+     "tools/run_rc2.r1.py": true,
+     "95a3-cage/cage_rebuild.r1.py": true,
+     "95a3-cage/test_cage_rebuild.r1.py": true
+    },
+    "outputs_absent": {
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG4-tests.rc.json": true,
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG4-freeze.rc.json": true,
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\frozen\\95A3BCF8-C-cage-v2": true
+    },
+    "cpu_pct_1s": 37.5,
+    "free_gib": 68.23,
+    "elapsed_since_grant_s": 30.974,
+    "ok": true
+   },
+   "run": {
+    "cmd": [
+     "C:\\Python314\\python.exe",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\run_rc2.r1.py",
+     "--out",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG4-tests.rc.json",
+     "--cpu",
+     "13",
+     "--timeout",
+     "30",
+     "--",
+     "C:\\Python314\\python.exe",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\test_cage_rebuild.r1.py"
+    ],
+    "outer_pid": 35624,
+    "spawn_utc": "2026-11-14T18:17:05.700499+00:00",
+    "end_utc": "2026-11-14T18:17:06.986779+00:00",
+    "wall_s": 1.286,
+    "outer_exit": 0,
+    "child_exit": 0,
+    "tree_absent": true,
+    "outer_absent_after": true,
+    "stdout_tail": "021e5a\",\n \"checks\": {\n  \"readback_equals_written\": true,\n  \"outside_roi_identical_to_parent\": true,\n  \"centre_alpha_equals_native_class\": true,\n  \"alpha_uniform_per_block\": true,\n  \"block_sums_equal_native_exactly\": true,\n  \"void_blocks_exact_native\": true,\n  \"rounding_in_range\": true\n }\n}\n{\n \"marker\": \"FAILED.json\",\n \"marker_sha256\": \"77f5805d792f4f3e12c3d0d23031b4418967dfa3da20a51b947f1dc941e00eaf\",\n \"status\": {\n  \"name\": \"set-fail\",\n  \"revision\": \"r1\",\n  \"validation_passed\": false,\n  \"files\": 6,\n  \"sha256sums\": \"5ccc79c8bb635fba0fd203dc34290ad0c87cc080be388e4c64361182eb9fdab2\",\n  \"manifest_sha256\": \"ddc8052902c01f69aa24d7fe4535a1ed4541f87c8b42f9be6aed89824c5d1841\",\n  \"durability\": \"every file fsynced and re-hashed\",\n  \"failed_checks\": [\n   \"rounding_in_range\"\n  ],\n  \"status\": \"FAILED validation (preserved)\",\n  \"at_utc\": \"2026-11-14T18:17:06.448688+00:00\"\n },\n \"page2048\": \"0d574c15069f6d72df2ef8ced3a106854021c4f8cb8c3f99fc021e95fe021e5a\",\n \"checks\": {\n  \"readback_equals_written\": true,\n  \"outside_roi_identical_to_parent\": true,\n  \"centre_alpha_equals_native_class\": true,\n  \"alpha_uniform_per_block\": true,\n  \"block_sums_equal_native_exactly\": true,\n  \"void_blocks_exact_native\": true,\n  \"rounding_in_range\": false\n }\n}\nPASS test_freeze_ready_then_failed_marker\n{\n \"marker\": \"READY.json\",\n \"marker_sha256\": \"32fe7ce214f47d6753a10080f6f92449fe48dd3b2ed7dab8d22f7f6bc89453df\",\n \"status\": {\n  \"name\": \"set-ro\",\n  \"revision\": \"r1\",\n  \"validation_passed\": true,\n  \"files\": 6,\n  \"sha256sums\": \"1e8d6ef2ed2c24d83a1bc65d54e0601f212f7b4f9f5a13b7a99245947922a104\",\n  \"manifest_sha256\": \"c825af86fe155e8dd2279f345496179bd2a26c332020eafc7c2432b81b5c83c8\",\n  \"durability\": \"every file fsynced and re-hashed\",\n  \"failed_checks\": [],\n  \"status\": \"candidate (private; not integrated, not live-tested)\",\n  \"at_utc\": \"2026-11-14T18:17:06.578753+00:00\"\n },\n \"page2048\": \"fe5be91e62c8798fdb46d8f3203857e1a45bdabefefc128a3d1b56e5beaaa7c6\",\n \"checks\": {\n  \"readback_equals_written\": true,\n  \"outside_roi_identical_to_parent\": true,\n  \"centre_alpha_equals_native_class\": true,\n  \"alpha_uniform_per_block\": true,\n  \"block_sums_equal_native_exactly\": true,\n  \"void_blocks_exact_native\": true,\n  \"rounding_in_range\": true\n }\n}\nPASS test_freeze_with_read_only_builder_source\nPASS test_mean_exact_and_round_exact_sums\nPASS test_mean_exact_extreme_targets_no_clip\nPASS test_palette_refusals\nPASS test_real_region_inputs_readonly\nPASS test_validate_pass_and_each_failure\nPASS test_void_never_blends\n10/10 passed\n",
+    "stderr_tail": ""
+   }
+  },
+  {
+   "gate": {
+    "name": "CG4-freeze",
+    "at_utc": "2026-11-14T18:17:06.987347+00:00",
+    "hashes": {
+     "tools/run_rc2.r1.py": true,
+     "95a3-cage/cage_rebuild.r1.py": true,
+     "95a3-cage/test_cage_rebuild.r1.py": true
+    },
+    "outputs_absent": {
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG4-freeze.rc.json": true,
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\frozen\\95A3BCF8-C-cage-v2": true
+    },
+    "cpu_pct_1s": 57.1,
+    "free_gib": 68.17,
+    "elapsed_since_grant_s": 33.263,
+    "elapsed_since_first_spawn_s": 2.289,
+    "ok": true
+   },
+   "run": {
+    "cmd": [
+     "C:\\Python314\\python.exe",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\run_rc2.r1.py",
+     "--out",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG4-freeze.rc.json",
+     "--cpu",
+     "13",
+     "--timeout",
+     "60",
+     "--",
+     "C:\\Python314\\python.exe",
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\cage_rebuild.r1.py",
+     "--freeze"
+    ],
+    "outer_pid": 42272,
+    "spawn_utc": "2026-11-14T18:17:07.989550+00:00",
+    "end_utc": "2026-11-14T18:17:09.984696+00:00",
+    "wall_s": 1.995,
+    "outer_exit": 0,
+    "child_exit": 0,
+    "tree_absent": true,
+    "outer_absent_after": true,
+    "stdout_tail": "{\n \"marker\": \"READY.json\",\n \"marker_sha256\": \"cac09df8fd21172f59cdea978f029ab243b745f332db06310d379d85b6c0d372\",\n \"status\": {\n  \"name\": \"95A3BCF8-C-cage-v2\",\n  \"revision\": \"r1\",\n  \"validation_passed\": true,\n  \"files\": 6,\n  \"sha256sums\": \"be3aa465dfa28674c8088a6bb361d982ee02207ce7f1844a09ce9e9d189bf6e9\",\n  \"manifest_sha256\": \"9c7cf244ca55ef259a825bc1e8f71d04ed01e9e9f8362f66be40c825e0b02c4f\",\n  \"durability\": \"every file fsynced and re-hashed\",\n  \"failed_checks\": [],\n  \"status\": \"candidate (private; not integrated, not live-tested)\",\n  \"at_utc\": \"2026-11-14T18:17:09.916326+00:00\"\n },\n \"page2048\": \"7668b54d510726698219a235681b7038942fe3a3d9492901124b4d190b02bad4\",\n \"checks\": {\n  \"readback_equals_written\": true,\n  \"outside_roi_identical_to_parent\": true,\n  \"centre_alpha_equals_native_class\": true,\n  \"alpha_uniform_per_block\": true,\n  \"block_sums_equal_native_exactly\": true,\n  \"void_blocks_exact_native\": true,\n  \"rounding_in_range\": true\n }\n}\n",
+    "stderr_tail": ""
+   }
+  }
+ ],
+ "first_spawn_utc": "2026-11-14T18:17:05.700448+00:00",
+ "batch_elapsed_s": 4.285,
+ "end_utc": "2026-11-14T18:17:09.985071+00:00"
+}

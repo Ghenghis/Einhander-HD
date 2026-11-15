@@ -1,0 +1,54 @@
+{
+  "schema": "s67-raw37c-evidence-r2",
+  "verdict": "ABORTED",
+  "not_run": {
+    "L5": "held F6: no supported CUA hold API",
+    "L6": "held steering: no supported CUA hold API",
+    "L7": "held fire: no supported CUA hold API",
+    "L8": "follow-up profile",
+    "L9": "follow-up profile",
+    "L10": "needs a second launch",
+    "L11": "follow-up profile (quit while open)"
+  },
+  "steps": {},
+  "claims": "raw observations only; no acceptance, PCM, listening, pacing or performance claim; title not proven",
+  "started_utc": "2026-11-14T23:32:38.681Z",
+  "pins": {
+    "holder": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_process_cleanup_r0.py",
+      "sha256": "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84"
+    },
+    "audited_r1": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py",
+      "sha256": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"
+    },
+    "ui_live_check_plan": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\proposals\\p1-player-color\\build\\LIVE-CHECK-PLAN-p1-v69-2240.md",
+      "sha256": "d0bb13e577b2b87aa2943e8e406026def70cd931478dfbb3562d6db8d8e8032c"
+    },
+    "owner_build_receipt": {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\proposals\\p1-player-color\\build\\BUILD-RECEIPT-p1-v69-2240.md",
+      "sha256": "97c1da1f6bca8061a255f9679a160d5c4f93edba39ebdd3c797acf2dceb1a821"
+    },
+    "gpu_guard": {
+      "path": "C:\\github\\Einhander\\tools\\coordination\\shared_gpu_guard.py",
+      "sha256": "cb767d1f5cf4c1795eb46d369a558bdfedf33c9e51b529123893c53c47685ac7"
+    }
+  },
+  "staging": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\raw37c-staging.json",
+    "sha256": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79"
+  },
+  "abort": "ModuleNotFoundError: No module named 'gl_adapter_identity_guard'",
+  "logs": {
+    "game.stdout.log": null,
+    "game.stderr.log": null
+  },
+  "config_marker": {
+    "private_dir_in_logs": false
+  },
+  "settings_sha256_after": "406643a175d55a5e45cdcf9645b05a74d24f38efc0de0647c6d720949c2c90b9",
+  "job_active_processes_self_inclusive": 1,
+  "cleanup_qualification": "join required: holder identity_absent here AND the wrapper's Job-empty/tree-absent receipt for this pid/ctime; holder tree_absent is False inside the Job by design",
+  "ended_utc": "2026-11-14T23:32:41.513Z"
+}

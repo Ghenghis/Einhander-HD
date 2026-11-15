@@ -1,0 +1,54 @@
+{
+  "status": "launch_delivery_fixed_full_skin_fidelity_incomplete",
+  "focused_tests": {
+    "command": "python -X utf8 -m unittest test_launch_hd",
+    "cases": 6,
+    "exit": 0
+  },
+  "actual_cmd_checks": {
+    "saved": {
+      "exit": 0,
+      "selection_source": "explicit_saved_preset",
+      "game_launched": false
+    },
+    "stock": {
+      "exit": 0,
+      "selection_source": "explicit_stock",
+      "game_launched": false
+    }
+  },
+  "private_gameplay": {
+    "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+    "exit": 0,
+    "port_closed": true,
+    "player": {
+      "profile": "aurora-teal",
+      "strength_percent": 75,
+      "key_count": 4,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+    },
+    "enemy": {
+      "profile": "crimson-red",
+      "strength_percent": 75,
+      "key_count": 6,
+      "detail_active": true,
+      "diagnostic_scope": false,
+      "preserve_accents": false,
+      "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+    },
+    "literal_cmd_user_cards_launch": false,
+    "substitutions": "Newentryconfigurationexecutedprivately; byteidenticalb287+owncache;privatecards/settings/debugport/windowtitle/native-menugate. NotliteralCMDlaunchwithusercards."
+  },
+  "cmd_before_sha256": "70c8cf1ed895f4782b07a6cbd6aefb22768efc779a5448e99fbaee9799b9277d",
+  "cmd_after_sha256": "3429236542af35f874fbdda5cd3362b57082d28fba68891063e3db9515681e92",
+  "rollback_preserved_local": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\project-completion-20261114\\Play-HD.before-saved-preset.cmd",
+  "remaining": [
+    "Complete UV/material/mesh skins for allcraft/enemies/bosses/weapons/effects",
+    "In-game library and independent selectors",
+    "PBR/gloss lighting and full4K fidelity",
+    "Full-stage and release acceptance"
+  ]
+}

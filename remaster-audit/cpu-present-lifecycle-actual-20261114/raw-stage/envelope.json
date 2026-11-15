@@ -1,0 +1,106 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/proposals/raw37c-diagnostic/raw37c_driver_r6.py",
+  "--log",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s67/runs/raw37c-stage-r6-2331.log",
+  "--stage",
+  "raw37c-r6-20261114T2331Z"
+ ],
+ "cwd": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114",
+ "wrapper_pid": 45140,
+ "wrapper_create_time": 1794699055.5066628,
+ "cpu": 14,
+ "affinity": [
+  14
+ ],
+ "priority": 16384,
+ "timeout_s": 300.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T23:30:55.637080+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "4000",
+ "max_job_mib": 2048,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 49.5,
+  "free_gib": 57.3,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T23:30:56.638343+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 16384,
+  "priority_class": 16384,
+  "job_memory_limit": 2147483648
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 16384,
+  "priority_class": 16384,
+  "job_memory_limit": 2147483648,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 30436,
+ "child_create_time": 1794699056.6395404,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  14
+ ],
+ "child_affinity_set_to": [
+  14
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   14
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T23:30:56.645631+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 17.63,
+ "end_utc": "2026-11-14T23:31:14.278617+00:00",
+ "job": {
+  "active": 0,
+  "total": 3,
+  "terminated": 0,
+  "user_s": 2.546875,
+  "kernel_s": 4.421875
+ },
+ "peak_job_memory_bytes": 63119360,
+ "peak_process_memory_bytes": 61386752,
+ "descendants_seen": [
+  37596
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

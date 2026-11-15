@@ -1,0 +1,31 @@
+--- build_r7_cpu.py	2026-11-14 12:04:20.378270600 -0700
++++ build_r7_cpu.r1.py	2026-11-14 13:28:08.222821200 -0700
+@@ -1,7 +1,12 @@
+ """CPU-only build and contract check of the r7 modern-GL probe PROPOSAL (claude-einhander). Run only under a grant.
+ Never executes the GPU branch: the built exe is run only with --cpu-contract and --guard-contract. No DLL, window or GL.
++Builder r1. r0 (build_r7_cpu.py, a9475b3c) is preserved and must not be run again: it kept a relative --out-root
++while running every step with cwd=out, so 'compile-object' (-o out/probe.obj) resolved against out twice and failed
++(PR7-1 20261114T202434Z). r1 resolves --out-root to an absolute path ONCE, before mkdir, any argv and any cwd, so
++every path below is absolute; and it re-hashes the copied executed-source.cpp against the source pin. Source,
++header, flags, step caps and the contract/guard oracles are unchanged.
+ 
+-Usage: python build_r7_cpu.py --cpu N --out-root DIR
++Usage: python build_r7_cpu.r1.py --cpu N --out-root DIR
+ Steps (one at a time, each a single child, BelowNormal, affinity N, bounded timeout, exit checked):
+   syntax          clang++ -fsyntax-only                     (r4 took 1.5 s)       cap 45 s
+   compile-object  clang++ -O0 -c                                                   cap 60 s
+@@ -45,9 +50,13 @@
+     me.nice(psutil.BELOW_NORMAL_PRIORITY_CLASS)
+     me.cpu_affinity([a.cpu])
+     stamp = datetime.datetime.now(datetime.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+-    out = Path(a.out_root) / stamp
++    out = Path(a.out_root).resolve() / stamp          # absolute once, before mkdir/argv/cwd (r1 fix)
++    if not out.is_absolute():
++        raise SystemExit("output root did not resolve to an absolute path")
+     out.mkdir(parents=True, exist_ok=False)
+     shutil.copyfile(SRC, out / "executed-source.cpp")
++    if a.expect_source_sha and sha(out / "executed-source.cpp") != a.expect_source_sha.lower():
++        raise SystemExit("copied executed-source.cpp does not match the source pin")
+     obj, exe = out / "probe.obj", out / "sdk-modern-gl-r7.exe"
+     steps = [("syntax", [CC, *FLAGS, "-fsyntax-only", str(SRC)], 0, 45),
+              ("compile-object", [CC, *FLAGS, "-O0", "-c", str(SRC), "-o", str(obj)], 0, 60),

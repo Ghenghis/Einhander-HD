@@ -1,0 +1,100 @@
+{
+  "observed_utc": "2026-11-14T15:37:39.778729+00:00",
+  "owner": "codex-einhander-crash-check",
+  "scope": "Read-only C: source and launch-plan validation; no GPU/game or asset changes",
+  "source_sha256": {
+    "windows-x64/tools/launch_hd.py": "e4015831fdab754ec3e20a31c8337de2cdd522d8819103b2ec6c85d441a1e82b",
+    "windows-x64/tools/launch_material.py": "648ae54a57611975fc67b0e18b318e570cc19ae6cfecd8a0708df6cdbd87ad75",
+    "windows-x64/tools/material_profiles.py": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4",
+    "windows-x64/tools/material_lab.js": "b6c7852014f7da12d00ad809c48795735e404152c6cb8ba9899db83e14118816",
+    "windows-x64/tools/loadout_lab.js": "d52a90f010def00667ec9cf438b128bd8dfa79975a390b301457bed71bd8bb92",
+    "windows-x64/tools/Start-Development.ps1": "bfdffa7647a551f0b1084efbbd1c9197053bd4e7532852ca8e0bf85eefab0ac5",
+    "windows-x64/psxrecomp/runtime/src/hd_skin_material.h": "59565481657298ffb50eaa71f34544ef98e7ee7ecf5f9cf1789ec2e588fdb774",
+    "windows-x64/psxrecomp/runtime/src/hd_skin_detail.h": "e2eca3c98e892f6bd01f19db5dabf0ef2bd985c7a8218e8438ec4a01528b0b38",
+    "windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c": "92d080578d2a3d734160deae1d67ae186b08f4e9f7ca2d5ecdd3d5344b37d03c",
+    "windows-x64/recomp-ui/src/common/backends/imgui/launcher_devtools.cpp": "b90b44fe70e6df881b2b0b98d0fb5db62037ff7468e435f42eebe56408e6b100",
+    "windows-x64/skin-workspace/aurora-teal/skin.json": "4716853d5cd96ae1e53dfcda521277ca11500a3738f64cf037c3525f29470fda",
+    "windows-x64/tools/material-selection.json": "e52d29f587e5d3cd6712104f90b973b004e297d983bfb56cea32f694a1a7f6a3",
+    "windows-x64/tools/material-runtime.json": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c"
+  },
+  "actual_checks": {
+    "saved_selection": {
+      "exists": true,
+      "valid": true,
+      "profile": "aurora-teal",
+      "enemy_profile": "crimson-red",
+      "detail_map": "titanium-teal-nanoceramic",
+      "enemy_detail_map": "crimson-gold-plating",
+      "descriptor_sha256": "216c5f457ebc228357ef10c15bc3674150b4c260894c717c6773b7a29e989cca"
+    },
+    "runtime_receipt": {
+      "ready": true,
+      "executable_hash_verified": true,
+      "sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134"
+    },
+    "normal_play_hd_plan": {
+      "selection_source": "explicit_saved_preset",
+      "profile": "aurora-teal",
+      "enemy_profile": "crimson-red",
+      "arguments": [
+        "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+        "--no-launcher",
+        "--renderer",
+        "opengl",
+        "--game",
+        "C:\\github\\Einhander\\windows-x64\\game.toml",
+        "--disc",
+        "C:\\github\\Einhander\\ROM\\Einhander (USA).cue",
+        "--bios",
+        "C:\\github\\Einhander\\windows-x64\\build-release\\bios\\SCPH1001.BIN"
+      ]
+    }
+  },
+  "findings": [
+    {
+      "id": "S1",
+      "result": "Normal Play-HD is already wired to the saved preset",
+      "trace": [
+        "Play-HD.cmd -> launch_hd.prepare_hd_launch",
+        "saved_selection -> launch_material.prepare_launch",
+        "environment -> init_gpu_raster getenv",
+        "hd_skin_for_draw exact-key match -> shader RGB uniforms"
+      ]
+    },
+    {
+      "id": "S2",
+      "result": "Start-Development directly launches the runtime with HD variables but does not read the saved material descriptor",
+      "proposal": "saved-material-development-route.patch",
+      "applied": false,
+      "limits": "Proposal only; existing dirty files untouched. Root review/lock transfer and existing launch tests plus frontend/live checks required."
+    },
+    {
+      "id": "S3",
+      "result": "14 palette profiles scope to 5 player and 6 enemy atlas keys, not all actors/components",
+      "source": "hd_skin_material.h:26,48,56",
+      "missing": [
+        "per-craft hull/gun UV ownership",
+        "independent Gunpod identities",
+        "boss-part actor/material mapping",
+        "all-stage ownership and visual acceptance"
+      ]
+    },
+    {
+      "id": "S4",
+      "result": "Concept art does not enter the runtime as model textures",
+      "evidence": "aurora-teal/skin.json has assets=[], draft_uninstalled, concept_unmapped, in_game=false; loadout_lab labels equipment concept/unmapped"
+    },
+    {
+      "id": "S5",
+      "result": "Existing selectors are browser material controls; native graphics pane links to that workspace; no native/in-game independent ship/weapon/boss skin selector found in these traced files",
+      "source": "material_lab.js submit/save/apply; launcher_devtools.cpp draw_graphics/draw_armory",
+      "limit": "Scoped source trace, not a full binary/UI audit"
+    },
+    {
+      "id": "S6",
+      "result": "Runtime receipt contains historical limited live checks; not replayed here",
+      "limit": "This run verifies current executable digest and read-only launch-plan source/asset checks only. Full gameplay/audio/skin acceptance remains open."
+    }
+  ],
+  "project_complete": false
+}

@@ -1,0 +1,1854 @@
+#include "hd_texture_pack.h"
+#include "hd_decode_queue.h"
+
+#ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
+#include "../third_party/stb_image.h" /* declarations only; implementation is shared */
+#endif
+
+#include <algorithm>
+#include <array>
+#include <chrono>
+#include <condition_variable>
+#include <cctype>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <deque>
+#include <filesystem>
+#include <fstream>
+#include <limits>
+#include <memory>
+#include <mutex>
+#include <new>
+#include <string>
+#include <sstream>
+#include <thread>
+#include <unordered_map>
+#include <utility>
+#include <vector>
+
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#endif
+#if defined(_MSC_VER) && !defined(__clang__)
+#include <intrin.h>   /* _BitScanForward64 (region index) */
+#endif
+
+namespace fs = std::filesystem;
+
+namespace {
+
+constexpr unsigned kVramWidth = 1024;
+constexpr unsigned kVramHeight = 512;
+/* GPU primitives invalidate VRAM constantly.  Keep a coarse spatial index so
+ * the common case does not walk every historical upload.  The index is only
+ * a broad phase; fragment rectangles remain authoritative below. */
+constexpr unsigned kUploadIndexTileSize = 32;
+constexpr unsigned kUploadIndexCols =
+    (kVramWidth + kUploadIndexTileSize - 1) / kUploadIndexTileSize;
+constexpr unsigned kUploadIndexRows =
+    (kVramHeight + kUploadIndexTileSize - 1) / kUploadIndexTileSize;
+constexpr size_t kUploadIndexCells =
+    size_t{kUploadIndexCols} * kUploadIndexRows;
+constexpr size_t kVramWords = size_t{kVramWidth} * kVramHeight;
+constexpr size_t kDefaultDecodeBudget = size_t{64} * 1024 * 1024;
+/* Stage 1 sign/beacon palette phases share small explicit source rectangles.
+ * Keep a finite bound while allowing those phases to avoid full-page PNGs.
+ * At the largest legal rectangle, retained source words total at most32 MiB. */
+constexpr size_t kMaxExactRegions = 256;
+constexpr uint32_t kTrackingStateMagic = 0x31544448u; /* "HDT1" LE */
+constexpr uint32_t kTrackingStateVersion = 1;
+constexpr size_t kTrackingStateHeaderBytes = 24;
+constexpr size_t kTrackingStateUploadBytes = 20;
+constexpr size_t kTrackingStateFragmentBytes = 12;
+constexpr size_t kMaxTrackingStateBytes = size_t{8} * 1024 * 1024;
+constexpr uint32_t kMaxTrackingStateUploads = 8192;
+constexpr uint32_t kMaxTrackingStateFragments = 262144;
+#ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
+constexpr size_t kMaxPngFileBytes = size_t{64} * 1024 * 1024;
+#endif
+
+/* Exact-region invalidation broad phase: separable 32-word column bands and
+ * 32-row bands, one bit per region (at most kMaxExactRegions). A region is set
+ * in every band its source rectangle (or, for 4/8bpp, its CLUT row) touches,
+ * so (column bands & row bands) over a cut is a superset of the regions the
+ * cut can intersect. The original exact predicate still makes every decision. */
+constexpr unsigned kRegionTile = 32;
+constexpr unsigned kRegionCols = kVramWidth / kRegionTile;
+constexpr unsigned kRegionRows = kVramHeight / kRegionTile;
+constexpr unsigned kRegionWords = (kMaxExactRegions + 63) / 64;
+inline unsigned region_ctz64(uint64_t v) {
+#if defined(_MSC_VER) && !defined(__clang__)
+    unsigned long i; _BitScanForward64(&i, v); return unsigned(i);
+#else
+    return unsigned(__builtin_ctzll(v));
+#endif
+}
+
+/* Diagnostic cost clock (only read when a pack's cost profile is enabled). */
+inline uint64_t cost_now_ns() {
+    return static_cast<uint64_t>(std::chrono::duration_cast<std::chrono::nanoseconds>(
+        std::chrono::steady_clock::now().time_since_epoch()).count());
+}
+
+uint64_t make_key(uint32_t texture_hash, uint32_t palette_hash) {
+    return (uint64_t{texture_hash} << 32) | palette_hash;
+}
+
+void write_error(char* error, size_t capacity, const std::string& message) {
+    if (!error || capacity == 0) return;
+    std::snprintf(error, capacity, "%s", message.c_str());
+}
+
+std::string trim(std::string value) {
+    const auto first = std::find_if_not(value.begin(), value.end(),
+        [](unsigned char c) { return std::isspace(c) != 0; });
+    const auto last = std::find_if_not(value.rbegin(), value.rend(),
+        [](unsigned char c) { return std::isspace(c) != 0; }).base();
+    if (first >= last) return {};
+    return std::string(first, last);
+}
+
+std::string ascii_lower(std::string value) {
+    for (char& c : value)
+        c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    return value;
+}
+
+bool ends_with_ci(const std::string& value, const char* suffix) {
+    const std::string lower = ascii_lower(value);
+    const std::string wanted = ascii_lower(suffix);
+    return lower.size() >= wanted.size() &&
+           lower.compare(lower.size() - wanted.size(), wanted.size(), wanted) == 0;
+}
+
+bool parse_hex_component(const std::string& text, uint32_t* out) {
+    if (!out || text.empty() || text.size() > 8) return false;
+    uint32_t value = 0;
+    for (const unsigned char c : text) {
+        unsigned digit;
+        if (c >= '0' && c <= '9') digit = c - '0';
+        else if (c >= 'a' && c <= 'f') digit = c - 'a' + 10;
+        else if (c >= 'A' && c <= 'F') digit = c - 'A' + 10;
+        else return false;
+        value = (value << 4) | digit;
+    }
+    *out = value;
+    return true;
+}
+
+bool parse_key_text(const std::string& text,
+                    uint32_t* texture_hash,
+                    uint32_t* palette_hash) {
+    const size_t dash = text.find('-');
+    if (dash == std::string::npos || text.find('-', dash + 1) != std::string::npos)
+        return false;
+    return parse_hex_component(text.substr(0, dash), texture_hash) &&
+           parse_hex_component(text.substr(dash + 1), palette_hash);
+}
+
+bool parse_png_filename(const fs::path& path,
+                        uint32_t* texture_hash,
+                        uint32_t* palette_hash) {
+    if (ascii_lower(path.extension().string()) != ".png") return false;
+    return parse_key_text(path.stem().string(), texture_hash, palette_hash);
+}
+
+const std::array<uint32_t, 256>& crc_table() {
+    static const std::array<uint32_t, 256> table = [] {
+        std::array<uint32_t, 256> result{};
+        for (uint32_t i = 0; i < result.size(); ++i) {
+            uint32_t value = i;
+            for (unsigned bit = 0; bit < 8; ++bit)
+                value = (value >> 1) ^ ((value & 1) ? 0xEDB88320u : 0u);
+            result[i] = value;
+        }
+        return result;
+    }();
+    return table;
+}
+
+uint32_t crc_byte(uint32_t crc, uint8_t value) {
+    return crc_table()[(crc ^ value) & 0xFFu] ^ (crc >> 8);
+}
+
+struct Rect {
+    unsigned x = 0;
+    unsigned y = 0;
+    unsigned width = 0;
+    unsigned height = 0;
+};
+
+struct Fragment {
+    Rect rect;
+    unsigned source_x = 0;
+    unsigned source_y = 0;
+};
+
+bool intersects(const Rect& a, const Rect& b) {
+    return a.x < b.x + b.width && b.x < a.x + a.width &&
+           a.y < b.y + b.height && b.y < a.y + a.height;
+}
+
+bool contains_point(const Rect& rect, unsigned x, unsigned y) {
+    return x >= rect.x && x < rect.x + rect.width &&
+           y >= rect.y && y < rect.y + rect.height;
+}
+
+std::vector<Fragment> physical_fragments(unsigned x,
+                                         unsigned y,
+                                         unsigned width,
+                                         unsigned height) {
+    std::vector<Fragment> result;
+    if (width == 0 || height == 0 || width > kVramWidth || height > kVramHeight)
+        return result;
+
+    const unsigned px = x & (kVramWidth - 1);
+    const unsigned py = y & (kVramHeight - 1);
+    const unsigned first_w = std::min(width, kVramWidth - px);
+    const unsigned first_h = std::min(height, kVramHeight - py);
+    const std::array<std::pair<unsigned, unsigned>, 2> xs{{
+        {px, first_w}, {0, width - first_w}
+    }};
+    const std::array<std::pair<unsigned, unsigned>, 2> ys{{
+        {py, first_h}, {0, height - first_h}
+    }};
+
+    unsigned source_y = 0;
+    for (const auto& yspan : ys) {
+        if (yspan.second == 0) continue;
+        unsigned source_x = 0;
+        for (const auto& xspan : xs) {
+            if (xspan.second != 0) {
+                result.push_back({
+                    {xspan.first, yspan.first, xspan.second, yspan.second},
+                    source_x, source_y
+                });
+            }
+            source_x += xspan.second;
+        }
+        source_y += yspan.second;
+    }
+    return result;
+}
+
+/* Allocation-free twin of physical_rects(): the same at most four
+ * non-wrapping pieces, written to a caller array. */
+unsigned physical_rect_array(unsigned x, unsigned y, unsigned width,
+                             unsigned height, Rect out[4]) {
+    if (width == 0 || height == 0 || width > kVramWidth || height > kVramHeight)
+        return 0;
+    const unsigned px = x & (kVramWidth - 1);
+    const unsigned py = y & (kVramHeight - 1);
+    const unsigned first_w = std::min(width, kVramWidth - px);
+    const unsigned first_h = std::min(height, kVramHeight - py);
+    const unsigned xs[2][2] = {{px, first_w}, {0, width - first_w}};
+    const unsigned ys[2][2] = {{py, first_h}, {0, height - first_h}};
+    unsigned n = 0;
+    for (const auto& yspan : ys) {
+        if (yspan[1] == 0) continue;
+        for (const auto& xspan : xs)
+            if (xspan[1] != 0) out[n++] = Rect{xspan[0], yspan[0], xspan[1], yspan[1]};
+    }
+    return n;
+}
+
+std::vector<Rect> physical_rects(unsigned x,
+                                 unsigned y,
+                                 unsigned width,
+                                 unsigned height) {
+    std::vector<Rect> result;
+    for (const Fragment& fragment : physical_fragments(x, y, width, height))
+        result.push_back(fragment.rect);
+    return result;
+}
+
+std::vector<Fragment> subtract_fragment(const Fragment& original,
+                                        const Rect& cut) {
+    if (!intersects(original.rect, cut)) return {original};
+
+    const unsigned left = std::max(original.rect.x, cut.x);
+    const unsigned right = std::min(original.rect.x + original.rect.width,
+                                    cut.x + cut.width);
+    const unsigned top = std::max(original.rect.y, cut.y);
+    const unsigned bottom = std::min(original.rect.y + original.rect.height,
+                                     cut.y + cut.height);
+    std::vector<Fragment> result;
+    const auto add = [&](unsigned x, unsigned y, unsigned width, unsigned height) {
+        if (width == 0 || height == 0) return;
+        result.push_back({
+            {x, y, width, height},
+            original.source_x + x - original.rect.x,
+            original.source_y + y - original.rect.y
+        });
+    };
+    add(original.rect.x, original.rect.y, original.rect.width,
+        top - original.rect.y);
+    add(original.rect.x, bottom, original.rect.width,
+        original.rect.y + original.rect.height - bottom);
+    add(original.rect.x, top, left - original.rect.x, bottom - top);
+    add(right, top, original.rect.x + original.rect.width - right, bottom - top);
+    return result;
+}
+
+std::vector<Rect> subtract_rect(const Rect& original, const Rect& cut) {
+    const Fragment source{original, 0, 0};
+    std::vector<Rect> result;
+    for (const Fragment& piece : subtract_fragment(source, cut))
+        result.push_back(piece.rect);
+    return result;
+}
+
+struct Upload {
+    uint64_t serial = 0;
+    uint32_t hash = 0;
+    uint16_t width = 0;
+    uint16_t height = 0;
+    /* Conservative broad phase for GPU-draw invalidation.  Fragment coverage
+     * remains authoritative; this union only avoids walking unrelated uploads. */
+    Rect bounds{};
+    std::vector<Fragment> fragments;
+    /* Runtime-only broad-phase membership; never serialized. */
+    std::vector<uint16_t> index_tiles;
+};
+
+Rect fragment_bounds(const std::vector<Fragment>& fragments) {
+    Rect bounds{};
+    for (const Fragment& fragment : fragments) {
+        if (bounds.width == 0 || bounds.height == 0) {
+            bounds = fragment.rect;
+            continue;
+        }
+        const unsigned right = std::max(bounds.x + bounds.width,
+                                        fragment.rect.x + fragment.rect.width);
+        const unsigned bottom = std::max(bounds.y + bounds.height,
+                                         fragment.rect.y + fragment.rect.height);
+        bounds.x = std::min(bounds.x, fragment.rect.x);
+        bounds.y = std::min(bounds.y, fragment.rect.y);
+        bounds.width = right - bounds.x;
+        bounds.height = bottom - bounds.y;
+    }
+    return bounds;
+}
+
+void append_u16_le(std::vector<uint8_t>& output, uint16_t value) {
+    output.push_back(static_cast<uint8_t>(value));
+    output.push_back(static_cast<uint8_t>(value >> 8));
+}
+
+void append_u32_le(std::vector<uint8_t>& output, uint32_t value) {
+    append_u16_le(output, static_cast<uint16_t>(value));
+    append_u16_le(output, static_cast<uint16_t>(value >> 16));
+}
+
+void append_u64_le(std::vector<uint8_t>& output, uint64_t value) {
+    append_u32_le(output, static_cast<uint32_t>(value));
+    append_u32_le(output, static_cast<uint32_t>(value >> 32));
+}
+
+bool take_u16_le(const uint8_t** cursor, const uint8_t* end, uint16_t* out) {
+    if (!cursor || !*cursor || !out || end - *cursor < 2) return false;
+    const uint8_t* p = *cursor;
+    *out = static_cast<uint16_t>(p[0]) |
+           static_cast<uint16_t>(static_cast<uint16_t>(p[1]) << 8);
+    *cursor += 2;
+    return true;
+}
+
+bool take_u32_le(const uint8_t** cursor, const uint8_t* end, uint32_t* out) {
+    uint16_t low = 0, high = 0;
+    if (!take_u16_le(cursor, end, &low) ||
+        !take_u16_le(cursor, end, &high))
+        return false;
+    *out = static_cast<uint32_t>(low) |
+           (static_cast<uint32_t>(high) << 16);
+    return true;
+}
+
+bool take_u64_le(const uint8_t** cursor, const uint8_t* end, uint64_t* out) {
+    uint32_t low = 0, high = 0;
+    if (!take_u32_le(cursor, end, &low) ||
+        !take_u32_le(cursor, end, &high))
+        return false;
+    *out = static_cast<uint64_t>(low) |
+           (static_cast<uint64_t>(high) << 32);
+    return true;
+}
+
+bool valid_fragment(const Upload& upload, const Fragment& fragment) {
+    const Rect& rect = fragment.rect;
+    return rect.width != 0 && rect.height != 0 &&
+           rect.x < kVramWidth && rect.y < kVramHeight &&
+           rect.width <= kVramWidth - rect.x &&
+           rect.height <= kVramHeight - rect.y &&
+           fragment.source_x < upload.width &&
+           fragment.source_y < upload.height &&
+           rect.width <= unsigned{upload.width} - fragment.source_x &&
+           rect.height <= unsigned{upload.height} - fragment.source_y;
+}
+
+bool parse_tracking_state(const uint8_t* data, size_t size,
+                          uint64_t* out_next_serial,
+                          std::vector<Upload>* out_uploads) {
+    if (!data || size < kTrackingStateHeaderBytes ||
+        size > kMaxTrackingStateBytes || !out_next_serial)
+        return false;
+    const uint8_t* cursor = data;
+    const uint8_t* end = data + size;
+    uint32_t magic = 0, version = 0, upload_count = 0, reserved = 0;
+    uint64_t next_serial = 0, max_serial = 0;
+    uint64_t total_fragments = 0;
+    if (!take_u32_le(&cursor, end, &magic) ||
+        !take_u32_le(&cursor, end, &version) ||
+        !take_u64_le(&cursor, end, &next_serial) ||
+        !take_u32_le(&cursor, end, &upload_count) ||
+        !take_u32_le(&cursor, end, &reserved) ||
+        magic != kTrackingStateMagic || version != kTrackingStateVersion ||
+        next_serial == 0 || reserved != 0 ||
+        upload_count > kMaxTrackingStateUploads)
+        return false;
+
+    std::vector<Upload> parsed;
+    if (out_uploads) parsed.reserve(upload_count);
+    std::vector<uint64_t> serials;
+    serials.reserve(upload_count);
+    for (uint32_t i = 0; i < upload_count; ++i) {
+        Upload upload;
+        uint32_t fragment_count = 0;
+        if (!take_u64_le(&cursor, end, &upload.serial) ||
+            !take_u32_le(&cursor, end, &upload.hash) ||
+            !take_u16_le(&cursor, end, &upload.width) ||
+            !take_u16_le(&cursor, end, &upload.height) ||
+            !take_u32_le(&cursor, end, &fragment_count) ||
+            upload.serial == 0 || upload.width == 0 || upload.height == 0 ||
+            upload.width > kVramWidth || upload.height > kVramHeight ||
+            fragment_count == 0 ||
+            fragment_count > kMaxTrackingStateFragments - total_fragments)
+            return false;
+        total_fragments += fragment_count;
+        upload.fragments.reserve(fragment_count);
+        for (uint32_t j = 0; j < fragment_count; ++j) {
+            Fragment fragment;
+            uint16_t x = 0, y = 0, width = 0, height = 0;
+            uint16_t source_x = 0, source_y = 0;
+            if (!take_u16_le(&cursor, end, &x) ||
+                !take_u16_le(&cursor, end, &y) ||
+                !take_u16_le(&cursor, end, &width) ||
+                !take_u16_le(&cursor, end, &height) ||
+                !take_u16_le(&cursor, end, &source_x) ||
+                !take_u16_le(&cursor, end, &source_y))
+                return false;
+            fragment.rect = Rect{x, y, width, height};
+            fragment.source_x = source_x;
+            fragment.source_y = source_y;
+            if (!valid_fragment(upload, fragment)) return false;
+            for (const Fragment& prior : upload.fragments)
+                if (intersects(prior.rect, fragment.rect)) return false;
+            upload.fragments.push_back(fragment);
+        }
+        upload.bounds = fragment_bounds(upload.fragments);
+        if (std::find(serials.begin(), serials.end(), upload.serial) !=
+            serials.end())
+            return false;
+        serials.push_back(upload.serial);
+        max_serial = std::max(max_serial, upload.serial);
+        if (out_uploads) parsed.push_back(std::move(upload));
+    }
+    if (cursor != end || next_serial <= max_serial) return false;
+    *out_next_serial = next_serial;
+    if (out_uploads) *out_uploads = std::move(parsed);
+    return true;
+}
+
+bool covered_by_upload(const Upload& upload, const std::vector<Rect>& query) {
+    for (const Rect& wanted : query) {
+        std::vector<Rect> uncovered{wanted};
+        for (const Fragment& fragment : upload.fragments) {
+            std::vector<Rect> next;
+            for (const Rect& piece : uncovered) {
+                std::vector<Rect> remainder = subtract_rect(piece, fragment.rect);
+                next.insert(next.end(), remainder.begin(), remainder.end());
+            }
+            uncovered.swap(next);
+            if (uncovered.empty()) break;
+        }
+        if (!uncovered.empty()) return false;
+    }
+    return true;
+}
+
+struct EntryRecord {
+    uint32_t texture_hash = 0;
+    uint32_t palette_hash = 0;
+    std::string replacement_path;
+    std::string logical_path;
+    bool ambiguous = false;
+};
+
+struct ExactRegion {
+    uint32_t texture_hash = 0, palette_hash = 0;
+    uint16_t x = 0, y = 0, width = 0, height = 0, clut_x = 0, clut_y = 0;
+    uint8_t depth = 0;
+    std::vector<uint16_t> words, palette;
+    bool cache_valid = false, cache_matches = false;
+};
+
+struct DecodedImage {
+    std::vector<uint8_t> rgba;
+    std::vector<uint8_t> emissive;
+    uint32_t width = 0;
+    uint32_t height = 0;
+};
+
+enum class DecodeState { Queued, Loading, Ready, Failed };
+
+struct DecodeItem {
+    DecodeState state = DecodeState::Queued;
+    std::string path;
+    std::shared_ptr<DecodedImage> image;
+    size_t bytes = 0;
+    uint64_t last_used = 0;
+};
+
+struct DecodeCache {
+    bool emissive_enabled = false; /* immutable after pack construction */
+    std::mutex mutex;
+    std::condition_variable wake;
+    std::unordered_map<uint64_t, DecodeItem> items;
+    HdDecodeQueue queue;
+    std::thread worker;
+    size_t budget = kDefaultDecodeBudget;
+    size_t used = 0;
+    uint64_t tick = 0;
+    bool started = false;
+    bool stop = false;
+
+    ~DecodeCache() {
+        {
+            std::lock_guard<std::mutex> lock(mutex);
+            stop = true;
+        }
+        wake.notify_all();
+        if (worker.joinable()) worker.join();
+    }
+};
+
+struct PixelLease {
+    std::shared_ptr<DecodedImage> image;
+};
+
+void evict_decode_cache(DecodeCache& cache, size_t incoming = 0) {
+    while (cache.used + incoming > cache.budget) {
+        auto victim = cache.items.end();
+        for (auto it = cache.items.begin(); it != cache.items.end(); ++it) {
+            if (it->second.state != DecodeState::Ready) continue;
+            if (victim == cache.items.end() ||
+                it->second.last_used < victim->second.last_used)
+                victim = it;
+        }
+        if (victim == cache.items.end()) break;
+        cache.used -= victim->second.bytes;
+        cache.items.erase(victim);
+    }
+}
+
+#ifndef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
+void decode_worker(DecodeCache* cache) {
+#ifdef _WIN32
+    SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_BELOW_NORMAL);
+#endif
+    for (;;) {
+        uint64_t key = 0;
+        std::string path;
+        {
+            std::unique_lock<std::mutex> lock(cache->mutex);
+            cache->wake.wait(lock, [&] { return cache->stop || !cache->queue.empty(); });
+            if (cache->stop) return;
+            if(!cache->queue.take(&key))continue;
+            auto it = cache->items.find(key);
+            if (it == cache->items.end()) continue;
+            it->second.state = DecodeState::Loading;
+            path = it->second.path;
+        }
+
+        std::vector<uint8_t> encoded;
+        {
+            std::ifstream input(path, std::ios::binary | std::ios::ate);
+            std::streamoff length = -1;
+            if (input) length = static_cast<std::streamoff>(input.tellg());
+            if (length > 0 && static_cast<uint64_t>(length) <= kMaxPngFileBytes &&
+                static_cast<uint64_t>(length) <=
+                    static_cast<uint64_t>(std::numeric_limits<int>::max())) {
+                encoded.resize(static_cast<size_t>(length));
+                input.seekg(0);
+                if (!input.read(reinterpret_cast<char*>(encoded.data()), length))
+                    encoded.clear();
+            }
+        }
+        int width = 0;
+        int height = 0;
+        int components = 0;
+        stbi_uc* loaded = encoded.empty() ? nullptr : stbi_load_from_memory(
+            encoded.data(), static_cast<int>(encoded.size()),
+            &width, &height, &components, 4);
+        std::shared_ptr<DecodedImage> decoded;
+        size_t bytes = 0;
+        if (loaded && width > 0 && height > 0 &&
+            static_cast<uint64_t>(width) * static_cast<uint64_t>(height) <=
+                std::numeric_limits<size_t>::max() / 4) {
+            bytes = static_cast<size_t>(width) * static_cast<size_t>(height) * 4;
+            decoded = std::make_shared<DecodedImage>();
+            decoded->width = static_cast<uint32_t>(width);
+            decoded->height = static_cast<uint32_t>(height);
+            decoded->rgba.assign(loaded, loaded + bytes);
+        }
+        if (loaded) stbi_image_free(loaded);
+        if(decoded && cache->emissive_enabled){
+            const fs::path base(path);
+            const fs::path mask_path=base.parent_path()/(base.stem().string()+"-emissive.png");
+            std::ifstream mask_input(mask_path,std::ios::binary|std::ios::ate);
+            if(mask_input){
+                const auto length=static_cast<std::streamoff>(mask_input.tellg());
+                std::vector<uint8_t> mask_bytes;
+                if(length>=33 && static_cast<uint64_t>(length)<=kMaxPngFileBytes){
+                    mask_bytes.resize(static_cast<size_t>(length));mask_input.seekg(0);
+                    if(!mask_input.read(reinterpret_cast<char*>(mask_bytes.data()),length))mask_bytes.clear();
+                }
+                auto word=[&](size_t i){return (uint32_t(mask_bytes[i])<<24)|(uint32_t(mask_bytes[i+1])<<16)|(uint32_t(mask_bytes[i+2])<<8)|mask_bytes[i+3];};
+                const uint8_t magic[8]={137,80,78,71,13,10,26,10};
+                const bool header=mask_bytes.size()>=33 && !std::memcmp(mask_bytes.data(),magic,8) &&
+                    !std::memcmp(mask_bytes.data()+12,"IHDR",4) && mask_bytes[24]==8 && mask_bytes[25]==0 &&
+                    word(16)==decoded->width && word(20)==decoded->height;
+                int mw=0,mh=0,mc=0;
+                stbi_uc* mask=header?stbi_load_from_memory(mask_bytes.data(),static_cast<int>(mask_bytes.size()),&mw,&mh,&mc,1):nullptr;
+                if(mask && mc==1 && mw==width && mh==height){
+                    const size_t count=static_cast<size_t>(mw)*static_cast<size_t>(mh);
+                    decoded->emissive.assign(mask,mask+count);bytes+=count;
+                }else std::fprintf(stderr,"[hd_tex] ignored invalid emissive mask: %s\n",mask_path.string().c_str());
+                if(mask)stbi_image_free(mask);
+            }
+        }
+
+        std::lock_guard<std::mutex> lock(cache->mutex);
+        auto it = cache->items.find(key);
+        if (it == cache->items.end()) continue;
+        if (!decoded || bytes > cache->budget) {
+            it->second.state = DecodeState::Failed;
+            continue;
+        }
+        evict_decode_cache(*cache, bytes);
+        if (cache->used + bytes > cache->budget) {
+            it->second.state = DecodeState::Failed;
+            continue;
+        }
+        it->second.image = std::move(decoded);
+        it->second.bytes = bytes;
+        it->second.last_used = ++cache->tick;
+        it->second.state = DecodeState::Ready;
+        cache->used += bytes;
+    }
+}
+#endif
+
+bool directory_has_pack_png(const fs::path& directory) {
+    std::error_code ec;
+    for (fs::directory_iterator it(directory, ec), end; !ec && it != end; it.increment(ec)) {
+        if (!it->is_regular_file(ec)) continue;
+        uint32_t texture_hash = 0;
+        uint32_t palette_hash = 0;
+        if (parse_png_filename(it->path(), &texture_hash, &palette_hash)) return true;
+    }
+    return false;
+}
+
+void parse_hashes_ini(const fs::path& path,
+                      std::unordered_map<uint64_t, std::string>* mappings) {
+    if (!mappings) return;
+    std::ifstream input(path);
+    if (!input) return;
+    std::string line;
+    while (std::getline(input, line)) {
+        if (!line.empty() && line.back() == '\r') line.pop_back();
+        const std::string stripped = trim(line);
+        if (stripped.empty() || stripped[0] == '#' || stripped[0] == '[')
+            continue;
+        const size_t equal = stripped.find('=');
+        if (equal == std::string::npos) continue;
+        uint32_t texture_hash = 0;
+        uint32_t palette_hash = 0;
+        if (!parse_key_text(trim(stripped.substr(0, equal)),
+                            &texture_hash, &palette_hash))
+            continue;
+        const std::string logical = trim(stripped.substr(equal + 1));
+        if (!logical.empty())
+            (*mappings)[make_key(texture_hash, palette_hash)] = logical;
+    }
+}
+
+std::vector<Rect> query_rectangles(const HdTextureDrawQuery& query) {
+    const unsigned pixels_per_word = query.depth == HD_TEXTURE_DEPTH_4BPP ? 4u :
+                                     query.depth == HD_TEXTURE_DEPTH_8BPP ? 2u : 1u;
+    std::vector<std::pair<unsigned, unsigned>> u_ranges;
+    std::vector<std::pair<unsigned, unsigned>> v_ranges;
+    if (query.u_first <= query.u_last)
+        u_ranges.push_back({query.u_first, query.u_last});
+    else {
+        u_ranges.push_back({query.u_first, 255});
+        u_ranges.push_back({0, query.u_last});
+    }
+    if (query.v_first <= query.v_last)
+        v_ranges.push_back({query.v_first, query.v_last});
+    else {
+        v_ranges.push_back({query.v_first, 255});
+        v_ranges.push_back({0, query.v_last});
+    }
+
+    std::vector<Rect> result;
+    for (const auto& vrange : v_ranges) {
+        for (const auto& urange : u_ranges) {
+            const unsigned first_word = urange.first / pixels_per_word;
+            const unsigned last_word = urange.second / pixels_per_word;
+            std::vector<Rect> pieces = physical_rects(
+                unsigned{query.page_x} + first_word,
+                unsigned{query.page_y} + vrange.first,
+                last_word - first_word + 1,
+                vrange.second - vrange.first + 1);
+            result.insert(result.end(), pieces.begin(), pieces.end());
+        }
+    }
+    return result;
+}
+
+void fill_entry(const EntryRecord& record, HdTexturePackEntry* entry) {
+    if (!entry) return;
+    entry->texture_hash = record.texture_hash;
+    entry->palette_hash = record.palette_hash;
+    entry->replacement_path = record.replacement_path.c_str();
+    entry->logical_path = record.logical_path.c_str();
+}
+
+} // namespace
+
+struct HdTexturePack {
+    std::string asset_root;
+    std::string replacement_root;
+    std::unordered_map<uint64_t, EntryRecord> entries;
+    size_t replacement_file_count = 0;
+    size_t ambiguous_key_count = 0;
+    size_t logical_mapping_count = 0;
+    uint64_t next_upload_serial = 1;
+    std::vector<Upload> uploads;
+    std::array<std::vector<uint64_t>, kUploadIndexCells> upload_index;
+    std::unordered_map<uint64_t, Upload*> upload_by_serial;
+    /* Conservative broad phase for the GPU primitive hot path.  Most scene
+     * draws target frame-buffer VRAM and cannot affect texture uploads; avoid
+     * allocating cut/candidate vectors for those draws.  This union may stay
+     * larger after invalidation, but is reset with tracking and therefore can
+     * only cause extra work, never a missed invalidation. */
+    Rect upload_bounds{};
+    /* Incremental upload-index maintenance instead of a full rebuild after
+     * every track_upload and every erasure. Default OFF:
+     * PSXRECOMP_HD_UPLOAD_INDEX_INCREMENTAL=1 at pack creation selects it, so
+     * one binary can run a matched control/on pair. */
+    bool upload_index_incremental = false;
+    std::vector<ExactRegion> regions;
+    uint64_t region_validations = 0;
+    /* Region broad phase; rebuilt whenever regions.size() differs from the
+     * count it was built for (the set is only appended during create).
+     * Default OFF: PSXRECOMP_HD_REGION_INDEX=1 at pack creation selects it,
+     * so one binary can run a matched control/on pair. */
+    bool region_index_enabled = false;
+    size_t region_index_count = 0;
+    uint64_t region_src_cols[kRegionCols][kRegionWords]{};
+    uint64_t region_src_rows[kRegionRows][kRegionWords]{};
+    uint64_t region_pal_cols[kRegionCols][kRegionWords]{};
+    uint64_t region_pal_rows[kRegionRows][kRegionWords]{};
+    bool cost_enabled = false;          /* diagnostic counters only */
+    HdTexturePackCostStats cost{};
+    DecodeCache decode;
+};
+
+static bool read_region_proof(const fs::path& path, size_t expected,
+                              std::vector<uint8_t>* bytes) {
+    std::ifstream stream(path, std::ios::binary | std::ios::ate);
+    if (!stream || stream.tellg() != static_cast<std::streamoff>(expected)) return false;
+    bytes->resize(expected); stream.seekg(0);
+    return expected == 0 || bool(stream.read(reinterpret_cast<char*>(bytes->data()), expected));
+}
+
+static bool load_exact_regions(HdTexturePack* pack, const fs::path& directory,
+                               char* error, size_t error_capacity) {
+    const fs::path manifest = directory / "ExactRegions.tsv";
+    std::error_code ec;
+    if (!fs::exists(manifest, ec)) return !ec;
+    auto fail = [&]() { write_error(error,error_capacity,"invalid ExactRegions.tsv or complete source proof"); return false; };
+    if (ec || fs::file_size(manifest,ec) > 32768 || ec) return fail();
+    std::ifstream stream(manifest); std::string line;
+    if (!std::getline(stream,line)) return fail();
+    if (!line.empty() && line.back()=='\r') line.pop_back();
+    if (line != "EIN_EXACT_REGIONS_V1") return fail();
+    while (std::getline(stream,line)) {
+        if (!line.empty() && line.back()=='\r') line.pop_back();
+        if (line.empty()) continue;
+        if (pack->regions.size() >= kMaxExactRegions) return fail();
+        std::istringstream row(line); std::string key,tail;
+        unsigned x,y,w,h,depth,cx,cy;
+        if (!(row>>key>>x>>y>>w>>h>>depth>>cx>>cy) || (row>>tail)) return fail();
+        ExactRegion region;
+        if (key.size()!=17 || key[8]!='-' ||
+            !parse_key_text(key,&region.texture_hash,&region.palette_hash)) return fail();
+        for (char ch:key) if (ch!='-' && !std::isdigit(static_cast<unsigned char>(ch)) && !(ch>='A'&&ch<='F')) return fail();
+        const unsigned ppw = depth==0?4u:depth==1?2u:1u;
+        if (depth>2 || !w || !h || w*ppw>256 || h>256 || x>=1024 || y>=512 ||
+            w>1024-x || h>512-y || cx>=1024 || cy>=512) return fail();
+        const unsigned colors=depth==0?16u:depth==1?256u:0u;
+        if ((!colors && (cx||cy||region.palette_hash)) || colors>1024-cx) return fail();
+        const auto entry=pack->entries.find(make_key(region.texture_hash,region.palette_hash));
+        if (entry==pack->entries.end() || entry->second.ambiguous) return fail();
+        std::vector<uint8_t> raw,valid,palette;
+        const size_t count=size_t{w}*h;
+        if (!read_region_proof(directory/(key+".words.bin"),count*2,&raw) ||
+            !read_region_proof(directory/(key+".valid.bin"),count,&valid) ||
+            !read_region_proof(directory/(key+".clut.bin"),colors*2,&palette) ||
+            std::any_of(valid.begin(),valid.end(),[](uint8_t b){return b!=1;})) return fail();
+        region.words.resize(count); region.palette.resize(colors);
+        for(size_t i=0;i<count;++i)region.words[i]=uint16_t(raw[i*2])|(uint16_t(raw[i*2+1])<<8);
+        for(size_t i=0;i<colors;++i)region.palette[i]=uint16_t(palette[i*2])|(uint16_t(palette[i*2+1])<<8);
+        if(hd_texture_crc32_words_le(region.words.data(),count)!=region.texture_hash ||
+           (colors && hd_texture_crc32_words_le(region.palette.data(),colors)!=region.palette_hash))return fail();
+        region.x=x;region.y=y;region.width=w;region.height=h;region.depth=depth;region.clut_x=cx;region.clut_y=cy;
+        for(const auto& old:pack->regions){
+            const bool overlap=x<old.x+old.width && x+w>old.x && y<old.y+old.height && y+h>old.y;
+            const bool same=x==old.x&&y==old.y&&w==old.width&&h==old.height&&depth==old.depth;
+            // Texture depth is part of every draw query. Different-depth
+            // interpretations may legitimately reuse the same VRAM words.
+            if(overlap && depth==old.depth && !same)return fail();
+            if(same && region.words==old.words && region.palette==old.palette && cx==old.clut_x&&cy==old.clut_y)return fail();
+        }
+        pack->regions.push_back(std::move(region));
+    }
+    return !stream.bad();
+}
+
+static bool region_covers(const ExactRegion& region,const HdTextureDrawQuery& q){
+    if(q.depth!=region.depth || q.u_first>q.u_last || q.v_first>q.v_last)return false;
+    if(q.depth<2 && (q.clut_x!=region.clut_x||q.clut_y!=region.clut_y))return false;
+    const unsigned ppw=4u>>q.depth;
+    const unsigned x=q.page_x+q.u_first/ppw,y=q.page_y+q.v_first;
+    const unsigned right=q.page_x+q.u_last/ppw,bottom=q.page_y+q.v_last;
+    return x>=region.x&&right<region.x+region.width&&y>=region.y&&bottom<region.y+region.height;
+}
+
+size_t hd_texture_pack_region_count(const HdTexturePack* pack){return pack?pack->regions.size():0;}
+uint64_t hd_texture_pack_region_validation_count(const HdTexturePack* pack){return pack?pack->region_validations:0;}
+void hd_texture_pack_set_cost_profile(HdTexturePack* pack,int enabled){if(pack)pack->cost_enabled=enabled!=0;}
+int hd_texture_pack_region_index_enabled(const HdTexturePack* pack){return pack&&pack->region_index_enabled?1:0;}
+int hd_texture_pack_upload_index_incremental(const HdTexturePack* pack){return pack&&pack->upload_index_incremental?1:0;}
+void hd_texture_pack_get_cost_stats(const HdTexturePack* pack,HdTexturePackCostStats* out){
+    if(out)std::memset(out,0,sizeof(*out));
+    if(pack&&out)*out=pack->cost;
+}
+
+int hd_texture_pack_probe_region(const HdTexturePack* pack,const HdTextureDrawQuery* query,
+                                HdTextureRegionCandidate* out){
+    if(out)std::memset(out,0,sizeof(*out));
+    if(!pack||!query||query->depth>2)return HD_TEXTURE_LOOKUP_NONE;
+    const ExactRegion* candidate=nullptr;
+    for(const auto& r:pack->regions)if(region_covers(r,*query)){
+        if(candidate && (candidate->x!=r.x||candidate->y!=r.y||candidate->width!=r.width||candidate->height!=r.height))
+            return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+        candidate=&r;
+    }
+    if(!candidate)return HD_TEXTURE_LOOKUP_NONE;
+    if(out){out->x=candidate->x;out->y=candidate->y;out->width_words=candidate->width;out->height=candidate->height;
+            out->depth=candidate->depth;out->clut_x=candidate->clut_x;out->clut_y=candidate->clut_y;}
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+int hd_texture_pack_match_region(HdTexturePack* pack,const HdTextureDrawQuery* query,int authoritative,
+                                HdTextureSourceMatch* out){
+    if(out)std::memset(out,0,sizeof(*out));
+    if(!pack||!query||!authoritative||!query->vram||query->vram_word_count<kVramWords)return HD_TEXTURE_LOOKUP_NONE;
+    const ExactRegion* candidate=nullptr;
+    for(auto& r:pack->regions){
+        if(!region_covers(r,*query))continue;
+        if(!r.cache_valid){
+            ++pack->region_validations;r.cache_matches=true;
+            for(unsigned row=0;row<r.height&&r.cache_matches;++row)
+                r.cache_matches=std::memcmp(query->vram+(r.y+row)*1024+r.x,r.words.data()+size_t{row}*r.width,r.width*2)==0;
+            if(r.cache_matches&&!r.palette.empty())r.cache_matches=std::memcmp(query->vram+r.clut_y*1024+r.clut_x,r.palette.data(),r.palette.size()*2)==0;
+            r.cache_valid=true;
+        }
+        if(!r.cache_matches)continue;
+        if(candidate)return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+        candidate=&r;
+    }
+    if(!candidate)return HD_TEXTURE_LOOKUP_NONE;
+    if(out){out->texture_hash=candidate->texture_hash;out->palette_hash=candidate->palette_hash;
+        out->upload_width_words=candidate->width;out->upload_height=candidate->height;out->exact_region=1;
+        out->region_x=candidate->x;out->region_y=candidate->y;
+        out->source_word_x=query->page_x+query->u_first/(4u>>query->depth)-candidate->x;
+        out->source_y=query->page_y+query->v_first-candidate->y;}
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+/* Build the exact-region broad phase. Regions are validated in-bounds at load
+ * (x+w<=1024, y+h<=512, clut_x+colors<=1024); clamp anyway so a band index
+ * can never leave the arrays. More than kMaxExactRegions cannot be indexed:
+ * leave the count stale so callers keep using the exhaustive loop. */
+void region_index_build(HdTexturePack* pack) {
+    std::memset(pack->region_src_cols, 0, sizeof pack->region_src_cols);
+    std::memset(pack->region_src_rows, 0, sizeof pack->region_src_rows);
+    std::memset(pack->region_pal_cols, 0, sizeof pack->region_pal_cols);
+    std::memset(pack->region_pal_rows, 0, sizeof pack->region_pal_rows);
+    pack->region_index_count = 0;
+    if (pack->regions.size() > kMaxExactRegions) return;
+    const auto mark = [](uint64_t (*bands)[kRegionWords], unsigned nbands,
+                         unsigned first, unsigned last, size_t id) {
+        for (unsigned b = first / kRegionTile; b <= last / kRegionTile && b < nbands; ++b)
+            bands[b][id / 64] |= uint64_t{1} << (id % 64);
+    };
+    for (size_t id = 0; id < pack->regions.size(); ++id) {
+        const ExactRegion& r = pack->regions[id];
+        const unsigned x = r.x, y = r.y, w = r.width, h = r.height;
+        /* Anything not a proper in-bounds rectangle is marked in every band:
+         * a conservative superset, so the exact predicate alone decides.
+         * Bounds use x < W && w <= W - x (no addition can wrap). */
+        if (w != 0 && h != 0 && x < kVramWidth && w <= kVramWidth - x &&
+            y < kVramHeight && h <= kVramHeight - y) {
+            mark(pack->region_src_cols, kRegionCols, x, x + w - 1, id);
+            mark(pack->region_src_rows, kRegionRows, y, y + h - 1, id);
+        } else {
+            mark(pack->region_src_cols, kRegionCols, 0, kVramWidth - 1, id);
+            mark(pack->region_src_rows, kRegionRows, 0, kVramHeight - 1, id);
+        }
+        if (r.palette.empty()) continue;
+        const unsigned cx = r.clut_x, cy = r.clut_y;
+        if (cx < kVramWidth && cy < kVramHeight &&
+            r.palette.size() <= size_t{kVramWidth - cx}) {
+            mark(pack->region_pal_cols, kRegionCols, cx, cx + unsigned(r.palette.size()) - 1, id);
+            mark(pack->region_pal_rows, kRegionRows, cy, cy, id);
+        } else {
+            mark(pack->region_pal_cols, kRegionCols, 0, kVramWidth - 1, id);
+            mark(pack->region_pal_rows, kRegionRows, 0, kVramHeight - 1, id);
+        }
+    }
+    pack->region_index_count = pack->regions.size();
+}
+
+/* Exact-region component of hd_texture_pack_invalidate: identical decisions
+ * to the exhaustive loop (same predicate, candidate superset), no allocation. */
+void region_invalidate_cut(HdTexturePack* pack, const Rect& cut) {
+    uint64_t sc[kRegionWords] = {}, sr[kRegionWords] = {};
+    uint64_t pc[kRegionWords] = {}, pr[kRegionWords] = {};
+    for (unsigned b = cut.x / kRegionTile; b <= (cut.x + cut.width - 1) / kRegionTile; ++b)
+        for (unsigned w = 0; w < kRegionWords; ++w) {
+            sc[w] |= pack->region_src_cols[b][w]; pc[w] |= pack->region_pal_cols[b][w];
+        }
+    for (unsigned b = cut.y / kRegionTile; b <= (cut.y + cut.height - 1) / kRegionTile; ++b)
+        for (unsigned w = 0; w < kRegionWords; ++w) {
+            sr[w] |= pack->region_src_rows[b][w]; pr[w] |= pack->region_pal_rows[b][w];
+        }
+    for (unsigned w = 0; w < kRegionWords; ++w) {
+        for (uint64_t bits = (sc[w] & sr[w]) | (pc[w] & pr[w]); bits; bits &= bits - 1) {
+            ExactRegion& region = pack->regions[size_t{w} * 64 + region_ctz64(bits)];
+            const Rect source{region.x,region.y,region.width,region.height};
+            const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
+            if (pack->cost_enabled) ++pack->cost.region_tests;
+            if (intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))) {
+                if (pack->cost_enabled) ++pack->cost.region_hits;
+                region.cache_valid=false;
+            }
+        }
+    }
+}
+
+unsigned upload_index_cell(unsigned tx, unsigned ty) {
+    return ty * kUploadIndexCols + tx;
+}
+
+void upload_index_clear(HdTexturePack* pack) {
+    if (!pack) return;
+    for (auto& bucket : pack->upload_index) bucket.clear();
+    pack->upload_by_serial.clear();
+    for (Upload& upload : pack->uploads) upload.index_tiles.clear();
+}
+
+void upload_index_remove(HdTexturePack* pack, Upload& upload) {
+    if (!pack) return;
+    for (const uint16_t tile : upload.index_tiles) {
+        auto& bucket = pack->upload_index[tile];
+        bucket.erase(std::remove(bucket.begin(), bucket.end(), upload.serial),
+                     bucket.end());
+    }
+    upload.index_tiles.clear();
+    pack->upload_by_serial.erase(upload.serial);
+}
+
+void upload_index_add(HdTexturePack* pack, Upload& upload) {
+    if (!pack || upload.fragments.empty() || upload.bounds.width == 0 ||
+        upload.bounds.height == 0)
+        return;
+    const unsigned first_x = upload.bounds.x / kUploadIndexTileSize;
+    const unsigned first_y = upload.bounds.y / kUploadIndexTileSize;
+    const unsigned last_x = std::min(
+        kUploadIndexCols - 1,
+        (upload.bounds.x + upload.bounds.width - 1) / kUploadIndexTileSize);
+    const unsigned last_y = std::min(
+        kUploadIndexRows - 1,
+        (upload.bounds.y + upload.bounds.height - 1) / kUploadIndexTileSize);
+    pack->upload_by_serial[upload.serial] = &upload;
+    upload.index_tiles.reserve((last_x - first_x + 1) *
+                               (last_y - first_y + 1));
+    for (unsigned ty = first_y; ty <= last_y; ++ty) {
+        for (unsigned tx = first_x; tx <= last_x; ++tx) {
+            const unsigned tile = upload_index_cell(tx, ty);
+            pack->upload_index[tile].push_back(upload.serial);
+            upload.index_tiles.push_back(static_cast<uint16_t>(tile));
+        }
+    }
+}
+
+void upload_index_refresh(HdTexturePack* pack, Upload& upload) {
+    upload_index_remove(pack, upload);
+    upload_index_add(pack, upload);
+}
+
+void upload_index_rebuild(HdTexturePack* pack) {
+    if (!pack) return;
+    struct RebuildCost {
+        HdTexturePack* p; uint64_t t0;
+        ~RebuildCost() { if (p) { ++p->cost.index_rebuilds; p->cost.index_rebuild_ns += cost_now_ns() - t0; } }
+    } rebuild_cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    for (auto& bucket : pack->upload_index) bucket.clear();
+    pack->upload_by_serial.clear();
+    pack->upload_bounds = Rect{};
+    for (Upload& upload : pack->uploads) {
+        upload.index_tiles.clear();
+        upload_index_add(pack, upload);
+        if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0) {
+            pack->upload_bounds = upload.bounds;
+        } else {
+            const unsigned right = std::max(
+                pack->upload_bounds.x + pack->upload_bounds.width,
+                upload.bounds.x + upload.bounds.width);
+            const unsigned bottom = std::max(
+                pack->upload_bounds.y + pack->upload_bounds.height,
+                upload.bounds.y + upload.bounds.height);
+            pack->upload_bounds.x = std::min(pack->upload_bounds.x, upload.bounds.x);
+            pack->upload_bounds.y = std::min(pack->upload_bounds.y, upload.bounds.y);
+            pack->upload_bounds.width = right - pack->upload_bounds.x;
+            pack->upload_bounds.height = bottom - pack->upload_bounds.y;
+        }
+    }
+}
+
+/* Exact union of every tracked upload's bounds: the same loop, order and
+ * arithmetic as upload_index_rebuild, without touching the index. No
+ * allocation; one pass over four words per upload. */
+void upload_bounds_recompute(HdTexturePack* pack) {
+    pack->upload_bounds = Rect{};
+    for (const Upload& upload : pack->uploads) {
+        if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0) {
+            pack->upload_bounds = upload.bounds;
+        } else {
+            const unsigned right = std::max(
+                pack->upload_bounds.x + pack->upload_bounds.width,
+                upload.bounds.x + upload.bounds.width);
+            const unsigned bottom = std::max(
+                pack->upload_bounds.y + pack->upload_bounds.height,
+                upload.bounds.y + upload.bounds.height);
+            pack->upload_bounds.x = std::min(pack->upload_bounds.x, upload.bounds.x);
+            pack->upload_bounds.y = std::min(pack->upload_bounds.y, upload.bounds.y);
+            pack->upload_bounds.width = right - pack->upload_bounds.x;
+            pack->upload_bounds.height = bottom - pack->upload_bounds.y;
+        }
+    }
+}
+
+/* Incremental twins of upload_index_rebuild for its two hot callers. Both
+ * rely on the invariant every path keeps: each upload with fragments has
+ * index_tiles == the tiles of its current bounds, appears once in exactly
+ * those buckets, and upload_by_serial maps its serial to it; nothing else is
+ * indexed. (track_upload adds; invalidate refreshes or removes each upload it
+ * changes; reset clears; state load rebuilds.) Bucket order may differ from a
+ * rebuild; upload_index_collect sorts and de-duplicates, so no lookup can
+ * observe it. upload_bounds is recomputed exactly as a rebuild would. */
+struct IncrementalCost {
+    HdTexturePack* p; uint64_t t0;
+    ~IncrementalCost() { if (p) { ++p->cost.index_incremental; p->cost.index_incremental_ns += cost_now_ns() - t0; } }
+};
+
+/* After push_back() that did not reallocate: every older Upload* is still
+ * exact, so only the new upload is indexed. */
+void upload_index_after_push(HdTexturePack* pack) {
+    IncrementalCost cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    upload_index_add(pack, pack->uploads.back());
+    upload_bounds_recompute(pack);
+}
+
+/* After the emptied uploads were compacted out from index first_moved on.
+ * upload_index_remove already dropped their tiles and serials when they
+ * emptied; survivors keep their tiles and serials, and only those at
+ * first_moved.. moved, so only their Upload* is re-pointed. */
+void upload_index_after_erase(HdTexturePack* pack, size_t first_moved) {
+    IncrementalCost cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    for (size_t i = first_moved; i < pack->uploads.size(); ++i) {
+        Upload& upload = pack->uploads[i];
+        const auto indexed = pack->upload_by_serial.find(upload.serial);
+        if (indexed == pack->upload_by_serial.end()) {
+            /* Unreachable while the invariant holds; stay authoritative. */
+            cost.p = nullptr;
+            upload_index_rebuild(pack);
+            return;
+        }
+        indexed->second = &upload;
+        if (pack->cost_enabled) ++pack->cost.index_pointer_fixups;
+    }
+    upload_bounds_recompute(pack);
+}
+
+void upload_index_collect(const HdTexturePack* pack,
+                          const std::vector<Rect>& query,
+                          std::vector<uint64_t>* out_serials) {
+    if (!pack || !out_serials) return;
+    out_serials->clear();
+    for (const Rect& rect : query) {
+        if (rect.width == 0 || rect.height == 0) continue;
+        const unsigned first_x = rect.x / kUploadIndexTileSize;
+        const unsigned first_y = rect.y / kUploadIndexTileSize;
+        const unsigned last_x = std::min(
+            kUploadIndexCols - 1,
+            (rect.x + rect.width - 1) / kUploadIndexTileSize);
+        const unsigned last_y = std::min(
+            kUploadIndexRows - 1,
+            (rect.y + rect.height - 1) / kUploadIndexTileSize);
+        for (unsigned ty = first_y; ty <= last_y; ++ty) {
+            for (unsigned tx = first_x; tx <= last_x; ++tx) {
+                const auto& bucket = pack->upload_index[
+                    upload_index_cell(tx, ty)];
+                out_serials->insert(out_serials->end(), bucket.begin(),
+                                    bucket.end());
+            }
+        }
+    }
+    std::sort(out_serials->begin(), out_serials->end());
+    out_serials->erase(std::unique(out_serials->begin(), out_serials->end()),
+                       out_serials->end());
+}
+
+extern "C" {
+
+int hd_texture_pack_create(const char* explicit_root,
+                           HdTexturePack** out_pack,
+                           char* error,
+                           size_t error_capacity) {
+    if (out_pack) *out_pack = nullptr;
+    if (error && error_capacity) error[0] = '\0';
+    if (!out_pack) {
+        write_error(error, error_capacity, "out_pack is null");
+        return 0;
+    }
+
+    try {
+        const char* selected = explicit_root;
+        if (!selected || !selected[0]) selected = std::getenv("PSXRECOMP_HD_TEXTURE_ROOT");
+        if (!selected || !selected[0]) {
+            write_error(error, error_capacity,
+                        "HD asset root is unset (PSXRECOMP_HD_TEXTURE_ROOT)");
+            return 0;
+        }
+
+        std::error_code ec;
+        fs::path input = fs::absolute(fs::path(selected), ec).lexically_normal();
+        if (ec || !fs::is_directory(input, ec)) {
+            write_error(error, error_capacity, "HD asset root is not a directory");
+            return 0;
+        }
+
+        fs::path replacement;
+        fs::path hashes_ini;
+        if (directory_has_pack_png(input)) {
+            replacement = input;
+            hashes_ini = fs::is_regular_file(input / "Hashes.ini", ec)
+                ? input / "Hashes.ini" : input.parent_path() / "Hashes.ini";
+        } else if (fs::is_regular_file(input / "Hashes.ini", ec)) {
+            std::vector<fs::path> children;
+            for (fs::directory_iterator it(input, ec), end; !ec && it != end; it.increment(ec)) {
+                if (it->is_directory(ec) &&
+                    ends_with_ci(it->path().filename().string(), "-texture-replacements"))
+                    children.push_back(it->path());
+            }
+            std::sort(children.begin(), children.end());
+            if (children.size() != 1) {
+                write_error(error, error_capacity,
+                            "pack root must contain exactly one *-texture-replacements directory");
+                return 0;
+            }
+            replacement = children.front();
+            hashes_ini = input / "Hashes.ini";
+        } else {
+            write_error(error, error_capacity,
+                        "no numeric PNGs or Hashes.ini + replacement directory found");
+            return 0;
+        }
+
+        auto pack = std::make_unique<HdTexturePack>();
+        const char* emissive=std::getenv("PSXRECOMP_HD_EMISSIVE");
+        pack->decode.emissive_enabled=emissive && std::strcmp(emissive,"1")==0;
+        pack->asset_root = input.string();
+        pack->replacement_root = replacement.lexically_normal().string();
+
+        std::unordered_map<uint64_t, std::string> mappings;
+        parse_hashes_ini(hashes_ini, &mappings);
+        pack->logical_mapping_count = mappings.size();
+
+        std::vector<fs::path> files;
+        for (fs::directory_iterator it(replacement, ec), end; !ec && it != end;
+             it.increment(ec)) {
+            if (!it->is_regular_file(ec)) continue;
+            uint32_t texture_hash = 0;
+            uint32_t palette_hash = 0;
+            if (parse_png_filename(it->path(), &texture_hash, &palette_hash))
+                files.push_back(it->path());
+        }
+        if (ec) {
+            write_error(error, error_capacity, "failed to scan replacement directory");
+            return 0;
+        }
+        std::sort(files.begin(), files.end());
+        /* An empty replacement directory is legal: dump mode creates the pack
+         * first and fills the directory while the game runs. Entries simply
+         * stay empty so matches resolve NONE until PNGs appear. */
+
+
+        for (const fs::path& path : files) {
+            uint32_t texture_hash = 0;
+            uint32_t palette_hash = 0;
+            if (!parse_png_filename(path, &texture_hash, &palette_hash)) continue;
+            ++pack->replacement_file_count;
+            const uint64_t key = make_key(texture_hash, palette_hash);
+            auto found = pack->entries.find(key);
+            if (found != pack->entries.end()) {
+                if (!found->second.ambiguous) {
+                    found->second.ambiguous = true;
+                    ++pack->ambiguous_key_count;
+                }
+                continue;
+            }
+            EntryRecord record;
+            record.texture_hash = texture_hash;
+            record.palette_hash = palette_hash;
+            record.replacement_path = path.lexically_normal().string();
+            const auto mapping = mappings.find(key);
+            if (mapping != mappings.end()) record.logical_path = mapping->second;
+            pack->entries.emplace(key, std::move(record));
+        }
+
+        if (!load_exact_regions(pack.get(),input,error,error_capacity)) return 0;
+        {
+            const char* index = std::getenv("PSXRECOMP_HD_REGION_INDEX");
+            pack->region_index_enabled = index && std::strcmp(index, "1") == 0;
+            if (pack->region_index_enabled) region_index_build(pack.get());
+            const char* incremental = std::getenv("PSXRECOMP_HD_UPLOAD_INDEX_INCREMENTAL");
+            pack->upload_index_incremental = incremental && std::strcmp(incremental, "1") == 0;
+        }
+        *out_pack = pack.release();
+        return 1;
+    } catch (const std::exception& exception) {
+        write_error(error, error_capacity, exception.what());
+        return 0;
+    }
+}
+
+void hd_texture_pack_destroy(HdTexturePack* pack) {
+    delete pack;
+}
+
+void hd_texture_pack_get_info(const HdTexturePack* pack,
+                              HdTexturePackInfo* out_info) {
+    if (!out_info) return;
+    std::memset(out_info, 0, sizeof(*out_info));
+    if (!pack) return;
+    out_info->asset_root = pack->asset_root.c_str();
+    out_info->replacement_root = pack->replacement_root.c_str();
+    out_info->replacement_file_count = pack->replacement_file_count;
+    out_info->unique_key_count = pack->entries.size() - pack->ambiguous_key_count;
+    out_info->ambiguous_key_count = pack->ambiguous_key_count;
+    out_info->logical_mapping_count = pack->logical_mapping_count;
+}
+
+int hd_texture_pack_lookup(const HdTexturePack* pack,
+                           uint32_t texture_hash,
+                           uint32_t palette_hash,
+                           HdTexturePackEntry* out_entry) {
+    if (out_entry) std::memset(out_entry, 0, sizeof(*out_entry));
+    if (!pack) return HD_TEXTURE_LOOKUP_ERROR;
+    const auto found = pack->entries.find(make_key(texture_hash, palette_hash));
+    if (found == pack->entries.end()) return HD_TEXTURE_LOOKUP_NONE;
+    if (found->second.ambiguous) return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+    fill_entry(found->second, out_entry);
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+uint32_t hd_texture_crc32_words_le(const uint16_t* words, size_t word_count) {
+    if (!words && word_count != 0) return 0;
+    uint32_t crc = 0xFFFFFFFFu;
+    for (size_t i = 0; i < word_count; ++i) {
+        crc = crc_byte(crc, static_cast<uint8_t>(words[i] & 0xFFu));
+        crc = crc_byte(crc, static_cast<uint8_t>(words[i] >> 8));
+    }
+    return crc ^ 0xFFFFFFFFu;
+}
+
+uint32_t hd_texture_hash_clut(const uint16_t* vram,
+                              size_t vram_word_count,
+                              uint16_t clut_x,
+                              uint16_t clut_y,
+                              uint8_t depth) {
+    if (depth == HD_TEXTURE_DEPTH_16BPP) return 0;
+    if (!vram || vram_word_count < kVramWords) return 0;
+    const unsigned count = depth == HD_TEXTURE_DEPTH_4BPP ? 16u :
+                           depth == HD_TEXTURE_DEPTH_8BPP ? 256u : 0u;
+    if (count == 0) return 0;
+    std::array<uint16_t, 256> palette{};
+    const unsigned y = clut_y & (kVramHeight - 1);
+    for (unsigned i = 0; i < count; ++i)
+        palette[i] = vram[y * kVramWidth + ((unsigned{clut_x} + i) &
+                                            (kVramWidth - 1))];
+    return hd_texture_crc32_words_le(palette.data(), count);
+}
+
+void hd_texture_pack_invalidate(HdTexturePack* pack,
+                                uint16_t x,
+                                uint16_t y,
+                                uint16_t width_words,
+                                uint16_t height) {
+    if (!pack || width_words == 0 || height == 0 ||
+        width_words > kVramWidth || height > kVramHeight)
+        return;
+    const bool cost = pack->cost_enabled;
+    if (cost) ++pack->cost.invalidate_calls;
+    if (!pack->regions.empty()) {
+        const uint64_t t0 = cost ? cost_now_ns() : 0;
+        if (pack->region_index_enabled && pack->region_index_count != pack->regions.size())
+            region_index_build(pack);
+        if (pack->region_index_enabled && pack->region_index_count == pack->regions.size()) {
+            Rect region_cuts[4];
+            const unsigned ncuts = physical_rect_array(x, y, width_words, height, region_cuts);
+            for (unsigned c = 0; c < ncuts; ++c) region_invalidate_cut(pack, region_cuts[c]);
+            if (cost) pack->cost.region_index_cuts += ncuts;
+        } else {   /* default (control) path: the original exhaustive loop */
+            const auto region_cuts=physical_rects(x,y,width_words,height);
+            for(auto& region:pack->regions) for(const auto& cut:region_cuts) {
+                const Rect source{region.x,region.y,region.width,region.height};
+                const Rect palette{region.clut_x,region.clut_y,unsigned(region.palette.size()),1};
+                if (cost) ++pack->cost.region_tests;
+                if(intersects(source,cut)||(!region.palette.empty()&&intersects(palette,cut))){
+                    if (cost) ++pack->cost.region_hits;
+                    region.cache_valid=false;
+                }
+            }
+        }
+        if (cost) { ++pack->cost.region_calls; pack->cost.region_ns += cost_now_ns() - t0; }
+    }
+    bool erased_upload = false;
+    if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0)
+        return;
+    if ((unsigned{x} + width_words <= kVramWidth) &&
+        (unsigned{y} + height <= kVramHeight)) {
+        const Rect cut{unsigned{x}, unsigned{y}, width_words, height};
+        if (!intersects(pack->upload_bounds, cut)) return;
+    }
+    struct UploadCost {
+        HdTexturePack* p; uint64_t t0;
+        ~UploadCost() { if (p) { ++p->cost.upload_calls; p->cost.upload_ns += cost_now_ns() - t0; } }
+    } upload_cost{cost ? pack : nullptr, cost ? cost_now_ns() : 0};
+    const std::vector<Rect> cuts = physical_rects(x, y, width_words, height);
+    std::vector<uint64_t> candidate_serials;
+    upload_index_collect(pack, cuts, &candidate_serials);
+    if (cost) pack->cost.upload_candidates += candidate_serials.size();
+    for (const uint64_t serial : candidate_serials) {
+        auto indexed = pack->upload_by_serial.find(serial);
+        if (indexed == pack->upload_by_serial.end() || !indexed->second)
+            continue;
+        Upload& upload = *indexed->second;
+        for (const Rect& cut : cuts) {
+            /* Most primitives are outside every tracked upload.  The union is
+             * conservative, so this can only skip work that is provably
+             * unrelated; individual fragments remain the source of truth. */
+            if (!intersects(upload.bounds, cut)) continue;
+            std::vector<Fragment> next;
+            next.reserve(upload.fragments.size() + 4);
+            for (const Fragment& fragment : upload.fragments) {
+                if (!intersects(fragment.rect, cut)) {
+                    next.push_back(fragment);
+                    continue;
+                }
+                std::vector<Fragment> pieces = subtract_fragment(fragment, cut);
+                next.insert(next.end(), pieces.begin(), pieces.end());
+            }
+            upload.fragments.swap(next);
+            upload.bounds = fragment_bounds(upload.fragments);
+            if (upload.fragments.empty()) {
+                upload_index_remove(pack, upload);
+            } else {
+                upload_index_refresh(pack, upload);
+            }
+        }
+    }
+    const auto old_size = pack->uploads.size();
+    if (pack->upload_index_incremental) {
+        /* Same compaction, started at the first emptied upload: everything
+         * before it stays in place, so only the uploads after it move. */
+        const auto emptied = [](const Upload& upload) { return upload.fragments.empty(); };
+        const auto first = std::find_if(pack->uploads.begin(), pack->uploads.end(), emptied);
+        const size_t first_moved = static_cast<size_t>(first - pack->uploads.begin());
+        pack->uploads.erase(std::remove_if(first, pack->uploads.end(), emptied),
+                            pack->uploads.end());
+        if (old_size != pack->uploads.size()) upload_index_after_erase(pack, first_moved);
+        return;
+    }
+    pack->uploads.erase(
+        std::remove_if(pack->uploads.begin(), pack->uploads.end(),
+                       [](const Upload& upload) { return upload.fragments.empty(); }),
+        pack->uploads.end());
+    erased_upload = old_size != pack->uploads.size();
+    /* Vector erasure can move surviving Upload objects, invalidating the
+     * pointer map.  Rebuild only on this uncommon path; ordinary primitive
+     * invalidation updates only the few intersecting uploads. */
+    if (erased_upload) upload_index_rebuild(pack);
+}
+
+int hd_texture_pack_track_upload(HdTexturePack* pack,
+                                 uint16_t x,
+                                 uint16_t y,
+                                 uint16_t width_words,
+                                 uint16_t height,
+                                 const uint16_t* words,
+                                 size_t word_count,
+                                 uint32_t* out_texture_hash) {
+    if (out_texture_hash) *out_texture_hash = 0;
+    const size_t required = size_t{width_words} * height;
+    if (!pack || !words || width_words == 0 || height == 0 ||
+        width_words > kVramWidth || height > kVramHeight || word_count < required)
+        return 0;
+    struct TrackCost {
+        HdTexturePack* p; uint64_t t0;
+        ~TrackCost() { if (p) { ++p->cost.track_calls; p->cost.track_ns += cost_now_ns() - t0; } }
+    } track_cost{pack->cost_enabled ? pack : nullptr, pack->cost_enabled ? cost_now_ns() : 0};
+    const uint32_t hash = hd_texture_crc32_words_le(words, required);
+    hd_texture_pack_invalidate(pack, x, y, width_words, height);
+    Upload upload;
+    upload.serial = pack->next_upload_serial++;
+    upload.hash = hash;
+    upload.width = width_words;
+    upload.height = height;
+    upload.fragments = physical_fragments(x, y, width_words, height);
+    upload.bounds = fragment_bounds(upload.fragments);
+    if (pack->upload_bounds.width == 0 || pack->upload_bounds.height == 0) {
+        pack->upload_bounds = upload.bounds;
+    } else {
+        const unsigned right = std::max(
+            pack->upload_bounds.x + pack->upload_bounds.width,
+            upload.bounds.x + upload.bounds.width);
+        const unsigned bottom = std::max(
+            pack->upload_bounds.y + pack->upload_bounds.height,
+            upload.bounds.y + upload.bounds.height);
+        pack->upload_bounds.x = std::min(pack->upload_bounds.x, upload.bounds.x);
+        pack->upload_bounds.y = std::min(pack->upload_bounds.y, upload.bounds.y);
+        pack->upload_bounds.width = right - pack->upload_bounds.x;
+        pack->upload_bounds.height = bottom - pack->upload_bounds.y;
+    }
+    /* Incremental mode: a push within capacity moves no Upload, so only the
+     * new one is indexed; a reallocating push (geometric growth) rebuilds. */
+    const bool push_keeps_pointers = pack->uploads.size() < pack->uploads.capacity();
+    pack->uploads.push_back(std::move(upload));
+    if (pack->upload_index_incremental && push_keeps_pointers) {
+        upload_index_after_push(pack);
+    } else {
+        /* A push may reallocate the vector, so refresh all broad-phase pointers
+         * after adding an upload.  Upload creation is far less frequent than GPU
+         * primitive submission. */
+        upload_index_rebuild(pack);
+    }
+    if (out_texture_hash) *out_texture_hash = hash;
+    return 1;
+}
+
+void hd_texture_pack_reset_tracking(HdTexturePack* pack) {
+    if (pack) {
+        for(auto& region:pack->regions)region.cache_valid=false;
+        pack->uploads.clear();
+        upload_index_clear(pack);
+        pack->upload_bounds = Rect{};
+    }
+}
+
+int hd_texture_pack_tracking_state_save(const HdTexturePack* pack,
+                                        uint8_t** out_data,
+                                        size_t* out_size) {
+    if (!out_data || !out_size) return 0;
+    *out_data = nullptr;
+    *out_size = 0;
+    try {
+        const uint64_t next_serial = pack ? pack->next_upload_serial : 1;
+        const size_t upload_count = pack ? pack->uploads.size() : 0;
+        if (next_serial == 0 || upload_count > kMaxTrackingStateUploads)
+            return 0;
+        size_t fragment_count = 0;
+        if (pack) {
+            for (const Upload& upload : pack->uploads) {
+                if (upload.serial == 0 || upload.serial >= next_serial ||
+                    upload.width == 0 || upload.height == 0 ||
+                    upload.width > kVramWidth || upload.height > kVramHeight ||
+                    upload.fragments.empty())
+                    return 0;
+                if (upload.fragments.size() >
+                    kMaxTrackingStateFragments - fragment_count)
+                    return 0;
+                fragment_count += upload.fragments.size();
+                for (const Fragment& fragment : upload.fragments)
+                    if (!valid_fragment(upload, fragment)) return 0;
+            }
+        }
+        if (upload_count >
+                (std::numeric_limits<size_t>::max() - kTrackingStateHeaderBytes) /
+                    kTrackingStateUploadBytes ||
+            fragment_count >
+                (std::numeric_limits<size_t>::max() - kTrackingStateHeaderBytes -
+                 upload_count * kTrackingStateUploadBytes) /
+                    kTrackingStateFragmentBytes)
+            return 0;
+        const size_t bytes = kTrackingStateHeaderBytes +
+            upload_count * kTrackingStateUploadBytes +
+            fragment_count * kTrackingStateFragmentBytes;
+        if (bytes > kMaxTrackingStateBytes) return 0;
+
+        std::vector<uint8_t> wire;
+        wire.reserve(bytes);
+        append_u32_le(wire, kTrackingStateMagic);
+        append_u32_le(wire, kTrackingStateVersion);
+        append_u64_le(wire, next_serial);
+        append_u32_le(wire, static_cast<uint32_t>(upload_count));
+        append_u32_le(wire, 0);
+        if (pack) {
+            for (const Upload& upload : pack->uploads) {
+                append_u64_le(wire, upload.serial);
+                append_u32_le(wire, upload.hash);
+                append_u16_le(wire, upload.width);
+                append_u16_le(wire, upload.height);
+                append_u32_le(wire,
+                              static_cast<uint32_t>(upload.fragments.size()));
+                for (const Fragment& fragment : upload.fragments) {
+                    append_u16_le(wire, static_cast<uint16_t>(fragment.rect.x));
+                    append_u16_le(wire, static_cast<uint16_t>(fragment.rect.y));
+                    append_u16_le(wire,
+                                  static_cast<uint16_t>(fragment.rect.width));
+                    append_u16_le(wire,
+                                  static_cast<uint16_t>(fragment.rect.height));
+                    append_u16_le(wire,
+                                  static_cast<uint16_t>(fragment.source_x));
+                    append_u16_le(wire,
+                                  static_cast<uint16_t>(fragment.source_y));
+                }
+            }
+        }
+        if (wire.size() != bytes) return 0;
+        uint8_t* output = static_cast<uint8_t*>(std::malloc(bytes));
+        if (!output) return 0;
+        std::memcpy(output, wire.data(), bytes);
+        *out_data = output;
+        *out_size = bytes;
+        return 1;
+    } catch (...) {
+        return 0;
+    }
+}
+
+int hd_texture_pack_tracking_state_check(const uint8_t* data, size_t size) {
+    try {
+        uint64_t next_serial = 0;
+        return parse_tracking_state(data, size, &next_serial, nullptr) ? 1 : 0;
+    } catch (...) {
+        return 0;
+    }
+}
+
+int hd_texture_pack_tracking_state_load(HdTexturePack* pack,
+                                        const uint8_t* data,
+                                        size_t size) {
+    try {
+        uint64_t next_serial = 0;
+        std::vector<Upload> uploads;
+        if (!parse_tracking_state(data, size, &next_serial, &uploads)) return 0;
+        if (pack) {
+            for(auto& region:pack->regions)region.cache_valid=false;
+            pack->next_upload_serial = next_serial;
+            pack->uploads.swap(uploads);
+            upload_index_rebuild(pack);
+        }
+        return 1;
+    } catch (...) {
+        return 0;
+    }
+}
+
+size_t hd_texture_pack_tracking_upload_count(const HdTexturePack* pack) {
+    return pack ? pack->uploads.size() : 0;
+}
+
+int hd_texture_pack_match(HdTexturePack* pack,
+                          const HdTextureDrawQuery* query,
+                          HdTextureMatch* out_match) {
+    if (out_match) std::memset(out_match, 0, sizeof(*out_match));
+    if (!pack || !query || query->depth > HD_TEXTURE_DEPTH_16BPP ||
+        !query->vram || query->vram_word_count < kVramWords)
+        return HD_TEXTURE_LOOKUP_ERROR;
+    const std::vector<Rect> wanted = query_rectangles(*query);
+    if (wanted.empty()) return HD_TEXTURE_LOOKUP_ERROR;
+    const uint32_t palette_hash = hd_texture_hash_clut(
+        query->vram, query->vram_word_count, query->clut_x, query->clut_y,
+        query->depth);
+
+    std::vector<uint64_t> candidate_serials;
+    upload_index_collect(pack, wanted, &candidate_serials);
+    const Upload* candidate = nullptr;
+    const EntryRecord* candidate_entry = nullptr;
+    for (const uint64_t serial : candidate_serials) {
+        const auto indexed = pack->upload_by_serial.find(serial);
+        if (indexed == pack->upload_by_serial.end() || !indexed->second)
+            continue;
+        const Upload& upload = *indexed->second;
+        const auto record = pack->entries.find(make_key(upload.hash, palette_hash));
+        if (record == pack->entries.end()) continue;
+        if (!covered_by_upload(upload, wanted)) continue;
+        if (record->second.ambiguous) return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+        if (candidate) return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+        candidate = &upload;
+        candidate_entry = &record->second;
+    }
+    if (!candidate || !candidate_entry) return HD_TEXTURE_LOOKUP_NONE;
+
+    if (out_match) {
+        fill_entry(*candidate_entry, &out_match->entry);
+        out_match->upload_serial = candidate->serial;
+        out_match->upload_width_words = candidate->width;
+        out_match->upload_height = candidate->height;
+        const unsigned pixels_per_word = query->depth == HD_TEXTURE_DEPTH_4BPP ? 4u :
+                                         query->depth == HD_TEXTURE_DEPTH_8BPP ? 2u : 1u;
+        const unsigned first_x = (unsigned{query->page_x} +
+                                  query->u_first / pixels_per_word) &
+                                 (kVramWidth - 1);
+        const unsigned first_y = (unsigned{query->page_y} + query->v_first) &
+                                 (kVramHeight - 1);
+        for (const Fragment& fragment : candidate->fragments) {
+            if (contains_point(fragment.rect, first_x, first_y)) {
+                out_match->source_word_x = static_cast<uint16_t>(
+                    fragment.source_x + first_x - fragment.rect.x);
+                out_match->source_y = static_cast<uint16_t>(
+                    fragment.source_y + first_y - fragment.rect.y);
+                break;
+            }
+        }
+    }
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+int hd_texture_pack_match_draw(HdTexturePack* pack,
+                               uint16_t texpage,
+                               uint16_t clut_x,
+                               uint16_t clut_y,
+                               uint8_t u_first,
+                               uint8_t u_last,
+                               uint8_t v_first,
+                               uint8_t v_last,
+                               const uint16_t* vram,
+                               size_t vram_word_count,
+                               HdTextureMatch* out_match) {
+    const uint8_t depth = static_cast<uint8_t>((texpage >> 7) & 3u);
+    if (depth > HD_TEXTURE_DEPTH_16BPP) {
+        if (out_match) std::memset(out_match, 0, sizeof(*out_match));
+        return HD_TEXTURE_LOOKUP_ERROR;
+    }
+    HdTextureDrawQuery query{};
+    query.page_x = static_cast<uint16_t>((texpage & 0xFu) * 64u);
+    query.page_y = static_cast<uint16_t>(((texpage >> 4) & 1u) * 256u);
+    query.depth = depth;
+    query.u_first = u_first; query.u_last = u_last;
+    query.v_first = v_first; query.v_last = v_last;
+    query.clut_x = clut_x; query.clut_y = clut_y;
+    query.vram = vram; query.vram_word_count = vram_word_count;
+    return hd_texture_pack_match(pack, &query, out_match);
+}
+
+int hd_texture_pack_match_source(HdTexturePack* pack,
+                                 const HdTextureDrawQuery* query,
+                                 HdTextureSourceMatch* out_match) {
+    if (out_match) std::memset(out_match, 0, sizeof(*out_match));
+    if (!pack || !query || query->depth > HD_TEXTURE_DEPTH_16BPP ||
+        !query->vram || query->vram_word_count < kVramWords)
+        return HD_TEXTURE_LOOKUP_ERROR;
+    const std::vector<Rect> wanted = query_rectangles(*query);
+    if (wanted.empty()) return HD_TEXTURE_LOOKUP_ERROR;
+    const uint32_t palette_hash = hd_texture_hash_clut(
+        query->vram, query->vram_word_count, query->clut_x, query->clut_y,
+        query->depth);
+
+    std::vector<uint64_t> candidate_serials;
+    upload_index_collect(pack, wanted, &candidate_serials);
+    const Upload* candidate = nullptr;
+    for (const uint64_t serial : candidate_serials) {
+        const auto indexed = pack->upload_by_serial.find(serial);
+        if (indexed == pack->upload_by_serial.end() || !indexed->second)
+            continue;
+        const Upload& upload = *indexed->second;
+        if (!covered_by_upload(upload, wanted)) continue;
+        if (candidate && candidate->serial != upload.serial)
+            return HD_TEXTURE_LOOKUP_AMBIGUOUS;
+        candidate = &upload;
+    }
+    if (!candidate) return HD_TEXTURE_LOOKUP_NONE;
+
+    if (out_match) {
+        out_match->texture_hash = candidate->hash;
+        out_match->palette_hash = palette_hash;
+        out_match->upload_serial = candidate->serial;
+        out_match->upload_width_words = candidate->width;
+        out_match->upload_height = candidate->height;
+        const unsigned pixels_per_word = query->depth == HD_TEXTURE_DEPTH_4BPP ? 4u :
+                                         query->depth == HD_TEXTURE_DEPTH_8BPP ? 2u : 1u;
+        const unsigned first_x = (unsigned{query->page_x} +
+                                  query->u_first / pixels_per_word) &
+                                 (kVramWidth - 1);
+        const unsigned first_y = (unsigned{query->page_y} + query->v_first) &
+                                 (kVramHeight - 1);
+        for (const Fragment& fragment : candidate->fragments) {
+            if (contains_point(fragment.rect, first_x, first_y)) {
+                out_match->source_word_x = static_cast<uint16_t>(
+                    fragment.source_x + first_x - fragment.rect.x);
+                out_match->source_y = static_cast<uint16_t>(
+                    fragment.source_y + first_y - fragment.rect.y);
+                break;
+            }
+        }
+    }
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+int hd_texture_pack_upload_fragments(const HdTexturePack* pack,
+                                     uint64_t serial,
+                                     HdTextureUploadFragment* out,
+                                     size_t capacity,
+                                     size_t* out_count) {
+    if (out_count) *out_count = 0;
+    if (!pack || !out_count) return HD_TEXTURE_LOOKUP_ERROR;
+    const auto indexed = pack->upload_by_serial.find(serial);
+    if (indexed == pack->upload_by_serial.end() || !indexed->second)
+        return HD_TEXTURE_LOOKUP_NONE;
+    const Upload& upload = *indexed->second;
+    *out_count = upload.fragments.size();
+    if (out && capacity >= upload.fragments.size()) {
+        for (size_t i = 0; i < upload.fragments.size(); ++i) {
+            const Fragment& fragment = upload.fragments[i];
+            out[i].x = static_cast<uint16_t>(fragment.rect.x);
+            out[i].y = static_cast<uint16_t>(fragment.rect.y);
+            out[i].width = static_cast<uint16_t>(fragment.rect.width);
+            out[i].height = static_cast<uint16_t>(fragment.rect.height);
+            out[i].source_x = static_cast<uint16_t>(fragment.source_x);
+            out[i].source_y = static_cast<uint16_t>(fragment.source_y);
+        }
+    }
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+void hd_texture_pack_set_decode_budget(HdTexturePack* pack,
+                                       size_t budget_bytes) {
+    if (!pack) return;
+    std::lock_guard<std::mutex> lock(pack->decode.mutex);
+    pack->decode.budget = budget_bytes;
+    evict_decode_cache(pack->decode);
+}
+
+int hd_texture_pack_request_decode(HdTexturePack* pack,
+                                   uint32_t texture_hash,
+                                   uint32_t palette_hash) {
+    return hd_texture_pack_request_decode_priority(pack,texture_hash,palette_hash,0);
+}
+
+int hd_texture_pack_request_decode_priority(HdTexturePack* pack,
+                                   uint32_t texture_hash,
+                                   uint32_t palette_hash,int priority) {
+#ifdef HD_TEXTURE_PACK_DISABLE_PNG_DECODE
+    (void)pack; (void)texture_hash; (void)palette_hash;(void)priority;
+    return HD_TEXTURE_LOOKUP_ERROR;
+#else
+    if (!pack) return HD_TEXTURE_LOOKUP_ERROR;
+    const uint64_t key = make_key(texture_hash, palette_hash);
+    const auto record = pack->entries.find(key);
+    if (record == pack->entries.end() || record->second.ambiguous)
+        return HD_TEXTURE_LOOKUP_ERROR;
+
+    std::lock_guard<std::mutex> lock(pack->decode.mutex);
+    if(priority)pack->decode.queue.enable_priority();
+    auto found = pack->decode.items.find(key);
+    if (found != pack->decode.items.end()) {
+        if (found->second.state == DecodeState::Ready) {
+            found->second.last_used = ++pack->decode.tick;
+            return HD_TEXTURE_LOOKUP_FOUND;
+        }
+        return found->second.state == DecodeState::Failed
+            ? HD_TEXTURE_LOOKUP_ERROR : HD_TEXTURE_LOOKUP_NONE;
+    }
+    if (pack->decode.budget == 0) return HD_TEXTURE_LOOKUP_ERROR;
+    if (!pack->decode.queue.can_push(priority!=0))
+        return HD_TEXTURE_LOOKUP_NONE;
+    DecodeItem item;
+    item.path = record->second.replacement_path;
+    pack->decode.items.emplace(key, std::move(item));
+    if(!pack->decode.queue.push(key,priority!=0)){
+        pack->decode.items.erase(key);return HD_TEXTURE_LOOKUP_NONE;
+    }
+    if (!pack->decode.started) {
+        pack->decode.started = true;
+        pack->decode.worker = std::thread(decode_worker, &pack->decode);
+    }
+    pack->decode.wake.notify_one();
+    return HD_TEXTURE_LOOKUP_NONE;
+#endif
+}
+
+int hd_texture_pack_acquire_decoded(HdTexturePack* pack,
+                                    uint32_t texture_hash,
+                                    uint32_t palette_hash,
+                                    HdTexturePixels* out_pixels) {
+    if (out_pixels) std::memset(out_pixels, 0, sizeof(*out_pixels));
+    if (!pack || !out_pixels) return HD_TEXTURE_LOOKUP_ERROR;
+    std::lock_guard<std::mutex> lock(pack->decode.mutex);
+    const auto found = pack->decode.items.find(make_key(texture_hash, palette_hash));
+    if (found == pack->decode.items.end()) return HD_TEXTURE_LOOKUP_NONE;
+    if (found->second.state == DecodeState::Failed) return HD_TEXTURE_LOOKUP_ERROR;
+    if (found->second.state != DecodeState::Ready || !found->second.image)
+        return HD_TEXTURE_LOOKUP_NONE;
+    PixelLease* lease = new (std::nothrow) PixelLease{found->second.image};
+    if (!lease) return HD_TEXTURE_LOOKUP_ERROR;
+    found->second.last_used = ++pack->decode.tick;
+    out_pixels->rgba = lease->image->rgba.data();
+    out_pixels->width = lease->image->width;
+    out_pixels->height = lease->image->height;
+    out_pixels->stride = lease->image->width * 4;
+    if(!lease->image->emissive.empty()){
+        out_pixels->emissive=lease->image->emissive.data();out_pixels->emissive_stride=lease->image->width;
+    }
+    out_pixels->lease = lease;
+    return HD_TEXTURE_LOOKUP_FOUND;
+}
+
+void hd_texture_pixels_release(HdTexturePixels* pixels) {
+    if (!pixels) return;
+    delete static_cast<PixelLease*>(pixels->lease);
+    std::memset(pixels, 0, sizeof(*pixels));
+}
+
+} // extern "C"

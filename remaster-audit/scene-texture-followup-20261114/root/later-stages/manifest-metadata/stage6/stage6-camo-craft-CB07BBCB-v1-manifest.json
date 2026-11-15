@@ -1,0 +1,583 @@
+{
+ "name": "stage6-camo-craft-CB07BBCB-v1",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "task": "stage 6 first art batch (coordinator 2026-11-13)",
+ "created_utc": "2026-11-13T16:07:11.796618+00:00",
+ "texture_crc": "CB07BBCB",
+ "provenance": "predicted-static (static-extraction/stages/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "page": {
+  "member": "4/6",
+  "vram_rect_words": [
+   448,
+   256,
+   64,
+   256
+  ],
+  "depth": 0,
+  "writers": [
+   "4/6"
+  ],
+  "texture_confidence": "exact-static",
+  "set": "set A (member 4/6), single writer of VRAM 448,256: exact-static page",
+  "native_texels": [
+   256,
+   256
+  ]
+ },
+ "method": "Categorical soft index master (w4-world catsoft, as w7-stage7 hulls): for every native index the one-hot mask is upsampled texel-centred (bilinear), gaussian smoothed (sigma 0.30 texel), raised to power 4 and normalised; top-3 labels and u8 weights per 2048 px. Render per CLUT: RGB = weighted mix of the visible labels; class = class of the strongest visible label where the visible weight >= 0.5. Plateaus keep the exact native colours; stair steps become smooth contours. The native class is then forced at the 2x2 px straddling every texel centre (0 forced pixels expected: the strongest label equals the native index there for every CLUT).",
+ "params": {
+  "sigma": 0.3,
+  "power": 4.0,
+  "K": 3
+ },
+ "generation": null,
+ "cluts_delivered": [
+  "8513C505",
+  "6CFD44D8",
+  "0344ADB9",
+  "6F28D777",
+  "0717A4D3",
+  "A12BB890"
+ ],
+ "cluts_not_delivered": {
+  "521B0B1A": "background index 15 visible (STP colour [0, 176, 0]): implausible pairing",
+  "67BEFAD9": "all entries black (STP black adds nothing): invisible",
+  "0DD8FE23": "background index 15 visible (opaque colour [24, 24, 32]): implausible pairing",
+  "0ADAA698": "all entries black (STP black adds nothing): invisible",
+  "319F1F82": "background index 15 visible (opaque colour [64, 200, 192]): implausible pairing",
+  "B79D30B7": "background index 15 visible (opaque colour [64, 88, 8]): implausible pairing",
+  "190A55AD": "all 16 entries are 0x0000 (fully transparent)"
+ },
+ "index_master": {
+  "files": {
+   "master/CB07BBCB-hull-master.npz": "7919611080a130516ab7bdffcc520e34e50bfdbe98e6f9629dd01fad7c978ffd",
+   "master/CB07BBCB-hull.json": "2d07d7edcb28593ebb3bd037212fe0da417cc9930e102eb2e82ed5360155bc99"
+  },
+  "any_clut_class_exact": null,
+  "rule": "every 4bpp CLUT, predicted or runtime, renders from these masters; only plausible predicted CLUTs are exported"
+ },
+ "sources": {
+  "checks": {
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage6/textures/CB07BBCB.words.bin",
+    "sha256": "2b1a600dd23c3950851c39b033a64fe16f1abd6f1d1714c4463b0d18539d0109",
+    "crc32": "CB07BBCB",
+    "crc_equals_tex": true,
+    "texture_confidence": "exact-static",
+    "member": "4/6",
+    "vram_rect_words": [
+     448,
+     256,
+     64,
+     256
+    ]
+   },
+   "cluts": {
+    "8513C505": {
+     "crc32": "8513C505",
+     "crc_equals_pal": true,
+     "words_hex": "1f009c77d4622f528a410631c524e87e007e65750071b55ead41c62442080000",
+     "clut_xy": [
+      128,
+      494
+     ],
+     "clut_xy_all": [
+      [
+       128,
+       494
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      },
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        480,
+        256,
+        20
+       ]
+      }
+     ]
+    },
+    "6CFD44D8": {
+     "crc32": "6CFD44D8",
+     "crc_equals_pal": true,
+     "words_hex": "ff7f7d461d3add319d295d1d1d15dd0cb808940870084c042804240418630080",
+     "clut_xy": [
+      96,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       96,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "0344ADB9": {
+     "crc32": "0344ADB9",
+     "crc_equals_pal": true,
+     "words_hex": "ff7f8d4a4c422b3e0a3aea35a931882d67254721061de518c414a41018630080",
+     "clut_xy": [
+      64,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       64,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "6F28D777": {
+     "crc32": "6F28D777",
+     "crc_equals_pal": true,
+     "words_hex": "f75eb556944e31461042ef3dce39ad356b2d4a290821e71ca514841043080080",
+     "clut_xy": [
+      16,
+      510
+     ],
+     "clut_xy_all": [
+      [
+       16,
+       510
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "0717A4D3": {
+     "crc32": "0717A4D3",
+     "crc_equals_pal": true,
+     "words_hex": "5f8eb78930858880ff8300800080008000800080008000800080008000800000",
+     "clut_xy": [
+      16,
+      510
+     ],
+     "clut_xy_all": [
+      [
+       16,
+       510
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "A12BB890": {
+     "crc32": "A12BB890",
+     "crc_equals_pal": true,
+     "words_hex": "4006fffffdfffbfff9fff7ffb3f370e72ddfe9d2a6ca63be20b6ff7f3f1d0000",
+     "clut_xy": [
+      144,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       144,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "copies": {
+   "CB07BBCB.words.bin": "2b1a600dd23c3950851c39b033a64fe16f1abd6f1d1714c4463b0d18539d0109",
+   "CB07BBCB-8513C505.clut.bin": "7a843243fd226adae2aadf2e9626f667eea5b150ce907df2ea0ba1ed72f49f75",
+   "CB07BBCB-6CFD44D8.clut.bin": "9e3a0754348ad26c53cc04097d08af49e014825e78c9f09738b66730bbeeb122",
+   "CB07BBCB-0344ADB9.clut.bin": "269d7c1c73ed5da340b6091ffaf2838e7a49b441d8f1f25dbf37e13e199e2844",
+   "CB07BBCB-6F28D777.clut.bin": "fa0c7a28370e9b2abc07312211517556a8cbac4ff2ef5d7377fb15f30846c2c6",
+   "CB07BBCB-0717A4D3.clut.bin": "8e53a531a413e6903c1b989a905b6c9e313442a3caba1453edf01da1bbe93b00",
+   "CB07BBCB-A12BB890.clut.bin": "44dcbef0a99e1b0d9ae21746923f1ed3845ce5c914aea5ef6a3946a7218c3a1d",
+   "bundle.json": "3ac5ab2c5474ed108987bc6d2c8e580e0aed2c5be5e8bd6b2c716695549aaa0f"
+  }
+ },
+ "builder_scripts": {
+  "s6_build.py": "74c862832298d51f004d623485293c4531068932133b53090f364f225d65e6e9",
+  "s6lib.py": "42889c4957d29b666c38ba71c911a24244bf400a0fa27ec2355c60ac4a8d8d27",
+  "s6_source.py": "73e5024574d1fab37222bbc19ecc07d78985f843248450e10a42c30a807445d3",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213",
+  "w2_comfy.py": "3d2d64242394622d7e4400c0213e10cc4327079fe84148ddbdcb6a437e57417b"
+ },
+ "comfy_files": {},
+ "keys": [
+  {
+   "key": "CB07BBCB-8513C505",
+   "clut": "8513C505",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.02,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-8513C505.png",
+    "sha256": "d4113f7ab7eb8b1d15868c01bb57e1236fc3fdbbc051e5a052bef06219a54917",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-8513C505.png",
+    "sha256": "39c1f359f96dcfb7d33b9b8b50cee07feb39bd6b753726c66cc36c28ffd18a33",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "CB07BBCB-6CFD44D8",
+   "clut": "6CFD44D8",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.01,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-6CFD44D8.png",
+    "sha256": "1e8b38f54a94ba98d7a245c3bbf1c59a3f4b72b730a9fc4fda98ba30d9d2f58d",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-6CFD44D8.png",
+    "sha256": "59a4716f376ce6e37c848f128287e509ee5c1acb9bd7a5dfe83a7b961c5f620c",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "CB07BBCB-0344ADB9",
+   "clut": "0344ADB9",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.01,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-0344ADB9.png",
+    "sha256": "1f096b5fdb9f02d9e321c5b4d699bda449779186007c7fdb19505039c3f0a891",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-0344ADB9.png",
+    "sha256": "f0c7ac34dff201f6e5b9c776fd8e60ae94e16c1db7d6ce8b491bcf760f79d116",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "CB07BBCB-6F28D777",
+   "clut": "6F28D777",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.06,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-6F28D777.png",
+    "sha256": "bdc5c94daeee34d5a8100d6215a9fc5de5732267bfd3550c331ef1ac0cfda8be",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-6F28D777.png",
+    "sha256": "b2d037fb889837327f2d7cbabaa5c75d160d38be4046303c8b2d3ae36861c3a7",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "CB07BBCB-0717A4D3",
+   "clut": "0717A4D3",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.36,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-0717A4D3.png",
+    "sha256": "e87ad8b3a65a97c067e8973987a46e0763b0a4e8af532648186b7aaea0c9d6e3",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-0717A4D3.png",
+    "sha256": "da2b9b694cfc33ccb3b1d1ce3ca8924f3092b069787e0bc786e9ec0b35e28efb",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  },
+  {
+   "key": "CB07BBCB-A12BB890",
+   "clut": "A12BB890",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "forced_centre_pixels": 0,
+   "mean_luminance_dev": 0.1,
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/CB07BBCB-A12BB890.png",
+    "sha256": "a81d618e26d838a6e4a1d0f3dadecf4599dc88ea299be605a93877abbabc46c5",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/CB07BBCB-A12BB890.png",
+    "sha256": "40b99abe27c4d623376588be88e8293f88d3c3e2acbf2ad6b38d6d99e9f3385d",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "review": [
+  "review/CB07BBCB-8513C505-tile.png",
+  "review/CB07BBCB-8513C505-close-16x.png",
+  "review/CB07BBCB-8513C505-ingame-SIMULATION.png",
+  "review/CB07BBCB-6CFD44D8-tile.png",
+  "review/CB07BBCB-6CFD44D8-close-16x.png",
+  "review/CB07BBCB-6CFD44D8-ingame-SIMULATION.png",
+  "review/CB07BBCB-0344ADB9-tile.png",
+  "review/CB07BBCB-0344ADB9-close-16x.png",
+  "review/CB07BBCB-0344ADB9-ingame-SIMULATION.png",
+  "review/CB07BBCB-6F28D777-tile.png",
+  "review/CB07BBCB-6F28D777-close-16x.png",
+  "review/CB07BBCB-6F28D777-ingame-SIMULATION.png",
+  "review/CB07BBCB-0717A4D3-tile.png",
+  "review/CB07BBCB-0717A4D3-close-16x.png",
+  "review/CB07BBCB-0717A4D3-ingame-SIMULATION.png",
+  "review/CB07BBCB-A12BB890-tile.png",
+  "review/CB07BBCB-A12BB890-close-16x.png",
+  "review/CB07BBCB-A12BB890-ingame-SIMULATION.png"
+ ],
+ "review_note": "review sheets: native | HD tile, native | HD close crops at 16x, in-game size; every composite is a SIMULATION",
+ "known_limits": [
+  "Identity corrected from the readiness review: this page is a camouflaged delta-wing craft (two mirrored halves) with round glow sprites and an engine block, not booster fins. Which enemy uses it is unknown until AQ-03.",
+  "No material detail, no panel seams: without captured polygons (Stage 1 hulls derive seams from GP0 polygons) only the shapes are rebuilt. This is an index master that removes pixel stairs, not a realism pass.",
+  "Predicted-static; the delivered CLUTs are the plausible predicted pairings (several camouflage colourings, likely normal and red/secret variants).",
+  "Review composites are SIMULATIONS (semi mode unknown: shown as PSX average)."
+ ]
+}

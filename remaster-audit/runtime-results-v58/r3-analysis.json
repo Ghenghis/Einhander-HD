@@ -1,0 +1,328 @@
+{
+ "rows": 7202,
+ "rows_in_measured_bracket": 7198,
+ "measured_frames": [
+  3046,
+  10243
+ ],
+ "valid_pairs": 7198,
+ "valid_coverage": 1.0,
+ "invalid_reasons": {
+  "no_prev_row_in_pages": 1,
+  "outside_measured_bracket": 3
+ },
+ "qpc_frequency": 10000000,
+ "period_ms_quantiles": {
+  "0.5": 16.6664,
+  "0.9": 16.6738,
+  "0.99": 19.474600000000002,
+  "0.999": 89.5703,
+  "1.0": 198.9995
+ },
+ "periods_over_ms": {
+  "20": 65,
+  "25": 38,
+  "33.4": 17,
+  "50": 12,
+  "100": 5
+ },
+ "share_of_total_time": {
+  "prev_swap": 0.011982338204260031,
+  "prev_post": 3.474062057676428e-05,
+  "outside": 0.5354784692792935,
+  "housekeeping": 0.0001495646358477598,
+  "pre_pace": 0.009469864548473476,
+  "pace": 0.4415737357914263,
+  "present_prep": 0.0013112869201220931
+ },
+ "worst": [
+  {
+   "frame": 5352,
+   "seq": 5351,
+   "prev_swap": 180.53050000000002,
+   "prev_post": 0.0036000000000000003,
+   "outside": 18.2243,
+   "housekeeping": 0.0142,
+   "pre_pace": 0.2054,
+   "pace": 0.0004,
+   "present_prep": 0.0211,
+   "period": 198.9995,
+   "dominant": "prev_swap",
+   "dominant_ms": 180.53050000000002
+  },
+  {
+   "frame": 9275,
+   "seq": 9274,
+   "prev_swap": 0.032,
+   "prev_post": 0.0008,
+   "outside": 191.4223,
+   "housekeeping": 0.0014,
+   "pre_pace": 0.23320000000000002,
+   "pace": 0.0005,
+   "present_prep": 0.035500000000000004,
+   "period": 191.72570000000002,
+   "dominant": "outside",
+   "dominant_ms": 191.4223
+  },
+  {
+   "frame": 6924,
+   "seq": 6923,
+   "prev_swap": 175.2663,
+   "prev_post": 0.0086,
+   "outside": 9.8869,
+   "housekeeping": 0.0018000000000000002,
+   "pre_pace": 0.1584,
+   "pace": 0.0008,
+   "present_prep": 0.042300000000000004,
+   "period": 185.3651,
+   "dominant": "prev_swap",
+   "dominant_ms": 175.2663
+  },
+  {
+   "frame": 3047,
+   "seq": 3046,
+   "prev_swap": 85.6577,
+   "prev_post": 0.0056,
+   "outside": 54.2928,
+   "housekeeping": 0.018500000000000003,
+   "pre_pace": 0.2021,
+   "pace": 0.0004,
+   "present_prep": 0.023,
+   "period": 140.20010000000002,
+   "dominant": "prev_swap",
+   "dominant_ms": 85.6577
+  },
+  {
+   "frame": 7061,
+   "seq": 7060,
+   "prev_swap": 104.94550000000001,
+   "prev_post": 0.0039000000000000003,
+   "outside": 11.6728,
+   "housekeeping": 0.0114,
+   "pre_pace": 0.14600000000000002,
+   "pace": 0.0006000000000000001,
+   "present_prep": 0.0322,
+   "period": 116.81240000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 104.94550000000001
+  },
+  {
+   "frame": 3051,
+   "seq": 3050,
+   "prev_swap": 85.2878,
+   "prev_post": 0.004,
+   "outside": 8.8115,
+   "housekeeping": 0.01,
+   "pre_pace": 0.20040000000000002,
+   "pace": 0.0004,
+   "present_prep": 0.016300000000000002,
+   "period": 94.33040000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 85.2878
+  },
+  {
+   "frame": 5642,
+   "seq": 5641,
+   "prev_swap": 85.2702,
+   "prev_post": 0.0038,
+   "outside": 7.6748,
+   "housekeeping": 0.011000000000000001,
+   "pre_pace": 0.22460000000000002,
+   "pace": 0.0006000000000000001,
+   "present_prep": 0.0315,
+   "period": 93.21650000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 85.2702
+  },
+  {
+   "frame": 3332,
+   "seq": 3331,
+   "prev_swap": 81.2525,
+   "prev_post": 0.0045000000000000005,
+   "outside": 8.1011,
+   "housekeeping": 0.0012000000000000001,
+   "pre_pace": 0.1862,
+   "pace": 0.0005,
+   "present_prep": 0.024300000000000002,
+   "period": 89.5703,
+   "dominant": "prev_swap",
+   "dominant_ms": 81.2525
+  },
+  {
+   "frame": 4694,
+   "seq": 4693,
+   "prev_swap": 68.6847,
+   "prev_post": 0.0051,
+   "outside": 12.139800000000001,
+   "housekeeping": 0.0024000000000000002,
+   "pre_pace": 0.3456,
+   "pace": 0.0004,
+   "present_prep": 0.023100000000000002,
+   "period": 81.20110000000001,
+   "dominant": "prev_swap",
+   "dominant_ms": 68.6847
+  },
+  {
+   "frame": 4692,
+   "seq": 4691,
+   "prev_swap": 47.802600000000005,
+   "prev_post": 0.0035,
+   "outside": 10.2646,
+   "housekeeping": 0.0195,
+   "pre_pace": 0.2278,
+   "pace": 0.0005,
+   "present_prep": 0.022600000000000002,
+   "period": 58.341100000000004,
+   "dominant": "prev_swap",
+   "dominant_ms": 47.802600000000005
+  },
+  {
+   "frame": 8078,
+   "seq": 8077,
+   "prev_swap": 39.102000000000004,
+   "prev_post": 0.0024000000000000002,
+   "outside": 16.6069,
+   "housekeeping": 0.0016,
+   "pre_pace": 0.1933,
+   "pace": 0.00030000000000000003,
+   "present_prep": 0.018500000000000003,
+   "period": 55.925000000000004,
+   "dominant": "prev_swap",
+   "dominant_ms": 39.102000000000004
+  },
+  {
+   "frame": 8080,
+   "seq": 8079,
+   "prev_swap": 41.414,
+   "prev_post": 0.0029000000000000002,
+   "outside": 13.053,
+   "housekeeping": 0.0149,
+   "pre_pace": 0.3327,
+   "pace": 0.0004,
+   "present_prep": 0.0279,
+   "period": 54.845800000000004,
+   "dominant": "prev_swap",
+   "dominant_ms": 41.414
+  },
+  {
+   "frame": 5356,
+   "seq": 5355,
+   "prev_swap": 38.055800000000005,
+   "prev_post": 0.0017000000000000001,
+   "outside": 7.5955,
+   "housekeeping": 0.0008,
+   "pre_pace": 0.1751,
+   "pace": 0.00030000000000000003,
+   "present_prep": 0.0183,
+   "period": 45.847500000000004,
+   "dominant": "prev_swap",
+   "dominant_ms": 38.055800000000005
+  },
+  {
+   "frame": 4690,
+   "seq": 4689,
+   "prev_swap": 0.04,
+   "prev_post": 0.0007,
+   "outside": 44.3356,
+   "housekeeping": 0.024200000000000003,
+   "pre_pace": 0.37010000000000004,
+   "pace": 0.0006000000000000001,
+   "present_prep": 0.0366,
+   "period": 44.8078,
+   "dominant": "outside",
+   "dominant_ms": 44.3356
+  },
+  {
+   "frame": 8459,
+   "seq": 8458,
+   "prev_swap": 0.0317,
+   "prev_post": 0.0006000000000000001,
+   "outside": 40.8403,
+   "housekeeping": 0.0016,
+   "pre_pace": 0.1253,
+   "pace": 0.00030000000000000003,
+   "present_prep": 0.0269,
+   "period": 41.026700000000005,
+   "dominant": "outside",
+   "dominant_ms": 40.8403
+  }
+ ],
+ "scope": "CPU wall timestamps locate time; they do not prove busy CPU vs OS scheduling or GPU backlog. outside = guest plus other work between vblank callbacks, not pure emulation.",
+ "present_ring_dt_for_worst": [
+  {
+   "frame": 5352,
+   "phase_period_ms": 199.0,
+   "present_ring_dt_ms": 199
+  },
+  {
+   "frame": 9275,
+   "phase_period_ms": 191.726,
+   "present_ring_dt_ms": 192
+  },
+  {
+   "frame": 6924,
+   "phase_period_ms": 185.365,
+   "present_ring_dt_ms": 186
+  },
+  {
+   "frame": 3047,
+   "phase_period_ms": 140.2,
+   "present_ring_dt_ms": 140
+  },
+  {
+   "frame": 7061,
+   "phase_period_ms": 116.812,
+   "present_ring_dt_ms": 116
+  },
+  {
+   "frame": 3051,
+   "phase_period_ms": 94.33,
+   "present_ring_dt_ms": 94
+  },
+  {
+   "frame": 5642,
+   "phase_period_ms": 93.217,
+   "present_ring_dt_ms": 93
+  },
+  {
+   "frame": 3332,
+   "phase_period_ms": 89.57,
+   "present_ring_dt_ms": 89
+  },
+  {
+   "frame": 4694,
+   "phase_period_ms": 81.201,
+   "present_ring_dt_ms": 81
+  },
+  {
+   "frame": 4692,
+   "phase_period_ms": 58.341,
+   "present_ring_dt_ms": 59
+  },
+  {
+   "frame": 8078,
+   "phase_period_ms": 55.925,
+   "present_ring_dt_ms": 56
+  },
+  {
+   "frame": 8080,
+   "phase_period_ms": 54.846,
+   "present_ring_dt_ms": 55
+  },
+  {
+   "frame": 5356,
+   "phase_period_ms": 45.848,
+   "present_ring_dt_ms": 46
+  },
+  {
+   "frame": 4690,
+   "phase_period_ms": 44.808,
+   "present_ring_dt_ms": 45
+  },
+  {
+   "frame": 8459,
+   "phase_period_ms": 41.027,
+   "present_ring_dt_ms": 41
+  }
+ ]
+}

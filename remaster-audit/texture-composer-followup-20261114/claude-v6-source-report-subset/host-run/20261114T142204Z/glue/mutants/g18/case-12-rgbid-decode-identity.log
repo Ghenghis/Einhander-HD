@@ -1,0 +1,5 @@
+TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)
+TIMING note: identity admission reads no pixel (sentinel rgba)
+checks 20 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g18\glue_harness.c:444: s_hdcm_diag.rgbonly_rejected[HDCM_E_HD_DIMS] == 1 && s5.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g18\glue_harness.c:455: s_hdcm_diag.rgbonly_admitted == 2 && (int)slot.rgb_edges == EXPECT_CUT

@@ -1,0 +1,59 @@
+# psxrecomp user settings - written by the launcher. Safe to hand-edit.
+# Overrides the bundled game.toml; the command line overrides this file.
+
+[video]
+renderer          = "opengl"
+supersampling = 2
+window_width = 1280
+antialiasing      = true
+texture_filtering = "bilinear"
+fmv_filter        = "bicubic"
+post_degrain      = false
+geometry_correction   = false
+perspective_texturing = false
+crt_filter        = "raw"
+fast_boot         = false
+bios_hle          = true
+fullscreen = 0
+frame_interpolation = false
+frame_interpolation_fps = 0
+aspect_ratio = "4:3"
+rewind_depth = 0
+rewind_interval = 15
+
+hd_textures = true
+hd_texture_root = "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/hdroot"
+[audio]
+frequency = 48000
+spu_hq = false
+
+[hotkeys]
+rewind_pad = 1272
+save_state_menu_pad = 2040
+
+[launcher]
+skip_launcher = true
+
+[bios]
+path = "C:/github/Einhander/windows-x64/build-release/bios/SCPH1001.BIN"
+
+[disc]
+path = "C:/github/Einhander/ROM/Einhander (USA).cue"
+
+[memcard]
+dir = "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state"
+card1 = "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state/card1.mcd"
+card2 = "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-onekey-2255/state/card2.mcd"
+enable1 = true
+enable2 = true
+
+[controller]
+p1_device = "keyboard"
+p1_mode   = "digital"
+p1_deadzone = 3276
+multitap  = true
+multitap_analog = true
+deadzone  = 3276
+
+[localization]
+language = "en"

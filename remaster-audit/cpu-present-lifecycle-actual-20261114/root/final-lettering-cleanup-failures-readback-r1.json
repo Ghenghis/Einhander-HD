@@ -1,0 +1,134 @@
+{
+  "at_utc": "2026-11-14T23:23:32.094746+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "79902-write": {
+      "envelope_sha256": "0ad0663b0738d775d1e85be35d39f152846b2be4533ac92ef184f8ede9ffda1f",
+      "exit": 0,
+      "elapsed_s": 1.666,
+      "peak_job_memory_bytes": 251125760,
+      "changed_pixels": 422,
+      "candidate_sha256": "1067cc536c8028c619089b4abff41f228c9d845696eed26f99af9af693355a03",
+      "prior_refusal_preserved": true,
+      "fresh_grant_used": true,
+      "repeated_dry_run": false
+    },
+    "cleanup17": {
+      "envelope_sha256": "5116ecc2c9b5351c9353ecd72e98c64f9129b6cebff8b0f895bcc9855f4ed680",
+      "exit": 0,
+      "elapsed_s": 0.388,
+      "peak_job_memory_bytes": 20172800,
+      "checks": 17,
+      "failures": 0,
+      "controls_elapsed_s": 0.234,
+      "pure_doubles_only": true,
+      "live_tree_qualification": false
+    },
+    "raw-r2": {
+      "envelope_sha256": "57e2bfb56578db2443b76a78e275dc43668777372a1848e2c7307a605f09d91b",
+      "exit": 1,
+      "elapsed_s": 0.863,
+      "peak_job_memory_bytes": 18472960,
+      "passed": false,
+      "check_counts_unknown": true,
+      "staging_run": false,
+      "cause": "UNKNOWN: original stdio empty; later same-body evidence is an inference only"
+    },
+    "raw-r3": {
+      "envelope_sha256": "6406175e4c4ff296956d7e56d6b9d182661c564a9b11a47252c97766dc4ff3a4",
+      "exit": 1,
+      "elapsed_s": 2.168,
+      "peak_job_memory_bytes": 18563072,
+      "passed": false,
+      "check_counts_unknown": true,
+      "staging_run": false,
+      "cause": "fixture Windows CRLF bytes versus expected LF hash; production check correctly refused"
+    }
+  },
+  "pins": {
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-write-79902A90-20261114T232145Z-envelope.json": "0ad0663b0738d775d1e85be35d39f152846b2be4533ac92ef184f8ede9ffda1f",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T232147Z\\result.json": "60f03bc1a8a9ddd2a179f83ae099d09f5dd795ac783dcdf03a8e23bebcbd3fa1",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T232147Z\\review_1AD90FC9-79902A90_roiA_1x.png": "993836f05f0eec70bb59db31ccab55e90e0276bcd0c1442bba268e26f2e9780e",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T232147Z\\review_1AD90FC9-79902A90_roiB_1x.png": "b26a5a834fb8e6548bd9a30acd256d9887ead517eea57934f0e3200eb1daa198",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T232147Z\\review_1AD90FC9-79902A90_roiC_1x.png": "67fdf126cc3baa15e058bd49ff1feb93a28696b32be3afb21aea5248e3f1ea56",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T232147Z\\1AD90FC9-79902A90.c1r4.png": "1067cc536c8028c619089b4abff41f228c9d845696eed26f99af9af693355a03",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\runs\\controls-cleanup-2316-envelope.json": "5116ecc2c9b5351c9353ecd72e98c64f9129b6cebff8b0f895bcc9855f4ed680",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\runs\\controls-cleanup-2316\\result.json": "9944c3a4a188b835483e45f78540e90eec7dd71f7e854a21906456291359fa49",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\controls_cleanup_r1.py": "c44d0fec3e8babca98b3c1442dd97b6234cbad90142d430bc45615ebd736f692",
+    "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\unassisted_command_guard_adapter_r1.py": "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c",
+    "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_process_cleanup_r0.py": "8aff5a5a44a1bdc63e3e65731366f10d40a5e160d8b7e77fb99d97199ea88d84",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r2-2315-envelope.json": "57e2bfb56578db2443b76a78e275dc43668777372a1848e2c7307a605f09d91b",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r3-2318-envelope.json": "6406175e4c4ff296956d7e56d6b9d182661c564a9b11a47252c97766dc4ff3a4",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r2-2315.stdout": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r2-2315.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r3-2318.log": "28ae6aa2fce663d76049426c4ff3f2607d4126b72e65f802617be286f7c545f2"
+  },
+  "known_identities": [
+    {
+      "run": "79902-write",
+      "role": "wrapper",
+      "pid": 44788,
+      "creation_unix": 1794698505.5487792,
+      "identity_absent": true
+    },
+    {
+      "run": "79902-write",
+      "role": "child",
+      "pid": 49356,
+      "creation_unix": 1794698506.67216,
+      "identity_absent": true
+    },
+    {
+      "run": "cleanup17",
+      "role": "wrapper",
+      "pid": 8520,
+      "creation_unix": 1794698347.6509771,
+      "identity_absent": true
+    },
+    {
+      "run": "cleanup17",
+      "role": "child",
+      "pid": 37908,
+      "creation_unix": 1794698348.7786129,
+      "identity_absent": true
+    },
+    {
+      "run": "raw-r2",
+      "role": "wrapper",
+      "pid": 48804,
+      "creation_unix": 1794698185.4116087,
+      "identity_absent": true
+    },
+    {
+      "run": "raw-r2",
+      "role": "child",
+      "pid": 46156,
+      "creation_unix": 1794698186.5393164,
+      "identity_absent": true
+    },
+    {
+      "run": "raw-r3",
+      "role": "wrapper",
+      "pid": 49364,
+      "creation_unix": 1794698328.7441595,
+      "identity_absent": true
+    },
+    {
+      "run": "raw-r3",
+      "role": "child",
+      "pid": 48144,
+      "creation_unix": 1794698329.865121,
+      "identity_absent": true
+    }
+  ],
+  "c1_total_candidates": 3,
+  "c1_total_changed_pixels": 856,
+  "c1_previous_r3_pixels_included": 240,
+  "tests_replayed": false,
+  "game_launched": false,
+  "gpu_used": false,
+  "installed": false,
+  "art_admitted": false
+}

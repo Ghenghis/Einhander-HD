@@ -1,0 +1,90 @@
+{
+ "name": "95A3BCF8-I-windows-v1",
+ "status": "candidate (private; not integrated, not live-tested)",
+ "owner": "claude-einhander",
+ "gpu": "none: CPU-only RGB authoring of native texels (no ComfyUI, no generated imagery, no fonts)",
+ "region": "I_window_grid_lit uv [0,64]-[64,128] half-open (t3-green-lights/regions.json)",
+ "why": "each region is drawn only with its own two palettes (t3-green-lights draw-census). All six palettes are\nmonotone brightness ramps, and the native classes are only 127 (opaque) or 255 (STP bit). The live parent pages\nsmear window light across window/wall borders, giving texel-cell mean errors of up to 112-196. In I and J the live\nalpha at texel centres also differs from the native class map.",
+ "method": "* Wall set = indices whose colour equals the index-15 colour. Wall texels keep that exact colour. Every native\n    texel keeps its own cell. No window is added, removed or moved.\n  * Inside windows, the index field is interpolated bilinearly. Weights are normalised over in-region window texels\n    only, so no light bleeds into walls or past the region. Native steps of >= STEP ramp entries stay crisp; these\n    are pane/sill divisions. A fractional index maps to a lerp of adjacent ramp entries. Luminance monotonicity is\n    checked; the frame and the mean correction move final colours slightly off that curve.\n  * A thin dark frame (left/right 1/16, lintel 1.5/16, sill 2/16 of a texel), colour 0.3 C + 0.7 W, is drawn only\n    on edges facing a wall texel. The neighbourhood just outside the region is read from the atlas, so frames are\n    not drawn mid-window at region borders.\n  * Per texel and channel, a two-pass correction makes every cell MEAN equal the native colour exactly:\n    an additive pass on the glass, then a headroom-proportional residual that cannot clip.\n    4x4 supersampling per output pixel.\n  * ALPHA = the native class of each texel (127 or 255), uniform per texel block, inside the region ROI only.\n    Classes outside {127, 255} are refused.",
+ "params": {
+  "step": 4,
+  "frame_left": 0.0625,
+  "frame_right": 0.0625,
+  "lintel": 0.09375,
+  "sill": 0.125,
+  "supersample": 4,
+  "wall_index": 15,
+  "mean_tolerance": 0.500001
+ },
+ "keys": {
+  "95A3BCF8-E01F52F8": {
+   "region_draws": 324,
+   "draws": 324,
+   "uv_union": [
+    0,
+    64,
+    63,
+    127
+   ],
+   "max_quad_area": 8632,
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-E01F52F8.png",
+    "sha256": "2bd63f7220aa8c6db67d3181568c01011bd4094faf1f264ce414f4642b775879"
+   }
+  },
+  "95A3BCF8-0361652D": {
+   "region_draws": 178,
+   "draws": 178,
+   "uv_union": [
+    0,
+    64,
+    63,
+    127
+   ],
+   "max_quad_area": 4345,
+   "live": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\frozen-w3-lit-v1\\pack\\einhander-texture-replacements\\95A3BCF8-0361652D.png",
+    "sha256": "e4191f2cfc6451f4018ea344fe4b661c8d88aaf2567ba35042920efc28bceac9"
+   }
+  }
+ },
+ "validation_passed": true,
+ "integration": "ROI-only: overlay the region ROI (RGBA) of page2048 onto the current private parent page; every other pixel stays the parent's. page4096 is optional (changes outside the ROI, 4x upload).",
+ "known_limits": [
+  "faithful re-rendering of native window texels: no window invented; in-window steps >= STEP are kept crisp by a threshold heuristic, smaller differences are interpolated along the native ramp",
+  "exact cell means can lighten a frame where a bright texel has little headroom",
+  "alpha is the native class per texel (127/255); STP semantics follow the native map, not the parent page",
+  "no runtime mipmaps by default: crisp frames can shimmer when the region is minified",
+  "SIMULATION only: not integrated, not seen live"
+ ],
+ "sources": {
+  "indices": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\indices-256.npy",
+   "sha256": "5da75af150796f75fce5e35f3838e25921df9b089e10d3fbab908dbb42bbbb19"
+  },
+  "palettes": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\palettes.json",
+   "sha256": "47ee9709fc3390bf765623bbf67ddf09dcecf83f41f76653f960ed7256ebd680"
+  },
+  "census": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\draw-census.json",
+   "sha256": "a698ca0f5cc5a92031d6fe1561334b9a5f825634ea93e73beeeff8b91daf2218"
+  },
+  "w2_master": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w2-polish\\frozen\\atlas-95A3BCF8-w2-v2\\master\\master-w2-v2.npy",
+   "sha256": "c63021e3bfdfd1117c2123c3652c29e66f17e0b38c4e959962ac955bbb98d7e2"
+  },
+  "builder": {
+   "path": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-m-windows\\window_ramp_rebuild.py",
+   "sha256": "df9e18f0dc5b31486920d4ba9f99b6431dbfa8c30d8037b3011999c475ea37db"
+  }
+ },
+ "pin": {
+  "priority": 16384,
+  "affinity": [
+   15
+  ],
+  "threads_env": "1"
+ },
+ "built_utc": "2026-11-14T17:04:24.767421+00:00"
+}

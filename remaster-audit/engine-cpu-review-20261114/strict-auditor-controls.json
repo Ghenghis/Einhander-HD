@@ -1,0 +1,60 @@
+{
+  "checker_sha256": "86755517d6388b1058927a5b03eee8a103ec8fa61894616f8b38709f0a38577b",
+  "cpu_only": true,
+  "checks": [
+    {
+      "check": "explicit complete metadata accepted",
+      "passed": true
+    },
+    {
+      "check": "4bpp class decode",
+      "passed": true
+    },
+    {
+      "check": "missing validity rejected",
+      "passed": true
+    },
+    {
+      "check": "valid byte accepted",
+      "passed": true
+    },
+    {
+      "check": "wrong-sized validity rejects despite complete metadata",
+      "passed": true
+    },
+    {
+      "check": "unknown validity rejects despite complete metadata",
+      "passed": true
+    },
+    {
+      "check": "invalid depth rejects",
+      "passed": true
+    },
+    {
+      "check": "boolean shape rejects",
+      "passed": true
+    },
+    {
+      "check": "incomplete metadata rejects",
+      "passed": true
+    },
+    {
+      "check": "wrong words CRC rejects",
+      "passed": true
+    },
+    {
+      "check": "oversized palette rejects",
+      "passed": true
+    },
+    {
+      "check": "exact region validity accepted without metadata",
+      "passed": true
+    },
+    {
+      "check": "exact region malformed validity rejects",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "scope": "Independent bounded fixture checks of strict native-source validation and 4bpp class decoding only. Not an independent full-pack replay or visual acceptance."
+}

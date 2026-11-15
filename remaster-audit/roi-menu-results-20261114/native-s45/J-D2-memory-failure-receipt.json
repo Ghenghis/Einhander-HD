@@ -1,0 +1,33 @@
+{
+  "name": "J-D2",
+  "grant_msg": "msg_ae242ed42b164f68",
+  "grant_utc": "2026-11-14T16:45:06.4640000Z",
+  "start_window_s": 180,
+  "tool": "tools\\s45_probe_audit.py",
+  "tool_args": "--stage 4 --sets s4-effects-2-13-v3 --pages AFCCB3B5 --max-seconds 25",
+  "cap_s": 30,
+  "mem_cap_mib": 1024,
+  "affinity_mask": "2000",
+  "preflight": {
+    "utc": "2026-11-14T16:46:06.6945693Z",
+    "seconds_since_grant": 60.23,
+    "tool_sha256": "d8827f7b4c377ea69bce659771060cd0a37d576f7251e70c552826d1347c679d",
+    "cpu_pct": 15.0,
+    "free_gib": 74.04,
+    "log_exists": false
+  },
+  "status": "RAN",
+  "cmd_pid": 39636,
+  "python_pid": 33692,
+  "python_created": "11/14/2026 09:46:07",
+  "start_utc": "2026-11-14T16:46:07.8660816Z",
+  "end_utc": "2026-11-14T16:46:11.1001474Z",
+  "seconds_since_grant_at_spawn": 61.4,
+  "wall_s": 3.23,
+  "outer_exit": 1,
+  "killed": true,
+  "kill_reason": "memory cap",
+  "peak_ws_mib": 1064.4,
+  "python_processes_left": 0,
+  "log": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\J-D2.log"
+}

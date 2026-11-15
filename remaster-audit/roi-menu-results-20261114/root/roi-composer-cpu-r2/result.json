@@ -1,0 +1,53 @@
+{
+  "at_utc": "2026-11-14T16:54:00.596590+00:00",
+  "passed": true,
+  "unit_cases": 7,
+  "negative_geometry_and_binding_cases": 20,
+  "actual_cli_fixture_passed": true,
+  "parent_pixels_unchanged": true,
+  "unselected_page_byte_identical": true,
+  "processes": [
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "-I",
+        "C:\\github\\Einhander\\remaster-audit\\test_frozen_candidate_roi.py",
+        "-v"
+      ],
+      "pid": 5764,
+      "creation_unix": 1794675239.532563,
+      "exit": 0
+    },
+    {
+      "command": [
+        "C:\\Python314\\python.exe",
+        "-B",
+        "-I",
+        "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py",
+        "--plan",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\roi-composer-cpu-r2\\fixture\\plan.json",
+        "--output",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\roi-composer-synthetic-r2"
+      ],
+      "pid": 40664,
+      "creation_unix": 1794675240.259199,
+      "exit": 0
+    }
+  ],
+  "seconds": 1.065793499999927,
+  "source_pins": {
+    "C:\\github\\Einhander\\remaster-audit\\build_stage1_frozen_candidate.py": "c8c3cca561ef01a662b5ae8c43fe79e3830b4550136b7e8ef7dda677bc0df699",
+    "C:\\github\\Einhander\\remaster-audit\\test_frozen_candidate_roi.py": "9f11ddc6bf75f7ff2be4b0dba47ce426b844427fe662ff934a6d973303fb2625"
+  },
+  "cpu_percent": 28.9,
+  "free_gib": 72.29257202148438,
+  "below_normal": true,
+  "affinity": [
+    11
+  ],
+  "gpu_run": false,
+  "game_run": false,
+  "private_real_art_composition": false,
+  "synthetic_candidate": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\roi-composer-synthetic-r2\\candidate.json"
+}

@@ -1,0 +1,6252 @@
+{
+ "run": "20261114T143022Z",
+ "owner": "claude-einhander-s45",
+ "tasks": [
+  "EIN-S4-WHOLE-CELL-20261114",
+  "EIN-S5-WHOLE-CELL-20261114"
+ ],
+ "inputs": {
+  "runtime-review/seven-stage-status-20261114/lane-readiness-20261114T131712Z.json": "07cd9358083107da96bc209dc1bfa8685820c1316f1455c146c31ac6fc2283b8",
+  "parallel-stages-20261114/s45/clut-coverage/20261114T135254Z/coverage.json": "26f22df2dbd9ae1ee2796e5586597f67fde24393c495f0cdcfea02bd3b073be0",
+  "parallel-stages-20261114/s45/source-map/20261114T133831Z/source-map.json": "14bf34419adf0c3129b52fc5dd06a4c9aec4add68dcf96fc8ec022ab2645d0cd",
+  "parallel-stages-20261114/s45/strict-audit/20261114T141046Z-s4/result.json": "2705453ddf8bb8ef988255b85924671f2efef239563585a69f13fdc195d9c0ec",
+  "parallel-stages-20261114/s45/strict-audit/20261114T141041Z-s5/result.json": "2bf3db571e4b8a2d7af76223e7016ec78a178e2cd203711df556488cf4615b4d",
+  "parallel-stages-20261114/s45/probe-audit/20261114T141200Z-s4/result.json": "d7ecb2a97318ff3c38c61755a94672b8dad79d2480e381ecd0e2394e765626d8",
+  "parallel-stages-20261114/s45/probe-audit/20261114T141451Z-s5/result.json": "9e138d586edd945f9c340ba990717b72e2ab485f2e81d187fa4defbaf95bbf37",
+  "runtime-diagnostics-v58/capture-checklists/S4.md": "3654d307c7115f102b478924c1146a3af0ba8b89a46612ad81b8c0e2b4443785",
+  "runtime-diagnostics-v58/capture-checklists/S5.md": "45abee3434ae4eb0a5677caa3720261b8ed5f1e4201cd636a53952b61af356b8"
+ },
+ "status": "CHECKLIST ONLY: nothing here is confirmed live; every key is predicted-static",
+ "admission_sequence": [
+  "1 capture: continuous recomp run into the stage, stock textures for that stage's keys, stock-first dump",
+  "2 validate_predicted.py confirm (key-confirmed = byte-identical words and CLUT) and gate on the gate list",
+  "3 drawn CLUT differs from the review CLUT -> re-render that key from the frozen palette-independent master",
+  "4 s45 strict audit of every admitted export: primary (R1 + conn-only, cm_flags_ex bound 1e9) must be 0; s/2 (bound 0.5) recorded as diagnostic; FX pages: post-render class snap (cm_repair) or class-aware rebuild if it fails",
+  "5 composer: opt-in cutout RGB fill (R5) on the new composition copy (root decision msg_80aa44e1)",
+  "6 integration, live A/B, motion and gameplay acceptance by codex-einhander (and the user's look decisions)"
+ ],
+ "sections": {
+  "stage4": {
+   "A_gate_keys": [
+    {
+     "item": "S4-A-E8769E55-8F297232",
+     "stage": 4,
+     "key": "E8769E55-8F297232",
+     "tex": "E8769E55",
+     "pal": "8F297232",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      208,
+      493
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 18,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [
+      {
+       "key": "E8769E55-C23FBCB2",
+       "clut_xy": [
+        0,
+        498
+       ],
+       "pair_count": 50,
+       "cutout_share": 0.9659,
+       "stp_share": 0.0341
+      },
+      {
+       "key": "E8769E55-3D3ECD23",
+       "clut_xy": [
+        192,
+        493
+       ],
+       "pair_count": 28,
+       "cutout_share": 0.0,
+       "stp_share": 0.1657
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:E8769E55-C23FBCB2:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9659
+      },
+      "s4-world-2-13-v3:E8769E55-C23FBCB2:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9659
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of E8769E55-8F297232 (or of whichever E8769E55-* key is drawn)",
+      "draw rows of E8769E55-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (3)"
+     ]
+    },
+    {
+     "item": "S4-A-5536C111-0E4551D4",
+     "stage": 4,
+     "key": "5536C111-0E4551D4",
+     "tex": "5536C111",
+     "pal": "0E4551D4",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      176,
+      483
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 204,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:5536C111-F7BC428D:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3027
+      },
+      "s4-world-2-13-v3:5536C111-F7BC428D:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3027
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 5536C111-0E4551D4 (or of whichever 5536C111-* key is drawn)",
+      "draw rows of 5536C111-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (1)"
+     ]
+    },
+    {
+     "item": "S4-A-E72FB1C1-E14B839C",
+     "stage": 4,
+     "key": "E72FB1C1-E14B839C",
+     "tex": "E72FB1C1",
+     "pal": "E14B839C",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      176,
+      481
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 128,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:E72FB1C1-6120F214:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3017
+      },
+      "s4-world-2-13-v3:E72FB1C1-6120F214:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3017
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of E72FB1C1-E14B839C (or of whichever E72FB1C1-* key is drawn)",
+      "draw rows of E72FB1C1-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (2)"
+     ]
+    },
+    {
+     "item": "S4-A-D349E0F6-ADC69046",
+     "stage": 4,
+     "key": "D349E0F6-ADC69046",
+     "tex": "D349E0F6",
+     "pal": "ADC69046",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      48,
+      492
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 91,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 1
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:D349E0F6-C23FBCB2:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9649
+      },
+      "s4-world-2-13-v3:D349E0F6-C23FBCB2:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9649
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of D349E0F6-ADC69046 (or of whichever D349E0F6-* key is drawn)",
+      "draw rows of D349E0F6-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (4)"
+     ]
+    },
+    {
+     "item": "S4-A-1DE4AA74-B075D96A",
+     "stage": 4,
+     "key": "1DE4AA74-B075D96A",
+     "tex": "1DE4AA74",
+     "pal": "B075D96A",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      224,
+      492
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 182,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [
+      {
+       "key": "1DE4AA74-AFCB9DD0",
+       "clut_xy": [
+        240,
+        492
+       ],
+       "pair_count": 98,
+       "cutout_share": 0.1209,
+       "stp_share": 0.0
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:1DE4AA74-BC152D9C:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3603
+      },
+      "s4-world-2-13-v3:1DE4AA74-BC152D9C:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3603
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 1DE4AA74-B075D96A (or of whichever 1DE4AA74-* key is drawn)",
+      "draw rows of 1DE4AA74-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (2)"
+     ]
+    },
+    {
+     "item": "S4-A-3E287F33-C77255FE",
+     "stage": 4,
+     "key": "3E287F33-C77255FE",
+     "tex": "3E287F33",
+     "pal": "C77255FE",
+     "sets": [
+      "s4-world-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-world-main",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      484
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 88,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 2
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-world-2-13-v3:3E287F33-7F387439:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3253
+      },
+      "s4-world-2-13-v3:3E287F33-7F387439:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3253
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 3E287F33-C77255FE (or of whichever 3E287F33-* key is drawn)",
+      "draw rows of 3E287F33-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (3)"
+     ]
+    },
+    {
+     "item": "S4-A-D57D51A6-5BCA596E",
+     "stage": 4,
+     "key": "D57D51A6-5BCA596E",
+     "tex": "D57D51A6",
+     "pal": "5BCA596E",
+     "sets": [
+      "s4-enemies-2-13-v2"
+     ],
+     "member": "2/13",
+     "family": "s4-enemies-main",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      495
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 448,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-enemies-2-13-v2:D57D51A6-72B1090A:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6837
+      },
+      "s4-enemies-2-13-v2:D57D51A6-72B1090A:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6837
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of D57D51A6-5BCA596E (or of whichever D57D51A6-* key is drawn)",
+      "draw rows of D57D51A6-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (6)"
+     ]
+    },
+    {
+     "item": "S4-A-0FD152CA-E48C96C4",
+     "stage": 4,
+     "key": "0FD152CA-E48C96C4",
+     "tex": "0FD152CA",
+     "pal": "E48C96C4",
+     "sets": [
+      "s4-enemies-2-13-v2"
+     ],
+     "member": "2/13",
+     "family": "s4-enemies-main",
+     "page_xy": [
+      384,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      504
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 139,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-enemies-2-13-v2:0FD152CA-12A610FF:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9415
+      },
+      "s4-enemies-2-13-v2:0FD152CA-12A610FF:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.9415
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 0FD152CA-E48C96C4 (or of whichever 0FD152CA-* key is drawn)",
+      "draw rows of 0FD152CA-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (4)"
+     ]
+    },
+    {
+     "item": "S4-A-C7C81B36-95A45D3F",
+     "stage": 4,
+     "key": "C7C81B36-95A45D3F",
+     "tex": "C7C81B36",
+     "pal": "95A45D3F",
+     "sets": [
+      "s4-enemies-2-13-v2"
+     ],
+     "member": "2/13",
+     "family": "s4-enemies-main",
+     "page_xy": [
+      448,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      495
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 200,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-enemies-2-13-v2:C7C81B36-8F9C8C34:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.2366
+      },
+      "s4-enemies-2-13-v2:C7C81B36-8F9C8C34:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.2366
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of C7C81B36-95A45D3F (or of whichever C7C81B36-* key is drawn)",
+      "draw rows of C7C81B36-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (1)"
+     ]
+    },
+    {
+     "item": "S4-A-B305DC32-2EC288F8",
+     "stage": 4,
+     "key": "B305DC32-2EC288F8",
+     "tex": "B305DC32",
+     "pal": "2EC288F8",
+     "sets": [
+      "s4-effects-2-13-v2",
+      "s4-effects-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-effects-main",
+     "page_xy": [
+      384,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      208,
+      489
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 8,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 2
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-effects-2-13-v2:B305DC32-C12DB7DC:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.535
+      },
+      "s4-effects-2-13-v2:B305DC32-C12DB7DC:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.535
+      },
+      "s4-effects-2-13-v3:B305DC32-C12DB7DC:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.535
+      },
+      "s4-effects-2-13-v3:B305DC32-C12DB7DC:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.535
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of B305DC32-2EC288F8 (or of whichever B305DC32-* key is drawn)",
+      "draw rows of B305DC32-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (3)"
+     ]
+    },
+    {
+     "item": "S4-A-AFCCB3B5-8DD9DD06",
+     "stage": 4,
+     "key": "AFCCB3B5-8DD9DD06",
+     "tex": "AFCCB3B5",
+     "pal": "8DD9DD06",
+     "sets": [
+      "s4-effects-2-13-v2",
+      "s4-effects-2-13-v3"
+     ],
+     "member": "2/13",
+     "family": "s4-effects-main",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      160,
+      495
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 40,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s4-effects-2-13-v2:AFCCB3B5-70EEEA84:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3765
+      },
+      "s4-effects-2-13-v2:AFCCB3B5-70EEEA84:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3765
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of AFCCB3B5-8DD9DD06 (or of whichever AFCCB3B5-* key is drawn)",
+      "draw rows of AFCCB3B5-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (5)"
+     ]
+    }
+   ],
+   "B_panorama": [
+    {
+     "item": "S4-B-05E1881C-C77255FE",
+     "stage": 4,
+     "key": "05E1881C-C77255FE",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      484
+     ],
+     "pair_count": 88,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 0.643,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-190A55AD",
+     "stage": 4,
+     "key": "05E1881C-190A55AD",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      176,
+      511
+     ],
+     "pair_count": 88,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-7C8D4073",
+     "stage": 4,
+     "key": "05E1881C-7C8D4073",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      484
+     ],
+     "pair_count": 46,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 0.647,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-60F3C8E8",
+     "stage": 4,
+     "key": "05E1881C-60F3C8E8",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      494
+     ],
+     "pair_count": 38,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 1.0,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-AB4C9A40",
+     "stage": 4,
+     "key": "05E1881C-AB4C9A40",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      494
+     ],
+     "pair_count": 35,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-303CBAD4",
+     "stage": 4,
+     "key": "05E1881C-303CBAD4",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      208,
+      484
+     ],
+     "pair_count": 26,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-8A0B5CA6",
+     "stage": 4,
+     "key": "05E1881C-8A0B5CA6",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      160,
+      484
+     ],
+     "pair_count": 24,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-C739060A",
+     "stage": 4,
+     "key": "05E1881C-C739060A",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      176,
+      484
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-0DF30EDD",
+     "stage": 4,
+     "key": "05E1881C-0DF30EDD",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-7F387439",
+     "stage": 4,
+     "key": "05E1881C-7F387439",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      484
+     ],
+     "pair_count": 12,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-5468C58F",
+     "stage": 4,
+     "key": "05E1881C-5468C58F",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      484
+     ],
+     "pair_count": 7,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S4-B-05E1881C-A9651F8C",
+     "stage": 4,
+     "key": "05E1881C-A9651F8C",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    }
+   ],
+   "C_8bpp": [],
+   "D_phase_holds": [
+    {
+     "item": "S4-D-E8769E55-0F736F08",
+     "stage": 4,
+     "key": "E8769E55-0F736F08",
+     "tex": "E8769E55",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      480
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-E8769E55-190A55AD",
+     "stage": 4,
+     "key": "E8769E55-190A55AD",
+     "tex": "E8769E55",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      510
+     ],
+     "pair_count": 16,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-E8769E55-C7A1F2F0",
+     "stage": 4,
+     "key": "E8769E55-C7A1F2F0",
+     "tex": "E8769E55",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      480
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-5536C111-190A55AD",
+     "stage": 4,
+     "key": "5536C111-190A55AD",
+     "tex": "5536C111",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      224,
+      511
+     ],
+     "pair_count": 204,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-E72FB1C1-0DF30EDD",
+     "stage": 4,
+     "key": "E72FB1C1-0DF30EDD",
+     "tex": "E72FB1C1",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-E72FB1C1-190A55AD",
+     "stage": 4,
+     "key": "E72FB1C1-190A55AD",
+     "tex": "E72FB1C1",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      511
+     ],
+     "pair_count": 128,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D349E0F6-0DF30EDD",
+     "stage": 4,
+     "key": "D349E0F6-0DF30EDD",
+     "tex": "D349E0F6",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 4,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D349E0F6-190A55AD",
+     "stage": 4,
+     "key": "D349E0F6-190A55AD",
+     "tex": "D349E0F6",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      160,
+      511
+     ],
+     "pair_count": 41,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D349E0F6-A9651F8C",
+     "stage": 4,
+     "key": "D349E0F6-A9651F8C",
+     "tex": "D349E0F6",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 9,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D349E0F6-F055ACAD",
+     "stage": 4,
+     "key": "D349E0F6-F055ACAD",
+     "tex": "D349E0F6",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      511
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-1DE4AA74-0DF30EDD",
+     "stage": 4,
+     "key": "1DE4AA74-0DF30EDD",
+     "tex": "1DE4AA74",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 10,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-1DE4AA74-190A55AD",
+     "stage": 4,
+     "key": "1DE4AA74-190A55AD",
+     "tex": "1DE4AA74",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      80,
+      510
+     ],
+     "pair_count": 31,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-3E287F33-0DF30EDD",
+     "stage": 4,
+     "key": "3E287F33-0DF30EDD",
+     "tex": "3E287F33",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-3E287F33-190A55AD",
+     "stage": 4,
+     "key": "3E287F33-190A55AD",
+     "tex": "3E287F33",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      176,
+      511
+     ],
+     "pair_count": 88,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-3E287F33-A9651F8C",
+     "stage": 4,
+     "key": "3E287F33-A9651F8C",
+     "tex": "3E287F33",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-0DF30EDD",
+     "stage": 4,
+     "key": "D57D51A6-0DF30EDD",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 8,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-190A55AD",
+     "stage": 4,
+     "key": "D57D51A6-190A55AD",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      508
+     ],
+     "pair_count": 448,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-77D0BEF4",
+     "stage": 4,
+     "key": "D57D51A6-77D0BEF4",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      500
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-A9651F8C",
+     "stage": 4,
+     "key": "D57D51A6-A9651F8C",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-C12DB7DC",
+     "stage": 4,
+     "key": "D57D51A6-C12DB7DC",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      504
+     ],
+     "pair_count": 5,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-D57D51A6-CAFC4AA7",
+     "stage": 4,
+     "key": "D57D51A6-CAFC4AA7",
+     "tex": "D57D51A6",
+     "page_xy": [
+      320,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      500
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-0FD152CA-190A55AD",
+     "stage": 4,
+     "key": "0FD152CA-190A55AD",
+     "tex": "0FD152CA",
+     "page_xy": [
+      384,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      508
+     ],
+     "pair_count": 139,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-0FD152CA-47FBD679",
+     "stage": 4,
+     "key": "0FD152CA-47FBD679",
+     "tex": "0FD152CA",
+     "page_xy": [
+      384,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      500
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-0FD152CA-718199E6",
+     "stage": 4,
+     "key": "0FD152CA-718199E6",
+     "tex": "0FD152CA",
+     "page_xy": [
+      384,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      16,
+      500
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-0FD152CA-A9651F8C",
+     "stage": 4,
+     "key": "0FD152CA-A9651F8C",
+     "tex": "0FD152CA",
+     "page_xy": [
+      384,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-C7C81B36-190A55AD",
+     "stage": 4,
+     "key": "C7C81B36-190A55AD",
+     "tex": "C7C81B36",
+     "page_xy": [
+      448,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      511
+     ],
+     "pair_count": 200,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-B305DC32-190A55AD",
+     "stage": 4,
+     "key": "B305DC32-190A55AD",
+     "tex": "B305DC32",
+     "page_xy": [
+      384,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      508
+     ],
+     "pair_count": 17,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-B305DC32-A9651F8C",
+     "stage": 4,
+     "key": "B305DC32-A9651F8C",
+     "tex": "B305DC32",
+     "page_xy": [
+      384,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      304,
+      511
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-B305DC32-C12DB7DC",
+     "stage": 4,
+     "key": "B305DC32-C12DB7DC",
+     "tex": "B305DC32",
+     "page_xy": [
+      384,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      504
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-AFCCB3B5-0DF30EDD",
+     "stage": 4,
+     "key": "AFCCB3B5-0DF30EDD",
+     "tex": "AFCCB3B5",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-AFCCB3B5-190A55AD",
+     "stage": 4,
+     "key": "AFCCB3B5-190A55AD",
+     "tex": "AFCCB3B5",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      511
+     ],
+     "pair_count": 5,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-AFCCB3B5-70EEEA84",
+     "stage": 4,
+     "key": "AFCCB3B5-70EEEA84",
+     "tex": "AFCCB3B5",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      208,
+      503
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-AFCCB3B5-B4B798B5",
+     "stage": 4,
+     "key": "AFCCB3B5-B4B798B5",
+     "tex": "AFCCB3B5",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      510
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S4-D-AFCCB3B5-C12DB7DC",
+     "stage": 4,
+     "key": "AFCCB3B5-C12DB7DC",
+     "tex": "AFCCB3B5",
+     "page_xy": [
+      448,
+      256
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      504
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    }
+   ],
+   "E_unauthored_pages": [
+    {
+     "item": "S4-E-63155483",
+     "stage": 4,
+     "tex": "63155483",
+     "members": [
+      "2/13"
+     ],
+     "family": "s4-large-unit-main",
+     "page_xy": [
+      [
+       512,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 105,
+     "best_pair": 129,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-DA56446E",
+     "stage": 4,
+     "tex": "DA56446E",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-bigunit-A",
+     "page_xy": [
+      [
+       512,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 105,
+     "best_pair": 129,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-4D604948",
+     "stage": 4,
+     "tex": "4D604948",
+     "members": [
+      "2/24"
+     ],
+     "family": "s4-bigunit-B",
+     "page_xy": [
+      [
+       512,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 105,
+     "best_pair": 129,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-76D13080",
+     "stage": 4,
+     "tex": "76D13080",
+     "members": [
+      "2/15"
+     ],
+     "family": "s4-world-variant-c",
+     "page_xy": [
+      [
+       896,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 51,
+     "best_pair": 182,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-B8C589D7",
+     "stage": 4,
+     "tex": "B8C589D7",
+     "members": [
+      "2/22"
+     ],
+     "family": "s4-world-section-b",
+     "page_xy": [
+      [
+       896,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 51,
+     "best_pair": 182,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-A7EDCEC0",
+     "stage": 4,
+     "tex": "A7EDCEC0",
+     "members": [
+      "2/15"
+     ],
+     "family": "s4-world-variant-c",
+     "page_xy": [
+      [
+       832,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 38,
+     "best_pair": 91,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-8F704A7B",
+     "stage": 4,
+     "tex": "8F704A7B",
+     "members": [
+      "2/19"
+     ],
+     "family": "s4-unit-set-d",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 30,
+     "best_pair": 448,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-FC0FAB8A",
+     "stage": 4,
+     "tex": "FC0FAB8A",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-boss-shared-sprites",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 30,
+     "best_pair": 448,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-4A519D9C",
+     "stage": 4,
+     "tex": "4A519D9C",
+     "members": [
+      "2/19"
+     ],
+     "family": "s4-unit-set-d",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 29,
+     "best_pair": 139,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-1487349C",
+     "stage": 4,
+     "tex": "1487349C",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-boss-shared-sprites",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 29,
+     "best_pair": 139,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-B55A0A46",
+     "stage": 4,
+     "tex": "B55A0A46",
+     "members": [
+      "2/13"
+     ],
+     "family": "s4-effects-main",
+     "page_xy": [
+      [
+       320,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 28,
+     "best_pair": 90,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S4-E-F14BC7EB",
+     "stage": 4,
+     "tex": "F14BC7EB",
+     "members": [
+      "2/22"
+     ],
+     "family": "s4-effects-section-b",
+     "page_xy": [
+      [
+       320,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 28,
+     "best_pair": 90,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S4-E-7FA8921D",
+     "stage": 4,
+     "tex": "7FA8921D",
+     "members": [
+      "2/19"
+     ],
+     "family": "s4-unit-set-d",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 26,
+     "best_pair": 200,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-CA6A566F",
+     "stage": 4,
+     "tex": "CA6A566F",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-bigunit-A",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 26,
+     "best_pair": 200,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-D9DD5078",
+     "stage": 4,
+     "tex": "D9DD5078",
+     "members": [
+      "2/24"
+     ],
+     "family": "s4-bigunit-B",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 26,
+     "best_pair": 200,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-9B8107D2",
+     "stage": 4,
+     "tex": "9B8107D2",
+     "members": [
+      "2/22"
+     ],
+     "family": "s4-world-section-b",
+     "page_xy": [
+      [
+       640,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 23,
+     "best_pair": 50,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-BBA2A146",
+     "stage": 4,
+     "tex": "BBA2A146",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-bigunit-A",
+     "page_xy": [
+      [
+       768,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 19,
+     "best_pair": 128,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-972812FD",
+     "stage": 4,
+     "tex": "972812FD",
+     "members": [
+      "2/24"
+     ],
+     "family": "s4-bigunit-B",
+     "page_xy": [
+      [
+       768,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 19,
+     "best_pair": 128,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-BDDC16DB",
+     "stage": 4,
+     "tex": "BDDC16DB",
+     "members": [
+      "2/13"
+     ],
+     "family": "s4-large-unit-main",
+     "page_xy": [
+      [
+       576,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 9,
+     "best_pair": 63,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-6BA92E4C",
+     "stage": 4,
+     "tex": "6BA92E4C",
+     "members": [
+      "2/23"
+     ],
+     "family": "s4-bigunit-A",
+     "page_xy": [
+      [
+       576,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 9,
+     "best_pair": 63,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-B4BCBAB4",
+     "stage": 4,
+     "tex": "B4BCBAB4",
+     "members": [
+      "2/24"
+     ],
+     "family": "s4-bigunit-B",
+     "page_xy": [
+      [
+       576,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 9,
+     "best_pair": 63,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-A5ECBA22",
+     "stage": 4,
+     "tex": "A5ECBA22",
+     "members": [
+      "2/22"
+     ],
+     "family": "s4-effects-section-b",
+     "page_xy": [
+      [
+       448,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 5,
+     "best_pair": 40,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-04010B4F",
+     "stage": 4,
+     "tex": "04010B4F",
+     "members": [
+      "2/22"
+     ],
+     "family": "s4-effects-section-b",
+     "page_xy": [
+      [
+       384,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 4,
+     "best_pair": 17,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-10932164",
+     "stage": 4,
+     "tex": "10932164",
+     "members": [
+      "2/18"
+     ],
+     "family": "s4-effects-global-explosion",
+     "page_xy": [
+      [
+       704,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 1,
+     "best_pair": 3,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S4-E-F1BEEE00",
+     "stage": 4,
+     "tex": "F1BEEE00",
+     "members": [
+      "2/27"
+     ],
+     "family": "s4-lettering-transmission",
+     "page_xy": [
+      [
+       704,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 1,
+     "best_pair": 3,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    }
+   ],
+   "F_prerequisites": {
+    "route": "continuous recomp run through Stages 1-3 into Stage 4 (AQ-02 stage-select and AQ-03b DuckStation states cannot confirm keys)",
+    "pack": "stock textures for every Stage 4 key (no HD pack); HD dump stock-first to <run>/stage4-source/",
+    "recorder": "draw rows with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']; marks stage:4:entry, seg:4:<id> at each 0x80081382 change, clear:4; CPU-VRAM snapshot at every mark",
+    "gate_list": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\keys\\S4-gate-keys.txt",
+    "checklist": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S4.md"
+   },
+   "counts": {
+    "A": 11,
+    "B": 12,
+    "C": 0,
+    "D": 34,
+    "E": 25
+   }
+  },
+  "stage5": {
+   "A_gate_keys": [
+    {
+     "item": "S5-A-9F3D98EF-51E8E21E",
+     "stage": 5,
+     "key": "9F3D98EF-51E8E21E",
+     "tex": "9F3D98EF",
+     "pal": "51E8E21E",
+     "sets": [
+      "s5-world-3-1-v2"
+     ],
+     "member": "3/1",
+     "family": "s5-world-main",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      482
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 278,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-world-3-1-v2:9F3D98EF-A345AE9E:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.747
+      },
+      "s5-world-3-1-v2:9F3D98EF-A345AE9E:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.747
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 9F3D98EF-51E8E21E (or of whichever 9F3D98EF-* key is drawn)",
+      "draw rows of 9F3D98EF-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (6)"
+     ]
+    },
+    {
+     "item": "S5-A-7E088757-51E8E21E",
+     "stage": 5,
+     "key": "7E088757-51E8E21E",
+     "tex": "7E088757",
+     "pal": "51E8E21E",
+     "sets": [
+      "s5-world-3-1-v2"
+     ],
+     "member": "3/1",
+     "family": "s5-world-main",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      482
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 136,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-world-3-1-v2:7E088757-FAC936BC:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.2728
+      },
+      "s5-world-3-1-v2:7E088757-FAC936BC:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.2728
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 7E088757-51E8E21E (or of whichever 7E088757-* key is drawn)",
+      "draw rows of 7E088757-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (6)"
+     ]
+    },
+    {
+     "item": "S5-A-452F3CC3-793A3662",
+     "stage": 5,
+     "key": "452F3CC3-793A3662",
+     "tex": "452F3CC3",
+     "pal": "793A3662",
+     "sets": [
+      "s5-world-3-1-v2"
+     ],
+     "member": "3/1",
+     "family": "s5-world-main",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      483
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 135,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-world-3-1-v2:452F3CC3-066C0B81:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3452
+      },
+      "s5-world-3-1-v2:452F3CC3-066C0B81:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3452
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 452F3CC3-793A3662 (or of whichever 452F3CC3-* key is drawn)",
+      "draw rows of 452F3CC3-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (3)"
+     ]
+    },
+    {
+     "item": "S5-A-1A2ACF78-6A8B1A18",
+     "stage": 5,
+     "key": "1A2ACF78-6A8B1A18",
+     "tex": "1A2ACF78",
+     "pal": "6A8B1A18",
+     "sets": [
+      "s5-world-3-1-v2"
+     ],
+     "member": "3/1",
+     "family": "s5-world-main",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      80,
+      494
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 75,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [
+      "fx",
+      "fx"
+     ],
+     "competing_cluts": [
+      {
+       "key": "1A2ACF78-0DA351E7",
+       "clut_xy": [
+        192,
+        483
+       ],
+       "pair_count": 134,
+       "cutout_share": 0.2869,
+       "stp_share": 0.0
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-world-3-1-v2:1A2ACF78-0DA351E7:2048": {
+       "primary": false,
+       "s2_strict": false,
+       "conn_px": 83,
+       "s2_px": 8106,
+       "cutout_share": 0.2869
+      },
+      "s5-world-3-1-v2:1A2ACF78-0DA351E7:1024": {
+       "primary": false,
+       "s2_strict": false,
+       "conn_px": 20,
+       "s2_px": 1830,
+       "cutout_share": 0.2869
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 1A2ACF78-6A8B1A18 (or of whichever 1A2ACF78-* key is drawn)",
+      "draw rows of 1A2ACF78-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (4)",
+      "FX class-ownership fix verified on the failing probe key (cm_repair copy or class-aware rebuild)"
+     ]
+    },
+    {
+     "item": "S5-A-503474BD-1A80CA9D",
+     "stage": 5,
+     "key": "503474BD-1A80CA9D",
+     "tex": "503474BD",
+     "pal": "1A80CA9D",
+     "sets": [
+      "s5-world-3-1-v2"
+     ],
+     "member": "3/1",
+     "family": "s5-world-main",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      224,
+      484
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 74,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-world-3-1-v2:503474BD-F5FB4FC8:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6811
+      },
+      "s5-world-3-1-v2:503474BD-F5FB4FC8:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6811
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 503474BD-1A80CA9D (or of whichever 503474BD-* key is drawn)",
+      "draw rows of 503474BD-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (9)"
+     ]
+    },
+    {
+     "item": "S5-A-1F11EE57-DEECFC4B",
+     "stage": 5,
+     "key": "1F11EE57-DEECFC4B",
+     "tex": "1F11EE57",
+     "pal": "DEECFC4B",
+     "sets": [
+      "s5-duerer-armour-v2"
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "page_xy": [
+      448,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      491
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 78,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [
+      "native-8bpp-pending"
+     ],
+     "competing_cluts": [
+      {
+       "key": "1F11EE57-C50BDF9E",
+       "clut_xy": [
+        128,
+        485
+       ],
+       "pair_count": 97,
+       "cutout_share": 0.0,
+       "stp_share": 0.0
+      },
+      {
+       "key": "1F11EE57-7BBA0389",
+       "clut_xy": [
+        96,
+        485
+       ],
+       "pair_count": 94,
+       "cutout_share": 0.1171,
+       "stp_share": 0.0
+      },
+      {
+       "key": "1F11EE57-E1A31B6B",
+       "clut_xy": [
+        80,
+        491
+       ],
+       "pair_count": 40,
+       "cutout_share": 0.1171,
+       "stp_share": 0.0
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-duerer-armour-v2:1F11EE57-F46F4FE9:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3943
+      },
+      "s5-duerer-armour-v2:1F11EE57-F46F4FE9:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3943
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 1F11EE57-DEECFC4B (or of whichever 1F11EE57-* key is drawn)",
+      "draw rows of 1F11EE57-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (2)"
+     ]
+    },
+    {
+     "item": "S5-A-2B4626A3-3FF2DBD5",
+     "stage": 5,
+     "key": "2B4626A3-3FF2DBD5",
+     "tex": "2B4626A3",
+     "pal": "3FF2DBD5",
+     "sets": [
+      "s5-duerer-armour-v2"
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      484
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 28,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [
+      {
+       "key": "2B4626A3-382D7BFF",
+       "clut_xy": [
+        144,
+        484
+       ],
+       "pair_count": 54,
+       "cutout_share": 0.0,
+       "stp_share": 0.0
+      },
+      {
+       "key": "2B4626A3-0ADAA698",
+       "clut_xy": [
+        128,
+        511
+       ],
+       "pair_count": 29,
+       "cutout_share": 0.0,
+       "stp_share": 1.0
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-duerer-armour-v2:2B4626A3-62027D2B:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6308
+      },
+      "s5-duerer-armour-v2:2B4626A3-62027D2B:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.6308
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 2B4626A3-3FF2DBD5 (or of whichever 2B4626A3-* key is drawn)",
+      "draw rows of 2B4626A3-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (5)"
+     ]
+    },
+    {
+     "item": "S5-A-BFC445B0-A132B3B3",
+     "stage": 5,
+     "key": "BFC445B0-A132B3B3",
+     "tex": "BFC445B0",
+     "pal": "A132B3B3",
+     "sets": [
+      "s5-duerer-armour-v2"
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "page_xy": [
+      576,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      493
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 42,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 1
+     },
+     "phase": null,
+     "regions": [
+      "fx",
+      "native-8bpp-pending",
+      "glyph-destair"
+     ],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 386,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 89,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-duerer-armour-v2:BFC445B0-066C0B81:2048": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 127,
+       "cutout_share": 0.4563
+      },
+      "s5-duerer-armour-v2:BFC445B0-066C0B81:1024": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 26,
+       "cutout_share": 0.4563
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of BFC445B0-A132B3B3 (or of whichever BFC445B0-* key is drawn)",
+      "draw rows of BFC445B0-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still"
+     ]
+    },
+    {
+     "item": "S5-A-1168CC84-51E8E21E",
+     "stage": 5,
+     "key": "1168CC84-51E8E21E",
+     "tex": "1168CC84",
+     "pal": "51E8E21E",
+     "sets": [
+      "s5-duerer-armour-v2"
+     ],
+     "member": "3/17",
+     "family": "s5-boss-arena",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      482
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 278,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [
+      "fx"
+     ],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-duerer-armour-v2:1168CC84-A345AE9E:2048": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 423,
+       "cutout_share": 0.4855
+      },
+      "s5-duerer-armour-v2:1168CC84-A345AE9E:1024": {
+       "primary": true,
+       "s2_strict": false,
+       "conn_px": 0,
+       "s2_px": 94,
+       "cutout_share": 0.4855
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 1168CC84-51E8E21E (or of whichever 1168CC84-* key is drawn)",
+      "draw rows of 1168CC84-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (6)"
+     ]
+    },
+    {
+     "item": "S5-A-3D108041-51E8E21E",
+     "stage": 5,
+     "key": "3D108041-51E8E21E",
+     "tex": "3D108041",
+     "pal": "51E8E21E",
+     "sets": [
+      "s5-duerer-armour-v2"
+     ],
+     "member": "3/17",
+     "family": "s5-boss-arena",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      482
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 136,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [
+      "fx",
+      "fx",
+      "fx",
+      "native-8bpp-pending",
+      "glyph-destair"
+     ],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-duerer-armour-v2:3D108041-BE3400E6:2048": {
+       "primary": false,
+       "s2_strict": false,
+       "conn_px": 220,
+       "s2_px": 9846,
+       "cutout_share": 0.2923
+      },
+      "s5-duerer-armour-v2:3D108041-BE3400E6:1024": {
+       "primary": false,
+       "s2_strict": false,
+       "conn_px": 43,
+       "s2_px": 2238,
+       "cutout_share": 0.2923
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 3D108041-51E8E21E (or of whichever 3D108041-* key is drawn)",
+      "draw rows of 3D108041-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (6)",
+      "FX class-ownership fix verified on the failing probe key (cm_repair copy or class-aware rebuild)"
+     ]
+    },
+    {
+     "item": "S5-A-5C04E373-3FF2DBD5",
+     "stage": 5,
+     "key": "5C04E373-3FF2DBD5",
+     "tex": "5C04E373",
+     "pal": "3FF2DBD5",
+     "sets": [
+      "s5-effects-3-6-v1"
+     ],
+     "member": "3/6",
+     "family": "s5-effects-set",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      484
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 28,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 0
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [
+      {
+       "key": "5C04E373-382D7BFF",
+       "clut_xy": [
+        144,
+        484
+       ],
+       "pair_count": 54,
+       "cutout_share": 0.0,
+       "stp_share": 0.0
+      },
+      {
+       "key": "5C04E373-0ADAA698",
+       "clut_xy": [
+        128,
+        511
+       ],
+       "pair_count": 29,
+       "cutout_share": 0.0,
+       "stp_share": 1.0
+      }
+     ],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-effects-3-6-v1:5C04E373-62027D2B:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.781
+      },
+      "s5-effects-3-6-v1:5C04E373-62027D2B:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.781
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of 5C04E373-3FF2DBD5 (or of whichever 5C04E373-* key is drawn)",
+      "draw rows of 5C04E373-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still",
+      "AQ-05 phase lists for the page's palette-hold keys (5)"
+     ]
+    },
+    {
+     "item": "S5-A-BD968A3C-A132B3B3",
+     "stage": 5,
+     "key": "BD968A3C-A132B3B3",
+     "tex": "BD968A3C",
+     "pal": "A132B3B3",
+     "sets": [
+      "s5-effects-3-6-v1"
+     ],
+     "member": "3/6",
+     "family": "s5-effects-set",
+     "page_xy": [
+      576,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      96,
+      493
+     ],
+     "static": {
+      "confidence": "likely",
+      "pair_count": 42,
+      "pal_candidates_at_position": 2,
+      "words_crc_proven": true,
+      "clut_crc_proven": true
+     },
+     "review_clut_classes": {
+      "cutout_entries": 0,
+      "stp_entries": 1
+     },
+     "phase": null,
+     "regions": [],
+     "competing_cluts": [],
+     "audit_frozen_exports": {
+      "png_2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      },
+      "png_1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "r5": 0
+      }
+     },
+     "audit_transparency_probes": {
+      "s5-effects-3-6-v1:BD968A3C-066C0B81:2048": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3669
+      },
+      "s5-effects-3-6-v1:BD968A3C-066C0B81:1024": {
+       "primary": true,
+       "s2_strict": true,
+       "conn_px": 0,
+       "s2_px": 0,
+       "cutout_share": 0.3669
+      }
+     },
+     "admit_when": [
+      "validate_predicted confirm lists the key key-confirmed",
+      "gate passes for the gate list",
+      "strict audit primary = 0 on the admitted exports"
+     ],
+     "missing_evidence": [
+      "complete source of BD968A3C-A132B3B3 (or of whichever BD968A3C-* key is drawn)",
+      "draw rows of BD968A3C-* keys with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "which surface each page region is (identity), from the draw xy/uv and a still"
+     ]
+    }
+   ],
+   "B_panorama": [
+    {
+     "item": "S5-B-05E1881C-6C7962CE",
+     "stage": 5,
+     "key": "05E1881C-6C7962CE",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      16,
+      495
+     ],
+     "pair_count": 46,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 0.712,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-5F31B1FF",
+     "stage": 5,
+     "key": "05E1881C-5F31B1FF",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      489
+     ],
+     "pair_count": 42,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 1.0,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-361A4661",
+     "stage": 5,
+     "key": "05E1881C-361A4661",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      511
+     ],
+     "pair_count": 30,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": 0.999,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-0ADAA698",
+     "stage": 5,
+     "key": "05E1881C-0ADAA698",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      160,
+      511
+     ],
+     "pair_count": 24,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-190A55AD",
+     "stage": 5,
+     "key": "05E1881C-190A55AD",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      511
+     ],
+     "pair_count": 24,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-A8FC7D30",
+     "stage": 5,
+     "key": "05E1881C-A8FC7D30",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      224,
+      488
+     ],
+     "pair_count": 16,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-B4B798B5",
+     "stage": 5,
+     "key": "05E1881C-B4B798B5",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      510
+     ],
+     "pair_count": 11,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-264276C9",
+     "stage": 5,
+     "key": "05E1881C-264276C9",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      510
+     ],
+     "pair_count": 9,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-61603135",
+     "stage": 5,
+     "key": "05E1881C-61603135",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      497
+     ],
+     "pair_count": 7,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-645AA604",
+     "stage": 5,
+     "key": "05E1881C-645AA604",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      489
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-ECEB4BB9",
+     "stage": 5,
+     "key": "05E1881C-ECEB4BB9",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      508
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-3091E9CA",
+     "stage": 5,
+     "key": "05E1881C-3091E9CA",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      509
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": null,
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-F055ACAD",
+     "stage": 5,
+     "key": "05E1881C-F055ACAD",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      511
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": true,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-A538829E",
+     "stage": 5,
+     "key": "05E1881C-A538829E",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "Stage 1 runtime-modified common position",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    },
+    {
+     "item": "S5-B-05E1881C-DFE9270D",
+     "stage": 5,
+     "key": "05E1881C-DFE9270D",
+     "tex": "05E1881C",
+     "page_xy": [
+      960,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      501
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "Stage 1 runtime-modified common position",
+     "ramp_rho": null,
+     "slice_of_8bpp_row": false,
+     "missing_evidence": [
+      "draw rows over one full horizontal pan, full rate (repeat_sample_frames 1), fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']",
+      "CLUT words at the drawn clut_xy (stock-first dump while on screen; snapshot = second source)",
+      "u wrap period from uv_bounds; one 4K still per section"
+     ]
+    }
+   ],
+   "C_8bpp": [
+    {
+     "item": "S5-C-269AFAAD-0B616D37",
+     "stage": 5,
+     "key": "269AFAAD-0B616D37",
+     "tex": "269AFAAD",
+     "pal": "0B616D37",
+     "depth": 1,
+     "texpage_x": 384,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "17F79F81"
+      ],
+      "right": [
+       "1F11EE57"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      251
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 10,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-269AFAAD-B2AA7578",
+     "stage": 5,
+     "key": "269AFAAD-B2AA7578",
+     "tex": "269AFAAD",
+     "pal": "B2AA7578",
+     "depth": 1,
+     "texpage_x": 384,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "17F79F81"
+      ],
+      "right": [
+       "1F11EE57"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      251
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 10,
+     "pal_all_zero": true,
+     "clut_status": "all-zero static candidate at a position that also has a non-zero static candidate: the row is cleared at some phase (draws nothing then)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-269AFAAD-D5C392C5",
+     "stage": 5,
+     "key": "269AFAAD-D5C392C5",
+     "tex": "269AFAAD",
+     "pal": "D5C392C5",
+     "depth": 1,
+     "texpage_x": 384,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "17F79F81"
+      ],
+      "right": [
+       "1F11EE57"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      251
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "clut_entries": 256,
+     "pair_count": 6,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-E6BFD1DB-0B616D37",
+     "stage": 5,
+     "key": "E6BFD1DB-0B616D37",
+     "tex": "E6BFD1DB",
+     "pal": "0B616D37",
+     "depth": 1,
+     "texpage_x": 448,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "1F11EE57"
+      ],
+      "right": [
+       "2B4626A3"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "L",
+     "subimage_u8": [
+      4,
+      123
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 5,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-E6BFD1DB-1EDE052B",
+     "stage": 5,
+     "key": "E6BFD1DB-1EDE052B",
+     "tex": "E6BFD1DB",
+     "pal": "1EDE052B",
+     "depth": 1,
+     "texpage_x": 448,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "1F11EE57"
+      ],
+      "right": [
+       "2B4626A3"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "L",
+     "subimage_u8": [
+      4,
+      123
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "clut_entries": 256,
+     "pair_count": 14,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-E6BFD1DB-B2AA7578",
+     "stage": 5,
+     "key": "E6BFD1DB-B2AA7578",
+     "tex": "E6BFD1DB",
+     "pal": "B2AA7578",
+     "depth": 1,
+     "texpage_x": 448,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "1F11EE57"
+      ],
+      "right": [
+       "2B4626A3"
+      ]
+     },
+     "holds_subimage_of": "1F11EE57",
+     "subimage_half": "L",
+     "subimage_u8": [
+      4,
+      123
+     ],
+     "subimage_v": [
+      8,
+      247
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 14,
+     "pal_all_zero": true,
+     "clut_status": "all-zero static candidate at a position that also has a non-zero static candidate: the row is cleared at some phase (draws nothing then)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-87FCFE63-1EDE052B",
+     "stage": 5,
+     "key": "87FCFE63-1EDE052B",
+     "tex": "87FCFE63",
+     "pal": "1EDE052B",
+     "depth": 1,
+     "texpage_x": 512,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "2B4626A3"
+      ],
+      "right": [
+       "BFC445B0"
+      ]
+     },
+     "holds_subimage_of": "BFC445B0",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      231
+     ],
+     "subimage_v": [
+      136,
+      223
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "clut_entries": 256,
+     "pair_count": 5,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-87FCFE63-B2AA7578",
+     "stage": 5,
+     "key": "87FCFE63-B2AA7578",
+     "tex": "87FCFE63",
+     "pal": "B2AA7578",
+     "depth": 1,
+     "texpage_x": 512,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "2B4626A3"
+      ],
+      "right": [
+       "BFC445B0"
+      ]
+     },
+     "holds_subimage_of": "BFC445B0",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      231
+     ],
+     "subimage_v": [
+      136,
+      223
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      496
+     ],
+     "clut_entries": 256,
+     "pair_count": 5,
+     "pal_all_zero": true,
+     "clut_status": "runtime-written row (zero-only in static data): real 256-colour palette only from the capture",
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-87FCFE63-D5C392C5",
+     "stage": 5,
+     "key": "87FCFE63-D5C392C5",
+     "tex": "87FCFE63",
+     "pal": "D5C392C5",
+     "depth": 1,
+     "texpage_x": 512,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "2B4626A3"
+      ],
+      "right": [
+       "BFC445B0"
+      ]
+     },
+     "holds_subimage_of": "BFC445B0",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      231
+     ],
+     "subimage_v": [
+      136,
+      223
+     ],
+     "member": "3/16",
+     "family": "s5-boss-duerer",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "clut_entries": 256,
+     "pair_count": 4,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-AEC51081-B2AA7578",
+     "stage": 5,
+     "key": "AEC51081-B2AA7578",
+     "tex": "AEC51081",
+     "pal": "B2AA7578",
+     "depth": 1,
+     "texpage_x": 640,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "1168CC84"
+      ],
+      "right": [
+       "3D108041"
+      ]
+     },
+     "holds_subimage_of": "3D108041",
+     "subimage_half": "R",
+     "subimage_u8": [
+      132,
+      199
+     ],
+     "subimage_v": [
+      176,
+      247
+     ],
+     "member": "3/17",
+     "family": "s5-boss-arena",
+     "clut_xy": [
+      0,
+      496
+     ],
+     "clut_entries": 256,
+     "pair_count": 2,
+     "pal_all_zero": true,
+     "clut_status": "runtime-written row (zero-only in static data): real 256-colour palette only from the capture",
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-A3D0E675-0B616D37",
+     "stage": 5,
+     "key": "A3D0E675-0B616D37",
+     "tex": "A3D0E675",
+     "pal": "0B616D37",
+     "depth": 1,
+     "texpage_x": 704,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "3D108041"
+      ],
+      "right": [
+       "D8403129"
+      ]
+     },
+     "holds_subimage_of": "3D108041",
+     "subimage_half": "L",
+     "subimage_u8": [
+      4,
+      71
+     ],
+     "subimage_v": [
+      176,
+      247
+     ],
+     "member": "3/17",
+     "family": "s5-boss-arena",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 90,
+     "pal_all_zero": false,
+     "clut_status": "static 256-word row (3/1 upload 0,504,256,8)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-A3D0E675-B2AA7578",
+     "stage": 5,
+     "key": "A3D0E675-B2AA7578",
+     "tex": "A3D0E675",
+     "pal": "B2AA7578",
+     "depth": 1,
+     "texpage_x": 704,
+     "page_words": [
+      128,
+      256
+     ],
+     "halves": {
+      "left": [
+       "3D108041"
+      ],
+      "right": [
+       "D8403129"
+      ]
+     },
+     "holds_subimage_of": "3D108041",
+     "subimage_half": "L",
+     "subimage_u8": [
+      4,
+      71
+     ],
+     "subimage_v": [
+      176,
+      247
+     ],
+     "member": "3/17",
+     "family": "s5-boss-arena",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "clut_entries": 256,
+     "pair_count": 90,
+     "pal_all_zero": true,
+     "clut_status": "all-zero static candidate at a position that also has a non-zero static candidate: the row is cleared at some phase (draws nothing then)",
+     "phase": null,
+     "missing_evidence": [
+      "a depth-1 draw row with this texpage x and key during the Duerer fight (S5-5 marks)",
+      "complete source with a 256-entry .clut.bin (a 16-entry read at clut_xy is not enough)",
+      "uv_bounds of the draw inside the sub-image range (u8/v above) vs the neighbouring page half",
+      "semi for the draw; CPU-VRAM snapshot of CLUT rows 496/509-511 at the mark (flash/fade phases)"
+     ]
+    },
+    {
+     "item": "S5-C-subimage-1F11EE57",
+     "stage": 5,
+     "tex": "1F11EE57",
+     "depth": 0,
+     "page_xy": [
+      448,
+      0
+     ],
+     "member": "3/16",
+     "blocks8": 517,
+     "bbox_4bpp_texels": [
+      8,
+      8,
+      247,
+      247
+     ],
+     "current_delivery": "Duerer v2 native pass-through (NOT HD) in these blocks",
+     "decision_rule": "if no depth-1 draw of these words appears across the whole fight: 8bpp reading is wrong; keep 4bpp; report it",
+     "unpredicted_risk": "texpage 576 (BFC445B0|1168CC84) or 640/704 cross-member pages would be new, unpredicted CRCs"
+    },
+    {
+     "item": "S5-C-subimage-BFC445B0",
+     "stage": 5,
+     "tex": "BFC445B0",
+     "depth": 0,
+     "page_xy": [
+      576,
+      0
+     ],
+     "member": "3/16",
+     "blocks8": 163,
+     "bbox_4bpp_texels": [
+      8,
+      136,
+      207,
+      223
+     ],
+     "current_delivery": "Duerer v2 native pass-through (NOT HD) in these blocks",
+     "decision_rule": "if no depth-1 draw of these words appears across the whole fight: 8bpp reading is wrong; keep 4bpp; report it",
+     "unpredicted_risk": "texpage 576 (BFC445B0|1168CC84) or 640/704 cross-member pages would be new, unpredicted CRCs"
+    },
+    {
+     "item": "S5-C-subimage-3D108041",
+     "stage": 5,
+     "tex": "3D108041",
+     "depth": 0,
+     "page_xy": [
+      704,
+      0
+     ],
+     "member": "3/17",
+     "blocks8": 153,
+     "bbox_4bpp_texels": [
+      8,
+      176,
+      143,
+      247
+     ],
+     "current_delivery": "Duerer v2 native pass-through (NOT HD) in these blocks",
+     "decision_rule": "if no depth-1 draw of these words appears across the whole fight: 8bpp reading is wrong; keep 4bpp; report it",
+     "unpredicted_risk": "texpage 576 (BFC445B0|1168CC84) or 640/704 cross-member pages would be new, unpredicted CRCs"
+    }
+   ],
+   "D_phase_holds": [
+    {
+     "item": "S5-D-9F3D98EF-30E98693",
+     "stage": 5,
+     "key": "9F3D98EF-30E98693",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-9F3D98EF-3E221370",
+     "stage": 5,
+     "key": "9F3D98EF-3E221370",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-9F3D98EF-47FBD679",
+     "stage": 5,
+     "key": "9F3D98EF-47FBD679",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      500
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-9F3D98EF-726A2440",
+     "stage": 5,
+     "key": "9F3D98EF-726A2440",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-9F3D98EF-8097C274",
+     "stage": 5,
+     "key": "9F3D98EF-8097C274",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-9F3D98EF-BE3400E6",
+     "stage": 5,
+     "key": "9F3D98EF-BE3400E6",
+     "tex": "9F3D98EF",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-0DF30EDD",
+     "stage": 5,
+     "key": "7E088757-0DF30EDD",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-190A55AD",
+     "stage": 5,
+     "key": "7E088757-190A55AD",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 136,
+     "zero_clut": true,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-24FAE118",
+     "stage": 5,
+     "key": "7E088757-24FAE118",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      485
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-8097C274",
+     "stage": 5,
+     "key": "7E088757-8097C274",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 22,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-9D752218",
+     "stage": 5,
+     "key": "7E088757-9D752218",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      485
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-7E088757-BE3400E6",
+     "stage": 5,
+     "key": "7E088757-BE3400E6",
+     "tex": "7E088757",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 22,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-452F3CC3-02491337",
+     "stage": 5,
+     "key": "452F3CC3-02491337",
+     "tex": "452F3CC3",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-452F3CC3-190A55AD",
+     "stage": 5,
+     "key": "452F3CC3-190A55AD",
+     "tex": "452F3CC3",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      240,
+      508
+     ],
+     "pair_count": 3,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-452F3CC3-2C49B2AB",
+     "stage": 5,
+     "key": "452F3CC3-2C49B2AB",
+     "tex": "452F3CC3",
+     "page_xy": [
+      768,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1A2ACF78-190A55AD",
+     "stage": 5,
+     "key": "1A2ACF78-190A55AD",
+     "tex": "1A2ACF78",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      48,
+      508
+     ],
+     "pair_count": 4,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1A2ACF78-8097C274",
+     "stage": 5,
+     "key": "1A2ACF78-8097C274",
+     "tex": "1A2ACF78",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1A2ACF78-BE3400E6",
+     "stage": 5,
+     "key": "1A2ACF78-BE3400E6",
+     "tex": "1A2ACF78",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1A2ACF78-F055ACAD",
+     "stage": 5,
+     "key": "1A2ACF78-F055ACAD",
+     "tex": "1A2ACF78",
+     "page_xy": [
+      832,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      511
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-0B23F291",
+     "stage": 5,
+     "key": "503474BD-0B23F291",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      64,
+      486
+     ],
+     "pair_count": 72,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-190A55AD",
+     "stage": 5,
+     "key": "503474BD-190A55AD",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      511
+     ],
+     "pair_count": 72,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-53319E83",
+     "stage": 5,
+     "key": "503474BD-53319E83",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      64,
+      486
+     ],
+     "pair_count": 72,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-53505D66",
+     "stage": 5,
+     "key": "503474BD-53505D66",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      64,
+      486
+     ],
+     "pair_count": 72,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-66C1F81B",
+     "stage": 5,
+     "key": "503474BD-66C1F81B",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      488
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-693585C2",
+     "stage": 5,
+     "key": "503474BD-693585C2",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      488
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-EBEFD80E",
+     "stage": 5,
+     "key": "503474BD-EBEFD80E",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      0,
+      488
+     ],
+     "pair_count": 18,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-ED6FF7CF",
+     "stage": 5,
+     "key": "503474BD-ED6FF7CF",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      489
+     ],
+     "pair_count": 4,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-503474BD-F91F96F0",
+     "stage": 5,
+     "key": "503474BD-F91F96F0",
+     "tex": "503474BD",
+     "page_xy": [
+      896,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      192,
+      489
+     ],
+     "pair_count": 4,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1F11EE57-190A55AD",
+     "stage": 5,
+     "key": "1F11EE57-190A55AD",
+     "tex": "1F11EE57",
+     "page_xy": [
+      448,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      128,
+      499
+     ],
+     "pair_count": 97,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1F11EE57-F055ACAD",
+     "stage": 5,
+     "key": "1F11EE57-F055ACAD",
+     "tex": "1F11EE57",
+     "page_xy": [
+      448,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-2B4626A3-02491337",
+     "stage": 5,
+     "key": "2B4626A3-02491337",
+     "tex": "2B4626A3",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-2B4626A3-190A55AD",
+     "stage": 5,
+     "key": "2B4626A3-190A55AD",
+     "tex": "2B4626A3",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      511
+     ],
+     "pair_count": 54,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-2B4626A3-1E4E0007",
+     "stage": 5,
+     "key": "2B4626A3-1E4E0007",
+     "tex": "2B4626A3",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      499
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-2B4626A3-2C49B2AB",
+     "stage": 5,
+     "key": "2B4626A3-2C49B2AB",
+     "tex": "2B4626A3",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-2B4626A3-B4B798B5",
+     "stage": 5,
+     "key": "2B4626A3-B4B798B5",
+     "tex": "2B4626A3",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      510
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-30E98693",
+     "stage": 5,
+     "key": "1168CC84-30E98693",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-3E221370",
+     "stage": 5,
+     "key": "1168CC84-3E221370",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-47FBD679",
+     "stage": 5,
+     "key": "1168CC84-47FBD679",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      500
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-726A2440",
+     "stage": 5,
+     "key": "1168CC84-726A2440",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      112,
+      492
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-8097C274",
+     "stage": 5,
+     "key": "1168CC84-8097C274",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-1168CC84-BE3400E6",
+     "stage": 5,
+     "key": "1168CC84-BE3400E6",
+     "tex": "1168CC84",
+     "page_xy": [
+      640,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 6,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-0DF30EDD",
+     "stage": 5,
+     "key": "3D108041-0DF30EDD",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      511
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-190A55AD",
+     "stage": 5,
+     "key": "3D108041-190A55AD",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 136,
+     "zero_clut": true,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-24FAE118",
+     "stage": 5,
+     "key": "3D108041-24FAE118",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      485
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-8097C274",
+     "stage": 5,
+     "key": "3D108041-8097C274",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 22,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-9D752218",
+     "stage": 5,
+     "key": "3D108041-9D752218",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      288,
+      485
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-3D108041-BE3400E6",
+     "stage": 5,
+     "key": "3D108041-BE3400E6",
+     "tex": "3D108041",
+     "page_xy": [
+      704,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      32,
+      482
+     ],
+     "pair_count": 22,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-5C04E373-02491337",
+     "stage": 5,
+     "key": "5C04E373-02491337",
+     "tex": "5C04E373",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-5C04E373-190A55AD",
+     "stage": 5,
+     "key": "5C04E373-190A55AD",
+     "tex": "5C04E373",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      511
+     ],
+     "pair_count": 54,
+     "zero_clut": true,
+     "phase": "runtime-written (zero-only static CLUT position): PAL unknown until captured",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-5C04E373-1E4E0007",
+     "stage": 5,
+     "key": "5C04E373-1E4E0007",
+     "tex": "5C04E373",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      499
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-5C04E373-2C49B2AB",
+     "stage": 5,
+     "key": "5C04E373-2C49B2AB",
+     "tex": "5C04E373",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      272,
+      484
+     ],
+     "pair_count": 3,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    },
+    {
+     "item": "S5-D-5C04E373-B4B798B5",
+     "stage": 5,
+     "key": "5C04E373-B4B798B5",
+     "tex": "5C04E373",
+     "page_xy": [
+      512,
+      0
+     ],
+     "depth": 0,
+     "clut_xy": [
+      256,
+      510
+     ],
+     "pair_count": 2,
+     "zero_clut": false,
+     "phase": "several effective static candidates at this position: capture which one is drawn, and every phase",
+     "missing_evidence": [
+      "AQ-05 hold window covering one full cycle/fade of this CLUT position",
+      "complete source of every phase key seen (phase order from full-rate draw rows)"
+     ]
+    }
+   ],
+   "E_unauthored_pages": [
+    {
+     "item": "S5-E-EE299B43",
+     "stage": 5,
+     "tex": "EE299B43",
+     "members": [
+      "3/1"
+     ],
+     "family": "s5-enemies-main",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 69,
+     "best_pair": 96,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-F0587A74",
+     "stage": 5,
+     "tex": "F0587A74",
+     "members": [
+      "3/11"
+     ],
+     "family": "s5-unit-set-a",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 69,
+     "best_pair": 96,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-FAF858EB",
+     "stage": 5,
+     "tex": "FAF858EB",
+     "members": [
+      "3/12"
+     ],
+     "family": "s5-unit-set-b",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 69,
+     "best_pair": 96,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-17F79F81",
+     "stage": 5,
+     "tex": "17F79F81",
+     "members": [
+      "3/16"
+     ],
+     "family": "s5-boss-duerer",
+     "page_xy": [
+      [
+       384,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 69,
+     "best_pair": 96,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-8E04A88B",
+     "stage": 5,
+     "tex": "8E04A88B",
+     "members": [
+      "3/1"
+     ],
+     "family": "s5-enemies-main",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 66,
+     "best_pair": 85,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-88EDE9D4",
+     "stage": 5,
+     "tex": "88EDE9D4",
+     "members": [
+      "3/11"
+     ],
+     "family": "s5-unit-set-a",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 66,
+     "best_pair": 85,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-391A9CFF",
+     "stage": 5,
+     "tex": "391A9CFF",
+     "members": [
+      "3/12"
+     ],
+     "family": "s5-unit-set-b",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 66,
+     "best_pair": 85,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-8121BE19",
+     "stage": 5,
+     "tex": "8121BE19",
+     "members": [
+      "3/16"
+     ],
+     "family": "s5-boss-duerer",
+     "page_xy": [
+      [
+       320,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 66,
+     "best_pair": 85,
+     "tex_confidence": "runtime-composed-needs-capture",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is",
+      "composed page words (runtime-composed: raw upload overlaps the page)"
+     ]
+    },
+    {
+     "item": "S5-E-327A20CE",
+     "stage": 5,
+     "tex": "327A20CE",
+     "members": [
+      "3/1"
+     ],
+     "family": "s5-enemies-main",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 45,
+     "best_pair": 97,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-F2D8404D",
+     "stage": 5,
+     "tex": "F2D8404D",
+     "members": [
+      "3/11"
+     ],
+     "family": "s5-unit-set-a",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 45,
+     "best_pair": 97,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-385C73DC",
+     "stage": 5,
+     "tex": "385C73DC",
+     "members": [
+      "3/12"
+     ],
+     "family": "s5-unit-set-b",
+     "page_xy": [
+      [
+       448,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 45,
+     "best_pair": 97,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-11FA828A",
+     "stage": 5,
+     "tex": "11FA828A",
+     "members": [
+      "3/17"
+     ],
+     "family": "s5-boss-arena",
+     "page_xy": [
+      [
+       896,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 26,
+     "best_pair": 74,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-4DB524A5",
+     "stage": 5,
+     "tex": "4DB524A5",
+     "members": [
+      "3/1"
+     ],
+     "family": "s5-large-unit-main",
+     "page_xy": [
+      [
+       512,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 19,
+     "best_pair": 54,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-D8403129",
+     "stage": 5,
+     "tex": "D8403129",
+     "members": [
+      "3/17"
+     ],
+     "family": "s5-boss-arena",
+     "page_xy": [
+      [
+       768,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 17,
+     "best_pair": 135,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-81FB494C",
+     "stage": 5,
+     "tex": "81FB494C",
+     "members": [
+      "3/17"
+     ],
+     "family": "s5-boss-arena",
+     "page_xy": [
+      [
+       832,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 17,
+     "best_pair": 134,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-4F542B30",
+     "stage": 5,
+     "tex": "4F542B30",
+     "members": [
+      "3/6"
+     ],
+     "family": "s5-effects-set",
+     "page_xy": [
+      [
+       960,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 14,
+     "best_pair": 46,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-CC4D7802",
+     "stage": 5,
+     "tex": "CC4D7802",
+     "members": [
+      "3/13"
+     ],
+     "family": "s5-world-sky-variant",
+     "page_xy": [
+      [
+       960,
+       0
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 14,
+     "best_pair": 46,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-10932164",
+     "stage": 5,
+     "tex": "10932164",
+     "members": [
+      "3/10"
+     ],
+     "family": "s5-effects-global-explosion",
+     "page_xy": [
+      [
+       704,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 2,
+     "best_pair": 19,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    },
+    {
+     "item": "S5-E-D8024236",
+     "stage": 5,
+     "tex": "D8024236",
+     "members": [
+      "3/20"
+     ],
+     "family": "s5-lettering-transmission",
+     "page_xy": [
+      [
+       704,
+       256
+      ]
+     ],
+     "depth": 0,
+     "nonzero_keys": 2,
+     "best_pair": 19,
+     "tex_confidence": "likely",
+     "missing_evidence": [
+      "draw rows of its keys (which keys are drawn, which CLUT, where on screen)",
+      "identity mark/still of what it is"
+     ]
+    }
+   ],
+   "F_prerequisites": {
+    "route": "continuous recomp run through Stages 1-4 into Stage 5 (AQ-02 stage-select and AQ-03b DuckStation states cannot confirm keys)",
+    "pack": "stock textures for every Stage 5 key (no HD pack); HD dump stock-first to <run>/stage5-source/",
+    "recorder": "draw rows with fields ['key', 'frame', 'source_kind', 'depth', 'semi', 'page_xy', 'clut_xy', 'uv_bounds', 'uv_vertices', 'xy']; marks stage:5:entry, seg:5:<id> at each 0x80081382 change, clear:5; CPU-VRAM snapshot at every mark",
+    "gate_list": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\keys\\S5-gate-keys.txt",
+    "checklist": "C:\\github\\Einhander\\remaster-audit\\runtime-diagnostics-v58\\capture-checklists\\S5.md"
+   },
+   "counts": {
+    "A": 12,
+    "B": 15,
+    "C": 15,
+    "D": 52,
+    "E": 19
+   }
+  }
+ }
+}

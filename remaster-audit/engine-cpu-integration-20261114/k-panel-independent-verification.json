@@ -1,0 +1,60 @@
+{
+  "at_utc": "2026-11-14T09:13:30.460053+00:00",
+  "manifest_sha256": "08868b6592c7646552d4fc5c7a736e8cf2c3793f81e35d8991b59bc6829774c8",
+  "native_source": {
+    "source_words": {
+      "path": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\95A3BCF8-723E222C.words.bin",
+      "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+    },
+    "source_clut": {
+      "path": "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\95A3BCF8-723E222C.clut.bin",
+      "sha256": "0046050957049372187619b2fe305cb307fb4afc80024cc4d2ac7536747db95a"
+    },
+    "source_shape_words": [
+      64,
+      256
+    ],
+    "depth": 0
+  },
+  "checks": {
+    "old": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "native_centres": 65536,
+      "class_mismatches": 3550,
+      "mismatch_class_pairs": {
+        "127->255": 2502,
+        "255->127": 1048
+      },
+      "sha256": "4f7989eb063d460d8599e7206543b3539b98c6ed67ce306dfbfc972610582cc4"
+    },
+    "candidate2048": {
+      "dimensions": [
+        2048,
+        2048
+      ],
+      "native_centres": 65536,
+      "class_mismatches": 0,
+      "mismatch_class_pairs": {},
+      "sha256": "791c01a86dbf12167dee22738de654043f4f548de59d0cb4dfa3a573423cc020"
+    },
+    "candidate4096": {
+      "dimensions": [
+        4096,
+        4096
+      ],
+      "native_centres": 65536,
+      "class_mismatches": 0,
+      "mismatch_class_pairs": {},
+      "sha256": "eabdbd119b8bcef07b1bf8e9d9db9678f18150a3566a3edeeab9a72f4b88aec8"
+    }
+  },
+  "changed_rgb_pixels_in_K": 83820,
+  "changed_rgb_pixels_outside_K": 0,
+  "native_class_fix_independently_confirmed": true,
+  "gpu_work": false,
+  "live_accepted": false,
+  "scope": "Raw native-word/CLUT decode, class check, file pins and RGB-region ownership only."
+}

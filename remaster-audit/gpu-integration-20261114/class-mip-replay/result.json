@@ -1,0 +1,34 @@
+{
+  "commands": [
+    [
+      "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+      "-std=c11",
+      "-O1",
+      "-Wall",
+      "-Wextra",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-replay\\test_class_mip.c",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-replay\\class_mip.c",
+      "-o",
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-replay\\test.exe"
+    ],
+    [
+      "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\class-mip-replay\\test.exe"
+    ]
+  ],
+  "source_hashes": {
+    "class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+    "class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+    "test_class_mip.c": "77068c229dbda3710f34d7fb0c3dfc2a4a829e5d83f637cb4a35237cf09bf746"
+  },
+  "build_exit": 0,
+  "cpu_affinity": [
+    15
+  ],
+  "gpu": false,
+  "mutants_replayed": false,
+  "test_exit": 0,
+  "summary": "checks 7410 failures 0",
+  "executable_sha256": "fd18ec97cac2a730b76abf3c820cf33a7ba5b86f0d66052608c12976bc10c7f9",
+  "seconds": 0.7267023000022164,
+  "passed": true
+}

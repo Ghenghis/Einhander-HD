@@ -1,0 +1,44 @@
+In file included from C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:28:
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5243:36: error: no member named 'hd_batch_attrib' in 'GlHdCpuDiag'
+ 5243 |              (unsigned long long)s.hd_batch_attrib,(unsigned long long)s.hd_attrib_merges,
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5243:74: error: no member named 'hd_attrib_merges' in 'GlHdCpuDiag'
+ 5243 |              (unsigned long long)s.hd_batch_attrib,(unsigned long long)s.hd_attrib_merges,
+      |                                                                        ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5244:36: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5244 |              (unsigned long long)s.hd_split_reason[0],(unsigned long long)s.hd_split_reason[1],
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5244:77: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5244 |              (unsigned long long)s.hd_split_reason[0],(unsigned long long)s.hd_split_reason[1],
+      |                                                                           ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5245:36: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5245 |              (unsigned long long)s.hd_split_reason[2],(unsigned long long)s.hd_split_reason[3],
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5245:77: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5245 |              (unsigned long long)s.hd_split_reason[2],(unsigned long long)s.hd_split_reason[3],
+      |                                                                           ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5246:36: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5246 |              (unsigned long long)s.hd_split_reason[4],(unsigned long long)s.hd_split_reason[5],
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5246:77: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5246 |              (unsigned long long)s.hd_split_reason[4],(unsigned long long)s.hd_split_reason[5],
+      |                                                                           ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5247:36: error: no member named 'hd_split_reason' in 'GlHdCpuDiag'
+ 5247 |              (unsigned long long)s.hd_split_reason[6],
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5248:36: error: no member named 'pack_upload_index_incremental' in 'GlHdCpuDiag'
+ 5248 |              (unsigned long long)s.pack_upload_index_incremental,(unsigned long long)s.pack_index_incremental,
+      |                                  ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5248:88: error: no member named 'pack_index_incremental' in 'GlHdCpuDiag'
+ 5248 |              (unsigned long long)s.pack_upload_index_incremental,(unsigned long long)s.pack_index_incremental,
+      |                                                                                      ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5249:24: error: no member named 'pack_index_incremental_ns' in 'GlHdCpuDiag'
+ 5249 |              (double)s.pack_index_incremental_ns/1e6,(unsigned long long)s.pack_index_pointer_fixups);
+      |                      ~ ^
+C:\github\Einhander\remaster-audit\dev-center-evidence\stage1-completion-20261112\sampling-build-v60-view-provenance\src\debug_server.c:5249:76: error: no member named 'pack_index_pointer_fixups' in 'GlHdCpuDiag'
+ 5249 |              (double)s.pack_index_incremental_ns/1e6,(unsigned long long)s.pack_index_pointer_fixups);
+      |                                                                          ~ ^
+1 warning and 13 errors generated.

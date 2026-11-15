@@ -1,0 +1,27 @@
+{
+  "inspection": "Static PE export metadata and Windows version resource; DLL not loaded",
+  "installed_dll": {
+    "path": "C:\\Program Files\\NVIDIA Corporation\\RTX Remix\\deps\\remix_runtime\\runtime\\.trex\\d3d9.dll",
+    "sha256": "ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1",
+    "bytes": 282883696,
+    "machine": "0x8664",
+    "x64": true
+  },
+  "file_version": [
+    10,
+    0,
+    17763,
+    1
+  ],
+  "export_count": 26,
+  "remix_exports": [
+    "remixapi_InitializeLibrary",
+    "remixinternal_GetDlssNeuralRenderingStatus",
+    "remixinternal_GetNrcStatus",
+    "remixinternal_GetShaderCompilationCount",
+    "writeRemixCategoriesSchemaUsda"
+  ],
+  "initialize_export_present": true,
+  "gpu_started": false,
+  "abi_match_verified": false
+}

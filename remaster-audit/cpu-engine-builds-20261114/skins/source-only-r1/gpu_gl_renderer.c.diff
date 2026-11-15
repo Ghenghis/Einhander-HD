@@ -1,0 +1,145 @@
+--- a/psxrecomp/runtime/src/gpu_gl_renderer.c (canonical 92d08057)
++++ b/psxrecomp/runtime/src/gpu_gl_renderer.c (s67 skin-targets r1)
+@@ -92,6 +92,7 @@
+ #include "hd_skin_material.h"
+ #include "hd_skin_detail.h"
+ #include "hd_skin_live.h"
++#include "hd_skin_targets.h"   /* s67 proposal r1: per-target skin binding */
+ #include "../third_party/stb_image.h" /* shared implementation in psx_window_icon.cpp */
+ #ifdef _WIN32
+ #include <direct.h>
+@@ -2554,6 +2555,8 @@
+ /* Two explicitly supplied assets, owned outside the replacement LRU. CPU
+  * decode buffers are freed immediately after GL owns the uploaded bytes. */
+ static HdSkinDetailTexture s_hd_detail_player, s_hd_detail_enemy;
++/* s67 proposal r1: PSXRECOMP_SKIN_TARGETS. mode UNSET = existing behaviour unchanged. */
++static HdSkinTargetSelection s_hd_skin_targets;
+ 
+ static const HdSkinConfig *hd_skin_for_draw(uint32_t texture, uint32_t palette) {
+     if (hd_skin_key_matches(&s_hd_skin,texture,palette) &&
+@@ -2561,6 +2564,24 @@
+     if (hd_skin_key_matches(&s_hd_skin_enemy,texture,palette) &&
+         (s_hd_skin_enemy.enabled || (s_hd_detail_enemy.texture && s_hd_detail_enemy.config.enabled))) return &s_hd_skin_enemy;
+     return NULL;
++}
++
++/* s67 proposal r1: the ONE skin decision shared by the HD draw and its proof receipt.
++ * UNSET -> legacy hd_skin_for_draw; INVALID -> NULL (fail closed); VALID -> target config or NULL. */
++static const HdSkinConfig *s67_skin_decide(const HdTextureSourceMatch *m, const HdTextureDrawQuery *q,
++        int hd_image, unsigned hd_w, unsigned hd_h, unsigned native_w,
++        HdSkinConfig *scratch, int *reason, int *target) {
++    HdSkinDrawFacts facts;
++    memset(&facts,0,sizeof facts);
++    facts.texture=m->texture_hash; facts.palette=m->palette_hash;
++    facts.hd_image=hd_image; facts.hd_w=hd_w; facts.hd_h=hd_h;
++    facts.upload_serial=m->upload_serial; facts.native_w=native_w; facts.native_h=m->upload_height;
++    facts.page_x=q->page_x; facts.page_y=q->page_y; facts.clut_x=q->clut_x; facts.clut_y=q->clut_y;
++    facts.u0=q->u_first; facts.v0=q->v_first; facts.u1=q->u_last; facts.v1=q->v_last;
++    facts.generation=s_hd_live_generation;
++    return hd_skin_target_decide(&s_hd_skin_targets,&facts,
++        s_hd_skin_targets.mode==HD_SKIN_TGT_MODE_UNSET ? hd_skin_for_draw(m->texture_hash,m->palette_hash) : NULL,
++        scratch,reason,target);
+ }
+ 
+ static void hd_skin_detail_release(HdSkinDetailTexture *detail) {
+@@ -3001,7 +3022,7 @@
+     hd_research_on_draw(m,q,px,semi,xs,ys,us,vs);
+     static int initialized = 0;
+     static FILE *log = NULL;
+-    static struct { uint32_t th, ph; int semi, replacement; } seen[4096];
++    static struct { uint32_t th, ph; int semi, replacement, reason, target, applied; uint64_t gen; } seen[4096];
+     static unsigned nseen = 0;
+     if (!initialized) {
+         const char *path = getenv("PSXRECOMP_HD_PROOF_LOG");
+@@ -3010,13 +3031,24 @@
+     }
+     if (!log || nseen >= sizeof seen / sizeof seen[0]) return;
+     unsigned i;
++    /* s67 r1: decide FIRST with the same helper the draw uses, then dedup on key/semi/replacement AND the
++     * decision (reason, target, applied, generation), so a first stock/refused receipt cannot hide a later
++     * applied one. Still first-of-kind evidence within 4096 entries, not a complete per-draw record. */
++    const unsigned native_width=m->upload_width_words*(q->depth==0?4u:q->depth==1?2u:1u);
++    HdSkinConfig proof_target_material;
++    int proof_reason=0,proof_target=-1;
++    const HdSkinConfig *material=s67_skin_decide(m,q,px!=NULL,px?px->width:0,px?px->height:0,native_width,
++        &proof_target_material,&proof_reason,&proof_target);
++    const int proof_applied=px && material && material->enabled && material->profile;
+     for (i = 0; i < nseen; ++i)
+         if (seen[i].th == m->texture_hash && seen[i].ph == m->palette_hash &&
+-            seen[i].semi == semi && seen[i].replacement == (px != NULL)) return;
++            seen[i].semi == semi && seen[i].replacement == (px != NULL) &&
++            seen[i].reason == proof_reason && seen[i].target == proof_target &&
++            seen[i].applied == proof_applied && seen[i].gen == s_hd_live_generation) return;
+     seen[nseen].th=m->texture_hash; seen[nseen].ph=m->palette_hash;
+-    seen[nseen].semi=semi; seen[nseen++].replacement=(px != NULL);
+-    const HdSkinConfig *material=hd_skin_for_draw(m->texture_hash,m->palette_hash);
+-    const unsigned native_width=m->upload_width_words*(q->depth==0?4u:q->depth==1?2u:1u);
++    seen[nseen].semi=semi; seen[nseen].replacement=(px != NULL);
++    seen[nseen].reason=proof_reason; seen[nseen].target=proof_target;
++    seen[nseen].applied=proof_applied; seen[nseen++].gen=s_hd_live_generation;
+     const HdSkinDetailTexture *detail=hd_skin_detail_for_draw(material,m->texture_hash,m->palette_hash,
+         native_width,m->upload_height,m->upload_serial);
+     fprintf(log,"{\"key\":\"%08X-%08X\",\"frame\":%llu,"
+@@ -3027,7 +3059,8 @@
+             "\"event\":\"%s\",\"material_contract\":\"" HD_SKIN_MATERIAL_CONTRACT "\","
+             "\"material_profile\":\"%s\",\"material_channel\":\"%s\","
+             "\"material_applied\":%s,\"material_strength\":%.4f,"
+-            "\"detail_applied\":%s,\"detail_size\":[%d,%d],\"detail_strength\":%.4f,\"detail_scale\":%.4f}\n",
++            "\"detail_applied\":%s,\"detail_size\":[%d,%d],\"detail_strength\":%.4f,\"detail_scale\":%.4f,"
++            "\"target_mode\":%d,\"target_reason\":\"%s\",\"material_generation\":%llu}\n",
+             m->texture_hash,m->palette_hash,(unsigned long long)s_frame_count,
+             px ? px->width : 0,px ? px->height : 0,m->upload_width_words,m->upload_height,q->depth,
+             semi,m->exact_region ? "exact_region" : m->upload_serial ? "upload" : "native_page",q->clut_x,q->clut_y,q->u_first,q->v_first,q->u_last,q->v_last,
+@@ -3035,11 +3068,14 @@
+             us[0],vs[0],us[1],vs[1],us[2],vs[2],
+             px ? "replacement GL draw submitted" : "source draw query matched",
+             material && material->enabled && material->profile ? material->profile->id : "stock",
+-            material==&s_hd_skin ? "player" : material==&s_hd_skin_enemy ? "enemy" : "stock",
++            material==&s_hd_skin ? "player" : material==&s_hd_skin_enemy ? "enemy" :
++                proof_target>=0 ? hd_skin_targets[proof_target].id : "stock",
+             px && material && material->enabled && material->profile ? "true" : "false",
+             material ? (double)material->strength : 0.0,
+             px && detail ? "true":"false",detail?detail->width:0,detail?detail->height:0,
+-            detail?(double)detail->config.strength:0.0,detail?(double)detail->config.scale:0.0);
++            detail?(double)detail->config.strength:0.0,detail?(double)detail->config.scale:0.0,
++            s_hd_skin_targets.mode,hd_skin_target_reason_name(proof_reason),
++            (unsigned long long)s_hd_live_generation);
+     fflush(log);
+ }
+ 
+@@ -3975,7 +4011,8 @@
+         float verts[3 * TEXV];
+         float *vp = verts;
+         GLuint tex;
+-        const int batch=hd_opaque_batch_enabled() && semi<0 && !s_mask_check && !native_edge_width && !g_wide_cur;
++        const int batch=hd_opaque_batch_enabled() && semi<0 && !s_mask_check && !native_edge_width && !g_wide_cur &&
++            !hd_skin_target_key_listed(&s_hd_skin_targets,m.texture_hash,m.palette_hash); /* s67: per-draw rect gate */
+         HdOpaqueBatchKey key;
+         if(batch){memset(&key,0,sizeof(key));
+         key.texture=m.texture_hash;key.palette=m.palette_hash;key.program=s_hd_prog;
+@@ -4053,7 +4090,10 @@
+         p_glActiveTexture(PSXGL_TEXTURE0);
+         /* Uniform state belongs to the program, not the texture. Set this on
+          * EVERY draw so a fighter cannot tint the next background/effect draw. */
+-        const HdSkinConfig *material=hd_skin_for_draw(m.texture_hash,m.palette_hash);
++        HdSkinConfig target_material;
++        int skin_reason=0,skin_target=-1;
++        const HdSkinConfig *material=s67_skin_decide(&m,&q,1,px.width,px.height,img_w,
++            &target_material,&skin_reason,&skin_target);
+         p_glUniform1i(s_hd_uSkinEnabled,material && material->enabled && material->profile);
+         p_glUniform1i(s_hd_uSkinPreserveAccents,material && material->preserve_accents);
+         if (material && material->enabled && material->profile) {
+@@ -4720,6 +4760,13 @@
+         else if (status > 0)
+             fprintf(stderr,"[skin_material] observed Stage 1 enemy family configured %s strength %.3f; %d exact upload keys (%s); cross-stage ownership unverified\n",
+                 s_hd_skin_enemy.profile->id,(double)s_hd_skin_enemy.strength,s_hd_skin_enemy.key_count,HD_SKIN_MATERIAL_CONTRACT);
++        status = hd_skin_target_selection_parse(&s_hd_skin_targets,hd_skin_targets,HD_SKIN_TARGET_COUNT,
++            getenv("PSXRECOMP_SKIN_TARGETS"),s_hd_live_generation);
++        if (status == HD_SKIN_TGT_MODE_INVALID)
++            fprintf(stderr,"[skin_targets] invalid PSXRECOMP_SKIN_TARGETS: FAIL CLOSED, every skin material stock (legacy channels suppressed)\n");
++        else if (status == HD_SKIN_TGT_MODE_VALID)
++            fprintf(stderr,"[skin_targets] target mode (%s): palette tint per gated target only, legacy channels not consulted, detail off; HD-image gate unqualified; gameplay verification pending\n",
++                HD_SKIN_TARGETS_CONTRACT);
+     }
+ 
+     s_geo_prog  = build_program(GEO_VS, GEO_FS);

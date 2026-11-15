@@ -1,0 +1,61 @@
+{
+  "at_utc": "2026-11-14T23:32:45.134362+00:00",
+  "metadata_readback_pass": true,
+  "actual_fixture_pass": false,
+  "exit": 3,
+  "cases": 23,
+  "cases_ok": 19,
+  "positive_failed": 4,
+  "negatives_ok": 15,
+  "elapsed_s": 1.538,
+  "peak_job_memory_bytes": 84549632,
+  "failed_cases": [
+    {
+      "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=8: direction, centres (b), per-chain/border/corner/dot gates",
+      "message": "chain 0 (straight) staircase 0.2528 > 0.1500"
+    },
+    {
+      "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=4: direction, centres (b), per-chain/border/corner/dot gates",
+      "message": "chain 0 (straight) staircase 0.1644 > 0.1500"
+    },
+    {
+      "name": "positive: steep two-row staircase (1 texel per 2 rows), stripes continue outside: slope -0.5, gates",
+      "message": "chain 0 (straight) has 4 missing crossings"
+    },
+    {
+      "name": "positive: shallow staircase (2 texels per row), stripes continue outside: slope -2, gates",
+      "message": "output staircase not < stepped reference"
+    }
+  ],
+  "pins": {
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\runs\\diagbands-r4-fixtures-envelope.json": "0a5f1314a43e2ce031a75e74dec716c2c7fb12eb187ca3e8774d60d9b0d1c3a2",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\20261114T232856Z-diagbands-r4-fixtures\\receipt.json": "ef88b7e9bebc21fa36be18f659dd0d4f69a95f8b2786957704359d388900d1a3",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\repairs\\20261114T232856Z-diagbands-r4-fixtures\\fixtures-receipt.json": "08e1afe65deb8bcb6d285fc55630388c6724c8e2db430836829e3f3dcc4d5d16",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\tools\\s45_diag_bands_r4.py": "5e02bc2233006d3ce566a42418d41a9bc2ee87aeabf4b023b88684f579959341",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.dll": "ede9a8f1d9847bb534f26d894bc15b2054fa4123aae12f82157cd1e4b5bf524e",
+    "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+    "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\frozen\\class-mip-v2b-breakdown-v1\\proto-v2b\\class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\probe-audit\\20261114T171539Z-s4\\class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\runs\\diagbands-r4-fixtures-runner\\executed-watchdog.py": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36"
+  },
+  "known_identities": [
+    {
+      "role": "wrapper",
+      "pid": 43896,
+      "creation_unix": 1794698935.5882697,
+      "identity_absent": true
+    },
+    {
+      "role": "child",
+      "pid": 34480,
+      "creation_unix": 1794698936.7039497,
+      "identity_absent": true
+    }
+  ],
+  "source_only_unrun_description_superseded": true,
+  "hold_arrived_after_actual_authorized_run": true,
+  "fixtures_replayed": false,
+  "key_repair_run": false,
+  "gpu_used": false,
+  "art_admitted": false
+}

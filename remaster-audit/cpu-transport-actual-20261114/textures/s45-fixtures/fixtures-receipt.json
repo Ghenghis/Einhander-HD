@@ -1,0 +1,854 @@
+{
+ "mode": "fixtures",
+ "cases": [
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=8, soft input: real direction, centres, quality",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "family_slope": -0.5357142857142874,
+    "quality": {
+     "input": {
+      "stair_px": 0.393,
+      "resid_px": 1.4929,
+      "width_px": 8.451,
+      "samples": 286,
+      "missing": 0,
+      "d2_n": 270
+     },
+     "stepped": {
+      "stair_px": 2.4657,
+      "resid_px": 2.3776,
+      "width_px": 0.643,
+      "samples": 286,
+      "missing": 0,
+      "d2_n": 270
+     },
+     "r3": {
+      "stair_px": 0.2281,
+      "resid_px": 0.2342,
+      "width_px": 1.154,
+      "samples": 286,
+      "missing": 0,
+      "d2_n": 270
+     }
+    },
+    "changed_px": 6083,
+    "fallback": 0,
+    "kept_centre_dev_max": 73.5,
+    "kinds": [
+     "family",
+     "straight"
+    ],
+    "chains": [
+     {
+      "chain": 0,
+      "kind": "straight",
+      "kind_edge": "rising",
+      "slope": 0.0,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "xc": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 1,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.6007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       13.0,
+       13.0,
+       12.0,
+       11.0,
+       11.0,
+       10.0,
+       10.0
+      ],
+      "xc": [
+       13.226,
+       12.625,
+       12.024,
+       11.375,
+       10.823,
+       10.222,
+       9.625
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 2,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       16.0,
+       15.0,
+       15.0,
+       14.0,
+       14.0,
+       13.0,
+       12.0
+      ],
+      "xc": [
+       15.976,
+       15.375,
+       14.774,
+       14.174,
+       13.625,
+       12.972,
+       12.371
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 3,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5857,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       20.0,
+       19.0,
+       18.0,
+       17.292,
+       17.0,
+       17.0,
+       16.0
+      ],
+      "xc": [
+       19.625,
+       18.968,
+       18.375,
+       17.375,
+       17.211,
+       16.625,
+       16.039
+      ],
+      "clamped": 3
+     },
+     {
+      "chain": 4,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6257,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       22.0,
+       21.0,
+       21.0,
+       20.0,
+       19.0,
+       19.0,
+       18.0
+      ],
+      "xc": [
+       21.877,
+       21.251,
+       20.626,
+       20.0,
+       19.374,
+       18.749,
+       18.123
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 5,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5357,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       24.615,
+       24.0,
+       24.0,
+       23.0,
+       23.0,
+       22.396,
+       22.0
+      ],
+      "xc": [
+       24.895,
+       24.359,
+       23.823,
+       23.287,
+       22.752,
+       22.216,
+       21.68
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 6,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5357,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       27.0,
+       27.0,
+       26.0,
+       26.0,
+       25.0,
+       25.0,
+       24.0
+      ],
+      "xc": [
+       27.321,
+       26.786,
+       26.25,
+       25.714,
+       25.179,
+       24.643,
+       24.107
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 7,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.4007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       30.0,
+       29.539,
+       29.0,
+       29.0,
+       28.0,
+       28.0,
+       28.0
+      ],
+      "xc": [
+       30.026,
+       29.625,
+       29.224,
+       28.824,
+       28.375,
+       28.022,
+       27.625
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 8,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5357,
+      "rows": [
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       31.0,
+       31.0,
+       30.0,
+       30.0
+      ],
+      "xc": [
+       31.304,
+       30.768,
+       30.232,
+       29.696
+      ],
+      "clamped": 0
+     }
+    ]
+   }
+  },
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=4, soft input: real direction, centres, quality",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "family_slope": -0.5357142857142874,
+    "quality": {
+     "input": {
+      "stair_px": 0.5819,
+      "resid_px": 0.8573,
+      "width_px": 3.81,
+      "samples": 142,
+      "missing": 0,
+      "d2_n": 126
+     },
+     "stepped": {
+      "stair_px": 1.7895,
+      "resid_px": 1.176,
+      "width_px": 0.338,
+      "samples": 142,
+      "missing": 0,
+      "d2_n": 126
+     },
+     "r3": {
+      "stair_px": 0.4908,
+      "resid_px": 0.2452,
+      "width_px": 1.042,
+      "samples": 142,
+      "missing": 0,
+      "d2_n": 126
+     }
+    },
+    "changed_px": 1378,
+    "fallback": 0,
+    "kept_centre_dev_max": 147.9,
+    "kinds": [
+     "family",
+     "straight"
+    ],
+    "chains": [
+     {
+      "chain": 0,
+      "kind": "straight",
+      "kind_edge": "rising",
+      "slope": 0.0,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "xc": [
+       9.0,
+       8.2,
+       8.0,
+       8.0,
+       8.0,
+       8.0,
+       8.0
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 1,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.6007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       13.0,
+       13.0,
+       12.0,
+       11.0,
+       11.0,
+       10.0,
+       10.0
+      ],
+      "xc": [
+       13.226,
+       12.625,
+       12.024,
+       11.375,
+       10.823,
+       10.222,
+       9.625
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 2,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       16.0,
+       15.0,
+       15.0,
+       14.0,
+       14.0,
+       13.0,
+       12.0
+      ],
+      "xc": [
+       15.976,
+       15.375,
+       14.774,
+       14.174,
+       13.625,
+       12.972,
+       12.371
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 3,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5857,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       20.0,
+       19.0,
+       18.0,
+       17.292,
+       17.0,
+       17.0,
+       16.0
+      ],
+      "xc": [
+       19.625,
+       18.968,
+       18.375,
+       17.375,
+       17.211,
+       16.625,
+       16.039
+      ],
+      "clamped": 3
+     },
+     {
+      "chain": 4,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.6257,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       22.0,
+       21.0,
+       21.0,
+       20.0,
+       19.0,
+       19.0,
+       18.0
+      ],
+      "xc": [
+       21.877,
+       21.251,
+       20.626,
+       20.0,
+       19.374,
+       18.749,
+       18.123
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 5,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.5357,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       24.615,
+       24.0,
+       24.0,
+       23.0,
+       23.0,
+       22.396,
+       22.0
+      ],
+      "xc": [
+       24.895,
+       24.359,
+       23.823,
+       23.287,
+       22.752,
+       22.216,
+       21.68
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 6,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5357,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       27.0,
+       27.0,
+       26.0,
+       26.0,
+       25.0,
+       25.0,
+       24.0
+      ],
+      "xc": [
+       27.321,
+       26.786,
+       26.25,
+       25.714,
+       25.179,
+       24.643,
+       24.107
+      ],
+      "clamped": 0
+     },
+     {
+      "chain": 7,
+      "kind": "family",
+      "kind_edge": "falling",
+      "slope": -0.4007,
+      "rows": [
+       5,
+       6,
+       7,
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       30.0,
+       29.539,
+       29.0,
+       29.0,
+       28.0,
+       28.0,
+       28.0
+      ],
+      "xc": [
+       30.026,
+       29.625,
+       29.224,
+       28.824,
+       28.375,
+       28.022,
+       27.625
+      ],
+      "clamped": 2
+     },
+     {
+      "chain": 8,
+      "kind": "family",
+      "kind_edge": "rising",
+      "slope": -0.5357,
+      "rows": [
+       8,
+       9,
+       10,
+       11
+      ],
+      "x": [
+       31.0,
+       31.0,
+       30.0,
+       30.0
+      ],
+      "xc": [
+       31.304,
+       30.768,
+       30.232,
+       29.696
+      ],
+      "clamped": 0
+     }
+    ]
+   }
+  },
+  {
+   "name": "positive: protected 7DD / 66CC fittings of the actual ROI unchanged",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "checked": 7
+   }
+  },
+  {
+   "name": "positive: top-left corner endpoint (index C) stays mostly dark; no leak above the band",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "corner_texel_coverage": 0.0996
+   }
+  },
+  {
+   "name": "positive: steep two-row staircase (1 texel per 2 rows), stripes continue outside: slope -0.5, quality",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "family_slope": -0.5000000000000011,
+    "quality": {
+     "input": {
+      "stair_px": 0.4694,
+      "resid_px": 1.6056,
+      "width_px": 8.251,
+      "samples": 287,
+      "missing": 0,
+      "d2_n": 271
+     },
+     "stepped": {
+      "stair_px": 2.5715,
+      "resid_px": 2.358,
+      "width_px": 0.0,
+      "samples": 287,
+      "missing": 0,
+      "d2_n": 271
+     },
+     "r3": {
+      "stair_px": 0.1459,
+      "resid_px": 0.1626,
+      "width_px": 0.645,
+      "samples": 287,
+      "missing": 0,
+      "d2_n": 271
+     }
+    },
+    "fallback": 22,
+    "fallback_outside_feather": 22
+   }
+  },
+  {
+   "name": "positive: shallow staircase (2 texels per row), stripes continue outside: slope -2, quality",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "family_slope": -2.000000000000001,
+    "quality": {
+     "input": {
+      "stair_px": 0.8829,
+      "resid_px": 2.8348,
+      "width_px": 6.296,
+      "samples": 152,
+      "missing": 51,
+      "d2_n": 100
+     },
+     "stepped": {
+      "stair_px": 7.2126,
+      "resid_px": 4.5144,
+      "width_px": 0.0,
+      "samples": 201,
+      "missing": 2,
+      "d2_n": 187
+     },
+     "r3": {
+      "stair_px": 0.2499,
+      "resid_px": 0.2093,
+      "width_px": 1.946,
+      "samples": 203,
+      "missing": 0,
+      "d2_n": 191
+     }
+    },
+    "fallback": 126,
+    "fallback_outside_feather": 126
+   }
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical (S=8)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8
+   }
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical (S=4)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8
+   }
+  },
+  {
+   "name": "negative: ROI out of bounds",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI out of bounds (30, 4, 44, 12)",
+   "ok": true
+  },
+  {
+   "name": "negative: scale 16 not allowed",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "scale 16 not allowed",
+   "ok": true
+  },
+  {
+   "name": "negative: cross-class ROI (edited CLUT) rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI not single-class under the CLUT",
+   "ok": true
+  },
+  {
+   "name": "negative: edited CLUT words rejected by the PAL CRC check",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "CLUT words CRC != PAL",
+   "ok": true
+  },
+  {
+   "name": "negative: alpha change detected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "alpha changed",
+   "ok": true
+  },
+  {
+   "name": "negative: foreign (fitting) index inside the stripe band rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "non-stripe index inside BAND",
+   "ok": true
+  },
+  {
+   "name": "negative: shade texel inside a same-colour run rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "shade texels inside a same-colour run before u28",
+   "ok": true
+  },
+  {
+   "name": "negative: stepped r2-like output fails the quality gate",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "output staircase not <= input",
+   "ok": true
+  }
+ ],
+ "all_ok": true
+}

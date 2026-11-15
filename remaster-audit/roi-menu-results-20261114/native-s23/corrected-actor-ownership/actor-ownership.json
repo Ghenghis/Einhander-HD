@@ -1,0 +1,4371 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T17:10:53.191505+00:00",
+ "coverage": {
+  "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/fullstage-20261114T171029Z/fullstage-coverage.json",
+  "sha256": "2e93fba0b817eb5b94aa0886b3ab627432c46c11c0bfa5bf32fc811401801692"
+ },
+ "stages": {
+  "stage2": {
+   "family_basis": {
+    "enemies / vehicles": {
+     "members": [
+      "1/26",
+      "1/30"
+     ],
+     "pages": [
+      "320,256",
+      "384,0",
+      "832,0",
+      "896,0"
+     ],
+     "basis": [
+      {
+       "member": "1/26",
+       "pages": [
+        "384,0"
+       ],
+       "confidence": "medium",
+       "basis": "F47289DC: machine fronts, grilles, hull panels (vehicles/enemies)"
+      },
+      {
+       "member": "1/26",
+       "pages": [
+        "320,256"
+       ],
+       "confidence": "low",
+       "basis": "3DD37B6B: vehicle panels with number markings (right half) + 10 smoke cells (left half); census post-Drache table"
+      },
+      {
+       "member": "1/30",
+       "pages": [
+        "832,0",
+        "896,0"
+       ],
+       "confidence": "low",
+       "basis": "87E1D639 / EF0E0D57: hatches, hull panels, nose/wing parts (actors; Garnele candidate pages)"
+      }
+     ],
+     "note": null
+    },
+    "boss": {
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      "320,0",
+      "384,0",
+      "448,0",
+      "512,0",
+      "576,0"
+     ],
+     "basis": [
+      {
+       "member": "1/36",
+       "pages": "all",
+       "confidence": "medium",
+       "basis": "Spinne candidate: 4CE48309..A65BA8AE are large armour plates, weapon-arm segments with lights and barrels; late member rewriting 320-576,0 exactly like Stage 1 1/21 (Drache)"
+      }
+     ],
+     "note": null
+    },
+    "mid-boss": {
+     "members": null,
+     "pages": null,
+     "basis": null,
+     "note": "Garnele is not identified in static data. Candidate pages: 1/30 832,0 and 896,0 (hatches, nose/wing parts), 1/26 384,0 (machine fronts). AQ-03 boss marks decide"
+    },
+    "player/pods/HUD globals (common 0/14, 0/11)": {
+     "members": [
+      "0/0",
+      "0/1",
+      "0/2",
+      "0/3",
+      "0/4",
+      "0/12",
+      "0/14"
+     ],
+     "pages": [],
+     "basis": [],
+     "note": null
+    }
+   },
+   "capture_trigger": {
+    "enemies / vehicles": "S2.md S2-1 stock-first dump P..S3s+600 incl. post-Drache window + S2-4 complete sources (119 post-Drache keys)",
+    "boss": "S2 boss window (Spinne candidate 1/36): AQ-03 boss marks + stock-first dump of 320-576,0 rewrites; full-rate draws",
+    "mid-boss": "Garnele: AQ-03 mid-boss marks; candidates 1/30 832/896,0 and 1/26 384,0",
+    "player/pods/HUD globals (common 0/14, 0/11)": "S2-1 dump (player/pod keys with Stage 2 CLUT phases) + S2-4 for 3955512F gunpod page / 8BA3BB4D HUD fades"
+   },
+   "tex": [
+    {
+     "family": "boss",
+     "tex": "CA05583A",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 45,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 45,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 30
+    },
+    {
+     "family": "boss",
+     "tex": "A65BA8AE",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 45,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 45,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 27
+    },
+    {
+     "family": "boss",
+     "tex": "4CE48309",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 24,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 24,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "boss",
+     "tex": "986B6314",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 24,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 24,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "boss",
+     "tex": "AC93CD6C",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 13,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 13,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "boss",
+     "tex": "E2D3C10C",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "boss",
+     "tex": "6F6BDD6E",
+     "members": [
+      "1/36"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "3DD37B6B",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 75,
+     "drawn": 44,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 5,
+     "imported": 0,
+     "authored_in": [
+      "w7-stage2/stage2-opening-fx-v1",
+      "w7-stage2/stage2-opening-fx-v2",
+      "w7-stage2/stage2-opening-fx-v3",
+      "w7-stage2/stage2-prep-v1",
+      "w7-stage2/stage2-prep-v2"
+     ],
+     "clut_positions": 16
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "F47289DC",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 24,
+     "drawn": 2,
+     "complete_live_source": 0,
+     "predicted_only": 22,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "2E670984",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "721C46B1",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 1,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/base"
+     ],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "7A844A1C",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 1,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/base"
+     ],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "8D419ACF",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 1,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/base"
+     ],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "E0C685EA",
+     "members": [
+      "1/26"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B24C6DA2",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 11,
+     "complete_live_source": 0,
+     "predicted_only": 0,
+     "authored": 11,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/hud"
+     ],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0223BCEF",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 8,
+     "drawn": 1,
+     "complete_live_source": 0,
+     "predicted_only": 7,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "D5B575F1",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F33119C6",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 1,
+     "complete_live_source": 1,
+     "predicted_only": 0,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B94A43A3",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       704,
+       0
+      ]
+     ],
+     "keys": 48,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 48,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6379D04F",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       0
+      ]
+     ],
+     "keys": 46,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 46,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 25
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "1D953D67",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       960,
+       0
+      ]
+     ],
+     "keys": 42,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 42,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "323B5FB0",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 41,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 41,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 27
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8E1A509D",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 35,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 35,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 29
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "724E77DA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "885C6A6A",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 31,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A086A915",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 31,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "3EF28FFB",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 31,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "73A6A92A",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 31,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2C0CE5A3",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 31,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 31,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B16492B1",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 27,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 27,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "E2F3477C",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 27,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 27,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0878817D",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 27,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 27,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8CD3F840",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 27,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 27,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2483A7E3",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 27,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 27,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "D0365088",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 26,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 26,
+     "authored": 2,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/menu"
+     ],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7E808EDA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 26,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 26,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C1766C0F",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8FCEF05D",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "DB890274",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "455C2F8D",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "81ED244B",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "838B6BBB",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A09292E0",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F48826A5",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2B978572",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7149A71C",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 20,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 20,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "5C16797E",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       896,
+       0
+      ]
+     ],
+     "keys": 14,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 14,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8835E9F9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       832,
+       0
+      ]
+     ],
+     "keys": 13,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 13,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 13
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "AE143E99",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "D92B01DD",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F6C16664",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "DC0B3550",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0F2E8691",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "E584DC41",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7E3ADD56",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "5CC44E5F",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "36F1B435",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8FE8B060",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "93F0FC72",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C6E8710B",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "57FE8E03",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8E818661",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 1,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "w3-astraea/w3-astraea-hulls-v1",
+      "w4-player/w4-astraea-hulls-v2",
+      "w4-player/w4-astraea-hulls-v2.1"
+     ],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0A0CE3A4",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6ACFACE4",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B9EB2209",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "28519C8B",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "ADE481CA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "3F75CF87",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "32E61780",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C01A6AB8",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 10,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 10,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "1AD90FC9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 9,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 9,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "9DF57664",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 9,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 9,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "ECFB77E3",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 7,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 7,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "155281D5",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 6,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 6,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 6
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "16815FB3",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 6,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 6,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 6
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "08ABE774",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 6,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 6,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 6
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "9E524213",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 6,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 6,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 6
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "60E8C8EA",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 6,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 6,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 6
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B77B98B9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       0
+      ]
+     ],
+     "keys": 3,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 3,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8C9411A2",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "18616270",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0C989F0C",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "4A91F623",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F1A1C7C2",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A9CC4AB6",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "64001425",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0174FBCF",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6065273A",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "EC8C0BE4",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    }
+   ],
+   "totals": {
+    "enemies / vehicles": {
+     "tex": 7,
+     "keys": 104,
+     "drawn": 50,
+     "authored": 8
+    },
+    "boss": {
+     "tex": 7,
+     "keys": 153,
+     "drawn": 0,
+     "authored": 0
+    },
+    "mid-boss": {
+     "tex": 0,
+     "keys": 0,
+     "drawn": 0,
+     "authored": 0
+    },
+    "player/pods/HUD globals (common 0/14, 0/11)": {
+     "tex": 75,
+     "keys": 1131,
+     "drawn": 14,
+     "authored": 14
+    }
+   }
+  },
+  "stage3": {
+   "family_basis": {
+    "enemies / vehicles": {
+     "members": [
+      "2/1",
+      "2/6"
+     ],
+     "pages": [
+      "320,0",
+      "384,0",
+      "448,0",
+      "576,0",
+      "768,0",
+      "832,0"
+     ],
+     "basis": [
+      {
+       "member": "2/1",
+       "pages": [
+        "320,0",
+        "768,0",
+        "832,0"
+       ],
+       "confidence": "medium",
+       "basis": "C7CB35C3 / C35819ED / 37ABACD2: carrier/ship hull panels with \"E-15\" and \"A.7\" markings, mechanical parts"
+      },
+      {
+       "member": "2/6",
+       "pages": [
+        "320,0",
+        "384,0",
+        "576,0"
+       ],
+       "confidence": "medium",
+       "basis": "F093FAC5 / 7AC7C6E2 / 4D1C70EF: hazard-striped hulls, \"SPHINX\" / \"02 SQUARE\" markings, octagon lens and hex grid (carriers, searchlight ships); 2/6 is loaded at stage start by the SYS.EXE group-3 descriptor"
+      },
+      {
+       "member": "2/6",
+       "pages": [
+        "448,0"
+       ],
+       "confidence": "low",
+       "basis": "BC1A56D4: claws, pistons, joints (Natter claws?)"
+      }
+     ],
+     "note": null
+    },
+    "boss": {
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      "320,0",
+      "384,0",
+      "448,0",
+      "512,0",
+      "576,0"
+     ],
+     "basis": [
+      {
+       "member": "2/8",
+       "pages": [
+        "320,0",
+        "384,0",
+        "448,0",
+        "512,0",
+        "576,0"
+       ],
+       "confidence": "low",
+       "basis": "Gecko or Gustav (not separable statically): 4C2A07A9..BDDC16DB are large hull plates, triangular plates with an alpha emblem and \"177\", slit lenses, dense greebles; later member rewriting 320-576,0 like Stage 1 1/21; may also hold the hovering object"
+      }
+     ],
+     "note": null
+    },
+    "mid-boss": {
+     "members": null,
+     "pages": null,
+     "basis": null,
+     "note": "Gecko is not separable from Gustav in static data: both candidates sit in 2/8 (320-576,0) or in the 2/6 opening set. AQ-03 boss marks decide"
+    },
+    "player/pods/HUD globals (common 0/14, 0/11)": {
+     "members": [
+      "0/0",
+      "0/1",
+      "0/2",
+      "0/3",
+      "0/4",
+      "0/12",
+      "0/14"
+     ],
+     "pages": [],
+     "basis": [],
+     "note": null
+    }
+   },
+   "capture_trigger": {
+    "enemies / vehicles": "S3.md S3-1 draw rows for 2/1 + 2/6 pages + stage3-source dump; S3-2 CLUT snapshots",
+    "boss": "Gecko/Gustav: AQ-03 boss marks with 2/8 320-576,0 rewrites + dump; separates the two bosses",
+    "mid-boss": "Gecko vs Gustav separation needs AQ-03 marks",
+    "player/pods/HUD globals (common 0/14, 0/11)": "S3 stage3-source dump of 0/14 player/pod keys with Stage 3 CLUTs"
+   },
+   "tex": [
+    {
+     "family": "boss",
+     "tex": "BDDC16DB",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 185,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 185,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 25
+    },
+    {
+     "family": "boss",
+     "tex": "8A21C389",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 41,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 41,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "boss",
+     "tex": "4C2A07A9",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 36,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 36,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "boss",
+     "tex": "17D8372A",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 19,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 19,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "boss",
+     "tex": "C44E8C95",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 16,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 16,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 8
+    },
+    {
+     "family": "boss",
+     "tex": "600699FF",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 3,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 3,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "boss",
+     "tex": "F42A78C7",
+     "members": [
+      "2/8"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "boss",
+     "tex": "E6B7125A",
+     "members": [],
+     "pages": [],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 0
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "4D1C70EF",
+     "members": [
+      "2/6"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 185,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 185,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 25
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "7AC7C6E2",
+     "members": [
+      "2/6"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 41,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 41,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "C7CB35C3",
+     "members": [
+      "2/1"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 36,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 36,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "F093FAC5",
+     "members": [
+      "2/6"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 36,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 36,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "BC1A56D4",
+     "members": [
+      "2/6"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 19,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 19,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "37ABACD2",
+     "members": [
+      "2/1"
+     ],
+     "pages": [
+      [
+       832,
+       0
+      ]
+     ],
+     "keys": 12,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 12,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "9682C2C7",
+     "members": [
+      "2/6"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "enemies / vehicles",
+     "tex": "770A5E53",
+     "members": [],
+     "pages": [],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 0
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "323B5FB0",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       0
+      ]
+     ],
+     "keys": 177,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 177,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 25
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "724E77DA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 50,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 50,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B77B98B9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       0
+      ]
+     ],
+     "keys": 49,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 49,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 21
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B16492B1",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 43,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 43,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "E2F3477C",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 43,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 43,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0878817D",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 43,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 43,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8CD3F840",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 43,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 43,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2483A7E3",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ],
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 43,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 43,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 5
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "D0365088",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 40,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 40,
+     "authored": 2,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-actors-v1",
+      "candidate/frozen-mk3-v2",
+      "candidate/frozen-t1-t4-v1",
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/frozen-wave2-fx-v1",
+      "candidate/frozen-wave2-hud-v1",
+      "candidate/frozen-wave2-hud-v2",
+      "candidate/frozen-wave2-polish-v1",
+      "candidate/frozen-world-v2",
+      "candidate/frozen-world-v3",
+      "candidate/frozen-world-v4",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "pack/menu"
+     ],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7E808EDA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       896,
+       256
+      ]
+     ],
+     "keys": 40,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 40,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "838B6BBB",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 38,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 38,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A09292E0",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 38,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 38,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F48826A5",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 38,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 38,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2B978572",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 38,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 38,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7149A71C",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 38,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 38,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 37
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C1766C0F",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8FCEF05D",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "DB890274",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "455C2F8D",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "81ED244B",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       320,
+       0
+      ]
+     ],
+     "keys": 34,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 34,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 33
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6379D04F",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       0
+      ]
+     ],
+     "keys": 30,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 30,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "AE143E99",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 17,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 17,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "D92B01DD",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 17,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 17,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F6C16664",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 17,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 17,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "DC0B3550",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 17,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 17,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0F2E8691",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       448,
+       0
+      ]
+     ],
+     "keys": 17,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 17,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 16
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "5C16797E",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       896,
+       0
+      ]
+     ],
+     "keys": 16,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 16,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 14
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "1D953D67",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       960,
+       0
+      ]
+     ],
+     "keys": 15,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 15,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 13
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8835E9F9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       832,
+       0
+      ]
+     ],
+     "keys": 12,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 12,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 12
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "155281D5",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "16815FB3",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "08ABE774",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "9E524213",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "60E8C8EA",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 11
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "E584DC41",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "7E3ADD56",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "5CC44E5F",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "36F1B435",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8FE8B060",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "93F0FC72",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C6E8710B",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "57FE8E03",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8E818661",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 1,
+     "imported": 0,
+     "authored_in": [
+      "candidate/frozen-w3-atlas-lit-v1",
+      "candidate/frozen-w3-extras-v1",
+      "candidate/frozen-w3-lit-v1",
+      "candidate/frozen-w3-v1",
+      "candidate/frozen-w3-v2",
+      "candidate/world-integrated-crisp-v1",
+      "candidate/world-integrated-crisp-v2",
+      "candidate/world-integrated-crisp-v3",
+      "candidate/world-integrated-crisp-v4",
+      "candidate/world-integrated-o-roi-r1",
+      "candidate/world-integrated-rise-f32-r1",
+      "w3-astraea/w3-astraea-hulls-v1",
+      "w4-player/w4-astraea-hulls-v2",
+      "w4-player/w4-astraea-hulls-v2.1"
+     ],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0A0CE3A4",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6ACFACE4",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B9EB2209",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "28519C8B",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "ADE481CA",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "3F75CF87",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "32E61780",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "C01A6AB8",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       384,
+       256
+      ],
+      [
+       640,
+       256
+      ],
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 11,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 11,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "1AD90FC9",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 9,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 9,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "9DF57664",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       832,
+       256
+      ]
+     ],
+     "keys": 9,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 9,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8E1A509D",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 8,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 8,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 8
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "ECFB77E3",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 5,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 5,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0223BCEF",
+     "members": [
+      "0/14"
+     ],
+     "pages": [
+      [
+       768,
+       256
+      ]
+     ],
+     "keys": 5,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 5,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "B94A43A3",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       704,
+       0
+      ]
+     ],
+     "keys": 4,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 4,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 4
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "F1A1C7C2",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 3,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 3,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 3
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "FC2886D4",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A77CA63B",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "835C76A1",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8217DCAD",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "AE413A6C",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       384,
+       0
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "8C9411A2",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "885C6A6A",
+     "members": [
+      "0/0"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A086A915",
+     "members": [
+      "0/1"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "3EF28FFB",
+     "members": [
+      "0/2"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "73A6A92A",
+     "members": [
+      "0/3"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "2C0CE5A3",
+     "members": [
+      "0/4"
+     ],
+     "pages": [
+      [
+       320,
+       256
+      ]
+     ],
+     "keys": 2,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 2,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 2
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "6065273A",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       512,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "64001425",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       640,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "A9CC4AB6",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       768,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "985AE14B",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       896,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "487B5C9E",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       704,
+       0
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    },
+    {
+     "family": "player/pods/HUD globals (common 0/14, 0/11)",
+     "tex": "0174FBCF",
+     "members": [
+      "0/12"
+     ],
+     "pages": [
+      [
+       576,
+       256
+      ]
+     ],
+     "keys": 1,
+     "drawn": 0,
+     "complete_live_source": 0,
+     "predicted_only": 1,
+     "authored": 0,
+     "imported": 0,
+     "authored_in": [],
+     "clut_positions": 1
+    }
+   ],
+   "totals": {
+    "enemies / vehicles": {
+     "tex": 8,
+     "keys": 332,
+     "drawn": 0,
+     "authored": 0
+    },
+    "boss": {
+     "tex": 8,
+     "keys": 303,
+     "drawn": 0,
+     "authored": 0
+    },
+    "mid-boss": {
+     "tex": 0,
+     "keys": 0,
+     "drawn": 0,
+     "authored": 0
+    },
+    "player/pods/HUD globals (common 0/14, 0/11)": {
+     "tex": 75,
+     "keys": 1402,
+     "drawn": 0,
+     "authored": 3
+    }
+   }
+  }
+ }
+}

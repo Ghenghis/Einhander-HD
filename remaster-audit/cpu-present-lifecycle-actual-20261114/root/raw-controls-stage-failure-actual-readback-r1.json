@@ -1,0 +1,67 @@
+{
+  "at_utc": "2026-11-14T23:30:29.405159+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "controls61": {
+      "envelope_sha256": "baf6012191e9cf3c71273aa3101a665a4ac28d80bc3cfc995b8cd9a72575f034",
+      "exit": 0,
+      "elapsed_s": 1.462,
+      "peak_job_memory_bytes": 19914752,
+      "checks": 61,
+      "failures": 0,
+      "pure_doubles_only": true
+    },
+    "stage-import-failure": {
+      "envelope_sha256": "420e7740883fe40d53314ef04bba98336933b3547d7d8ceb86050c0a49e11c8c",
+      "exit": 1,
+      "elapsed_s": 0.183,
+      "peak_job_memory_bytes": 22814720,
+      "successful": false,
+      "failed_before_prepare": true,
+      "batch_absent_at_readback": true,
+      "cause": "isolated import search path missing canonical facade module",
+      "gpu_used": false
+    }
+  },
+  "pins": {
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r4-2322-envelope.json": "baf6012191e9cf3c71273aa3101a665a4ac28d80bc3cfc995b8cd9a72575f034",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-stage-r3-2323-envelope.json": "420e7740883fe40d53314ef04bba98336933b3547d7d8ceb86050c0a49e11c8c",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-controls-r4-2322.log": "7afd98983386c5b93323751dca75ac21eb56aa7b1092ef4306a9ce209d5c191c",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\test_raw37c_driver_r4.py": "4cb682814039ba2e3f19a6e061f0c8d1398016ec44c7ac869a3f57f247325262",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\raw37c-diagnostic\\raw37c_driver_r3.py": "9ee0b4fe149971a74ccb5aa525b2842112d5c9f78e9dc655aa6a9a6203324c7a",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-stage-r3-2323.log": "e57d4f45f001f063842b1f9d8f9b3388eadfb5bbe75e8077078ff88d88ab5960"
+  },
+  "known_identities": [
+    {
+      "run": "controls61",
+      "role": "wrapper",
+      "pid": 45096,
+      "creation_unix": 1794698543.5239651,
+      "identity_absent": true
+    },
+    {
+      "run": "controls61",
+      "role": "child",
+      "pid": 46052,
+      "creation_unix": 1794698544.656864,
+      "identity_absent": true
+    },
+    {
+      "run": "stage-import-failure",
+      "role": "wrapper",
+      "pid": 48584,
+      "creation_unix": 1794698589.1902437,
+      "identity_absent": true
+    },
+    {
+      "run": "stage-import-failure",
+      "role": "child",
+      "pid": 34480,
+      "creation_unix": 1794698590.3096147,
+      "identity_absent": true
+    }
+  ],
+  "tests_replayed": false,
+  "game_launched": false,
+  "gpu_used": false
+}

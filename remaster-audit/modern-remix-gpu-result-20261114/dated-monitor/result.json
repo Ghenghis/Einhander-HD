@@ -1,0 +1,152 @@
+{
+  "at_utc": "2026-11-14T16:36:22.980014+00:00",
+  "prior_pid": 7436,
+  "prior_command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "prior_creation_unix": 1794672862.8353493,
+  "prior_terminated": true,
+  "pid": 37252,
+  "command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "bound_end_utc": "2026-11-14T17:06:21.828Z",
+  "first_snapshot_utc": "2026-11-14T16:36:22.770Z",
+  "first_snapshot": {
+    "observed_utc": "2026-11-14T16:36:22.770Z",
+    "watcher_pid": 37252,
+    "watcher_only": true,
+    "proves_model_activity": false,
+    "observations": 1,
+    "bound_end_utc": "2026-11-14T17:06:21.828Z",
+    "roster_sha256": "acf8b278a9245b15158c225d601a7d8b3ee1626fa35db2290d1fd98bb2cd792f",
+    "sessions": [
+      {
+        "owner": "claude-einhander",
+        "session_id": "43668750-1a3c-49e9-8775-c31ee3df3847",
+        "roster_state": "actual_replacement_hook_inbox_checkpoint_verified",
+        "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "7d4f49dffb925a752c5e9d827674067df930b666145bc74f1a1a70b61675d877",
+        "checkpoint_utc": "2026-11-14T16:33:50.075Z",
+        "checkpoint_age_seconds": 153,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S1-95A3-M-WINDOWS-20261114",
+          "EIN-S1-95A3-O-FREEZE-20261114"
+        ],
+        "next_action": "Builder r1 df9e18f0 (C1 review fixes D1-D6). On root GPU return + grant M-P2: run preview M,I,J under run_rc2 r1 CPU13 90s; check new8_rounded max_abs<=0.5 all six pairs. Collect child C2 source map (O/source-map). Re-arm monitor bozbh4022 before ~17:00Z.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s23",
+        "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T14:19:09.094Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "47d6f4d3f4322d97bf1784b17abf544f907440cf1629cc53813758683802bd21",
+        "checkpoint_utc": "2026-11-14T16:30:03.000Z",
+        "checkpoint_age_seconds": 380,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S2-WHOLE-CELL-20261114",
+          "EIN-S3-WHOLE-CELL-20261114"
+        ],
+        "next_action": "On grant: J9 then J8 via run_granted (caps 180/150). While waiting: light source work only (no subagent busywork).",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s45",
+        "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T16:24:56.828Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "949361209eb6afff3ffa4d97ef224f836c5d61aeeff8f91a8eeecb655bfd9302",
+        "checkpoint_utc": "2026-11-14T16:36:22Z",
+        "checkpoint_age_seconds": 1,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S4-WHOLE-CELL-20261114",
+          "EIN-S5-WHOLE-CELL-20261114"
+        ],
+        "next_action": "Watch Hermes for claude-einhander-ui join (hermes_list_presence / coordinator mail). On actual join+claim: send packet to its inbox, release EIN-MENU-HUD-20261114 claim, update pending_task_ids, then re-request Stage 4/5 grants (J-G nearest-fill, J-D2 AFCCB3B5 probe, J-C 8bpp rank, V1/V2/V3). If a J-L3 grant arrives before the handoff: run via tools/s45_grant_launch.ps1 and report.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s67",
+        "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T16:16:43.288Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "69bf6a71703e87634042e0b7edc77237267b1fbe7105ffee4a5b92380cef0eda",
+        "checkpoint_utc": "2026-11-14T16:35:28Z",
+        "checkpoint_age_seconds": 55,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S6-WHOLE-CELL-20261114",
+          "EIN-S7-WHOLE-CELL-20261114",
+          "EIN-S6-TIMEOUT-PROFILE-20261114",
+          "EIN-SKINS-WIRING-20261114"
+        ],
+        "next_action": "Act on inbox: any grant -> precheck and run under a watchdog sized to it; any review -> respond. Otherwise light source-only work inside s67 scope (no shared files; avoid launch_hd.py/Start-Development.ps1/test_launch_hd.py).",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-ui",
+        "session_id": "5566e7d6-33fe-44bb-bc2b-e454583e96b1",
+        "roster_state": "registered_actual_model_startup_own_hook_checkpoint_pending",
+        "presence_updated_utc": "2026-11-14T16:31:25.110Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "34e735f6b2cff6806ac509159b473b0620d74a5d79bb03b3834ca5c7b3cf3880",
+        "checkpoint_utc": "2026-11-14T16:31:24.805Z",
+        "checkpoint_age_seconds": 298,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-MENU-HUD-20261114",
+          "J-L3",
+          "J-K3"
+        ],
+        "next_action": "On crash-check grant (after root's modern-GPU probe release): launch J-L3 once via O/tools/ui_grant_launch.ps1 (tool 93e13bb4, args in msg_b5a1480a), then J-K3 (tool 6c844571); report result/receipt hashes. Then write representative cm_repair proposal tool for J-L3 failing gate files grouped by class map. On monitor expiry 16:45:17Z re-arm inbox watcher and refresh this checkpoint.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-support",
+        "session_id": "8e3e011b-bf64-4dca-a616-f3d138451df8",
+        "roster_state": "registered_actual_model_startup_own_hook_checkpoint_pending",
+        "presence_updated_utc": "2026-11-14T16:23:07.064Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "d65485ca43889d6e25d26f3076e39e2b7e1fa7609cc84a0238e07f967471520a",
+        "checkpoint_utc": "2026-11-14T16:34:02.432Z",
+        "checkpoint_age_seconds": 140,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-SUPPORT-TIMEOUT-VERIFY-20261114"
+        ],
+        "next_action": "Sent s67 the source_word_xy origin formula (msg_d0c1c456; review now 228faee3). Wait for root to release its GPU fence and for the coordinator to schedule the r5 suite. Then replay r5 independently into the support output dir and compare per-case with s67. Re-arm the inbox monitor when it expires (~16:45Z).",
+        "status": "checkpoint_available"
+      }
+    ]
+  },
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "model_resumption": false,
+  "gpu_run": false
+}

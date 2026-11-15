@@ -1,0 +1,1530 @@
+{
+ "name": "stage3-signage-props-v1",
+ "title": "Stage 3 signage and props (2/1 world pages; CAUTION sign kept native-faithful)",
+ "track": "w7-stage3",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-03 Stage 3 capture)",
+ "created_at_utc": "2026-11-13T21:40:12.569066+00:00",
+ "method": "W7-STAGE3 index masters (copy of w7-stage2/tools/s2master.py; imports s3lib): one CLUT-free master per 4bpp page, rendered through any CLUT.\n\nMaster (8 px/texel = the 2048 export grid; CPU only, deterministic, no AI, nothing added):\n  categorical layer  top-3 (label, weight u8) per pixel: for every native index i the one-hot mask is upsampled\n                     texel-centred (bilinear), gaussian-smoothed (sigma_cat texels) and raised to power_cat, then\n                     normalised (w7-stage7 build_s7 / w4-world catsoft method). It carries the class (alpha) of ANY\n                     CLUT: class = class of the strongest visible label where visible weight >= 0.5, else 0, so every\n                     CLUT gets its own native class map with smooth contours.\n  continuous layer   t (float16, NaN elsewhere) inside regions whose drawn CLUTs are monotone luminance ramps over the\n                     indices used there (palette-cycling lights, smoke and flame ramps): normalised convolution of the\n                     native index over the texels that are visible in that region (bilinear texel-centred upsample,\n                     gaussian sigma_t texels); render = lerp(P[floor t], P[ceil t]) (index_pipeline convention), t\n                     clamped to the CLUT's visible run.\nRender(CLUT) -> RGBA at 8 px/texel; the native class is then forced at every native texel centre floor((i+0.5)*s)\n(one pixel each, w6/w7 rule) and every export is re-read and validated (0 mismatches required).\nRegions come from the Stage 2 draw records (work/draws-s2.json): every drawn uv rect of every key of the page whose CLUT\nwords are known (static export CLUT or CRC-validated recovered phase).",
+ "builder_doc": "W7-STAGE3 builder: first Stage 3 art families on exact-static, single-writer pages of the frozen stages-v4 export.\n\n    python -I build_s3.py <family> [freeze]      family = walls | signage\n    -> staging/<name>/ (default) or frozen/<name>/ (freeze: immutable, refuses to overwrite)\n\nState of every key: predicted-static; import only after live capture confirms the key (validate_predicted.py confirm +\ngate on the AQ-03 Stage 3 capture).  No Stage 3 capture exists, so there are no draw records and no runtime CLUT phases:\n  * pages: exact-static TEX with a single writer (2/1, the main member that carries the stage CLUT block); words from\n    stages-v4/stage3/textures (crc32 == TEX and sha256 == FREEZE.json re-checked);\n  * keys: listed predictions of those pages whose CLUT is a static stage-owned CLUT (owner 2/1 = stage CLUT block, or\n    2/0 = 16x1 records of the stage overlay), not all-transparent, with the highest coverage = pair_count (how often the\n    CLUT/page pair occurs in the stage model data) >= MIN_PAIRS and visible texels >= MIN_VIS of the page.  The all-zero\n    CLUT 190A55AD keys that the export labels exact-static are transparent and are not exported;\n  * cells: inferred from page content (s3cells.py, calibrated on Stage 2 draw rects, work/cells-calibration.json) and\n    rendered in isolation, the Stage 2 v2 rule; replaced by real UV rects once AQ-03 exists.\nMethod (Stage 2 method, w7-stage2 s2master copied as s3master): CLUT-free categorical index master at 8 px/texel\n(sigma 0.30 texel, power 4.0: exact native colours on plateaus, smooth contours), class forced and validated at every\nnative texel centre.  CPU only, deterministic; no generated imagery; nothing invented (no new text, colours or pixels).",
+ "cells_doc": "Static cell inference for atlas pages without draw records (Stage 3 has no capture yet).\n\nStage 2 draw records showed world atlas cells are rectangles on the 32-texel grid (plus small sprites).  Without UVs, a\n32x32 block grid is joined into cells: two neighbouring blocks belong to one cell unless the 32-texel segment between\nthem is a content seam, i.e. the mean absolute index jump ACROSS the line is clearly larger than the jumps on the two\ncolumn (row) pairs next to it on either side:  across > ratio * max(within_a, within_b) and across > min_jump.\nA continuous texture (a tiling wall, one big panel) has no seam inside, so it stays one cell; a change of texture at a\ngrid line separates the cells.  Cells are connected components of blocks (any shape); render isolation uses the\ncomponent mask (texels outside the component are filled with the nearest component texel before rendering, and only\nthe component's own pixels are pasted).  This is an inference: it is replaced by real UV rects after the AQ-03 capture.",
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3",
+  "freeze": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/FREEZE.json",
+   "sha256": "4c1641ea961fdc3838fa9f58b58b09354edf026a211d742613dab5cb88d8815f"
+  },
+  "build": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/BUILD.json",
+   "sha256": "aaa5779c39781375b0e425d2ca1cf04768c54498b0887eafde32b1f21ff0b862"
+  },
+  "files_checked_against_freeze": {
+   "textures.json": {
+    "sha256": "f0f35207bbeee560e199bfa0b6eeabbbe14f2b42023a7be7ee8ced7efee7a75a",
+    "freeze_sha256": "f0f35207bbeee560e199bfa0b6eeabbbe14f2b42023a7be7ee8ced7efee7a75a"
+   },
+   "keys.json": {
+    "sha256": "638a6ebb055adcad895c4ce73c6da2bd39b3af61558a0302e0a58a48b2e3f82f",
+    "freeze_sha256": "638a6ebb055adcad895c4ce73c6da2bd39b3af61558a0302e0a58a48b2e3f82f"
+   },
+   "cluts.json": {
+    "sha256": "e456105ece1762f7ea123db8ca56dc28d9a8dae747aaf9601b47bf01425ea08f",
+    "freeze_sha256": "e456105ece1762f7ea123db8ca56dc28d9a8dae747aaf9601b47bf01425ea08f"
+   },
+   "manifest.json": {
+    "sha256": "a54e351910ce9d655267026a382948c20582ac297900514e9bedf8bae47d0fe4",
+    "freeze_sha256": "a54e351910ce9d655267026a382948c20582ac297900514e9bedf8bae47d0fe4"
+   }
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage3/readiness.json",
+  "sha256": "878f82833c7550d087eb03f87787f8bd3c7c9c3c7a8ac33def3c113db5bd1613"
+ },
+ "cells_calibration": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/work/cells-calibration.json",
+  "sha256": "fc0bd408ef490ede48d9b7f92dd315e1a7eb13797e631314d3888461a9b6603b",
+  "chosen_ratio": 1.6
+ },
+ "selection": {
+  "min_pair_count": 20,
+  "min_visible_fraction": 0.05,
+  "clut_owners": [
+   "(2, 1)",
+   "(2, 0)"
+  ],
+  "excluded": "all-zero CLUT 190A55AD keys (labelled exact-static by the export, render fully transparent); front-end-owned CLUTs (0/10, 0/12) at the same positions"
+ },
+ "boss_identity": "Gecko (SPKB-08, mid-boss) and Gustav (PR-01, boss) cannot be told apart from static data. The boss-candidate pages are 2/8 on 320-576,0 (hull plates, triangular plates with an alpha emblem and \"177\", slit lenses), with the 2/6 opening set as the other candidate. No name is assigned to any page or key here; no 2/6 or 2/8 page is authored in this batch. AQ-03 boss marks decide.",
+ "live_evidence": null,
+ "generated_imagery": null,
+ "comfyui": null,
+ "gpu": null,
+ "supersedes": null,
+ "pages": {
+  "E49BC3F1": {
+   "member": "2/1",
+   "writers": [
+    "2/1"
+   ],
+   "vram_rect_words": [
+    960,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/E49BC3F1.words.bin",
+    "sha256": "4e17cb6c6f6ca33febd9726315a66a47b12eeed86f0a5a7f557a296ba892a296",
+    "crc32": "E49BC3F1",
+    "freeze_sha256": "4e17cb6c6f6ca33febd9726315a66a47b12eeed86f0a5a7f557a296ba892a296"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0,
+    "seam_ratio": 1.6,
+    "seam_min_jump": 0.75
+   },
+   "master": {
+    "path": "master/E49BC3F1-index-master-8x.npz",
+    "sha256": "73cd9c17a3138e9617ae91aa734f4451560612e215acf618e8b6f0aa1bd43d5f"
+   },
+   "cells": {
+    "file": "master/E49BC3F1-cells-32grid.npy",
+    "sha256": "42f1a614e80b709d02d354dddacdbe1dd0e6462a58c7771a09790e28a3659cfd",
+    "count": 4,
+    "cells": [
+     {
+      "cell": 1,
+      "blocks": 8,
+      "bbox_texels": [
+       0,
+       0,
+       64,
+       128
+      ]
+     },
+     {
+      "cell": 2,
+      "blocks": 4,
+      "bbox_texels": [
+       64,
+       0,
+       128,
+       64
+      ]
+     },
+     {
+      "cell": 3,
+      "blocks": 51,
+      "bbox_texels": [
+       0,
+       0,
+       256,
+       256
+      ]
+     },
+     {
+      "cell": 4,
+      "blocks": 1,
+      "bbox_texels": [
+       64,
+       64,
+       96,
+       96
+      ]
+     }
+    ],
+    "seams": 26,
+    "lines": 112
+   }
+  },
+  "AA5DBEF2": {
+   "member": "2/1",
+   "writers": [
+    "2/1"
+   ],
+   "vram_rect_words": [
+    384,
+    256,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/AA5DBEF2.words.bin",
+    "sha256": "dbfc6ecc543d726d3975bc8492907d30eef01e46e80ec74d00265593c244c839",
+    "crc32": "AA5DBEF2",
+    "freeze_sha256": "dbfc6ecc543d726d3975bc8492907d30eef01e46e80ec74d00265593c244c839"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0,
+    "seam_ratio": 1.6,
+    "seam_min_jump": 0.75
+   },
+   "master": {
+    "path": "master/AA5DBEF2-index-master-8x.npz",
+    "sha256": "1afecc18272eb24ca27ccf4c910089e258360991eb06f0ba93f70e46000e0fa9"
+   },
+   "cells": {
+    "file": "master/AA5DBEF2-cells-32grid.npy",
+    "sha256": "ab1ae05a83d071c00edb8fdf36e9172e64bd8ca9c7cc72fae2efc35a85bf18c3",
+    "count": 3,
+    "cells": [
+     {
+      "cell": 1,
+      "blocks": 48,
+      "bbox_texels": [
+       0,
+       0,
+       256,
+       192
+      ]
+     },
+     {
+      "cell": 2,
+      "blocks": 4,
+      "bbox_texels": [
+       0,
+       192,
+       64,
+       256
+      ]
+     },
+     {
+      "cell": 3,
+      "blocks": 12,
+      "bbox_texels": [
+       64,
+       192,
+       256,
+       256
+      ]
+     }
+    ],
+    "seams": 23,
+    "lines": 112
+   }
+  }
+ },
+ "keys": {
+  "E49BC3F1-2849CF10": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "2849CF10",
+    "words_hex": "e053804ff5570043a03e603aab2ec03165154029a104a020601c201800040000",
+    "kind": "static",
+    "vram_xy": [
+     176,
+     486
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     176,
+     486,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 26,
+    "pal_candidates_at_position": 5,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      176,
+      486,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.872,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-2849CF10.png",
+     "sha256": "a6a920e1bc02c078c408688f04e2fd783e842019c226720a9f2c03f3937349f7",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-2849CF10.png",
+     "sha256": "80057702089cd1fb03b212b1397fe49118c33049d6bb0506e2e1921a86d65054",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 2971
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3322
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 2275
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 84
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 57151,
+    "centre_rgb_equals_native": 48080,
+    "share": 0.8413
+   }
+  },
+  "E49BC3F1-2C0416FE": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "2C0416FE",
+    "words_hex": "9452734e31461042ef3dce39ad358c316b2d4a2929250821e71cff7fa5140080",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     486
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 32,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-2C0416FE.png",
+     "sha256": "73de00d6c0831a35cac27cfa49928558b2f9d0183307ae3b839684190bc60164",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-2C0416FE.png",
+     "sha256": "00faec892b2302fe75aafa4432825f27da9fae5b94cf1586250b984e57714925",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5824
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 4007
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 5658
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 1792
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 60982,
+    "share": 0.9305
+   }
+  },
+  "E49BC3F1-3436FB59": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "3436FB59",
+    "words_hex": "603be032d03140264c25c01de9186019e0108610800822042000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     176,
+     486
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     176,
+     486,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 26,
+    "pal_candidates_at_position": 5,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      176,
+      486,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.791,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-3436FB59.png",
+     "sha256": "c45ffdbc13392be591b03c0a926a7763b777f6e49242013ce7daf6e627a85bf1",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-3436FB59.png",
+     "sha256": "a83c4fd0c3930ef46a6a21a81a6cccd2549abda1e2a3e334c344cfe1a76ab7b9",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 2673
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2878
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 1618
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 84
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 51833,
+    "centre_rgb_equals_native": 44027,
+    "share": 0.8494
+   }
+  },
+  "E49BC3F1-547C4341": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "547C4341",
+    "words_hex": "60054005f55700090009e008ab2ea00c65158010a10440142014201800040000",
+    "kind": "static",
+    "vram_xy": [
+     176,
+     486
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     176,
+     486,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 26,
+    "pal_candidates_at_position": 5,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      176,
+      486,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.872,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-547C4341.png",
+     "sha256": "f653609c1901b3eac0fb78960051d80fc17c33e2d97eccf8a1a4193e90c93147",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-547C4341.png",
+     "sha256": "93ee0c622e3fa03b009f1370f79c13075a81bbda1f502d9ec70c52856139d663",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 2480
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2956
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 1700
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 84
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 57151,
+    "centre_rgb_equals_native": 50389,
+    "share": 0.8817
+   }
+  },
+  "E49BC3F1-6E6722C5": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "6E6722C5",
+    "words_hex": "d65a9452734e3146ad350821c618830c630c630c420842082104210400800080",
+    "kind": "static",
+    "vram_xy": [
+     208,
+     486
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 68,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-6E6722C5.png",
+     "sha256": "7245a22adb57dc0f841eb91cd225ab48180bc32c5676ec5ca4437e73561019b4",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-6E6722C5.png",
+     "sha256": "c3196042c686f3e126082a32370c321e500cee69a03ffa7f6cc728cfaf0bc48f",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 4726
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 3375
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 4849
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 1598
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 60864,
+    "share": 0.9287
+   }
+  },
+  "E49BC3F1-86EAEAE2": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "86EAEAE2",
+    "words_hex": "6000a000d03140004c250000e918000000008610000022042000000000002184",
+    "kind": "static",
+    "vram_xy": [
+     176,
+     486
+    ],
+    "owner": "(2, 0)",
+    "record": [
+     176,
+     486,
+     16,
+     1
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 26,
+    "pal_candidates_at_position": 5,
+    "pal_source": {
+     "owner": "(2, 0)",
+     "common": false,
+     "record": [
+      176,
+      486,
+      16,
+      1
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.766,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-86EAEAE2.png",
+     "sha256": "b962ac97e2623f8ab43ab98a2b5bf348e2d38c2fcf94398062725607d8351c25",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-86EAEAE2.png",
+     "sha256": "2dd487d794be19f09e5496ba55ee63987df2ab00d49953ae00644b39ea88725e",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 2811
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2142
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 3144
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 1166
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 50173,
+    "centre_rgb_equals_native": 46341,
+    "share": 0.9236
+   }
+  },
+  "E49BC3F1-D50A8E3C": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "D50A8E3C",
+    "words_hex": "5b679d6f9d26e91cf139f135f03dd139d035af316d29f21c4c25860cd8520080",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     487
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 42,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-D50A8E3C.png",
+     "sha256": "e1c79f8234b3057c18c589a5fa684c67bae3612f7f795ba31565ceafa6a390f3",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-D50A8E3C.png",
+     "sha256": "d41dd81dbcf19fbbfd7ed790bf3cec417cba0a35f0d5499f38a2b9fd0c45e945",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 7265
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 4640
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6170
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 1962
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 57877,
+    "share": 0.8831
+   }
+  },
+  "E49BC3F1-EA38FBB1": {
+   "tex": "E49BC3F1",
+   "clut": {
+    "crc32": "EA38FBB1",
+    "words_hex": "9452d609ad3553092925e81cc618a5148410630c4204420821046b2d59880080",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     486
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 21,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/E49BC3F1-EA38FBB1.png",
+     "sha256": "71a46b07c4c21249b7cd68c6566a84f1ee8e63d770d76c20a922c76f1993f43e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/E49BC3F1-EA38FBB1.png",
+     "sha256": "a2e0743217f6a20acce235282166e9836d90bc96371ce48e67b76a0864aab696",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5566
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 4060
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 5524
+    },
+    {
+     "cell": 4,
+     "px_changed_vs_page_render": 1649
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 57443,
+    "share": 0.8765
+   }
+  },
+  "AA5DBEF2-0C8C90CE": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "0C8C90CE",
+    "words_hex": "185bd652944a7346313eef35ce318c296b25291de714c6108410720117212104",
+    "kind": "static",
+    "vram_xy": [
+     112,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 52,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-0C8C90CE.png",
+     "sha256": "153001025c393ec9e2693f3e9247ef041ae9358f87e52e1c6cd45c720cde0eab",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-0C8C90CE.png",
+     "sha256": "e88287d3492fb1675893ba3a700b0570f66687f90dac24a87defdf2c2bdd9c3c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6095
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2495
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6131
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63172,
+    "share": 0.9639
+   }
+  },
+  "AA5DBEF2-2BB10C5F": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "2BB10C5F",
+    "words_hex": "1863d65a9452734e3146ef3dce398c314a292925e71ca5148410720117212104",
+    "kind": "static",
+    "vram_xy": [
+     240,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 52,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-2BB10C5F.png",
+     "sha256": "e093f282c32c48ae937e8c8660ae6ab2c2012537435812c72fb52508678c09be",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-2BB10C5F.png",
+     "sha256": "4aae7ffd916ed3079fe526e482dbd989ede88a783f560680d115ce009fa168c6",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 5897
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2495
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6131
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63170,
+    "share": 0.9639
+   }
+  },
+  "AA5DBEF2-31FCCE35": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "31FCCE35",
+    "words_hex": "ffeb1bc3fba2b99e779a569a1496f391b191908d4e890c89eb84a98088800000",
+    "kind": "static",
+    "vram_xy": [
+     176,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 20,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 0.71,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-31FCCE35.png",
+     "sha256": "0b9b72c516d922410848c1868e8b65e091662163f1d76ec5064b8e013446483f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-31FCCE35.png",
+     "sha256": "7e84667c924b89d9964b71c17236dd7479a8e474d4b590a74b59aa401582a403",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 1770
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 5
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 1537
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 46514,
+    "centre_rgb_equals_native": 44692,
+    "share": 0.9608
+   }
+  },
+  "AA5DBEF2-3D9609A8": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "3D9609A8",
+    "words_hex": "1a5bd852964a5442123ed035ae2d6c252a21e818a61065084304210421042104",
+    "kind": "static",
+    "vram_xy": [
+     80,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 63,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-3D9609A8.png",
+     "sha256": "9d4d0428b39ebf42d1814858cadb98e7ebefe02c2130b5be8651596064855a99",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-3D9609A8.png",
+     "sha256": "e59859be873c7df0916f2bdf34e9dea3d52d21275a8e4648eddbe1dc34a0cec2",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6200
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2442
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6131
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63202,
+    "share": 0.9644
+   }
+  },
+  "AA5DBEF2-8F0F320B": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "8F0F320B",
+    "words_hex": "9d087b087904770475047304510450044e044c042a0428042604240423042104",
+    "kind": "static",
+    "vram_xy": [
+     208,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 50,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-8F0F320B.png",
+     "sha256": "7ec7fbd91b06fdaadad26966d4069ee2e622f22ffc1fbbbb9e504dd1d233dc7b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-8F0F320B.png",
+     "sha256": "624ebd4745a1350418ad1740662b1115268acb956914ce60f81246203c13a3ab",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6117
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2465
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6131
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63065,
+    "share": 0.9623
+   }
+  },
+  "AA5DBEF2-ED151575": {
+   "tex": "AA5DBEF2",
+   "clut": {
+    "crc32": "ED151575",
+    "words_hex": "1863d65a9452734e3146ef3dce398c316b2d2925e71cc618630c720117212104",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     483
+    ],
+    "owner": "(2, 1)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "listed": {
+    "confidence": "likely",
+    "pair_count": 44,
+    "pal_candidates_at_position": 2,
+    "pal_source": {
+     "owner": "(2, 1)",
+     "common": false,
+     "record": [
+      0,
+      480,
+      256,
+      20
+     ]
+    },
+    "residency": "own",
+    "pair_source": "stage"
+   },
+   "visible_fraction": 1.0,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/AA5DBEF2-ED151575.png",
+     "sha256": "7841bbd4ec5b607332ff7716584e90156237610ca71192f006d4b06b8bf5034e",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/AA5DBEF2-ED151575.png",
+     "sha256": "f7538bf42c38d343448f9dc2d63ee5efe4c08f5324e92c1ad9e7e257948b32ea",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      127
+     ]
+    }
+   },
+   "cells_isolated": [
+    {
+     "cell": 1,
+     "px_changed_vs_page_render": 6182
+    },
+    {
+     "cell": 2,
+     "px_changed_vs_page_render": 2491
+    },
+    {
+     "cell": 3,
+     "px_changed_vs_page_render": 6131
+    }
+   ],
+   "colour_at_texel_centres": {
+    "visible_texel_centres": 65536,
+    "centre_rgb_equals_native": 63130,
+    "share": 0.9633
+   }
+  }
+ },
+ "review": {
+  "sheets": [
+   "review/native-vs-hd-01.png",
+   "review/native-vs-hd-02.png",
+   "review/native-vs-hd-03.png",
+   "review/native-vs-hd-04.png",
+   "review/native-vs-hd-05.png",
+   "review/native-vs-hd-06.png",
+   "review/native-vs-hd-07.png"
+  ],
+  "note": "native | HD: full page at 2 px/texel, a 16x crop of the most detailed window, and a 64x64 window at 9 screen px per texel (2160-line in-game size) labelled SIMULATION (bilinear RGB, nearest class, no mips). No live frame exists for Stage 3."
+ },
+ "builder": {
+  "build_s3.py": "c75f16cd51c7536bf24d2730af4bcc73860f7f1a2b8e5b83cf240ec92a07e899",
+  "s3master.py": "8166aa31ca2ccc70375bd90069894dc28e5b8fd37b58381835c6c452aabed0a6",
+  "s3lib.py": "b55ac06cc90cb1bfa79e1213e416f24c2f5e5627a84aa2b741cb492c63800937",
+  "s3cells.py": "0086ccb19a02e0f8b3f3ccdaad7c20add6134969e5358946b23d8c86aed51425",
+  "calib_cells.py": "afbb1e2975d5ebf4be7d5e6c9bc9f62a6b2da703fed0ee3e5c67f86986195ca1"
+ },
+ "builder_origin": {
+  "note": "s3lib/s3master are copies of w7-stage2/tools/s2lib.py and s2master.py (paths, freeze check, review crop scoring changed)",
+  "w7_stage2_s2master": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "w7_stage2_s2lib": "bd6a99cde59d18c011528362c2d9d7bbe15ae195428f006131ccdb59df617fd3"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 = 0x0000, 255 = STP, 127 = opaque); every export re-read from disk",
+  "files": 28,
+  "mismatches": 0
+ },
+ "known_limits": [
+  "predicted keys only: no Stage 3 capture exists; PAL pairings are candidates from the model data (Stage 1 calibration: 160 of 3,052 likely page keys were observed), so some exported keys may never be drawn",
+  "cells are inferred from content on the 32-texel grid (calibration on Stage 2 draw rects at ratio 1.6: 12 of 208 interior lines falsely cut, 216 of 437 drawn-rect edges detected); small sprites inside a block are not isolated",
+  "categorical master: exact native colours and smooth contours, no generated material detail (CPU only; the GPU is down)",
+  "the CAUTION sign letters keep their native glyph topology (contour smoothing only); a vector_typography rebuild is the lettering finish; no text is invented"
+ ],
+ "honest_read": "Inspected staging review sheets 01-07 and an 8x crop of the CAUTION plate (2026-11-13, lane-s3). Colours exact, classes exact (28 files, 0 mismatches). The CAUTION letters (E49BC3F1, lower right) keep the native glyph topology and stroke widths; corners are slightly rounded and nothing is added or removed. The grey stipple inside the strokes and on the plate turns into rounded blobs. This is the weakest part of the set: the categorical smoothing has no answer for dithered noise. The E49BC3F1 brick/stone wall (upper left) and the granite-like fill on the AA5DBEF2 prop panels become a cellular \"camouflage\" pattern at 16x, and it is still visible at the 9 px/texel in-game SIMULATION. That reads worse than the native dither for those surfaces. Vent slats (AA5DBEF2) become beaded ovals. Smoke puffs, line-art decals and solid panels look clean. The \"S. TL.\" / \"T DL...H\" plate marks keep their shapes. Partial-visibility keys (E49BC3F1 at 77-87 %, AA5DBEF2-31FCCE35 at 71 %) hide some cells under 0-entries, as the native does. Verdict: acceptable for the lettering, solid panels and decals; the dithered stone and granite surfaces should not ship from this method (they need a material rebuild or should stay native).",
+ "gpu_jobs_after_reboot": [
+  "material layering for the machinery walls and walkways (facade_chain s2c-style tileable swatches: painted steel, grating, hazard paint; reuse cached t7-enemies/facade swatches first, generate only missing ones): ~3-5 SDXL jobs, 1 slot",
+  "optional detail pass on the CAUTION sign plate and props (no glyph change; vector_typography for the letters): ~2 jobs"
+ ]
+}

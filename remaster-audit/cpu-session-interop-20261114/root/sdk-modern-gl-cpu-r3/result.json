@@ -1,0 +1,115 @@
+{
+  "at_utc": "2026-11-14T13:55:28.680765+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "syntax",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-missing-field-initializers",
+        "-fsyntax-only",
+        "-v",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_modern_gl_probe.cpp"
+      ],
+      "pid": 10712,
+      "exit": 0,
+      "expected_exit": 0,
+      "timed_out": false,
+      "terminated_owned_descendants": [],
+      "seconds": 1.368,
+      "output": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)\nTarget: x86_64-w64-windows-gnu\nThread model: posix\nInstalledDir: C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin\nConfiguration file: C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin/x86_64-w64-windows-gnu.cfg\n (in-process)\n \"C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/bin/clang-22.exe\" -cc1 -triple x86_64-w64-windows-gnu -fsyntax-only -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name sdk_modern_gl_probe.cpp -mrelocation-model pic -pic-level 2 -mframe-pointer=none -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -fno-sized-deallocation -fno-use-init-array -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -fdebug-compilation-dir=C:/github/Einhander/remaster-audit/runtime-review/gpu-texture-remix-20261114/sdk-modern-gl-cpu-r3 -v -fcoverage-compilation-dir=C:/github/Einhander/remaster-audit/runtime-review/gpu-texture-remix-20261114/sdk-modern-gl-cpu-r3 -resource-dir C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include/c++/v1 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include/c++/v1 -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/usr/include -internal-isystem C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include -Wall -Wextra -Werror -Wno-missing-field-initializers -std=c++17 -fdeprecated-macro -ferror-limit 19 -fno-use-cxa-atexit -fgnuc-version=4.2.1 -fskip-odr-check-in-gmf -fcxx-exceptions -fexceptions -exception-model=seh -faddrsig -x c++ \"C:\\\\github\\\\Einhander\\\\remaster-audit\\\\runtime-review\\\\gpu-texture-remix-20261114\\\\sdk_modern_gl_probe.cpp\"\nclang -cc1 version 22.1.8 based upon LLVM 22.1.8 default target x86_64-w64-mingw32\nignoring nonexistent directory \"C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include/c++/v1\"\nignoring nonexistent directory \"C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/usr/include\"\n#include \"...\" search starts here:\n#include <...> search starts here:\n C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include/c++/v1\n C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/lib/clang/22/include\n C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/x86_64-w64-mingw32/include\n C:/Users/Admin/AppData/Local/retcomm/toolchains/cmake-clang-v1/.staging-host/include\nEnd of search list.\n"
+    },
+    {
+      "label": "compile-object",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Wno-missing-field-initializers",
+        "-O0",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_modern_gl_probe.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-modern-gl-cpu-r3\\probe.obj"
+      ],
+      "pid": 27692,
+      "exit": 0,
+      "expected_exit": 0,
+      "timed_out": false,
+      "terminated_owned_descendants": [],
+      "seconds": 1.398,
+      "output": ""
+    },
+    {
+      "label": "link",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-modern-gl-cpu-r3\\probe.obj",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-modern-gl-cpu-r3\\sdk-modern-gl.exe",
+        "-luser32",
+        "-lgdi32",
+        "-lopengl32"
+      ],
+      "pid": 1784,
+      "exit": 0,
+      "expected_exit": 0,
+      "timed_out": false,
+      "terminated_owned_descendants": [],
+      "seconds": 0.202,
+      "output": ""
+    },
+    {
+      "label": "cpu-contract",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-modern-gl-cpu-r3\\sdk-modern-gl.exe",
+        "--cpu-contract"
+      ],
+      "pid": 17024,
+      "exit": 0,
+      "expected_exit": 0,
+      "timed_out": false,
+      "terminated_owned_descendants": [],
+      "seconds": 0.284,
+      "output": "{\"cpu_contract_checks\":14,\"passed\":true,\"dll_loaded\":false,\"gl_context\":false}\n"
+    },
+    {
+      "label": "cpu-reservation-guard",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-modern-gl-cpu-r3\\sdk-modern-gl.exe",
+        "--guard-contract"
+      ],
+      "pid": 34036,
+      "exit": 77,
+      "expected_exit": 77,
+      "timed_out": false,
+      "terminated_owned_descendants": [],
+      "seconds": 0.184,
+      "output": "{\"reservation_exists\":true,\"owned_execution_lease\":false,\"gpu_started\":false,\"dll_loaded\":false}\n"
+    }
+  ],
+  "source_sha256": "3137ef3bc0e53ad5af6b321749ed413291ce4ef1763b1a8b0a1b67d64dad033b",
+  "header_sha256": "e1b7f16bf34d7cd701c21feb8da68921ed199822b272c014b8314621465c1c4c",
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+  "executable_sha256": "102bfad90943d47148c61d340d570329f104ac77220cce5632f74a04389e6a88",
+  "object_sha256": "f297124fa5e90d2ac0ce7dcfd581006ed574394063af607a791c8bc1a75cec67",
+  "user_hold_sha256": "64f6472862310facb2a0f0247d0470ea3da2b8b5b88915f9b6a6be46249443b6",
+  "user_hold_unchanged": true,
+  "gpu_executed": false,
+  "renderer_dll_loaded": false,
+  "gl_context_created": false,
+  "window_created": false,
+  "game_loaded": false,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "optimization": "O0 diagnostic",
+  "scope": "Only CPU contracts execute; Startup/Submit/Present, external-memory/timeline semaphores and final image/lifecycle remain NOT RUN."
+}

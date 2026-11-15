@@ -1,0 +1,799 @@
+{
+ "name": "stage2-opening-fx-v3",
+ "title": "F1 Stage 2 opening effects (3DD37B6B-AFAD5A36): SDXL detail pass (w2-effects v2 method) over stage2-opening-fx-v1",
+ "track": "w7-stage2",
+ "lane": "lane-s2",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-01/AQ-03 Stage 2 capture)",
+ "created_at_utc": "2026-11-13T21:55:19.730930+00:00",
+ "method": "W7-STAGE2 F1 detail pass (w2-effects v2 method adapted to the Stage 2 luminance fields; lane-s2, claude-einhander).\n\nKeys: AD934A7E-FC338604 (flames), 3DD37B6B-AFAD5A36 (dark additive smoke), 4915FBCF-056E3BD0 (glow).  All three CLUTs are\nSTP (additive) wherever visible.  Base = the frozen stage2-opening-fx-v1 export of the same key (prep-v1 / fx-v1 index\nmaster render, cell-isolated, luminance-field RGB, class map exact at every native texel centre).\n\n  guides  per drawn cell: native luminance field Lb (normalised convolution of the CLUT luminance of the visible native\n          texels, gaussian 0.55 texel, texel-centred bilinear 8x upsample) -> guide colour = hue-smoothed CLUT colour of Lb\n          (flame, glow) or neutral grey (smoke) times a gain that lifts the CLUT's brightest entry to ~230; alpha-0 = black.\n          Cells are placed 1:1 on the 8x master grid (glow at 16x, boxed down by 2 after generation) on SDXL-bucket canvases.\n  gen     JuggernautXL v9 img2img (core nodes; denoise 0.6, cfg 6, 32 steps, dpmpp_2m karras; w2-effects v2 parameters),\n          inside gpu_slot('lane-s2', <= 10 min) after the nvidia-smi health check.\n  build   AI luminance / gain = La (inverse ramp: the guide is luminance-exact, so the inverse is a division).\n          Low frequencies locked to native: Ln = La + G(Lb - La, 1.6 texel); band limit G(0.7 px) (motion);\n          weight = native visibility of the cell (dilated 1 texel, feathered 0.6 texel); outside it Lb.\n          Flames only (core_pin): where Lb is within 4-14 lum of the CLUT's brightest entry, Ln is pulled up to max(Ln, Lb)\n          (weight ramps 0 -> 1), so the native white-hot plateau stays white and the AI licks live around it.\n          Colour = CLUT ramp at Ln (Ramp: visible entries sorted by luminance, entry chroma smoothed over entries within\n          ~6 lum units (smoke: the colours themselves, rescaled to the entry luminance, because the chroma of near-black\n          entries is ill-conditioned and turned the smoke violet in fx-v2), brightest entry exact, linear interpolation; below the darkest entry the colour fades linearly\n          to black; r1/r2 guides were rendered with an earlier per-pixel gaussian ramp, which only tints the guide), faded to the v1\n          colour within 1.25 texels of the CLUT's alpha cut; per-cell light energy locked to 0.95-1.05 of native (scalar).\n  export  alpha = the v1 class plane, bit-identical; class re-validated at every native texel centre; pixels outside\n          every drawn cell = v1 exactly.\nusage: python -I f1_detail.py guides|gen|build <run> [job names]",
+ "supersedes": "stage2-opening-fx-v2 key 3DD37B6B-AFAD5A36 (FAILED there: the per-entry chroma smoothing over near-black CLUT entries turned the smoke saturated violet-blue). Same SDXL generation (run r1), rebuilt with the colour-smoothed ramp (Ramp mode 'colour'). Alpha bit-identical to stage2-opening-fx-v1. AD934A7E-FC338604 and 4915FBCF-056E3BD0 stay in stage2-opening-fx-v2.",
+ "base": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/frozen/stage2-opening-fx-v1",
+  "manifest_sha256": "304090d81ba9248841d5d3439d1a7ca6ab3bb349363a7cb5cf96c3c8e66cc7ab"
+ },
+ "params": {
+  "gen": {
+   "denoise": 0.6,
+   "steps": 32,
+   "cfg": 6.0,
+   "sampler": "dpmpp_2m",
+   "scheduler": "karras"
+  },
+  "build": {
+   "sigma_field_tex": 0.55,
+   "sigma_lock_tex": 1.6,
+   "sigma_hi_px": 0.7,
+   "edge_dilate_tex": 1,
+   "edge_feather_tex": 0.6,
+   "fade_tex": 1.25,
+   "hue_sigma_lum": 6.0,
+   "guide_peak": 230.0,
+   "energy_band": [
+    0.95,
+    1.05
+   ],
+   "core_pin_lum": [
+    14.0,
+    10.0
+   ]
+  }
+ },
+ "models": {
+  "checkpoint": "juggernautXL_v9.safetensors",
+  "comfyui": "127.0.0.1:8188, core nodes only, v0.3.76"
+ },
+ "keys": {
+  "3DD37B6B-AFAD5A36": {
+   "tex": "3DD37B6B",
+   "clut": {
+    "crc32": "AFAD5A36",
+    "words_hex": "438c428821882188218401840084008400000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     490
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 41,
+    "frames": [
+     40716,
+     98110
+    ],
+    "runs": [
+     "11eebc24",
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      0,
+      490
+     ]
+    ],
+    "semi": [
+     1
+    ],
+    "uv_top": [
+     [
+      [
+       0,
+       24,
+       58,
+       46
+      ],
+      6
+     ],
+     [
+      [
+       0,
+       96,
+       58,
+       118
+      ],
+      6
+     ],
+     [
+      [
+       0,
+       48,
+       58,
+       70
+      ],
+      6
+     ],
+     [
+      [
+       60,
+       24,
+       118,
+       46
+      ],
+      6
+     ],
+     [
+      [
+       0,
+       0,
+       58,
+       22
+      ],
+      5
+     ],
+     [
+      [
+       60,
+       0,
+       118,
+       22
+      ],
+      4
+     ],
+     [
+      [
+       60,
+       48,
+       118,
+       70
+      ],
+      4
+     ],
+     [
+      [
+       60,
+       72,
+       118,
+       94
+      ],
+      3
+     ]
+    ]
+   },
+   "run": "r1",
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/3DD37B6B-AFAD5A36.png",
+     "sha256": "3f6b809479a091fe22b94b99c31ffeeb6e936f655b76801681c891f6464972cb",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/3DD37B6B-AFAD5A36.png",
+     "sha256": "634ee3fa429d8d888baf88ca49dc4db2cb47ac624a54a805fbed5e237cb9da2c",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 9,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      255
+     ]
+    }
+   },
+   "alpha_identical_to_v1": {
+    "page2048": true,
+    "page1024": true
+   },
+   "cells": [
+    {
+     "rect": [
+      0,
+      0,
+      59,
+      23
+     ],
+     "rms_dev_from_native_field_lum": 1.58,
+     "detail_rms_lum_below_1_texel": 1.12,
+     "px_changed_vs_v1": 31759
+    },
+    {
+     "rect": [
+      0,
+      24,
+      59,
+      47
+     ],
+     "rms_dev_from_native_field_lum": 1.41,
+     "detail_rms_lum_below_1_texel": 1.17,
+     "px_changed_vs_v1": 29551
+    },
+    {
+     "rect": [
+      0,
+      48,
+      59,
+      71
+     ],
+     "rms_dev_from_native_field_lum": 1.57,
+     "detail_rms_lum_below_1_texel": 1.22,
+     "px_changed_vs_v1": 25615
+    },
+    {
+     "rect": [
+      0,
+      72,
+      59,
+      95
+     ],
+     "rms_dev_from_native_field_lum": 1.61,
+     "detail_rms_lum_below_1_texel": 1.15,
+     "px_changed_vs_v1": 25295
+    },
+    {
+     "rect": [
+      0,
+      96,
+      59,
+      119
+     ],
+     "rms_dev_from_native_field_lum": 1.58,
+     "detail_rms_lum_below_1_texel": 1.22,
+     "px_changed_vs_v1": 29160
+    },
+    {
+     "rect": [
+      60,
+      0,
+      119,
+      23
+     ],
+     "rms_dev_from_native_field_lum": 1.66,
+     "detail_rms_lum_below_1_texel": 1.29,
+     "px_changed_vs_v1": 26184
+    },
+    {
+     "rect": [
+      60,
+      24,
+      119,
+      47
+     ],
+     "rms_dev_from_native_field_lum": 1.51,
+     "detail_rms_lum_below_1_texel": 1.06,
+     "px_changed_vs_v1": 28895
+    },
+    {
+     "rect": [
+      60,
+      48,
+      119,
+      71
+     ],
+     "rms_dev_from_native_field_lum": 1.67,
+     "detail_rms_lum_below_1_texel": 1.17,
+     "px_changed_vs_v1": 23548
+    },
+    {
+     "rect": [
+      60,
+      72,
+      119,
+      95
+     ],
+     "rms_dev_from_native_field_lum": 1.47,
+     "detail_rms_lum_below_1_texel": 1.0,
+     "px_changed_vs_v1": 27923
+    }
+   ],
+   "energy": {
+    "before": [
+     {
+      "rect": [
+       0,
+       24,
+       59,
+       47
+      ],
+      "native": 3859.7,
+      "hd": 3924.7,
+      "ratio": 1.0168
+     },
+     {
+      "rect": [
+       0,
+       96,
+       59,
+       119
+      ],
+      "native": 3889.8,
+      "hd": 3881.9,
+      "ratio": 0.998
+     },
+     {
+      "rect": [
+       0,
+       48,
+       59,
+       71
+      ],
+      "native": 3794.4,
+      "hd": 3887.8,
+      "ratio": 1.0246
+     },
+     {
+      "rect": [
+       60,
+       24,
+       119,
+       47
+      ],
+      "native": 3866.9,
+      "hd": 3914.6,
+      "ratio": 1.0123
+     },
+     {
+      "rect": [
+       0,
+       0,
+       59,
+       23
+      ],
+      "native": 3980.6,
+      "hd": 4007.1,
+      "ratio": 1.0067
+     },
+     {
+      "rect": [
+       60,
+       0,
+       119,
+       23
+      ],
+      "native": 3618.8,
+      "hd": 3637.8,
+      "ratio": 1.0053
+     },
+     {
+      "rect": [
+       60,
+       48,
+       119,
+       71
+      ],
+      "native": 3451.0,
+      "hd": 3513.9,
+      "ratio": 1.0182
+     },
+     {
+      "rect": [
+       60,
+       72,
+       119,
+       95
+      ],
+      "native": 3757.8,
+      "hd": 3788.8,
+      "ratio": 1.0082
+     },
+     {
+      "rect": [
+       0,
+       72,
+       59,
+       95
+      ],
+      "native": 3443.9,
+      "hd": 3496.4,
+      "ratio": 1.0153
+     }
+    ],
+    "after": [
+     {
+      "rect": [
+       0,
+       24,
+       59,
+       47
+      ],
+      "native": 3859.7,
+      "hd": 3924.7,
+      "ratio": 1.0168
+     },
+     {
+      "rect": [
+       0,
+       96,
+       59,
+       119
+      ],
+      "native": 3889.8,
+      "hd": 3881.9,
+      "ratio": 0.998
+     },
+     {
+      "rect": [
+       0,
+       48,
+       59,
+       71
+      ],
+      "native": 3794.4,
+      "hd": 3887.8,
+      "ratio": 1.0246
+     },
+     {
+      "rect": [
+       60,
+       24,
+       119,
+       47
+      ],
+      "native": 3866.9,
+      "hd": 3914.6,
+      "ratio": 1.0123
+     },
+     {
+      "rect": [
+       0,
+       0,
+       59,
+       23
+      ],
+      "native": 3980.6,
+      "hd": 4007.1,
+      "ratio": 1.0067
+     },
+     {
+      "rect": [
+       60,
+       0,
+       119,
+       23
+      ],
+      "native": 3618.8,
+      "hd": 3637.8,
+      "ratio": 1.0053
+     },
+     {
+      "rect": [
+       60,
+       48,
+       119,
+       71
+      ],
+      "native": 3451.0,
+      "hd": 3513.9,
+      "ratio": 1.0182
+     },
+     {
+      "rect": [
+       60,
+       72,
+       119,
+       95
+      ],
+      "native": 3757.8,
+      "hd": 3788.8,
+      "ratio": 1.0082
+     },
+     {
+      "rect": [
+       0,
+       72,
+       59,
+       95
+      ],
+      "native": 3443.9,
+      "hd": 3496.4,
+      "ratio": 1.0153
+     }
+    ],
+    "exported_2048": [
+     {
+      "rect": [
+       0,
+       24,
+       59,
+       47
+      ],
+      "native": 3859.7,
+      "hd": 3924.7,
+      "ratio": 1.0168
+     },
+     {
+      "rect": [
+       0,
+       96,
+       59,
+       119
+      ],
+      "native": 3889.8,
+      "hd": 3881.9,
+      "ratio": 0.998
+     },
+     {
+      "rect": [
+       0,
+       48,
+       59,
+       71
+      ],
+      "native": 3794.4,
+      "hd": 3887.8,
+      "ratio": 1.0246
+     },
+     {
+      "rect": [
+       60,
+       24,
+       119,
+       47
+      ],
+      "native": 3866.9,
+      "hd": 3914.6,
+      "ratio": 1.0123
+     },
+     {
+      "rect": [
+       0,
+       0,
+       59,
+       23
+      ],
+      "native": 3980.6,
+      "hd": 4007.1,
+      "ratio": 1.0067
+     },
+     {
+      "rect": [
+       60,
+       0,
+       119,
+       23
+      ],
+      "native": 3618.8,
+      "hd": 3637.8,
+      "ratio": 1.0053
+     },
+     {
+      "rect": [
+       60,
+       48,
+       119,
+       71
+      ],
+      "native": 3451.0,
+      "hd": 3513.9,
+      "ratio": 1.0182
+     },
+     {
+      "rect": [
+       60,
+       72,
+       119,
+       95
+      ],
+      "native": 3757.8,
+      "hd": 3788.8,
+      "ratio": 1.0082
+     },
+     {
+      "rect": [
+       0,
+       72,
+       59,
+       95
+      ],
+      "native": 3443.9,
+      "hd": 3496.4,
+      "ratio": 1.0153
+     }
+    ]
+   },
+   "comfy_generations": [
+    {
+     "job": "3DD37B6B-AFAD5A36-j0",
+     "run": "r1",
+     "canvas": [
+      1024,
+      1024
+     ],
+     "placements": [
+      {
+       "rect": [
+        0,
+        0,
+        59,
+        23
+       ],
+       "x": 24,
+       "y": 17,
+       "scale": 8
+      },
+      {
+       "rect": [
+        0,
+        24,
+        59,
+        47
+       ],
+       "x": 24,
+       "y": 218,
+       "scale": 8
+      },
+      {
+       "rect": [
+        0,
+        48,
+        59,
+        71
+       ],
+       "x": 24,
+       "y": 419,
+       "scale": 8
+      },
+      {
+       "rect": [
+        0,
+        72,
+        59,
+        95
+       ],
+       "x": 24,
+       "y": 620,
+       "scale": 8
+      },
+      {
+       "rect": [
+        0,
+        96,
+        59,
+        119
+       ],
+       "x": 24,
+       "y": 821,
+       "scale": 8
+      },
+      {
+       "rect": [
+        60,
+        0,
+        119,
+        23
+       ],
+       "x": 528,
+       "y": 17,
+       "scale": 8
+      },
+      {
+       "rect": [
+        60,
+        24,
+        119,
+        47
+       ],
+       "x": 528,
+       "y": 218,
+       "scale": 8
+      },
+      {
+       "rect": [
+        60,
+        48,
+        119,
+        71
+       ],
+       "x": 528,
+       "y": 419,
+       "scale": 8
+      },
+      {
+       "rect": [
+        60,
+        72,
+        119,
+        95
+       ],
+       "x": 528,
+       "y": 620,
+       "scale": 8
+      }
+     ],
+     "guide_gain": 12.583158263305322,
+     "files": {
+      "-guide.png": {
+       "path": "comfy/r1-3DD37B6B-AFAD5A36-j0-guide.png",
+       "sha256": "2b7cbcb815a903b936a080f990955877cb40c5372bfdd6579b391771571fafd3"
+      },
+      "-ai.png": {
+       "path": "comfy/r1-3DD37B6B-AFAD5A36-j0-ai.png",
+       "sha256": "bc3cd236207aa70e97f5f6f0c4efeb981586aa4f432647d1a2496a7fb2e887e4"
+      },
+      "-graph.api.json": {
+       "path": "comfy/r1-3DD37B6B-AFAD5A36-j0-graph.api.json",
+       "sha256": "0f9b891e6f120a1b66e9efd37dfc6e52b92b7e803d541ec2231ceb049b94bbdb"
+      },
+      "-history.json": {
+       "path": "comfy/r1-3DD37B6B-AFAD5A36-j0-history.json",
+       "sha256": "1b39c4f8858c10f477692ed3c66af9f757e373890f61bca230b4140aa8ff5222"
+      }
+     },
+     "seed": 2026111325,
+     "prompt": "photograph of a dense rolling cloud of thick grey smoke, billowing cauliflower puffs with crisp self-shadowed edges, layered volumetric smoke texture, isolated on a pure black background, high-speed photography, sharp focus, highly detailed",
+     "negative": "text, letters, watermark, signature, frame, border, grid, tiles, panel, cartoon, anime, illustration, painting, drawing, cgi render, plastic, lowres, blurry, jpeg artifacts, people, ground, sky, buildings, horizon, lens flare, light rays, stars, soft focus, smooth, airbrushed, balloons, bubbles, glowing spheres, flower, petals, symmetric, fire, flames, orange, candle, purple",
+     "ckpt": "juggernautXL_v9.safetensors",
+     "guide": "3DD37B6B-AFAD5A36-j0-guide.png",
+     "prompt_id": "9f6d53c1-ce20-4773-b3e3-700f0c2c7c51",
+     "at": "2026-11-13T21:35:36.163261+00:00",
+     "denoise": 0.6,
+     "steps": 32,
+     "cfg": 6.0,
+     "sampler": "dpmpp_2m",
+     "scheduler": "karras"
+    }
+   ],
+   "master": {
+    "path": "master/3DD37B6B-AFAD5A36-lum-field-8x.npz",
+    "sha256": "3a17e5bc9739d330a355c30d7873aee614418b0eed9a49ca4589ac0de57ffbe9"
+   }
+  }
+ },
+ "failed_experiments": {
+  "frozen/stage2-opening-fx-v2 key 3DD37B6B-AFAD5A36": "FAILED after freezing: saturated violet-blue smoke (chroma of near-black entries ill-conditioned). Superseded by this folder; the v2 folder itself is left untouched (immutable)."
+ },
+ "honest_read": "Smoke (3DD37B6B-AFAD5A36): billowing cauliflower puffs with soft self-shadowed edges in a desaturated lavender-grey with the native pink-ish core, instead of the soft v1 blobs; hue now close to native (BOOSTED x8 review). This CLUT peaks at luminance 18 (dark additive), so at true brightness the whole key is close to invisible and the gain over v1 is small; it only matters if the runtime ever brightens this blend. Motion (BOOSTED) is a little busier than v1 and close to native.",
+ "known_limits": [
+  "predicted-static: import only after a live Stage 2 capture confirms key and CLUT (validate_predicted.py confirm + gate)",
+  "alpha plane bit-identical to stage2-opening-fx-v1 (only RGB changed)",
+  "the 9 smoke cells were generated together on one canvas but independently per cell; frame order / timing are not in the logs, so a flip-book SIMULATION with the real order is still to be made",
+  "the SDXL guide (comfy/*-guide.png) was rendered with the earlier gaussian ramp in neutral grey; the build inverts luminance only",
+  "review composites and motion are SIMULATIONS over dark navy with the PSX additive rule, BOOSTED x8; no in-game capture exists"
+ ],
+ "gpu": "gpu_slot lane-s2; see work/gpu-slots.jsonl",
+ "review": {
+  "sheets": [
+   "review/3DD37B6B-AFAD5A36-cell0_24-motion-2.25px-SIMULATION-frame.png",
+   "review/3DD37B6B-AFAD5A36-cell0_24-motion-2.25px-SIMULATION.mp4",
+   "review/3DD37B6B-AFAD5A36-cell0_24-motion-4.5px-SIMULATION-frame.png",
+   "review/3DD37B6B-AFAD5A36-cell0_24-motion-4.5px-SIMULATION.mp4",
+   "review/3DD37B6B-AFAD5A36-native-v1-v2.png"
+  ],
+  "motion_shimmer_mean_abs_frame_diff": {
+   "3DD37B6B-AFAD5A36 cell [0, 24, 59, 47] 4.5 px/texel": {
+    "native": 0.746,
+    "v1": 0.599,
+    "v2": 0.706
+   },
+   "3DD37B6B-AFAD5A36 cell [0, 24, 59, 47] 2.25 px/texel": {
+    "native": 1.435,
+    "v1": 1.134,
+    "v2": 1.308
+   }
+  },
+  "note": "native | v1 | v2: drawn cells at 2 px/texel, a 16x crop, the biggest cell at 9 px/texel (4K) and 4.5 px/texel (1080p), bilinear, no mips, all SIMULATIONS over dark navy with the PSX additive rule; the smoke key is BOOSTED x8 (its CLUT peaks at luminance 18, nearly invisible at true brightness). Motion: drift + slow zoom, bilinear, no mips; shimmer = mean |frame - previous frame| (includes the motion itself: compare columns)."
+ },
+ "builder": {
+  "f1_detail.py": "545da30893fa782d22d72b04375288a1e031a0235e8ce39fe816e0017f246764",
+  "freeze_v2.py": "7897cfe52388d9b1c973fcf41144d630d4c52a31de5210710af7412dcb66a817",
+  "s2master.py": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "s2lib.py": "bd6a99cde59d18c011528362c2d9d7bbe15ae195428f006131ccdb59df617fd3",
+  "s2comfy.py": "4d587d0d7fc776a8dbaf2d1735b5316a7dc39831433443e374b4aba45017594e",
+  "s2review.py": "7ef9f13a090ce84f0ddde0c455f8ddb19bea3a33af6dbbaa23b2442355dfbfc0",
+  "slot.py": "9d08540971bc1572a04930005a1b082c56af49ccbae373d71e2bd9492bb13459"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 / 127 / 255); every export re-read from disk; alpha planes bit-identical to the base frozen exports",
+  "files": 2,
+  "mismatches": 0
+ }
+}

@@ -1,0 +1,118 @@
+TAP version 13
+# Subtest: explicit bounded receiver checkpoint satisfies the actual stop gate
+ok 1 - explicit bounded receiver checkpoint satisfies the actual stop gate
+  ---
+  duration_ms: 2.9702
+  type: 'test'
+  ...
+# Subtest: timestamp refresh cannot inherit a dead receiver or expired wake
+ok 2 - timestamp refresh cannot inherit a dead receiver or expired wake
+  ---
+  duration_ms: 0.4247
+  type: 'test'
+  ...
+# Subtest: past, invalid and over-limit wake deadlines are rejected
+ok 3 - past, invalid and over-limit wake deadlines are rejected
+  ---
+  duration_ms: 0.9759
+  type: 'test'
+  ...
+# Subtest: explicit user stop remains possible without a receiver
+ok 4 - explicit user stop remains possible without a receiver
+  ---
+  duration_ms: 0.1524
+  type: 'test'
+  ...
+# Subtest: invalid continuation does not overwrite the real checkpoint file
+ok 5 - invalid continuation does not overwrite the real checkpoint file
+  ---
+  duration_ms: 25.4221
+  type: 'test'
+  ...
+# Subtest: registered worker checkpoint does not overwrite the primary owner and rejects foreign identities
+ok 6 - registered worker checkpoint does not overwrite the primary owner and rejects foreign identities
+  ---
+  duration_ms: 14.471
+  type: 'test'
+  ...
+# Subtest: registered worker user stop saves a paused checkpoint without a receiver and preserves the primary
+ok 7 - registered worker user stop saves a paused checkpoint without a receiver and preserves the primary
+  ---
+  duration_ms: 14.4254
+  type: 'test'
+  ...
+# Subtest: unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+ok 8 - unfinished work blocks voluntary stop and repeat hook does not silently abandon it
+  ---
+  duration_ms: 2.6589
+  type: 'test'
+  ...
+# Subtest: explicit user pause permits stop even with unread work
+ok 9 - explicit user pause permits stop even with unread work
+  ---
+  duration_ms: 0.565
+  type: 'test'
+  ...
+# Subtest: component completion cannot claim full project completion
+ok 10 - component completion cannot claim full project completion
+  ---
+  duration_ms: 0.8651
+  type: 'test'
+  ...
+# Subtest: actual overall completion plus complete registry permits stop
+ok 11 - actual overall completion plus complete registry permits stop
+  ---
+  duration_ms: 0.1524
+  type: 'test'
+  ...
+# Subtest: fresh checkpoint with bounded armed continuation permits a waiting turn
+ok 12 - fresh checkpoint with bounded armed continuation permits a waiting turn
+  ---
+  duration_ms: 0.1617
+  type: 'test'
+  ...
+# Subtest: unread actionable mail prevents a waiting turn until handled
+ok 13 - unread actionable mail prevents a waiting turn until handled
+  ---
+  duration_ms: 0.1169
+  type: 'test'
+  ...
+# Subtest: eligible durable work prevents waiting even with a valid continuation
+ok 14 - eligible durable work prevents waiting even with a valid continuation
+  ---
+  duration_ms: 0.1232
+  type: 'test'
+  ...
+# Subtest: missing/expired/wrong-session continuation blocks stop
+ok 15 - missing/expired/wrong-session continuation blocks stop
+  ---
+  duration_ms: 0.2921
+  type: 'test'
+  ...
+# Subtest: older urgent blockers stay visible ahead of a burst of routine notes
+ok 16 - older urgent blockers stay visible ahead of a burst of routine notes
+  ---
+  duration_ms: 75.4442
+  type: 'test'
+  ...
+# Subtest: real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+ok 17 - real file hook reads mailbox, ignores acknowledgement chatter and throttles context
+  ---
+  duration_ms: 412.0761
+  type: 'test'
+  ...
+# Subtest: registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+ok 18 - registered worker reads only its own inbox and accepts its verified CLI/desktop checkpoint aliases
+  ---
+  duration_ms: 51.1404
+  type: 'test'
+  ...
+1..18
+# tests 18
+# suites 0
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 782.4984

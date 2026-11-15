@@ -1,0 +1,55 @@
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\test_real_producer.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\test_real_producer.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\test_real_producer.cpp:334:12: error: use of undeclared identifier 'gte_rtp_ring_get_xform'
+  334 |     return gte_rtp_ring_get_xform(sequence,rt,tr,frame,ra);
+      |            ^~~~~~~~~~~~~~~~~~~~~~
+4 warnings and 1 error generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\real-producer-bridge\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+4 warnings generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\src\gte.cpp:4:
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\src\gte.cpp:1056:40: warning: unused parameter 'instr' [-Wunused-parameter]
+ 1056 | void gte_nclip(GTEState* gte, uint32_t instr) {
+      |                                        ^
+2 warnings generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\src\pgxp.cpp:34:
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+1 warning generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\src\pgxp_view_census.cpp:9:
+C:\github\Einhander\remaster-audit\runtime-review\remix-provenance\impl-v2\include/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+1 warning generated.

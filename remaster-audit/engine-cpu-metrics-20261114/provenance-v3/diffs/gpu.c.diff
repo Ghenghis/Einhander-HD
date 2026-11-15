@@ -1,0 +1,93 @@
+--- a/windows-x64/psxrecomp/runtime/src/gpu.c
++++ b/windows-x64/psxrecomp/runtime/src/gpu.c
+@@ -3277,6 +3277,10 @@
+ 
+ extern int gte_geometry_correction_enabled(void);
+ static int s_texture_correction_enabled = 0;
++/* remix-provenance v2: opt-in per-primitive view census. Arms the PGXP
++ * transport for collection only; geometry/texture correction (and so every
++ * draw) stay exactly as the user configured them. */
++static int s_view_census = 0;
+ extern int gte_precision_load_word(uint32_t addr, uint32_t packed,
+                                    int32_t *x16, int32_t *y16, uint16_t *z);
+ 
+@@ -3285,7 +3289,8 @@
+ void gpu_pgxp_rederive_enable(void) {
+     pgxp_set_enabled(s_texture_correction_enabled ||
+                      gte_geometry_correction_enabled() ||
+-                     ws_precise_nclip_cfg);
++                     ws_precise_nclip_cfg ||
++                     s_view_census);
+ }
+ 
+ void gpu_texture_correction_set(int enabled) {
+@@ -3295,6 +3300,22 @@
+ 
+ int gpu_texture_correction_enabled(void) {
+     return s_texture_correction_enabled;
++}
++
++/* Arm/disarm the view census. Allocation failure of the view payload fails
++ * closed (census stays off). Disarming re-derives the transport from the
++ * user's own geometry/texture/NCLIP modes, which are never changed here. */
++void gpu_view_census_set(int enabled) {
++    int want = enabled ? 1 : 0;
++    pgxp_set_view_payload(want);
++    if (want && !pgxp_view_payload()) want = 0;
++    s_view_census = want;
++    pgxp_view_census_set(want);
++    gpu_pgxp_rederive_enable();
++}
++
++int gpu_view_census_enabled(void) {
++    return s_view_census;
+ }
+ 
+ uint32_t gpu_texture_correction_hits(void) {
+@@ -3372,7 +3393,24 @@
+ /* Enable perspective UVs only when every position word came from an exact
+  * SWC2 projection store at that same DMA packet address. This preserves the
+  * association through ordering-table reordering and rejects CPU-built UI. */
++/* remix-provenance v2: one textured primitive's GP0 vertex words -> view
++ * census (DATAFLOW only). Reads gp0 state; touches no renderer state. */
++static void view_census_gp0(int kind, const int *idx, int n) {
++    uint32_t words[4], addrs[4];
++    for (int i = 0; i < n; i++) {
++        words[i] = gp0_cmd_buf[idx[i]];
++        addrs[i] = (gp0_cmd_source_addr == 0xFFFFFFFFu)
++                       ? 0xFFFFFFFFu
++                       : gp0_cmd_source_addr + (uint32_t)idx[i] * 4u;
++    }
++    pgxp_view_census_prim(kind, words, addrs, n);
++}
++
+ static void prepare_texture_triangle(int i0, int i1, int i2) {
++    if (s_view_census) {
++        const int ti[3] = { i0, i1, i2 };
++        view_census_gp0(PGXP_VIEW_CENSUS_TRI, ti, 3);
++    }
+     gr_set_perspective_triangle(0, 0.0f, 0.0f, 0.0f);
+     s_texcorr.attempts++;
+     if (!s_texture_correction_enabled) { s_texcorr.no_correction++; return; }
+@@ -3857,6 +3895,10 @@
+     if (draw_area_out_bbox(vx, vy, 4)) return;
+ 
+     setup_textured_draw(color24, semi_trans, raw_texture);
++    if (s_view_census) {                 /* before the rect fast path */
++        const int qi[4] = { 1, 3, 5, 7 };
++        view_census_gp0(PGXP_VIEW_CENSUS_QUAD, qi, 4);
++    }
+ 
+     if (vy[0] == vy[1] && vy[2] == vy[3] &&
+         vx[0] == vx[2] && vx[1] == vx[3] &&
+@@ -3986,6 +4028,10 @@
+     if (draw_area_out_bbox(vx, vy, 4)) return;
+ 
+     gr_set_semi_transparency(semi_trans, (int)semi_transparency);
++    if (s_view_census) {
++        const int qi[4] = { 1, 4, 7, 10 };
++        view_census_gp0(PGXP_VIEW_CENSUS_QUAD, qi, 4);
++    }
+     if (!rej_a) {
+         int32_t tx[3] = { vx[0], vx[1], vx[2] };
+         int32_t ty[3] = { vy[0], vy[1], vy[2] };

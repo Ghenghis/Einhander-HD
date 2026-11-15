@@ -1,0 +1,219 @@
+{
+  "observed_utc": "2026-11-14T22:04:48.908110+00:00",
+  "review": "SOURCE CLEAR for one fresh explicitly granted BUILD compile/link only; NOT RUN",
+  "driver_sha256": "45a73ed13b58cbbff8f3164260c7d0f735736206c4a7223bd27f45ad72161003",
+  "repro_manifest": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-repro-2200\\manifest.json",
+  "repro_manifest_sha256": "af6fa0329b243e7d9e490431069ac8c0c6edba5107206da94dfe134db1e84b0c",
+  "provenance_deviation": "Repro fa5 watchdog ran in place after prehash, not from copied watchdog despite grant wording. Actual Job receipt retained; no copied-wrapper claim. BUILD grant must specify verified exclusive copied fa5 watchdog.",
+  "repro_objects": {
+    "main": {
+      "actual": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3",
+      "baseline": "911b117aebb45d0414d54057bdde273aac43219dfafeecb08bacaf496d337dd3"
+    },
+    "debug": {
+      "actual": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6",
+      "baseline": "1947bca3cd81af078289a46a4e6d7017f1296edb4c93e650b30ec8f186ddf8b6"
+    }
+  },
+  "repro_source_closure": {
+    "main": 1142,
+    "debug": 403,
+    "unique_current_rehashed": 1201,
+    "bytes": 17958336,
+    "mismatches": []
+  },
+  "compiler_current_checks": {
+    "clang.exe": {
+      "actual": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+    },
+    "clang++.exe": {
+      "actual": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85",
+      "expected": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+    },
+    "clang-22.exe": {
+      "actual": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1",
+      "expected": "870a1393b07b9debf407cfdad19f6d4680da32a213c33d0a6eb6ae7e8c8171a1"
+    },
+    "libclang-cpp.dll": {
+      "actual": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e",
+      "expected": "df189bb471795cd9c65958374d75356578c383ecb198bab1c248f281dfab3d6e"
+    },
+    "libLLVM-22.dll": {
+      "actual": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+      "expected": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af"
+    }
+  },
+  "retained_link_inputs_current": {
+    "count": 153,
+    "mismatch": []
+  },
+  "output": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206",
+  "output_already_exists": false,
+  "driver_child_argv": [
+    "C:/Python314/python.exe",
+    "-I",
+    "-B",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\proposals\\v69-audio-integration\\build_v69_audio.py",
+    "--grant-id",
+    "<NEW_BUILD_GRANT_ID>",
+    "--phase",
+    "build",
+    "--out",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206",
+    "--repro-manifest",
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-repro-2200\\manifest.json",
+    "--repro-manifest-sha256",
+    "af6fa0329b243e7d9e490431069ac8c0c6edba5107206da94dfe134db1e84b0c"
+  ],
+  "planned_compiler_link_children": [
+    {
+      "step": "build:main",
+      "argv": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-IC:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\include",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v58-frame-phases",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\include",
+        "-IC:\\github\\Einhander-wt\\upload-index-hitch\\windows-x64\\psxrecomp\\runtime\\src",
+        "-DDEFAULT_DEBUG_PORT=4370",
+        "-DFMT_HEADER_ONLY=1",
+        "-DLNG_SDL3=1",
+        "-DNOMINMAX",
+        "-DPSX_BUNDLED_BIOS_PATH=\"bios/openbios.bin\"",
+        "-DPSX_DEFAULT_BIOS_PATH=\"bios/SCPH1001.BIN\"",
+        "-DPSX_DEFAULT_GAME_CONFIG_PATH=\"game.toml\"",
+        "-DPSX_ENABLE_BLOCK_CYCLES=1",
+        "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+        "-DPSX_HAS_GAME_CODEGEN=1",
+        "-DPSX_HAS_GAME_DISPATCH=1",
+        "-DPSX_HAS_RBENGINE_SNAP=1",
+        "-DPSX_HAS_SETUP_WIZARD=1",
+        "-DPSX_HAVE_VULKAN=1",
+        "-DPSX_MAX_PLAYERS=1",
+        "-DPSX_NATIVE_BUILD=1",
+        "-DPSX_SDL3=1",
+        "-DPSX_WINDOW_TITLE=\"Einhander Recompiled\"",
+        "-DRECOMP_LAUNCHER",
+        "-DRECOMP_UI_ENABLE_MODS=1",
+        "-DRECOMP_UI_PSX_HAS_REWIND=1",
+        "-DSDL_MAIN_HANDLED",
+        "-O3",
+        "-DNDEBUG",
+        "-std=gnu++17",
+        "-fzero-initialized-in-bss",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/src",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/fmt/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/toml11",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/lib/retcomm-rbengine/include",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/common",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui/backends",
+        "-IC:/VulkanSDK/1.4.363.0/Include",
+        "-IC:/github/Einhander/windows-x64/build-ss8c/psx-runtime_vkgen",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/host",
+        "-isystem",
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/deps/include",
+        "-MD",
+        "-MF",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\main.cpp.obj.d",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\main.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\main.cpp.obj"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "cap_s": 65
+    },
+    {
+      "step": "build:debug",
+      "argv": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang.exe",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\include",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\src",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\include",
+        "-DDEFAULT_DEBUG_PORT=4370",
+        "-DFMT_HEADER_ONLY=1",
+        "-DLNG_SDL3=1",
+        "-DNOMINMAX",
+        "-DPSX_BUNDLED_BIOS_PATH=\"bios/openbios.bin\"",
+        "-DPSX_DEFAULT_BIOS_PATH=\"bios/SCPH1001.BIN\"",
+        "-DPSX_DEFAULT_GAME_CONFIG_PATH=\"game.toml\"",
+        "-DPSX_ENABLE_BLOCK_CYCLES=1",
+        "-DPSX_HAS_CODEGEN_SETUP_HOST=1",
+        "-DPSX_HAS_GAME_CODEGEN=1",
+        "-DPSX_HAS_GAME_DISPATCH=1",
+        "-DPSX_HAS_RBENGINE_SNAP=1",
+        "-DPSX_HAS_SETUP_WIZARD=1",
+        "-DPSX_HAVE_VULKAN=1",
+        "-DPSX_MAX_PLAYERS=1",
+        "-DPSX_NATIVE_BUILD=1",
+        "-DPSX_SDL3=1",
+        "-DPSX_WINDOW_TITLE=\"Einhander Recompiled\"",
+        "-DRECOMP_LAUNCHER",
+        "-DRECOMP_UI_ENABLE_MODS=1",
+        "-DRECOMP_UI_PSX_HAS_REWIND=1",
+        "-DSDL_MAIN_HANDLED",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/src",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/fmt/include",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/recompiler/lib/toml11",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/lib/retcomm-rbengine/include",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/common",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui",
+        "-IC:/github/Einhander/windows-x64/recomp-ui/src/third_party/imgui/backends",
+        "-IC:/VulkanSDK/1.4.363.0/Include",
+        "-IC:/github/Einhander/windows-x64/build-ss8c/psx-runtime_vkgen",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/host",
+        "-isystem",
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/deps/include",
+        "-O3",
+        "-DNDEBUG",
+        "-fzero-initialized-in-bss",
+        "-IC:/github/Einhander/windows-x64/psxrecomp/runtime/src",
+        "-IC:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v47-attrib",
+        "-MD",
+        "-MF",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\debug_server.c.obj.d",
+        "-c",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\src\\debug_server.c",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\obj\\debug_server.c.obj"
+      ],
+      "cwd": "C:\\github\\Einhander",
+      "cap_s": 20
+    },
+    {
+      "step": "build:link",
+      "argv": [
+        "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang++.exe",
+        "-O3",
+        "-static",
+        "-Wl,--stack,67108864",
+        "@C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\Einhander_Recompiled.v69.rsp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\v69-build-2206\\Einhander_Recompiled.exe"
+      ],
+      "cwd": "C:\\github\\Einhander\\windows-x64\\build-ss8c",
+      "cap_s": 15
+    }
+  ],
+  "required_envelope": "Fresh literal copied fa5 watchdog command; CPU15 or explicit separately reviewed CPU, BelowNormal, threads1, Job1024MiB, outer120s; inner total105s. No GPU/game/device/install.",
+  "acceptance": [
+    "Both complete changed translation units compile rc0 before inner caps; source copies match8022b148/b50aef2a/c84258e1.",
+    "Depfile closures exactly match repro hashes except explicitly changed source/header paths; combined copied header actually included by main only.",
+    "Exactly two objects replaced in pinned v68 response; all153 retained link inputs match; private executable links rc0 and hash/bytes recorded.",
+    "Fresh outer receipt rc0 child0, Job readback1024MiB/affinity/BelowNormal, timeoutfalse, all owned PID+creation identities gone/tree absent.",
+    "No claim of full-source rebuild, installed/live audio correctness or audible quality."
+  ],
+  "warnings": "Repro has inherited pgxp.h nested block-comment warning in both TUs, not an audio semantic failure. New BUILD warnings unknown until actual compile.",
+  "limitations": [
+    "Compiler files are prehashed then executed by mutable path; driver explicitly discloses this TOCTOU limitation.",
+    "Driver depends on outer kill-on-close Job for compiler grandchildren and bounded timeout cleanup.",
+    "Source review finds no additional semantic blocker in telemetry-only patch; runtime locking/PCM/listening acceptance remains unrun."
+  ]
+}

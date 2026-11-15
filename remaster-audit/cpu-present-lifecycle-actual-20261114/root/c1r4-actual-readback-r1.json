@@ -1,0 +1,175 @@
+{
+  "at_utc": "2026-11-14T23:16:43.054972+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "4315989E/dry-run": {
+      "envelope_sha256": "ccfa087639fc45ebcb849a6eb5dd0503e2a01f04694d90538d68217b82fbbcb3",
+      "result_sha256": "25d463ff76e4110f5235a26301381816ab60fd3320fca67618ab0fb443274316",
+      "elapsed_s": 1.642,
+      "peak_job_memory_bytes": 249827328,
+      "changed_pixels": 12,
+      "candidate": null,
+      "art_admitted": false
+    },
+    "4315989E/write": {
+      "envelope_sha256": "ee9ef31c6dbdd7a475b12d0a4dd6ff6d61a9b4a569a9e8de1032fee20e3553fe",
+      "result_sha256": "5a571150a91eb4621c8e4011bad89ca61f8f00a1ce74454203bd3f3034a53351",
+      "elapsed_s": 1.694,
+      "peak_job_memory_bytes": 251039744,
+      "changed_pixels": 12,
+      "candidate": {
+        "path": "1AD90FC9-4315989E.c1r4.png",
+        "sha256": "2c415f4e9d7d2ac0cc5b6f7833189cc7c1707b998c7734e928c6742851c258e4"
+      },
+      "art_admitted": false
+    },
+    "02491337/dry-run": {
+      "envelope_sha256": "13e7fe82c15219da829f9d8b18784c5dde6080c8fac0496a7912a69308016931",
+      "result_sha256": "46d72d58dfebd0f7e7d93ff44b0a2f1fa904b2dc0894eba20034f55147008aa5",
+      "elapsed_s": 1.431,
+      "peak_job_memory_bytes": 250990592,
+      "changed_pixels": 422,
+      "candidate": null,
+      "art_admitted": false
+    },
+    "02491337/write": {
+      "envelope_sha256": "b7b2a92366ddd955d3936eb7881b129723ae1f19db5d9328a15fdb208d503e9d",
+      "result_sha256": "9cb29c029f07814ef64a5ba0a743240a214f8b06c2f1e95ad04ddf7cd7cbd692",
+      "elapsed_s": 1.667,
+      "peak_job_memory_bytes": 251084800,
+      "changed_pixels": 422,
+      "candidate": {
+        "path": "1AD90FC9-02491337.c1r4.png",
+        "sha256": "8eee400475a66139df38d19989914bf9a205ebf9cf8163e35e56ff70a7eb9eec"
+      },
+      "art_admitted": false
+    },
+    "79902A90/dry-run": {
+      "envelope_sha256": "95811f33d85fa366aa1eaa070228cc975b2ef7c9af1ad7a817e3c59a641bf875",
+      "result_sha256": "9f9a527ca6e5506e9e6d6ddf8b7d147cfcd90b9218a8796e99637505fcacf282",
+      "elapsed_s": 1.523,
+      "peak_job_memory_bytes": 251052032,
+      "changed_pixels": 422,
+      "candidate": null,
+      "art_admitted": false
+    },
+    "79902A90/write-declined": {
+      "envelope_sha256": "278f227f6e55dd48b56b9188699c122cca4cbf8bae29f11eecbd695166952b86",
+      "cpu_pct": 71.4,
+      "child_started": false,
+      "write_completed": false,
+      "retried": false
+    }
+  },
+  "pins": {
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\ui_c1_stroke_void_r4.py": "4b21da8314d688fb36c1d2cc982bb824fef91b663b8cd1a66ada3c36e86c30a0",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-dry-run-4315989E-20261114T231259Z-envelope.json": "ccfa087639fc45ebcb849a6eb5dd0503e2a01f04694d90538d68217b82fbbcb3",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231302Z\\result.json": "25d463ff76e4110f5235a26301381816ab60fd3320fca67618ab0fb443274316",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231302Z\\review_1AD90FC9-4315989E_roiA_1x.png": "0b0deed16f6af1e69e5ab63733f8004c92e9dd308269c314a511fe2746feb2e1",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231302Z\\review_1AD90FC9-4315989E_roiB_1x.png": "35957dcd6c30f20d7cecd737713b510f2116f0c5f45daf6d63471a070db8996b",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231302Z\\review_1AD90FC9-4315989E_roiC_1x.png": "1af08e94995292b479ebad94651096e44e13480d7e501e364f96346930c7b295",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-write-4315989E-20261114T231343Z-envelope.json": "ee9ef31c6dbdd7a475b12d0a4dd6ff6d61a9b4a569a9e8de1032fee20e3553fe",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231345Z\\result.json": "5a571150a91eb4621c8e4011bad89ca61f8f00a1ce74454203bd3f3034a53351",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231345Z\\review_1AD90FC9-4315989E_roiA_1x.png": "0b0deed16f6af1e69e5ab63733f8004c92e9dd308269c314a511fe2746feb2e1",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231345Z\\review_1AD90FC9-4315989E_roiB_1x.png": "35957dcd6c30f20d7cecd737713b510f2116f0c5f45daf6d63471a070db8996b",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231345Z\\review_1AD90FC9-4315989E_roiC_1x.png": "1af08e94995292b479ebad94651096e44e13480d7e501e364f96346930c7b295",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231345Z\\1AD90FC9-4315989E.c1r4.png": "2c415f4e9d7d2ac0cc5b6f7833189cc7c1707b998c7734e928c6742851c258e4",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-dry-run-02491337-20261114T231400Z-envelope.json": "13e7fe82c15219da829f9d8b18784c5dde6080c8fac0496a7912a69308016931",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231402Z\\result.json": "46d72d58dfebd0f7e7d93ff44b0a2f1fa904b2dc0894eba20034f55147008aa5",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231402Z\\review_1AD90FC9-02491337_roiA_1x.png": "d7e2534105adcddf14722b6ed0236225f51a782a989942af3acff598bcc3f1c9",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231402Z\\review_1AD90FC9-02491337_roiB_1x.png": "166c9cbd218731c04102c1cd0019da48c863589137898c156c10339c548fa9c4",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231402Z\\review_1AD90FC9-02491337_roiC_1x.png": "19b93999769427bdf19da99d4e5159321e74b11251b32995f08a201e980e6c9d",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-write-02491337-20261114T231411Z-envelope.json": "b7b2a92366ddd955d3936eb7881b129723ae1f19db5d9328a15fdb208d503e9d",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231414Z\\result.json": "9cb29c029f07814ef64a5ba0a743240a214f8b06c2f1e95ad04ddf7cd7cbd692",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231414Z\\review_1AD90FC9-02491337_roiA_1x.png": "d7e2534105adcddf14722b6ed0236225f51a782a989942af3acff598bcc3f1c9",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231414Z\\review_1AD90FC9-02491337_roiB_1x.png": "166c9cbd218731c04102c1cd0019da48c863589137898c156c10339c548fa9c4",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231414Z\\review_1AD90FC9-02491337_roiC_1x.png": "19b93999769427bdf19da99d4e5159321e74b11251b32995f08a201e980e6c9d",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231414Z\\1AD90FC9-02491337.c1r4.png": "8eee400475a66139df38d19989914bf9a205ebf9cf8163e35e56ff70a7eb9eec",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-dry-run-79902A90-20261114T231428Z-envelope.json": "95811f33d85fa366aa1eaa070228cc975b2ef7c9af1ad7a817e3c59a641bf875",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231431Z\\result.json": "9f9a527ca6e5506e9e6d6ddf8b7d147cfcd90b9218a8796e99637505fcacf282",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231431Z\\review_1AD90FC9-79902A90_roiA_1x.png": "993836f05f0eec70bb59db31ccab55e90e0276bcd0c1442bba268e26f2e9780e",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231431Z\\review_1AD90FC9-79902A90_roiB_1x.png": "b26a5a834fb8e6548bd9a30acd256d9887ead517eea57934f0e3200eb1daa198",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\c1-stroke-void\\runs\\20261114T231431Z\\review_1AD90FC9-79902A90_roiC_1x.png": "67fdf126cc3baa15e058bd49ff1feb93a28696b32be3afb21aea5248e3f1ea56",
+    "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\receipts\\C1r4-write-79902A90-20261114T231440Z-envelope.json": "278f227f6e55dd48b56b9188699c122cca4cbf8bae29f11eecbd695166952b86"
+  },
+  "known_identities": [
+    {
+      "label": "4315989E/dry-run/wrapper",
+      "pid": 48576,
+      "creation_unix": 1794697979.6793425,
+      "identity_absent": true
+    },
+    {
+      "label": "4315989E/dry-run/child",
+      "pid": 44104,
+      "creation_unix": 1794697980.7878275,
+      "identity_absent": true
+    },
+    {
+      "label": "4315989E/write/wrapper",
+      "pid": 41232,
+      "creation_unix": 1794698023.7499733,
+      "identity_absent": true
+    },
+    {
+      "label": "4315989E/write/child",
+      "pid": 48120,
+      "creation_unix": 1794698024.8618104,
+      "identity_absent": true
+    },
+    {
+      "label": "02491337/dry-run/wrapper",
+      "pid": 46156,
+      "creation_unix": 1794698040.3427813,
+      "identity_absent": true
+    },
+    {
+      "label": "02491337/dry-run/child",
+      "pid": 17448,
+      "creation_unix": 1794698041.4560845,
+      "identity_absent": true
+    },
+    {
+      "label": "02491337/write/wrapper",
+      "pid": 37456,
+      "creation_unix": 1794698051.3765695,
+      "identity_absent": true
+    },
+    {
+      "label": "02491337/write/child",
+      "pid": 13032,
+      "creation_unix": 1794698052.4972014,
+      "identity_absent": true
+    },
+    {
+      "label": "79902A90/dry-run/wrapper",
+      "pid": 29876,
+      "creation_unix": 1794698068.799732,
+      "identity_absent": true
+    },
+    {
+      "label": "79902A90/dry-run/child",
+      "pid": 30412,
+      "creation_unix": 1794698069.9309533,
+      "identity_absent": true
+    },
+    {
+      "label": "79902A90/write-declined/wrapper",
+      "pid": 49636,
+      "creation_unix": 1794698080.6570446,
+      "identity_absent": true
+    }
+  ],
+  "successful_children": 5,
+  "declined_before_child": 1,
+  "new_private_candidates": 2,
+  "new_candidate_pixels_total": 434,
+  "previous_r3_pixels_included_in_total": 240,
+  "remaining_write_pixels": 422,
+  "tests_replayed": false,
+  "image_processing_run": false,
+  "game_launched": false,
+  "gpu_used": false,
+  "installed": false,
+  "art_admitted": false
+}

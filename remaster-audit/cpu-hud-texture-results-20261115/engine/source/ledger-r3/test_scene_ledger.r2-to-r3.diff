@@ -1,0 +1,27 @@
+1,2c1,2
+< // CPU fixture for scene_ledger r2 footprint + draw-area queries (claude-einhander). SOURCE ONLY until a grant naming
+< // the CPU runs it through build_scene_ledger_fixture.r2.py. Synthetic GP0 words only; no GL, SDK, game. Every CHECK
+---
+> // CPU fixture for scene_ledger r3 footprint + draw-area queries (claude-einhander). SOURCE ONLY until a grant naming
+> // the CPU runs it through build_scene_ledger_fixture.r3.py. Synthetic GP0 words only; no GL, SDK, game. Every CHECK
+7c7
+< #include "scene_ledger.r2.h"
+---
+> #include "scene_ledger.r3.h"
+178a179,186
+>     {   // r3: identity mapping is exactly 1; any other nonzero value is unknown for draws (r2 accepted 2)
+>         SceneLedgerState s2 = s0;
+>         s2.native_screen_mapping = 2;
+>         const uint32_t tri[4] = {0x20000000u, V(0, 0), V(5, 0), V(0, 5)};
+>         const uint32_t fill[3] = {0x02000000u, XY(0, 0), XY(16, 16)};
+>         const Fp d2 = fp(tri, 4, &s2), f2 = fp(fill, 3, &s2);
+>         CHECK(d2.known == 0 && d2.count == 0 && f2.known == 1 && f2.count == 1);   // fills are not draws
+>     }
+249c257
+<     std::printf("{\"fixture\":\"scene_ledger\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"passed\":%s}\n",
+---
+>     std::printf("{\"fixture\":\"scene_ledger\",\"revision\":\"r3\",\"checks\":%d,\"failures\":%d,\"passed\":%s}\n",
+254c262
+<         std::fprintf(fo, "{\"fixture\":\"scene_ledger\",\"revision\":\"r2\",\"checks\":%d,\"failures\":%d,\"passed\":%s,"
+---
+>         std::fprintf(fo, "{\"fixture\":\"scene_ledger\",\"revision\":\"r3\",\"checks\":%d,\"failures\":%d,\"passed\":%s,"

@@ -1,0 +1,106 @@
+{
+ "v2_receipt_sha256": "a1f7234ffb91aef706d0561bcf55a087cd36081c04b34ae1d53a34c239e106d3",
+ "bases": {
+  "include/pgxp.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include\\pgxp.h",
+   "sha256": "a9b658729d4f60f5d7b2a58e68c449a3c303b7e4f8d789db81e908b53c84108e"
+  },
+  "src/pgxp.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp.cpp",
+   "sha256": "c46cbe4f25a9e39404a90140d022803762f407d2d64e8931cf95f3c906fc087b"
+  },
+  "src/gte.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\gte.cpp",
+   "sha256": "1d6760582edd8625758053c127a0c234d213343846339dde7c0266e778da4216"
+  },
+  "src/gpu.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\gpu.c",
+   "sha256": "0175da5b631d64900218406f75fb3767779e71a8f25d50c6ab1e55258eb7215c"
+  },
+  "include/gpu.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\include\\gpu.h",
+   "sha256": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405"
+  },
+  "src/debug_server.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\debug_server.c",
+   "sha256": "6942a1efd49a068e38b83de057095a736554e1ecd5b9a0b72e5f184568ccbc6e"
+  },
+  "src/pgxp_view_census.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v2\\src\\pgxp_view_census.cpp",
+   "sha256": "ab91ed318d424599564022a7bb88f8c8250415f45ff7eda74ab4569e6d0f64b0"
+  }
+ },
+ "outputs": {
+  "include/pgxp.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\include\\pgxp.h",
+   "sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+   "changed_vs_v2": true,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\pgxp.h.diff",
+    "sha256": "e40f9ad323a8a1bdfcc4a7501ad4e319777a57686650f524b70d0588ede1aad9",
+    "lines": 235
+   }
+  },
+  "src/pgxp.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\src\\pgxp.cpp",
+   "sha256": "c46cbe4f25a9e39404a90140d022803762f407d2d64e8931cf95f3c906fc087b",
+   "changed_vs_v2": false,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\pgxp.cpp.diff",
+    "sha256": "4ebaa4c9a10782e27bac93f0054da75351337c7d9a0d0a8402c607d351d70020",
+    "lines": 448
+   }
+  },
+  "src/gte.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\src\\gte.cpp",
+   "sha256": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849",
+   "changed_vs_v2": true,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\gte.cpp.diff",
+    "sha256": "5078833eb8fc9ad446629bb1c692a67f2eb7e585fa9abc6777df67435bf3c693",
+    "lines": 169
+   }
+  },
+  "src/gpu.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\src\\gpu.c",
+   "sha256": "0175da5b631d64900218406f75fb3767779e71a8f25d50c6ab1e55258eb7215c",
+   "changed_vs_v2": false,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\gpu.c.diff",
+    "sha256": "1ecaad399db1c8a869790a2ba212faabfc9a7e049ff7859ace2b438f15776dc3",
+    "lines": 93
+   }
+  },
+  "include/gpu.h": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\include\\gpu.h",
+   "sha256": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405",
+   "changed_vs_v2": false,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\gpu.h.diff",
+    "sha256": "151cb201f69614ee1bf766614fb350cfd2db06bcaef2a1ff52f5409596f699a0",
+    "lines": 15
+   }
+  },
+  "src/debug_server.c": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\src\\debug_server.c",
+   "sha256": "cb156ca0c511450a4cf2a628f83f57cea66a3f204d7596945a4c85e6e29a475b",
+   "changed_vs_v2": true,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\debug_server.c.diff",
+    "sha256": "144828a51db8e541ce56ce0b13a1bdb781dff19cf7d6680c189e5df3c216d7de",
+    "lines": 132
+   }
+  },
+  "src/pgxp_view_census.cpp": {
+   "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\src\\pgxp_view_census.cpp",
+   "sha256": "9dbfcf1c8a5fead056fcd366a7f98b9a15bb5518233f64a836e94a45f49deb88",
+   "changed_vs_v2": true,
+   "diff_vs_canonical": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl-v3\\diffs\\pgxp_view_census.cpp.diff",
+    "sha256": "2c1ecd00cb483890f0d49f91721da791ec520b527e251db267e3371f88de14dd",
+    "lines": 146
+   }
+  }
+ },
+ "generator_sha256": "64e2b7fcb35bb68d84f57e9f723ca3c3190b3db7c9a78a3944bde090cf32fcb8"
+}

@@ -1,0 +1,12 @@
+# Einhander active queue — November 14/15, 2026
+
+ACTIVE / INCOMPLETE. [Current handoff](Codex-HANDOFF.md), [latest CPU results](../docs/CPU-HUD-TEXTURE-RESULTS-20261115.md), [seven-stage scope](../docs/RUNTIME-CONTINUATION-20261113.md). Component passes are not project completion. Prior queues preserved under the handoff's private history.
+
+1. Publish actual HUD4 (two FAIL/two PASS, one blank), S45r5FAIL21/24 and private P1r2 build34e5d8f5, exact source/evidence/remaining gaps. Remote still3669 until delivery proof. No broad root staging/reset/stash.
+2. UI: separately granted short private E0rim253b and44Crim2d3d candidates; current source clear, no art/install/live claim. Review other11-palette HUD audit4c9c, no full HUD coverage from four keys. Player/enemy menu compiled, live L5-L7/E1-E6 unrun; realistic skins/PBR/factory/library/persistence/zero-strength UX unresolved.
+3. Primary: actual ledgerR3f08a and glue closure r3 11c2 after exact fresh coordinator CPU grants. Do not run superseded b057. Continue opt-in bounded capture scheduler and material identity contract while waiting. No native suppression/G4/SDKcompositor/RT/DLSS acceptance.
+4. S67: fix R-A d31e helper/CLUT provenance and durable error receipt, R-B ae13 pre-import/C return checks/readback; then one region measurement and one default E candidate under separate grants. Preserve audit4f39+erratumecf1, K provenance uncertainty, missingCLUT distinction. No total remaining sign count/full coverage claim.
+5. S45: real-key private diagnostic preview with strict failures and source/input/rejected/r5 crops. R6 gate relaxations leave candidate pixels unchanged; no false quality clearance. All prior failures/refusals remain.
+6. S23: review recorderR3 6aed targeted delta and new controls; separate read-only observer policy/canonicalguard unchanged. No ordinary route/kill/replay or BOUND skins from assisted D1metadata. Support: SDK black-output/indices/lifecycle source diagnosis and peer deadline source; no GPU without coordinator.
+7. Coordinator alone: fresh actual raw37c menu/audio/game grant after current resource/GPU ownership. Preserve R7 controlled startupABORT/failurephase UNKNOWN and R11 nochild68.2CPU refusal. Root no game/GPU/device/globalsettings/Ddrive.
+8. All seven-stage/art/live audio/menu/realistic skin/RT-DLSS/installation/rollback acceptance remains. Read/quietACK inbox and durable queue, refresh own work presence, preserve checkpoint. Metadata monitor9712 bound01:10:14UTC proves monitoring only; actual model continues available independent work.

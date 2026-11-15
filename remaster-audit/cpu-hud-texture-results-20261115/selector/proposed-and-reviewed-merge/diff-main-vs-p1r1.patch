@@ -1,0 +1,254 @@
+--- /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/skin-selector-map/p1r2-enemy-channel/base/main.p1r1-994af594.cpp	2026-11-14 17:16:48.523634200 -0700
++++ /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/skin-selector-map/p1r2-enemy-channel/main.cpp	2026-11-14 17:19:47.059804100 -0700
+@@ -6150,14 +6150,20 @@
+  * The one-line panel is an existing host_osd toast line (no new renderer
+  * or compositor code). Apply uses the validated live material API on this
+  * emulation thread, the same between-draw safe point the debug server's
+- * skin_material command uses: the player profile changes, the current player
+- * strength is kept, and the enemy channel, diagnostic scopes and accent
+- * preservation are passed as "unchanged" (NULL / NULL / -1). A rejected
++ * skin_material command uses. P1 r2: two rows (player, enemy); one atomic
++ * configure sets both profiles, each channel keeps its own strength, and the
++ * diagnostic scopes and accent preservation are passed as "unchanged"
++ * (NULL / NULL / -1). A rejected
+  * apply changes nothing; the menu stays open with a "not available" note and
+  * the exact reason goes to stderr. */
+-static int player_color_menu_index = 0;          /* 0 = stock */
+-static int player_color_menu_current = 0;        /* active index at open */
+-static int player_color_menu_strength = 100;     /* kept, never edited here */
++/* P1 r2: two rows, 0 = player channel, 1 = enemy channel. Each row keeps its
++ * own selection, its active-at-open index and its strength (kept, never edited
++ * here). Up/Down switch rows; Left/Right change the active row. */
++static int player_color_menu_row = 0;
++static int player_color_menu_index[2] = {0, 0};      /* 0 = stock */
++static int player_color_menu_current[2] = {0, 0};    /* active index at open */
++static int player_color_menu_strength[2] = {100, 100};
++static int player_color_pad_prev_row = 0;
+ /* Pad edge state, seeded at open so a button already held (e.g. fire on
+  * Cross/A) never applies or closes the menu by itself. */
+ static int player_color_pad_prev_apply = 0;
+@@ -6228,15 +6234,18 @@
+ static void player_color_menu_show(void) {
+     char name[48];
+     char line[64];
+-    player_color_label(gl_renderer_skin_profile_id(player_color_menu_index),
++    const int r = player_color_menu_row;
++    player_color_label(gl_renderer_skin_profile_id(player_color_menu_index[r]),
+                        name, sizeof(name));
+-    /* host_osd lines hold 63 chars; longest label is 18 (55 with "*"). A
+-     * note (e.g. a rejected apply) replaces the key hint on the same line. */
+-    snprintf(line, sizeof(line), "Player color: < %s%s >  %s",
+-             player_color_menu_index == player_color_menu_current ? "*" : "",
++    /* host_osd lines hold 63 chars: "Player color: < *" (17) + label <= 18 +
++     * " >  " (4) + hint/note <= 23 = 62. Only the active row is shown; the
++     * hint names the row switch. */
++    snprintf(line, sizeof(line), "%s color: < %s%s >  %s",
++             r == 0 ? "Player" : "Enemy",
++             player_color_menu_index[r] == player_color_menu_current[r] ? "*" : "",
+              name,
+              player_color_menu_note[0] ? player_color_menu_note
+-                                       : "Enter apply  Esc");
++                                       : "Up/Dn row  Enter  Esc");
+     /* A toast, not the status line: host_osd draws a visible toast instead of
+      * status, so any earlier toast would otherwise cover the menu. The newest
+      * toast replaces the previous one; re-pushed before it can expire. */
+@@ -6253,21 +6262,25 @@
+     host_osd_push(msg ? msg : "Player color closed", 1200);
+ }
+ 
+-static void player_color_pad_sample(int *apply, int *cancel, int *dir) {
++static void player_color_pad_sample(int *apply, int *cancel, int *dir, int *row) {
+     SDL_GameController *h = g_players[0].handle;
+-    *apply = *cancel = *dir = 0;
++    *apply = *cancel = *dir = *row = 0;
+     if (h) {
+         const Sint16 lx =
+             SDL_GameControllerGetAxis(h, SDL_CONTROLLER_AXIS_LEFTX);
+         const int dz = 16000;
++        /* r2: left/right (and the stick) step the active row; D-pad up/down
++         * switch rows (edge-triggered by the caller). */
+         if (SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_LEFT) ||
+-            SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_UP) ||
+             lx < -dz)
+             *dir = -1;
+         else if (SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) ||
+-                 SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_DOWN) ||
+                  lx > dz)
+             *dir = +1;
++        if (SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_UP))
++            *row = -1;
++        else if (SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_DPAD_DOWN))
++            *row = +1;
+         *apply = SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_A) ? 1 : 0;
+         *cancel = SDL_GameControllerGetButton(h, SDL_CONTROLLER_BUTTON_B) ? 1 : 0;
+     }
+@@ -6290,20 +6303,29 @@
+         return;
+     }
+     count = gl_renderer_skin_profile_count();
+-    player_color_menu_current = 0;
+-    for (i = 0; i < count; i++) {
+-        const char *id = gl_renderer_skin_profile_id(i);
+-        if (id && st.player.profile && std::strcmp(id, st.player.profile) == 0) {
+-            player_color_menu_current = i;
+-            break;
++    {
++        const char *active[2] = {st.player.profile, st.enemy.profile};
++        int ch;
++        for (ch = 0; ch < 2; ch++) {
++            player_color_menu_current[ch] = 0;
++            for (i = 0; i < count; i++) {
++                const char *id = gl_renderer_skin_profile_id(i);
++                if (id && active[ch] && std::strcmp(id, active[ch]) == 0) {
++                    player_color_menu_current[ch] = i;
++                    break;
++                }
++            }
++            player_color_menu_index[ch] = player_color_menu_current[ch];
+         }
++        player_color_menu_strength[0] = st.player.strength_percent;
++        player_color_menu_strength[1] = st.enemy.strength_percent;
+     }
+-    player_color_menu_index = player_color_menu_current;
+-    player_color_menu_strength = st.player.strength_percent;
++    player_color_menu_row = 0;
+     {
+         int held = 0;
+         player_color_pad_sample(&player_color_pad_prev_apply,
+-                                &player_color_pad_prev_cancel, &held);
++                                &player_color_pad_prev_cancel, &held,
++                                &player_color_pad_prev_row);
+         player_color_pad_wait_neutral = held != 0;
+         player_color_pad_held_dir = 0;
+     }
+@@ -6317,9 +6339,20 @@
+     const int count = gl_renderer_skin_profile_count();
+     if (!player_color_menu_open || count <= 0)
+         return; /* never re-show (or mutate) a closed menu */
+-    player_color_menu_index = (player_color_menu_index + delta) % count;
+-    if (player_color_menu_index < 0)
+-        player_color_menu_index += count;
++    {
++        int *ix = &player_color_menu_index[player_color_menu_row];
++        *ix = (*ix + delta) % count;
++        if (*ix < 0)
++            *ix += count;
++    }
++    player_color_menu_note[0] = 0;
++    player_color_menu_show();
++}
++
++static void player_color_menu_switch_row(void) {
++    if (!player_color_menu_open)
++        return;
++    player_color_menu_row ^= 1;
+     player_color_menu_note[0] = 0;
+     player_color_menu_show();
+ }
+@@ -6327,18 +6360,21 @@
+ static void player_color_menu_apply(void) {
+     GlSkinMaterialState st, out;
+     const char *why = NULL;
+-    const char *id = gl_renderer_skin_profile_id(player_color_menu_index);
++    const char *pid = gl_renderer_skin_profile_id(player_color_menu_index[0]);
++    const char *eid = gl_renderer_skin_profile_id(player_color_menu_index[1]);
+     char err[160];
+-    char name[48];
++    char pname[24];
++    char ename[24];
+     char msg[64];
+     if (!player_color_menu_open)
+         return; /* a queued Enter after close must never apply */
+-    if (!id) {
+-        player_color_menu_close("Player color unchanged");
++    if (!pid || !eid) {
++        player_color_menu_close("Colors unchanged");
+         return;
+     }
+-    if (player_color_menu_index == player_color_menu_current) {
+-        player_color_menu_close("Player color unchanged");
++    if (player_color_menu_index[0] == player_color_menu_current[0] &&
++        player_color_menu_index[1] == player_color_menu_current[1]) {
++        player_color_menu_close("Colors unchanged");
+         return;
+     }
+     /* Re-check readiness at apply time; the renderer can change state while
+@@ -6348,22 +6384,28 @@
+         return;
+     }
+     err[0] = 0;
+-    if (!gl_renderer_skin_material_configure(id, player_color_menu_strength,
+-                                             NULL, 0, NULL, NULL, -1,
++    /* r2: one atomic configure for both channels. Each channel keeps its own
++     * strength as read at open; diagnostic scopes and accents stay unchanged
++     * (NULL, NULL, -1). An unchanged channel is passed its current id, which
++     * the renderer accepts as a no-op for that channel. */
++    if (!gl_renderer_skin_material_configure(pid, player_color_menu_strength[0],
++                                             eid, player_color_menu_strength[1],
++                                             NULL, NULL, -1,
+                                              &out, err, (int)sizeof(err))) {
+         /* Atomic reject: nothing changed. Keep the menu open. */
+-        std::fprintf(stderr, "[player-color] apply '%s' rejected: %s\n", id,
++        std::fprintf(stderr, "[player-color] apply '%s'/'%s' rejected: %s\n", pid, eid,
+                      err[0] ? err : "unknown");
+         snprintf(player_color_menu_note, sizeof(player_color_menu_note),
+                  "not available  Esc");
+         player_color_menu_show();
+         return;
+     }
+-    player_color_label(id, name, sizeof(name));
+-    if (player_color_menu_strength > 0)
+-        snprintf(msg, sizeof(msg), "Player color: %s", name);
+-    else
+-        snprintf(msg, sizeof(msg), "Player color: %s (strength 0%%)", name);
++    player_color_label(pid, pname, sizeof(pname));
++    player_color_label(eid, ename, sizeof(ename));
++    /* "Player " (7) + 18 + " / Enemy " (9) + 18 = 52, + " (0% str)" (9) = 61 <= 63.
++     * The hint explains why a 0%-strength channel shows no visible change. */
++    snprintf(msg, sizeof(msg), "Player %s / Enemy %s%s", pname, ename,
++             (player_color_menu_strength[0] == 0 || player_color_menu_strength[1] == 0) ? " (0% str)" : "");
+     player_color_menu_close(msg);
+ }
+ 
+@@ -6382,9 +6424,12 @@
+     if (key == SDLK_ESCAPE || key == SDLK_BACKSPACE) {
+         if (!repeat)
+             player_color_menu_close("Player color closed");
+-    } else if (key == SDLK_LEFT || key == SDLK_UP ||
+-               key == SDLK_RIGHT || key == SDLK_DOWN) {
+-        const int delta = (key == SDLK_LEFT || key == SDLK_UP) ? -1 : +1;
++    } else if (key == SDLK_UP || key == SDLK_DOWN) {
++        /* r2: row switch, fresh presses only (repeats never flip rows). */
++        if (!repeat)
++            player_color_menu_switch_row();
++    } else if (key == SDLK_LEFT || key == SDLK_RIGHT) {
++        const int delta = (key == SDLK_LEFT) ? -1 : +1;
+         if (!repeat) {
+             player_color_fresh_dir_key = key;
+             player_color_menu_move(delta);
+@@ -6400,19 +6445,23 @@
+ }
+ 
+ static void player_color_menu_poll_pad(uint32_t now_ms) {
+-    int apply = 0, cancel = 0, dir = 0;
++    int apply = 0, cancel = 0, dir = 0, row = 0;
+     if (!player_color_menu_open)
+         return;
+-    player_color_pad_sample(&apply, &cancel, &dir);
++    player_color_pad_sample(&apply, &cancel, &dir, &row);
+     /* Edge-triggered against the state seeded at open. */
+     const int apply_edge = apply && !player_color_pad_prev_apply;
+     const int cancel_edge = cancel && !player_color_pad_prev_cancel;
++    const int row_edge = row != 0 && row != player_color_pad_prev_row;
+     player_color_pad_prev_apply = apply;
+     player_color_pad_prev_cancel = cancel;
++    player_color_pad_prev_row = row;
+     if (apply_edge)
+         player_color_menu_apply();
+     else if (cancel_edge)
+         player_color_menu_close("Player color closed");
++    else if (row_edge)
++        player_color_menu_switch_row();
+     if (!player_color_menu_open || !dir) {
+         player_color_pad_held_dir = 0;
+         player_color_pad_wait_neutral = 0;

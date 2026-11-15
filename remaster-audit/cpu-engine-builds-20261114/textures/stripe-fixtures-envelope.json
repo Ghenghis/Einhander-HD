@@ -1,0 +1,102 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s45/tools/s45_diag_bands_r2.py",
+  "--fixtures"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-4-5-f992fe",
+ "wrapper_pid": 9384,
+ "wrapper_create_time": 1794693227.7981553,
+ "cpu": 13,
+ "affinity": [
+  13
+ ],
+ "priority": 16384,
+ "timeout_s": 60.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T21:53:47.949947+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "2000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 29.9,
+  "free_gib": 58.76,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T21:53:48.950887+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 8192,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 8192,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 30660,
+ "child_create_time": 1794693228.9600616,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  13
+ ],
+ "child_affinity_set_to": [
+  13
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   13
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T21:53:48.965526+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 0.611,
+ "end_utc": "2026-11-14T21:53:49.579344+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 0.3125,
+  "kernel_s": 0.171875
+ },
+ "peak_job_memory_bytes": 43507712,
+ "peak_process_memory_bytes": 42139648,
+ "descendants_seen": [
+  42376
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

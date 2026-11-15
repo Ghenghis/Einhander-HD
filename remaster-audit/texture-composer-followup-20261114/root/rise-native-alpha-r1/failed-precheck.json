@@ -1,0 +1,9 @@
+{
+  "observed_utc": "2026-11-14T14:09:31.757907+00:00",
+  "tool_chunk": "f02d34",
+  "command": "python -X utf8 remaster-audit/runtime-review/gpu-texture-remix-20261114/compose_rise_f32.py",
+  "exit": 1,
+  "failure": "AssertionError: 82831823-06BDD2F5 exact-native-nearest-alpha comparison",
+  "candidate_created": false,
+  "reason": "The v5 polygon silhouette intentionally refines native-nearest alpha inside the allowed strict class rules. Palette class-map equality does not imply all HD alpha pixels equal native-nearest. Earlier class audits remain valid; no source repair occurred."
+}

@@ -1,0 +1,2144 @@
+{
+ "name": "s5-world-3-1-v2",
+ "track": "w7-stage5 (claude-einhander lane-s5)",
+ "task": "w7-stage4 + w7-stage5 first art (coordinator request 2026-11-13, after EIN-STAGE4/5-SOURCE-REVIEW-20261113)",
+ "family": "s5-world-main",
+ "status": "candidate",
+ "frozen_utc": "2026-11-13T23:35:59.007554+00:00",
+ "title": "Stage 5 world v2, stage-entry member 3/1: five 4bpp world pages (640-896,0) with stage-5 sandblasted-concrete / satin-steel material and FX-contract smoke on 1A2ACF78; 05E1881C referenced to lane-s4, not built",
+ "import_rule": "predicted-static; import only after live capture: the stage-5 acquisition run must list every key of this deliverable as key-confirmed (byte-identical words and CLUT) in validate_predicted.py confirm, and validate_predicted.py gate must pass for the pack that installs it",
+ "key_status": "predicted-static; import only after live capture",
+ "supersedes": {
+  "revision": "s5-world-3-1-v1",
+  "manifest_sha256": "3c4abbb24f43f09ec6af18846e4fbf6c5380fc149559a3303e29300854ca6397",
+  "why": "v1 used Stage 1 swatches (painted_steel, concrete, grime) and rendered the 1A2ACF78 smoke puffs/trails with the world contour (posterised plateaus); v2 uses the stage-5 swatches and the FX contract (as s5-duerer-armour-v2) inside the smoke boxes."
+ },
+ "sources": {
+  "kind": "shared immutable static export (exact-static disc strips, member-pure pages)",
+  "export_build": "2026-11-13T15:06:28Z",
+  "textures_json_sha256": "ded574f6ea713ee74201a0d16ebc238a6de08696b2233ab88d965de76d21fa8e",
+  "keys_json_sha256": "486a55ca3af40ef141433cf4081d6d08c132cd21575d060705690b9edfdba8ad",
+  "cluts_json_sha256": "38652bd766b842071ab01097ce35191aaf26b08f067a6418d73b39998540e58c",
+  "review": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage5/READINESS.md",
+  "palette_review_sha256": "16585a35d7f022703209b6bbcdf4c6a207e91937d28c6aad3e642ebf07dd0b93"
+ },
+ "gpu": "this build is CPU-only; its material swatches were generated earlier by lane-s5 in gpu_slot('lane-s5') runs (JuggernautXL v9 txt2img, ComfyUI 127.0.0.1:8188 core nodes) and frozen in w7-stage5/frozen/s5-swatches-v1 (sandblasted_concrete) and s5-swatches-v2 (sandworn_steel_a); exact graphs + history copied in comfy/",
+ "comfyui_graphs": [
+  "comfy/sandblasted_concrete-graph.api.json",
+  "comfy/sandworn_steel_a-graph.api.json"
+ ],
+ "reused_generated_swatches": {
+  "note": "lane-s5 stage-5 JuggernautXL swatches (sandblasted_concrete from s5-swatches-v1, sandworn_steel_a from s5-swatches-v2) used as luminance detail only; graphs/history in comfy/",
+  "files_sha256": {
+   "sandblasted_concrete-graph.api.json": "f6da1e8f3c10efbef33eaccba0a663367b47c0748c3a236bb2feea27258f8123",
+   "sandblasted_concrete-history.json": "c913cd478b8b6833589d95d199185e3fd4b3ff88982d4fa8f52a6dece521950c",
+   "sandblasted_concrete-tileable-1024.png": "2c9ccbdf5f3d4117fd6c2375f5db1d28216d15c5515138feb913e04e1cf2237e",
+   "sandworn_steel_a-graph.api.json": "721845ade956be50dff7459da502df33edcf029f3ede58c4406b9d1a0313abdd",
+   "sandworn_steel_a-history.json": "e477ad9da16d5b711ab3b2e9f25245dcb29788e285b09110ad31098e077752fe",
+   "sandworn_steel_a-tileable-1024.png": "a4078ccece8777f3625a5cf26d3ea15f1b47f7acc35af9164b487b60fe4c1c57"
+  }
+ },
+ "method": "World v2 (lane-s5). Categorical soft-label index master at 16x (4096): one-hot mask of every native index blurred at 4x and texel-centred bilinear to 16x; crisp contours (sigma 0.42 texel, power 4); tone-group blending of dithers between indices that share the class under every renderable static CLUT and are within RGB 56 under >= 75 % of them (sigma 1.0 texel, dither window 0.3..0.65); top-3 labels; lost-texel rounded-square cores; native index forced at every texel centre. FX contract boxes on 1A2ACF78 (smoke puffs, dark puff sprites, smoke trails): any-pair tone blending (render keeps only the dominant label's class per CLUT), crisp 0.42/4, blend 1.0 texel, dither window 0.15..0.4, no cores, centres not forced in the master (exports stamp the native class), no material. Material logD at 8x (palette-independent): relief 0.18 from the review-CLUT luminance (sigma 0.9 texel, light from the upper left), groove AO 0.1 at luminance edges, luminance detail from the lane-s5 stage-5 JuggernautXL swatches sandblasted_concrete (s5-swatches-v1) and sandworn_steel_a (s5-swatches-v2) per page (raw images, centre 60 %, random Hann-windowed patches, high-pass 48 px, band-limited 1.5 px at 2048), procedural low-frequency grime 0.03; zero-mean per native index over the material area. 05E1881C is not built (lane-s4 owns it).",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale)",
+ "class_validation": {
+  "file": "native-class-validation.json",
+  "total_mismatches": 0,
+  "exports": 10,
+  "convention": "class at pixel floor((i+0.5)*scale) of every native texel == class(CLUT[native index]); class 0 = raw 0x0000, 255 = STP, 127 = opaque"
+ },
+ "alpha_channel": "categorical PSX classes (0 = raw 0x0000, 127 opaque, 255 STP), NOT opacity; exact at every native texel centre",
+ "pages": {
+  "9F3D98EF": {
+   "member": "3/1",
+   "page_xy": [
+    640,
+    0
+   ],
+   "mode": "world",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/9F3D98EF.words.bin",
+    "sha256": "ea960616a293f9339d8dad1943a44985e0ab72b09fbd06654be1863844bcd96f",
+    "crc32": "9F3D98EF",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "9F3D98EF-51E8E21E",
+     "clut_xy": [
+      192,
+      482
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/9F3D98EF-51E8E21E.png",
+      "sha256": "7406726eb2b0dc9477dc0a12c99bf10b69e391f33ce8232a20a31d303ccd6584",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/9F3D98EF-51E8E21E.png",
+      "sha256": "6cf2fd0b2f8687bdca55bfcf1d203c5815c579f7bc515827956d37e37033beb1",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/9F3D98EF-51E8E21E-review.png",
+      "sha256": "8cf567e29107613e17dc535664d592c81f7f9562b0cbb433ccacbe11f5cfbfe5"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "9F3D98EF-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-5057F81A",
+     "clut_xy": [
+      224,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-71106D25",
+     "clut_xy": [
+      16,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-23202923",
+     "clut_xy": [
+      96,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-61D2EC30",
+     "clut_xy": [
+      176,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-5D430B8A",
+     "clut_xy": [
+      96,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-3CB10C0C",
+     "clut_xy": [
+      240,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-1A347828",
+     "clut_xy": [
+      144,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-DDCDB5A7",
+     "clut_xy": [
+      208,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-C739060A",
+     "clut_xy": [
+      64,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-C9FAF737",
+     "clut_xy": [
+      112,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-44E883FA",
+     "clut_xy": [
+      64,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-8097C274",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-F6D4E4CA",
+     "clut_xy": [
+      160,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-A345AE9E",
+     "clut_xy": [
+      128,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-69AC34C2",
+     "clut_xy": [
+      96,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-FAC936BC",
+     "clut_xy": [
+      160,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-30E98693",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-726A2440",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-3E221370",
+     "clut_xy": [
+      112,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-A1D2E835",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-C7A1F2F0",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-0F736F08",
+     "clut_xy": [
+      0,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "9F3D98EF-47FBD679",
+     "clut_xy": [
+      32,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "9F3D98EF-F78CFB08",
+     "clut_xy": [
+      240,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "9F3D98EF-30E98693",
+    "9F3D98EF-3E221370",
+    "9F3D98EF-47FBD679",
+    "9F3D98EF-726A2440",
+    "9F3D98EF-8097C274",
+    "9F3D98EF-BE3400E6"
+   ],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "9F3D98EF-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 1,
+    "near_matrix_cluts": 29
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.1,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.5
+     ],
+     [
+      "sandworn_steel_a",
+      0.5
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.16845703125,
+    0.12371826171875
+   ],
+   "regions": []
+  },
+  "7E088757": {
+   "member": "3/1",
+   "page_xy": [
+    704,
+    0
+   ],
+   "mode": "world",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/7E088757.words.bin",
+    "sha256": "34338642b0ad6a010450c16fc48ea252f2f28ef15c9306d9bdd26524fd79fff5",
+    "crc32": "7E088757",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "7E088757-51E8E21E",
+     "clut_xy": [
+      192,
+      482
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/7E088757-51E8E21E.png",
+      "sha256": "2496da16cbb5f402946d0a9b16a7ee732c024b744bd7d4c574ff53d230d240e8",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/7E088757-51E8E21E.png",
+      "sha256": "8df64897940313bd210d5bb89a6ec964070c8d4db893b3191df1642a11234e93",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/7E088757-51E8E21E-review.png",
+      "sha256": "c1d37d2d6ba84d0efc364832b5defd75e747d1337317e0389902967e495ad241"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "7E088757-BB66E55A",
+     "clut_xy": [
+      16,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-E306B612",
+     "clut_xy": [
+      0,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "7E088757-8097C274",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "7E088757-6A8B1A18",
+     "clut_xy": [
+      80,
+      494
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-FAC936BC",
+     "clut_xy": [
+      48,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-A5BF8DD3",
+     "clut_xy": [
+      16,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-E7FB5B71",
+     "clut_xy": [
+      48,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-DDCDB5A7",
+     "clut_xy": [
+      240,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-0DF30EDD",
+     "clut_xy": [
+      272,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "7E088757-3ADA9277",
+     "clut_xy": [
+      32,
+      499
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-24FAE118",
+     "clut_xy": [
+      288,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "7E088757-9D752218",
+     "clut_xy": [
+      288,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "7E088757-2FCEEDA7",
+     "clut_xy": [
+      32,
+      509
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-105461A4",
+     "clut_xy": [
+      64,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "7E088757-3AAEBA2A",
+     "clut_xy": [
+      0,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "7E088757-0DF30EDD",
+    "7E088757-190A55AD",
+    "7E088757-24FAE118",
+    "7E088757-8097C274",
+    "7E088757-9D752218",
+    "7E088757-BE3400E6"
+   ],
+   "runtime_written_clut_positions_index_master_only": [],
+   "excluded_zero_clut_keys": [
+    "7E088757-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 3,
+    "near_matrix_cluts": 18
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.1,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "swatch": [
+     [
+      "sandworn_steel_a",
+      0.6
+     ],
+     [
+      "sandblasted_concrete",
+      0.4
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.16064453125,
+    0.1285400390625
+   ],
+   "regions": []
+  },
+  "452F3CC3": {
+   "member": "3/1",
+   "page_xy": [
+    768,
+    0
+   ],
+   "mode": "world",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/452F3CC3.words.bin",
+    "sha256": "191de390823823648e962da9f88254b23c25be6e323984fd1b17268ebf8d3f64",
+    "crc32": "452F3CC3",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "452F3CC3-793A3662",
+     "clut_xy": [
+      112,
+      483
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/452F3CC3-793A3662.png",
+      "sha256": "670cb15fbf5d0aa6243379e89549ed29892112c7b7b7987f70c49726ed3110a0",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/452F3CC3-793A3662.png",
+      "sha256": "6abd8c887296eff5480dbb4aaaf3e0c68fc5839539551a1ea5c0e8d4b3b446e7",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/452F3CC3-793A3662-review.png",
+      "sha256": "48b5598931405a52660d9710a0d7d902fce57c8f5a6d76ea4bb5aea173891275"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "452F3CC3-5D7B8484",
+     "clut_xy": [
+      96,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-0ADAA698",
+     "clut_xy": [
+      128,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-51E8E21E",
+     "clut_xy": [
+      32,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-ECEB4BB9",
+     "clut_xy": [
+      16,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-C4652143",
+     "clut_xy": [
+      96,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-E7FB5B71",
+     "clut_xy": [
+      48,
+      493
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-02491337",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "452F3CC3-2C49B2AB",
+     "clut_xy": [
+      272,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "452F3CC3-066C0B81",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-8808F70A",
+     "clut_xy": [
+      144,
+      480
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-361A4661",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-C67DEC6F",
+     "clut_xy": [
+      64,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-0BB4CE45",
+     "clut_xy": [
+      144,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-FAC936BC",
+     "clut_xy": [
+      128,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-264276C9",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "452F3CC3-08A6C1FC",
+     "clut_xy": [
+      240,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "452F3CC3-02491337",
+    "452F3CC3-190A55AD",
+    "452F3CC3-2C49B2AB"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     240,
+     508
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "452F3CC3-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 591,
+    "lost_texel_cores": 591,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0501556396484375,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 16,
+    "near_matrix_cluts": 17
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.1,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.6
+     ],
+     [
+      "sandworn_steel_a",
+      0.4
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.1722412109375,
+    0.1209716796875
+   ],
+   "regions": []
+  },
+  "1A2ACF78": {
+   "member": "3/1",
+   "page_xy": [
+    832,
+    0
+   ],
+   "mode": "world",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/1A2ACF78.words.bin",
+    "sha256": "25ec3eed388ea1fbbf0349f8af3f74ff97c47148777a3c0583568afe1482a331",
+    "crc32": "1A2ACF78",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "1A2ACF78-6A8B1A18",
+     "clut_xy": [
+      80,
+      494
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/1A2ACF78-6A8B1A18.png",
+      "sha256": "f83d0496edc058005a3850d426e85f2a37c79fee41722e3d857565696ba3fe27",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/1A2ACF78-6A8B1A18.png",
+      "sha256": "f2b09a4a2b5bc0b4bf34d565990f3ebb7a3211e3124ca0cbf58611ca223b824e",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/1A2ACF78-6A8B1A18-review.png",
+      "sha256": "42cf6a204d58a9fc46eb74baaed415ffb750d28d718b8f2f0790c6e77a4b76e7"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "1A2ACF78-0DA351E7",
+     "clut_xy": [
+      192,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-ECEB4BB9",
+     "clut_xy": [
+      16,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-E9F5695B",
+     "clut_xy": [
+      176,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-786D04C1",
+     "clut_xy": [
+      160,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-0ADAA698",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-E5FD0F8D",
+     "clut_xy": [
+      208,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1A2ACF78-8097C274",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1A2ACF78-382D7BFF",
+     "clut_xy": [
+      144,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-B3BAE57E",
+     "clut_xy": [
+      80,
+      492
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-30E98693",
+     "clut_xy": [
+      64,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-3FF2DBD5",
+     "clut_xy": [
+      128,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-2F7D3C83",
+     "clut_xy": [
+      80,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-F055ACAD",
+     "clut_xy": [
+      288,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "1A2ACF78-CDB19517",
+     "clut_xy": [
+      32,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "1A2ACF78-83C36441",
+     "clut_xy": [
+      112,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "1A2ACF78-190A55AD",
+    "1A2ACF78-8097C274",
+    "1A2ACF78-BE3400E6",
+    "1A2ACF78-F055ACAD"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     48,
+     508
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "1A2ACF78-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 47,
+    "lost_texel_cores": 47,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.006011962890625,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 8,
+    "near_matrix_cluts": 17
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.1,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "swatch": [
+     [
+      "sandworn_steel_a",
+      0.6
+     ],
+     [
+      "sandblasted_concrete",
+      0.4
+     ]
+    ],
+    "exclude_boxes": [
+     [
+      0,
+      128,
+      256,
+      192
+     ],
+     [
+      0,
+      192,
+      240,
+      224
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.1424560546875,
+    0.116455078125
+   ],
+   "regions": [
+    {
+     "kind": "fx",
+     "box": [
+      0,
+      128,
+      256,
+      192
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.4244249131944444,
+     "centre_labels_differing": 1895
+    },
+    {
+     "kind": "fx",
+     "box": [
+      0,
+      192,
+      240,
+      224
+     ],
+     "blend_sigma": 1.0,
+     "crisp": [
+      0.42,
+      4.0
+     ],
+     "beta_window": [
+      0.15,
+      0.4
+     ],
+     "near": "any index pair (render keeps only labels of the dominant class per CLUT)",
+     "centres": "not forced in the master (no 1-px native dots in the fades); every export stamps the native class at every texel centre",
+     "dither_texel_share": 0.48616803278688525,
+     "centre_labels_differing": 1270
+    }
+   ]
+  },
+  "503474BD": {
+   "member": "3/1",
+   "page_xy": [
+    896,
+    0
+   ],
+   "mode": "world",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/503474BD.words.bin",
+    "sha256": "ac23478ea77cb6e272b9ff3d6a0dee46363279d5419521d7965233dc4e73e58b",
+    "crc32": "503474BD",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "503474BD-1A80CA9D",
+     "clut_xy": [
+      224,
+      484
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/503474BD-1A80CA9D.png",
+      "sha256": "31c8c87172b3bf84a2d10fed725e87fb41f8667cbe0272b3ab751badf9cbf227",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/503474BD-1A80CA9D.png",
+      "sha256": "b29d8da637390bb6ff8b897a2cfe64bbbfc901dccf04d13a6b9945c113ae1fec",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/503474BD-1A80CA9D-review.png",
+      "sha256": "729ce1d46d49afdcb18f290d147f54be365eff5b55f7ea1af20ddc57908e1534"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "503474BD-53319E83",
+     "clut_xy": [
+      64,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-0B23F291",
+     "clut_xy": [
+      64,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-53505D66",
+     "clut_xy": [
+      64,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-476DF010",
+     "clut_xy": [
+      0,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-A41E3261",
+     "clut_xy": [
+      32,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-B00E09DB",
+     "clut_xy": [
+      16,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-5B6F5D15",
+     "clut_xy": [
+      240,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-EBEFD80E",
+     "clut_xy": [
+      0,
+      488
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-693585C2",
+     "clut_xy": [
+      0,
+      488
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-66C1F81B",
+     "clut_xy": [
+      0,
+      488
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-0ADAA698",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-7513FEF3",
+     "clut_xy": [
+      80,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-83C36441",
+     "clut_xy": [
+      0,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-5327F2B2",
+     "clut_xy": [
+      208,
+      497
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-73223373",
+     "clut_xy": [
+      96,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-381B8582",
+     "clut_xy": [
+      16,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-645AA604",
+     "clut_xy": [
+      0,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-6C98CBBE",
+     "clut_xy": [
+      32,
+      490
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-ED6FF7CF",
+     "clut_xy": [
+      192,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-F91F96F0",
+     "clut_xy": [
+      192,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "503474BD-3C66BE85",
+     "clut_xy": [
+      0,
+      486
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-30E98693",
+     "clut_xy": [
+      64,
+      508
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-264276C9",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-F5FB4FC8",
+     "clut_xy": [
+      208,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "503474BD-5FD73331",
+     "clut_xy": [
+      208,
+      485
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "503474BD-0B23F291",
+    "503474BD-190A55AD",
+    "503474BD-53319E83",
+    "503474BD-53505D66",
+    "503474BD-66C1F81B",
+    "503474BD-693585C2",
+    "503474BD-EBEFD80E",
+    "503474BD-ED6FF7CF",
+    "503474BD-F91F96F0"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     256,
+     511
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "503474BD-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 0,
+    "lost_texel_cores": 0,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0,
+    "crisp": [
+     0.42,
+     4.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 0,
+    "near_matrix_cluts": 26
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.1,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch_amp": 0.045,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.03,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ],
+    "swatch": [
+     [
+      "sandblasted_concrete",
+      0.6
+     ],
+     [
+      "sandworn_steel_a",
+      0.4
+     ]
+    ]
+   },
+   "logD_p1_p99": [
+    -0.1683349609375,
+    0.119384765625
+   ],
+   "regions": []
+  }
+ },
+ "builder_scripts": {
+  "build_w7.py": "e4f705572c4a4f7ec4948667d400ca2e508ab8b555ce2b1ceaac6d2f622735fe",
+  "freeze_w7.py": "7036a638eb8eada34eea83d6876a947781759d0327406ad27a789ab2997d576e",
+  "glyph_check.py": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+  "lowprio.py": "b0fc5d59b8ae7030312ea5173680ed057c4f4ea42b64189accbfcb6a07f30d9d",
+  "s5-world-3-1-v2.json": "3ee9cac5ff86ea99766218d4ac291caf60e67c1a0aa99fdb487ecfd127c2ea84",
+  "twinkle_sim.py": "159f38f15626bf9b61dc23ec39613ce51f8ae211f9369d43871366bf2d1f58d3",
+  "verify_frozen.py": "b10b9f4b32061de3b29d65309208ee83c76e0f7176911ff8ebf2210d6bd006b3",
+  "w7lib.py": "99896867cdcccf9115e31a722001637408eaf525d4af6b40937f839c29c4250b"
+ },
+ "build_record": "build-record.json",
+ "honest_read": [
+  "Material: the flat plates and walls now carry pitted, sand-blasted concrete and fine vertical satin-steel grain (stage-5 swatches) instead of v1's Stage 1 vertical streaks/grime. It is subtle (luminance only, amp 0.045) and reads as a weathered sandblasted surface at 16x; at in-game size it is barely visible. Motion SIMULATION shows no penalty: the material-control regions twinkle the same as v1 (3 px per texel: 9F3D98EF 0.0305 -> 0.0300, 7E088757 0.0478 -> 0.0477, 452F3CC3 0.0430 -> 0.0429, 503474BD 0.0472 -> 0.0469; native nearest 0.16-0.26).",
+  "1A2ACF78 smoke (FX contract boxes): the posterised tone plateaus of v1 become soft continuous gradients. The price is softness: at 16x the puffs and trails look blurred, and the dark puff sprites on the teal ground lose their crisp dark rim (local contrast -13 %). Twinkle barely changes because v1 was already dither-blended: puffs 0.0173 -> 0.0159, dark puffs 0.0301 -> 0.0230, and the smoke trails get slightly worse, 0.0155 -> 0.0170 (native 0.068-0.166). At 9 px per texel every region is <= 0.008.",
+  "Unchanged from v1: dither and noise become rounded blotches; long tone staircases stay as rounded steps; 1-texel frames of alternating tones (452F3CC3 window frame, 503474BD rail) are bead chains at 16x; single-texel spikes become rounded nubs. This is a faithful, soft base, far from the Stage 1 canyon/facade realism.",
+  "No 8bpp sub-images on the world pages (alt8_mask finds 0 blocks on all five).",
+  "Review CLUTs are the same unproven pairings as v1 (51E8E21E, 793A3662, 6A8B1A18, 1A80CA9D)."
+ ],
+ "known_limits": [
+  "All keys are predicted-static: import only after the stage-5 run confirms each key (validate_predicted.py confirm + gate).",
+  "One render per page; 102 further static predicted keys render from the same masters later; palette-hold keys wait for AQ-05.",
+  "FX boxes: the master's texel-centre labels are not forced there (no 1-px native dots in the fades); every export stamps the native class at every texel centre (0 mismatches). Re-render only through w7lib.export_rgba.",
+  "Material relief comes from the review CLUT's luminance and can invert locally under another CLUT (zero-mean per index keeps average colours).",
+  "05E1881C (960,0) is owned by lane-s4 and is NOT BUILT there either (blocked on a capture; w7-stage4/work/panorama-05E1881C/STATUS.json). This deliverable lists its 15 stage-5 keys only.",
+  "The twinkle numbers are a SIMULATION (bilinear no-mip fly-past from runtime-2048, Fourier motion compensation), not an in-game capture. No per-surface realism rebuild: blocked on the AQ-03 stage look captures."
+ ],
+ "integration_notes": {
+  "install": "do not install before the stage-5 acquisition run; then install only keys listed key-confirmed by validate_predicted.py confirm",
+  "runtime": "runtime-2048 (8 px/texel) recommended for world surfaces; runtime-1024 provided",
+  "alpha": "PNG alpha = exact PSX classes (categorical), not opacity",
+  "index_path": "master/<TEX>-labels16.npz + <TEX>-logD8-f16.npy; render any CLUT with builder/w7lib.py render, then export_rgba",
+  "shared_page": "05E1881C: wait for lane-s4's master; stage-5 keys in manifest shared_pages_referenced_not_built",
+  "supersedes": "s5-world-3-1-v1 (v1 stays frozen and untouched)"
+ },
+ "reuse": null,
+ "shared_pages_referenced_not_built": {
+  "05E1881C": {
+   "tex": "05E1881C",
+   "member": "3/1",
+   "page_xy": [
+    960,
+    0
+   ],
+   "owner": "lane-s4 (comfy-authoring/w7-stage4)",
+   "reference": "w7-stage4/work/panorama-05E1881C/STATUS.json (lane-s4: NOT BUILT, blocked on a capture; sha256 3cee20f147183469b048a37b302c9f697539efd32d640fb3a51d050ff0b74e2f at the time of this build)",
+   "note": "byte-identical page in stage 4 (member 2/22, VRAM 960,0) and stage 5 (member 3/1, 960,0); one master serves both stages; stage-5 keys of this TEX render from lane-s4's master after a stage-5 live capture; lane-s5 does not build it",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage5/textures/05E1881C.words.bin",
+    "sha256": "e0d184fd9d34faaf3c5abe66515e34c18d9b542dc659200f91ae0981b3e4d413",
+    "crc32": "05E1881C",
+    "bytes": 32768
+   },
+   "built_here": false,
+   "stage_keys": [
+    {
+     "key": "05E1881C-6C7962CE",
+     "clut_xy": [
+      16,
+      495
+     ],
+     "confidence": "likely",
+     "pair_count": 46,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-5F31B1FF",
+     "clut_xy": [
+      32,
+      489
+     ],
+     "confidence": "likely",
+     "pair_count": 42,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-361A4661",
+     "clut_xy": [
+      0,
+      511
+     ],
+     "confidence": "likely",
+     "pair_count": 30,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-0ADAA698",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "confidence": "likely",
+     "pair_count": 24,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-A8FC7D30",
+     "clut_xy": [
+      224,
+      488
+     ],
+     "confidence": "likely",
+     "pair_count": 16,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-B4B798B5",
+     "clut_xy": [
+      256,
+      510
+     ],
+     "confidence": "likely",
+     "pair_count": 11,
+     "palette_hold": true,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-264276C9",
+     "clut_xy": [
+      0,
+      510
+     ],
+     "confidence": "likely",
+     "pair_count": 9,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-61603135",
+     "clut_xy": [
+      256,
+      497
+     ],
+     "confidence": "likely",
+     "pair_count": 7,
+     "palette_hold": true,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-645AA604",
+     "clut_xy": [
+      0,
+      489
+     ],
+     "confidence": "likely",
+     "pair_count": 3,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-ECEB4BB9",
+     "clut_xy": [
+      0,
+      508
+     ],
+     "confidence": "likely",
+     "pair_count": 3,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-3091E9CA",
+     "clut_xy": [
+      0,
+      509
+     ],
+     "confidence": "likely",
+     "pair_count": 3,
+     "palette_hold": false,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-F055ACAD",
+     "clut_xy": [
+      288,
+      511
+     ],
+     "confidence": "likely",
+     "pair_count": 2,
+     "palette_hold": true,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-A538829E",
+     "clut_xy": [
+      256,
+      501
+     ],
+     "confidence": "likely",
+     "pair_count": 2,
+     "palette_hold": true,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-DFE9270D",
+     "clut_xy": [
+      256,
+      501
+     ],
+     "confidence": "likely",
+     "pair_count": 2,
+     "palette_hold": true,
+     "zero_clut": false,
+     "renderable_static": true
+    },
+    {
+     "key": "05E1881C-190A55AD",
+     "clut_xy": [
+      256,
+      511
+     ],
+     "confidence": "exact-static",
+     "pair_count": 24,
+     "palette_hold": true,
+     "zero_clut": true,
+     "renderable_static": true
+    }
+   ]
+  }
+ },
+ "glyph_check": null,
+ "files": {
+  "build-record.json": {
+   "sha256": "85ece8460008316ae28ff1c676f8eed12a86c7ee978bbca5880812633e446281",
+   "bytes": 47271
+  },
+  "builder/build_w7.py": {
+   "sha256": "e4f705572c4a4f7ec4948667d400ca2e508ab8b555ce2b1ceaac6d2f622735fe",
+   "bytes": 18348
+  },
+  "builder/freeze_w7.py": {
+   "sha256": "7036a638eb8eada34eea83d6876a947781759d0327406ad27a789ab2997d576e",
+   "bytes": 5716
+  },
+  "builder/glyph_check.py": {
+   "sha256": "8fe258410fbe8a77aa64750b5ffb4c24570591f09beeb52a785ab24bf25d221a",
+   "bytes": 8967
+  },
+  "builder/lowprio.py": {
+   "sha256": "b0fc5d59b8ae7030312ea5173680ed057c4f4ea42b64189accbfcb6a07f30d9d",
+   "bytes": 922
+  },
+  "builder/s5-world-3-1-v2.json": {
+   "sha256": "3ee9cac5ff86ea99766218d4ac291caf60e67c1a0aa99fdb487ecfd127c2ea84",
+   "bytes": 6043
+  },
+  "builder/twinkle_sim.py": {
+   "sha256": "159f38f15626bf9b61dc23ec39613ce51f8ae211f9369d43871366bf2d1f58d3",
+   "bytes": 7289
+  },
+  "builder/verify_frozen.py": {
+   "sha256": "b10b9f4b32061de3b29d65309208ee83c76e0f7176911ff8ebf2210d6bd006b3",
+   "bytes": 5777
+  },
+  "builder/w7lib.py": {
+   "sha256": "99896867cdcccf9115e31a722001637408eaf525d4af6b40937f839c29c4250b",
+   "bytes": 35719
+  },
+  "comfy/sandblasted_concrete-graph.api.json": {
+   "sha256": "f6da1e8f3c10efbef33eaccba0a663367b47c0748c3a236bb2feea27258f8123",
+   "bytes": 1534
+  },
+  "comfy/sandblasted_concrete-history.json": {
+   "sha256": "c913cd478b8b6833589d95d199185e3fd4b3ff88982d4fa8f52a6dece521950c",
+   "bytes": 2759
+  },
+  "comfy/sandblasted_concrete-tileable-1024.png": {
+   "sha256": "2c9ccbdf5f3d4117fd6c2375f5db1d28216d15c5515138feb913e04e1cf2237e",
+   "bytes": 1860101
+  },
+  "comfy/sandworn_steel_a-graph.api.json": {
+   "sha256": "721845ade956be50dff7459da502df33edcf029f3ede58c4406b9d1a0313abdd",
+   "bytes": 1636
+  },
+  "comfy/sandworn_steel_a-history.json": {
+   "sha256": "e477ad9da16d5b711ab3b2e9f25245dcb29788e285b09110ad31098e077752fe",
+   "bytes": 2857
+  },
+  "comfy/sandworn_steel_a-tileable-1024.png": {
+   "sha256": "a4078ccece8777f3625a5cf26d3ea15f1b47f7acc35af9164b487b60fe4c1c57",
+   "bytes": 1192968
+  },
+  "master/1A2ACF78-labels16.npz": {
+   "sha256": "43e9829e4740bcf5868cc4a47e467da77656b49cdcaeb32cb2dcfb5fac0d4b46",
+   "bytes": 7391142
+  },
+  "master/1A2ACF78-logD8-f16.npy": {
+   "sha256": "36d9235bfab178ab0113dd00892b1d3aca350475157c0bed7b0111b34d6b3b76",
+   "bytes": 8388736
+  },
+  "master/1A2ACF78-native-idx.npy": {
+   "sha256": "3605c1bcd4618f42b9de21da418e74f3051bfa247d8d62b3ba213f7c3cb3f4e8",
+   "bytes": 65664
+  },
+  "master/452F3CC3-labels16.npz": {
+   "sha256": "1387a87fa69a5555f3d3d3fa73208fb6bbe43337cfe1792c765a9416988a626f",
+   "bytes": 8403568
+  },
+  "master/452F3CC3-logD8-f16.npy": {
+   "sha256": "7e09e4b2c82369e6422126ffd64f6e17ccd8d877233552c3ab62bc4bead8e3a8",
+   "bytes": 8388736
+  },
+  "master/452F3CC3-native-idx.npy": {
+   "sha256": "440b5936b35facabf2eafa08ac2b981b459d6e70e1a308702920c97324988e7c",
+   "bytes": 65664
+  },
+  "master/503474BD-labels16.npz": {
+   "sha256": "5c69258daf9c72346f919c40710d2057434b83ad6b5a9322bd3010de6fd01129",
+   "bytes": 8924476
+  },
+  "master/503474BD-logD8-f16.npy": {
+   "sha256": "00254b8633204842835daa71590a69337eb13319b6bb32fe7728670faa51ab70",
+   "bytes": 8388736
+  },
+  "master/503474BD-native-idx.npy": {
+   "sha256": "862ff73fcfbbb898eb521dc7e3d717d1b8e53531b152cbba4e617998f7d4d68b",
+   "bytes": 65664
+  },
+  "master/7E088757-labels16.npz": {
+   "sha256": "a08e87bdbf338a7a13cc86b1a1b79a9b1dd38d90f5be6e4091a1d14b1cc73c82",
+   "bytes": 6135548
+  },
+  "master/7E088757-logD8-f16.npy": {
+   "sha256": "8facffa69d32d11c680d707dd8c832a571406e4753bdbd4d1699a1d07f9cfe8d",
+   "bytes": 8388736
+  },
+  "master/7E088757-native-idx.npy": {
+   "sha256": "bdb6e13d5496c353ba70fd637d39e87efce1174a7db7f8847c30c42b9464547c",
+   "bytes": 65664
+  },
+  "master/9F3D98EF-labels16.npz": {
+   "sha256": "1e266b91e2d271839b1728590a0f444199ed71c4d1d81d90f663b7ab93051622",
+   "bytes": 5333303
+  },
+  "master/9F3D98EF-logD8-f16.npy": {
+   "sha256": "2e5a879932873d96d7e96b236280b5d59e72d3051d6af15b3c59925a9d6638fb",
+   "bytes": 8388736
+  },
+  "master/9F3D98EF-native-idx.npy": {
+   "sha256": "55e6b92f139bee10a9b3a735df7f91b8156757d833c1bb46a8aa91ad2ed79744",
+   "bytes": 65664
+  },
+  "native-class-validation.json": {
+   "sha256": "9d83eb207891b417793095fa75b7a64eda7c2ad0869531cafa39fab46f27d436",
+   "bytes": 2399
+  },
+  "review/1A2ACF78-6A8B1A18-review.png": {
+   "sha256": "42cf6a204d58a9fc46eb74baaed415ffb750d28d718b8f2f0790c6e77a4b76e7",
+   "bytes": 581406
+  },
+  "review/452F3CC3-793A3662-review.png": {
+   "sha256": "48b5598931405a52660d9710a0d7d902fce57c8f5a6d76ea4bb5aea173891275",
+   "bytes": 412769
+  },
+  "review/503474BD-1A80CA9D-review.png": {
+   "sha256": "729ce1d46d49afdcb18f290d147f54be365eff5b55f7ea1af20ddc57908e1534",
+   "bytes": 668614
+  },
+  "review/7E088757-51E8E21E-review.png": {
+   "sha256": "c1d37d2d6ba84d0efc364832b5defd75e747d1337317e0389902967e495ad241",
+   "bytes": 393694
+  },
+  "review/9F3D98EF-51E8E21E-review.png": {
+   "sha256": "8cf567e29107613e17dc535664d592c81f7f9562b0cbb433ccacbe11f5cfbfe5",
+   "bytes": 388480
+  },
+  "review/twinkle-SIMULATION.png": {
+   "sha256": "6cd7444555b741c9ee3404c48174ecd9ac0273fa946a89e74cb20e8992cd7fce",
+   "bytes": 737609
+  },
+  "runtime-1024/1A2ACF78-6A8B1A18.png": {
+   "sha256": "f2b09a4a2b5bc0b4bf34d565990f3ebb7a3211e3124ca0cbf58611ca223b824e",
+   "bytes": 925244
+  },
+  "runtime-1024/452F3CC3-793A3662.png": {
+   "sha256": "6abd8c887296eff5480dbb4aaaf3e0c68fc5839539551a1ea5c0e8d4b3b446e7",
+   "bytes": 650358
+  },
+  "runtime-1024/503474BD-1A80CA9D.png": {
+   "sha256": "b29d8da637390bb6ff8b897a2cfe64bbbfc901dccf04d13a6b9945c113ae1fec",
+   "bytes": 1012529
+  },
+  "runtime-1024/7E088757-51E8E21E.png": {
+   "sha256": "8df64897940313bd210d5bb89a6ec964070c8d4db893b3191df1642a11234e93",
+   "bytes": 622863
+  },
+  "runtime-1024/9F3D98EF-51E8E21E.png": {
+   "sha256": "6cf2fd0b2f8687bdca55bfcf1d203c5815c579f7bc515827956d37e37033beb1",
+   "bytes": 531653
+  },
+  "runtime-2048/1A2ACF78-6A8B1A18.png": {
+   "sha256": "f83d0496edc058005a3850d426e85f2a37c79fee41722e3d857565696ba3fe27",
+   "bytes": 2760601
+  },
+  "runtime-2048/452F3CC3-793A3662.png": {
+   "sha256": "670cb15fbf5d0aa6243379e89549ed29892112c7b7b7987f70c49726ed3110a0",
+   "bytes": 1839359
+  },
+  "runtime-2048/503474BD-1A80CA9D.png": {
+   "sha256": "31c8c87172b3bf84a2d10fed725e87fb41f8667cbe0272b3ab751badf9cbf227",
+   "bytes": 2907126
+  },
+  "runtime-2048/7E088757-51E8E21E.png": {
+   "sha256": "2496da16cbb5f402946d0a9b16a7ee732c024b744bd7d4c574ff53d230d240e8",
+   "bytes": 1756051
+  },
+  "runtime-2048/9F3D98EF-51E8E21E.png": {
+   "sha256": "7406726eb2b0dc9477dc0a12c99bf10b69e391f33ce8232a20a31d303ccd6584",
+   "bytes": 1474090
+  },
+  "twinkle-sim.json": {
+   "sha256": "cba8a04b0b416db14617dc6890a77c53d6a8b37a77aae802fdfee37eecc531de",
+   "bytes": 7342
+  }
+ }
+}

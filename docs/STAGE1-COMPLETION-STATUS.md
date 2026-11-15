@@ -1,6 +1,196 @@
 # Stage 1 completion status
 
+Latest actual CPU follow-up: [HUD measurements, retained stripe failure and private player/enemy selector build](CPU-HUD-TEXTURE-RESULTS-20261115.md). Two HUD connectivity failures remain; a blank-palette pass is vacuous. The selector compiled but has not been launched or installed. Ledger/glue R3 and distant-region repairs remain source work. No new gameplay/audio/Remix/RT/DLSS acceptance. Earlier dated evidence is preserved below.
+
+Latest CPU engine results: [131 ledger and79 transport controls, retained failures and four-HUD coverage correction](CPU-ENGINE-CLOSURE-ACTUAL-20261114.md). Both CPU Jobs end empty; glue consumer integration is source-only. No new live art/audio/Remix acceptance. Earlier dated scope remains preserved.
+
+Current actual results: [CPU50/61/17 checks, three private lettering candidates, successful staging and controlled startup abort](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Actual37c game started Normal/all16cores; peer validation aborted before menus/audio, cleanup passed. S45r4 failed19/23; art/Remix/audio/stage/release acceptance remains open. Earlier entries retain their dated scope.
+
+Latest CPU followup: [50 present-lifecycle checks, three private lettering candidates, honest coverage and retained diagnostic failures](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). Cleanup17 and corrected raw-driver61 controls passed; first staging failed before prepare. Game/Remix/audio/art acceptance remains incomplete. Earlier entries retain their dated scope.
+
+Latest CPU texture/staging results: [private lettering correction, Stage 2 pilot and Normal scheduling](CPU-TEXTURE-STAGING-ACTUAL-20261114.md). C1 repairs 240 interior pixels; pilot staged; no game/GPU/art admission. Raw menu/audio driver needs concrete corrections before launch. Earlier dated entries retain their historical scope.
+
+Latest actual CPU results: [private menu build, transport checks and retained diagnostic limits](CPU-TRANSPORT-ACTUAL-20261114.md). P1+v69 compiled/linked37c137e8, not launched/installed; T1 36 and T2 55+21 checks passed. Loopback probe5 remains inconclusive. Earlier entries below preserve their dated scope.
+
+Current actual build result: [private v69 audio integration, PR7 CPU build and retained failures](CPU-ENGINE-BUILDS-ACTUAL-20261114.md). v69f1ccb34d compiled/linked, not launched/installed; PR7CPU65/guard77PASS, noGL/DLL/GPU. T1compileFAIL/0of36run; stripepreviewrejected. Earlier entries below retain their dated scope.
+
+Latest actual CPU result: [two audio fixture passes,74collector checks and the original launcher failure](CPU-AUDIO-ACTUAL-20261114.md). Game/SDL/listening/PCM/RT/DLSS/installed acceptance remains incomplete. Earlier entries below retain their dated scope.
+
+Latest review: [CPU refusal, geometry/audio source corrections and remaining acceptance](CPU-INTEGRATION-REVIEW-20261114.md). PR7correctedbuilder stopped before child at78.6%CPU; T2r1remains source-blocked. No new game/GPU/audio result.
+
+## Actual CPU build failure and source followup — November14
+
+PR7actuallyruns: syntax0/1.382s, object1/.048s due doubled relative output path, wrapper1/1.629s/ownedtreeabsent; noexe/link/65controls/guard77/GPU. Absolute-path builder fix is source-reviewed, awaitingfreshgrant. NewownedTCPpeer collector, T1overflow/projection oracle, observerIO, T2ownership and coherentaudio source are not live integration. CRLFbase/LFpatch distinctions and ungrantedUIselftests with UNKNOWNresourcefields are preserved. Prior21adaptercontrols remain separate valid evidence. [Actual results, source and remaining acceptance](../docs/ENGINE-INTEGRATION-FOLLOWUP-20261114.md). Earlier dated blocks retain their historical scope.
+
+## Current source continuation — November 14, 19:57 UTC
+
+Adapter evidence code now requires exact listener/process binding, strict startup bytes and ordered GL identity/ready markers. One granted light run passes21pure-data methods19:56:41UTC/.00763s controls/.373s outer under10s/128MiBJob, ownedtreeabsent. It is not wired into the launcher or qualifiedlive. Observer cap/close defects are source-reviewed; corrected audio-gap fixtures and actual scene/camera/material transport remain uncompiled/unrun. First-batch-init bug assertion is withdrawn as confirmed; receipt precedes uniforms. PR7still has no build child after its allowed66.1%CPU refusal; last GPU rendering remains failed. Other tests/heavy/GPU/game work is held for urgent preservation by the coordinator. [Current verified state and remaining integration](../docs/CPU-ENGINE-SOURCE-CONTINUATION-20261114.md). Earlier dated checkpoints retain their historical scope.
+
+## Latest actual CPU trials and source limits —November14
+
+Watchdog10dummycases pass0/5.67s; UI3keymeasure0/2.61s/200.6MiB uses a polledcap, not a kernel Job cap. Root verifies receipts/sources and views3UIcrops; emblems/logo prevent a body-text cause claim. OriginalRGB-only inference is withdrawn; no repair. User-approvedPR7command is allowed but fresh wrapper refuses66.1%CPU before any build child; originalpermissiondenial remains preserved. Cage/GLidentity/audio-gap/preview source work is unbuilt/unintegrated/unacceptedlive. NoGPU/game/audio or stage/release completion. [Actual evidence, source boundaries and remaining work](../docs/CPU-SOURCE-REVIEW-20261114.md). Older dated blocks retain their original scope.
+
+## Current CPU texture checkpoint and host hold —19:12UTC
+
+Independent native-class replay passes118/118menu candidates; privatev68 C:staging succeeds0/7.613s, without game/GPU/install. Root verifies original receipts/currentpins. Staged enemy material is disabled; player tint covers four hull keys, detail has unprovenlive upload gates. Full realistic skins/selectors remain open. Remixr7is source-only/uncompiled/unrun; last GPU output/Shutdown remains failed. User-observed Windows freezing relayed by coordinator: HOLD new heavy/GPU jobs pending diagnostics; light source/receipt/publication work continues. [Actual results, pinned source map and remaining acceptance](../docs/CPU-TEXTURE-REMIX-RESULTS-20261114.md). Earlier dated results below retain their original scope and do not override this checkpoint.
+
+## Simulated route/CLI controls and actual visual decisions —18:40 UTC
+
+FT1four fake-boundary cases and14current CLI/policy checks pass; real game/GPU/transport acceptance is still open. Staging refuses70%CPU before a child. Cagev2sixpins/eightfiles are preserved, not integrated/finalHD. Root views12menu images: three2048prompt choices provisional, three spec-text choices rejected. Pizza still owns the sharedGPU; time expiry never transfers ownership. [Exact results, failures and remaining gates](../docs/UNASSISTED-ROUTE-RESULTS-20261114.md).
+
+Current handoff/queue are concise with exact dated history preserved. Actual metadata monitor38028 bounds18:52:49.061UTC and proves monitoring only. All seven-stage/release/live gates remain incomplete; older dated claims below are historical where superseded.
+
+## Recorder engine correction and verified new menu bytes —18:12 UTC
+
+F3 capture-record/byte reservation is source-integrated and privately compiled/linked (2.709s); seven CPU scenarios and four mutants pass. Root checks160 source/155 link inputs. Fresh v5 menu bytes pass1183 independent hash checks, including708 variants; old overwritten summaries stay INVALID. No live appearance/class replay, game/GPU/audio or installation. [Actual results, source and failures](../docs/RECORDER-MENU-RESULTS-20261114.md).
+
+User3090Ti hold remains through at least18:37:05UTC, then fresh grant/source/resource gates. Default unassisted-route qualification, cage freeze/fidelity and all seven-stage/release gates remain open. Older dated statements below are historical where superseded.
+
+## CPU-only continuation and corrected menu claims —17:55 UTC
+
+The user3090Ti hold lasts conservatively until18:37:05UTC, then a fresh broker grant is still required. Twelve CPU policy controls pass (0.496s child, empty tree); no game/GPU/audio or live acceptance. Independent readback INVALIDATES the old72/72 and118/118 menu file summaries because scale variants overwrote the same output paths. Old evidence remains preserved; a new exclusive-write v5 rebuild is pending actual results. [Verified results, source and remaining gates](../docs/CPU-GAMEPLAY-PREPARATION-20261114.md).
+
+The earlier1699-entry world-pack admission is a separate valid component; all seven-stage/release acceptance remains open. Actual metadata monitor39432 is bounded to18:25:12.652UTC and proves metadata monitoring only. Older dated claims below are historical and superseded where this correction applies.
+
+## Combined ROI candidate admitted —17:26 UTC
+
+The private O+M/I/J/P/Q pack passes CPU native admission (1,699 keys,226 region checks,zero failures). Independent readback verifies all page hashes,1,689 PNGs unchanged from the pre-O parent, preserved O pages and exact native alpha inside all eight new ROIs. Composition exits0/17.423s and admission0/0.218s; child/job trees absent and CPU15 returned. [Actual results and limits](../docs/ROI-NATIVE-ADMISSION-20261114.md).
+
+No GPU/game/audio run or installation. Live motion/look, full fidelity and seven-stage acceptance remain open; the earlier modern Remix failure and P/Q scheduling violation remain preserved. Metadata monitor PID42612 ends17:58:03.357 UTC and proves monitoring only. Older dated checkpoints below are historical.
+
+## Verified region-O integration —17:02 UTC
+
+The private O ROI composition passes: 1,699 page hashes checked, 1,697 unchanged PNGs, two size-neutral corrected pages with identical alpha and all outside-region pixels retained. Composer source and a real CLI fixture are checked; runtime admission/live motion remain pending. The scoped menu census finds only 19/261 primary passes and preserves visual repair failures. Timeout validation passes 72/72 in author and independent runs, without establishing a stage clear. [Actual results and unfinished work](../docs/ROI-COMPOSITION-RESULTS-20261114.md).
+
+No new GPU/game/audio run or installation. M/I/J/P/Q freezes are verified; eight-ROI composition remains pending after a prestart runner-pin refusal. The P/Q late-start violation is preserved. The failed modern Remix GPU result is preserved. Metadata monitor PID38020 is bounded to17:33:42.232 UTC and proves monitoring only. Earlier dated paragraphs below are historical.
+
+## Actual modern GPU result —16:35UTC
+
+The private modern Remix probe ran on3090Ti and FAILED: three identical outputs with zero expected triangle pixels; Shutdown exceeded its15-second deadline, child exit30/40.159s, wrapper exit1/41.681s. Startup/frame return codes and the initial GL readback pass do not establish rendering. Both processes are absent, markers removed and shared grant explicitly released revision10. [Actual evidence and remaining work](../docs/MODERN-REMIX-GPU-RESULT-20261114.md).
+
+Root continues CPU-only diagnosis/publication; bounded Claude texture/HUD work resumes. No game/audio test, installed runtime, RT/DLSS gameplay or full remaster acceptance is claimed. Six native sessions are registered. Metadata monitor PID37252 ends17:06:21.828UTC and proves monitoring only. Earlier dated checkpoints below are historical.
+
+## Current frontend/tracker checkpoint —16:06UTC
+
+Development launch now uses validated saved materials, explicit stock recovery and correct custom-port links. Nine unit cases and actual CPU validation/PowerShell/Windows-argv controls pass; saved pointer unchanged. The exact v67 pack passes16 tracker/save-state/decode fixture processes in6.037s. Region-O9pins/all11files are preserved in canonical C: storage; ROI-only integration/sidecar refresh and live look remain pending. [Actual code, checks and newer art/menu failures](../docs/DEVELOPMENT-MATERIAL-RESULTS-20261114.md).
+
+No game/GPU/audio/browser/bridge test ran. Modern GPU qualification is the next controlled gate after explicit shared grant and current resource checks; elapsed time alone grants nothing. Full remaster/stage acceptance remains open. Metadata monitor PID37556 is bounded to16:17:23.189UTC; older checkpoints below are historical.
+
+## Current verified CPU checkpoint —15:37UTC
+
+Root independently replays v6:7,534 fixtures,16 recording-GL cases/425 checks and92 worker identity checks pass; bounded outer exit0/13.865s. Private v67r3 now compiles/links (EXE8bc3ac3d...), with8 adapter controls and a real growth mutation caught. It freshly builds debug/pack, retains the rebuilt r2 renderer and other pinned objects; not a clean full-source build. No game/GPU/audio run or installation. Tracker/save-state regressions and all live acceptance remain open. [Actual results and preserved failures](../docs/DECODE-WORKER-RESULTS-20261114.md).
+
+The canonical native primary replacement has actual own hook/inbox/checkpoint proof; original history is retained and its worktree guard respected. Metadata monitor PID36052 is bounded to15:49:33.939UTC. CPU-only work continues; no GPU grant is inferred from elapsed time. Older checkpoint paragraphs below are historical. HUD derived candidates still require source/look/live acceptance; full skins/menu/audio and seven-stage completion are not claimed.
+
+## Resource and native-worker update —15:06UTC
+
+Pizza explicitly released its shared GPU grant14:56:05UTC; coordinator independently checked parent/child absence14:57:01. Root's legacy marker is still pending reconciliation; no new Einhander GPU/game/audio test ran. [Shared-resource controls and limits](../docs/SHARED-GPU-RESULTS-20261114.md) pass on CPU. The metadata monitor PID31968 is bounded to15:23:29.643UTC and proves monitoring only. Original native primary retired from new assignments with a durable handoff; supported canonical-root replacement remains pending. Other three workers continue stage/UI repairs. HUD152 derived fade-key candidates are not source/live admission; S23 phase silhouette defects and S67 native smoke-fill repairs remain subject to actual acceptance.
+
+## Latest texture/engine CPU checkpoint
+
+The 3090 Ti was handed back to Pizza Tycoon at14:38:45UTC; the modern GPU test never started and a new user-project hold blocks launches until release. CPU work continues. New private RISE composition replaces33 variants, preserves1,666 other images and passes native admission for1,699 entries, without installation/live acceptance. Opt-in composition fill passes10 controls and removes100,550 measured border flags on a real audit probe while preserving alpha/visible RGB.
+
+Root verifies1,111 v6 freeze pins; author host report passes7,534 fixtures plus mutation/glue/pack checks, but its outer process exit was not captured and root replay/private game link remain pending. Modern GL r4 compiles and passes14 CPU contracts,12 image controls and7 cleanup controls; actual modern GPU images/lifecycle and in-game RT/DLSS remain NOT RUN. Later-stage repaired copies still require source/colour/live review; current policy corrections and failures are retained. [Actual source, checks, failures and limits](../remaster-audit/texture-composer-followup-20261114/README.md).
+
+## Resource release and actual monitor renewal — November 14
+
+**Latest resource update:** the user explicitly released the RTX 3090 Ti in the other Einhander chat; root verified the actual human message and archived/removed the old hold at14:03:44 UTC. Reuse still requires root coordination, a quiet resource window and reviewed source. No new GPU test has started at this checkpoint; no power/driver setting was changed. Older reservation paragraphs below are historical and superseded. Native workers remain CPU-only without individual grants.
+
+Published checkpoint `ee7824a4e4e869972045b914225cfdf1efab8fcc` is remote-verified in draft PR1:189 new packet pins,2,243 historical/new pins verified;55 documents,89 JSON reports,970 references,0 issues. Its immutable packet preserves failures. The later RISE float32 correction is local:33/33 class checks pass and approved reference is byte-identical; composition/live acceptance remains pending.
+
+The owned metadata monitor was actually renewed: PID26032, first snapshot14:01:10 UTC, bound14:31:09.548 UTC; receipt `remaster-audit/runtime-review/gpu-texture-remix-20261114/monitor-renewal-20261114T140109Z/result.json`. It proves metadata monitoring only. Main continues actual inbox turns. The crash-check coordinator schedules bounded texture jobs; root retains v6/runtime/GPU/build/publication. Whole remaster remains incomplete.
+
+## Latest CPU verification — November 14, 2026
+
+CPU-only continuation now has four actual native Claude sessions with distinct stage ownership. Root replays 18 hook/checkpoint tests, 14 modern Remix/OpenGL metadata/lease checks, eight image-oracle controls and 13 corrected source/draw controls successfully. The private probe compiles/links; GPU image/synchronization/Shutdown and in-game Remix remain NOT RUN. The user's 3090 Ti reservation requires explicit release. No new game/audio test ran.
+
+The actual later-stage audit finds 178/202 Stage 6 selected files strict-pass and 24 failures; Stage 7 selected files pass 52/52 but the inferred planet pairing remains unconfirmed. S2/S3 class passes retain simulated cutout-fringe defects; S4's 26-file pass does not cover transparency because the chosen review palettes are opaque. Distant texture/art repairs, RISE float32 reference correction, decode-worker v6 tests, live source/draw confirmation and whole-stage acceptance remain unfinished. These are measured component results, not full coverage or a release. [Source, exact commands, preserved failures and limitations](../remaster-audit/cpu-session-interop-20261114/README.md).
+
+**Latest resource instruction, verified in the user's crash-status chat:** the 3090Ti is reserved for Pizza Tycoon HD until **at least 07:00 Phoenix / 14:00 UTC**, with no automatic expiry. Wait for explicit user release. This supersedes the earlier one-hour reuse permission. Continue CPU-only work; leave the unrelated project and its other Claude session untouched. The current reservation marker is copied as `root/user-gpu-hold-1320.json`; no owned GPU/game job is running.
+
+Root has now independently verified the recovered v5-r2 freeze:874 pins, 7,520 fixture checks and 14 GL-stub cases/352 checks pass; no GPU/game acceptance. All874 failed-predecessor hashes also remain unchanged, including263 all-zero files. Fsync/readback is a precaution; the crash/corruption cause remains unknown. Later-stage scope is concurrent: S2–S7 selected candidates 39/39/11/12/101/26 keys have 28 manifests reverified and concrete CPU whole-cell/fringe audits queued. None of the seven stages is fully accepted.
+
+November 14 current checkpoint: **Stage 1 and the full remaster remain incomplete**. [Actual reviewed scene/SDK/restart evidence](../remaster-audit/scene-texture-followup-20261114/README.md) supersedes historical next actions below. V66r3 compiles/links and passes 2,932 enabled / 6 disabled CPU checks, 14 exact-handler RPC cases plus foreign-thread control and 28 independent negative snapshot mutations. It has not run in-game. Modern matching SDK0.16.1 initializes its function table only; Startup/Submit/Present are not executed. The old-runtime GPU image/lifecycle control still fails. Ray tracing/DLSS in-game are unfinished.
+
+The user's 3090 Ti hour ended 12:44:30 UTC and reuse afterward is authorized; no owned game/probe is running. Windows restarted 12:49:22 UTC. Root found 90 zero-filled text files confined to unpublished frozen v5; all 990 published pins verify intact. Native Claude is actively recovering from intact originals into a new freeze; recovered CPU checkpoint verified; GPU/game acceptance pending. Distant signs/buildings, full texture coverage, detailed skins/selectors, HUD/menus, audio and seven-stage E2E remain open. Prior v61 live smoothness/audio acceptance remains failed; no new gameplay/audio test ran. [Codex handoff and current queue](../coordination/Codex-HANDOFF.md).
+
+November 14 update: [private power-profile results](STAGE1-POWER-PROFILE-RESULTS.md) show a better second run (50.8336 ms maximum, zero new starvation) with a remaining mini-boss hitch and no proven causal driver fix. The scoped preference is restored; no experimental runtime/art was installed. The [sign audit](STAGE1-SIGN-QUALITY-20261114.md) leaves green/pink overrides unaccepted. [Remix ingestion works](RTX-REMIX-SETUP-20261114.md), but no compatible game scene has been captured and no connected Remix project exists. These updates supersede the next-action wording in the dated notes below.
+
 November 13, 2026. **The remaster and Stage 1 release are incomplete.**
+
+Current [reboot/runtime and all seven-stage handoff](RUNTIME-CONTINUATION-20261113.md) includes the complete E2E open matrix and frozen source/evidence package. The v58 CPU phase diagnostic passes source/core checks and the full three-file build; its title GPU/API gates passed, but its first gameplay timing attempt lost focus after three seconds and was rejected/closed. Two observed-focus diagnostics are now complete: [actual r2/r3 results and replay data](STAGE1-FRAME-PHASE-RESULTS.md). They still fail: r2 maximum 204.7892 ms/+16,112 starved sample frames; r3 maximum 198.9995 ms/+3,214. r3 isolates a 175.224 ms small-texture wrapper delay near the mini-boss while its TexImage call takes 0.0213 ms. Focus differed and resource sampling has overhead; no causal improvement or installed fix is claimed. Narrow wrapper timing is next.
+
+The existing normal Play-HD binary, tested in a private copy with the installed
+964-PNG pack, 256 MB decode budget, scale 2 and rewind 50/15, passes the
+bounded boss timing check with only `PSX_DISPLAY_RING=0`: 350 consecutive
+application frame submissions, p95 17 ms, longest 21 ms, no interval over 25 ms,
+and zero new audio starvation across 120 seconds. Originals were re-hashed
+unchanged; user cards were never mounted. Normal Play-HD, material and Development launches now disable continuous
+forensic readback, with hashed rollback copies of the changed local files. No binary or artwork
+was replaced. The former material binding still failed with 15,378 starved
+output sample frames. A private saved-material test on the existing Play-HD
+runtime and its own cache then passed: 60.0072 fps, zero new gameplay
+starvation, 350 consecutive boss submissions and a longest interval of 20 ms.
+Live reads confirmed both selected profiles, exact keys and active detail maps.
+The local material receipt now selects that tested runtime, with rollback and
+shared-settings backups. The real frontend Play button now passes a private handoff check, with correct
+live material state and clean shutdown. Crimson, Gold and Neon shortcuts each
+passed title-state and five-second early-gameplay checks, without RAM writes or
+state loads. Source executables, settings, receipts, pack and caches re-hashed
+unchanged. These short functional checks do not establish full-stage appearance
+or pacing; the earlier two failed frontend harness attempts remain excluded. Existing cache shards and stages 2–7 remain unqualified.
+
+The larger frozen artwork candidate remains separate and still fails:
+39 boss uploads moved about 801 MiB, including 29 reuploads after eviction.
+A private bounded-retention experiment removed all reuploads and reduced boss
+traffic to 88 MiB, but had a 169 ms native VRAM upload-block stall. A repeat
+with extra passive timing still had a 94 ms boss gap. Neither candidate is
+installed. A same-binary buffered-upload comparison now pins one 58.27 ms stall to the
+raw VRAM `glTexSubImage2D` call. Buffering removed slow native-helper calls
+in that pair, but the full run still had a 184 ms gap and 703 starved sample
+frames (OFF: 85 ms maximum, zero starvation). Both 350-frame boss windows
+happened to have a 17 ms maximum. GPU pixel-equality/state-restore checks passed,
+and focus stayed active throughout both measurements. Different live input and
+handoff timing prevent a causal regression estimate. The prototype remains
+private and fails full smoothness; pauses outside the upload helper are still
+under investigation. The saved display pages alternate on every submission in
+both boss windows and across the 184 ms pause. This supports late delivery
+rather than repeated page submissions; it does not prove unique pixels or
+physical display visibility for every submitted frame. Unassisted full-stage and listening acceptance remain open.
+
+An [isolated default-off display-history fix](media/gallery/stage1-display-history-results.json)
+now averages about 60 guest frames/s in the 350-frame mini-boss window, with zero
+new audio starvation over two minutes. The profiler and an independent parser
+agree: continuous diagnostic GPU readback took about 25.7% of the main thread
+samples in the fight. In a same-binary OFF/ON comparison, disabling that history
+measured 60.01 fight frames/s and zero starvation; re-enabling it measured 57.75
+and 9,482 starved output sample frames. Earlier recorder-OFF tests still had
+this forensic ring ON. An actual rebuilt default-unset runtime, without the
+new collision/CPS or lock-free audio objects, measured 59.99 fight frames/s
+and zero starvation with scale 2 and rewind depth 50/interval 15. One-shot
+screenshots still work. Only one gameplay rewind snapshot was stored; most
+rewind attempts were skipped as unsafe. These are assisted Stage 1 results:
+the authorized hold writes the existing invincibility-countdown byte only,
+with held fire and no stage jumps or state loads. Visible recording, unassisted
+normal-launch acceptance and stages 2–7 remain pending. The final hardened
+source build also averages about 60 in a recorded test with zero starvation,
+but its passive swap ring shows seven intervals over 25 ms (longest 43 ms).
+All 350 application frames were submitted once. Capture itself also missed
+frames: the video is not a complete 60-fps stream. Fully even presentation
+remains open. A repeat with the same final binary and no recorder submitted all
+350 boss frames but still had eight intervals over 25 ms (longest 40 ms). It
+averaged 60.00 fight frames/s, with zero boss starvation, but 310 sample frames
+starved outside the boss at gameplay second 26 (frame 4631). Late intervals
+again coincide with first-use
+texture uploads; per-upload timing is being added to test that lead. The
+recorder is therefore not required for the hitch. Normal-player results are
+listed above. These experimental binaries are not installed. Exact 12-second callback excerpts are available for
+[history OFF](media/gallery/stage1-display-history-off-boss.wav),
+[history ON](media/gallery/stage1-display-history-on-boss.wav), and the
+[rebuilt recorder-free runtime](media/gallery/stage1-display-history-v54-boss.wav).
+They retain the original PCM; source offsets and hashes are in the report. The
+[normal Play-HD excerpt](media/gallery/stage1-display-history-normal-playhd-boss.wav)
+is also retained; subjective listening acceptance is pending.
 
 The [guarded native collision comparison](media/gallery/stage1-native51-results.json)
 completed with R4 and two leaf handlers qualified on the exact tested runtime.

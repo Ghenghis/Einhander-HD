@@ -1,0 +1,229 @@
+{
+ "schema": "support-adapter-binding-controls-r1",
+ "pins": {
+  "C:\\github\\Einhander\\remaster-audit\\unassisted_command_guard.py": "9e6ca8159a2f471fcbbde996464a6ba2eb6a51846c44567eefdb6e5cceaa2240",
+  "C:\\github\\Einhander\\remaster-audit\\gl_adapter_identity_guard.py": "c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\unassisted_command_guard_adapter_r1.py": "05f7f7d17767714734bb1510b0d0da09107389595ff116fec83230ef9bb3bcee",
+  "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\adapter-binding\\owned_gl_adapter_observation_audited_r1.py": "9f4550930ee5a980b89c62b00c6dcea966ccf10ff4f93036d8c5726993723b9c"
+ },
+ "controls_sha256": "5e88fb9e33a7a774210011c44e7de2a5042b2b78a85d0d4ca9873890f5431371",
+ "cpu": 14,
+ "allowed_affinity": [
+  14
+ ],
+ "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+ "psutil": "6.1.1",
+ "cases": [
+  {
+   "case": "B1_variant_guard_starts_with_canonical_9e6ca815_bytes",
+   "ok": true,
+   "detail": "canonical 5027 B is a byte prefix"
+  },
+  {
+   "case": "B2_ordinary_validate_command_identical_and_n1_never_admitted",
+   "ok": true,
+   "detail": "mismatches=[] n1_admitted=[]"
+  },
+  {
+   "case": "B3_send_guarded_refuses_n1_even_in_adapter_phase",
+   "ok": true,
+   "detail": "ValueError: Unassisted command refused before send: gl_present_ring"
+  },
+  {
+   "case": "B4_two_audited_samples_intent_before_send_and_finish_pass",
+   "ok": true,
+   "detail": "at_send=[[1], [2]]"
+  },
+  {
+   "case": "B5_run_audited_qualification_pass_cleanup_once",
+   "ok": true,
+   "detail": "cleanup={'status': 'proven', 'detail': 'owned identity and tree absence reported by the cleanup record', 'record': {'owned_pid': 4242, 'owned_identity': [4242, 1731600000.5], 'identity_absent': True, 'tree_absent': True, 'method': 'synthetic-fixture'}} error=None"
+  },
+  {
+   "case": "B6_foreign_peer_no_intent_no_send",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed"
+  },
+  {
+   "case": "B7_intent_logging_failure_no_send_budget_consumed",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed; FileExistsError: [WinError 183] Cannot create a file when that file already exists: 'C:\\\\github\\\\Einhander\\\\.claude\\\\worktrees\\\\goofy-babbage-872e5d\\\\remaster-audit\\\\claude-einhander-support\\\\adapter-binding\\\\runs\\\\controls-2243\\\\B7\\\\evidence\\\\command-intents'"
+  },
+  {
+   "case": "B8_third_adapter_intent_refused",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter qualification allows at most two queries"
+  },
+  {
+   "case": "B9_wrong_request_bytes_refused_budget_consumed",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter request bytes are not the exact n=1 query"
+  },
+  {
+   "case": "B10a_ledger_refuses_gameplay_phase",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter request outside the explicit adapter-qualification profile"
+  },
+  {
+   "case": "B10b_ledger_refuses_missing_profile",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter request outside the explicit adapter-qualification profile"
+  },
+  {
+   "case": "B10c_ledger_refuses_timer_assistance",
+   "ok": true,
+   "detail": "AdapterBindingError: This command policy permits unassisted gameplay only"
+  },
+  {
+   "case": "B10d_ledger_refuses_wildcard_endpoint",
+   "ok": true,
+   "detail": "AdapterBindingError: owned endpoint must be exactly 127.0.0.1:<port>"
+  },
+  {
+   "case": "B10e_collector_construction_refuses_non_adapter_phase",
+   "ok": true,
+   "detail": "AdapterEvidenceError: adapter intent ledger refused: adapter request outside the explicit adapter-qualification profile"
+  },
+  {
+   "case": "B11_ledger_refuses_foreign_peer_budget_consumed",
+   "ok": true,
+   "detail": "AdapterBindingError: connected peer is not the owned endpoint and process"
+  },
+  {
+   "case": "B12_receipt_write_failure_fails_sample_intent_kept",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed"
+  },
+  {
+   "case": "B13_eof_after_send_writes_failed_receipt_audit_consistent",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed"
+  },
+  {
+   "case": "B14a_audit_refuses_adapter_intent_with_n16384",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter request is not the exact gl_present_ring n=1 query | AdapterBindingError: adapter transport receipt has no validated intent | AdapterBindingError: adapter intent sequence is not 1..n"
+  },
+  {
+   "case": "B14b_audit_refuses_third_adapter_intent",
+   "ok": true,
+   "detail": "AdapterBindingError: more than two adapter intents | AdapterBindingError: adapter intent sequence is not 1..n | AdapterBindingError: unreceipted adapter intent"
+  },
+  {
+   "case": "B14c_audit_refuses_receipt_without_intent",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter transport receipt has no validated intent | AdapterBindingError: adapter intent sequence is not 1..n"
+  },
+  {
+   "case": "B14d_audit_refuses_receipt_peer_mismatch",
+   "ok": true,
+   "detail": "AdapterBindingError: connected peer is not the owned endpoint and process | AdapterBindingError: unreceipted adapter intent"
+  },
+  {
+   "case": "B14e_audit_refuses_intent_name_mismatch",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter record name/intent_id mismatch | AdapterBindingError: adapter transport receipt has no validated intent | AdapterBindingError: adapter intent sequence is not 1..n"
+  },
+  {
+   "case": "B14f_audit_refuses_ordinary_phase_n1_by_canonical_rule",
+   "ok": true,
+   "detail": "ValueError: Unassisted command refused before send: gl_present_ring"
+  },
+  {
+   "case": "B14g_audit_refuses_duplicate_key_in_adapter_intent",
+   "ok": true,
+   "detail": "AdapterBindingError: duplicate JSON key in adapter record: sequence | AdapterBindingError: adapter transport receipt has no validated intent | AdapterBindingError: adapter intent sequence is not 1..n"
+  },
+  {
+   "case": "B15_cleanup_runs_when_construction_fails",
+   "ok": true,
+   "detail": "AdapterEvidenceError: adapter intent ledger refused: adapter request outside the explicit adapter-qualification profile"
+  },
+  {
+   "case": "B16_cleanup_raise_makes_result_fail",
+   "ok": true,
+   "detail": "{'status': 'failed', 'detail': 'cleanup raised RuntimeError: synthetic cleanup failure'}"
+  },
+  {
+   "case": "B17_non_advance_fails_while_audit_stays_clean",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned adapter qualification failed"
+  },
+  {
+   "case": "B18_self_consistent_swapped_directory_fails_finish",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned adapter qualification failed"
+  },
+  {
+   "case": "B19_slow_intent_past_deadline_no_send_failure_receipt",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed"
+  },
+  {
+   "case": "B20_identity_change_after_intent_no_send_failure_receipt",
+   "ok": true,
+   "detail": "ObservationCaptureError: owned GL-present observation failed"
+  },
+  {
+   "case": "B21a_cleanup_returning_false_fails",
+   "ok": true,
+   "detail": "{'status': 'failed', 'detail': 'cleanup did not return the exact owned-cleanup record', 'record': False}"
+  },
+  {
+   "case": "B21b_cleanup_identity_not_absent_fails",
+   "ok": true,
+   "detail": "{'status': 'failed', 'detail': 'owned identity or process-tree absence not proven by cleanup', 'record': {'owned_pid': 4242, 'owned_identity': [4242, 1731600000.5], 'identity_absent': False, 'tree_absent': True, 'method': 'synthetic-fixture'}}"
+  },
+  {
+   "case": "B21c_cleanup_missing_tree_key_fails",
+   "ok": true,
+   "detail": "{'status': 'failed', 'detail': 'cleanup did not return the exact owned-cleanup record', 'record': {'owned_pid': 4242, 'owned_identity': [4242, 1731600000.5], 'identity_absent': True, 'method': 'synthetic-fixture'}}"
+  },
+  {
+   "case": "B21d_cleanup_wrong_pid_fails",
+   "ok": true,
+   "detail": "{'status': 'failed', 'detail': 'cleanup record does not name the owned process', 'record': {'owned_pid': 777, 'owned_identity': [4242, 1731600000.5], 'identity_absent': True, 'tree_absent': True, 'method': 'synthetic-fixture'}}"
+  },
+  {
+   "case": "B22a_transport_decoded_int_1_refused",
+   "ok": true,
+   "detail": "AdapterBindingError: malformed adapter transport outcome"
+  },
+  {
+   "case": "B22b_transport_non_hex_sha_refused",
+   "ok": true,
+   "detail": "AdapterBindingError: malformed adapter transport outcome"
+  },
+  {
+   "case": "B22c_audit_refuses_receipt_decoded_int",
+   "ok": true,
+   "detail": "AdapterBindingError: malformed adapter transport outcome | AdapterBindingError: unreceipted adapter intent"
+  },
+  {
+   "case": "B22e_audit_refuses_float_port_in_peer",
+   "ok": true,
+   "detail": "AdapterBindingError: owned endpoint must be exactly 127.0.0.1:<port> | AdapterBindingError: adapter transport receipt has no validated intent | AdapterBindingError: adapter intent sequence is not 1..n"
+  },
+  {
+   "case": "B22d_bool_pid_not_equal_to_owned_pid_1",
+   "ok": true,
+   "detail": "AdapterBindingError: connected peer is not the owned endpoint and process"
+  },
+  {
+   "case": "B23_audit_requires_outer_adapter_scope",
+   "ok": true,
+   "detail": "AdapterBindingError: adapter request outside the explicit adapter-qualification profile | AdapterBindingError: adapter request outside the explicit adapter-qualification profile | AdapterBindingError: adapter request outside the explicit adapter-qualification profile | AdapterBindingError: adapter r"
+  },
+  {
+   "case": "B24_unreceipted_adapter_intent_is_audit_error",
+   "ok": true,
+   "detail": "AdapterBindingError: unreceipted adapter intent"
+  }
+ ],
+ "started_utc": "2026-11-14T22:41:47Z",
+ "note": "pure controls and doubles only; not a game run; not collector qualification",
+ "elapsed_s": 2.165,
+ "case_count": 41,
+ "expected_cases": 41,
+ "all_ok": true
+}

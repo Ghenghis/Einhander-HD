@@ -1,0 +1,87 @@
+{
+  "started_utc": "2026-11-14T12:14:26.249645+00:00",
+  "gpu_target_uuid": "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa",
+  "gpu_target_name": "NVIDIA GeForce RTX 3060",
+  "reserved_3090_uuid": "GPU-ff51fa52-74c8-c785-e000-53fe58844033",
+  "user_3090_lease_writes": false,
+  "resolution": [
+    320,
+    180
+  ],
+  "frame_limit": 120,
+  "fps_cap": 10,
+  "watchdog_seconds": 45,
+  "executable_sha256": "9d588f52417829501f9b2666ee36880cd6e76d741c0fdfe14f02b65c80680e55",
+  "dll_sha256": "ca71edf1d7d03d792a3e8d1d6b00c75d122220e4b4f323ef93e6f71bb9392dc1",
+  "cpu_affinity": [
+    14,
+    15
+  ],
+  "below_normal": true,
+  "purpose": "Owned D3D9 readback and direct registered-device Present control; no game, GL or global driver changes.",
+  "passed": false,
+  "target_preflight": [
+    "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa",
+    "NVIDIA GeForce RTX 3060",
+    "28",
+    "12288",
+    "0"
+  ],
+  "environment_overrides": {
+    "DXVK_FILTER_DEVICE_NAME": "NVIDIA GeForce RTX 3060",
+    "DXVK_LOG_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-3060-r1",
+    "DXVK_CONFIG_FILE": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-3060-r1\\dxvk.conf",
+    "DXVK_STATE_CACHE_PATH": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-3060-r1"
+  },
+  "command": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-3060-r1\\readback",
+    "NVIDIA GeForce RTX 3060"
+  ],
+  "pid": 9684,
+  "wrong_gpu_rejected": true,
+  "exit": 1,
+  "seconds": 9.994,
+  "gpu_process_samples": [
+    {
+      "seconds": 0.026,
+      "owned_pid_rows": []
+    },
+    {
+      "seconds": 3.05,
+      "owned_pid_rows": [
+        "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa, 9684, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 5.196,
+      "owned_pid_rows": [
+        "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa, 9684, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 7.249,
+      "owned_pid_rows": [
+        "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa, 9684, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    },
+    {
+      "seconds": 9.465,
+      "owned_pid_rows": [
+        "GPU-ff51fa52-74c8-c785-e000-53fe58844033, 9684, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe",
+        "GPU-eb6787b1-90ea-26b2-4a62-d44b1452d8aa, 9684, C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-direct-cpu-r2\\sdk-direct-control.exe"
+      ]
+    }
+  ],
+  "selected_adapter_verified": true,
+  "owned_pid_seen_on_3060": true,
+  "owned_pid_seen_on_3090": true,
+  "readback_samples": [],
+  "readback_control_passed": false,
+  "scene_image_passed": false,
+  "lifecycle_passed": false,
+  "process_gone": true,
+  "3060_lease_released": true,
+  "user_3090_lease_unchanged": true,
+  "ended_utc": "2026-11-14T12:14:36.727218+00:00"
+}

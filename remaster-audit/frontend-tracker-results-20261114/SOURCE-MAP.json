@@ -1,0 +1,947 @@
+{
+  "created_utc": "2026-11-14T16:08:54.024911+00:00",
+  "sources": [
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\development-check-stderr.log",
+      "published": "root/development-frontend-cpu-r1/development-check-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\development-check-stdout.log",
+      "published": "root/development-frontend-cpu-r1/development-check-stdout.log",
+      "bytes": 166,
+      "sha256": "f9080ba8cb81854c655547ab2378e9e6572d75ad9fe60159d06258d76c1872b0"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\direct-check-stderr.log",
+      "published": "root/development-frontend-cpu-r1/direct-check-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\direct-check-stdout.log",
+      "published": "root/development-frontend-cpu-r1/direct-check-stdout.log",
+      "bytes": 4674,
+      "sha256": "f88b2f23c97af9e6272d14f5a4dbf37104abff0254c1b61f5c5dc4a22dc2f22c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\executed-runner.py",
+      "published": "root/development-frontend-cpu-r1/executed-runner.py",
+      "bytes": 3670,
+      "sha256": "0a208c7011249eef31df022dd6e76b95c9f3c5f08e19e55eeeff9b9fa83b176f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\frontend-check-stderr.log",
+      "published": "root/development-frontend-cpu-r1/frontend-check-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\frontend-check-stdout.log",
+      "published": "root/development-frontend-cpu-r1/frontend-check-stdout.log",
+      "bytes": 4671,
+      "sha256": "40be17bc68c552702f2a06edd72f285b92ecac68a6aa7a634736b6dfac8cc84c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\native-review.md",
+      "published": "root/development-frontend-cpu-r1/native-review.md",
+      "bytes": 9836,
+      "sha256": "ac72e03ceac061d352077802462607813ebba3b25d867f794511f8f401ac09fb"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\powershell-syntax-stderr.log",
+      "published": "root/development-frontend-cpu-r1/powershell-syntax-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\powershell-syntax-stdout.log",
+      "published": "root/development-frontend-cpu-r1/powershell-syntax-stdout.log",
+      "bytes": 22,
+      "sha256": "6fdbbbf42fea4e7f6ec8922fea6d345910d8d480f00365513e394332e31e1459"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\result.json",
+      "published": "root/development-frontend-cpu-r1/result.json",
+      "bytes": 2493,
+      "sha256": "5aa5beb5697a2c65a800010877a5cb203dc54325ccd38d1cf0dc56d467274b97"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\source\\windows-x64\\tools\\launch_hd.py",
+      "published": "root/development-frontend-cpu-r1/source/windows-x64/tools/launch_hd.py",
+      "bytes": 3682,
+      "sha256": "08f590ec8d49f7069b5dfce558f343c32d1f1043f08587d91963df5a80ce77ed"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\source\\windows-x64\\tools\\Start-Development.ps1",
+      "published": "root/development-frontend-cpu-r1/source/windows-x64/tools/Start-Development.ps1",
+      "bytes": 5223,
+      "sha256": "9bc1646bd07ef5308cb2e53f3a2aa6ea16e56e86a6b9e0e79ca32fef000af0b6"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\source\\windows-x64\\tools\\test_launch_hd.py",
+      "published": "root/development-frontend-cpu-r1/source/windows-x64/tools/test_launch_hd.py",
+      "bytes": 5492,
+      "sha256": "6b69cb84c1343bf3cc21edf787f159b706816b82af89f2d2bcf615e9f26bd846"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\unit-stderr.log",
+      "published": "root/development-frontend-cpu-r1/unit-stderr.log",
+      "bytes": 1520,
+      "sha256": "0caa8c9b844e043c1d89d8385573047defca935a40bf676856f7f57696193a54"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r1\\unit-stdout.log",
+      "published": "root/development-frontend-cpu-r1/unit-stdout.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\powershell-arguments-stderr.log",
+      "published": "root/development-frontend-cpu-r2/powershell-arguments-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\powershell-arguments-stdout.log",
+      "published": "root/development-frontend-cpu-r2/powershell-arguments-stdout.log",
+      "bytes": 149,
+      "sha256": "d475fce52a4a9d4fe4f921bfde6d8a87730f17c207a57157007166cf5b0ed933"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\result.json",
+      "published": "root/development-frontend-cpu-r2/result.json",
+      "bytes": 2787,
+      "sha256": "66a8a9970dcd692663277879573cfb553d84166a79ed64fad26de7b168ab077e"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\saved-port-stderr.log",
+      "published": "root/development-frontend-cpu-r2/saved-port-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\saved-port-stdout.log",
+      "published": "root/development-frontend-cpu-r2/saved-port-stdout.log",
+      "bytes": 271,
+      "sha256": "89276bf5e9d780bf5158c74e2c725380c40f4a46b99cba24175a0abbf552da1a"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\stock-port-stderr.log",
+      "published": "root/development-frontend-cpu-r2/stock-port-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\development-frontend-cpu-r2\\stock-port-stdout.log",
+      "published": "root/development-frontend-cpu-r2/stock-port-stdout.log",
+      "bytes": 252,
+      "sha256": "d006b65a77da47f2c38e2eccf1974c3e826ff3a3ca61d93b30015f9dabe07b92"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\compile-hd_texture_pack_test.cpp.log",
+      "published": "root/v67-pack-regressions-r1/compile-hd_texture_pack_test.cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\compile-test_hd_texture_pack.cpp.log",
+      "published": "root/v67-pack-regressions-r1/compile-test_hd_texture_pack.cpp.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\executed-runner.py",
+      "published": "root/v67-pack-regressions-r1/executed-runner.py",
+      "bytes": 5465,
+      "sha256": "d86de264ea16be45bb76d51561ef0c1dd9bd81c91b6afb075c887103a10164d8"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-baseline-id0.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-baseline-id0.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-baseline-id1.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-baseline-id1.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-both-id0.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-both-id0.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-both-id1.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-both-id1.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-incremental-id0.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-incremental-id0.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-incremental-id1.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-incremental-id1.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-region-id0.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-region-id0.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp-region-id1.log",
+      "published": "root/v67-pack-regressions-r1/hd_texture_pack_test.cpp-region-id1.log",
+      "bytes": 45,
+      "sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\result.json",
+      "published": "root/v67-pack-regressions-r1/result.json",
+      "bytes": 11897,
+      "sha256": "b351ed0ae7475df9fcb4227b70945ff45b385659a67d38db4a05978653199121"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\include\\hd_texture_pack.h",
+      "published": "root/v67-pack-regressions-r1/test-sources/include/hd_texture_pack.h",
+      "bytes": 14833,
+      "sha256": "78234dfdbe4b574b6054b27a65d4cb64877420fa9e67488355542d547969c794"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\src\\png_write.h",
+      "published": "root/v67-pack-regressions-r1/test-sources/src/png_write.h",
+      "bytes": 5102,
+      "sha256": "4ac63e7ea052284ab9d2bfa2aa8c77518d79ee9190be522e2684235ae1966578"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\tests\\hd_texture_pack_test.cpp",
+      "published": "root/v67-pack-regressions-r1/test-sources/tests/hd_texture_pack_test.cpp",
+      "bytes": 11794,
+      "sha256": "fe90ccb8321beaa5f121ef3db7465b2dcb35044d9dd43753946309c2ee034350"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\tests\\test_hd_texture_pack.cpp",
+      "published": "root/v67-pack-regressions-r1/test-sources/tests/test_hd_texture_pack.cpp",
+      "bytes": 22785,
+      "sha256": "6a65225ff19efb2068d820da9903ad3c851d83ecfbd9f5db7b03fe03512f4475"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\third_party\\stb_image.h",
+      "published": "root/v67-pack-regressions-r1/test-sources/third_party/stb_image.h",
+      "bytes": 287236,
+      "sha256": "866095d4107665b4f2ac84e5aa25c7b4bd2f89c5408348c87fdec8891661cace"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-baseline-id0.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-baseline-id0.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-baseline-id1.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-baseline-id1.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-both-id0.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-both-id0.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-both-id1.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-both-id1.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-incremental-id0.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-incremental-id0.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-incremental-id1.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-incremental-id1.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-region-id0.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-region-id0.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp-region-id1.log",
+      "published": "root/v67-pack-regressions-r1/test_hd_texture_pack.cpp-region-id1.log",
+      "bytes": 60,
+      "sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\region-o-canonical-copy-r1\\result.json",
+      "published": "root/region-o-canonical-copy-r1/result.json",
+      "bytes": 1086,
+      "sha256": "65ca0e7aff7e51c851d90ef350c607b5ed9fa6a35b126598a9a8bc58d369f8e2"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\monitor-renewal-20261114T154723Z\\executed-runner.py",
+      "published": "root/monitor-renewal-20261114T154723Z/executed-runner.py",
+      "bytes": 2224,
+      "sha256": "8b2fa7892b0b7164e7af4d03e9f350d7889167f10d4cc12d424b53eac7a8def6"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\monitor-renewal-20261114T154723Z\\prior-health.json",
+      "published": "root/monitor-renewal-20261114T154723Z/prior-health.json",
+      "bytes": 4835,
+      "sha256": "0ae49ff9fb9653ce54aa70c4e60559dc13ec2ca58f0ce859245c70a94d517ad3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\monitor-renewal-20261114T154723Z\\result.json",
+      "published": "root/monitor-renewal-20261114T154723Z/result.json",
+      "bytes": 5736,
+      "sha256": "cc859b2c110de84c7a3ff44965554f066a031ae7dc920b464c80a3d0b48d6181"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\monitor-renewal-20261114T154723Z\\stderr.log",
+      "published": "root/monitor-renewal-20261114T154723Z/stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\monitor-renewal-20261114T154723Z\\stdout.jsonl",
+      "published": "root/monitor-renewal-20261114T154723Z/stdout.jsonl",
+      "bytes": 19264,
+      "sha256": "ce18922e49aafd4adae9f8c81c9392b21684fd071313ae1fc04bec1cd2219cb4"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\verify_development_frontend.py",
+      "published": "root/verify_development_frontend.py",
+      "bytes": 3670,
+      "sha256": "0a208c7011249eef31df022dd6e76b95c9f3c5f08e19e55eeeff9b9fa83b176f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\prepare_frontend_followup.py",
+      "published": "root/prepare_frontend_followup.py",
+      "bytes": 923,
+      "sha256": "fef7d61ee5f275bc2aceb6dafe920cb8675f1f895f05df55870e8ec8e3f9fd17"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\verify_frontend_followup.py",
+      "published": "root/verify_frontend_followup.py",
+      "bytes": 4384,
+      "sha256": "a7251a694f07d55f174973e8a0b6209b422149dfe995fd5c32d19214e1f1a8cf"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\verify_v67_pack_regressions.py",
+      "published": "root/verify_v67_pack_regressions.py",
+      "bytes": 5465,
+      "sha256": "d86de264ea16be45bb76d51561ef0c1dd9bd81c91b6afb075c887103a10164d8"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\preserve_region_o_candidate.py",
+      "published": "root/preserve_region_o_candidate.py",
+      "bytes": 2464,
+      "sha256": "76ac50a6568ca7349b03906ef50c982ef829c66f08a0a789b9b882cdb6460ab3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\decode-worker-delivery.json",
+      "published": "root/decode-worker-delivery.json",
+      "bytes": 65500,
+      "sha256": "7e7934d08e325a03561c12da08ca85063a65033081de8a79d1c9fd14ac8f32e2"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\decode-worker-pr-verification.json",
+      "published": "root/decode-worker-pr-verification.json",
+      "bytes": 408,
+      "sha256": "2bf75f3c0e6de849de0e822020dd84dda9bc3b458707f3338fe31c6e9a84fd32"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\prepare_frontend_tracker_delivery.py",
+      "published": "root/prepare_frontend_tracker_delivery.py",
+      "bytes": 16068,
+      "sha256": "b0dbad0ed6fe42095dd431a711f5622ac8ea335cb1974a6c8c779b4dce7efb70"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\launch_hd.py",
+      "published": "source/windows-x64/tools/launch_hd.py",
+      "bytes": 3682,
+      "sha256": "08f590ec8d49f7069b5dfce558f343c32d1f1043f08587d91963df5a80ce77ed"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\Start-Development.ps1",
+      "published": "source/windows-x64/tools/Start-Development.ps1",
+      "bytes": 5980,
+      "sha256": "40878f7d24deb8d7ad6c4ff7191e55eacae608bfa6a1578bb45abb65829bdc8a"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\test_launch_hd.py",
+      "published": "source/windows-x64/tools/test_launch_hd.py",
+      "bytes": 5492,
+      "sha256": "6b69cb84c1343bf3cc21edf787f159b706816b82af89f2d2bcf615e9f26bd846"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\test_material_profiles.py",
+      "published": "source/windows-x64/tools/test_material_profiles.py",
+      "bytes": 23701,
+      "sha256": "733763076b2af98b4b5d75016210dbdb4e4856b5833797981fd727250f0e99e7"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\material_profiles.py",
+      "published": "source/windows-x64/tools/material_profiles.py",
+      "bytes": 32977,
+      "sha256": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4"
+    },
+    {
+      "source": "C:\\github\\Einhander\\windows-x64\\tools\\launch_material.py",
+      "published": "source/windows-x64/tools/launch_material.py",
+      "bytes": 5199,
+      "sha256": "648ae54a57611975fc67b0e18b318e570cc19ae6cfecd8a0708df6cdbd87ad75"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\manifest.json",
+      "published": "private-region-o/manifest.json",
+      "bytes": 5237,
+      "sha256": "c37e7c00018f2e0fd948a034b1911bd5ba82e8ae3d8835fa5a941eb1aee3f844"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\o_city_rebuild.py",
+      "published": "private-region-o/o_city_rebuild.py",
+      "bytes": 18417,
+      "sha256": "8df06be07732687fff9bf88ab6f5c9200361629ed0859d43f4700bfc608c1d4c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\READY.json",
+      "published": "private-region-o/READY.json",
+      "bytes": 434,
+      "sha256": "43a7882881cd21a19eec606d0b9aba8a2f17c94ed566caaffbe84c565f3cff85"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\SHA256SUMS.txt",
+      "published": "private-region-o/SHA256SUMS.txt",
+      "bytes": 833,
+      "sha256": "3a535a62fabbd37acc806e33e39b835bcedc166c85b28e7c2539adc4dc8b256e"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\validation.json",
+      "published": "private-region-o/validation.json",
+      "bytes": 2197,
+      "sha256": "34ab5aec5be4234840afe57bf6611da7623395f48b89befc129dcc68e0d4b6c9"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s3-scale2x-20261114T154534Z\\manifest.json",
+      "published": "stage-work/s23/proposals/s3-scale2x-20261114T154534Z/manifest.json",
+      "bytes": 66038,
+      "sha256": "22370974abccc6d5868d021c48d1ccee27fa5e0eaafdce1ae9cb4eb372f9128e"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s3-scale2x-20261114T154534Z\\rows.jsonl",
+      "published": "stage-work/s23/proposals/s3-scale2x-20261114T154534Z/rows.jsonl",
+      "bytes": 48026,
+      "sha256": "632b2f2abcfc34f2dfd9cd55dae518adf2cc7592fd920e815d529e3a840a8536"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s3-scale2x-20261114T154534Z\\sessions.jsonl",
+      "published": "stage-work/s23/proposals/s3-scale2x-20261114T154534Z/sessions.jsonl",
+      "bytes": 102,
+      "sha256": "800eb51dbc33412887fbada03773b9249c9574eceb2cda8407f97ce954227307"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5-20261114T154534Z\\compare.json",
+      "published": "stage-work/s23/runs/j5-20261114T154534Z/compare.json",
+      "bytes": 748,
+      "sha256": "23b34e30957de89220f7eba8f06d0514f80dae5e6314c3bd8d1a67a59af96f49"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5-20261114T154534Z\\console.log",
+      "published": "stage-work/s23/runs/j5-20261114T154534Z/console.log",
+      "bytes": 3561,
+      "sha256": "41bbca440db4b71c110ee05df4ccc2854e2ee5dfc96f67e7e547a7bcda37d12c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5-20261114T154534Z\\receipt.json",
+      "published": "stage-work/s23/runs/j5-20261114T154534Z/receipt.json",
+      "bytes": 983,
+      "sha256": "b9a58ce9f65526ffc0b913c32b0c1b25f522cbe33854b06f783bf17324cc6678"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s2-trains-scale2x-20261114T160110Z\\manifest.json",
+      "published": "stage-work/s23/proposals/s2-trains-scale2x-20261114T160110Z/manifest.json",
+      "bytes": 38114,
+      "sha256": "46c26204d95de0d85182074528121afa9789f9df5801e7706d9c4478dd0c0871"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s2-trains-scale2x-20261114T160110Z\\rows.jsonl",
+      "published": "stage-work/s23/proposals/s2-trains-scale2x-20261114T160110Z/rows.jsonl",
+      "bytes": 25397,
+      "sha256": "b206c1a05d8a37919e8e668a239f41ecaeb5bbeae6fea42a293b6f11b4362b4f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\proposals\\s2-trains-scale2x-20261114T160110Z\\sessions.jsonl",
+      "published": "stage-work/s23/proposals/s2-trains-scale2x-20261114T160110Z/sessions.jsonl",
+      "bytes": 102,
+      "sha256": "8e72a36ceb21f8ed654681b5d6c2050ddf4806d59112d6798cba6e35d8dff710"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5t-20261114T160110Z\\compare.json",
+      "published": "stage-work/s23/runs/j5t-20261114T160110Z/compare.json",
+      "bytes": 8602,
+      "sha256": "3c823d15c0c8ad2ea33fe6900f863afebbdae2f4d837900f736580a0bc2664b5"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5t-20261114T160110Z\\console.log",
+      "published": "stage-work/s23/runs/j5t-20261114T160110Z/console.log",
+      "bytes": 2013,
+      "sha256": "b413680a497d6a30e6adf489cf6fb7bfafed15f15a7c0f3e8f7f914b05820a5b"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\runs\\j5t-20261114T160110Z\\receipt.json",
+      "published": "stage-work/s23/runs/j5t-20261114T160110Z/receipt.json",
+      "bytes": 996,
+      "sha256": "09e085c8b2511cf94c6fb5cef0c2ebb8123087a528be7b5c5249d3db6ec7bd06"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\class_mip.c",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/class_mip.c",
+      "bytes": 20061,
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\class_mip.h",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/class_mip.h",
+      "bytes": 5612,
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\epx.py.txt",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/epx.py.txt",
+      "bytes": 1391,
+      "sha256": "86831043dfa0dfa6be91ad2f636519ab529366ce68771eb77b408d88f1506e08"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\pid.txt",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/pid.txt",
+      "bytes": 24,
+      "sha256": "56541c24e4b173eabfdeda321397f6829a1af2f24ce4b92ee885376c52fab0f9"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\result.json",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/result.json",
+      "bytes": 30690,
+      "sha256": "6aa521dec9df8693c6b9081adf883a6233cd89db0a6c6ca8b54253d1480dc4e1"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\epx-retrace\\20261114T154219Z\\s45_hud_epx_retrace.py",
+      "published": "stage-work/s45/menu-hud/epx-retrace/20261114T154219Z/s45_hud_epx_retrace.py",
+      "bytes": 11073,
+      "sha256": "bdfcbd6fb1c9902b706fdea1b643e94ff8fd743313c59b2842091ccde6b361eb"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\class_mip.c",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/class_mip.c",
+      "bytes": 20061,
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\class_mip.h",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/class_mip.h",
+      "bytes": 5612,
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\epx.py.txt",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/epx.py.txt",
+      "bytes": 1391,
+      "sha256": "86831043dfa0dfa6be91ad2f636519ab529366ce68771eb77b408d88f1506e08"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\pid.txt",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/pid.txt",
+      "bytes": 24,
+      "sha256": "16035f9ff308ec83b80cb187a5ae8c25806029e558e3c405e37cc85be64b41df"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\result.json",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/result.json",
+      "bytes": 71495,
+      "sha256": "4bec1c38d097b2420095f905c92ae5b5889dadf58a855028c174790650936981"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\gauge-B24C6DA2-v1\\20261114T154853Z\\s45_gauge_b24.py",
+      "published": "stage-work/s45/menu-hud/gauge-B24C6DA2-v1/20261114T154853Z/s45_gauge_b24.py",
+      "bytes": 12207,
+      "sha256": "3519ac341dcc0f3a32b62411ceea282e128d7cdd870b5c72b929e60dbe124b87"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T155808Z\\class_mip.c",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T155808Z/class_mip.c",
+      "bytes": 20061,
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T155808Z\\class_mip.h",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T155808Z/class_mip.h",
+      "bytes": 5612,
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T155808Z\\pid.txt",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T155808Z/pid.txt",
+      "bytes": 24,
+      "sha256": "1564adfa924c27b3608edc5951410734a135a04d24fff14866e1927d69f3ebee"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T155808Z\\result.json",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T155808Z/result.json",
+      "bytes": 31862,
+      "sha256": "ae8b6a119337509835a3f3656f17a0eff6cf49ed38eed3a9f6e6b18b30afb94e"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T155808Z\\s45_menu_primary_audit.py",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T155808Z/s45_menu_primary_audit.py",
+      "bytes": 10870,
+      "sha256": "48ec9939b3ba539d54f1fae9e1b545f6da0c6b3d719cc832bd38385774beb882"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T160358Z\\class_mip.c",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T160358Z/class_mip.c",
+      "bytes": 20061,
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T160358Z\\class_mip.h",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T160358Z/class_mip.h",
+      "bytes": 5612,
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T160358Z\\pid.txt",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T160358Z/pid.txt",
+      "bytes": 24,
+      "sha256": "c206a9a0ea8c4ed532a3fda902d122bcedf13cfa8bcb1eba945452781ad170e2"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T160358Z\\result.json",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T160358Z/result.json",
+      "bytes": 58305,
+      "sha256": "9278a2eaf8d753eff4d445089e01eceb66347cb22884b2bac619c10516413a78"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\primary-audit\\20261114T160358Z\\s45_menu_primary_audit_v2.py",
+      "published": "stage-work/s45/menu-hud/primary-audit/20261114T160358Z/s45_menu_primary_audit_v2.py",
+      "bytes": 12476,
+      "sha256": "ddf2443c0f5b5e4774f48f4b8d6bf4e83b78fdd26f89ffa5f8d4da0c5975f48d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\class_mip.c",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/class_mip.c",
+      "bytes": 20061,
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\class_mip.h",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/class_mip.h",
+      "bytes": 5612,
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\manifest.json",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/manifest.json",
+      "bytes": 8947,
+      "sha256": "8cd2d9eddd15f98105190beb1dcc8d22a1afc0a525d14a7c8d1f8cf6bae1efb2"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\prebuilt.json",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/prebuilt.json",
+      "bytes": 591,
+      "sha256": "608f06655cd88f084bb9b4e60b4d5859589f90f566b2ee88a1f5909634ea42a6"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\s67_strict_audit.py",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/s67_strict_audit.py",
+      "bytes": 18090,
+      "sha256": "9ba1ef4d92d693482f6c855e136950dfbe734df8e18c22767a955c7c3313faf0"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\s6_fx_classrepair.py",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/s6_fx_classrepair.py",
+      "bytes": 19667,
+      "sha256": "b7d6757a6c96b54a05c976c76301216356e414bf5428cfba7f53a9ce9086697d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-fx-classrepair-r2a-nativefill\\start.json",
+      "published": "stage-work/s67/repairs/stage6-fx-classrepair-r2a-nativefill/start.json",
+      "bytes": 481,
+      "sha256": "6b07492046027d2501ef6c0037b5a28fbd07bd5143a232563c78537cc3685c94"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-vram448-0-A5969BC9-dedither-r2\\manifest.json",
+      "published": "stage-work/s67/repairs/stage6-vram448-0-A5969BC9-dedither-r2/manifest.json",
+      "bytes": 22892,
+      "sha256": "09edecb468be7a2d4eda59dd09b482be4c1ceea6c7654998a8654719bf337aa2"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage6-vram448-0-A5969BC9-dedither-r2\\start.json",
+      "published": "stage-work/s67/repairs/stage6-vram448-0-A5969BC9-dedither-r2/start.json",
+      "bytes": 304,
+      "sha256": "80895b563cc499f7828c295eb4c9b22cca0544a69d261cb5e517ac1ace75497c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\repairs\\stage7-space-backdrop-30BB2999-bursts-r1\\manifest.json",
+      "published": "stage-work/s67/repairs/stage7-space-backdrop-30BB2999-bursts-r1/manifest.json",
+      "bytes": 10477,
+      "sha256": "bc2540097f4e0798a0f8226bb89d8d61ef1d5b93a0d7d49a5ea91410fd12df91"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\receipts\\J-L2-20261114T160356Z.json",
+      "published": "dated-tools/s45/menu-hud/receipts/J-L2-20261114T160356Z.json",
+      "bytes": 1456,
+      "sha256": "b46239332a0a908c22e69b08967146cb8df479422994e9e494a83ecd9cd64d33"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\receipts\\SELFTEST-expired-grant-20261114T160127Z.json",
+      "published": "dated-tools/s45/menu-hud/receipts/SELFTEST-expired-grant-20261114T160127Z.json",
+      "bytes": 897,
+      "sha256": "b791db4c1574c227f74f36bfe8794854e8d4472d379a0a105b746b4bf9e1709f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_fade_alias_render.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_fade_alias_render.py",
+      "bytes": 11902,
+      "sha256": "abba05a281b777bbaee08db26278fb423f47797f6c5ff3606a5a851f4e8371e4"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_fade_provenance.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_fade_provenance.py",
+      "bytes": 10320,
+      "sha256": "1fe41cea9974a578585c79bd6c6a14a00d87b20a44923a5f5bca6e1f39366908"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_fade_recover.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_fade_recover.py",
+      "bytes": 13794,
+      "sha256": "3bf43a08bd6984625c3f12e86114a87e782a4823aec637fb78d9caf33790ac98"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_gauge_b24.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_gauge_b24.py",
+      "bytes": 12207,
+      "sha256": "3519ac341dcc0f3a32b62411ceea282e128d7cdd870b5c72b929e60dbe124b87"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_gauge_v13snap.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_gauge_v13snap.py",
+      "bytes": 12806,
+      "sha256": "6bfb84840990d02ea1129350afa3b03488df044bcd6cea7a1477f53af31385e4"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_hud_classsnap.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_hud_classsnap.py",
+      "bytes": 11398,
+      "sha256": "de0d8d5ca2027698d1efa6200d992b1b8e69597de6708e8ceea978f0e5b1f936"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_hud_epx_retrace.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_hud_epx_retrace.py",
+      "bytes": 11073,
+      "sha256": "bdfcbd6fb1c9902b706fdea1b643e94ff8fd743313c59b2842091ccde6b361eb"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_ji_review.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_ji_review.py",
+      "bytes": 5600,
+      "sha256": "8dc3e4516c95a1dfeb827c0df43bc03bbbf2cd6412ac5bfe7434ae6418fcf065"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_menu_gates.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_menu_gates.py",
+      "bytes": 5774,
+      "sha256": "d0166bcc4e0802abc8a8e32647e965cd5be7234fb556af442011daf547da0bc0"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_menu_primary_audit.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_menu_primary_audit.py",
+      "bytes": 10870,
+      "sha256": "48ec9939b3ba539d54f1fae9e1b545f6da0c6b3d719cc832bd38385774beb882"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_menu_primary_audit_v2.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_menu_primary_audit_v2.py",
+      "bytes": 12476,
+      "sha256": "ddf2443c0f5b5e4774f48f4b8d6bf4e83b78fdd26f89ffa5f8d4da0c5975f48d"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_menu_primary_audit_v3.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_menu_primary_audit_v3.py",
+      "bytes": 15033,
+      "sha256": "8d20c54860d20bf31a15b776b8fe07fe43f0ba04655377aa72f48bc1b0b28678"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_menu_register.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_menu_register.py",
+      "bytes": 14456,
+      "sha256": "eda5f539f99172ac28fc02f5e3d2cf09118a1bcfe624a57f8021b91d51f6bf38"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_ui_handoff.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_ui_handoff.py",
+      "bytes": 8051,
+      "sha256": "841416289a8e914127275458f0b25a28597267ea362a33d1b55d47c633268610"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_w6_crosscheck.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_w6_crosscheck.py",
+      "bytes": 4739,
+      "sha256": "305c1384bbd64ebbb4a733d18a059ee0b10b32a35af66c7498b80d453f90537f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s45\\menu-hud\\tools\\s45_w6_primary_probe.py",
+      "published": "dated-tools/s45/menu-hud/tools/s45_w6_primary_probe.py",
+      "bytes": 5124,
+      "sha256": "ee803c5bf1e4459b69184fa7e027bda3d9833fe91e8b443058abedc8734817ff"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\admission_checklist.py",
+      "published": "dated-tools/s23/tools/admission_checklist.py",
+      "bytes": 13526,
+      "sha256": "f34edb7e6367c9b6828ab89d445f34d3e329a1f67de49efc62b537d83d2e5aa4"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\draft_review_plans.py",
+      "published": "dated-tools/s23/tools/draft_review_plans.py",
+      "bytes": 6228,
+      "sha256": "caa21bec0e82967e2101d637dfb736062307c2e45d6633b85e0b3fda764114bc"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j1_crosscheck.py",
+      "published": "dated-tools/s23/tools/j1_crosscheck.py",
+      "bytes": 7205,
+      "sha256": "32a4b50ca81c71a0f7347319efb794ed36a3a6f99130c5f036bc7ce08397d281"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j2_s3_dither_hybrid.py",
+      "published": "dated-tools/s23/tools/j2_s3_dither_hybrid.py",
+      "bytes": 16635,
+      "sha256": "ba450150580c96c24973ecf632917a04074ac1928d1bfa80edb69eecbf5f33ab"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j3_phase_silhouette.py",
+      "published": "dated-tools/s23/tools/j3_phase_silhouette.py",
+      "bytes": 5631,
+      "sha256": "d1db57680fcfc6898b15c08f9f00c8b6d1770a25e351111437879664a140818b"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j4_r5_bleed.py",
+      "published": "dated-tools/s23/tools/j4_r5_bleed.py",
+      "bytes": 5370,
+      "sha256": "a9a6ddc8df4365cc8c68e75571f791797a19a8350cfeaa3b6aafc6f7b0c15f3c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j5_s3_scale2x.py",
+      "published": "dated-tools/s23/tools/j5_s3_scale2x.py",
+      "bytes": 14760,
+      "sha256": "143a95af12f9c3adbf093f2dd4dd18629e59a6c65de82e74d0baad11cf442a90"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j6_phase_export.py",
+      "published": "dated-tools/s23/tools/j6_phase_export.py",
+      "bytes": 11981,
+      "sha256": "961011a39e8f205bb631ffb89caa1699b1b8f0ea0d784cf1d01926f0488c0d1f"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j7_s3_hybrid.py",
+      "published": "dated-tools/s23/tools/j7_s3_hybrid.py",
+      "bytes": 8561,
+      "sha256": "cdf9ff185917971e80b95839f3a7e584002edb383b0bf59d2ac16b77692d8b05"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\j8_s2_trains_material.py",
+      "published": "dated-tools/s23/tools/j8_s2_trains_material.py",
+      "bytes": 9054,
+      "sha256": "02467564141cfca530f833223bf7968b0ae654997488d091a75d70c6414a758a"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\join_strict.py",
+      "published": "dated-tools/s23/tools/join_strict.py",
+      "bytes": 5332,
+      "sha256": "ff9199679cf1add654cd13dbc77122c02e4e5dda3f4085c03712caf5d3ca465b"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\map_selection.py",
+      "published": "dated-tools/s23/tools/map_selection.py",
+      "bytes": 13695,
+      "sha256": "692d19850869bfd41628fe8e55d8b67be8274dd66194414676d9248eb2fdd953"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\phase_words_from_capture.py",
+      "published": "dated-tools/s23/tools/phase_words_from_capture.py",
+      "bytes": 4547,
+      "sha256": "9b88ad2d16fcbad8fa6061c365186fb379486b00ddce7600d16fbd7efb37f878"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\run_granted.py",
+      "published": "dated-tools/s23/tools/run_granted.py",
+      "bytes": 5838,
+      "sha256": "f8ee9027392bddcf35fd0768f200b471d0ba75726d2cd67ceeb916b763f83a90"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\s23lib.py",
+      "published": "dated-tools/s23/tools/s23lib.py",
+      "bytes": 11381,
+      "sha256": "64d22ee1e47cffead5945c4bdb0ba0b82ed0cb6b7987f6129dee499ecb840505"
+    },
+    {
+      "source": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23\\tools\\s3_draws_vs_cells.py",
+      "published": "dated-tools/s23/tools/s3_draws_vs_cells.py",
+      "bytes": 5936,
+      "sha256": "15a6aae8e6501ab1b6b442c2ed729cf64ea32b666cdafed76385965defb1eaca"
+    },
+    {
+      "source": "C:\\github\\Einhander\\coordination\\CLAUDE-SESSIONS-20261114.json",
+      "published": "dated-coordination/roster.json",
+      "bytes": 11126,
+      "sha256": "4c5de3caa98137386f5d71188237dfef4402a32d0e0c4d2ab5085d1903a37119"
+    },
+    {
+      "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\continuity\\claude-einhander.json",
+      "published": "dated-coordination/primary-allowed-checkpoint.json",
+      "bytes": 631,
+      "sha256": "5e68497559888172f231a9939bdc6ace5a1c37d82a1e6326761f0b0779aacd5c"
+    },
+    {
+      "source": "C:\\github\\Einhander\\.hermes3d_orchestrator\\continuity\\activity-22093f9cf1313bb6.json",
+      "published": "dated-coordination/primary-activity.json",
+      "bytes": 204,
+      "sha256": "a2c30a897f760db171a43ddaff4f55d9fca99defc1cfa4159e13573409dc4879"
+    },
+    {
+      "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\run_rc2.py",
+      "published": "native-primary/tools/run_rc2.py",
+      "bytes": 13740,
+      "sha256": "cd3988af06cd348cdef0c9a14e6a87a180b5aea09bb6207eeeb9d3d80a4ea9dd"
+    },
+    {
+      "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\tools\\selftest_run_rc2.py",
+      "published": "native-primary/tools/selftest_run_rc2.py",
+      "bytes": 5988,
+      "sha256": "7c4629fdf6077ea3f5a2066ef4ce8810c0f676eed06eb26e27c5ec3b31a81526"
+    },
+    {
+      "source": "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\reviews\\SAVED-MATERIAL-ROUTE-REVIEW-20261114.md",
+      "published": "native-primary/reviews/SAVED-MATERIAL-ROUTE-REVIEW-20261114.md",
+      "bytes": 9836,
+      "sha256": "ac72e03ceac061d352077802462607813ebba3b25d867f794511f8f401ac09fb"
+    }
+  ]
+}

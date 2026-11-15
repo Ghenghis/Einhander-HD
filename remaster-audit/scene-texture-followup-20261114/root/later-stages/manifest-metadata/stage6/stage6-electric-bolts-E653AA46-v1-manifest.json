@@ -1,0 +1,829 @@
+{
+ "name": "stage6-electric-bolts-E653AA46-v1",
+ "status": "candidate",
+ "track": "w7-stage6",
+ "task": "stage 6 first art batch (coordinator 2026-11-13)",
+ "created_utc": "2026-11-13T16:07:10.742582+00:00",
+ "texture_crc": "E653AA46",
+ "provenance": "predicted-static (static-extraction/stages/stage6, no live capture)",
+ "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+ "page": {
+  "member": "4/6",
+  "vram_rect_words": [
+   384,
+   256,
+   64,
+   256
+  ],
+  "depth": 0,
+  "writers": [
+   "4/6"
+  ],
+  "texture_confidence": "exact-static",
+  "set": "set A (member 4/6), single writer of VRAM 384,256: exact-static page",
+  "native_texels": [
+   256,
+   256
+  ]
+ },
+ "method": "FX contract, deterministic (no AI: generative models invent extra arcs that flicker between animation frames; Stage 1 electric-arc-37342FFF-v1 method). A = cls_P[round f] with f enforced at all 15 thresholds (any CLUT). RGB field e = min(native B-spline, max(core profile, native floor)): core = skeleton of the native bolt core (indices <= 2) plus filament skeletons of the glow footprint (<= 4), domain-warped by a smooth noise field (+-2 px at 8x, ~0.25 texel), thin white-hot line profile; the core is never brighter than one index above the native local minimum; away from the bolt the native halo (B-spline) is kept. Light energy locked per sprite region to 1 +- 0.05.",
+ "params": {
+  "core_max": 2,
+  "glow_max_idx": 4,
+  "max_halfwidth_tex": 1.6,
+  "warp_px": 2.0,
+  "warp_sigma_px": 3.0,
+  "core_r_px": 4.5,
+  "fil_core_r_px": 2.0,
+  "fil_offset": 0.8,
+  "core_w_px": 5.0,
+  "fil_w_px": 3.0,
+  "floor_drop": 1.0,
+  "seed": 6653
+ },
+ "generation": null,
+ "cluts_delivered": [
+  "47823F21",
+  "8E3D08E7",
+  "4CAF3E0F"
+ ],
+ "cluts_not_delivered": {
+  "AB139F82": "background index 15 visible (opaque colour [128, 128, 128]): implausible pairing",
+  "2F682A54": "background index 15 visible (STP colour [200, 200, 200]): implausible pairing",
+  "06E3D5ED": "background index 15 visible (opaque colour [96, 104, 112]): implausible pairing",
+  "A2F49D2B": "background index 15 visible (opaque colour [240, 216, 72]): implausible pairing",
+  "B97689E3": "background index 15 visible (opaque colour [80, 0, 0]): implausible pairing",
+  "0ADAA698": "all entries black (STP black adds nothing): invisible",
+  "13E6CE8C": "background index 15 visible (STP colour [8, 0, 48]): implausible pairing",
+  "190A55AD": "all 16 entries are 0x0000 (fully transparent)"
+ },
+ "index_master": {
+  "files": {
+   "master/E653AA46-class-f.npy": "a30effa2b97938415372d86432df7673789cedebd6b482633ed61b6d36308b57",
+   "master/E653AA46-class-f.json": "92936e8b01ec82432a45884ffb4c2d17e8c0b920910b916d65d3c0b510b8e9b7",
+   "master/E653AA46-rgb-e.npy": "0e07bee25e032e37d067b9b40b411400e1cb2737379196332dbf87ff4fe15416",
+   "master/E653AA46-arc.json": "bd996166600cf344c0c5e154ff2c0b5dc415d25de2762b1fc9c8427538f81120"
+  },
+  "any_clut_class_exact": {
+   "texels_checked": 31413,
+   "round_f_equals_native_index": 31413,
+   "any_clut_class_exact": true
+  },
+  "rule": "every 4bpp CLUT, predicted or runtime, renders from these masters; only plausible predicted CLUTs are exported"
+ },
+ "sources": {
+  "checks": {
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage6/textures/E653AA46.words.bin",
+    "sha256": "8053d2153cfae510b435eee1f70408095e6a000edba04f6058e92308cac7ab63",
+    "crc32": "E653AA46",
+    "crc_equals_tex": true,
+    "texture_confidence": "exact-static",
+    "member": "4/6",
+    "vram_rect_words": [
+     384,
+     256,
+     64,
+     256
+    ]
+   },
+   "cluts": {
+    "47823F21": {
+     "crc32": "47823F21",
+     "crc_equals_pal": true,
+     "words_hex": "ee41cd3dab398a356931482d27290725e620e520c51ca4189214bd115f080080",
+     "clut_xy": [
+      160,
+      510
+     ],
+     "clut_xy_all": [
+      [
+       160,
+       510
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 10)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "8E3D08E7": {
+     "crc32": "8E3D08E7",
+     "crc_equals_pal": true,
+     "words_hex": "3967d65a9452524a1042ce398c314a290821e71cc6188410630c42083f180080",
+     "clut_xy": [
+      160,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       160,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    },
+    "4CAF3E0F": {
+     "crc32": "4CAF3E0F",
+     "crc_equals_pal": true,
+     "words_hex": "f562b35a7256504e0f46cd41ac396a35492d0829c620a51cdf0179145f100000",
+     "clut_xy": [
+      224,
+      511
+     ],
+     "clut_xy_all": [
+      [
+       224,
+       511
+      ]
+     ],
+     "key_confidence": [
+      "likely"
+     ],
+     "pal_sources": [
+      {
+       "owner": "(4, 6)",
+       "common": false,
+       "record": [
+        0,
+        504,
+        256,
+        8
+       ]
+      }
+     ]
+    }
+   }
+  },
+  "copies": {
+   "E653AA46.words.bin": "8053d2153cfae510b435eee1f70408095e6a000edba04f6058e92308cac7ab63",
+   "E653AA46-47823F21.clut.bin": "218821b258df7a21360360f30e68390b7f514e47d9c9dc3cb4028c82983d3875",
+   "E653AA46-8E3D08E7.clut.bin": "996497d2fc9f06063bf0e4db730de50aa71b75390eeb616e74442fed5eeb452d",
+   "E653AA46-4CAF3E0F.clut.bin": "6a973c24beee6a29a5e8af4a49d71a17e24aa46ab7ea9c908a33fdc4f3e8d192",
+   "bundle.json": "f9a5919b5f27c5f4f314f5e45035b42a846b89f6a195f08a167daf007517ba40"
+  }
+ },
+ "builder_scripts": {
+  "s6_build.py": "74c862832298d51f004d623485293c4531068932133b53090f364f225d65e6e9",
+  "s6lib.py": "42889c4957d29b666c38ba71c911a24244bf400a0fa27ec2355c60ac4a8d8d27",
+  "s6_source.py": "73e5024574d1fab37222bbc19ecc07d78985f843248450e10a42c30a807445d3",
+  "w2lib.py": "5f44beb35f680ab7955688f239c80d99b7117edd9e681428bb9dac47cb902213",
+  "w2_comfy.py": "3d2d64242394622d7e4400c0213e10cc4327079fe84148ddbdcb6a437e57417b"
+ },
+ "comfy_files": {},
+ "keys": [
+  {
+   "key": "E653AA46-47823F21",
+   "clut": "47823F21",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 1.0124,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0124,
+     "native_light": 1138242.5
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.9867,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9867,
+     "native_light": 50986.5
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 1.0117,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0117,
+     "native_light": 5398.0
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 0.9796,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9796,
+     "native_light": 32435.8
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 0.9935,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9935,
+     "native_light": 39004.6
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 0.9871,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9871,
+     "native_light": 91029.2
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 0.9955,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9955,
+     "native_light": 60891.1
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 0.9777,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9777,
+     "native_light": 80704.5
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 2.0011,
+     "scale_applied": 0.5,
+     "energy_ratio": 1.0006,
+     "native_light": 415.7
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 0.9886,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9886,
+     "native_light": 140652.7
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 0.9929,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9929,
+     "native_light": 103494.6
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 1.1012,
+     "scale_applied": 0.9081,
+     "energy_ratio": 1.0,
+     "native_light": 5622.2
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 0.9973,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9973,
+     "native_light": 80580.8
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 1.1985,
+     "scale_applied": 0.8344,
+     "energy_ratio": 1.0,
+     "native_light": 3174.2
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 0.9953,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9953,
+     "native_light": 112882.0
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 1.8511,
+     "scale_applied": 0.5402,
+     "energy_ratio": 1.0,
+     "native_light": 465.1
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 1.0933,
+     "scale_applied": 0.9147,
+     "energy_ratio": 1.0,
+     "native_light": 25061.9
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 1.6722,
+     "scale_applied": 0.598,
+     "energy_ratio": 1.0,
+     "native_light": 592.1
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 1.6229,
+     "scale_applied": 0.6162,
+     "energy_ratio": 1.0,
+     "native_light": 995.6
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 0.9791,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9791,
+     "native_light": 141257.0
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 0.9892,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9892,
+     "native_light": 134961.2
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 1.431,
+     "scale_applied": 0.6988,
+     "energy_ratio": 1.0,
+     "native_light": 1492.2
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/E653AA46-47823F21.png",
+    "sha256": "05c41b38da1f789fc6452bf99796bf53dee7bd33e854e9195fbb26f58923a766",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/E653AA46-47823F21.png",
+    "sha256": "0638064d354220ddd540ccc7832e40bf5e40276b227264414ee51ff8e7b4e7e9",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9777,
+    1.0124
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "E653AA46-8E3D08E7",
+   "clut": "8E3D08E7",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 0.9949,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9949,
+     "native_light": 1374852.4
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.9665,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9665,
+     "native_light": 37646.7
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 0.9571,
+     "scale_applied": 1.0449,
+     "energy_ratio": 0.9999,
+     "native_light": 3369.7
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 0.9634,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9634,
+     "native_light": 22056.2
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 0.9444,
+     "scale_applied": 1.0589,
+     "energy_ratio": 0.9975,
+     "native_light": 28508.6
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 0.98,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.98,
+     "native_light": 75206.6
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 0.9666,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9666,
+     "native_light": 45348.2
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 0.9636,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9636,
+     "native_light": 61056.6
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.5056,
+     "scale_applied": 0.6642,
+     "energy_ratio": 1.0,
+     "native_light": 297.7
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 1.0008,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0008,
+     "native_light": 121140.7
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 0.9871,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9871,
+     "native_light": 88208.3
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 0.9373,
+     "scale_applied": 1.0669,
+     "energy_ratio": 0.9994,
+     "native_light": 3917.2
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 0.9959,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9959,
+     "native_light": 70082.8
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 1.0006,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0006,
+     "native_light": 2308.5
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 0.9927,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9927,
+     "native_light": 100475.1
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 1.6244,
+     "scale_applied": 0.6156,
+     "energy_ratio": 1.0,
+     "native_light": 327.6
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 0.9783,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9783,
+     "native_light": 15671.5
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 1.3088,
+     "scale_applied": 0.764,
+     "energy_ratio": 1.0,
+     "native_light": 399.6
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 1.4481,
+     "scale_applied": 0.6905,
+     "energy_ratio": 1.0,
+     "native_light": 655.6
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 1.0012,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0012,
+     "native_light": 115241.9
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 0.9812,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9812,
+     "native_light": 101510.0
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 1.2061,
+     "scale_applied": 0.8291,
+     "energy_ratio": 1.0,
+     "native_light": 1191.6
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/E653AA46-8E3D08E7.png",
+    "sha256": "d50cbb03db906842aa2408f2ef10b37aad3c01c30b35a0236285be575899bb2b",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/E653AA46-8E3D08E7.png",
+    "sha256": "57db3d86c64af0271ed6104f8002d6bb541e5638f014b9ce23f0c97a57baeea7",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9634,
+    1.0012
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  },
+  {
+   "key": "E653AA46-4CAF3E0F",
+   "clut": "4CAF3E0F",
+   "status": "predicted-static",
+   "import_rule": "predicted-static; import only after live capture (validate_predicted.py confirm + gate on the AQ-03 stage 6 run)",
+   "origin": "rendered from this candidate's masters",
+   "cells": [
+    {
+     "cell": 1,
+     "energy_ratio_before": 0.9833,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9833,
+     "native_light": 1498062.0
+    },
+    {
+     "cell": 2,
+     "energy_ratio_before": 0.928,
+     "scale_applied": 1.0775,
+     "energy_ratio": 0.9954,
+     "native_light": 57067.4
+    },
+    {
+     "cell": 3,
+     "energy_ratio_before": 0.9583,
+     "scale_applied": 1.0436,
+     "energy_ratio": 0.9997,
+     "native_light": 5277.4
+    },
+    {
+     "cell": 4,
+     "energy_ratio_before": 0.9257,
+     "scale_applied": 1.0803,
+     "energy_ratio": 0.9948,
+     "native_light": 34870.6
+    },
+    {
+     "cell": 5,
+     "energy_ratio_before": 0.9221,
+     "scale_applied": 1.0844,
+     "energy_ratio": 0.9929,
+     "native_light": 43086.4
+    },
+    {
+     "cell": 6,
+     "energy_ratio_before": 0.9426,
+     "scale_applied": 1.0609,
+     "energy_ratio": 0.998,
+     "native_light": 108933.5
+    },
+    {
+     "cell": 7,
+     "energy_ratio_before": 0.9417,
+     "scale_applied": 1.0619,
+     "energy_ratio": 0.9972,
+     "native_light": 67612.9
+    },
+    {
+     "cell": 8,
+     "energy_ratio_before": 0.9324,
+     "scale_applied": 1.0725,
+     "energy_ratio": 0.9958,
+     "native_light": 91946.8
+    },
+    {
+     "cell": 9,
+     "energy_ratio_before": 1.5374,
+     "scale_applied": 0.6505,
+     "energy_ratio": 1.0,
+     "native_light": 360.3
+    },
+    {
+     "cell": 10,
+     "energy_ratio_before": 0.9652,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.9652,
+     "native_light": 168480.3
+    },
+    {
+     "cell": 11,
+     "energy_ratio_before": 0.9486,
+     "scale_applied": 1.0541,
+     "energy_ratio": 0.9985,
+     "native_light": 124330.5
+    },
+    {
+     "cell": 12,
+     "energy_ratio_before": 0.849,
+     "scale_applied": 1.1779,
+     "energy_ratio": 0.9745,
+     "native_light": 6071.1
+    },
+    {
+     "cell": 13,
+     "energy_ratio_before": 0.9469,
+     "scale_applied": 1.056,
+     "energy_ratio": 0.9986,
+     "native_light": 100726.4
+    },
+    {
+     "cell": 14,
+     "energy_ratio_before": 0.985,
+     "scale_applied": 1.0,
+     "energy_ratio": 0.985,
+     "native_light": 3260.0
+    },
+    {
+     "cell": 15,
+     "energy_ratio_before": 0.9573,
+     "scale_applied": 1.0447,
+     "energy_ratio": 0.9992,
+     "native_light": 138378.8
+    },
+    {
+     "cell": 16,
+     "energy_ratio_before": 1.5048,
+     "scale_applied": 0.6646,
+     "energy_ratio": 1.0,
+     "native_light": 410.8
+    },
+    {
+     "cell": 17,
+     "energy_ratio_before": 1.0013,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0013,
+     "native_light": 25473.9
+    },
+    {
+     "cell": 18,
+     "energy_ratio_before": 1.1123,
+     "scale_applied": 0.8991,
+     "energy_ratio": 1.0,
+     "native_light": 700.5
+    },
+    {
+     "cell": 19,
+     "energy_ratio_before": 1.0163,
+     "scale_applied": 1.0,
+     "energy_ratio": 1.0163,
+     "native_light": 1244.2
+    },
+    {
+     "cell": 20,
+     "energy_ratio_before": 0.9571,
+     "scale_applied": 1.0449,
+     "energy_ratio": 0.9994,
+     "native_light": 166380.8
+    },
+    {
+     "cell": 21,
+     "energy_ratio_before": 0.9533,
+     "scale_applied": 1.049,
+     "energy_ratio": 0.9984,
+     "native_light": 151215.1
+    },
+    {
+     "cell": 22,
+     "energy_ratio_before": 1.0855,
+     "scale_applied": 0.9213,
+     "energy_ratio": 1.0,
+     "native_light": 1734.6
+    }
+   ],
+   "gates": {
+    "2048": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    },
+    "1024": {
+     "dims_ok": true,
+     "alpha_values_ok": true,
+     "centre_class_exact": true,
+     "centre_class_mismatch": 0,
+     "untouched_texels_native": true,
+     "page_centre_class_mismatch": 0
+    }
+   },
+   "png_2048": {
+    "path": "runtime-2048/E653AA46-4CAF3E0F.png",
+    "sha256": "e61316c44983141f58a12d8a1103d508c252587a6844652ff1d41c962ed58ec0",
+    "size": [
+     2048,
+     2048
+    ]
+   },
+   "png_1024": {
+    "path": "runtime-1024/E653AA46-4CAF3E0F.png",
+    "sha256": "5a2ac25050fc8d36b1301a780092c15969422b4d0fc2f80e1821e886f1324593",
+    "size": [
+     1024,
+     1024
+    ]
+   },
+   "energy_ratio_range": [
+    0.9652,
+    1.0163
+   ],
+   "energy_ok": true,
+   "all_gates_pass": true
+  }
+ ],
+ "all_gates_pass": true,
+ "review": [
+  "review/E653AA46-47823F21-tile.png",
+  "review/E653AA46-47823F21-close-16x.png",
+  "review/E653AA46-47823F21-ingame-SIMULATION.png",
+  "review/E653AA46-8E3D08E7-tile.png",
+  "review/E653AA46-8E3D08E7-close-16x.png",
+  "review/E653AA46-8E3D08E7-ingame-SIMULATION.png",
+  "review/E653AA46-4CAF3E0F-tile.png",
+  "review/E653AA46-4CAF3E0F-close-16x.png",
+  "review/E653AA46-4CAF3E0F-ingame-SIMULATION.png"
+ ],
+ "review_note": "review sheets: native | HD tile, native | HD close crops at 16x, in-game size; every composite is a SIMULATION",
+ "known_limits": [
+  "Predicted-static; the true CLUT of this page is unknown. None of the predicted pairings has the Stage 1 arc class pattern (opaque core, additive glow); the delivered renders use the plausible predicted CLUTs only.",
+  "Stylised discharge along native centrelines (white core, native halo), not photographed lightning. Nothing is added outside the native footprint; frames keep their own shapes.",
+  "The oval, the radial disk and the sparks of the right column get the same treatment (their cores are blobs, so the skeleton changes little there).",
+  "Review composites are SIMULATIONS."
+ ]
+}

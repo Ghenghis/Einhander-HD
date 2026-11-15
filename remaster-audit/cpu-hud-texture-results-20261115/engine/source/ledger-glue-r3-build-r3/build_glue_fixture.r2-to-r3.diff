@@ -1,0 +1,45 @@
+1c1,10
+< """CPU-only build-closure driver r2 for the FROZEN glue r3 (claude-einhander), per root msg_b02d1bcc, msg_08008ad5
+---
+> """CPU-only build-closure driver r3 for the FROZEN glue r3 (claude-einhander), per root msg_b1a99057.
+> r3 = closure r2 (../ledger-glue-r3-build/build_glue_fixture.r2.py b057695a, preserved, never run) with:
+>   - harness test_glue.r2.cpp (3ec929d5, this folder) in place of r1 44ab03a6: the same 19 authored checks, a
+>     null-safe stamp(), failed CHECK lines and per-group producer-audit / PresentState snapshots in the fixture JSON;
+>     fixture revision "r2";
+>   - run-glue: the fixture JSON is parsed and attached to result.json even when the executable exits non-zero, so a
+>     failure is diagnosable without a rerun. The step passes only if the exit is 0 AND the fixture JSON passes.
+> Everything else is closure r2 unchanged.
+> r2 docstring follows.
+> CPU-only build-closure driver r2 for the FROZEN glue r3 (claude-einhander), per root msg_b02d1bcc, msg_08008ad5
+125,126c134,135
+<     "test_glue.r1.cpp": (CAPTURE / "ledger-glue-r3" / "test_glue.r1.cpp",          # r2: the frozen r1 harness
+<                          "44ab03a6ef6e76e340750ff5d45ad4864f061727729d1d6384f3fc5056be62cf"),
+---
+>     "test_glue.r2.cpp": (HERE / "test_glue.r2.cpp",                                  # r3: the frozen r2 harness
+>                          "3ec929d534be51104cd368f05c236db8bcf67837440e5db381046f3f42b15e4b"),
+226c235
+< FIXTURES = {"glue": ("glue", 19)}                     # r2: harness r1
+---
+> FIXTURES = {"glue": ("glue", 19)}                     # r3: harness r2 (the same 19 checks)
+434c443
+<     rows[-1]["passed"] = (line.get("fixture") == name and line.get("revision") == "r1" and line.get("failures") == 0
+---
+>     rows[-1]["passed"] = (line.get("fixture") == name and line.get("revision") == "r2" and line.get("failures") == 0
+579c588
+<             "strict/executed-test-glue.cpp": data["test_glue.r1.cpp"],
+---
+>             "strict/executed-test-glue.cpp": data["test_glue.r2.cpp"],
+634c643
+<         exe = out / "test-glue-r1.exe"
+---
+>         exe = out / "test-glue-r2.exe"
+642,644c651,655
+<         if not run_child("run-glue", [exe, out / "fixture-glue.json"], out, 0, 10, out, rows):
+<             return 1
+<         if not fixture_ok(rows, out, "glue"):
+---
+>         ran = run_child("run-glue", [exe, out / "fixture-glue.json"], out, 0, 10, out, rows)
+>         fixture_passed = fixture_ok(rows, out, "glue")    # r3: always parse and attach the fixture JSON (diagnosis)
+>         rows[-1]["exit_passed"] = ran
+>         rows[-1]["passed"] = ran and fixture_passed       # r3: exit 0 AND a passing fixture JSON
+>         if not rows[-1]["passed"]:

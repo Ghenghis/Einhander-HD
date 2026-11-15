@@ -1,0 +1,25 @@
+test_all_known_state_mutators_refused_before_transport (__main__.CommandPolicy.test_all_known_state_mutators_refused_before_transport) ... ok
+test_arguments_and_paths_fail_closed (__main__.CommandPolicy.test_arguments_and_paths_fail_closed) ... ok
+test_intent_exists_when_transport_times_out (__main__.CommandPolicy.test_intent_exists_when_transport_times_out) ... ok
+test_malformed_audit_preserved_without_cleanup_exception (__main__.CommandPolicy.test_malformed_audit_preserved_without_cleanup_exception) ... ok
+test_transient_broker_arguments_removed_on_success_and_timeout (__main__.CommandPolicy.test_transient_broker_arguments_removed_on_success_and_timeout) ... ERROR
+test_assistance_is_explicit_and_consistent (__main__.LaunchPolicy.test_assistance_is_explicit_and_consistent) ... ok
+test_duration_and_private_scope_refusals (__main__.LaunchPolicy.test_duration_and_private_scope_refusals) ... ok
+test_fenced_launch_refuses_before_any_popen_or_registration (__main__.LaunchPolicy.test_fenced_launch_refuses_before_any_popen_or_registration) ... ok
+test_hold_cannot_be_overridden_by_valid_grant (__main__.LaunchPolicy.test_hold_cannot_be_overridden_by_valid_grant) ... ok
+test_missing_or_malformed_hold_fails_closed (__main__.LaunchPolicy.test_missing_or_malformed_hold_fails_closed) ... ok
+test_ram_write_metadata_cannot_be_hidden (__main__.LaunchPolicy.test_ram_write_metadata_cannot_be_hidden) ... ok
+test_unassisted_after_hold_still_requires_grant (__main__.LaunchPolicy.test_unassisted_after_hold_still_requires_grant) ... ok
+
+======================================================================
+ERROR: test_transient_broker_arguments_removed_on_success_and_timeout (__main__.CommandPolicy.test_transient_broker_arguments_removed_on_success_and_timeout)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\github\Einhander\remaster-audit\test_stage1_unassisted_review.py", line 136, in test_transient_broker_arguments_removed_on_success_and_timeout
+    import shared_gpu_guard
+ModuleNotFoundError: No module named 'shared_gpu_guard'
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.044s
+
+FAILED (errors=1)

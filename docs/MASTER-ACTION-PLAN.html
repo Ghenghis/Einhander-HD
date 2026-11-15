@@ -30,6 +30,7 @@ ol li,ul li{margin:4px 0}
 <body>
 <main>
 <h1>Einhänder HD: master action plan</h1>
+<p><strong>Latest runtime/E2E checkpoint:</strong> <a href="RUNTIME-CONTINUATION-20261113.md">Current verified results and all seven-stage continuation</a>. Full gameplay/audio acceptance remains incomplete. Older local fixture descriptions below retain their historical scope.</p>
 <p class="sub">From stage 1 acceptance to all seven stages, endings and extras. Drafted 2026-11-13 by the Claude coordinator for review by the user and Codex. Status reflects what has been measured. Items that are planned or unverified are marked as such.</p>
 
 <div class="card">
@@ -257,7 +258,7 @@ Queued work is not counted as done. Devin is on user hold; Codex and Claude only
   <ul>
   <li>Classifier and counters committed (7be82c4), live-verified: media_frames 0. Only 1 of 2,732 snapshot attempts was taken.</li>
   <li><strong>Cause found:</strong> the sticky capture request is only tested on a 1-in-16,384 call stride, which almost always lands mid-pump in the interpreter.</li>
-  <li>An unapplied safe-edge capture fix reports 3.98 snapshots/s at interval 15 in a real rewind-unit test with a simulated caller, at about 2.1 ms per snapshot. This is not a live game result; <a href="../remaster-audit/runtime-review/rewind-fmv/unsafe-skip/README.md">local test receipt and pending live checks</a>.</li>
+  <li>An unapplied safe-edge capture fix reports 3.98 snapshots/s at interval 15 in a real rewind-unit test with a simulated caller, at about 2.1 ms per snapshot. This is not a live game result; <a href="RUNTIME-CONTINUATION-20261113.md">local test receipt and pending live checks</a>.</li>
   </ul>
 </td><td class="wip">classifier integrated; capture fix isolated</td><td>Codex review, then a live check that gameplay snapshots are taken without new hitches</td></tr>
 <tr><td>Gallery, endings, credits</td><td>Claude</td><td>Inventory of the 100 gallery screens (TEX and words exact for all 100) and the ending/credits members, with contact sheets and native renders</td><td class="wip">extracted</td><td>The static ending-scope key fix for member 4/21; an HD plan that splits each illustration from its lettering</td></tr>

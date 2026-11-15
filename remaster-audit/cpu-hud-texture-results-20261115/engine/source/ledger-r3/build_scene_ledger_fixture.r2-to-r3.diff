@@ -1,0 +1,93 @@
+--- /c/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/capture/ledger-r2/build_scene_ledger_fixture.r2.py	2026-11-14 17:06:11.018622000 -0700
++++ /c/github/Einhander/.claude/worktrees/einhander-stages-6-7-0849db/remaster-audit/claude-einhander-primary/remix-transport/capture/ledger-r3/build_scene_ledger_fixture.r3.py	2026-11-14 17:13:34.939439600 -0700
+@@ -1,13 +1,15 @@
+-"""CPU-only fixture driver r2 for scene_ledger r2 (claude-einhander). Builds and runs THREE executables, each linked
+-with scene_ledger.r2.cpp (compiled with scene_ledger.r2.h); all must pass:
++"""CPU-only fixture driver r3 for scene_ledger r3 (claude-einhander). Builds and runs FOUR executables, each linked
++with scene_ledger.r3.cpp (compiled with scene_ledger.r3.h); all must pass:
+   r0reg : the UNCHANGED r0 suite test_scene_ledger.r0.cpp (c1d389f1; revision r0, 99 checks, actual PASS in
+           ledger-r1-run1) compiled with scene_ledger.r0.h;
+   r1reg : the UNCHANGED r1 suite test_scene_ledger.r1.cpp (eb4655ec; revision r1, 32 checks, actual PASS in
+           ledger-r1-run1) compiled with scene_ledger.r1.h;
+-  r2    : test_scene_ledger.r2.cpp (revision r2, 28 authored checks) for scene_ledger_footprint (pure, every mode,
+-          equality corpus against recorded entries) and scene_ledger_draw_area (separate query; header unchanged).
+-scene_ledger.r2.h / .cpp are r1 (f080658b / f39a4363) plus additions only (see the r1-to-r2 diffs). This driver is
+-build_scene_ledger_fixture.r1.py (5430020d) with the inputs, fixtures, copies and linked cpp changed.
++  r2reg : the UNCHANGED r2 suite test_scene_ledger.r2.cpp (7f7bd5dd; revision r2, 28 authored checks, unrun)
++          compiled with scene_ledger.r2.h;
++  r3    : test_scene_ledger.r3.cpp (revision r3, 29 authored checks) = the r2 suite plus the root msg_2fe98abb case:
++          a draw with native_screen_mapping == 2 is unknown (identity is exactly 1).
++scene_ledger.r3.h / .cpp are r2 (9bcb4ea1 / 10585241) with that one correction (see the r2-to-r3 diffs). This driver
++is build_scene_ledger_fixture.r2.py (2d31c89c) with the inputs, fixtures, copies and linked cpp changed.
+ Rules inherited from build_t2_fixture.r4.py (7b39f6a4), whose lines 77-271 (sha, now, BLOCKS, TEMPLATE, lf_lines,
+ native_block, divide_block, derive_pgxp, write_exact, run_child) are byte copies below (sed -n); divide_block and
+ derive_pgxp are unused here (the ledger closure has no T2/pgxp input):
+@@ -19,7 +21,7 @@
+   sha256 fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36
+   options: --cpu N --timeout 120 --max-job-mib 1024 --no-window
+ No GL, SDK, game or runtime. Steps: extract, copies, toolchain pin, compile-r0reg (45 s), run-r0reg (10 s),
+-compile-r1reg (45 s), run-r1reg (10 s), compile-r2 (45 s), run-r2 (10 s). Children are CREATE_NO_WINDOW|BELOW_NORMAL with bounded waits; the envelope owns
++compile-r1reg, run-r1reg, compile-r2reg, run-r2reg, compile-r3, run-r3 (45 s / 10 s each). Children are CREATE_NO_WINDOW|BELOW_NORMAL with bounded waits; the envelope owns
+ tree cleanup and the 120 s whole-job limit. result.json is written in try/finally (best effort). The compiler is
+ hashed then executed by path; a swap in between is not excluded."""
+ import argparse, datetime, hashlib, json, os, subprocess, sys, time, traceback
+@@ -30,6 +32,7 @@
+ HERE = Path(__file__).resolve().parent
+ LEDGER0 = HERE.parent / "ledger-r0"
+ LEDGER1 = HERE.parent / "ledger-r1"
++LEDGER2 = HERE.parent / "ledger-r2"
+ R = Path("C:/github/Einhander")
+ V66 = R / "remaster-audit/dev-center-evidence/stage1-completion-20261112/sampling-build-v66-reviewed-scene-r3/src"
+ INPUTS = {  # name -> (path, sha256)
+@@ -43,11 +46,14 @@
+     "scene_ledger.r1.h": (LEDGER1 / "scene_ledger.r1.h", "f080658b11c2692de5d47c88989d203cd78bb2b058b128012ff45a394b62f15c"),
+     "test_scene_ledger.r1.cpp": (LEDGER1 / "test_scene_ledger.r1.cpp",
+                                  "eb4655ec65a65599b1cf1fbbe5a3cf48eced5ee847a599a9930eabfc7d468cc2"),
+-    "scene_ledger.r2.h": (HERE / "scene_ledger.r2.h", "9bcb4ea1f5bb5da219d11072b547300ea4c5f178381964751b6b57c293d5167d"),
+-    "scene_ledger.r2.cpp": (HERE / "scene_ledger.r2.cpp",
+-                            "10585241c8546b00bf3c3580089ad7f373e41f68bc81327f013cdc55ff91528d"),
+-    "test_scene_ledger.r2.cpp": (HERE / "test_scene_ledger.r2.cpp",
++    "scene_ledger.r2.h": (LEDGER2 / "scene_ledger.r2.h", "9bcb4ea1f5bb5da219d11072b547300ea4c5f178381964751b6b57c293d5167d"),
++    "test_scene_ledger.r2.cpp": (LEDGER2 / "test_scene_ledger.r2.cpp",
+                                  "7f7bd5ddbba09279c2c08ef4250a47d53e01da92c00eaa566ec317346a13a5e6"),
++    "scene_ledger.r3.h": (HERE / "scene_ledger.r3.h", "9a0af4a903cfbd653ed858cec2f23e71ade8322fe6e55255e1dbddff833073fd"),
++    "scene_ledger.r3.cpp": (HERE / "scene_ledger.r3.cpp",
++                            "234993106083f7ed5633d50b6a0872851397c8d6198bc8f508ecb1cb4564513e"),
++    "test_scene_ledger.r3.cpp": (HERE / "test_scene_ledger.r3.cpp",
++                                 "a51b2c1d6676cab2642e7196f28fdebc509029c4035db82f21b450f568af23b4"),
+ }
+ PGXP_DELTA_OFFSET = 3986
+ PGXP_DELTA_OLD = b"*x16/*y16"
+@@ -61,7 +67,8 @@
+     "libLLVM-22.dll": "1e2aed1785cedbbb6f19338eac72257649bab60157e044d0435883871a2f58af",
+ }
+ FLAGS = ["-std=c++17", "-Wall", "-Wextra", "-Werror"]
+-FIXTURES = {"r0reg": ("scene_ledger", "r0", 99), "r1reg": ("scene_ledger", "r1", 32), "r2": ("scene_ledger", "r2", 28)}
++FIXTURES = {"r0reg": ("scene_ledger", "r0", 99), "r1reg": ("scene_ledger", "r1", 32), "r2reg": ("scene_ledger", "r2", 28),
++            "r3": ("scene_ledger", "r3", 29)}
+ HIDDEN_BELOW_NORMAL = 0x08000000 | 0x00004000
+ 
+ 
+@@ -326,10 +333,11 @@
+             return 1
+         copies = {"scene_ledger_native_unpack.inc": inc, "scene_ledger.r0.h": data["scene_ledger.r0.h"],
+                   "scene_ledger.r1.h": data["scene_ledger.r1.h"], "scene_ledger.r2.h": data["scene_ledger.r2.h"],
+-                  "scene_ledger.r2.cpp": data["scene_ledger.r2.cpp"],
++                  "scene_ledger.r3.h": data["scene_ledger.r3.h"], "scene_ledger.r3.cpp": data["scene_ledger.r3.cpp"],
+                   "executed-test-r0reg.cpp": data["test_scene_ledger.r0.cpp"],
+                   "executed-test-r1reg.cpp": data["test_scene_ledger.r1.cpp"],
+-                  "executed-test-r2.cpp": data["test_scene_ledger.r2.cpp"]}
++                  "executed-test-r2reg.cpp": data["test_scene_ledger.r2.cpp"],
++                  "executed-test-r3.cpp": data["test_scene_ledger.r3.cpp"]}
+         result["executed_copies"] = {n: write_exact(out / n, blob) for n, blob in copies.items()}
+         real_dir = Path(os.path.realpath(CC)).parent
+         tools = {n: dict(path=str(real_dir / n), sha256=sha((real_dir / n).read_bytes())) for n in TOOLCHAIN}
+@@ -341,7 +349,7 @@
+         for key in FIXTURES:
+             exe = out / f"test-scene-ledger-{key}.exe"
+             if not run_child(f"compile-{key}", [CC, *FLAGS, "-I", out, out / f"executed-test-{key}.cpp",
+-                                                out / "scene_ledger.r2.cpp", "-o", exe], out, 0, 45, out, rows):
++                                                out / "scene_ledger.r3.cpp", "-o", exe], out, 0, 45, out, rows):
+                 return 1
+             result["exe_sha256"][key] = sha(exe.read_bytes())
+             if not run_child(f"run-{key}", [exe, out / f"fixture-{key}.json"], out, 0, 10, out, rows):

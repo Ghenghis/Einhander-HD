@@ -1,0 +1,96 @@
+{
+  "at_utc": "2026-11-14T23:36:52.832653+00:00",
+  "metadata_readback_pass": true,
+  "runs": {
+    "cpu-stage": {
+      "envelope_sha256": "f6541cc6af56cfe8ef18581db90c67018b11a2b451cabec2f9df6e89bf9f4b4c",
+      "exit": 0,
+      "elapsed_s": 17.63,
+      "peak_job_memory_bytes": 63119360,
+      "staging_sha256": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79",
+      "png_names_pinned": 1701,
+      "nonpng_hashes_recorded_unpinned": 688,
+      "local_import_pins_verified": 15,
+      "own_cache_empty_recorded_at_stage": true,
+      "binary_rom_rehashed_by_root": false,
+      "pack_rehashed_by_root": false,
+      "current_small_inputs_match_stage": true,
+      "current_settings_matches_stage": true
+    },
+    "run-setup-abort": {
+      "envelope_sha256": "a8a74775cf9008216e87b7dc29e9baa6333fdc977216919dd45949ff1c6d225b",
+      "exit": 1,
+      "elapsed_s": 3.397,
+      "peak_job_memory_bytes": 27119616,
+      "raw_evidence_sha256": "8c8363a8f9d5c8f8d1eef674325797affcf2d943dad492f2944495ee95d83911",
+      "game_popen_created": false,
+      "holder_created": false,
+      "game_registered": false,
+      "game_rendered": false,
+      "cause": "ModuleNotFoundError: No module named 'gl_adapter_identity_guard'",
+      "gpu_release_claim": "coordinator reported explicit empty-grant release; root did not read private broker/token files"
+    }
+  },
+  "pins": {
+    "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s67\\runs\\raw37c-stage-r6-2331-envelope.json": "f6541cc6af56cfe8ef18581db90c67018b11a2b451cabec2f9df6e89bf9f4b4c",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\raw37c-staging.json": "2710782ef5627a16f9c1528ac1f662d80bd03a1cb5985365c5ef1db04f809c79",
+    "C:\\github\\Einhander\\remaster-audit\\build_facade_ab_candidates.py": "09736514fe63f9611daf786c69e862423f5baf782637ff6aabf905f205d59d8e",
+    "C:\\github\\Einhander\\remaster-audit\\gpu_capture_guard.py": "86f2c819d45232f41b08adb77adc84f4712f8e16c9ea13fa262cdcb843422201",
+    "C:\\github\\Einhander\\windows-x64\\tools\\launch_material.py": "648ae54a57611975fc67b0e18b318e570cc19ae6cfecd8a0708df6cdbd87ad75",
+    "C:\\github\\Einhander\\remaster-audit\\launch_ui_candidate.py": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752",
+    "C:\\github\\Einhander\\windows-x64\\tools\\material_profiles.py": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4",
+    "C:\\github\\Einhander\\remaster-audit\\native_ui_facade_route.py": "851d1a7bd70488d8f47f24641f9531040586bf756df09616e078ca532c07935b",
+    "C:\\github\\Einhander\\remaster-audit\\private_process_checks.py": "7274e5c011da1bf659ad0a3ffa3074b2c11dcd8fce8899befa9edb5a7366c3fc",
+    "C:\\github\\Einhander\\remaster-audit\\run_facade_ab_probe.py": "0c049a7a1ebfc5dab66bc114db3e80dfe4f6a91b129041d6f910651f1c9aacc8",
+    "C:\\github\\Einhander\\remaster-audit\\stage_world_candidate.py": "6a3dd216dd3cfd210b035497c1d93a52c232dbbc3017eb017e283fd3669bf498",
+    "C:\\github\\Einhander\\remaster-audit\\ui_candidate_probe.py": "5cf1986cd2df68164a149e75b4b3f6a8f921fc7634d512537013d0b0562f80a3",
+    "C:\\github\\Einhander\\remaster-audit\\verify_world_source_backlog.py": "11abf66dcead722c8bd7f4bafaa8a69a4545bd52a8ebe66feda522d462db4ad3",
+    "C:\\github\\Einhander\\windows-x64\\tools\\devtools_service.py": "c1e64fa6b37dd20ed58befdc8b6dc7b98b6ad6f2d4cf22729c549b737e22f02f",
+    "C:\\github\\Einhander\\remaster-audit\\observe_native_boot.py": "fbb463737c1960c582d653271c10d1308b2b92c15c441ce323f3e650474d94c0",
+    "C:\\github\\Einhander\\remaster-audit\\run_h24_facade_review.py": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2",
+    "C:\\github\\Einhander\\remaster-audit\\ui_native_journey.py": "a6764c1725c395de1c96785c999a3ec431eeac2908af14b92bde8f2a47a289dd",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\runtime\\Einhander_Recompiled.exe": "37c137e8af8c53d141d53623f9dafa8ce59555cc6a365152098fa49f1be4d9cc",
+    "C:\\github\\Einhander\\windows-x64\\game.toml": "020bad5e6445b2449fc03668aa71ba7026407945995dc9e4ac9645cab7c35deb",
+    "C:\\github\\Einhander\\windows-x64\\build-release\\bios\\SCPH1001.BIN": "42e4124be7623e2e28b1db0d8d426539646faee49d74b71166d8ba5bd7c472ed",
+    "C:\\github\\Einhander\\ROM\\Einhander (USA).cue": "4386f5e6843f17cac92d97d794f5a39c9abcd9c80bce31c21426e3b483724f51",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\state\\card1.mcd": "8156843599078d7776e54a385ffbb523415bd5ad32eeb0cd47fba44e362b2595",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\raw37c-r6-20261114T2331Z\\hd-on_rewind-off\\runtime\\settings.toml": "406643a175d55a5e45cdcf9645b05a74d24f38efc0de0647c6d720949c2c90b9",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233236Z\\envelope.json": "a8a74775cf9008216e87b7dc29e9baa6333fdc977216919dd45949ff1c6d225b",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233236Z\\evidence\\raw37c-evidence.json": "8c8363a8f9d5c8f8d1eef674325797affcf2d943dad492f2944495ee95d83911",
+    "C:\\github\\Einhander\\coordination\\pizza-review-20261114\\raw37c-live-20261114T233236Z\\driver.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "known_identities": [
+    {
+      "run": "cpu-stage",
+      "role": "wrapper",
+      "pid": 45140,
+      "creation_unix": 1794699055.5066628,
+      "identity_absent": true
+    },
+    {
+      "run": "cpu-stage",
+      "role": "child",
+      "pid": 30436,
+      "creation_unix": 1794699056.6395404,
+      "identity_absent": true
+    },
+    {
+      "run": "run-setup-abort",
+      "role": "wrapper",
+      "pid": 41576,
+      "creation_unix": 1794699157.4167151,
+      "identity_absent": true
+    },
+    {
+      "run": "run-setup-abort",
+      "role": "child",
+      "pid": 36148,
+      "creation_unix": 1794699158.5467029,
+      "identity_absent": true
+    }
+  ],
+  "tests_replayed": false,
+  "pack_or_rom_bulk_sweep_repeated": false,
+  "root_game_launched": false,
+  "gameplay_audio_acceptance": false
+}

@@ -1,0 +1,35 @@
+{
+ "grant": "msg_3dc43188ceb6bf56",
+ "grant_utc": "2026-11-14T18:07:43.212000+00:00",
+ "driver": "C:\\Users\\Admin\\AppData\\Local\\Temp\\claude\\e5fad2775628cc35\\1c56db97-2f5d-4f18-aece-e2a77dbf7a70\\scratchpad\\run_cg3.py",
+ "driver_sha256": "0e7420bd613eb3be3d8bf3bb486b048f8673b66456a86cf7871dd409d3ba511b",
+ "driver_pid": 33776,
+ "cpu": [
+  13
+ ],
+ "priority": 16384,
+ "steps": [
+  {
+   "gate": {
+    "name": "CG3-tests",
+    "at_utc": "2026-11-14T18:09:00.593847+00:00",
+    "hashes": {
+     "tools/run_rc2.r1.py": true,
+     "95a3-cage/cage_rebuild.r1.py": true,
+     "95a3-cage/test_cage_rebuild.r1.py": true
+    },
+    "outputs_absent": {
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG3-tests.rc.json": true,
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\runs\\CG3-freeze.rc.json": true,
+     "C:\\github\\Einhander\\.claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\95a3-cage\\frozen\\95A3BCF8-C-cage-v2": true
+    },
+    "cpu_pct_1s": 60.8,
+    "free_gib": 68.97,
+    "elapsed_since_grant_s": 78.385,
+    "ok": false
+   }
+  }
+ ],
+ "stopped": "tests gate failed or start window exceeded; nothing started",
+ "end_utc": "2026-11-14T18:09:01.597271+00:00"
+}

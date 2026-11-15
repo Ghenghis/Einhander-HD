@@ -1,0 +1,7 @@
+TIMING preload_total_ms 36.006 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 8 bytes 25774976
+TIMING draw_admit_ms 1.012 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 0.971 min 0.964 max 1.221 (21 fresh slots, warm)
+checks 25 failures 2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T114326Z\glue\mutants\g07\glue_harness.c:203: s_hdcm_diag.rejected[HDCM_E_LEVEL0] == 1 && g_teximage == 0 && g_texparam == 0 && s3.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T114326Z\glue\mutants\g07\glue_harness.c:231: out[10 + HDCM_REASONS + HDCM_E_LEVEL0] == 1

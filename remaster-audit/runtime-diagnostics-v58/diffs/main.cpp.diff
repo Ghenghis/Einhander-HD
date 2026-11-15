@@ -1,0 +1,129 @@
+--- a/windows-x64/psxrecomp/runtime/src/main.cpp
++++ b/windows-x64/psxrecomp/runtime/src/main.cpp
+@@ -46,6 +46,12 @@
+ #include "gpu_vk_renderer.h"
+ #include "frame_pacing.h"
+ #include "latency_ring.h"
++#include "frame_phase_ring.h"   /* private v58 phase ring (opt-in PSX_FRAME_PHASE_RING=1) */
++#ifndef PSX_NO_DEBUG_TOOLS
++#define FRAME_PHASE_MARK(p) debug_server_frame_phase_mark(p)
++#else
++#define FRAME_PHASE_MARK(p) ((void)0)
++#endif
+ #include "sio.h"
+ #ifndef PSX_MAX_PLAYERS
+ #define PSX_MAX_PLAYERS 2
+@@ -6152,6 +6158,7 @@
+ 
+ /* Called from gpu_vblank_tick() at each simulated vblank. */
+ static NetplayVblankEpilogue sdl_vblank_present_body(void) {
++    FRAME_PHASE_MARK(FP_ENTER);   /* literally first: before ep init, scheduler resume clear, debug housekeeping */
+     NetplayVblankEpilogue ep{};
+     /* Guest quantum for this vblank is complete. Drop top-level-resume armed
+      * by any resume_at (savestate / selfcheck / RB) during that quantum — the
+@@ -6174,6 +6181,7 @@
+     debug_server_poll();
+     debug_server_record_frame();
+     debug_server_check_watchpoints();
++    FRAME_PHASE_MARK(FP_DEBUG_END);   /* frame id committed here: s_frame_count after record_frame */
+ 
+     /* Check debug server input override. */
+     int override = debug_server_get_input_override();
+@@ -6616,8 +6624,10 @@
+             turbo_was_down = 1;
+             if (mult >= 2 && g_frame_period_ms > 0.0) {
+                 uint64_t perf_start = runtime_perf_section_begin();
++                FRAME_PHASE_MARK(FP_ALT_PACE_BEGIN);   /* manual turbo pacer */
+                 frame_pacer_wait(&s_frame_pacer,
+                                  g_frame_period_ms / (double)mult);
++                FRAME_PHASE_MARK(FP_ALT_PACE_END);
+                 runtime_perf_section_end(perf_start,
+                                          &g_runtime_perf.pacer_ticks);
+                 latency_ring_mark(LAT_PACED);
+@@ -6650,9 +6660,11 @@
+         if (g_turbo_load_wall_multiplier >= 2 &&
+             g_frame_period_ms > 0.0) {
+             uint64_t perf_start = runtime_perf_section_begin();
++            FRAME_PHASE_MARK(FP_ALT_PACE_BEGIN);   /* turbo-loads pacer */
+             frame_pacer_wait(
+                 &s_frame_pacer,
+                 g_frame_period_ms / (double)g_turbo_load_wall_multiplier);
++            FRAME_PHASE_MARK(FP_ALT_PACE_END);
+             runtime_perf_section_end(
+                 perf_start, &g_runtime_perf.pacer_ticks);
+             latency_ring_mark(LAT_PACED);
+@@ -6715,8 +6727,10 @@
+      * resim. */
+     if (!psx_netplay_active() && !psx_selfcheck_resim_active()) {
+         uint64_t perf_start = runtime_perf_section_begin();
++        FRAME_PHASE_MARK(FP_PACE_BEGIN);   /* offline wall-clock pacer: runs BEFORE present/swap */
+         if (!manual_turbo_active && !turbo_load_paced && present_should_wall_pace())
+             frame_pacer_wait(&s_frame_pacer, g_frame_period_ms);
++        FRAME_PHASE_MARK(FP_PACE_END);
+         runtime_perf_section_end(perf_start, &g_runtime_perf.pacer_ticks);
+         latency_ring_mark(LAT_PACED);
+ 
+@@ -6842,7 +6856,9 @@
+                         SDL_SetRenderDrawColor(sdl_renderer, 0, 0, 0, 255);
+                         SDL_RenderClear(sdl_renderer);
+                         host_osd_draw_sdl(sdl_renderer);
++                        FRAME_PHASE_MARK(FP_SWAP_BEGIN);   /* software renderer: blank-display present */
+                         SDL_RenderPresent(sdl_renderer);
++                        FRAME_PHASE_MARK(FP_SWAP_END);
+                     }
+                 }
+             }
+@@ -7268,7 +7284,9 @@
+     {
+         latency_ring_mark(LAT_SWAP_BEGIN);
+         const Uint64 t0 = SDL_GetPerformanceCounter();
++        FRAME_PHASE_MARK(FP_SWAP_BEGIN);   /* software renderer: exact present */
+         SDL_RenderPresent(sdl_renderer);
++        FRAME_PHASE_MARK(FP_SWAP_END);
+         const Uint64 t1 = SDL_GetPerformanceCounter();
+         latency_ring_mark(LAT_SWAP_END);
+         netplay_note_present();
+@@ -7294,25 +7312,28 @@
+      * on the same VBlank boundary (BB fast-poll tails forked #2 vs #3). */
+     psx_selfcheck_flush_load();
+     if (!ep.do_epilogue)
+-        return;
++        { FRAME_PHASE_MARK(FP_EXIT); return; }
+     if (!psx_return_to_lobby_requested())
+         netplay_barrier_admit(ep.override);
+     /* Episode baseline applied during admit without longjmp — resume now that
+      * present-body C++ destructors have run (mirrors savestate BB-edge path). */
+     psx_netplay_rb_flush_resume();
+     if (ep.skip_pace || psx_return_to_lobby_requested())
+-        return;
++        { FRAME_PHASE_MARK(FP_EXIT); return; }
+     if (psx_netplay_is_resimulating() || psx_netplay_rb_tip_holding())
+-        return;
++        { FRAME_PHASE_MARK(FP_EXIT); return; }
+     if (!gpu_display_is_depth24() && psx_netplay_catchup_budget() > 0) {
+         psx_netplay_catchup_consume_frame();
+-        return;
++        { FRAME_PHASE_MARK(FP_EXIT); return; }
+     }
+     uint64_t perf_start = runtime_perf_section_begin();
++    FRAME_PHASE_MARK(FP_ALT_PACE_BEGIN);   /* netplay epilogue pacer (after swap) */
+     if (present_should_wall_pace())
+         frame_pacer_wait(&s_frame_pacer, g_frame_period_ms);
++    FRAME_PHASE_MARK(FP_ALT_PACE_END);
+     runtime_perf_section_end(perf_start, &g_runtime_perf.pacer_ticks);
+     latency_ring_mark(LAT_PACED);
++    FRAME_PHASE_MARK(FP_EXIT);
+ }
+ 
+ /* game.toml [netplay] + last TOC fingerprint — shared by launcher verify and
+@@ -13074,6 +13095,10 @@
+         std::atexit(game_options_save_now);
+ #ifndef PSX_NO_DEBUG_TOOLS
+         debug_server_init(debug_port);
++        /* Private phase ring: bind this (vblank) thread as the only row writer; hook the exact GL swap only when
++         * PSX_FRAME_PHASE_RING=1, so the default build keeps a NULL hook. */
++        if (debug_server_frame_phase_init_owner())
++            gl_renderer_set_swap_phase_hook(debug_server_frame_phase_mark);
+ #else
+         (void)debug_port;
+ #endif

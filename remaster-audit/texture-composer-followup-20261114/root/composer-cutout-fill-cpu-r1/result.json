@@ -1,0 +1,73 @@
+{
+  "at_utc": "2026-11-14T14:18:17.348242+00:00",
+  "passed": true,
+  "cases": [
+    {
+      "case": "default_no_library",
+      "passed": true
+    },
+    {
+      "case": "wrong_library_pin_rejected",
+      "passed": true
+    },
+    {
+      "case": "black_cutout_filled_alpha_visible_rgb_preserved",
+      "passed": true
+    },
+    {
+      "case": "fill_idempotent",
+      "passed": true
+    },
+    {
+      "case": "opaque_page_skips_function",
+      "passed": true
+    },
+    {
+      "case": "all_cutout_no_visible_colour_invented",
+      "passed": true
+    },
+    {
+      "case": "noncategorical_alpha_rejected",
+      "passed": true
+    },
+    {
+      "case": "alpha_mutation_rejected",
+      "passed": true
+    },
+    {
+      "case": "visible_rgb_mutation_rejected",
+      "passed": true
+    },
+    {
+      "case": "original_image_unchanged",
+      "passed": true
+    }
+  ],
+  "cpu_cases": 10,
+  "policy": {
+    "method": "cm_fill_cutout_rgb-v2b",
+    "library": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\rise-native-vector\\expand33\\20261114T135902Z\\class_mip.dll",
+      "sha256": "234202d2deed4106426a91351ba75f0a21ee59d6d24bd3cdaddaa3fbc55aba80"
+    },
+    "source": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\rise-native-vector\\expand33\\20261114T135902Z\\class_mip.c",
+      "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d"
+    },
+    "header": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\rise-native-vector\\expand33\\20261114T135902Z\\class_mip.h",
+      "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+    },
+    "build_receipt": {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\rise-native-vector\\expand33\\20261114T135902Z\\result.json",
+      "sha256": "d4379b41b64bbeff1e38fb965a93a5880f677e3779b716859f60ba8fce1326ec"
+    }
+  },
+  "source_sha256": "e90cb4d1cd3c5fdf75a4d5cf6ea4199e80989734e799e04660d030e20fd02cb1",
+  "below_normal": true,
+  "cpu_affinity": [
+    15
+  ],
+  "gpu_run": false,
+  "composition_run": false
+}

@@ -1,0 +1,13 @@
+start 2026-11-14T22:42:31.1427018Z (after A: wrapper 34924 absent, envelope tree_absent/job_empty, CPU14 returned)
+pin fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36 C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/watchdog/run_rc2_envelope_r1.py
+pin 06f7a44a75766ee106ec39088358a7a9dcb4ae1c691b14032465ea551dd5a535 C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/probe_peer_visibility_r2.py
+pin ed43bda03d4843e74e6342f17a025bc1b97b54b10d503656cfc39cf5eefcf881 C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/owned_debug_stub_r2.py
+pin c457b58ed670f878dd30fb4962639dbfc18f407e4223685710f498d29a0ded34 C:/github/Einhander/remaster-audit/owned_gl_adapter_observation.py
+pin c78300cbe563fd8861be25898d3ab2fd88ffb919c0877b0acaa3ec1de1b3eb08 C:/github/Einhander/remaster-audit/gl_adapter_identity_guard.py
+watchdog copy sha fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36
+precheck(info) cpu_load=29 free_gib=59.03 (authoritative gate is the envelope --max-cpu 60 / --min-free-gib 16)
+spawn 2026-11-14T22:42:32.4601239Z argv=C:/Python314/python.exe -I -B C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244-runner/executed-watchdog.py --out C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244-envelope.json --cpu 14 --timeout 60 --max-job-mib 256 --no-window --max-cpu 60 --min-free-gib 16 -- C:/Python314/python.exe -I -B C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/probe_peer_visibility_r2.py --out C:/github/Einhander/.claude/worktrees/goofy-babbage-872e5d/remaster-audit/claude-einhander-support/owned-stub/runs/probe-2244 --cpu 14
+wrapper priority set BelowNormal
+wrapper pid=43032 start=2026-11-14T22:42:32.4646512Z
+end 2026-11-14T22:42:47.6527398Z wrapper_rc=5 (no retry)
+wrapper_identity_absent_after_handle_release=True

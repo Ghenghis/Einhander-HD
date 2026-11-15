@@ -1,0 +1,23 @@
+{
+  "frame_mapping": "Use actual post-housekeeping s_frame_count; phase sequence differs from frame ID",
+  "period": "Current exact swap-begin minus previous exact swap-begin, compared to passive pre-swap ms ring only within quantization/OSD differences",
+  "partition": [
+    "previous swap_end - previous swap_begin",
+    "previous exit - previous swap_end",
+    "current enter - previous exit",
+    "current debug_end - current enter",
+    "current pace_begin - current debug_end",
+    "current pace_end - current pace_begin",
+    "current swap_begin - current pace_end"
+  ],
+  "requirements": [
+    "previous and current rows closed",
+    "exactly one swap each",
+    "actual neighboring frame IDs verified",
+    "ordinary offline pace stamps ordered and present; flag unsupported alternate/early-return rows instead of guessing",
+    "all components nonnegative and partition sum equals exact swap-begin period",
+    "filter by measured register frame brackets",
+    "do not assign current swap duration to pre-swap interval ending at current frame"
+  ],
+  "scope": "CPU wall timestamps identify location; they do not prove busy CPU vs OS scheduling or GPU backlog"
+}

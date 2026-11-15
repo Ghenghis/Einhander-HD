@@ -1,0 +1,7 @@
+# Verified CPU texture results and current engine/Remix limits
+
+Independent native-class replay passes all118v5menu candidates with no failed/skipped members or source/alpha mismatches: child0/10.199s, CPU15 BelowNormal, tree absent. This does not accept their appearance; three spec-text choices remain rejected. Private v68 runtime/cache/settings/card preparation now succeeds on C: in7.613s, with no game/GPU launch or installation. Root verifies the small receipts/current pins separately. [Exact source, execution receipts and limits](../remaster-audit/cpu-texture-remix-results-20261114/README.md).
+
+The staged enemy material channel is disabled (Stock/emptydetail). Player tint covers only four hull keys; procedural detail has additional upload gates and no new live proof. Independent craft/weapons/bosses/effects skins, authored realistic4K surfaces and in-game selectors remain incomplete. [Pinned source-gate map](../remaster-audit/cpu-texture-remix-results-20261114/claude-s23/skin-visibility-map.json).
+
+Remixr7is source-only, with65proposed CPU checks and no executed build/probe in this checkpoint. The last real GPU output/Shutdown test remains failed; scene/camera/material engine transport and RT/DLSS acceptance remain open. The coordinator reports user-observed Windows freezes: all new heavy/GPU work is held pending diagnostics. Light source/receipt/Git work continues. No game/audio fix, stage clear, release or whole-project completion is claimed.

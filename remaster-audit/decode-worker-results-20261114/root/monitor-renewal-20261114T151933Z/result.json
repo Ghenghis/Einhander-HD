@@ -1,0 +1,117 @@
+{
+  "at_utc": "2026-11-14T15:19:34.905563+00:00",
+  "prior_pid": 31968,
+  "prior_command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "prior_creation_unix": 1794668009.5927043,
+  "prior_terminated": true,
+  "pid": 36052,
+  "command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "bound_end_utc": "2026-11-14T15:49:33.939Z",
+  "first_snapshot_utc": "2026-11-14T15:19:34.684Z",
+  "first_snapshot": {
+    "observed_utc": "2026-11-14T15:19:34.684Z",
+    "watcher_pid": 36052,
+    "watcher_only": true,
+    "proves_model_activity": false,
+    "observations": 1,
+    "bound_end_utc": "2026-11-14T15:49:33.939Z",
+    "roster_sha256": "942a937c7621aaaf8a4442fd595e172974b1dc9aa392c91a5d78031ccf79f698",
+    "sessions": [
+      {
+        "owner": "claude-einhander",
+        "session_id": "43668750-1a3c-49e9-8775-c31ee3df3847",
+        "roster_state": "registered_actual_model_startup_hook_activity_pending",
+        "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [
+          "checkpoint session identity mismatch"
+        ],
+        "checkpoint_sha256": "14599433883fd108cc64a50d191c3539e3c889fa73cba03e2c396328406ad7f2",
+        "checkpoint_utc": "2026-11-14T15:04:16Z",
+        "checkpoint_age_seconds": 919,
+        "phase": "retired-from-new-assignments (coordinator msg_c9ef56bd; in-place root move failed); NOT a user_stop",
+        "pending_task_ids": [
+          "For the canonical-root replacement: 95A3BCF8 region-O freeze (grant A queued, msg_567c4e7d)",
+          "For the replacement: v66 review when root publishes actual results",
+          "For root: live A/B of region O pages, s67 r1b explosion keys (review B 8/8 PASS), RISE native-alpha composition"
+        ],
+        "next_action": "None for original 11357b05: no new assignments; new mail left unread for the replacement. Responds only to the user directly.",
+        "status": "needs_attention"
+      },
+      {
+        "owner": "claude-einhander-s23",
+        "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T14:19:09.094Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "82f3f0ba2341140522f65a5c6a0610ed4534386d059074ae5e93f71fb1884ad4",
+        "checkpoint_utc": "2026-11-14T15:06:58.000Z",
+        "checkpoint_age_seconds": 757,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S2-WHOLE-CELL-20261114",
+          "EIN-S3-WHOLE-CELL-20261114"
+        ],
+        "next_action": "On grant: J6 selftest -> J6 union-known -> J5. Re-arm inbox monitor (bzg2yw916 bound ~15:05Z).",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s45",
+        "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T15:15:50.604Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "c501fc7a2dac0efcfa6a524f8a7af33fd54ca0308bb7d0ef0f4789a3f65fcde8",
+        "checkpoint_utc": "2026-11-14T15:06:00.000Z",
+        "checkpoint_age_seconds": 815,
+        "phase": "waiting-grant J-I; light prep w6-method extension + menu/HUD state register",
+        "pending_task_ids": [
+          "EIN-S4-WHOLE-CELL-20261114",
+          "EIN-S5-WHOLE-CELL-20261114",
+          "EIN-MENU-HUD-20261114"
+        ],
+        "next_action": "On J-I grant (msg_09f79b8d4cf4f9a1): PowerShell Start-Process cmd -ArgumentList /c,start \"\" /b /wait /belownormal /affinity 2000 python -I -B menu-hud/tools/s45_hud_classsnap.py -WorkingDirectory s45; WaitForExit(30000) else taskkill /T /F. Report PID/exit/result.json sha. Then w6-method extension grant request; menu state register.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s67",
+        "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T14:16:54.748Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "a0efec12dff09408b2afc598a9cc71613d34ea45a88f47ae96c84c0eff658963",
+        "checkpoint_utc": "2026-11-14T15:10:58Z",
+        "checkpoint_age_seconds": 517,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S6-WHOLE-CELL-20261114",
+          "EIN-S7-WHOLE-CELL-20261114",
+          "EIN-S6-TIMEOUT-PROFILE-20261114"
+        ],
+        "next_action": "On stage1-primary turn-end note: verify its reported cwd/hook proof (read-only get_session), never start a duplicate. On grants: r2a (E653AA46-4CAF3E0F), A5969BC9 de-dither, 30BB2999 bursts.",
+        "status": "checkpoint_available"
+      }
+    ]
+  },
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "model_resumption": false,
+  "gpu_run": false
+}

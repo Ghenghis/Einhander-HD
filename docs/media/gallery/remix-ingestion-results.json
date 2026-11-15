@@ -1,0 +1,133 @@
+{
+ "toolkit_version": "1.6.1-0",
+ "ui_workspace": "Ingestion / Materials",
+ "observed_queue_percent": 100,
+ "observed_check_plugins_finished": [
+  "Convert Material Shaders",
+  "Convert Normal Maps to Octahedral",
+  "Convert Textures to DDS",
+  "Mass Texture Preview"
+ ],
+ "observed_result_plugin_finished": "File Metadata Writer",
+ "max_concurrent_texture_conversions": 1,
+ "execute_in": "Current Process",
+ "input_type": "Albedo",
+ "source_original_preserved": true,
+ "full_game_project_created": false,
+ "live_game_connected": false,
+ "project_wizard_blocker": "No capture available. Create a capture in the runtime before creating a project.",
+ "prepared_project_directory": "C:\\Remix\\Einhander-HD\\project",
+ "sandbox_remix_directory": "C:\\Remix\\Einhander-HD\\runtime-sandbox\\rtx-remix",
+ "files": [
+  {
+   "path": "ingested/green-sign.a.rtex.dds",
+   "bytes": 1048772,
+   "sha256": "1c6ac7b675883e3df0db373dd5aabab21b7760a663c7a06672d5f5c23cc5bba4",
+   "dimensions": [
+    1024,
+    768
+   ],
+   "mode": "RGBA",
+   "format": "DDS"
+  },
+  {
+   "path": "ingested/green-sign.a.rtex.dds.meta",
+   "bytes": 6166,
+   "sha256": "ddef5fafb0dad0fc60ccff2d712f0506dec7d382c0b0f91b5caa0e24b520e089"
+  }
+ ],
+ "scope": "Actual standalone ingestion succeeded; no visual enhancement, gameplay integration, ray tracing, DLSS or runtime alpha-class acceptance implied.",
+ "method": "Documented local REST material-ingestion endpoint with explicit input, DIFFUSE type, output directory and max_workers=1; executor 0.",
+ "api_endpoint": "http://127.0.0.1:8011/ingestcraft/mass-validator/queue/material",
+ "api_request_sha256": "2be7a744e46307d16ada46c4899e1d15217dc101b4f97148939c24ecd9167e08",
+ "api_response_sha256": "82c7e9dd68dd71216d9021e8eaa24742fc649e662259c3dc37fa572d94f40d31",
+ "api_plugin_results": [
+  {
+   "name": "MaterialShaders",
+   "progress": [
+    1.0,
+    "Finished",
+    true
+   ],
+   "last_check_result": true,
+   "last_fix_result": true,
+   "message": "Fix:\n- FIXED: /TextureImporter/Looks/C__Remix_Einhander_HD_ingested_green_sign_png - Completed prim '/TextureImporter/Looks/C__Remix_Einhander_HD_ingested_green_sign_png' conversion on layer anon:0000043B44100300:World3.usd\n"
+  },
+  {
+   "name": "ConvertToOctahedral",
+   "progress": [
+    1.0,
+    "Finished",
+    true
+   ],
+   "last_check_result": true,
+   "last_fix_result": null,
+   "message": null
+  },
+  {
+   "name": "ConvertToDDS",
+   "progress": [
+    1.0,
+    "Finished",
+    true
+   ],
+   "last_check_result": true,
+   "last_fix_result": true,
+   "message": "Stage: anon:0000043B44100300:World3.usd\nFix:\n- PASS: created compressed texture C:\\Remix\\Einhander-HD\\ingested\\green-sign.a.rtex.dds\n"
+  },
+  {
+   "name": "MassTexturePreview",
+   "progress": [
+    1.0,
+    "Finished",
+    true
+   ],
+   "last_check_result": true,
+   "last_fix_result": null,
+   "message": null
+  }
+ ],
+ "rejected_ui_attempts": [
+  {
+   "executor": "Current Process",
+   "ui_percent": 100,
+   "output_files": 0
+  },
+  {
+   "executor": "External Process, 1 worker",
+   "ui_percent": 100,
+   "output_files": 0
+  }
+ ],
+ "first_ui_green_status_was_insufficient": true,
+ "decoded_dds_verified": true,
+ "source_original_sha256_verified": true,
+ "source_receipt": {
+  "source": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w3-signs\\frozen\\fd09-green-three-glyph-w3-v1\\region\\FD81C3C7-F6269484.png",
+  "copy": "C:\\Remix\\Einhander-HD\\sources\\green-sign.png",
+  "sha256": "ccee9e7688dabb9cc71057dc3a60e4e7f293e622e321a63f0ff4f241535bd5cd",
+  "size": [
+   1024,
+   768
+  ],
+  "mode": "RGBA",
+  "purpose": "Real existing sign candidate for standalone Remix ingestion check; original preserved. Not a quality-approved replacement or runtime capture.",
+  "class_alpha_warning": "Source alpha encodes native 0/127/255 classes; DDS is offline material output and must not replace runtime PNG without independent class validation."
+ },
+ "toolkit_installed_path": "C:/Program Files/NVIDIA Corporation/RTX Remix",
+ "local_workspace_readme": "C:/Remix/Einhander-HD/README.md",
+ "local_recipe": "C:/Remix/Einhander-HD/Ingest-Green-Sign.py",
+ "local_recipe_sha256": "5f26fc38a93eabd502ea62f4eaa67542fa407338b0aaf9d54d437100f485fd36",
+ "recipe_existing_response_and_dds_check": {
+  "command": "python C:/Remix/Einhander-HD/Ingest-Green-Sign.py --verify-existing",
+  "exit_code": 0,
+  "assertions": [
+   "one successful import context",
+   "explicit source identity",
+   "successful DDS check/fix",
+   "metadata result succeeded",
+   "full DDS decode"
+  ],
+  "new_conversion_submitted": false
+ }
+}

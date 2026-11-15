@@ -1,0 +1,177 @@
+{
+ "mode": "fixtures",
+ "cases": [
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=8: direction, centres (b), per-chain/border/corner/dot gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "chain 0 (straight) staircase 0.2528 > 0.1500",
+   "ok": false
+  },
+  {
+   "name": "positive: ACTUAL ROI stripe pattern (ROI_SHA) at S=4: direction, centres (b), per-chain/border/corner/dot gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "chain 0 (straight) staircase 0.1644 > 0.1500",
+   "ok": false
+  },
+  {
+   "name": "positive: protected 7DD / 66CC fittings of the actual ROI unchanged (incl. their centre pixels)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "checked": 7
+   }
+  },
+  {
+   "name": "positive: top-left corner endpoint (index C) stays mostly dark; no leak above the band",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "corner_texel_coverage": 0.1084
+   }
+  },
+  {
+   "name": "positive: steep two-row staircase (1 texel per 2 rows), stripes continue outside: slope -0.5, gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "chain 0 (straight) has 4 missing crossings",
+   "ok": false
+  },
+  {
+   "name": "positive: shallow staircase (2 texels per row), stripes continue outside: slope -2, gates",
+   "expect_fail": false,
+   "failed": true,
+   "msg": "output staircase not < stepped reference",
+   "ok": false
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical incl. centres (S=8)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8,
+    "centre_changed": 0
+   }
+  },
+  {
+   "name": "positive: straight vertical + horizontal edges, crisp input byte-identical incl. centres (S=4)",
+   "expect_fail": false,
+   "failed": false,
+   "ok": true,
+   "info": {
+    "chains": 8,
+    "centre_changed": 0
+   }
+  },
+  {
+   "name": "negative: ROI out of bounds",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI out of bounds (30, 4, 44, 12)",
+   "ok": true
+  },
+  {
+   "name": "negative: scale 16 not allowed",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "scale 16 not allowed",
+   "ok": true
+  },
+  {
+   "name": "negative: cross-class ROI (edited CLUT) rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "ROI not single-class under the CLUT",
+   "ok": true
+  },
+  {
+   "name": "negative: edited CLUT words rejected by the PAL CRC check",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "CLUT words CRC != PAL",
+   "ok": true
+  },
+  {
+   "name": "negative: foreign (fitting) index inside the stripe band rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "non-stripe index inside BAND",
+   "ok": true
+  },
+  {
+   "name": "negative: shade texel inside a same-colour run rejected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "shade texels inside a same-colour run before u28",
+   "ok": true
+  },
+  {
+   "name": "negative: alpha change detected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "alpha changed inside ROI",
+   "ok": true
+  },
+  {
+   "name": "negative: centre recoloured from the OTHER side's donor",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "donor not on the centre's native side",
+   "ok": true
+  },
+  {
+   "name": "negative: centre recoloured from a CROSS-CLASS donor",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "cross-class donor",
+   "ok": true
+  },
+  {
+   "name": "negative: protected (fitting) pixel mutation detected",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "protected pixel changed",
+   "ok": true
+  },
+  {
+   "name": "negative: centre pixel OUTSIDE the edge band mutated",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "pixel outside the authorised edge band changed",
+   "ok": true
+  },
+  {
+   "name": "negative: changed centre missing from the centre log",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "changed centre pixel missing from the centre log",
+   "ok": true
+  },
+  {
+   "name": "negative: pixel OUTSIDE the ROI mutated",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "outside ROI changed",
+   "ok": true
+  },
+  {
+   "name": "negative: r3-style kept blurred centres fail the dot gate",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "dot contrast 0.2914 > 0.25",
+   "ok": true
+  },
+  {
+   "name": "negative: stepped r2-like output fails the quality gate",
+   "expect_fail": true,
+   "failed": true,
+   "msg": "output staircase not <= input",
+   "ok": true
+  }
+ ],
+ "all_ok": false
+}

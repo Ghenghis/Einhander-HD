@@ -1,0 +1,113 @@
+{
+  "at_utc": "2026-11-14T14:01:10.509197+00:00",
+  "prior_pid": 28164,
+  "prior_command": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "prior_creation_unix": 1794663434.6647606,
+  "prior_terminated": true,
+  "pid": 26032,
+  "command": [
+    "node",
+    "C:\\github\\Einhander\\coordination\\claude-session-briefs-20261114\\session-health.mjs",
+    "--watch",
+    "1800"
+  ],
+  "bound_end_utc": "2026-11-14T14:31:09.548Z",
+  "first_snapshot_utc": "2026-11-14T14:01:10.352Z",
+  "first_snapshot": {
+    "observed_utc": "2026-11-14T14:01:10.352Z",
+    "watcher_pid": 26032,
+    "watcher_only": true,
+    "proves_model_activity": false,
+    "observations": 1,
+    "bound_end_utc": "2026-11-14T14:31:09.548Z",
+    "roster_sha256": "6d82088c38258e1dabe73256e55e42b937a973e76f14924966d0294713afe9b4",
+    "sessions": [
+      {
+        "owner": "claude-einhander",
+        "session_id": "11357b05-21ce-4470-8da8-e1597e772a7f",
+        "roster_state": "existing_actual_model_verified",
+        "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+        "presence_stale": true,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "ab9ed5eb44d4ee7942ad576b421bbf34010f37c0aa94e6a2e7619911d6035894",
+        "checkpoint_utc": "2026-11-14T14:00:58Z",
+        "checkpoint_age_seconds": 12,
+        "phase": "idle-light-work (no heavy jobs; RISE 33-palette set complete; v6 long host suite is root-only)",
+        "pending_task_ids": [
+          "v6 decode-worker identity: sources ready on root v48 baseline; long host suite root-only per msg_f12634163f",
+          "RISE: current 33-palette set expand33/20261114T135902Z d4379b41 (private, no install/live)",
+          "Stage1 backlog: shared explosion 10932164 x4 (fail primary rule, pinhole cells; Stage1 visibility unconfirmed) - review s67 new-copy repair when it exists; no own repair"
+        ],
+        "next_action": "On grant: start authored_v5_f32.py then expand33.py <its run> in the same slot, report PID within 60 s.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s23",
+        "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T13:49:38.864Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "f1e0d95c3eb031e572e0682bb01eb1558659deb9adde377d14ef8f3c677a3519",
+        "checkpoint_utc": "2026-11-14T13:57:39.000Z",
+        "checkpoint_age_seconds": 211,
+        "phase": "waiting",
+        "pending_task_ids": [
+          "EIN-S2-WHOLE-CELL-20261114",
+          "EIN-S3-WHOLE-CELL-20261114"
+        ],
+        "next_action": "On grant run in order J2a, J2b, J4, J3, J6 selftest, J5 (each bounded, PID reported). Re-arm inbox monitor before bj872zvtf expiry (~14:20Z).",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s45",
+        "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T13:49:57.682Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "65e34a45804514437d065bfc49b8572c2dc79dd60a1f274e7581ef30a062e714",
+        "checkpoint_utc": "2026-11-14T13:57:24.000Z",
+        "checkpoint_age_seconds": 226,
+        "phase": "working",
+        "pending_task_ids": [
+          "EIN-S4-WHOLE-CELL-20261114",
+          "EIN-S5-WHOLE-CELL-20261114"
+        ],
+        "next_action": "Await individual grant (next s45 job J-B then J-D/J-E). Meanwhile visual review of lane review sheets for documented defects (bead chains S5 452F3CC3/503474BD, 3/6 banding), refine repair proposals.",
+        "status": "checkpoint_available"
+      },
+      {
+        "owner": "claude-einhander-s67",
+        "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+        "roster_state": "actual_model_work_and_checkpoint_verified",
+        "presence_updated_utc": "2026-11-14T13:49:30.931Z",
+        "presence_stale": false,
+        "model_liveness": "not established by this monitor",
+        "attention": [],
+        "checkpoint_sha256": "c71c5a14085b42df048e4987ade71968fc3dc108ae603459efd85a9c5451d75a",
+        "checkpoint_utc": "2026-11-14T13:59:02Z",
+        "checkpoint_age_seconds": 128,
+        "phase": "working",
+        "pending_task_ids": [
+          "EIN-S6-WHOLE-CELL-20261114",
+          "EIN-S7-WHOLE-CELL-20261114"
+        ],
+        "next_action": "Prepare FX class-ownership repair r1 tool (cm_repair on copies of 24 failing files) with dry-run; request grant via crash-check for: FX repair r1 (<30s), A5969BC9 de-dither r1 (~60s). Then 30BB2999 burst fit JSON + analytic builder.",
+        "status": "checkpoint_available"
+      }
+    ]
+  },
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "model_resumption": false,
+  "gpu_run": false
+}

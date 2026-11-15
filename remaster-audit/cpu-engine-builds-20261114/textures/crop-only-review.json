@@ -1,0 +1,229 @@
+{
+ "owner": "claude-einhander-s23",
+ "tool": "stipple_crop_review.py",
+ "self_sha256": "b5b8eefc999d0786678fa6834caf0228d6559b3204e17a56bf8e2373786ff1c8",
+ "key": "87F01A0F-D9554B55",
+ "started_utc": "2026-11-14T22:04:17.537987+00:00",
+ "pid": 33816,
+ "affinity": "12",
+ "purpose": "crop-only review evidence for root's protected-inside-ROI marks; no repair, no pack/source change, no intent inference",
+ "pins": {
+  "lib": {
+   "name": "s23lib",
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/tools/s23lib.py",
+   "sha256": "e26b2fbe0f5632c121e254e284be68eace8b54f5425cb785b9f53d9504a972b7"
+  },
+  "spec": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/stipple-masks-20261114T215522Z/mask-spec-r2.json",
+   "sha256": "a9e3a46ff2e8c863676b0381ed073bf2154c1db8141eaabdf0f86c950791f499"
+  },
+  "words": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures/87F01A0F.words.bin",
+   "sha256": "4877101d378a6cb7b7948242c632de368fda05a6b3fcc1be3402297d8f98054e",
+   "rect": [
+    832,
+    0,
+    64,
+    256
+   ]
+  },
+  "clut_words_hex": "ef3dce39ad358c316b2d4a2929250821e71cc618a5148410630c420821040000",
+  "j9_png": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/keys/page2048/87F01A0F-D9554B55.png",
+   "sha256": "0a2a5de017e8e7467a817de739d697e50d3f9b8ef89e515d699450d141465071"
+  }
+ },
+ "allowed_rects": [
+  [
+   110,
+   105,
+   128,
+   126
+  ],
+  [
+   110,
+   105,
+   128,
+   127
+  ],
+  [
+   110,
+   128,
+   128,
+   137
+  ],
+  [
+   128,
+   105,
+   158,
+   127
+  ],
+  [
+   129,
+   105,
+   158,
+   126
+  ],
+  [
+   129,
+   105,
+   158,
+   127
+  ],
+  [
+   129,
+   128,
+   158,
+   137
+  ]
+ ],
+ "panels": "native 8x | J9 8x | allowed mask (white allowed, dark grey not); cutout (alpha 0) drawn magenta",
+ "tiles": [
+  {
+   "label": "u110-126_v105-121",
+   "texel_rect": [
+    110,
+    105,
+    126,
+    121
+   ],
+   "hd8_px_rect": [
+    880,
+    840,
+    1008,
+    968
+   ],
+   "allowed_texels": 256,
+   "tile_texels": 256,
+   "native_cutout_texels": 256,
+   "path": "tile-u110-126_v105-121.png",
+   "sha256": "ca6f30bc749695dbaf6e741986140bd751621a096e99845cc60a04dfc9b96c80"
+  },
+  {
+   "label": "u126-142_v105-121",
+   "texel_rect": [
+    126,
+    105,
+    142,
+    121
+   ],
+   "hd8_px_rect": [
+    1008,
+    840,
+    1136,
+    968
+   ],
+   "allowed_texels": 256,
+   "tile_texels": 256,
+   "native_cutout_texels": 75,
+   "path": "tile-u126-142_v105-121.png",
+   "sha256": "17cdad3374f46b3b8948a14be4ecdd7f7bcf46c5fb4544d1a9caa870e8e93f9a"
+  },
+  {
+   "label": "u142-158_v105-121",
+   "texel_rect": [
+    142,
+    105,
+    158,
+    121
+   ],
+   "hd8_px_rect": [
+    1136,
+    840,
+    1264,
+    968
+   ],
+   "allowed_texels": 256,
+   "tile_texels": 256,
+   "native_cutout_texels": 17,
+   "path": "tile-u142-158_v105-121.png",
+   "sha256": "c80066edbb70414d3466eb4e93ed1fc46eb15da82f8706ede56eca1946ad0ec1"
+  },
+  {
+   "label": "u110-126_v121-137",
+   "texel_rect": [
+    110,
+    121,
+    126,
+    137
+   ],
+   "hd8_px_rect": [
+    880,
+    968,
+    1008,
+    1096
+   ],
+   "allowed_texels": 240,
+   "tile_texels": 256,
+   "native_cutout_texels": 256,
+   "path": "tile-u110-126_v121-137.png",
+   "sha256": "b0ac799e874cd795f29afe24b2352c9059c19bb554ab437953047247adc923c0"
+  },
+  {
+   "label": "u126-142_v121-137",
+   "texel_rect": [
+    126,
+    121,
+    142,
+    137
+   ],
+   "hd8_px_rect": [
+    1008,
+    968,
+    1136,
+    1096
+   ],
+   "allowed_texels": 231,
+   "tile_texels": 256,
+   "native_cutout_texels": 253,
+   "path": "tile-u126-142_v121-137.png",
+   "sha256": "d088e46b4a3aacb74079310c44da9f7ea93c4c54f8537d3f8899a1e0893177d2"
+  },
+  {
+   "label": "u142-158_v121-137",
+   "texel_rect": [
+    142,
+    121,
+    158,
+    137
+   ],
+   "hd8_px_rect": [
+    1136,
+    968,
+    1264,
+    1096
+   ],
+   "allowed_texels": 240,
+   "tile_texels": 256,
+   "native_cutout_texels": 254,
+   "path": "tile-u142-158_v121-137.png",
+   "sha256": "467bd65477e1ffcc39a2c164125e6d7733d76b46b9c6960e38de55d7b881c8eb"
+  }
+ ],
+ "third_party": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "pillow": "12.3.0"
+ },
+ "contact_sheet": {
+  "path": "contact-sheet.png",
+  "sha256": "229086c8e0bf047721a646289dc53774dca9b3f8fd2a45981f686bdf1f62dc0c",
+  "order": [
+   "u110-126_v105-121",
+   "u126-142_v105-121",
+   "u142-158_v105-121",
+   "u110-126_v121-137",
+   "u126-142_v121-137",
+   "u142-158_v121-137"
+  ]
+ },
+ "source_unchanged": {
+  "words": true,
+  "j9_png": true,
+  "spec": true
+ },
+ "ok": true,
+ "exit_code": 0,
+ "seconds": 0.34,
+ "finished_utc": "2026-11-14T22:04:17.876937+00:00"
+}

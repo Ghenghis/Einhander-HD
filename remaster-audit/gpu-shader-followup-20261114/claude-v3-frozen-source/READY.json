@@ -1,0 +1,120 @@
+{
+ "name": "renderer-v61-classmip-v3",
+ "owner": "claude-einhander",
+ "supersedes": "v1 (defects, SUPERSEDED.md) and v2 (rejected performance design: synchronous draw-thread build)",
+ "frozen_utc": "2026-11-14T11:32:20.503142+00:00",
+ "status": "PRIVATE; default OFF; patched COPY of the frozen v61 renderer only; NOT linked, NOT run, NO GPU used by claude; root owns link/live/GPU/GitHub",
+ "v61_input": {
+  "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gpu_gl_renderer.c",
+  "sha256": "90c6a4e15d8e956ca7be28f1cd5219add1e1c2ee37f31fbd361711db0510e3a1"
+ },
+ "patched_tu": {
+  "path": "host-run/20261114T113027Z/patched/gpu_gl_renderer.c",
+  "sha256": "d7b0fa963ce97850dfc30774df5a4c9a14a6c31e66af15f47ce83c1914cb5aaf",
+  "lines": 7177,
+  "include": "host-run/20261114T113027Z/patched/hd_class_mips.inc",
+  "include_sha256": "721bc33b8bdd1703adc75a5627a145d5c2130987b30c429568e16bed64b6a0e4",
+  "insertions": [
+   "gl-defines",
+   "hd-fs-uniform",
+   "hd-fs-class",
+   "slot-field",
+   "uniform-var",
+   "glue",
+   "hd-fs-rgb",
+   "draw-build",
+   "preload-proto",
+   "preload-call",
+   "draw-uniform",
+   "base-sampling",
+   "uniform-location"
+  ],
+  "pure_addition": true,
+  "crlf_preserved": true,
+  "builder_in_runtime_tu": false,
+  "obj_sha256": "d72c98db4fc488a393f50d3b419793e95f454293e5cb5a7e334df3264879ea5f",
+  "control_obj_sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a",
+  "new_warning_kinds": []
+ },
+ "enable": {
+  "env": {
+   "PSXRECOMP_HD_CLASS_MIPS": "1",
+   "PSXRECOMP_HD_CLASS_MIPS_DIR": "<copy of host-run/20261114T113027Z/sidecars (index.txt + .hdcm)>"
+  },
+  "sampling": "filter mode only (texture_filtering bilinear); independent of PSXRECOMP_HD_WORLD_SAMPLING"
+ },
+ "admission": {
+  "index": [
+   "11CFE2E3-0E09E912",
+   "E360C964-C1B5906C",
+   "31214B41-73AF4FAA",
+   "67DC56D7-96998A63",
+   "327E6D9E-5039A9C5",
+   "E360C964-DF4F533F",
+   "73BF9877-803A474F",
+   "A34295C8-FBCA4A8A"
+  ],
+  "bytes": 25774976,
+  "evidence": "ab-run/20261114T111427Z: region O fully opaque (no benefit); no in-gate alpha-structured drawn key; these 8 are drawn whole-cell PASS alpha-structured keys"
+ },
+ "host": {
+  "run": "20261114T113027Z",
+  "verdict": "pass",
+  "checks": {
+   "fixtures": true,
+   "mutants": true,
+   "real": true,
+   "sidecars": true,
+   "glue": true,
+   "patch": true,
+   "compile": true,
+   "glsl": true
+  },
+  "fixture_checks": 6182,
+  "mutants": "27/27",
+  "result_sha256": "8b4fb87342ed3047c922740ae0c10c35a442436a3f41c94c227a1266db30a60d",
+  "glue_harness": {
+   "on": "checks 28 failures 0",
+   "off": "checks 2 failures 0"
+  },
+  "timing": [
+   "TIMING preload_total_ms 38.399 (index + file reads + full verification of every listed sidecar, at init)",
+   "TIMING draw_admit_ms 0.972 (cache lookup + level-0 hash + R1 + 4 stub uploads; real GL upload time is GPU-measured)"
+  ],
+  "draw_admit_ms_per_key": {
+   "11CFE2E3-0E09E912": 0.373,
+   "E360C964-C1B5906C": 3.088,
+   "31214B41-73AF4FAA": 3.101,
+   "67DC56D7-96998A63": 0.553,
+   "327E6D9E-5039A9C5": 0.379,
+   "E360C964-DF4F533F": 3.545,
+   "73BF9877-803A474F": 3.06,
+   "A34295C8-FBCA4A8A": 0.56
+  },
+  "negatives": {
+   "o_green_sidecar_vs_pink_pixels": "LEVEL0",
+   "o_green_sidecar_for_pink_key": "KEY",
+   "rise_offline": "REFUSED: R1 centre vs native mismatches 295",
+   "rise_falsely_flagged_admission": "R1"
+  }
+ },
+ "preload_timing_path": "main.cpp:13281 gl_renderer_init_context (startup video init) -> gpu_gl_renderer.c:5454 init_gpu_raster -> 5155 hd_facade_motion_init -> hd_class_mips_preload (before the early return)",
+ "selftest": {
+  "run": "20261114T113152Z",
+  "exe": "selftest/20261114T113152Z/gl_selftest_classmips.exe",
+  "sha256": "8687e396f90d78847b42329f0f1441dbf13805f1b4ac0ca73fd492c0e074a776",
+  "readme": "selftest/20261114T113152Z/README-ROOT.md",
+  "run_by": "root on GPU when the user returns the 3090; NOT run by claude"
+ },
+ "known_limits": [
+  "first-use upload of prepared levels is GPU work on the draw thread (2048^2: 5.25 MiB; time measured by the selftest, not yet run)",
+  "draw-thread admit ~3-3.5 ms per 2048^2 key (level-0 hash + R1), ~0.4-1 ms for 1024-class keys; once per slot upload",
+  "class LOD uses the isotropic max rule; RGB may use anisotropic filtering",
+  "lod-0 cutout fringe is not addressed by levels (R5 content track or root's RGB-edge shader)",
+  "m > s minification aliases as native (beyond-native coverage policy not included)",
+  "counters only via gl_renderer_class_mips_counters(); no TCP verb"
+ ],
+ "failed_runs": "docs/FAILED-RUNS.md - all failures kept in place",
+ "sha256sums": "a43774a12dc6c9f195976515a31b754f7e67302507f7b1cd1a7470a605a70995",
+ "files": 212
+}

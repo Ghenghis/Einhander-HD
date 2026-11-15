@@ -1,0 +1,133 @@
+{
+  "at_utc": "2026-11-14T21:45:27.706535+00:00",
+  "passed": true,
+  "metadata_only": true,
+  "envelope_sha256": "8b7c7348d4a9c634fe9ea66c4b6f6bf7b1702272cd0d1796d394b0cb158db302",
+  "manifest_sha256": "f92094c4229e3eccafcb1906452f6caac506577ba88a093559a386a83fdba63a",
+  "inputs": [
+    {
+      "kind": "getters_harness",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\test_combined_getters_r1.cpp",
+      "sha256": "c698ca22c933d635beb411334783fc94b31a8e1ff72189b55a9e7c4101f55368"
+    },
+    {
+      "kind": "getters_harness",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_combined_getters_r1.cpp",
+      "sha256": "c698ca22c933d635beb411334783fc94b31a8e1ff72189b55a9e7c4101f55368"
+    },
+    {
+      "kind": "pump_harness",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\test_pump_after_push.cpp",
+      "sha256": "e6355f83142dbc776443915330a859770a2c1739708f408b6f261ad8f10d452d"
+    },
+    {
+      "kind": "pump_harness",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\test_pump_after_push.cpp",
+      "sha256": "e6355f83142dbc776443915330a859770a2c1739708f408b6f261ad8f10d452d"
+    },
+    {
+      "kind": "getters_inc",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\combined_getters.extracted.inc",
+      "sha256": "fa7feb4b4540a7614b12ba760dcdc09a2c3424a8f38a6f9eea16ab759ef68d3f"
+    },
+    {
+      "kind": "getters_inc",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\combined_getters.extracted.inc",
+      "sha256": "fa7feb4b4540a7614b12ba760dcdc09a2c3424a8f38a6f9eea16ab759ef68d3f"
+    },
+    {
+      "kind": "pump_inc",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\pump_after_push.extracted.inc",
+      "sha256": "2ca3702e8b1cd500e0141ee74f85e0a93bd3c36347d17f26d7653ce313a183d6"
+    },
+    {
+      "kind": "pump_inc",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\pump_after_push.extracted.inc",
+      "sha256": "2ca3702e8b1cd500e0141ee74f85e0a93bd3c36347d17f26d7653ce313a183d6"
+    },
+    {
+      "kind": "header",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\recomp_audio_drc.h.proposed",
+      "sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    {
+      "kind": "header",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\recomp_audio_drc.h",
+      "sha256": "c84258e13238a1fe8f70e783a0db2fa957d3eb5b7660df88641e0614dd67651c"
+    },
+    {
+      "kind": "main_cpp",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\proposals\\audio-telemetry-combined-r1\\main.cpp.proposed",
+      "sha256": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36"
+    },
+    {
+      "kind": "main_cpp",
+      "path": "remaster-audit\\parallel-stages-20261114\\s67\\runs\\audio-telemetry-combined-r2-806b\\src\\main.cpp.proposed",
+      "sha256": "8022b148d92dede3a7afd5c6f372eba4e144172266fd578122fb3bceb011ff36"
+    }
+  ],
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 10896,
+      "creation_unix": 1794692428.8837411,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 13196,
+      "creation_unix": 1794692430.0233195,
+      "identity_absent": true
+    },
+    {
+      "label": "compile:getters",
+      "pid": 43936,
+      "creation_unix": 1794692430.3288472,
+      "identity_absent": true
+    },
+    {
+      "label": "run:getters",
+      "pid": 3236,
+      "creation_unix": 1794692431.407448,
+      "identity_absent": true
+    },
+    {
+      "label": "compile:pump",
+      "pid": 32848,
+      "creation_unix": 1794692436.3094645,
+      "identity_absent": true
+    },
+    {
+      "label": "run:pump",
+      "pid": 45380,
+      "creation_unix": 1794692436.7121823,
+      "identity_absent": true
+    }
+  ],
+  "result": {
+    "negative_controls_fired": 3,
+    "reads": 200000,
+    "viol_mod37": 0,
+    "viol_coherence": 0,
+    "viol_gaps": 0,
+    "distinct": 196,
+    "pulls_during_C": 13120668,
+    "pulls_total": 13125832,
+    "locked_copies": 200006,
+    "result": "PASS"
+  },
+  "pump": {
+    "events": 4,
+    "result": "PASS"
+  },
+  "elapsed_s": 6.723,
+  "peak_job_memory_bytes": 93515776,
+  "source_reextraction_repeated": false,
+  "fixture_replayed": false,
+  "real_sdl": false,
+  "pcm_identity_tested": false,
+  "game_run": false,
+  "gpu_run": false,
+  "audible_gain_proved": false,
+  "performance_gain_proved": false
+}

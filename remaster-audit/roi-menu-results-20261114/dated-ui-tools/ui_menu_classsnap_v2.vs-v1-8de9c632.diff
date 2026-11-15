@@ -1,0 +1,93 @@
+--- /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/tools/ui_menu_classsnap_v1.py	2026-11-14 09:42:34.892533400 -0700
++++ /c/github/Einhander/.claude/worktrees/xenodochial-snyder-093665/remaster-audit/claude-einhander-ui/tools/ui_menu_classsnap_v2.py	2026-11-14 10:03:41.823540100 -0700
+@@ -1,5 +1,5 @@
+ #!/usr/bin/env python3
+-"""claude-einhander-ui (EIN-MENU-HUD-20261114), job J-R1: REPRESENTATIVE class-faithful repair proposals for failing
++"""claude-einhander-ui (EIN-MENU-HUD-20261114), job J-R2 (= J-R1 8de9c632 + snap-native): REPRESENTATIVE class-faithful repair proposals for failing
+ menu/HUD gate files, chosen from the pinned s45 primary audit J-L2 (result 9278a2ea; tool v2 ddf2443c, same primary()).
+ 
+ Cases (default; each with its CLUT twin to exercise shape/palette dedup):
+@@ -13,6 +13,9 @@
+ the native class, never invented. Variants:
+   snap-cell     cm_repair as is (newly visible RGB = cell mean of correct-class pixels);
+   snap-nearest  newly visible RGB from the nearest originally visible pixel (as s45 J-I/J-K2);
++  snap-native   newly visible RGB = its own cell's bound native texel colour (exact palette entry, no blending; root:
++                retain the native visible panel, msg_730e7f09). Limit: a pixel visible before and after whose class
++                flips STP<->opaque keeps its authored RGB (common-visible rule), which need not be a palette entry;
+   *-noR5        same pixels, but every cutout pixel's RGB restored to the authored value, so the R5 cutout-RGB fill that
+                 cm_repair performs (root: R5 belongs to the pack composer, msg_80aa44e1) is separated and labelled.
+ Dedup (shape/palette): files are grouped by (words sha256, native class-map sha256). A group's class decisions depend
+@@ -21,7 +24,7 @@
+ pack integration can build one shape per group. Each member is still repaired and validated (cheap) as proof.
+ Measured: before/after R1..R5, s2, conn-only, primary; class changes (became visible / cutout, STP<->opaque flips);
+ visible RGB changed on common-visible pixels; newly visible RGB vs native texel colour; R5 fill count.
+-Review: per group one crop (64x16 texels around the most-changed area), native | authored | snap-nearest, 9 px/texel
++Review: per group one crop (64x16 texels around the most-changed area), native | authored | snap-nearest | snap-native, 9 px/texel
+ ATLAS SIMULATION (not a screen capture; no look acceptance). Frozen inputs are read-only (sha256 checked against J-L2).
+ Writes ONLY <--out-root>/<UTC>/ inside the registered claude-einhander-ui output. Proposal only; nothing installed.
+ One process; the CPU is chosen by the launcher (affinity inherited)."""
+@@ -183,7 +186,15 @@
+             near[newv, :3] = near[iy[newv], ix[newv], :3]
+         # re-run the deterministic R5 fill so snap-nearest's cutout fringe follows ITS new visible colours
+         assert lib.cm_fill_cutout_rgb(near.ctypes.data, near.shape[1], near.shape[0]) >= 0
++        # J-R2 snap-native: newly visible pixels take their OWN cell's bound native texel colour (an exact CLUT/palette
++        # entry, nearest per cell, no blending, so no colour bleed from neighbouring glyph texels); RGB only, the
++        # class map from cm_repair is untouched. Pixels that stayed visible keep authored RGB; then the R5 refill.
+         natpix = np.repeat(np.repeat(nrgb, s, 0), s, 1)
++        natv = img.copy()
++        natv[newv, :3] = natpix[newv]
++        assert lib.cm_fill_cutout_rgb(natv.ctypes.data, natv.shape[1], natv.shape[0]) >= 0
++        assert (natv[..., 3] == img[..., 3]).all(), (rel, "snap-native alpha must equal cm_repair class alpha")
++        assert (natv[newv, :3] == natpix[newv]).all(), (rel, "snap-native newly visible RGB must be the bound native colour")
+         stem = os.path.basename(rel)[:-4]
+         row = dict(role=role, lane=lane, folder=folder, file=rel, input_sha256=pin["sha256"], manifest_sha256=man_sha,
+                    jl2_pin=dict(primary_pass=pin["primary_pass"], r1=pin["r1_centre_bad"], conn=pin["conn_viol_px"]),
+@@ -192,7 +203,7 @@
+                                class_map_sha256=gkey[1], texels=[int(TW), int(TH)]),
+                    scale=int(s), before=audit_before, repair_rc=rc, repair_stats=stats,
+                    alpha_before_sha256=hb(before[..., 3]), alpha_after_sha256=hb(img[..., 3]), variants={})
+-        for name, out in (("snap-cell", img), ("snap-nearest", near)):
++        for name, out in (("snap-cell", img), ("snap-nearest", near), ("snap-native", natv)):
+             nor5 = out.copy()
+             cut = out[..., 3] == 0
+             nor5[cut, :3] = before[cut, :3]
+@@ -218,7 +229,7 @@
+                                                                      members=[], first=None))
+         g["members"].append(f"{fk}/{rel}")
+         if g["first"] is None:
+-            g["first"] = (before, near, ncls, nrgb, s, stem, row)
++            g["first"] = (before, near, ncls, nrgb, s, stem, row, natv)
+         print(role, fk, rel, "before", (audit_before["primary_pass"], audit_before["r1_centre_bad"], audit_before["conn_viol_px"]),
+               "after", {k: v["after"]["primary_pass"] for k, v in row["variants"].items()}, "rc", rc, flush=True)
+ 
+@@ -229,7 +240,7 @@
+         g["dedup"] = ("one shape (alpha/class plane) per group; palettes differ in RGB only"
+                       if g["authored_alpha_identical"] and g["repaired_alpha_identical"]
+                       else "NOT dedupable: members differ in authored or repaired alpha; build each")
+-        before, near, ncls, nrgb, s, stem, row = g.pop("first")
++        before, near, ncls, nrgb, s, stem, row, natv = g.pop("first")
+         changed = (before[..., 3] != near[..., 3]).reshape(ncls.shape[0], s, ncls.shape[1], s).any(axis=(1, 3))
+         TH, TW = ncls.shape
+         ch, cw = min(16, TH), min(64, TW)
+@@ -243,7 +254,7 @@
+             rgbv = np.where(crop[..., 3:4] > 0, crop[..., :3], 24.0)
+             return Image.fromarray(rgbv.astype(np.uint8)).resize((cw * 9, ch * 9), Image.BOX if sc > 1 else Image.NEAREST)
+         nat = np.dstack([nrgb, ncls])
+-        tiles = [("native nearest", nat, 1), ("authored", before, s), ("snap-nearest", near, s)]
++        tiles = [("native nearest", nat, 1), ("authored", before, s), ("snap-nearest", near, s), ("snap-native", natv, s)]
+         sheet = Image.new("RGB", (cw * 9, len(tiles) * (ch * 9 + 16) + 14), (0, 0, 0))
+         dr = ImageDraw.Draw(sheet)
+         for i, (lab, arr, sc) in enumerate(tiles):
+@@ -254,9 +265,10 @@
+         sheet.save(fn)
+         g["review_sheet"] = dict(path=fn.relative_to(rd).as_posix(), sha256=sha(fn))
+ 
+-    out = dict(run=stamp, owner="claude-einhander-ui", task="EIN-MENU-HUD-20261114", job="J-R1",
++    out = dict(run=stamp, owner="claude-einhander-ui", task="EIN-MENU-HUD-20261114", job="J-R2 (J-R1 8de9c632 + snap-native variant)",
+                status="PROPOSAL ONLY: representative class-faithful repairs; frozen inputs read-only; nothing installed; "
+-                      "review sheets are atlas simulations; R5 fill separated in -noR5 variants (composer owns R5)",
++                      "review sheets are atlas simulations; R5 fill separated in -noR5 variants (composer owns R5); "
++                      "snap-native newly visible pixels use bound native palette RGB; class-valid != look-accepted",
+                tool_sha256=sha(Path(__file__)), compiled=compiled, jl2_result_sha256=JL2_SHA256,
+                finder_tools_read_only=tool_hashes, groups=groups, rows=rows, seconds=round(time.time() - t0, 1))
+     (rd / "result.json").write_text(json.dumps(out, indent=1) + "\n", encoding="utf-8")

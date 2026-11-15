@@ -1,0 +1,13 @@
+TIMING preload_total_ms 22.080 (index + 2 RGB-only reads + verification + class sidecars, at init)
+PRELOAD rgbonly_ok 2 class_ok 8 bytes 25775072
+TIMING draw_admit_ms 6.275 (RGB-only: cache lookup + one-pass level-0 hash/cutout scan)
+TIMING draw_admit_ms_median 5.978 min 5.659 max 8.071 (21 fresh slots, warm)
+checks 48 failures 8
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:335: s_hdcm_diag.admitted == 1 && (int)c.class_mip_levels == LEVELS2 && g_teximage == LEVELS2 && g_max == LEVELS2
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:336: (int)c.rgb_edges == any_cutout(rgba2, W2, H2) && s_hdcm_diag.rgb_edge_slots + s_hdcm_diag.rgb_opaque_skipped == 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:337: s_hdcm_diag.rgbonly_admitted == ra && sum_reasons(s_hdcm_diag.rgbonly_rejected) == rr && s_hdcm_diag.rgbonly_opaque_bypass == rb
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:340: g_u[LOC_CLASS] == LEVELS2 && g_min == GL_LINEAR_MIPMAP_LINEAR && g_u[LOC_RGB] == (int)c.rgb_edges
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:347: s_hdcm_diag.rejected[HDCM_E_LEVEL0] == 1 && c2.rgb_edges == 0 && c2.class_mip_levels == 0 && g_teximage == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:348: s_hdcm_diag.rgbonly_admitted == ra && sum_reasons(s_hdcm_diag.rgbonly_rejected) == rr
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:354: s_hdcm_diag.rgbonly_admitted == ra + 1 && (int)k1.rgb_edges == EXPECT_CUT && k1.class_mip_levels == 0 && g_teximage == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T131112Z\glue\mutants\g10\glue_harness.c:368: out[13 + 3 * HDCM_REASONS + HDCM_E_LEVEL0] == 1 && out[13 + 3 * HDCM_REASONS + HDCM_E_NATIVE_DIMS] == 1

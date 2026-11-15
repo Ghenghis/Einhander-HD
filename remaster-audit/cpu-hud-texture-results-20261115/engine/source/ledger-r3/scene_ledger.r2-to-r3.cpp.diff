@@ -1,0 +1,11 @@
+4a5,6
+> // r3 (2026-11-15): CORRECTION of r2 10585241 (root msg_2fe98abb): includes scene_ledger.r3.h; scene_ledger_footprint
+> // answers unknown for every draw with native_screen_mapping != 1. Nothing else changes.
+11c13
+< #include "scene_ledger.r2.h"
+---
+> #include "scene_ledger.r3.h"
+570c572
+<         if (!s->native_screen_mapping) return LEDGER_OK;
+---
+>         if (s->native_screen_mapping != 1) return LEDGER_OK;   // r3: identity is exactly 1

@@ -1,0 +1,2103 @@
+{
+ "run": "20261114T134420Z",
+ "owner": "claude-einhander-s67",
+ "task": "EIN-S6-WHOLE-CELL-20261114",
+ "selection_map": {
+  "path": "remaster-audit/parallel-stages-20261114/s67/stage6/selection-map-20261114T133638Z.json",
+  "sha256": "3d0961e7f734a173b0dd161ceb7951776024a5f727cebb5dcad882bda0312eb7"
+ },
+ "rule": "visible = index maps to a non-zero CLUT word under EVERY selected CLUT that has a transparent entry; 8-connected components >= 12 texels (run 134358Z with the union rule was INVALID: all-opaque CLUTs)",
+ "pages": {
+  "CB07BBCB": {
+   "keys": [
+    "CB07BBCB-8513C505",
+    "CB07BBCB-6CFD44D8",
+    "CB07BBCB-0344ADB9",
+    "CB07BBCB-6F28D777",
+    "CB07BBCB-0717A4D3",
+    "CB07BBCB-A12BB890"
+   ],
+   "per_clut": {
+    "8513C505": {
+     "zero_entries": 1,
+     "cutout_texels": 22178
+    },
+    "6CFD44D8": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0344ADB9": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "6F28D777": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0717A4D3": {
+     "zero_entries": 1,
+     "cutout_texels": 22178
+    },
+    "A12BB890": {
+     "zero_entries": 1,
+     "cutout_texels": 22178
+    }
+   },
+   "cluts_used_for_mask": 3,
+   "visible_texels": 43358,
+   "components_ge_min": 1,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 43350,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-camo-craft-CB07BBCB-v1/source/CB07BBCB.words.bin",
+   "words_sha256": "2b1a600dd23c3950851c39b033a64fe16f1abd6f1d1714c4463b0d18539d0109"
+  },
+  "43C26C42": {
+   "keys": [
+    "43C26C42-521B0B1A",
+    "43C26C42-2B66A97F",
+    "43C26C42-6EDE7B7C",
+    "43C26C42-25C360FE",
+    "43C26C42-870A1255",
+    "43C26C42-FFF1C1BF",
+    "43C26C42-3C7F8A8F",
+    "43C26C42-60579FEB",
+    "43C26C42-1E4043BA",
+    "43C26C42-4CAF3E0F"
+   ],
+   "per_clut": {
+    "521B0B1A": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "2B66A97F": {
+     "zero_entries": 1,
+     "cutout_texels": 14529
+    },
+    "6EDE7B7C": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "25C360FE": {
+     "zero_entries": 1,
+     "cutout_texels": 14529
+    },
+    "870A1255": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "FFF1C1BF": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "3C7F8A8F": {
+     "zero_entries": 1,
+     "cutout_texels": 14529
+    },
+    "60579FEB": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "1E4043BA": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "4CAF3E0F": {
+     "zero_entries": 1,
+     "cutout_texels": 14529
+    }
+   },
+   "cluts_used_for_mask": 4,
+   "visible_texels": 51007,
+   "components_ge_min": 17,
+   "effect_rects": [],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\failed\\stage6-vram320-0-43C26C42-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 48758,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 17,
+     "texels": 1326,
+     "rect": [
+      195,
+      66,
+      244,
+      118
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 41,
+     "texels": 312,
+     "rect": [
+      56,
+      167,
+      87,
+      176
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 37,
+     "texels": 197,
+     "rect": [
+      224,
+      133,
+      254,
+      140
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 34,
+     "texels": 75,
+     "rect": [
+      234,
+      112,
+      245,
+      124
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 23,
+     "texels": 68,
+     "rect": [
+      237,
+      77,
+      247,
+      84
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 31,
+     "texels": 31,
+     "rect": [
+      240,
+      104,
+      246,
+      111
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 42,
+     "texels": 30,
+     "rect": [
+      240,
+      176,
+      242,
+      185
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 39,
+     "texels": 28,
+     "rect": [
+      230,
+      159,
+      236,
+      162
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 25,
+     "texels": 25,
+     "rect": [
+      248,
+      85,
+      253,
+      94
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 32,
+     "texels": 17,
+     "rect": [
+      196,
+      106,
+      200,
+      110
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 28,
+     "texels": 15,
+     "rect": [
+      251,
+      101,
+      255,
+      105
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 35,
+     "texels": 15,
+     "rect": [
+      214,
+      120,
+      218,
+      124
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 18,
+     "texels": 13,
+     "rect": [
+      219,
+      68,
+      223,
+      71
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 36,
+     "texels": 13,
+     "rect": [
+      232,
+      124,
+      235,
+      127
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 19,
+     "texels": 12,
+     "rect": [
+      245,
+      68,
+      249,
+      71
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 26,
+     "texels": 12,
+     "rect": [
+      192,
+      100,
+      195,
+      103
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram320-0-43C26C42-61A869E5-v1/source/43C26C42.words.bin",
+   "words_sha256": "2eca2cdd6d3d716be178fb6a08bf45fbfb24dbda7ca86521dc411b873e277707"
+  },
+  "61A869E5": {
+   "keys": [
+    "61A869E5-11674191",
+    "61A869E5-FF01A5DB",
+    "61A869E5-9F20800F",
+    "61A869E5-334D9EFF",
+    "61A869E5-3E21CF50",
+    "61A869E5-05C38755",
+    "61A869E5-5FA94A42",
+    "61A869E5-09E96477",
+    "61A869E5-F2E4A647",
+    "61A869E5-47823F21",
+    "61A869E5-2E90A992",
+    "61A869E5-1689DF90",
+    "61A869E5-8D920799",
+    "61A869E5-3F02B716",
+    "61A869E5-B97689E3",
+    "61A869E5-B675A0C2",
+    "61A869E5-BD161002",
+    "61A869E5-AB139F82",
+    "61A869E5-DE388F4C"
+   ],
+   "per_clut": {
+    "11674191": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "FF01A5DB": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "9F20800F": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "334D9EFF": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "3E21CF50": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "05C38755": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "5FA94A42": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "09E96477": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "F2E4A647": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "47823F21": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "2E90A992": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "1689DF90": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "8D920799": {
+     "zero_entries": 2,
+     "cutout_texels": 23925
+    },
+    "3F02B716": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "B97689E3": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "B675A0C2": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "BD161002": {
+     "zero_entries": 1,
+     "cutout_texels": 21164
+    },
+    "AB139F82": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "DE388F4C": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    }
+   },
+   "cluts_used_for_mask": 7,
+   "visible_texels": 41611,
+   "components_ge_min": 33,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 19254,
+     "rect": [
+      0,
+      0,
+      255,
+      119
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 36,
+     "texels": 12744,
+     "rect": [
+      0,
+      120,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 96,
+     "texels": 2547,
+     "rect": [
+      111,
+      187,
+      168,
+      244
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 98,
+     "texels": 2326,
+     "rect": [
+      49,
+      189,
+      103,
+      243
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 49,
+     "texels": 1308,
+     "rect": [
+      0,
+      124,
+      37,
+      179
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 97,
+     "texels": 1308,
+     "rect": [
+      0,
+      188,
+      37,
+      243
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 2,
+     "texels": 439,
+     "rect": [
+      216,
+      0,
+      255,
+      23
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 11,
+     "texels": 268,
+     "rect": [
+      209,
+      74,
+      254,
+      117
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 95,
+     "texels": 180,
+     "rect": [
+      129,
+      169,
+      158,
+      174
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 93,
+     "texels": 148,
+     "rect": [
+      161,
+      153,
+      174,
+      166
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 92,
+     "texels": 119,
+     "rect": [
+      149,
+      152,
+      159,
+      167
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 25,
+     "texels": 112,
+     "rect": [
+      154,
+      101,
+      165,
+      112
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 3,
+     "texels": 44,
+     "rect": [
+      230,
+      11,
+      251,
+      12
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 6,
+     "texels": 44,
+     "rect": [
+      230,
+      27,
+      251,
+      28
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 4,
+     "texels": 40,
+     "rect": [
+      230,
+      19,
+      249,
+      20
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 8,
+     "texels": 40,
+     "rect": [
+      230,
+      35,
+      249,
+      36
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 94,
+     "texels": 40,
+     "rect": [
+      140,
+      156,
+      147,
+      160
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 5,
+     "texels": 38,
+     "rect": [
+      210,
+      26,
+      221,
+      29
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 9,
+     "texels": 36,
+     "rect": [
+      210,
+      42,
+      221,
+      45
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 7,
+     "texels": 34,
+     "rect": [
+      210,
+      34,
+      220,
+      37
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 99,
+     "texels": 32,
+     "rect": [
+      197,
+      221,
+      202,
+      226
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 100,
+     "texels": 32,
+     "rect": [
+      213,
+      221,
+      218,
+      226
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 101,
+     "texels": 32,
+     "rect": [
+      229,
+      221,
+      234,
+      226
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 102,
+     "texels": 32,
+     "rect": [
+      245,
+      221,
+      250,
+      226
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 103,
+     "texels": 32,
+     "rect": [
+      205,
+      232,
+      210,
+      237
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 104,
+     "texels": 32,
+     "rect": [
+      221,
+      232,
+      226,
+      237
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 105,
+     "texels": 32,
+     "rect": [
+      237,
+      232,
+      242,
+      237
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 18,
+     "texels": 29,
+     "rect": [
+      138,
+      94,
+      150,
+      96
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 19,
+     "texels": 29,
+     "rect": [
+      154,
+      94,
+      166,
+      96
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 67,
+     "texels": 22,
+     "rect": [
+      136,
+      141,
+      138,
+      149
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 68,
+     "texels": 16,
+     "rect": [
+      224,
+      141,
+      227,
+      145
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 10,
+     "texels": 12,
+     "rect": [
+      211,
+      51,
+      216,
+      52
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 24,
+     "texels": 12,
+     "rect": [
+      100,
+      101,
+      101,
+      106
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram320-0-43C26C42-61A869E5-v1/source/61A869E5.words.bin",
+   "words_sha256": "c585929af4eafad543d138f63b2b261adaf5d67ce146f666f468455b01e3341a"
+  },
+  "8F498326": {
+   "keys": [
+    "8F498326-870A1255",
+    "8F498326-847D772B",
+    "8F498326-899D7E1D",
+    "8F498326-0344ADB9",
+    "8F498326-31689705",
+    "8F498326-0F04A907",
+    "8F498326-4CAF3E0F"
+   ],
+   "per_clut": {
+    "870A1255": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "847D772B": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "899D7E1D": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0344ADB9": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "31689705": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0F04A907": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "4CAF3E0F": {
+     "zero_entries": 1,
+     "cutout_texels": 14776
+    }
+   },
+   "cluts_used_for_mask": 1,
+   "visible_texels": 50760,
+   "components_ge_min": 8,
+   "effect_rects": [
+    [
+     0,
+     125,
+     99,
+     216
+    ]
+   ],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram384-0-8F498326-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 46710,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 10,
+     "texels": 1817,
+     "rect": [
+      1,
+      127,
+      96,
+      151
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 11,
+     "texels": 1707,
+     "rect": [
+      1,
+      191,
+      97,
+      214
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 7,
+     "texels": 433,
+     "rect": [
+      0,
+      102,
+      23,
+      123
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 3,
+     "texels": 20,
+     "rect": [
+      96,
+      7,
+      97,
+      16
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 4,
+     "texels": 20,
+     "rect": [
+      99,
+      7,
+      100,
+      16
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 5,
+     "texels": 20,
+     "rect": [
+      96,
+      69,
+      97,
+      78
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 6,
+     "texels": 20,
+     "rect": [
+      99,
+      69,
+      100,
+      78
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram384-0-8F498326-fx-v2/source/8F498326.words.bin",
+   "words_sha256": "c8e755faab4142ac53954c8264190d9d58da6d8c176989a64773a3dd0887a04e"
+  },
+  "F07625EE": {
+   "keys": [
+    "F07625EE-AA609B3E",
+    "F07625EE-0DD8FE23",
+    "F07625EE-0902919B",
+    "F07625EE-E2432AE9",
+    "F07625EE-46EBDEF1",
+    "F07625EE-55345BAD",
+    "F07625EE-995DA972",
+    "F07625EE-C157881A",
+    "F07625EE-4FB18FAB",
+    "F07625EE-34CF1D58",
+    "F07625EE-19BC58B9",
+    "F07625EE-47CC0499",
+    "F07625EE-328481EB",
+    "F07625EE-AB139F82",
+    "F07625EE-A3ED112B",
+    "F07625EE-DB8D9451"
+   ],
+   "per_clut": {
+    "AA609B3E": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0DD8FE23": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0902919B": {
+     "zero_entries": 1,
+     "cutout_texels": 19428
+    },
+    "E2432AE9": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "46EBDEF1": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "55345BAD": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "995DA972": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "C157881A": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "4FB18FAB": {
+     "zero_entries": 1,
+     "cutout_texels": 19428
+    },
+    "34CF1D58": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "19BC58B9": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "47CC0499": {
+     "zero_entries": 1,
+     "cutout_texels": 19428
+    },
+    "328481EB": {
+     "zero_entries": 1,
+     "cutout_texels": 19428
+    },
+    "AB139F82": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "A3ED112B": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "DB8D9451": {
+     "zero_entries": 1,
+     "cutout_texels": 19428
+    }
+   },
+   "cluts_used_for_mask": 5,
+   "visible_texels": 46108,
+   "components_ge_min": 16,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 42552,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 9,
+     "texels": 1410,
+     "rect": [
+      175,
+      179,
+      208,
+      229
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 15,
+     "texels": 390,
+     "rect": [
+      166,
+      238,
+      201,
+      249
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 2,
+     "texels": 322,
+     "rect": [
+      169,
+      10,
+      214,
+      16
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 3,
+     "texels": 294,
+     "rect": [
+      171,
+      20,
+      212,
+      26
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 4,
+     "texels": 238,
+     "rect": [
+      175,
+      30,
+      208,
+      36
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 7,
+     "texels": 224,
+     "rect": [
+      233,
+      80,
+      246,
+      95
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 8,
+     "texels": 182,
+     "rect": [
+      243,
+      121,
+      250,
+      150
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 13,
+     "texels": 90,
+     "rect": [
+      225,
+      234,
+      254,
+      236
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 16,
+     "texels": 90,
+     "rect": [
+      225,
+      238,
+      254,
+      240
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 17,
+     "texels": 90,
+     "rect": [
+      225,
+      242,
+      254,
+      244
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 10,
+     "texels": 66,
+     "rect": [
+      226,
+      185,
+      231,
+      199
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 11,
+     "texels": 66,
+     "rect": [
+      248,
+      185,
+      253,
+      199
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 14,
+     "texels": 46,
+     "rect": [
+      208,
+      237,
+      223,
+      240
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 12,
+     "texels": 20,
+     "rect": [
+      238,
+      207,
+      241,
+      211
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 6,
+     "texels": 17,
+     "rect": [
+      200,
+      72,
+      216,
+      72
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram384-0-8F498326-F07625EE-v1/source/F07625EE.words.bin",
+   "words_sha256": "8b61986c35ec4a7828db85daec67a231e24ddd5f4dc6ae12cad106b2c93d1931"
+  },
+  "03F5CF11": {
+   "keys": [
+    "03F5CF11-870A1255",
+    "03F5CF11-AA87046E",
+    "03F5CF11-111CA9A9",
+    "03F5CF11-61869F1D",
+    "03F5CF11-3C7F8A8F",
+    "03F5CF11-810A0B32",
+    "03F5CF11-0B9F0CD2"
+   ],
+   "per_clut": {
+    "870A1255": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "AA87046E": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "111CA9A9": {
+     "zero_entries": 1,
+     "cutout_texels": 21741
+    },
+    "61869F1D": {
+     "zero_entries": 1,
+     "cutout_texels": 21741
+    },
+    "3C7F8A8F": {
+     "zero_entries": 1,
+     "cutout_texels": 21741
+    },
+    "810A0B32": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0B9F0CD2": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    }
+   },
+   "cluts_used_for_mask": 3,
+   "visible_texels": 43795,
+   "components_ge_min": 22,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 39696,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 81,
+     "texels": 1464,
+     "rect": [
+      224,
+      208,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 80,
+     "texels": 668,
+     "rect": [
+      176,
+      208,
+      207,
+      239
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 77,
+     "texels": 291,
+     "rect": [
+      162,
+      194,
+      190,
+      222
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 78,
+     "texels": 291,
+     "rect": [
+      193,
+      194,
+      221,
+      222
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 85,
+     "texels": 291,
+     "rect": [
+      162,
+      225,
+      190,
+      253
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 86,
+     "texels": 291,
+     "rect": [
+      193,
+      225,
+      221,
+      253
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 84,
+     "texels": 148,
+     "rect": [
+      17,
+      225,
+      30,
+      238
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 87,
+     "texels": 76,
+     "rect": [
+      3,
+      227,
+      12,
+      236
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 90,
+     "texels": 46,
+     "rect": [
+      17,
+      246,
+      30,
+      249
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 91,
+     "texels": 46,
+     "rect": [
+      33,
+      246,
+      46,
+      249
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 89,
+     "texels": 43,
+     "rect": [
+      1,
+      246,
+      15,
+      249
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 56,
+     "texels": 27,
+     "rect": [
+      217,
+      152,
+      218,
+      168
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 10,
+     "texels": 24,
+     "rect": [
+      193,
+      69,
+      194,
+      80
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 92,
+     "texels": 24,
+     "rect": [
+      49,
+      247,
+      60,
+      248
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 34,
+     "texels": 22,
+     "rect": [
+      219,
+      114,
+      226,
+      116
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 8,
+     "texels": 21,
+     "rect": [
+      225,
+      68,
+      231,
+      70
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 18,
+     "texels": 20,
+     "rect": [
+      227,
+      86,
+      237,
+      88
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 11,
+     "texels": 18,
+     "rect": [
+      215,
+      70,
+      220,
+      72
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 38,
+     "texels": 15,
+     "rect": [
+      207,
+      120,
+      215,
+      122
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 22,
+     "texels": 14,
+     "rect": [
+      200,
+      95,
+      206,
+      96
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 61,
+     "texels": 12,
+     "rect": [
+      174,
+      160,
+      180,
+      161
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram448-0-03F5CF11-A5969BC9-v1/source/03F5CF11.words.bin",
+   "words_sha256": "4922aa3a668e0b527540834a5c665866fd01dcd68cfae7a0d9a3cfa64de59c49"
+  },
+  "A5969BC9": {
+   "keys": [
+    "A5969BC9-FD5E0863",
+    "A5969BC9-28E85C14",
+    "A5969BC9-B675A0C2",
+    "A5969BC9-CD90D27E",
+    "A5969BC9-F3BEA083",
+    "A5969BC9-7DFC973F",
+    "A5969BC9-B3A5B734",
+    "A5969BC9-AD6DB7AA",
+    "A5969BC9-4FB18FAB",
+    "A5969BC9-165DD2B8",
+    "A5969BC9-3A9A151E",
+    "A5969BC9-995DA972",
+    "A5969BC9-98C90B96",
+    "A5969BC9-AB139F82"
+   ],
+   "per_clut": {
+    "FD5E0863": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "28E85C14": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "B675A0C2": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "CD90D27E": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "F3BEA083": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "7DFC973F": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "B3A5B734": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "AD6DB7AA": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "4FB18FAB": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "165DD2B8": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "3A9A151E": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "995DA972": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "98C90B96": {
+     "zero_entries": 1,
+     "cutout_texels": 17365
+    },
+    "AB139F82": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    }
+   },
+   "cluts_used_for_mask": 6,
+   "visible_texels": 48171,
+   "components_ge_min": 30,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 39069,
+     "rect": [
+      0,
+      0,
+      255,
+      191
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 19,
+     "texels": 4538,
+     "rect": [
+      192,
+      160,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 23,
+     "texels": 1816,
+     "rect": [
+      0,
+      193,
+      127,
+      207
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 7,
+     "texels": 290,
+     "rect": [
+      135,
+      137,
+      192,
+      141
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 21,
+     "texels": 286,
+     "rect": [
+      144,
+      162,
+      175,
+      178
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 31,
+     "texels": 230,
+     "rect": [
+      9,
+      218,
+      54,
+      222
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 45,
+     "texels": 210,
+     "rect": [
+      11,
+      228,
+      52,
+      232
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 75,
+     "texels": 170,
+     "rect": [
+      15,
+      238,
+      48,
+      242
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 24,
+     "texels": 164,
+     "rect": [
+      65,
+      209,
+      78,
+      222
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 44,
+     "texels": 159,
+     "rect": [
+      162,
+      227,
+      190,
+      252
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 28,
+     "texels": 108,
+     "rect": [
+      98,
+      210,
+      109,
+      221
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 27,
+     "texels": 96,
+     "rect": [
+      82,
+      210,
+      93,
+      221
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 35,
+     "texels": 94,
+     "rect": [
+      67,
+      225,
+      92,
+      238
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 20,
+     "texels": 81,
+     "rect": [
+      133,
+      162,
+      142,
+      176
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 22,
+     "texels": 81,
+     "rect": [
+      177,
+      162,
+      186,
+      176
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 67,
+     "texels": 80,
+     "rect": [
+      138,
+      235,
+      154,
+      250
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 26,
+     "texels": 69,
+     "rect": [
+      113,
+      209,
+      127,
+      221
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 48,
+     "texels": 48,
+     "rect": [
+      194,
+      228,
+      195,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 49,
+     "texels": 48,
+     "rect": [
+      200,
+      228,
+      201,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 50,
+     "texels": 48,
+     "rect": [
+      206,
+      228,
+      207,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 51,
+     "texels": 48,
+     "rect": [
+      212,
+      228,
+      213,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 68,
+     "texels": 40,
+     "rect": [
+      157,
+      235,
+      160,
+      244
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 29,
+     "texels": 30,
+     "rect": [
+      147,
+      211,
+      151,
+      216
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 30,
+     "texels": 30,
+     "rect": [
+      168,
+      211,
+      172,
+      216
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 37,
+     "texels": 29,
+     "rect": [
+      99,
+      226,
+      108,
+      236
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 47,
+     "texels": 24,
+     "rect": [
+      157,
+      228,
+      160,
+      233
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 88,
+     "texels": 24,
+     "rect": [
+      157,
+      246,
+      160,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 46,
+     "texels": 18,
+     "rect": [
+      131,
+      228,
+      136,
+      230
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 99,
+     "texels": 18,
+     "rect": [
+      131,
+      249,
+      136,
+      251
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 10,
+     "texels": 12,
+     "rect": [
+      228,
+      141,
+      229,
+      146
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram448-0-03F5CF11-A5969BC9-v1/source/A5969BC9.words.bin",
+   "words_sha256": "ce97622a1642fb65fe8b941b20bc011e49e8819d258af0cef1ecb0a7cfe4931e"
+  },
+  "20961255": {
+   "keys": [
+    "20961255-810A0B32",
+    "20961255-EE2BAE09",
+    "20961255-A83C5B65"
+   ],
+   "per_clut": {
+    "810A0B32": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "EE2BAE09": {
+     "zero_entries": 1,
+     "cutout_texels": 28667
+    },
+    "A83C5B65": {
+     "zero_entries": 1,
+     "cutout_texels": 28667
+    }
+   },
+   "cluts_used_for_mask": 2,
+   "visible_texels": 36869,
+   "components_ge_min": 7,
+   "effect_rects": [
+    [
+     145,
+     0,
+     243,
+     255
+    ]
+   ],
+   "effect_rect_source": "remaster-audit\\comfy-authoring\\w7-stage6\\frozen\\stage6-vram704-0-20961255-fx-v2\\manifest.json",
+   "largest": [
+    {
+     "id": 1,
+     "texels": 26379,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 9,
+     "texels": 1826,
+     "rect": [
+      145,
+      195,
+      242,
+      220
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 10,
+     "texels": 1821,
+     "rect": [
+      145,
+      226,
+      242,
+      252
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 8,
+     "texels": 1763,
+     "rect": [
+      145,
+      163,
+      241,
+      188
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 2,
+     "texels": 1720,
+     "rect": [
+      145,
+      4,
+      239,
+      27
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 7,
+     "texels": 1684,
+     "rect": [
+      145,
+      132,
+      239,
+      155
+     ],
+     "in_effect_rect": true
+    },
+    {
+     "id": 4,
+     "texels": 1670,
+     "rect": [
+      145,
+      101,
+      241,
+      124
+     ],
+     "in_effect_rect": true
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram704-0-20961255-fx-v2/source/20961255.words.bin",
+   "words_sha256": "3c3d5165fd5addd2c78b4c89eae8ad808b34873b853a84a6fa35cb95602a0df0"
+  },
+  "E0849F81": {
+   "keys": [
+    "E0849F81-F3BEA083",
+    "E0849F81-7DFC973F",
+    "E0849F81-5379DE11",
+    "E0849F81-AA609B3E",
+    "E0849F81-0902919B",
+    "E0849F81-47823F21",
+    "E0849F81-98C90B96"
+   ],
+   "per_clut": {
+    "F3BEA083": {
+     "zero_entries": 1,
+     "cutout_texels": 5778
+    },
+    "7DFC973F": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "5379DE11": {
+     "zero_entries": 1,
+     "cutout_texels": 5778
+    },
+    "AA609B3E": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "0902919B": {
+     "zero_entries": 1,
+     "cutout_texels": 5778
+    },
+    "47823F21": {
+     "zero_entries": 0,
+     "cutout_texels": 0
+    },
+    "98C90B96": {
+     "zero_entries": 1,
+     "cutout_texels": 5778
+    }
+   },
+   "cluts_used_for_mask": 4,
+   "visible_texels": 59758,
+   "components_ge_min": 2,
+   "effect_rects": [],
+   "effect_rect_source": null,
+   "largest": [
+    {
+     "id": 1,
+     "texels": 59721,
+     "rect": [
+      0,
+      0,
+      255,
+      255
+     ],
+     "in_effect_rect": false
+    },
+    {
+     "id": 3,
+     "texels": 17,
+     "rect": [
+      156,
+      24,
+      172,
+      24
+     ],
+     "in_effect_rect": false
+    }
+   ],
+   "words": "remaster-audit/comfy-authoring/w7-stage6/frozen/stage6-vram704-0-20961255-E0849F81-v1/source/E0849F81.words.bin",
+   "words_sha256": "6ee0a23b5776e9589b01d2b94e215cb5c917b0c1f4939a972e78ac8e099043dc"
+  }
+ },
+ "status": "DATA ONLY; candidate part regions for CR-S6-3 sizing, NOT part masks"
+}

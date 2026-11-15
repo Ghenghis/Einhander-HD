@@ -1,0 +1,103 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:/Python314/python.exe",
+  "-I",
+  "-B",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/tools/dither_index.py",
+  "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/dither-index-2218"
+ ],
+ "cwd": "C:\\github\\Einhander\\remaster-audit\\parallel-stages-20261114\\s23",
+ "wrapper_pid": 44692,
+ "wrapper_create_time": 1794694595.6178916,
+ "cpu": 12,
+ "affinity": [
+  12
+ ],
+ "priority": 16384,
+ "timeout_s": 30.0,
+ "rc": 0,
+ "created_utc": "2026-11-14T22:16:35.744403+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "1000",
+ "max_job_mib": 1024,
+ "no_window": true,
+ "precheck": {
+  "system_cpu_pct": 16.7,
+  "free_gib": 57.33,
+  "max_cpu": 60.0,
+  "min_free_gib": 16.0,
+  "at_utc": "2026-11-14T22:16:36.745387+00:00"
+ },
+ "job_limits_requested": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824
+ },
+ "job_limits_readback": {
+  "limit_flags": 8752,
+  "affinity_mask": 4096,
+  "priority_class": 16384,
+  "job_memory_limit": 1073741824,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 34128,
+ "child_create_time": 1794694596.7466035,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  12
+ ],
+ "child_affinity_set_to": [
+  12
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   12
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T22:16:36.751958+00:00",
+ "child_exit_code": 0,
+ "timeout_killed": false,
+ "elapsed_s": 1.382,
+ "end_utc": "2026-11-14T22:16:38.136842+00:00",
+ "job": {
+  "active": 0,
+  "total": 2,
+  "terminated": 0,
+  "user_s": 0.890625,
+  "kernel_s": 0.28125
+ },
+ "peak_job_memory_bytes": 53284864,
+ "peak_process_memory_bytes": 51916800,
+ "descendants_seen": [
+  45992
+ ],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 0
+}

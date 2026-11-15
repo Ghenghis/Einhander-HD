@@ -1,0 +1,274 @@
+{
+  "at_utc": "2026-11-14T19:27:35.205651+00:00",
+  "passed": true,
+  "cases": 10,
+  "sources_and_receipts": [
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run_rc2_envelope_r1.py",
+      "sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+      "bytes": 20765
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\selftest_envelope_r2.py",
+      "sha256": "aff35f825624dfd00b29923b235ecd620c6a56a8771a2f32a6187416e435b2d8",
+      "bytes": 12249
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\TEST-PLAN-r1.md",
+      "sha256": "9b2420b934ae4260b02f81008d5ab65f03799869a8f6cccbf03216d80bddc6a0",
+      "bytes": 4758
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\TEST-PLAN-r2.md",
+      "sha256": "6039654d449001827b66acea668dc0978f8ee18dff9ffd8ebf08e582a1f9d44e",
+      "bytes": 2414
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\result.json",
+      "sha256": "a727da4e28ce8b5ee1e4d4ac1fed901c24d65563a9b273ea8ff41be2f9e98ad1",
+      "bytes": 13942
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z.launcher.json",
+      "sha256": "75f3773db91bd71059500bd462bb8e231ab8b249a978d0752f86e650e5de05c3",
+      "bytes": 716
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T1_normal_return\\receipt.json",
+      "sha256": "a3f28ad946d97a344d30f2da892b5c03dfe4647be1b563943d1d5fc2178ba7b5",
+      "bytes": 1908
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T2_failure_exit7\\receipt.json",
+      "sha256": "7a0e6fd7c381df42265552b1d8d982371047cdcb3e92c05a59b815c54081bbdc",
+      "bytes": 1909
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T3_timeout_grandchild\\receipt.json",
+      "sha256": "576d554f3e3f3e97ee03051dc9a568a69cb0970612bc2ddacebda341df76b63c",
+      "bytes": 2029
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T4_injected_postspawn_failure\\receipt.json",
+      "sha256": "16d442098cda73cc49978689b8922d0fd80e665edf59d2c245fad0c427e23ce5",
+      "bytes": 1955
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T5a_affinity_one_core\\receipt.json",
+      "sha256": "7ea3bddce24ba3fc6296793d027cb7621267c6e5c3ba423a60c7f0196fbd111f",
+      "bytes": 2162
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T5b_affinity_original\\receipt.json",
+      "sha256": "f6b5919073fcfd6fcfc56923f791d1eddf1c9b1260ae2866536a57d3c347ce85",
+      "bytes": 2467
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T6_hard_memory_cap\\receipt.json",
+      "sha256": "192a7c3dc96b1100fdf257a550935c58b3ac258acc14260b9fe254d40aa559ba",
+      "bytes": 2283
+    },
+    {
+      "path": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog\\run-20261114T192518Z\\T8_r1_baseline\\receipt.json",
+      "sha256": "2f1b151769e4cf5cca62330a583447e39166e137b82a355eea69b42af7eb0e4c",
+      "bytes": 1014
+    }
+  ],
+  "identities_checked": [
+    {
+      "pid": 9876,
+      "creation_unix": 1794684319.6386456,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 44128,
+      "creation_unix": 1794684319.7638118,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 41900,
+      "creation_unix": 1794684319.7697573,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 28444,
+      "creation_unix": 1794684319.9180713,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 13304,
+      "creation_unix": 1794684320.0225747,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 44464,
+      "creation_unix": 1794684320.1677604,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 30536,
+      "creation_unix": 1794684320.275706,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 13152,
+      "creation_unix": 1794684320.4213283,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 40560,
+      "creation_unix": 1794684323.6534872,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 29992,
+      "creation_unix": 1794684323.8050253,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 42700,
+      "creation_unix": 1794684323.8636968,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 14776,
+      "creation_unix": 1794684324.0143769,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 15288,
+      "creation_unix": 1794684324.1778886,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 7724,
+      "creation_unix": 1794684324.3302004,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 21520,
+      "creation_unix": 1794684324.469576,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 2928,
+      "creation_unix": 1794684324.6156228,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 44964,
+      "creation_unix": 1794684324.717751,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 30124,
+      "creation_unix": 1794684324.879223,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 40600,
+      "creation_unix": 1794684325.0508704,
+      "same_identity_alive": false
+    },
+    {
+      "pid": 15248,
+      "creation_unix": 1794684325.25194,
+      "same_identity_alive": false
+    }
+  ],
+  "case_exits": [
+    {
+      "case": "T1_normal_return",
+      "child_exit": 0,
+      "wrapper_exit": 0,
+      "tree_absent": true
+    },
+    {
+      "case": "T2_failure_exit7",
+      "child_exit": 7,
+      "wrapper_exit": 7,
+      "tree_absent": true
+    },
+    {
+      "case": "T3_timeout_grandchild",
+      "child_exit": 124,
+      "wrapper_exit": 124,
+      "tree_absent": true
+    },
+    {
+      "case": "T4_injected_postspawn_failure",
+      "child_exit": 125,
+      "wrapper_exit": 125,
+      "tree_absent": true
+    },
+    {
+      "case": "T5a_affinity_one_core",
+      "child_exit": 0,
+      "wrapper_exit": 0,
+      "tree_absent": true
+    },
+    {
+      "case": "T5b_affinity_original",
+      "child_exit": 0,
+      "wrapper_exit": 0,
+      "tree_absent": true
+    },
+    {
+      "case": "T6_hard_memory_cap",
+      "child_exit": 3,
+      "wrapper_exit": 3,
+      "tree_absent": true
+    },
+    {
+      "case": "T8_r1_baseline",
+      "child_exit": 0,
+      "wrapper_exit": 0,
+      "tree_absent": true
+    }
+  ],
+  "reported_elapsed_s": 5.67,
+  "before_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "normal_affinity_verified": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "memory_cap_bytes": 67108864,
+  "refused_commit_peak_reported_only": 278421504,
+  "sentinel_untouched_and_absent": true,
+  "root_reexecuted_tests": false,
+  "launcher_identity_independently_replayed": false,
+  "game_run": false,
+  "gpu_run": false,
+  "live_qualified": false
+}

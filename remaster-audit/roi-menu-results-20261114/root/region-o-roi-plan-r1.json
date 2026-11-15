@@ -1,0 +1,94 @@
+{
+  "parent": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\world-integrated-rise-f32-r1\\candidate.json",
+    "sha256": "aa9d5798cef3176f20f72670b1c861cfb22eab446837c9a32c8a60294aaa7c27"
+  },
+  "entries": [
+    {
+      "key": "95A3BCF8-60245B3A",
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\manifest.json",
+        "sha256": "c37e7c00018f2e0fd948a034b1911bd5ba82e8ae3d8835fa5a941eb1aee3f844"
+      },
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\page2048\\95A3BCF8-60245B3A.png",
+        "sha256": "6b8aa13e2590d14b11b9c4a1abaf05369684c790341b002e3a2e143fe9b8b859"
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source-handoff.json",
+        "sha256": "c2f73a2916e60cd4c2fa9112f13101b33c36273517bf6e201329c9542dbf1773"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-60245B3A.words.bin",
+          "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-60245B3A.clut.bin",
+          "sha256": "3c38dcba0bb065b55c47703160c5033330de1afd6d765fed088e204d771ae8f5"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "roi_overlay": {
+        "native_size": [
+          256,
+          256
+        ],
+        "uv": [
+          176,
+          112,
+          240,
+          176
+        ]
+      }
+    },
+    {
+      "key": "95A3BCF8-07A9568D",
+      "manifest": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\manifest.json",
+        "sha256": "c37e7c00018f2e0fd948a034b1911bd5ba82e8ae3d8835fa5a941eb1aee3f844"
+      },
+      "image": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\95a3-o-city\\frozen\\95A3BCF8-O-city-v1\\page2048\\95A3BCF8-07A9568D.png",
+        "sha256": "52b92c145f051c01e56a596fbce35af4bda0ef3fca201c2c3421f89fe0396e7f"
+      },
+      "source_handoff": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source-handoff.json",
+        "sha256": "c2f73a2916e60cd4c2fa9112f13101b33c36273517bf6e201329c9542dbf1773"
+      },
+      "native_source": {
+        "source_words": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-07A9568D.words.bin",
+          "sha256": "29706a6386158ab3f4b5f08de5c0ca6cf509c6d7436ed3bf5402d69f7b8658d2"
+        },
+        "source_clut": {
+          "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\t3-green-lights\\frozen\\atlas-95A3BCF8-t3-v1\\source\\95A3BCF8-07A9568D.clut.bin",
+          "sha256": "4a3a483f46ef147651786b4011e3ffa3146fea6fbac5ea4567b8b35107307ec7"
+        },
+        "source_shape_words": [
+          64,
+          256
+        ],
+        "depth": 0
+      },
+      "roi_overlay": {
+        "native_size": [
+          256,
+          256
+        ],
+        "uv": [
+          176,
+          112,
+          240,
+          176
+        ]
+      }
+    }
+  ],
+  "purpose": "Private size-neutral region-O correctness comparison only. Preserve all latest-parent pixels outside O; no installation or live acceptance.",
+  "review_required": "Root viewed frozen O preview; current ROI composer source review and coordinated CPU run required."
+}

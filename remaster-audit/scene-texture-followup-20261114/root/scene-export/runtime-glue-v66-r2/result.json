@@ -1,0 +1,499 @@
+{
+  "at_utc": "2026-11-14T12:31:18.982959+00:00",
+  "passed": true,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Wno-comment",
+        "-Wno-unused-parameter",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v66-reviewed-scene-r3\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\harness.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\scene_capture.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\scene_json.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\scene_runtime.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\runtime_glue.exe"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "enabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\runtime_glue.exe"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "disabled",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\runtime_glue.exe",
+        "off"
+      ],
+      "exit": 0
+    },
+    {
+      "label": "badenv",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\runtime-glue-v66-r2\\runtime_glue.exe",
+        "off"
+      ],
+      "exit": 0
+    }
+  ],
+  "rpc_responses": [
+    {
+      "id": 42,
+      "ok": false,
+      "error": 2
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "mode": 1,
+      "frame": 0,
+      "generation": 0,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false,
+      "untextured_polygons": 0,
+      "textured_sprites": 0,
+      "untextured_rects": 0,
+      "lines": 0,
+      "vram_fills": 0,
+      "lag0_vertices": 0,
+      "lag1_vertices": 0,
+      "mixed_lag_primitives": 0,
+      "ws_rejected_vertices": 0,
+      "owner_errors": 0,
+      "geometry_types_complete": false
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 4
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 4
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "mode": 2,
+      "frame": 0,
+      "generation": 1,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false,
+      "untextured_polygons": 0,
+      "textured_sprites": 0,
+      "untextured_rects": 0,
+      "lines": 0,
+      "vram_fills": 0,
+      "lag0_vertices": 0,
+      "lag1_vertices": 0,
+      "mixed_lag_primitives": 0,
+      "ws_rejected_vertices": 0,
+      "owner_errors": 0,
+      "geometry_types_complete": false
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "mode": 4,
+      "frame": 101,
+      "generation": 1,
+      "count": 1,
+      "capacity": 1024,
+      "textured_seen": 1,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 1,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": true,
+      "untextured_polygons": 0,
+      "textured_sprites": 0,
+      "untextured_rects": 0,
+      "lines": 0,
+      "vram_fills": 0,
+      "lag0_vertices": 0,
+      "lag1_vertices": 3,
+      "mixed_lag_primitives": 0,
+      "ws_rejected_vertices": 0,
+      "owner_errors": 1,
+      "geometry_types_complete": true
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 3
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 2
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "record": {
+        "frame": 101,
+        "ordinal": 0,
+        "source": 16384,
+        "opcode": 52,
+        "geometry_qualified": true,
+        "nverts": 3,
+        "words": [
+          873608278,
+          7864480,
+          839911941,
+          6636322,
+          8388772,
+          31788552,
+          6636323,
+          7864488,
+          4619
+        ],
+        "word_sources": [
+          16384,
+          16380,
+          16376,
+          16372,
+          16368,
+          16364,
+          16360,
+          16356,
+          16352
+        ],
+        "indices": [
+          0,
+          1,
+          2
+        ],
+        "material": {
+          "clut": 12816,
+          "tpage": 485,
+          "depth": 3,
+          "blend": 3,
+          "raw": 0,
+          "semi": 0,
+          "window": 703710,
+          "set_mask": 1,
+          "check_mask": 1
+        },
+        "generation": 1,
+        "complete_interval": true,
+        "oversize_mask": 0,
+        "clip_out_mask": 0,
+        "eligible_triangle_mask": 1,
+        "mixed_lag": 0,
+        "screen_mapping_known": 1,
+        "draw_offset": [
+          -13,
+          21
+        ],
+        "draw_area": [
+          0,
+          0,
+          319,
+          239
+        ],
+        "effective_x": [
+          0,
+          319
+        ],
+        "vertices": [
+          {
+            "address": 16380,
+            "word": 7864480,
+            "rgb": 1193046,
+            "uv": [
+              5,
+              10
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000001",
+            "tag": 1,
+            "flags": 513,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              0,
+              0,
+              1024
+            ],
+            "lookup_miss_reason": 0,
+            "native_xy": [
+              160,
+              120
+            ],
+            "screen16": [
+              10485760,
+              7864320
+            ],
+            "packed": 7864480,
+            "mac": [
+              0,
+              0,
+              4194304
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 1024,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558208,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 16368,
+            "word": 8388772,
+            "rgb": 6636322,
+            "uv": [
+              8,
+              14
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000002",
+            "tag": 2,
+            "flags": 513,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              16,
+              32,
+              1024
+            ],
+            "lookup_miss_reason": 0,
+            "native_xy": [
+              164,
+              128
+            ],
+            "screen16": [
+              10747904,
+              8388608
+            ],
+            "packed": 8388772,
+            "mac": [
+              65536,
+              131072,
+              4194304
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 1024,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558212,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "address": 16356,
+            "word": 7864488,
+            "rgb": 6636323,
+            "uv": [
+              11,
+              18
+            ],
+            "reason": 0,
+            "lag": 1,
+            "source_frame": 100,
+            "rtp_seq_hex": "0000000000000003",
+            "tag": 3,
+            "flags": 513,
+            "cmd": 1,
+            "lane": 0,
+            "model": [
+              32,
+              0,
+              1024
+            ],
+            "lookup_miss_reason": 0,
+            "native_xy": [
+              168,
+              120
+            ],
+            "screen16": [
+              11010048,
+              7864320
+            ],
+            "packed": 7864488,
+            "mac": [
+              131072,
+              0,
+              4194304
+            ],
+            "h": 256,
+            "of": [
+              10485760,
+              7864320
+            ],
+            "sz3": 1024,
+            "xform_hash": 1155587426,
+            "caller_ra": 2147558216,
+            "combined_rt": [
+              4096,
+              0,
+              0,
+              0,
+              4096,
+              0,
+              0,
+              0,
+              4096
+            ],
+            "combined_tr": [
+              0,
+              0,
+              0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 42,
+      "ok": false,
+      "error": 2
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "mode": 1,
+      "frame": 0,
+      "generation": 1,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false,
+      "untextured_polygons": 0,
+      "textured_sprites": 0,
+      "untextured_rects": 0,
+      "lines": 0,
+      "vram_fills": 0,
+      "lag0_vertices": 0,
+      "lag1_vertices": 0,
+      "mixed_lag_primitives": 0,
+      "ws_rejected_vertices": 0,
+      "owner_errors": 1,
+      "geometry_types_complete": false
+    },
+    {
+      "id": 42,
+      "ok": true,
+      "schema": "gp0-scene-v3",
+      "mode": 1,
+      "frame": 0,
+      "generation": 2,
+      "count": 0,
+      "capacity": 1024,
+      "textured_seen": 0,
+      "malformed": 0,
+      "overflow": 0,
+      "geometry_qualified": 0,
+      "missing_vertices": 0,
+      "other_commands": 0,
+      "complete_interval": false,
+      "untextured_polygons": 0,
+      "textured_sprites": 0,
+      "untextured_rects": 0,
+      "lines": 0,
+      "vram_fills": 0,
+      "lag0_vertices": 0,
+      "lag1_vertices": 0,
+      "mixed_lag_primitives": 0,
+      "ws_rejected_vertices": 0,
+      "owner_errors": 1,
+      "geometry_types_complete": false
+    }
+  ],
+  "actual_windows_adapter": true,
+  "exact_handler_sha256": "df3cdf4d6f3539a4e4a9502fc9ec12cacf2b6c1ce66b88e62810e0d88e320feb",
+  "gpu_executed": false,
+  "guest_executed": false,
+  "fixtures_only": true,
+  "user_gpu_hold_unchanged": true,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "wrong_thread_test": true,
+  "sources": {
+    "exact_handler.inc": "df3cdf4d6f3539a4e4a9502fc9ec12cacf2b6c1ce66b88e62810e0d88e320feb",
+    "fixture_seed.cpp": "b7d6a7dc696115a9dfeefd9a5613795aa836c2d0426d98485e310fc65c6fa50d",
+    "harness.cpp": "79d71d6010c128625cb1c7c0c6f2a3858351bb0c4532c9c92bef4a4932081fcc",
+    "scene_capture.cpp": "78c4158d6428b57e5c1312b61637af4cfebd0c8a484860294ae13ce140c9eff8",
+    "scene_capture.h": "b90ebe9da7f11ed0c12ad2ea041564cb45a69a061b4da89b92e05dd9858856c8",
+    "scene_json.cpp": "4305f17e8d0dfea833209400da4ddc819d8cc2aa3ed46b584d6f4a257889211f",
+    "scene_runtime.cpp": "2d68e902eb7b9ed5f2421d62146c2f6d43a0fa6e563f43bfb870c315d1f6530c",
+    "scene_runtime.h": "6ddedc789b76254f865217c9e4e0eec7bba498cc039397178c7cec4ea5d41544"
+  }
+}

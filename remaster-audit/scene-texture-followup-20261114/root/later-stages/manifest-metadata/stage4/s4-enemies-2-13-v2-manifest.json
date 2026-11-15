@@ -1,0 +1,1347 @@
+{
+ "name": "s4-enemies-2-13-v2",
+ "track": "w7-stage4 (claude-einhander)",
+ "task": "lane-s4 restart after the reboot (LANE-RESTART-20261113): rebuild and freeze s4-enemies as a new version with the final w7lib",
+ "family": "s4-enemies-main",
+ "status": "candidate",
+ "frozen_utc": "2026-11-13T21:50:13.783265+00:00",
+ "title": "Stage 4 enemies, stage-entry member 2/13: three 4bpp enemy pages (320-448,0) as palette-independent index masters with armour material",
+ "import_rule": "predicted-static; import only after live capture: the stage-4 acquisition run must list every key of this deliverable as key-confirmed (byte-identical words and CLUT) in validate_predicted.py confirm, and validate_predicted.py gate must pass for the pack that installs it",
+ "key_status": "predicted-static; import only after live capture",
+ "supersedes": {
+  "revision": "s4-enemies-2-13-v1",
+  "manifest_sha256": null,
+  "why": "v1 folder is unfrozen scratch from the interrupted pre-reboot chain: it was built with the pre-final w7lib (dither window 0.2..0.55, no lost-texel cores), so it did not match its own job spec, and it was never frozen. Do not use it."
+ },
+ "sources": {
+  "kind": "shared immutable static export (exact-static disc strips, member-pure pages)",
+  "export_build": "2026-11-13T15:06:28Z",
+  "textures_json_sha256": "e6a3899099f3b5f7d04ed7a60661c1271dbc1bb7d19f5f8a9f1d6a0d68f31e1a",
+  "keys_json_sha256": "bc74b684b30d195353fcc0df68f512908e0ddaf99ce0ceb76670c76ac63944c2",
+  "cluts_json_sha256": "0fc9b4580ad107a6156624bdc544d9053ba6c01a8e068e88fa0d628b2c649615",
+  "review": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage4/READINESS.md",
+  "palette_review_sha256": "dd01e2796e190147f974b52f6994d6c69a4bdc67678168513da68fd5f3e03f60"
+ },
+ "gpu": "none: CPU-only index-space authoring; no ComfyUI call in this revision (GPU-RESERVED respected)",
+ "comfyui_graphs": [],
+ "reused_generated_swatches": {
+  "note": "Stage 1 JuggernautXL tileable swatches reused as luminance detail only (graphs/history copied in comfy/ where they exist)",
+  "files_sha256": {
+   "gunmetal_worn-graph.api.json": "123aecb4824b68820f5c347c26118d482c92acee406d012087ca7a38379d130e",
+   "gunmetal_worn-history.json": "a83f13aceab48c7c23f599cc76f07ae75ca607f2ec29b384de65b8ce273b70a4",
+   "gunmetal_worn-tileable-1024.png": "c8865eda4a8d0d59a27df1a7e4d5f61f2719f30e77b795e59211facba3bd8a96",
+   "navy_armour-graph.api.json": "186a8f9c370e2fbf822fe33adf597b3042ce3ba08304db00c1a6fb0b346ff32e",
+   "navy_armour-history.json": "bf146be3764aceeedd52837d3629bf82a864f9bebb1231a5e00c4daf7538254e",
+   "navy_armour-tileable-1024.png": "2ba10cfded85941c13a5d4397c716b73fcbf8b3f7c37aef6bf808829d28f2a8e"
+  }
+ },
+ "method": "Categorical soft-label index master at 16x (4096): one-hot mask of every native index blurred at 4x and texel-centred bilinear to 16x; crisp contours everywhere (sigma 0.38 texel, power 5); where the native page dithers between indices that share the class under every renderable static CLUT of the page and are close in colour (RGB distance <= 56) under at least 75 % of them, only those indices are blended (sigma 1.0 texel), so dither becomes the intended mixed tone while edges between distinct tones stay crisp, top-3 labels kept; texels whose native index lost its own centre keep a rounded-square core of that index (superellipse p=6, full weight to the mid-edges), native index forced at every texel centre. Palette-independent armour material logD at 8x: relief from the reference-CLUT luminance (sigma 0.9 texel, light from the upper left), light groove AO at luminance edges, luminance detail from the Stage 1 JuggernautXL navy_armour + gunmetal_worn tileable swatches (raw images where they exist, centre 60%, overlapping Hann-windowed random patches, horizontal flips only: no tiling seam, no repeat; high-pass sigma 48 px, band-limited sigma 1.5 px at 2048), low-frequency grime; zero-mean per native index. No GP0 polygons exist for stage 4, so there is no per-unit vector outline or seam layer (the Stage 1 t7/w4 vector step); per-unit cutting waits for AQ-03 draw UVs.",
+ "render_formula": "w = top-3 soft labels; base = sum_k w_k P[l_k] over labels of the dominant class; rgb = base * exp(logD) (opaque classes); class = class(P[l_0]); class 0 = raw black; runtime = majority-class box-down of the 4096 render + native class stamped at floor((i+0.5)*scale)",
+ "class_validation": {
+  "file": "native-class-validation.json",
+  "total_mismatches": 0,
+  "exports": 6,
+  "convention": "class at pixel floor((i+0.5)*scale) of every native texel == class(CLUT[native index]); class 0 = raw 0x0000, 255 = STP, 127 = opaque"
+ },
+ "alpha_channel": "categorical PSX classes (0 = raw 0x0000, 127 opaque, 255 STP), NOT opacity; exact at every native texel centre",
+ "pages": {
+  "D57D51A6": {
+   "member": "2/13",
+   "page_xy": [
+    320,
+    0
+   ],
+   "mode": "enemy",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage4/textures/D57D51A6.words.bin",
+    "sha256": "d02cb1709b0eb2743cebfe28491ba2b6d93774abd3e0c602ba606a7c94c888a6",
+    "crc32": "D57D51A6",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "D57D51A6-5BCA596E",
+     "clut_xy": [
+      96,
+      495
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/D57D51A6-5BCA596E.png",
+      "sha256": "c0055ff66555ec8d0a10691de292486c9b422bc2a21beb0d32810824d8bc97da",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/D57D51A6-5BCA596E.png",
+      "sha256": "33f3da21d57b5ed9cecc17d7035417422c472eb4f0aee3bccb3288f1419c66ab",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/D57D51A6-5BCA596E-review.png",
+      "sha256": "0c41ced39ed71d058508fc5172c7857a6a154355933ba2214cd221e5e785640a"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "D57D51A6-6C2AA904",
+     "clut_xy": [
+      64,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-9D596A07",
+     "clut_xy": [
+      16,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-079255D7",
+     "clut_xy": [
+      64,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-A6BFEB73",
+     "clut_xy": [
+      224,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-19380D0D",
+     "clut_xy": [
+      160,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-C3A846D2",
+     "clut_xy": [
+      176,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-F7D3F444",
+     "clut_xy": [
+      208,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-A345AE9E",
+     "clut_xy": [
+      80,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-E0BF6C93",
+     "clut_xy": [
+      96,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-6A1EC13E",
+     "clut_xy": [
+      128,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-8F7EC0DB",
+     "clut_xy": [
+      240,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-15AEA067",
+     "clut_xy": [
+      32,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-C09A7D0D",
+     "clut_xy": [
+      16,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-7B7F7553",
+     "clut_xy": [
+      80,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-ABF72265",
+     "clut_xy": [
+      176,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-0DF30EDD",
+     "clut_xy": [
+      272,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "D57D51A6-FE946444",
+     "clut_xy": [
+      32,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-AE24CA6A",
+     "clut_xy": [
+      112,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-EA26A8D7",
+     "clut_xy": [
+      80,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-BA4C001F",
+     "clut_xy": [
+      144,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-C12DB7DC",
+     "clut_xy": [
+      272,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "D57D51A6-73EEC6E5",
+     "clut_xy": [
+      128,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-A9651F8C",
+     "clut_xy": [
+      304,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "D57D51A6-CAFC4AA7",
+     "clut_xy": [
+      0,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "D57D51A6-72B1090A",
+     "clut_xy": [
+      0,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-91EE989D",
+     "clut_xy": [
+      16,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-1BF3C90A",
+     "clut_xy": [
+      240,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "D57D51A6-77D0BEF4",
+     "clut_xy": [
+      272,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    }
+   ],
+   "palette_hold_keys": [
+    "D57D51A6-0DF30EDD",
+    "D57D51A6-190A55AD",
+    "D57D51A6-77D0BEF4",
+    "D57D51A6-A9651F8C",
+    "D57D51A6-C12DB7DC",
+    "D57D51A6-CAFC4AA7"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     256,
+     508
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "D57D51A6-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 254,
+    "lost_texel_cores": 254,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.026824951171875,
+    "crisp": [
+     0.38,
+     5.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 9,
+    "near_matrix_cluts": 30
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.08,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch": [
+     [
+      "navy_armour",
+      0.5
+     ],
+     [
+      "gunmetal_worn",
+      0.5
+     ]
+    ],
+    "swatch_amp": 0.04,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.025,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ]
+   },
+   "logD_p1_p99": [
+    -0.11328125,
+    0.09228515625
+   ]
+  },
+  "0FD152CA": {
+   "member": "2/13",
+   "page_xy": [
+    384,
+    0
+   ],
+   "mode": "enemy",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage4/textures/0FD152CA.words.bin",
+    "sha256": "346dfc21bc476ae0f88561357cfaa5804ae726b884c7004db37db0ec43a26232",
+    "crc32": "0FD152CA",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "0FD152CA-E48C96C4",
+     "clut_xy": [
+      96,
+      504
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/0FD152CA-E48C96C4.png",
+      "sha256": "942c941b21acff6aaf7e140bef9c437c66ea86a1f507448cebb4ae51726fb3b3",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/0FD152CA-E48C96C4.png",
+      "sha256": "c1ce5690910ab4dd2cadef2277fb2ae0fb640d3541e83dc468754c6102600705",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/0FD152CA-E48C96C4-review.png",
+      "sha256": "224cc919d33bcea46dca81c65470f26dbc26590f7e87a87ea32f98c00124dcf6"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "0FD152CA-ABF72265",
+     "clut_xy": [
+      176,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-BA4C001F",
+     "clut_xy": [
+      144,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-E0EE2695",
+     "clut_xy": [
+      224,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-93698D26",
+     "clut_xy": [
+      208,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-B155B5E4",
+     "clut_xy": [
+      32,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-C032A95B",
+     "clut_xy": [
+      16,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-5DC4B4D0",
+     "clut_xy": [
+      32,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-18C9B568",
+     "clut_xy": [
+      240,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-BE3400E6",
+     "clut_xy": [
+      32,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-E08575AF",
+     "clut_xy": [
+      64,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-8642C34B",
+     "clut_xy": [
+      160,
+      505
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-B7A5B4EE",
+     "clut_xy": [
+      16,
+      483
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-583F1CE9",
+     "clut_xy": [
+      192,
+      505
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-AE573309",
+     "clut_xy": [
+      64,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-849EA8EA",
+     "clut_xy": [
+      112,
+      506
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-89215465",
+     "clut_xy": [
+      48,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-C09A7D0D",
+     "clut_xy": [
+      16,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-F7BC428D",
+     "clut_xy": [
+      192,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-443DD30C",
+     "clut_xy": [
+      32,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-4B1DCADC",
+     "clut_xy": [
+      48,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-393A3DD2",
+     "clut_xy": [
+      48,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-91EE989D",
+     "clut_xy": [
+      16,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-47FBD679",
+     "clut_xy": [
+      32,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "0FD152CA-A9651F8C",
+     "clut_xy": [
+      304,
+      511
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "0FD152CA-9C1D3694",
+     "clut_xy": [
+      224,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-718199E6",
+     "clut_xy": [
+      16,
+      500
+     ],
+     "confidence": "likely",
+     "palette_hold": true
+    },
+    {
+     "key": "0FD152CA-7EB0DE7D",
+     "clut_xy": [
+      0,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "0FD152CA-12A610FF",
+     "clut_xy": [
+      80,
+      496
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "0FD152CA-190A55AD",
+    "0FD152CA-47FBD679",
+    "0FD152CA-718199E6",
+    "0FD152CA-A9651F8C"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     0,
+     508
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "0FD152CA-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 58,
+    "lost_texel_cores": 58,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.0107879638671875,
+    "crisp": [
+     0.38,
+     5.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 7,
+    "near_matrix_cluts": 29
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.08,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch": [
+     [
+      "navy_armour",
+      0.5
+     ],
+     [
+      "gunmetal_worn",
+      0.5
+     ]
+    ],
+    "swatch_amp": 0.04,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.025,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ]
+   },
+   "logD_p1_p99": [
+    -0.114990234375,
+    0.0980224609375
+   ]
+  },
+  "C7C81B36": {
+   "member": "2/13",
+   "page_xy": [
+    448,
+    0
+   ],
+   "mode": "enemy",
+   "source": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage4/textures/C7C81B36.words.bin",
+    "sha256": "487c1746c66c281be72b225e9ee9fe1b9612c3b58d1ac7c7b343ff38aaa70559",
+    "crc32": "C7C81B36",
+    "bytes": 32768
+   },
+   "rendered_keys": [
+    {
+     "key": "C7C81B36-95A45D3F",
+     "clut_xy": [
+      192,
+      495
+     ],
+     "confidence": "likely",
+     "chosen_review_clut": true,
+     "palette_hold": false,
+     "png_2048": {
+      "path": "runtime-2048/C7C81B36-95A45D3F.png",
+      "sha256": "2e58c1415d72aab89a653c45a6656703582b0684d25eb38340502cfc8e42a2c7",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        2048,
+        2048
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "png_1024": {
+      "path": "runtime-1024/C7C81B36-95A45D3F.png",
+      "sha256": "388f319196e2618f052b66876fc0c4f5388579452bf3a326f15295aa9d344277",
+      "centre_classes_stamped": 0,
+      "validation": {
+       "size": [
+        1024,
+        1024
+       ],
+       "centre_class_mismatch": 0,
+       "alpha_values": [
+        127
+       ],
+       "alpha_values_ok": true,
+       "examples": []
+      }
+     },
+     "energy_gate": null,
+     "review": {
+      "path": "review/C7C81B36-95A45D3F-review.png",
+      "sha256": "80a54ee7bba8e6c8e3c3ab429f323ca41b01aa06c8ad97275e7c902bb9f75d38"
+     }
+    }
+   ],
+   "renderable_later": [
+    {
+     "key": "C7C81B36-7E00E0F4",
+     "clut_xy": [
+      48,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-4139C8C1",
+     "clut_xy": [
+      96,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-E084827A",
+     "clut_xy": [
+      0,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-8A8E6C5D",
+     "clut_xy": [
+      112,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-A205FD9C",
+     "clut_xy": [
+      0,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-C3A846D2",
+     "clut_xy": [
+      176,
+      495
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-E14B839C",
+     "clut_xy": [
+      176,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-86119144",
+     "clut_xy": [
+      32,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-D9E58286",
+     "clut_xy": [
+      112,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-4F682E8A",
+     "clut_xy": [
+      224,
+      489
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-E0AC8A29",
+     "clut_xy": [
+      224,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-8F9C8C34",
+     "clut_xy": [
+      208,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-1B28D5E6",
+     "clut_xy": [
+      16,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-A3FCA517",
+     "clut_xy": [
+      240,
+      494
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-67F8828D",
+     "clut_xy": [
+      0,
+      488
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-68F40514",
+     "clut_xy": [
+      80,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-50CE49E2",
+     "clut_xy": [
+      112,
+      487
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-BA4C001F",
+     "clut_xy": [
+      144,
+      482
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-7EB0DE7D",
+     "clut_xy": [
+      0,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-91EE989D",
+     "clut_xy": [
+      16,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-443DD30C",
+     "clut_xy": [
+      32,
+      484
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-43EFB029",
+     "clut_xy": [
+      192,
+      504
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-34B2CF94",
+     "clut_xy": [
+      144,
+      481
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-ACE38C28",
+     "clut_xy": [
+      128,
+      487
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    },
+    {
+     "key": "C7C81B36-0FA88F43",
+     "clut_xy": [
+      0,
+      487
+     ],
+     "confidence": "likely",
+     "palette_hold": false
+    }
+   ],
+   "palette_hold_keys": [
+    "C7C81B36-190A55AD"
+   ],
+   "runtime_written_clut_positions_index_master_only": [
+    [
+     128,
+     511
+    ]
+   ],
+   "excluded_zero_clut_keys": [
+    "C7C81B36-190A55AD"
+   ],
+   "excluded_stale_front_end_keys": [],
+   "soft_label_stats": {
+    "version": "toned-v2-cores",
+    "centre_labels_forced": 953,
+    "lost_texel_cores": 953,
+    "core_radius_texel": [
+     0.5,
+     0.62
+    ],
+    "dither_texel_share": 0.1009063720703125,
+    "crisp": [
+     0.38,
+     5.0
+    ],
+    "blend_sigma": 1.0,
+    "beta_window": [
+     0.3,
+     0.65
+    ],
+    "no_busy": false,
+    "near_pairs": 26,
+    "near_matrix_cluts": 26
+   },
+   "glow": null,
+   "material": {
+    "relief": 0.18,
+    "relief_sigma_tex": 0.9,
+    "groove": 0.08,
+    "groove_sigma_tex": 0.3,
+    "groove_ref": 0.35,
+    "swatch": [
+     [
+      "navy_armour",
+      0.5
+     ],
+     [
+      "gunmetal_worn",
+      0.5
+     ]
+    ],
+    "swatch_amp": 0.04,
+    "swatch_sigma_px": 1.5,
+    "grime": 0.025,
+    "grime_sigma_tex": 3.0,
+    "final_sigma_px": 0.8,
+    "clamp": [
+     -0.45,
+     0.25
+    ]
+   },
+   "logD_p1_p99": [
+    -0.1129150390625,
+    0.09674072265625
+   ]
+  }
+ },
+ "builder_scripts": {
+  "build_w7.py": "58646522ba742466ca7d44687221f3e63902c82fedd42994bd6d939e7801440a",
+  "freeze_w7.py": "737c2c9db09867732b296fb6a753df9cf276d96e49b61cf4ec6d252bac0d3d09",
+  "s4-enemies-2-13-v2.json": "3dd6466ad8ba8dcc0ea2ce8f0c1e249d1a5b1bf99743125b5b0e4333c925a431",
+  "w7lib.py": "97b6818ec81866cb21b24a6136a1bfd2df4740afb8dbdfd15928365fae587508"
+ },
+ "build_record": "build-record.json",
+ "honest_read": [
+  "Native-faithful and class-exact: 0 class mismatches in 6 exports; every native index is exact at its texel centre and edges between distinct tones are crisp.",
+  "Isolated single texels (rivets, lamp dots, 1-texel lines) survive as rounded-square cores of their native index (254 / 58 / 953 texels on D57D51A6 / 0FD152CA / C7C81B36). At 16x they read as round dots, not crisp square studs.",
+  "Grilles and slats (D57D51A6) become smooth rounded bars; they read well at in-game size (panel C) but are soft at 16x.",
+  "Staircase diagonals (0FD152CA top right) stay rounded staircases; they are not rebuilt as straight edges.",
+  "Dithered dark areas (C7C81B36 pipe panels, D57D51A6 dark red plating) become soft blotches of the native tones, not real paint wear.",
+  "The armour material is Stage 1 navy_armour + gunmetal_worn luminance detail at low amplitude (logD p1..p99 about -0.11..+0.10). On very light flat areas (0FD152CA) it reads as blotchy, stained-paper mottle rather than painted metal. A few small dark diagonal scratch strokes from gunmetal_worn are visible on flat fillers in the runtime-1024 view (C7C81B36, 0FD152CA). These are the least convincing part.",
+  "Not a realism rebuild: no per-unit cut, no bevel or panel geometry, no stage-specific armour material. It is a safe index-space base."
+ ],
+ "known_limits": [
+  "All keys are predicted-static: none has been seen live. The review CLUT is the static CLUT that draws the most of the page (a 'likely' pairing), not a proven one, so the colours on the review sheets may be wrong for the real enemy. Import only after the stage-4 run confirms each key.",
+  "One render per page (the review CLUT); the other static predicted keys are listed as renderable_later and render from the same master once captured; palette-hold keys (runtime-written or multi-candidate CLUT positions) wait for AQ-05 phase lists.",
+  "Review panel C is a SIMULATION (bilinear from runtime-2048, no mips, 9 px per texel); no in-game capture exists.",
+  "No GP0 polygons or draw UVs exist for stage 4, so units are not cut (the Stage 1 t7/w4 vector step). Per-unit work waits for AQ-03 draw UVs.",
+  "Material relief comes from the review CLUT's luminance; for a CLUT with a different tone order the relief can invert in places (zero-mean per index keeps average colours).",
+  "Supersedes the unfrozen s4-enemies-2-13-v1 scratch folder, which was built with the pre-final w7lib (no lost-texel cores) and never frozen."
+ ],
+ "integration_notes": {
+  "install": "do not install before the stage-4 acquisition run; then install only keys listed key-confirmed by validate_predicted.py confirm",
+  "runtime": "runtime-1024 (4 px/texel) is enough for small enemies; runtime-2048 provided",
+  "alpha": "PNG alpha = exact PSX classes (categorical)",
+  "index_path": "master/<TEX>-labels16.npz (labels, weights) + <TEX>-logD8-f16.npy render any CLUT with w7lib.render"
+ },
+ "reuse": null,
+ "files": {
+  "build-record.json": {
+   "sha256": "2fc866d37d83681016f4f7185ec8d6f245a39cfd08f037cbec1de3dd7ef3aa68",
+   "bytes": 27800
+  },
+  "builder/build_w7.py": {
+   "sha256": "58646522ba742466ca7d44687221f3e63902c82fedd42994bd6d939e7801440a",
+   "bytes": 15588
+  },
+  "builder/freeze_w7.py": {
+   "sha256": "737c2c9db09867732b296fb6a753df9cf276d96e49b61cf4ec6d252bac0d3d09",
+   "bytes": 5302
+  },
+  "builder/s4-enemies-2-13-v2.json": {
+   "sha256": "3dd6466ad8ba8dcc0ea2ce8f0c1e249d1a5b1bf99743125b5b0e4333c925a431",
+   "bytes": 3215
+  },
+  "builder/w7lib.py": {
+   "sha256": "97b6818ec81866cb21b24a6136a1bfd2df4740afb8dbdfd15928365fae587508",
+   "bytes": 23624
+  },
+  "comfy/gunmetal_worn-graph.api.json": {
+   "sha256": "123aecb4824b68820f5c347c26118d482c92acee406d012087ca7a38379d130e",
+   "bytes": 1503
+  },
+  "comfy/gunmetal_worn-history.json": {
+   "sha256": "a83f13aceab48c7c23f599cc76f07ae75ca607f2ec29b384de65b8ce273b70a4",
+   "bytes": 2758
+  },
+  "comfy/gunmetal_worn-tileable-1024.png": {
+   "sha256": "c8865eda4a8d0d59a27df1a7e4d5f61f2719f30e77b795e59211facba3bd8a96",
+   "bytes": 1048588
+  },
+  "comfy/navy_armour-graph.api.json": {
+   "sha256": "186a8f9c370e2fbf822fe33adf597b3042ce3ba08304db00c1a6fb0b346ff32e",
+   "bytes": 1575
+  },
+  "comfy/navy_armour-history.json": {
+   "sha256": "bf146be3764aceeedd52837d3629bf82a864f9bebb1231a5e00c4daf7538254e",
+   "bytes": 2786
+  },
+  "comfy/navy_armour-tileable-1024.png": {
+   "sha256": "2ba10cfded85941c13a5d4397c716b73fcbf8b3f7c37aef6bf808829d28f2a8e",
+   "bytes": 1256161
+  },
+  "master/0FD152CA-labels16.npz": {
+   "sha256": "7b7fba3f932cfba85732f9fb32ef8cd3437d04f2dfef66dcb2e63f9ac659866e",
+   "bytes": 6668046
+  },
+  "master/0FD152CA-logD8-f16.npy": {
+   "sha256": "94577253b622e1075a86d233e2d093b0160e68beb33a5fe53c53764ccb87ee99",
+   "bytes": 8388736
+  },
+  "master/0FD152CA-native-idx.npy": {
+   "sha256": "56ba958c1a3d913d59274c9e81a4a3eb168555152cd69459d13acbae7451969f",
+   "bytes": 65664
+  },
+  "master/C7C81B36-labels16.npz": {
+   "sha256": "e360f871816a6069ac6b30eacffb8c90f80d2a0bdd6e1b837576350058ac924c",
+   "bytes": 7232010
+  },
+  "master/C7C81B36-logD8-f16.npy": {
+   "sha256": "abd17a27ba89d6895a67f7f5f018f8723d4439f9c3f0f41e688019b857103ce2",
+   "bytes": 8388736
+  },
+  "master/C7C81B36-native-idx.npy": {
+   "sha256": "17855e2aab489ee5902b0a95b18b45ae8dcdd33e8f99f13f68d803671d9b62b0",
+   "bytes": 65664
+  },
+  "master/D57D51A6-labels16.npz": {
+   "sha256": "89d5c3a8c1407889d4ada1f1fe30bda4d24a325813c7a4b8d7ea466877286156",
+   "bytes": 5676773
+  },
+  "master/D57D51A6-logD8-f16.npy": {
+   "sha256": "7279515e8eb9b402c944d6ff37ff3834595cc4e6d9e1fabc92f3c829281f47e2",
+   "bytes": 8388736
+  },
+  "master/D57D51A6-native-idx.npy": {
+   "sha256": "af1ac18d734736bc56706574449405fab4f89859b022efd79a466c50966b8b44",
+   "bytes": 65664
+  },
+  "native-class-validation.json": {
+   "sha256": "f16063b74abc689d440b59fd7d1a06ec35ffcfb543b35706d162b0b7a4d34a8b",
+   "bytes": 1563
+  },
+  "review/0FD152CA-E48C96C4-review.png": {
+   "sha256": "224cc919d33bcea46dca81c65470f26dbc26590f7e87a87ea32f98c00124dcf6",
+   "bytes": 728937
+  },
+  "review/C7C81B36-95A45D3F-review.png": {
+   "sha256": "80a54ee7bba8e6c8e3c3ab429f323ca41b01aa06c8ad97275e7c902bb9f75d38",
+   "bytes": 588335
+  },
+  "review/D57D51A6-5BCA596E-review.png": {
+   "sha256": "0c41ced39ed71d058508fc5172c7857a6a154355933ba2214cd221e5e785640a",
+   "bytes": 678469
+  },
+  "runtime-1024/0FD152CA-E48C96C4.png": {
+   "sha256": "c1ce5690910ab4dd2cadef2277fb2ae0fb640d3541e83dc468754c6102600705",
+   "bytes": 1250441
+  },
+  "runtime-1024/C7C81B36-95A45D3F.png": {
+   "sha256": "388f319196e2618f052b66876fc0c4f5388579452bf3a326f15295aa9d344277",
+   "bytes": 1058468
+  },
+  "runtime-1024/D57D51A6-5BCA596E.png": {
+   "sha256": "33f3da21d57b5ed9cecc17d7035417422c472eb4f0aee3bccb3288f1419c66ab",
+   "bytes": 1082090
+  },
+  "runtime-2048/0FD152CA-E48C96C4.png": {
+   "sha256": "942c941b21acff6aaf7e140bef9c437c66ea86a1f507448cebb4ae51726fb3b3",
+   "bytes": 3727642
+  },
+  "runtime-2048/C7C81B36-95A45D3F.png": {
+   "sha256": "2e58c1415d72aab89a653c45a6656703582b0684d25eb38340502cfc8e42a2c7",
+   "bytes": 3079558
+  },
+  "runtime-2048/D57D51A6-5BCA596E.png": {
+   "sha256": "c0055ff66555ec8d0a10691de292486c9b422bc2a21beb0d32810824d8bc97da",
+   "bytes": 3117808
+  }
+ }
+}

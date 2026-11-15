@@ -1,0 +1,58 @@
+--- a/recomp_audio_drc.h.proposed (r0)
++++ b/recomp_audio_drc.h.proposed (r1)
+@@ -63,10 +63,21 @@
+ } rab_stats;
+ 
+ /* Gap accounting (s67 proposal; counters only, never changes rendered PCM).
+- * A gap is one maximal run of starved OUTPUT frames counted by the same
+- * condition as underrun_events (primed && source not available), so
+- * sum over gaps of their lengths == underrun_events since the last reset.
+- * Pre-prime starvation is not a gap. A gap may span many rab_pull calls.
++ * A counted gap is one maximal run of starved OUTPUT frames WITHIN ONE GAP
++ * EPOCH, counted by the same condition as underrun_events (primed && source
++ * not available). Pre-prime starvation is not a gap. A gap may span many
++ * rab_pull calls.
++ * Lifetime vs epoch: underrun_events (rab_stats) is lifetime-cumulative and is
++ * NEVER reset by rab_reset_gap_stats (only rab_init zeroes it). The gap
++ * counters are per epoch. rab_reset_gap_stats records the lifetime counter in
++ * gap_epoch_base_underruns, so for the current epoch:
++ *     sum of counted gap lengths == underrun_events - gap_epoch_base_underruns
++ * (base is 0 after rab_init). Never compare epoch gap counts with the
++ * lifetime total.
++ * Segment semantics: a reset during an ongoing starvation run ends the counted
++ * segment; if the next frame is still starved it opens a NEW counted gap of
++ * the new epoch. A counted gap is therefore a starvation segment, not
++ * necessarily a distinct audible dropout.
+  * Kept separate from rab_stats so rab_stats' layout (ABI) is unchanged. */
+ typedef struct {
+     uint64_t gaps;              /* have -> starved transitions after priming  */
+@@ -103,6 +114,7 @@
+     int           in_gap;       /* 1 while inside a counted gap               */
+     rab_gap_stats gap;
+     uint64_t      gap_epoch;    /* incremented by rab_reset_gap_stats          */
++    uint64_t      gap_epoch_base_underruns; /* underrun_events at the last reset */
+ } rab_bridge;
+ 
+ /* Fill a config with the locked-in ecosystem defaults. You must still set
+@@ -137,6 +149,7 @@
+     rab_stats     stats;
+     rab_gap_stats gap;
+     uint64_t      gap_epoch;
++    uint64_t      gap_epoch_base_underruns;  /* see the gap accounting comment */
+ } rab_telemetry;
+ void rab_get_telemetry(const rab_bridge *b, rab_telemetry *out);
+ 
+@@ -417,11 +430,13 @@
+     out->stats = b->stats;
+     out->gap = b->gap;
+     out->gap_epoch = b->gap_epoch;
++    out->gap_epoch_base_underruns = b->gap_epoch_base_underruns;
+ }
+ void rab_reset_gap_stats(rab_bridge *b) {
+     memset(&b->gap, 0, sizeof(b->gap));
+     b->in_gap = 0;
+     b->gap_epoch++;
++    b->gap_epoch_base_underruns = b->stats.underrun_events;
+ }
+ 
+ #endif /* RECOMP_AUDIO_DRC_IMPL */

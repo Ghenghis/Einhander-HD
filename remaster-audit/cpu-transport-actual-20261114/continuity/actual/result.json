@@ -1,0 +1,52 @@
+{
+  "at_utc": "2026-11-14T22:32:49.696579+00:00",
+  "grant_id": "msg_773798dcd18c4ef9",
+  "driver_sha256": "ebd9cf8116b34f47d3ac072c49f7580923601b087ab99418e9c4ea9c0069dd3b",
+  "cpu": 13,
+  "passed": true,
+  "gpu_used": false,
+  "game_launched": false,
+  "native_sessions_invoked": false,
+  "inherited_job_required": true,
+  "job_verified_by_this_driver": false,
+  "copies": {
+    "claude-continuity-hook.mjs": {
+      "original": "C:\\github\\Einhander\\tools\\coordination\\claude-continuity-hook.mjs",
+      "copied": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233\\claude-continuity-hook.mjs",
+      "sha256": "7ee73f38ee77cf7179e5b9111a5ad79af12a604de4e0dc93cabcaa03bd566ca4"
+    },
+    "test-claude-continuity.mjs": {
+      "original": "C:\\github\\Einhander\\tools\\coordination\\test-claude-continuity.mjs",
+      "copied": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233\\test-claude-continuity.mjs",
+      "sha256": "8a30a019b6cec425c47d2ab472b5dfff9f7ec70c25ffc37e6f099473dad7b367"
+    }
+  },
+  "node": {
+    "path": "C:\\Program Files\\nodejs\\node.exe",
+    "sha256": "5cba0ea928508c65ddadefc0681d2fb6d95f1f3beea4428f04397631140ee8e5",
+    "pin_recorded_at_execution": true,
+    "independently_preapproved_pin": false
+  },
+  "argv": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "--test",
+    "--test-concurrency=1",
+    "--test-reporter=tap",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233\\test-claude-continuity.mjs"
+  ],
+  "cwd": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\exact-owner-tests-2233",
+  "started_utc": "2026-11-14T22:32:49.823110+00:00",
+  "pid": 36152,
+  "creation_unix": 1794695569.827657,
+  "exit": 0,
+  "timed_out": false,
+  "elapsed_s": 0.7727187999989837,
+  "summary": [
+    "# tests 12",
+    "# pass 12",
+    "# fail 0",
+    "# cancelled 0",
+    "# skipped 0"
+  ],
+  "tap_sha256": "6aa2bb67a1a0a2090e19a74b25e14021ad3adf2c6ae109e06b29981e01ae00bc"
+}

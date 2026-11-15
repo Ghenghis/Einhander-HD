@@ -1,0 +1,34 @@
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\remix_mesh_packet.cpp:1:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+4 warnings generated.
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\test_remix_mesh_packet.cpp:2:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet/remix_mesh_packet.h:3:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/pgxp.h:85:30: warning: '/*' within block comment [-Wcomment]
+   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same
+      |                              ^
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\test_remix_mesh_packet.cpp:2:
+In file included from C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet/remix_mesh_packet.h:4:
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1042:68: warning: missing field 'pNext' initializer [-Wmissing-field-initializers]
+ 1042 |     remixapi_InitializeLibraryInfo info = { (remixapi_StructType)0 };
+      |                                                                    ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1049:45: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1049 |     remixapi_Interface remixInterface = { 0 };
+      |                                             ^
+C:\github\Einhander\remaster-audit\runtime-review\cpu-remix-integration-20261114\scene-packet\vendor/remix_c.h:1078:44: warning: missing field 'CreateMaterial' initializer [-Wmissing-field-initializers]
+ 1078 |     remixapi_Interface nullInterface = { 0 };
+      |                                            ^
+4 warnings generated.

@@ -1,0 +1,409 @@
+{
+  "included": [
+    "ab-run/20261114T111427Z/ab_targets.py",
+    "ab-run/20261114T111427Z/result.json",
+    "docs/DESIGN-V2.md",
+    "docs/DESIGN-V3.md",
+    "docs/DESIGN.md",
+    "docs/FAILED-RUNS.md",
+    "docs/V1-SUPERSEDED.md",
+    "docs/V1-V2-REJECTED-PERFORMANCE.md",
+    "evidence/bfs_equiv.out.txt",
+    "evidence/bfs_equiv.py",
+    "host-run/20261114T113027Z/control/compile.log",
+    "host-run/20261114T113027Z/control/glslang.log",
+    "host-run/20261114T113027Z/control/gpu_gl_renderer.c",
+    "host-run/20261114T113027Z/control/HD_FS.frag",
+    "host-run/20261114T113027Z/fixtures-compile.log",
+    "host-run/20261114T113027Z/fixtures-run.log",
+    "host-run/20261114T113027Z/glue/compile.log",
+    "host-run/20261114T113027Z/glue/glue.c",
+    "host-run/20261114T113027Z/glue/glue_harness.c",
+    "host-run/20261114T113027Z/glue/run-off.log",
+    "host-run/20261114T113027Z/glue/run-on.log",
+    "host-run/20261114T113027Z/inputs/class_mip.c",
+    "host-run/20261114T113027Z/inputs/class_mip.h",
+    "host-run/20261114T113027Z/inputs/DESIGN-V3.md",
+    "host-run/20261114T113027Z/inputs/glue_harness.c",
+    "host-run/20261114T113027Z/inputs/hd_class_mips.inc",
+    "host-run/20261114T113027Z/inputs/hdcm_tool.c",
+    "host-run/20261114T113027Z/inputs/make_patch.py",
+    "host-run/20261114T113027Z/inputs/run_host.py",
+    "host-run/20261114T113027Z/inputs/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m00/compile.log",
+    "host-run/20261114T113027Z/mutants/m00/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m00/run.log",
+    "host-run/20261114T113027Z/mutants/m00/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m01/compile.log",
+    "host-run/20261114T113027Z/mutants/m01/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m01/run.log",
+    "host-run/20261114T113027Z/mutants/m01/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m02/compile.log",
+    "host-run/20261114T113027Z/mutants/m02/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m02/run.log",
+    "host-run/20261114T113027Z/mutants/m02/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m03/compile.log",
+    "host-run/20261114T113027Z/mutants/m03/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m03/run.log",
+    "host-run/20261114T113027Z/mutants/m03/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m04/compile.log",
+    "host-run/20261114T113027Z/mutants/m04/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m04/run.log",
+    "host-run/20261114T113027Z/mutants/m04/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m05/compile.log",
+    "host-run/20261114T113027Z/mutants/m05/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m05/run.log",
+    "host-run/20261114T113027Z/mutants/m05/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m06/compile.log",
+    "host-run/20261114T113027Z/mutants/m06/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m06/run.log",
+    "host-run/20261114T113027Z/mutants/m06/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m07/compile.log",
+    "host-run/20261114T113027Z/mutants/m07/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m07/run.log",
+    "host-run/20261114T113027Z/mutants/m07/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m08/compile.log",
+    "host-run/20261114T113027Z/mutants/m08/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m08/run.log",
+    "host-run/20261114T113027Z/mutants/m08/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m09/compile.log",
+    "host-run/20261114T113027Z/mutants/m09/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m09/run.log",
+    "host-run/20261114T113027Z/mutants/m09/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m10/compile.log",
+    "host-run/20261114T113027Z/mutants/m10/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m10/run.log",
+    "host-run/20261114T113027Z/mutants/m10/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m11/compile.log",
+    "host-run/20261114T113027Z/mutants/m11/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m11/run.log",
+    "host-run/20261114T113027Z/mutants/m11/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m12/compile.log",
+    "host-run/20261114T113027Z/mutants/m12/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m12/run.log",
+    "host-run/20261114T113027Z/mutants/m12/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m13/compile.log",
+    "host-run/20261114T113027Z/mutants/m13/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m13/run.log",
+    "host-run/20261114T113027Z/mutants/m13/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m14/compile.log",
+    "host-run/20261114T113027Z/mutants/m14/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m14/run.log",
+    "host-run/20261114T113027Z/mutants/m14/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m15/compile.log",
+    "host-run/20261114T113027Z/mutants/m15/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m15/run.log",
+    "host-run/20261114T113027Z/mutants/m15/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m16/compile.log",
+    "host-run/20261114T113027Z/mutants/m16/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m16/run.log",
+    "host-run/20261114T113027Z/mutants/m16/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m17/compile.log",
+    "host-run/20261114T113027Z/mutants/m17/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m17/run.log",
+    "host-run/20261114T113027Z/mutants/m17/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m18/compile.log",
+    "host-run/20261114T113027Z/mutants/m18/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m18/run.log",
+    "host-run/20261114T113027Z/mutants/m18/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m19/compile.log",
+    "host-run/20261114T113027Z/mutants/m19/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m19/run.log",
+    "host-run/20261114T113027Z/mutants/m19/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m20/compile.log",
+    "host-run/20261114T113027Z/mutants/m20/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m20/run.log",
+    "host-run/20261114T113027Z/mutants/m20/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m21/compile.log",
+    "host-run/20261114T113027Z/mutants/m21/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m21/run.log",
+    "host-run/20261114T113027Z/mutants/m21/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m22/compile.log",
+    "host-run/20261114T113027Z/mutants/m22/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m22/run.log",
+    "host-run/20261114T113027Z/mutants/m22/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m23/compile.log",
+    "host-run/20261114T113027Z/mutants/m23/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m23/run.log",
+    "host-run/20261114T113027Z/mutants/m23/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m24/compile.log",
+    "host-run/20261114T113027Z/mutants/m24/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m24/run.log",
+    "host-run/20261114T113027Z/mutants/m24/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m25/compile.log",
+    "host-run/20261114T113027Z/mutants/m25/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m25/run.log",
+    "host-run/20261114T113027Z/mutants/m25/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/mutants/m26/compile.log",
+    "host-run/20261114T113027Z/mutants/m26/hd_class_mips.inc",
+    "host-run/20261114T113027Z/mutants/m26/run.log",
+    "host-run/20261114T113027Z/mutants/m26/test_hd_class_mips.c",
+    "host-run/20261114T113027Z/patched/compile.log",
+    "host-run/20261114T113027Z/patched/glslang.log",
+    "host-run/20261114T113027Z/patched/gpu_gl_renderer.c",
+    "host-run/20261114T113027Z/patched/hd_class_mips.inc",
+    "host-run/20261114T113027Z/patched/HD_FS.frag",
+    "host-run/20261114T113027Z/proto-dll.log",
+    "host-run/20261114T113027Z/result.json",
+    "host-run/20261114T113027Z/sidecars/index.txt",
+    "host-run/20261114T113027Z/sidecars/MANIFEST.json",
+    "host-run/20261114T113027Z/tool-dll.log",
+    "READY.json",
+    "selftest/20261114T113152Z/build.json",
+    "selftest/20261114T113152Z/build_selftest.py",
+    "selftest/20261114T113152Z/compile.log",
+    "selftest/20261114T113152Z/gl_selftest_classmips.c",
+    "selftest/20261114T113152Z/hd_class_mips.inc",
+    "selftest/20261114T113152Z/HD_FS.frag",
+    "selftest/20261114T113152Z/README-ROOT.md",
+    "selftest/20261114T113152Z/TEX_VS.vert",
+    "SHA256SUMS.txt",
+    "src/ab_targets.py",
+    "src/build_selftest.py",
+    "src/gl_selftest_classmips.c",
+    "src/glue_harness.c",
+    "src/hd_class_mips.inc",
+    "src/hdcm_tool.c",
+    "src/make_patch.py",
+    "src/run_host.py",
+    "src/test_hd_class_mips.c"
+  ],
+  "omitted_local_payloads": [
+    {
+      "path": "host-run/20261114T113027Z/control/gpu_gl_renderer.c.obj",
+      "sha256": "961245e5103642ea009a68413236af0fc8960f14e8e88c126c48af78b32d4b5a",
+      "bytes": 269540
+    },
+    {
+      "path": "host-run/20261114T113027Z/control/gpu_gl_renderer.c.obj.d",
+      "sha256": "c1de349d23cea3a349282d95499d3df84cf77e136213638d880a01d6f3f9dedf",
+      "bytes": 41642
+    },
+    {
+      "path": "host-run/20261114T113027Z/control/pre.i",
+      "sha256": "cb9b56927afdcf8bec500b70e0390a740782eaabb97d217da91801eac7cd2509",
+      "bytes": 3721934
+    },
+    {
+      "path": "host-run/20261114T113027Z/glue/glue_harness.exe",
+      "sha256": "2be0f9736e18003c65e3e82c641c8eef22f06ae5b8861de36e871f0518dc7f3c",
+      "bytes": 107008
+    },
+    {
+      "path": "host-run/20261114T113027Z/glue/rgba.bin",
+      "sha256": "015859035b2f163940a2ed2b93f15ba650dc5675a7abb641922f8757bc3f5955",
+      "bytes": 2097152
+    },
+    {
+      "path": "host-run/20261114T113027Z/hdcm_tool.dll",
+      "sha256": "de9d18e2c65b10709f9b996aabd6f15eb650cb42e7727366a1b6b8bec5fb3392",
+      "bytes": 123904
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m00/t.exe",
+      "sha256": "f9ee469ebaf73e9d5350b89ec50293a6edaf3eb0f66cbeac1b12cd3f9fc5e38d",
+      "bytes": 130048
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m01/t.exe",
+      "sha256": "e47be768029146146eb77ded07309c1cb7288364cbef98bd8267eaee8376d19a",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m02/t.exe",
+      "sha256": "39fadbb3286a67df55dd835df5640704758c6747abc49783e9f56f5eece401e0",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m03/t.exe",
+      "sha256": "4a32f1b54346c77f49509483754a23c2b649d9a9ed657356a5632ad66baea1ad",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m04/t.exe",
+      "sha256": "71211db668bc790bac6b124397fe94515cfc01a5879588a2150034991150e6de",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m05/t.exe",
+      "sha256": "fe49aacca4031b7381788028870cfe399424acc04b7b7c48c349be1e54641a73",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m06/t.exe",
+      "sha256": "e40bab8a239ee359735b88d7d0f15099d94a3cb3969ea5a25e58d3ee372039e0",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m07/t.exe",
+      "sha256": "a73fbae1f9cb9b495bd11e360ca277ff8cfc4d7d4fcab3d94e43dd91e4d8f856",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m08/t.exe",
+      "sha256": "f7854f73d40442bb26a60953cf80a1a4ff5ee0710bf5a2e2f4c176c9beeea094",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m09/t.exe",
+      "sha256": "9360497dbd7d8e8effecdf1e22473d8545176177bdb5a3f1492f94ed9cf96804",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m10/t.exe",
+      "sha256": "92e0c9d929e1f4cb01554db81e39861abd24a2150faa2b33b6d319cb73f8e265",
+      "bytes": 130048
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m11/t.exe",
+      "sha256": "3cc61d17de9af604f907982fe57407d63fcda84524ac9b21330150024f94d290",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m12/t.exe",
+      "sha256": "3f4f48cba1b526e0ed862bcc2dbbca5996dcbe1203987bc58aac3e7341ef5eee",
+      "bytes": 128000
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m13/t.exe",
+      "sha256": "679943601e60d000e501db2600dea4d819bba029a40d612ded4f584b29564c42",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m14/t.exe",
+      "sha256": "9a35f1dca00f72f9244b316360afb707034e411ed36b3e69fadbd44bb84d5a51",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m15/t.exe",
+      "sha256": "32147eff337f2b7bf9aa45102673199ead6a7f23311f4ab0b0edb16d17c406d1",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m16/t.exe",
+      "sha256": "f5bf89260bf86dae5dc47c7c8f60f32060c12aefc5c61ce19ece3e969ef66a3f",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m17/t.exe",
+      "sha256": "85a78b70827081da67eed81dcb5cda66b30651ce6de53752fc696f0914f0623d",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m18/t.exe",
+      "sha256": "368f634bcf1b58c82f4c34075565521662cc0d251ed4b6ef3e1febd4a8a3574a",
+      "bytes": 129024
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m19/t.exe",
+      "sha256": "63a31c9c8c45e82362e120c0f92b2ec456e64361a15a07e8eccee0ab866b2eea",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m20/t.exe",
+      "sha256": "e74790ae234cb5fd31315c88cd1704d16ea2756908b7ce68a6cada1c39c85e01",
+      "bytes": 128512
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m21/t.exe",
+      "sha256": "3175f5852a3913110a2ba8d6d73c926f854dbbf7fa2c3430f706d67a98adf0cf",
+      "bytes": 128512
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m22/t.exe",
+      "sha256": "bff5de90dca8730b05fec2ebef7d63654c8a64c720a47103323f75aa256b38e1",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m23/t.exe",
+      "sha256": "d7bcc12066004dd3aefe86cf1cd0acc0efc099c755fd82515f2be573933353a5",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m24/t.exe",
+      "sha256": "d4572e765e44fe0868d151957395d0ac7bbf3fa95aabcc1a0c984877866b352d",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m25/t.exe",
+      "sha256": "8b8d0f1274efc4af47dc1bc2eb53c45939efdf6679104d6319793beac802ab4c",
+      "bytes": 130560
+    },
+    {
+      "path": "host-run/20261114T113027Z/mutants/m26/t.exe",
+      "sha256": "e31e1c69f4ef0a06e2ac6b98e7a1fa8014e4665b8d72756d3115d822ded08be6",
+      "bytes": 129536
+    },
+    {
+      "path": "host-run/20261114T113027Z/patched/gpu_gl_renderer.c.obj",
+      "sha256": "d72c98db4fc488a393f50d3b419793e95f454293e5cb5a7e334df3264879ea5f",
+      "bytes": 277750
+    },
+    {
+      "path": "host-run/20261114T113027Z/patched/gpu_gl_renderer.c.obj.d",
+      "sha256": "ec83899f8b11b1034ed2cdf8b125ceee1cf48c1767fd096265eb48b4681ba2fc",
+      "bytes": 41777
+    },
+    {
+      "path": "host-run/20261114T113027Z/patched/pre.i",
+      "sha256": "02b1a9d8a74ee94918642ec4167a9ea104199d0b86bcda67533d05e1f87a0f5d",
+      "bytes": 3736887
+    },
+    {
+      "path": "host-run/20261114T113027Z/proto.dll",
+      "sha256": "626e045a5901f469c252dfb6477045e0e05ffc9bd475ffb1f6f1cb1d8d7a104d",
+      "bytes": 80896
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/11CFE2E3-0E09E912.hdcm",
+      "sha256": "37f041fc3709e71cc44c6e92ad5b86c1691f4b7842c7392522f65080a751ab42",
+      "bytes": 698480
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/31214B41-73AF4FAA.hdcm",
+      "sha256": "2f5779010fe1f7775d6faded466036c9c9211be0c2c2d951c7344fe67402ee1b",
+      "bytes": 5570672
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/327E6D9E-5039A9C5.hdcm",
+      "sha256": "9f0e1b27ca9f2fe5c9b0d7550b232e076e935d9fe2eeba003ba25d6331981953",
+      "bytes": 698480
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/67DC56D7-96998A63.hdcm",
+      "sha256": "d75fdc19305ddd6dad3ada70dd2e8fb4831e6f0f4cce5ba0707cf3940a6dea0f",
+      "bytes": 1047664
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/73BF9877-803A474F.hdcm",
+      "sha256": "123a82c5a673d4ab033d0e245825c6effe6b795eca4cb944a39bbc5e25dfa111",
+      "bytes": 5570672
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/A34295C8-FBCA4A8A.hdcm",
+      "sha256": "128e0e6460f16224e0757f0cb80d7be6339c7272da208ace2ac33d506c705625",
+      "bytes": 1047664
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/E360C964-C1B5906C.hdcm",
+      "sha256": "0dfd6976fed87f4fc4b9334f30610cfb59460bfa3cfa1ea18692ef3f93f7c882",
+      "bytes": 5570672
+    },
+    {
+      "path": "host-run/20261114T113027Z/sidecars/E360C964-DF4F533F.hdcm",
+      "sha256": "f2f360fb7f8ba41c29a18ed48acd5b3181631109fa821e9f8874a467f0571f34",
+      "bytes": 5570672
+    },
+    {
+      "path": "host-run/20261114T113027Z/test_hd_class_mips.exe",
+      "sha256": "03a2b364e2e0abfc665d0469a393aa7deffd5557de9c892614b83b4a396b8911",
+      "bytes": 129536
+    },
+    {
+      "path": "selftest/20261114T113152Z/gl_selftest_classmips.exe",
+      "sha256": "8687e396f90d78847b42329f0f1441dbf13805f1b4ac0ca73fd492c0e074a776",
+      "bytes": 4055552
+    }
+  ],
+  "scope": "Original READY/SHA256SUMS cover212 locally verified files. Binary, raw RGBA, prepared image payload and preprocessed data remain local; this explicit subset is not the complete original frozen directory."
+}

@@ -1,0 +1,31 @@
+1c1,4
+< // T2 mesh/instance transport r2 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+---
+> // T2 mesh/instance transport r3 (claude-einhander), per spec r1 f673027a and root ADR fa8bf06f.
+> // r3 (root msg_5e9828cb) on top of r2 (14e87105, preserved): release_underflows is atomic (both threads may
+> // release); budget_bytes is configuration fixed before the threads start; old_enough never retires at age 0
+> // (the current frame), whatever retire_frames is.
+341c344
+<         return age < 0x80000000u && age >= retire;
+---
+>         return age > 0 && age < 0x80000000u && age >= retire;   // never the current frame, even with retire 0
+431,433c434,437
+< // bytes_in_use are atomics. The plain counters have single writers: dropped_busy and refused_budget are
+< // written only by the producer; release_underflows only by whichever thread calls release (documented as a
+< // fault counter, read only after both threads are joined in tests).
+---
+> // bytes_in_use and release_underflows are atomics (release may run on either thread). budget_bytes is
+> // configuration: set once before either thread starts and never written afterwards. dropped_busy and
+> // refused_budget are plain counters written ONLY by the producer (publish, reserve) and read by others only
+> // after the producer thread is joined.
+437,438c441,443
+<     uint64_t budget_bytes = 4 * sizeof(T2Frame);
+<     uint64_t dropped_busy = 0, refused_budget = 0, release_underflows = 0;
+---
+>     std::atomic<uint64_t> release_underflows{0};
+>     uint64_t budget_bytes = 4 * sizeof(T2Frame);   // immutable once the threads start
+>     uint64_t dropped_busy = 0, refused_budget = 0; // producer-only writers
+453c458
+<         do { if (cur < need) { release_underflows++; return false; } }
+---
+>         do { if (cur < need) { release_underflows.fetch_add(1); return false; } }

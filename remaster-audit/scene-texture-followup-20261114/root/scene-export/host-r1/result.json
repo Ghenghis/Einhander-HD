@@ -1,0 +1,39 @@
+{
+  "at_utc": "2026-11-14T11:55:00.752680+00:00",
+  "passed": false,
+  "commands": [
+    {
+      "label": "compile",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-IC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\scene_capture.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\host-r1\\scene_capture_test.exe"
+      ],
+      "exit": 1,
+      "output": "In file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\scene_capture.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export/scene_capture.h:4:\nC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\include/pgxp.h:85:30: error: '/*' within block comment [-Werror,-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\n1 error generated.\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp:1:\nIn file included from C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export/scene_capture.h:4:\nC:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\include/pgxp.h:85:30: error: '/*' within block comment [-Werror,-Wcomment]\n   85 |  * On DATAFLOW/FALLBACK, *x16/*y16 hold the sub-pixel position (16.16, same\n      |                              ^\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp:91:27: error: unused variable 'jumped' [-Werror,-Wunused-variable]\n   91 |     seed(0x24);arm();auto jumped=capture(103);CHECK(scene_capture_info(7,&i)==0);CHECK(!i.complete&&i.malformed==1);\n      |                           ^~~~~~\nC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\scene-export\\test_scene_capture.cpp:53:26: error: unused parameter 'argv' [-Werror,-Wunused-parameter]\n   53 | int main(int argc,char **argv) {\n      |                          ^\n3 errors generated.\n"
+    }
+  ],
+  "gpu_executed": false,
+  "gl_context": false,
+  "user_gpu_hold_unchanged": true,
+  "cpu_affinity": [
+    15
+  ],
+  "below_normal": true,
+  "sources": {
+    "run_host.py": "51620be9572a5d30b0658704b03f1453b733a9067febe1745b9b742951969417",
+    "scene_capture.cpp": "558e05a71944a8821d5ef30bcf322a2c7aeab859568f534d423d3b79841d0abe",
+    "scene_capture.h": "a35a917f5c24a5140f35c71b25a520ff554eb7b64ad5ccc52a894af53ec08d9a",
+    "test_scene_capture.cpp": "48476d692016eca245ef10721b7f6978dba819102324e493fc544bf91e6b90fc"
+  },
+  "pgxp_header_sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+  "compiler_sha256": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+}

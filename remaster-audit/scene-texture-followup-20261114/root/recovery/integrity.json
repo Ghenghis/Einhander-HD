@@ -1,0 +1,1805 @@
+{
+  "at_utc": "2026-11-14T13:08:29.345501+00:00",
+  "boot_utc": "2026-11-14T12:49:21.345374+00:00",
+  "prior_audit": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\post-restart-audit.json",
+    "sha256": "fd2d1946612de5e11f925fcbe26061d394b784c77350565411d237eb6a9bc3e2"
+  },
+  "source_run": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\result.json",
+    "sha256": "53c7331342dfb9d71643db9a2e07772568824d51988394da64b77a63f3d3ee32",
+    "recorded_verdict": "pass",
+    "checks": {
+      "fixtures": true,
+      "mutants": true,
+      "real": true,
+      "sidecars": true,
+      "rgbonly": true,
+      "glue": true,
+      "patch": true,
+      "compile": true,
+      "glsl": true
+    }
+  },
+  "summary": {
+    "damaged_files": 90,
+    "failed_evidence_unchanged": true,
+    "still_all_zero": 90,
+    "candidates_found": 89,
+    "candidates_with_no_nul": 89,
+    "recorded_run_inputs": 10,
+    "run_inputs_with_matching_copy": 10,
+    "published_pins_verified": 990,
+    "publication_errors": []
+  },
+  "damaged_files": [
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\READY.json",
+      "unchanged": true,
+      "current": {
+        "bytes": 10030,
+        "sha256": "e14183c9442b7279c1c07e6e0dd6d293e2bccd7b65a813f2cf5bcf01e716d67d",
+        "all_zero": true,
+        "nul_bytes": 10030
+      },
+      "recovery_candidate": null
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\build.json",
+      "unchanged": true,
+      "current": {
+        "bytes": 2030,
+        "sha256": "115409738630cfcc57434ae9c88551fa7db1e70ec2b77761829f3d4823e0361d",
+        "all_zero": true,
+        "nul_bytes": 2030
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\build.json",
+        "exists": true,
+        "bytes": 2030,
+        "sha256": "d7f317beb6e409b8a21531f88d4bdd42bf92ea3dfac5b33917070ec20e311ddf",
+        "all_zero": false,
+        "nul_bytes": 0,
+        "json_valid": true
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\build_selftest.py",
+      "unchanged": true,
+      "current": {
+        "bytes": 6558,
+        "sha256": "db4e12fb9fb08084fe18bd21995846cc88a2acbefd81757ad304f703f56bbdeb",
+        "all_zero": true,
+        "nul_bytes": 6558
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\build_selftest.py",
+        "exists": true,
+        "bytes": 6558,
+        "sha256": "10c80c8affb0a41d05797178ef96aca50ae4620a5ca77f55436acc3cb5a8481c",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 3002,
+        "sha256": "30cc99840f8a8b9c35d0d2d074ca222f6ac0bef8e0a79df4940cc3e14f70719c",
+        "all_zero": true,
+        "nul_bytes": 3002
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\compile.log",
+        "exists": true,
+        "bytes": 3002,
+        "sha256": "add5a328605f10323b777b0b46f08f7c6fd96d1ebe1fefb662e13a64f9936152",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\gl_selftest_classmips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 27630,
+        "sha256": "590b39ba0234620351036b85218223bb259c79bd57c0916be4776da5d5c91716",
+        "all_zero": true,
+        "nul_bytes": 27630
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\gl_selftest_classmips.c",
+        "exists": true,
+        "bytes": 27630,
+        "sha256": "d3486562958b4f4d3d3377a6081f71110f1109dfe46884b4227ce6124c149abf",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27572,
+        "sha256": "0be61f77fe3b44da409dedb0163a8ac516c4a55e36cfca02e75444ddfd3ef29c",
+        "all_zero": true,
+        "nul_bytes": 27572
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27572,
+        "sha256": "c228fc0f7977ca5fabe8d281f47f5491c1e40a0c54e2682bf19b91d13891e820",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\HD_FS.frag",
+      "unchanged": true,
+      "current": {
+        "bytes": 10710,
+        "sha256": "6cf74c7d877de7ac3728f4657ad57d49cd6954636a9f8db54a6620f882073074",
+        "all_zero": true,
+        "nul_bytes": 10710
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\HD_FS.frag",
+        "exists": true,
+        "bytes": 10710,
+        "sha256": "20e835991b41598fa52447028270c6159160a50b9520af6ede1684dc67a144aa",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\README-ROOT.md",
+      "unchanged": true,
+      "current": {
+        "bytes": 2237,
+        "sha256": "f00746fca698e10ead017c4cc31bdf091e4a80fa5b2b138cae6138b1554c0e90",
+        "all_zero": true,
+        "nul_bytes": 2237
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\README-ROOT.md",
+        "exists": true,
+        "bytes": 2237,
+        "sha256": "a60ff9f8ad926f8a59c862eba17e8b913a6595577d69d5387f797038a46190bf",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\selftest\\20261114T124348Z\\TEX_VS.vert",
+      "unchanged": true,
+      "current": {
+        "bytes": 2349,
+        "sha256": "9bff4e0fc43a214b9efe2fddbcd29b1d1d61d2d278f89d34f9cd8b9c0f11516a",
+        "all_zero": true,
+        "nul_bytes": 2349
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\selftest\\20261114T124348Z\\TEX_VS.vert",
+        "exists": true,
+        "bytes": 2349,
+        "sha256": "b2649aee06a3fe7a9008c2f39c38e0f653053ead7b6ee53e45f6fd398bb6ea04",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\result.json",
+      "unchanged": true,
+      "current": {
+        "bytes": 211035,
+        "sha256": "7d5f6dceed94e24316985b773751942a04478b0f603192d1ca9be75f045208e5",
+        "all_zero": true,
+        "nul_bytes": 211035
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\result.json",
+        "exists": true,
+        "bytes": 211035,
+        "sha256": "53c7331342dfb9d71643db9a2e07772568824d51988394da64b77a63f3d3ee32",
+        "all_zero": false,
+        "nul_bytes": 0,
+        "json_valid": true
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-00-off-key.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 21,
+        "sha256": "c90232586b801f9558a76f2f963eccd831d9fe6775e4c8f1446b2331aa2132f2",
+        "all_zero": true,
+        "nul_bytes": 21
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-00-off-key.log",
+        "exists": true,
+        "bytes": 21,
+        "sha256": "324c8cf128a9b16db3bdaf2c5e9940e6d8d9338d5a476874b7986f39348c1c5a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-01-badenv-key.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 21,
+        "sha256": "c90232586b801f9558a76f2f963eccd831d9fe6775e4c8f1446b2331aa2132f2",
+        "all_zero": true,
+        "nul_bytes": 21
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-01-badenv-key.log",
+        "exists": true,
+        "bytes": 21,
+        "sha256": "324c8cf128a9b16db3bdaf2c5e9940e6d8d9338d5a476874b7986f39348c1c5a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-02-on-key.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 319,
+        "sha256": "5ae57b4b565d5727d851bc4deabc291fb9b7e4d06967324d9a7897da6a8c40b8",
+        "all_zero": true,
+        "nul_bytes": 319
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-02-on-key.log",
+        "exists": true,
+        "bytes": 319,
+        "sha256": "a969e4fa2e14a783390038c2a0c08e203260336bcc3eecdc7e1763bec2367a10",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-03-levels-key+rgbdir-env.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 319,
+        "sha256": "5ae57b4b565d5727d851bc4deabc291fb9b7e4d06967324d9a7897da6a8c40b8",
+        "all_zero": true,
+        "nul_bytes": 319
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-03-levels-key+rgbdir-env.log",
+        "exists": true,
+        "bytes": 319,
+        "sha256": "c15d72484e63a1939ba227b90ec09155539193e2ddb4fbf3dd086148f28e8a1b",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-04-rgb-key.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 298,
+        "sha256": "314f47cf9b9e4e05c5e965e82dd2751a934c094b481a00291e9e11f21d0ec4ee",
+        "all_zero": true,
+        "nul_bytes": 298
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-04-rgb-key.log",
+        "exists": true,
+        "bytes": 298,
+        "sha256": "2f3cd877c18cf7c5cf45b60a0eec6ab381af917e9d3d0d0ba83ee67e73813074",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-05-rgb-opaque.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 297,
+        "sha256": "d99258f5d81067df4e95825381104fe6c90d04d01bdd2915954dd06f75d07c10",
+        "all_zero": true,
+        "nul_bytes": 297
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-05-rgb-opaque.log",
+        "exists": true,
+        "bytes": 297,
+        "sha256": "1d8b0c35651a702e69a6f37e4a1e0fa6ee93e4469b86a55b531ab12dd90f1e64",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-06-badenv-rgb-true.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 21,
+        "sha256": "c90232586b801f9558a76f2f963eccd831d9fe6775e4c8f1446b2331aa2132f2",
+        "all_zero": true,
+        "nul_bytes": 21
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-06-badenv-rgb-true.log",
+        "exists": true,
+        "bytes": 21,
+        "sha256": "324c8cf128a9b16db3bdaf2c5e9940e6d8d9338d5a476874b7986f39348c1c5a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-07-badenv-rgb-emptydir.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 21,
+        "sha256": "c90232586b801f9558a76f2f963eccd831d9fe6775e4c8f1446b2331aa2132f2",
+        "all_zero": true,
+        "nul_bytes": 21
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-07-badenv-rgb-emptydir.log",
+        "exists": true,
+        "bytes": 21,
+        "sha256": "324c8cf128a9b16db3bdaf2c5e9940e6d8d9338d5a476874b7986f39348c1c5a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-08-badenv-levels-rgbdir-only.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 21,
+        "sha256": "c90232586b801f9558a76f2f963eccd831d9fe6775e4c8f1446b2331aa2132f2",
+        "all_zero": true,
+        "nul_bytes": 21
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-08-badenv-levels-rgbdir-only.log",
+        "exists": true,
+        "bytes": 21,
+        "sha256": "324c8cf128a9b16db3bdaf2c5e9940e6d8d9338d5a476874b7986f39348c1c5a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-09-rgbdir-census-list.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 320,
+        "sha256": "7b6436b0c98f62380866d9432c2af0ee08ce16a171bda6951aecd95ee1307d61",
+        "all_zero": true,
+        "nul_bytes": 320
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-09-rgbdir-census-list.log",
+        "exists": true,
+        "bytes": 320,
+        "sha256": "aee85fb31690345a83739a72b9c6e393795063c56d6f8b4420161f3498c71b79",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-10-rgbfalse-false-opaque.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 313,
+        "sha256": "8dea6b6aa16702f424f2679d756a6beb769c64ba4b1c74da279e32cfceaeb396",
+        "all_zero": true,
+        "nul_bytes": 313
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-10-rgbfalse-false-opaque.log",
+        "exists": true,
+        "bytes": 313,
+        "sha256": "b5eba3814307910f64168e67167292f9816dd4086f8b2b28ff2f1fe045a93a80",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-11-rgbcaps-read-caps.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 314,
+        "sha256": "5ac19cf6919b95ba1f59248a47bd88b2c4c855db62ccf5a26326a6a2f02eeefe",
+        "all_zero": true,
+        "nul_bytes": 314
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-11-rgbcaps-read-caps.log",
+        "exists": true,
+        "bytes": 314,
+        "sha256": "343566d4f7406b6af4f5ef5ee2610dd73c7de57a220e866511584585a80d94e5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-12-both-class+rgb.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 338,
+        "sha256": "4bafbcbc4cbbda94d0a315a09176de0ce6872cf1d85113539a7b04ff2360efa1",
+        "all_zero": true,
+        "nul_bytes": 338
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-12-both-class+rgb.log",
+        "exists": true,
+        "bytes": 338,
+        "sha256": "76d93e4fb615106a36c7bd66880352a4bf6e3f25fe5206b6242948460cb1adfa",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\glue\\run-13-rgbopaque-opaque-bypass.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 313,
+        "sha256": "8dea6b6aa16702f424f2679d756a6beb769c64ba4b1c74da279e32cfceaeb396",
+        "all_zero": true,
+        "nul_bytes": 313
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\glue\\run-13-rgbopaque-opaque-bypass.log",
+        "exists": true,
+        "bytes": 313,
+        "sha256": "80411feb234d1f1e98ed0ed6de7b99cd07fd23affe9a253c873028dbc30e9653",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 152,
+        "sha256": "85ada57e1f601e962d705f389285adb4e74f450bc00672240dfef7399d82457f",
+        "all_zero": true,
+        "nul_bytes": 152
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars\\index.txt",
+        "exists": true,
+        "bytes": 152,
+        "sha256": "3ea5ed0f25ba22789be0eb9357c625d4f979e29c5f8f3022461f579d473354ad",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars\\MANIFEST.json",
+      "unchanged": true,
+      "current": {
+        "bytes": 5359,
+        "sha256": "ddf0b9bc6b8b7dc19cbaee137dc76aca568b45f727cc5a0332af0301441c4fa3",
+        "all_zero": true,
+        "nul_bytes": 5359
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars\\MANIFEST.json",
+        "exists": true,
+        "bytes": 5359,
+        "sha256": "d12e45a91032eb28be9c0780689a3f94d738df41fb78fa60561f54511784c110",
+        "all_zero": false,
+        "nul_bytes": 0,
+        "json_valid": true
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-opaque-control\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 19,
+        "sha256": "d6fd62f5ce537d90ea3ea45841b17f34d727bcbc4128748cba14fb87c0ffd9d1",
+        "all_zero": true,
+        "nul_bytes": 19
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-opaque-control\\index.txt",
+        "exists": true,
+        "bytes": 19,
+        "sha256": "8652918cacbaa40cfe787d50c4cd5141d65f523c5faa1669719613629033a901",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 2584,
+        "sha256": "afd5ebbd6e82f40c7cde3f20dd04836c9d340454eae61d68a2c38673b94a37d8",
+        "all_zero": true,
+        "nul_bytes": 2584
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb\\index.txt",
+        "exists": true,
+        "bytes": 2584,
+        "sha256": "e2975baa2f54dce28b1dd5d819c3495bf0b18a686599f58936f706ecdd603ab7",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb\\MANIFEST.json",
+      "unchanged": true,
+      "current": {
+        "bytes": 147620,
+        "sha256": "b04eb9c37851cd8465ec33235ddb35a84167c931e2ebadb41b7da0af5a4ce6ae",
+        "all_zero": true,
+        "nul_bytes": 147620
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb\\MANIFEST.json",
+        "exists": true,
+        "bytes": 147620,
+        "sha256": "02c6de1134bf5a8a540f86bb95f8bfb8aa76f38cd0e62364486165faa2d6b7e0",
+        "all_zero": false,
+        "nul_bytes": 0,
+        "json_valid": true
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb-both\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 38,
+        "sha256": "762b023699a0e48aa95763f0cf7c0467f1d6e9880308c78ebbc1c423de7072d3",
+        "all_zero": true,
+        "nul_bytes": 38
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb-both\\index.txt",
+        "exists": true,
+        "bytes": 38,
+        "sha256": "7fc370c5e19c26894e7520955631bc48a3af3f7059ba259f64eaf25c68f19794",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb-caps\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 5697,
+        "sha256": "92feb6a6ffc0f5c48d29adc91c67c061ed604286c4f4b1323eb870a3fcda5b00",
+        "all_zero": true,
+        "nul_bytes": 5697
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb-caps\\index.txt",
+        "exists": true,
+        "bytes": 5697,
+        "sha256": "6ed984e787b8990e7831b5b2b2d235625108489684b44ff59e9b797397045aa5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb-false\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 19,
+        "sha256": "d6fd62f5ce537d90ea3ea45841b17f34d727bcbc4128748cba14fb87c0ffd9d1",
+        "all_zero": true,
+        "nul_bytes": 19
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb-false\\index.txt",
+        "exists": true,
+        "bytes": 19,
+        "sha256": "928b899f46124a801eaf68075b86375602ff04b277eecc089cc513b83468e22c",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\sidecars-rgb-opaque\\index.txt",
+      "unchanged": true,
+      "current": {
+        "bytes": 19,
+        "sha256": "d6fd62f5ce537d90ea3ea45841b17f34d727bcbc4128748cba14fb87c0ffd9d1",
+        "all_zero": true,
+        "nul_bytes": 19
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\sidecars-rgb-opaque\\index.txt",
+        "exists": true,
+        "bytes": 19,
+        "sha256": "8652918cacbaa40cfe787d50c4cd5141d65f523c5faa1669719613629033a901",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m10\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 646,
+        "sha256": "4cebbf3fef3f240729fad5b11bb24397db5689875a81dfd3507a4238f79664ed",
+        "all_zero": true,
+        "nul_bytes": 646
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m10\\run.log",
+        "exists": true,
+        "bytes": 646,
+        "sha256": "7293e048f042882165a32f377eb00a6d3c2f9f1f10674ba850970235ef37d041",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m11\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 555,
+        "sha256": "f4b6949da1382fe465cf0c37332dcd8289edd0324d595f715cf258d63d363c3c",
+        "all_zero": true,
+        "nul_bytes": 555
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m11\\compile.log",
+        "exists": true,
+        "bytes": 555,
+        "sha256": "7bb379983d9ef9d80552b9f2ef9ace304b81aeb40b0857f7590772bc70c821ba",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m11\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 590,
+        "sha256": "c8d5fbf6dd19a98c80b8e3c03adebecc25ed1c88f479912a8b5529fe1c528c74",
+        "all_zero": true,
+        "nul_bytes": 590
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m11\\run.log",
+        "exists": true,
+        "bytes": 590,
+        "sha256": "c1a2ed1c4d36e0104a7ba2a1142b381cb7b0fcadc3d0323abcdd6bdc88bcc754",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m12\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 381,
+        "sha256": "a3c240211e3b1e5ca41d1fad946fcde3fcd20035d6f78a0cef748b4c3355c67d",
+        "all_zero": true,
+        "nul_bytes": 381
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m12\\run.log",
+        "exists": true,
+        "bytes": 381,
+        "sha256": "4e410ec91b97d4fcda97bf91c7608de9b678d8653bc5324ed100b1f9904ee814",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m14\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 550,
+        "sha256": "25778f162c4243167f8eaa876f1b0619e67afc158de7805600471a563ec5e8b7",
+        "all_zero": true,
+        "nul_bytes": 550
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m14\\run.log",
+        "exists": true,
+        "bytes": 550,
+        "sha256": "86bfed781aae30606e27da6d2130b1cdb206008b7ef86eac4e0da5165a361440",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m15\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 550,
+        "sha256": "25778f162c4243167f8eaa876f1b0619e67afc158de7805600471a563ec5e8b7",
+        "all_zero": true,
+        "nul_bytes": 550
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m15\\run.log",
+        "exists": true,
+        "bytes": 550,
+        "sha256": "74d7e33bd4f78daac3ad45d3edc9ef9fcb6b7c36bd84f4c241c1c53b1fb7b694",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m16\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 554,
+        "sha256": "274869629a8ad0a421d5c9032472a7d98db3aa6c01fadc3d6e83acfb67a8fa5b",
+        "all_zero": true,
+        "nul_bytes": 554
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m16\\run.log",
+        "exists": true,
+        "bytes": 554,
+        "sha256": "781c0453bd572d909b5aaf6d01c78520bafe945a7e4eebff8dfeb6dc7cd24cac",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m17\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 468,
+        "sha256": "fad0291d5a68a5bcfa50634082d9313e1636346fe46371801de06576f8d1f4a6",
+        "all_zero": true,
+        "nul_bytes": 468
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m17\\compile.log",
+        "exists": true,
+        "bytes": 468,
+        "sha256": "d4b49cd2046abc633e26bbfdf2f32493af4534de19783b85a892b8fe5ed35a52",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m17\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 584,
+        "sha256": "62ec1707572ac5078d31a687a5d23de0c6d2a58d3462efb7039957548a7986cc",
+        "all_zero": true,
+        "nul_bytes": 584
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m17\\run.log",
+        "exists": true,
+        "bytes": 584,
+        "sha256": "1c017e85455e09dfad6555193c7b740ff39dbd7bd7f1ce73dddd4d0117a5b654",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m18\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 438,
+        "sha256": "22581f243bd5103e1b34710841c7f6ede24d424daedc1423565fc3d800409305",
+        "all_zero": true,
+        "nul_bytes": 438
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m18\\compile.log",
+        "exists": true,
+        "bytes": 438,
+        "sha256": "6e16eba2b2ff61ff8332c4e376acdac365bff72ad8429dd0c88e00b11a06ab58",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m18\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 584,
+        "sha256": "62ec1707572ac5078d31a687a5d23de0c6d2a58d3462efb7039957548a7986cc",
+        "all_zero": true,
+        "nul_bytes": 584
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m18\\run.log",
+        "exists": true,
+        "bytes": 584,
+        "sha256": "ee196f73f8cafa38c8183b08410b73ac0658a128c8e55e432bef9c15c0129d60",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m19\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 455,
+        "sha256": "a0567813dfb85d8da78f389e9916a919db3afe3d273bafb8c138e08d01a69bbb",
+        "all_zero": true,
+        "nul_bytes": 455
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m19\\compile.log",
+        "exists": true,
+        "bytes": 455,
+        "sha256": "17cb897acdb52d3ae4bf392f0abaf6db4deb8094763e53012a933b67c47fb449",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m19\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 578,
+        "sha256": "b9712796742e800d12872898f7b2b5616df2c3703134b50f3d8be069a741333e",
+        "all_zero": true,
+        "nul_bytes": 578
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m19\\run.log",
+        "exists": true,
+        "bytes": 578,
+        "sha256": "b6e64fd4e322921fbf69ce6e64fcfccffbeddce7bc4c597f3dab5561cb401b60",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m20\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m20\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m21\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 546,
+        "sha256": "2d7ac730fec7c4314e62588db0f6afdc7dd13f94598ef374aa4dddd992b40f96",
+        "all_zero": true,
+        "nul_bytes": 546
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m21\\compile.log",
+        "exists": true,
+        "bytes": 546,
+        "sha256": "8197d0164183dc19ffbe93d90e8305926d8309a6d1a80b4110db5f437d074fb5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m21\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27973,
+        "sha256": "78f1d65ab3bbb0ed269d42871c57471345ed31ec87c268c141311e231c52fc7c",
+        "all_zero": true,
+        "nul_bytes": 27973
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m21\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27973,
+        "sha256": "cf0a14583e4858ffa6f9ff043a3f4551418c050faeb41cfd673b86c3cb331a02",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m21\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 625,
+        "sha256": "bb061b1f8bdf29ab384439e80e2198b897bbbd7f505ec572b7889643a1cea07d",
+        "all_zero": true,
+        "nul_bytes": 625
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m21\\run.log",
+        "exists": true,
+        "bytes": 625,
+        "sha256": "ab88138e6c68a330d716f0480e8602acf0820b6de4af68b1856b31ddea78ee6f",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m21\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m21\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m22\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 28044,
+        "sha256": "11b63c194d646eea3e96facc3754df387afebf4e9a1ee2ca788dc2a44b915572",
+        "all_zero": true,
+        "nul_bytes": 28044
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m22\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 28044,
+        "sha256": "8008855a209f51260db944faf4be0dffee3d0b0c4380b7b79fefdd3ab6a2eab4",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m22\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 1768,
+        "sha256": "7314b978571ffc723887d81a40c88dbd2de4b221b4a0149d14f284b074eec9f9",
+        "all_zero": true,
+        "nul_bytes": 1768
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m22\\run.log",
+        "exists": true,
+        "bytes": 1768,
+        "sha256": "47c47728045ed69b0f3a5ba61aa0c2c4fa46bf909ca6f72012edd6697ce802e3",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m22\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m22\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m23\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 28060,
+        "sha256": "cf50e3de8b8a4f33ae9d1c15e773077e2544eea390b79dffa7bbfd76160df0cc",
+        "all_zero": true,
+        "nul_bytes": 28060
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m23\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 28060,
+        "sha256": "a93e83454c6e4259b736009d34296a6628de07fc352c232ebea83bd43beea2bc",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m23\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 942,
+        "sha256": "bee1a8fdab37696dabb8121c29f219e4f9bfbb9bdf1df07b0390ba4b0a9c54a0",
+        "all_zero": true,
+        "nul_bytes": 942
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m23\\run.log",
+        "exists": true,
+        "bytes": 942,
+        "sha256": "ebbf461a61e0333a3ff1d9ce8887fc72af9911bee1a95b2eb4f65e8d207071be",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m23\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m23\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m24\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 28026,
+        "sha256": "6efe9260b03905480ba8999e4a125ac408c0b2af9a84bee118f87a2d8ad69dd0",
+        "all_zero": true,
+        "nul_bytes": 28026
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m24\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 28026,
+        "sha256": "4238a143a0c201bddf9f98b018e82614efc802f3aeb41652f483af6e125c21d1",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m24\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 1036,
+        "sha256": "693195cf289838146418e1bd05fd1a482c36ff75a77874609d615247285d5b99",
+        "all_zero": true,
+        "nul_bytes": 1036
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m24\\run.log",
+        "exists": true,
+        "bytes": 1036,
+        "sha256": "0b01c8f801bba63b03e4a66604d2ab351b527c23e70eb016146a1d2f313e4322",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m24\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m24\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m25\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27959,
+        "sha256": "43afbf94fca9e8010d81ff00e3b658b187a6e9f102ee12141aabbadf22d80d4d",
+        "all_zero": true,
+        "nul_bytes": 27959
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m25\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27959,
+        "sha256": "ff8277b36e26c5e7adf1fccfa24ba44e3fd079cba4ebb724e8df545ee959fd15",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m25\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 1195,
+        "sha256": "35128985fd931d5a6a2d4d684960deb4a1f034e014dbe4a154fa89acda5a4ee4",
+        "all_zero": true,
+        "nul_bytes": 1195
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m25\\run.log",
+        "exists": true,
+        "bytes": 1195,
+        "sha256": "35b6d37f23b262a8713c66d8fb7b4e1450bf18c9882e0541525ef25cd6736172",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m25\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m25\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m26\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27987,
+        "sha256": "1b2b427f8136f185a68542c82116e8cde6cb86f6e1466c7687329836f782e2f7",
+        "all_zero": true,
+        "nul_bytes": 27987
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m26\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27987,
+        "sha256": "151796cc5a7216ebb9038e2d130500ed2794ec1d28d4f3edc9ad8326ea2a0fcd",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m26\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 756,
+        "sha256": "dfae75e86c3e349de212f970c922f6c3bf1cf09787ffab21ebae82d2a5df2b2a",
+        "all_zero": true,
+        "nul_bytes": 756
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m26\\run.log",
+        "exists": true,
+        "bytes": 756,
+        "sha256": "dc7c815b33ce90e5ba00e4080805ad9b236b0232866df2ba74a780061bea5df1",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m26\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m26\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m27\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27948,
+        "sha256": "d854f23c8e1cf60ec98b5a202143b4b46089428e730ebe42296d54bef9b5c207",
+        "all_zero": true,
+        "nul_bytes": 27948
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m27\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27948,
+        "sha256": "cb617e90ea961bb9cec01f63c63ca844aa5308f69df0c9227a64c5bc6a2c0084",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m27\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 550,
+        "sha256": "25778f162c4243167f8eaa876f1b0619e67afc158de7805600471a563ec5e8b7",
+        "all_zero": true,
+        "nul_bytes": 550
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m27\\run.log",
+        "exists": true,
+        "bytes": 550,
+        "sha256": "946d96e2ab6c6de4d34afea53a5428a872c6498bc1a05c3696c9c59d0fe4ae89",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m27\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m27\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m28\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 28059,
+        "sha256": "458b87da0a7cd34ab6cd81063a99c08909b653b71372d500ca3551fd6d8ef593",
+        "all_zero": true,
+        "nul_bytes": 28059
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m28\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 28059,
+        "sha256": "52442c8266390e2dc54111361ed97e40681f9ecd3a5c74262b1599cdfad78094",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m28\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 784,
+        "sha256": "0c37ddc45244523ca3b841e3ea85e147a1d35c6ae1cd767e8c30dabf057516fd",
+        "all_zero": true,
+        "nul_bytes": 784
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m28\\run.log",
+        "exists": true,
+        "bytes": 784,
+        "sha256": "a7f8f81daaf584ad3b62358ea5d228406a46352ccda0153f4c197634883ecfd2",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m28\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m28\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m29\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27975,
+        "sha256": "86140cc0a125ecf9be9cbc47a111003ca44fc791c2b35a926b676f74788e5136",
+        "all_zero": true,
+        "nul_bytes": 27975
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m29\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27975,
+        "sha256": "d60dfc0627d7e7b882025baa0c3ff6c458240d041f32a84c15fef8392bab7035",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m29\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 946,
+        "sha256": "b11b6030254693115731ddeff36358cbd134449d79aca4ef5c8b99ff78a045c8",
+        "all_zero": true,
+        "nul_bytes": 946
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m29\\run.log",
+        "exists": true,
+        "bytes": 946,
+        "sha256": "2612053971fad15166e4ff2aed53676932e12ce8092361cd1f1241eb4119fa1a",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m29\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m29\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m30\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27992,
+        "sha256": "e2db81630f4a8ecb96dcafbb11821ae0a1ffd787eea2a907a5fed2580033f7a7",
+        "all_zero": true,
+        "nul_bytes": 27992
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m30\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27992,
+        "sha256": "f89d7b41b182f1b0c89f1b7299b425aa67ea3df9faa828b42673fcb142bf7550",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m30\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 550,
+        "sha256": "25778f162c4243167f8eaa876f1b0619e67afc158de7805600471a563ec5e8b7",
+        "all_zero": true,
+        "nul_bytes": 550
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m30\\run.log",
+        "exists": true,
+        "bytes": 550,
+        "sha256": "57a4ecea69f6bf5c92bb4f392f92074de9248b98cf2baba04f62fac0d26573ea",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m30\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m30\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m31\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27984,
+        "sha256": "adffb495ff5f24dd5a944029260e8b459e4d92ed64bd27d692193277783b5e03",
+        "all_zero": true,
+        "nul_bytes": 27984
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m31\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27984,
+        "sha256": "41a13da61655ede6b19532885559d7b99b520baa62e7c4f9cb097cda2dda764f",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m31\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 550,
+        "sha256": "25778f162c4243167f8eaa876f1b0619e67afc158de7805600471a563ec5e8b7",
+        "all_zero": true,
+        "nul_bytes": 550
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m31\\run.log",
+        "exists": true,
+        "bytes": 550,
+        "sha256": "6bb46e73280eb78ccedf31d00edac96880a353a0f9f346f6a0b7557cc1f6edff",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m31\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m31\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m32\\compile.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 1055,
+        "sha256": "a87e148394b3078a0d8fdf80fa47b6671aa99dc0a7ec993b452f876ea58e9f6f",
+        "all_zero": true,
+        "nul_bytes": 1055
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m32\\compile.log",
+        "exists": true,
+        "bytes": 1055,
+        "sha256": "dbb2c30b17982e485709992fa278c1eff38753a7485d31f4ca51650c4cd605b9",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m32\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27982,
+        "sha256": "75660298c585c8d06cc51e2771156a953b9fee12beea59926abe0d39b55670da",
+        "all_zero": true,
+        "nul_bytes": 27982
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m32\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27982,
+        "sha256": "7a8b86c7f26290e623288977b5f081489be14604d97c63685fbc372209bc962f",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m32\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 556,
+        "sha256": "4c97fe401a408f816de906763598223e5ac2da928868588d1775c406269d1d32",
+        "all_zero": true,
+        "nul_bytes": 556
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m32\\run.log",
+        "exists": true,
+        "bytes": 556,
+        "sha256": "b78d8cd4886a33111118ac08b16889fab3cd3fdd1ffa6c261b0345c36d6e0d96",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m32\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m32\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m33\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 28021,
+        "sha256": "2d33e900ed703923f814bc8f51b39833001dabd0f7d9b02973af0ffa9ac5f884",
+        "all_zero": true,
+        "nul_bytes": 28021
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m33\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 28021,
+        "sha256": "53f1486bfc2d8d0a4e8ace75105890adb051ace8fabaea105ee5e006cfaf035f",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m33\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 795,
+        "sha256": "73ff1177cec36fb8435915d356cce182224cdfe2efbf7635069094bf44339403",
+        "all_zero": true,
+        "nul_bytes": 795
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m33\\run.log",
+        "exists": true,
+        "bytes": 795,
+        "sha256": "3f2b9066c6f0b7b7731eefe6dabf7d5ed0e986c0c7981ddeff434a33c9c15d76",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m33\\test_hd_class_mips.c",
+      "unchanged": true,
+      "current": {
+        "bytes": 29138,
+        "sha256": "8bddd861c7f663a2b3a313f3b8127bf84d8b91d545e6037fc6bfd52114c0932e",
+        "all_zero": true,
+        "nul_bytes": 29138
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m33\\test_hd_class_mips.c",
+        "exists": true,
+        "bytes": 29138,
+        "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m34\\hd_class_mips.inc",
+      "unchanged": true,
+      "current": {
+        "bytes": 27969,
+        "sha256": "7c811a49648419e889e8a63bf64fbefa6e439f696b1ded0997869e8c0d380b86",
+        "all_zero": true,
+        "nul_bytes": 27969
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m34\\hd_class_mips.inc",
+        "exists": true,
+        "bytes": 27969,
+        "sha256": "543d93b358eddf52e3b738cc2d5cf47941e91dffb71a29962e8ba092cd9ecbf8",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    },
+    {
+      "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\frozen\\renderer-v61-classmip-v5\\host-run\\20261114T124104Z\\mutants\\m34\\run.log",
+      "unchanged": true,
+      "current": {
+        "bytes": 830,
+        "sha256": "80e0f31f19a8ed96f01f9fc611a72829badeeee21b6876019e24c22e68b207ba",
+        "all_zero": true,
+        "nul_bytes": 830
+      },
+      "recovery_candidate": {
+        "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\runs\\20261114T124104Z\\mutants\\m34\\run.log",
+        "exists": true,
+        "bytes": 830,
+        "sha256": "3f8ea87fb01d10afee3bb6edfc27671b6cc8b28724782f9ce0f70cb55887a0ea",
+        "all_zero": false,
+        "nul_bytes": 0
+      }
+    }
+  ],
+  "recorded_inputs": [
+    {
+      "name": "class_mip.c",
+      "expected": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\class_mip.c",
+          "bytes": 20061,
+          "sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "class_mip.h",
+      "expected": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\proto-v2b\\class_mip.h",
+          "bytes": 5612,
+          "sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "DESIGN-V4.md",
+      "expected": "a99791cf80404546d07f8be15e710814263e261792b119d9d3082c53b7705568",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\DESIGN-V4.md",
+          "bytes": 3333,
+          "sha256": "a99791cf80404546d07f8be15e710814263e261792b119d9d3082c53b7705568",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "DESIGN-V5.md",
+      "expected": "1d3b6379f4f71ae2ef353e3929590ffc669823af0561d1b390ac1f810616a265",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\DESIGN-V5.md",
+          "bytes": 12188,
+          "sha256": "1d3b6379f4f71ae2ef353e3929590ffc669823af0561d1b390ac1f810616a265",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "glue_harness.c",
+      "expected": "5d0896f5dae22821a222452818ee3d38c821076161464be435bf86cf982fcc68",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\glue_harness.c",
+          "bytes": 29945,
+          "sha256": "5d0896f5dae22821a222452818ee3d38c821076161464be435bf86cf982fcc68",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "hd_class_mips.inc",
+      "expected": "c228fc0f7977ca5fabe8d281f47f5491c1e40a0c54e2682bf19b91d13891e820",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\hd_class_mips.inc",
+          "bytes": 27572,
+          "sha256": "c228fc0f7977ca5fabe8d281f47f5491c1e40a0c54e2682bf19b91d13891e820",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "hdcm_tool.c",
+      "expected": "37fafd83e87332b64231a455b8d4d40ede50d3a4fcdc7fd0c6cfaaeb3d96d9fc",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\hdcm_tool.c",
+          "bytes": 6047,
+          "sha256": "37fafd83e87332b64231a455b8d4d40ede50d3a4fcdc7fd0c6cfaaeb3d96d9fc",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "make_patch.py",
+      "expected": "9a4b5b83e19b011f8695bb88ad6901b31260689e753e0fceff47fb139b6b09c0",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\make_patch.py",
+          "bytes": 27503,
+          "sha256": "9a4b5b83e19b011f8695bb88ad6901b31260689e753e0fceff47fb139b6b09c0",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "run_host.py",
+      "expected": "70792bc738495501044fb104670e37407885f32931bf62eb1c6c1223c99e69dd",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\run_host.py",
+          "bytes": 64630,
+          "sha256": "70792bc738495501044fb104670e37407885f32931bf62eb1c6c1223c99e69dd",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    },
+    {
+      "name": "test_hd_class_mips.c",
+      "expected": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+      "copies": [
+        {
+          "path": "C:\\github\\Einhander\\remaster-audit\\claude-backlog\\class-mip\\renderer-v61-classmip\\test_hd_class_mips.c",
+          "bytes": 29138,
+          "sha256": "17b5d0f05f95a538b6ca53d458ba527b4a3fa7af1a1354aaf6a42ddb8b69f8a5",
+          "all_zero": false,
+          "nul_bytes": 0
+        }
+      ],
+      "matching_copies": 1
+    }
+  ],
+  "scope": "Known 90 damaged files, candidate counterparts, recorded v5 run inputs and three published manifests. Not a whole-drive audit.",
+  "limitations": [
+    "Candidate readability alone does not establish original identity.",
+    "Original v5 READY/manifest remain untrusted. A new replay and freeze are required.",
+    "This audit executes no gameplay/GPU test and accepts no artwork or audio."
+  ],
+  "files_repaired": false,
+  "gpu_executed": false,
+  "cpu_tests_replayed": false
+}

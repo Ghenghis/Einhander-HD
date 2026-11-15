@@ -1,0 +1,65 @@
+{
+  "at_utc": "2026-11-14T22:03:06.959156+00:00",
+  "metadata_readback_pass": true,
+  "original_fixture_pass": false,
+  "compile_exit": 1,
+  "checks_executed": 0,
+  "expected_unrun_checks": 36,
+  "envelope_sha256": "95e94d693846a114d6816a4295f8253a5d3a8a797225843245b8994281b13247",
+  "result_sha256": "9c62483b670f48619ec22d1c0044f3fd2f9e8bc3e07032165e501f0f03e2ca3d",
+  "compile_log_sha256": "48aca90551f342b2781175a33b6da32ca422fbfd58505cf7009d38aa86987165",
+  "source_pins": [
+    {
+      "path": "remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v68-recorder-reserve-r1\\include\\pgxp.h",
+      "sha256": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47"
+    },
+    {
+      "path": "remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v61-view-metrics-r2\\src\\gte.cpp",
+      "sha256": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849"
+    },
+    {
+      "path": "windows-x64\\psxrecomp\\runtime\\src\\gte.cpp",
+      "sha256": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0"
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\remix_t1_reproject.r1.h",
+      "sha256": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795"
+    },
+    {
+      "path": ".claude\\worktrees\\einhander-stages-6-7-0849db\\remaster-audit\\claude-einhander-primary\\remix-transport\\t1\\test_t1_reproject.r1.cpp",
+      "sha256": "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94"
+    }
+  ],
+  "executed_copy_pins": {
+    "gte_divide_extracted.inc": "cfa7686a59c223f358d2507674af7289dc462213e0b676165b87b60974a896ef",
+    "pgxp.h": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+    "remix_t1_reproject.r1.h": "4a0a536c3e2313a6e25be47fc877607c2d5006ac398828eb558218c0fe68d795",
+    "executed-test.cpp": "484cf6baa47fb6ab5adbae8e991a560ba84625296c1301516bb07a19c1209d94"
+  },
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 9512,
+      "creation_unix": 1794693516.647418,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 29792,
+      "creation_unix": 1794693517.7951999,
+      "identity_absent": true
+    },
+    {
+      "label": "compiler",
+      "pid": 38468,
+      "creation_unix": 1794693518.093288,
+      "identity_absent": true
+    }
+  ],
+  "elapsed_s": 0.536,
+  "peak_job_memory_bytes": 94826496,
+  "fixture_replayed": false,
+  "extracted_division_repeated": false,
+  "game_run": false,
+  "gpu_run": false
+}

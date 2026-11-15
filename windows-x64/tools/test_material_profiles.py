@@ -254,6 +254,7 @@ class MaterialProfileTests(unittest.TestCase):
         self.assertEqual(prepared["arguments"][0], str(executable))
         self.assertIn("--launcher", prepared["arguments"])
         self.assertEqual(prepared["environment_overrides"]["PSXRECOMP_HD_TEXTURE_ROOT"], str(self.pack))
+        self.assertEqual(prepared["environment_overrides"]["PSX_DISPLAY_RING"], "0")
         executable.write_bytes(b"changed runtime")
         with self.assertRaisesRegex(ValueError, "Executable changed"):
             prepare_launch(self.root, result["config_path"])

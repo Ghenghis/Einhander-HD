@@ -1,0 +1,224 @@
+{
+ "compiler": "clang version 22.1.8 (https://github.com/llvm/llvm-project.git ca7933e47d3a3451d81e72ac174dcb5aa28b59d1)",
+ "below_normal": true,
+ "runs": [
+  {
+   "name": "view_test_modified",
+   "compile_rc": 0,
+   "compile_errors": [],
+   "sources": {
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp": "8bed4809510c81af222f6fbc82adb8e6fc5f6d54ed4945a03a9da8a7e8734af5",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\src\\gte.cpp": "ecec9636f5c4065442d83e770f14bfc83be8f5b3fc0e55a651384875a8b86b12",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\src\\pgxp.cpp": "99e46152fd12c35e39ed17696d80b2224859c19d401f59a7f421fc69b8fba7a3"
+   },
+   "defines": [],
+   "exe_sha256": "c13120e5d3bc77ecebbd7e3258fd8224308a9af8aa1520cfd35c2a485ff25c74",
+   "run_rc": 0,
+   "stdout_tail": [
+    "view storage: record 80 B x 65536 + RAM tags 2 MiB = 7340032 B allocated",
+    "checks 137 failures 0 | produced 327721 commit_ok 327707 commit_mismatch 4 hits 23 evicted 1 no_view 2 value_mismatch 1 incoherent 0"
+   ],
+   "stderr_fail_lines": []
+  },
+  {
+   "name": "pgxp_test_canonical",
+   "compile_rc": 0,
+   "compile_errors": [],
+   "sources": {
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\test_pgxp.cpp": "9c7295a7c503622d6a4b2f35214781942b245589d246ec031f4236804b4f9074",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\pgxp.cpp": "b3a6dae3c4087c50f0d173de4df5f3db1cdbcced287bbc9a45b9146e2d023b66"
+   },
+   "defines": [],
+   "exe_sha256": "c2c642f3a101277aa8c3446890bc2f6a4d65920ab236d98a41354a8d5d674a65",
+   "run_rc": 0,
+   "stdout_tail": [
+    "test_pgxp: all checks passed"
+   ],
+   "stderr_fail_lines": []
+  },
+  {
+   "name": "gte_register_access_test_canonical",
+   "compile_rc": 0,
+   "compile_errors": [],
+   "sources": {
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\test_gte_register_access.cpp": "ad7fcb896b5e903db3dcbd885221e7d2d5c5710ac516373cc63db7b2b3547ce8",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\gte.cpp": "0563d9a1da49c6c0538c1285f803939c1a9441b5485a16a4d6f7eff6f50656c0",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\pgxp.cpp": "b3a6dae3c4087c50f0d173de4df5f3db1cdbcced287bbc9a45b9146e2d023b66"
+   },
+   "defines": [
+    "PSX_NO_DEBUG_TOOLS=1",
+    "PSX_GTE_REGISTER_TEST=1",
+    "PSX_ENABLE_BLOCK_CYCLES=1"
+   ],
+   "exe_sha256": "247f53325ac7dda5313d5f87462c991c64105140c1c7ee4eafbe4df7a3e034c1",
+   "run_rc": 0,
+   "stdout_tail": [
+    "PASS: canonical GTE register helpers match GTEState transfer oracle"
+   ],
+   "stderr_fail_lines": []
+  },
+  {
+   "name": "pgxp_test_modified",
+   "compile_rc": 0,
+   "compile_errors": [],
+   "sources": {
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\test_pgxp.cpp": "9c7295a7c503622d6a4b2f35214781942b245589d246ec031f4236804b4f9074",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\src\\pgxp.cpp": "99e46152fd12c35e39ed17696d80b2224859c19d401f59a7f421fc69b8fba7a3"
+   },
+   "defines": [],
+   "exe_sha256": "2585505d628bb371948ef2dad0b1079247d94a6f78b857b6ce11c45458ec1330",
+   "run_rc": 0,
+   "stdout_tail": [
+    "test_pgxp: all checks passed"
+   ],
+   "stderr_fail_lines": []
+  },
+  {
+   "name": "gte_register_access_test_modified",
+   "compile_rc": 0,
+   "compile_errors": [],
+   "sources": {
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\test_gte_register_access.cpp": "ad7fcb896b5e903db3dcbd885221e7d2d5c5710ac516373cc63db7b2b3547ce8",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\src\\gte.cpp": "ecec9636f5c4065442d83e770f14bfc83be8f5b3fc0e55a651384875a8b86b12",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\src\\pgxp.cpp": "99e46152fd12c35e39ed17696d80b2224859c19d401f59a7f421fc69b8fba7a3"
+   },
+   "defines": [
+    "PSX_NO_DEBUG_TOOLS=1",
+    "PSX_GTE_REGISTER_TEST=1",
+    "PSX_ENABLE_BLOCK_CYCLES=1"
+   ],
+   "exe_sha256": "068f14d44edb4720bc040513ab3fea7dd8acd0c2316488605a4b137ce5f042c6",
+   "run_rc": 0,
+   "stdout_tail": [
+    "PASS: canonical GTE register helpers match GTEState transfer oracle"
+   ],
+   "stderr_fail_lines": []
+  }
+ ],
+ "mutants": [
+  {
+   "label": "RTPT lane mis-indexed",
+   "file": "gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:180: (v.flags & PGXP_VIEW_RTP_COMMITTED) != 0"
+  },
+  {
+   "label": "payload stores shifted MAC",
+   "file": "gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:176: v.mac[i] == exp_mac(XF, i, vs[lane])"
+  },
+  {
+   "label": "SZ_SAT misses negative depth",
+   "file": "gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:229: (v.flags & PGXP_VIEW_SZ_SAT) && (v.flags & PGXP_VIEW_DIV_OVF)"
+  },
+  {
+   "label": "XY_SAT never set",
+   "file": "gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:219: (v.flags & PGXP_VIEW_IR_SAT) && (v.flags & PGXP_VIEW_XY_SAT) && (v.flags & PGXP_VIEW_XY_CLAMP)"
+  },
+  {
+   "label": "ring liveness ignores overwrite",
+   "file": "gte.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:397: gte_rtp_ring_seq_live(seq) == 0"
+  },
+  {
+   "label": "tag not moved with shadow copies",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:159: pgxp_get_precise_vertex_view(A(1), w2, &v) == PGXP_SRC_DATAFLOW"
+  },
+  {
+   "label": "identity copy drops the view",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:159: pgxp_get_precise_vertex_view(A(1), w2, &v) == PGXP_SRC_DATAFLOW"
+  },
+  {
+   "label": "half write keeps the view",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:338: pgxp_test_view_flag(A(61)) == 0"
+  },
+  {
+   "label": "consumer skips packet-word validation",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:329: pgxp_get_precise_vertex_view(A(60), w ^ 1u, &v) == PGXP_SRC_NATIVE"
+  },
+  {
+   "label": "producer ignores suppression/sandbox",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:438: s1.produced == s0.produced && s1.commit_ok == s0.commit_ok"
+  },
+  {
+   "label": "commit ignores ring seq",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:379: pgxp_view_commit_rtp(778, 0x01, vv, 0xABCD1234u) == 0"
+  },
+  {
+   "label": "allocation failure fails open",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:140: pgxp_view_payload() == 0"
+  },
+  {
+   "label": "view enabled by default",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 3221225477,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:117: pgxp_view_payload() == 0"
+  },
+  {
+   "label": "mode toggle keeps old tags",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:455: pgxp_get_precise_vertex_view(A(91), w2, &v) == PGXP_SRC_NATIVE"
+  },
+  {
+   "label": "tag wrap not restarted",
+   "file": "pgxp.cpp",
+   "caught": true,
+   "compile_rc": 0,
+   "run_rc": 1,
+   "first_fail": "FAIL C:\\github\\Einhander\\remaster-audit\\runtime-review\\remix-provenance\\impl\\tests\\test_pgxp_view.cpp:464: vstats().seq_wraps == wraps0 + 1"
+  }
+ ],
+ "all_runs_pass": true,
+ "mutants_caught": 15,
+ "mutants_total": 15,
+ "verdict": "pass"
+}

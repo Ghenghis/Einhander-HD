@@ -1,0 +1,1 @@
+Root's first replay recipe omitted the prototype class_mip.h/class_mip.c required by the fixture. Compilation exited1 before any test ran. Exact runner and compiler log are preserved. This is a root replay setup failure, not an author fixture result. A corrected run uses a new output directory; no GPU work occurred.

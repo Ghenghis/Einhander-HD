@@ -1,0 +1,6048 @@
+{
+  "date": "2026-11-13",
+  "problem": "Severe mini-boss hesitation and audio starvation around guest frame9300",
+  "finding": "Forensic display-history capture performed two synchronous GPU readbacks every frame by default, even with video/source recording and rewind disabled.",
+  "change": "Normal gameplay defaults to display history OFF; only exact PSX_DISPLAY_RING=1 enables it. Forensic UI preparation opts in; pacing and ordinary material-launch environments explicitly opt out. Disabled history commands return a clear diagnostic.",
+  "status": "Existing normal Play-HD and saved-material configuration pass bounded ring0 boss tests (max21/20ms, zero measured gameplay starvation). Local launch defaults and material runtime binding applied with rollback copies. Larger frozen artwork candidate still FAILS smoothness; boundedGPUretention removes churn but isolated long native-upload stalls remain. Seven-stage remaster acceptance remains open.",
+  "stutter_fully_resolved": false,
+  "full_remaster_complete": false,
+  "production_installed": false,
+  "profile": {
+    "runtime_sha256": "15b2c37bfcfa3763857374e5947b7629655259f7ba2528d750dd0a41d5006761",
+    "scope": "One diagnostic ring-ON ETW CPU profile; approximate guest9250:9600 window carries unmeasured WPR start latency; not pacing acceptance",
+    "owned_process_samples": 7388,
+    "main_thread_samples": 6260,
+    "main_samples_with_stacks": 6260,
+    "timestamp_collisions": 0,
+    "record_frame_inclusive_samples": 1608,
+    "fbo_peek_inclusive_samples": 1607,
+    "fbo_peek_main_fraction": 0.25670926517571885,
+    "fbo_peek_external_samples": 1543,
+    "independent_counts_agree": true,
+    "parser_tests_passed": 25,
+    "parser_sha256": "887fc5ed1a32fb2c200e00372282134272262182ad54393c30d04809a8348677",
+    "summary_sha256": "03954a2fb2bfbf69f111650b820554c6f8185460a631d830344373c81baaafa1",
+    "raw_etl_and_csv_public": false,
+    "limitations": [
+      "COFF symbols have no sizes: each symbol spans to the next code symbol within .text, so padding or unnamed code after a function is credited to it",
+      "inlined statics are credited to their caller",
+      "inclusive counts credit each distinct function once per stacked sample, weighted by Count; collided (same TimeStamp+ThreadID) samples are excluded and missing stacks are counted",
+      "frame-window alignment uses the capture start row and carries the WPR start latency",
+      "kernel-space samples are grouped as [kernel]; system DLLs without supplied files are module-level only"
+    ]
+  },
+  "pair": {
+    "scope": "One ordered same-binary history OFF then ON pair; same three qualified collision entries, no lock-free audio, scale2 and rewindOFF; no video/source collection or measurement screenshots",
+    "runtime_sha256": "15b2c37bfcfa3763857374e5947b7629655259f7ba2528d750dd0a41d5006761",
+    "manual_quiet_ack": "msg_5834c7c4b4aeccd5",
+    "runs": [
+      {
+        "mode": "off",
+        "seconds": 119.95680189999985,
+        "guest_frames": 7198,
+        "fps": 60.004934159552725,
+        "initial_fill": 135.6,
+        "final_fill": 184.9,
+        "ring": {
+          "id": 1,
+          "ok": true,
+          "capacity": 64,
+          "valid": 0,
+          "oldest_frame": 0,
+          "newest_frame": 0
+        },
+        "hitch_fps": 60.009838184328615,
+        "bench": {
+          "window": "9250:9600",
+          "frames": 350,
+          "wall_ms": 5832.377,
+          "guest_work_ms": 3560.524,
+          "pacer_ms": 1890.685,
+          "autocapture_main_ms": 0.064,
+          "provider_poll_ms": 0.083,
+          "dirty_insns": 36224665,
+          "dirty_dispatches": 288370,
+          "overlay_native": 242673,
+          "overlay_interp": 302478,
+          "overlay_loads": 0,
+          "overlay_invalidations": 0,
+          "overlay_unregistered": 0,
+          "overlay_stale": 0,
+          "overlay_revalidations": 0,
+          "capture_triggers": 0,
+          "capture_overlays": 0,
+          "capture_last_dispatch_delta": 0
+        },
+        "proof_sha256": "91de413756598c333116f9df21b6a7d08932e35cb820543356f5e0e5163cbaba",
+        "starved_output_sample_frames": 0,
+        "measured_audio_overflow_drops": 0
+      },
+      {
+        "mode": "on",
+        "seconds": 119.98417420000078,
+        "guest_frames": 7187,
+        "fps": 59.89956632130534,
+        "initial_fill": 128.5,
+        "final_fill": 181.2,
+        "ring": {
+          "id": 1,
+          "ok": true,
+          "capacity": 64,
+          "valid": 64,
+          "oldest_frame": 10186,
+          "newest_frame": 10249
+        },
+        "hitch_fps": 57.746494210336486,
+        "bench": {
+          "window": "9250:9600",
+          "frames": 350,
+          "wall_ms": 6060.974,
+          "guest_work_ms": 5329.463,
+          "pacer_ms": 658.185,
+          "autocapture_main_ms": 0.108,
+          "provider_poll_ms": 0.073,
+          "dirty_insns": 36128084,
+          "dirty_dispatches": 288985,
+          "overlay_native": 244449,
+          "overlay_interp": 303077,
+          "overlay_loads": 0,
+          "overlay_invalidations": 0,
+          "overlay_unregistered": 0,
+          "overlay_stale": 0,
+          "overlay_revalidations": 0,
+          "capture_triggers": 0,
+          "capture_overlays": 0,
+          "capture_last_dispatch_delta": 0
+        },
+        "proof_sha256": "16ff1106df948cc27331f71b0c9a77bba98dad77723bbb1d7018105e84cce277",
+        "starved_output_sample_frames": 9482,
+        "measured_audio_overflow_drops": 0
+      }
+    ],
+    "identical_input_replay": false,
+    "initial_audio_fill_differs": true,
+    "assistance": "Existing invincibility-countdown byte 0x80085718 held at0xA5 under the authorized180second lease; no lives writes, stage jumps or save-state loads",
+    "unassisted_acceptance": false
+  },
+  "actual_default_run": {
+    "runtime_sha256": "32701297ad76c29c05d04314109c4cacce612fc1c347a28a00cd50f8dbc51ae1",
+    "parent_runtime_sha256": "22635802b9b7d6ad7aaf680ca5387e432c0400ce734359fa31e2cf66d665ca94",
+    "linked_objects_replaced": 1,
+    "pinned_link_inputs": 151,
+    "new_collision_cps_or_lockfree_audio_objects": false,
+    "display_ring_environment_override": false,
+    "display_ring_before": {
+      "id": 1,
+      "ok": true,
+      "capacity": 64,
+      "enabled": 0,
+      "valid": 0,
+      "oldest_frame": 0,
+      "newest_frame": 0
+    },
+    "display_ring_after": {
+      "id": 1,
+      "ok": true,
+      "capacity": 64,
+      "enabled": 0,
+      "valid": 0,
+      "oldest_frame": 0,
+      "newest_frame": 0
+    },
+    "seconds": 119.93546640000022,
+    "guest_frames": 7198,
+    "fps": 60.01560852728703,
+    "starved_output_sample_frames": 0,
+    "measured_audio_overflow_drops": 0,
+    "hitch_fps": 59.991919945410785,
+    "bench": {
+      "window": "9250:9600",
+      "frames": 350,
+      "wall_ms": 5834.119,
+      "guest_work_ms": 3510.323,
+      "pacer_ms": 2082.266,
+      "autocapture_main_ms": 0.061,
+      "provider_poll_ms": 0.058,
+      "dirty_insns": 39927418,
+      "dirty_dispatches": 254729,
+      "overlay_native": 165325,
+      "overlay_interp": 272467,
+      "overlay_loads": 0,
+      "overlay_invalidations": 0,
+      "overlay_unregistered": 0,
+      "overlay_stale": 0,
+      "overlay_revalidations": 0,
+      "capture_triggers": 0,
+      "capture_overlays": 0,
+      "capture_last_dispatch_delta": 0
+    },
+    "scale": 2,
+    "rewind_depth": 50,
+    "rewind_interval": 15,
+    "rewind_enabled": true,
+    "rewind_first": {
+      "id": 1,
+      "ok": true,
+      "enabled": true,
+      "media_now": 0,
+      "capture_due": 1,
+      "interval": 15,
+      "fmv_interval": 4,
+      "effective_interval": 15,
+      "depth": 50,
+      "count": 50,
+      "frame": 3062,
+      "last_capture_frame": 2809,
+      "frames": 3062,
+      "media_frames": 38,
+      "due_edges": 95,
+      "due_frames": 1746,
+      "attempts": 382,
+      "skip_no_ring": 0,
+      "skip_unsafe": 288,
+      "skip_pc": 0,
+      "skip_save": 0,
+      "skip_store": 0,
+      "taken": 94,
+      "taken_media": 0,
+      "save_ms_total": 290.967,
+      "save_ms_max": 6.417,
+      "capture_ms_total": 315.389,
+      "capture_ms_max": 6.854,
+      "last_blob_bytes": 3685517,
+      "latency_frames_total": 1413,
+      "latency_frames_max": 951,
+      "scope": "host-only cumulative; attempts are due polls, not requests"
+    },
+    "rewind_final": {
+      "id": 1,
+      "ok": true,
+      "enabled": true,
+      "media_now": 0,
+      "capture_due": 1,
+      "interval": 15,
+      "fmv_interval": 4,
+      "effective_interval": 15,
+      "depth": 50,
+      "count": 50,
+      "frame": 10259,
+      "last_capture_frame": 8961,
+      "frames": 10259,
+      "media_frames": 38,
+      "due_edges": 96,
+      "due_frames": 8929,
+      "attempts": 3860,
+      "skip_no_ring": 0,
+      "skip_unsafe": 3765,
+      "skip_pc": 0,
+      "skip_save": 0,
+      "skip_store": 0,
+      "taken": 95,
+      "taken_media": 0,
+      "save_ms_total": 293.157,
+      "save_ms_max": 6.417,
+      "capture_ms_total": 318.122,
+      "capture_ms_max": 6.854,
+      "last_blob_bytes": 3685517,
+      "latency_frames_total": 7550,
+      "latency_frames_max": 6137,
+      "scope": "host-only cumulative; attempts are due polls, not requests"
+    },
+    "stored_snapshot_delta": 1,
+    "rewind_functional_acceptance": false,
+    "rewind_limit": "Most gameplay capture attempts were skipped as unsafe; enabled settings do not establish complete rewind functionality.",
+    "manual_quiet_ack": "msg_5a2bf66127ff2c00",
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "errors": [],
+    "command_audit": {
+      "timer_write_requests": 587,
+      "successful_timer_writes": 587,
+      "forbidden_mutations": []
+    },
+    "proof_sha256": "81f7427ba6c46c164620c15039e0f1e2daa8cbecb0a1015e1e1734761716c424",
+    "candidate_sha256": "750d3eaed49ab74d18dc971a82912779c443c922253a8ac90be090bd9921255a",
+    "one_shot_screenshot_sha256": "0cd29e0847ee67423def3f25ab00b1c3b91019b5dffdfb87ab7fca22a1f5cabd",
+    "display_ring_after_one_shot": {
+      "id": 1,
+      "ok": true,
+      "capacity": 64,
+      "enabled": 0,
+      "valid": 0,
+      "oldest_frame": 0,
+      "newest_frame": 0
+    },
+    "assistance": "Same disclosed countdown hold and held fire; not unassisted or stage-clear acceptance"
+  },
+  "prior_reports_correction": "Recorder-OFF described no external video recorder; these earlier runs still had the default-on forensic display ring unless explicitly disabled. Zero drops in old tables refers to audio overflow, not displayed-frame loss.",
+  "remaining": [
+    "Actual installed Play-HD and receipt-bound material runtime checks without recording",
+    "Remaining late presentation intervals: isolate recorder cost from normal gameplay pacing",
+    "Actual audio excerpt review",
+    "Unassisted normal-launch and stage-clear acceptance",
+    "Functional rewind coverage",
+    "Actual gameplay verification in stages2–7"
+  ],
+  "final_source_tests": {
+    "framework_checks": 19,
+    "strict_C_gate_input_cases": 13,
+    "material_launcher_checks": 26,
+    "python_compilation": true
+  },
+  "recorded_final_source_run": {
+    "runtime_sha256": "2704d0738e2e501ed6222bd562290563b753016c9fb76a27a1b244a5268a6519",
+    "recorder_present": true,
+    "scale": 2,
+    "rewind_depth": 50,
+    "rewind_interval": 15,
+    "assistance": "Same disclosed countdown hold and held fire; not unassisted or stage-clear acceptance",
+    "guest_fps": 60.00400170275052,
+    "starved_output_sample_frames": 0,
+    "hitch_fps": 60.00629894692375,
+    "bench": {
+      "window": "9250:9600",
+      "frames": 350,
+      "wall_ms": 5832.721,
+      "guest_work_ms": 3508.918,
+      "pacer_ms": 2080.099,
+      "autocapture_main_ms": 0.072,
+      "provider_poll_ms": 0.091,
+      "dirty_insns": 39149897,
+      "dirty_dispatches": 254174,
+      "overlay_native": 163731,
+      "overlay_interp": 271717,
+      "overlay_loads": 0,
+      "overlay_invalidations": 0,
+      "overlay_unregistered": 0,
+      "overlay_stale": 0,
+      "overlay_revalidations": 0,
+      "capture_triggers": 0,
+      "capture_overlays": 0,
+      "capture_last_dispatch_delta": 0
+    },
+    "presentation": {
+      "scope": "Application pre-SwapWindow metadata, 1ms SDL tick resolution; not physical monitor scanout",
+      "range": [
+        9250,
+        9600
+      ],
+      "events": 350,
+      "first": [
+        8647,
+        9250,
+        "vram",
+        159868
+      ],
+      "last": [
+        8996,
+        9599,
+        "vram",
+        165685
+      ],
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 18,
+      "p99_ms": 30,
+      "max_ms": 43,
+      "gaps_over25ms": 7,
+      "paths": [
+        "vram"
+      ],
+      "starved": 0
+    },
+    "present_events_9250_9599": [
+      {
+        "sequence": 8647,
+        "guest_frame": 9250,
+        "path": "vram",
+        "pre_swap_tick_ms": 159868
+      },
+      {
+        "sequence": 8648,
+        "guest_frame": 9251,
+        "path": "vram",
+        "pre_swap_tick_ms": 159885
+      },
+      {
+        "sequence": 8649,
+        "guest_frame": 9252,
+        "path": "vram",
+        "pre_swap_tick_ms": 159902
+      },
+      {
+        "sequence": 8650,
+        "guest_frame": 9253,
+        "path": "vram",
+        "pre_swap_tick_ms": 159918
+      },
+      {
+        "sequence": 8651,
+        "guest_frame": 9254,
+        "path": "vram",
+        "pre_swap_tick_ms": 159935
+      },
+      {
+        "sequence": 8652,
+        "guest_frame": 9255,
+        "path": "vram",
+        "pre_swap_tick_ms": 159952
+      },
+      {
+        "sequence": 8653,
+        "guest_frame": 9256,
+        "path": "vram",
+        "pre_swap_tick_ms": 159968
+      },
+      {
+        "sequence": 8654,
+        "guest_frame": 9257,
+        "path": "vram",
+        "pre_swap_tick_ms": 159985
+      },
+      {
+        "sequence": 8655,
+        "guest_frame": 9258,
+        "path": "vram",
+        "pre_swap_tick_ms": 160002
+      },
+      {
+        "sequence": 8656,
+        "guest_frame": 9259,
+        "path": "vram",
+        "pre_swap_tick_ms": 160018
+      },
+      {
+        "sequence": 8657,
+        "guest_frame": 9260,
+        "path": "vram",
+        "pre_swap_tick_ms": 160035
+      },
+      {
+        "sequence": 8658,
+        "guest_frame": 9261,
+        "path": "vram",
+        "pre_swap_tick_ms": 160052
+      },
+      {
+        "sequence": 8659,
+        "guest_frame": 9262,
+        "path": "vram",
+        "pre_swap_tick_ms": 160068
+      },
+      {
+        "sequence": 8660,
+        "guest_frame": 9263,
+        "path": "vram",
+        "pre_swap_tick_ms": 160085
+      },
+      {
+        "sequence": 8661,
+        "guest_frame": 9264,
+        "path": "vram",
+        "pre_swap_tick_ms": 160102
+      },
+      {
+        "sequence": 8662,
+        "guest_frame": 9265,
+        "path": "vram",
+        "pre_swap_tick_ms": 160118
+      },
+      {
+        "sequence": 8663,
+        "guest_frame": 9266,
+        "path": "vram",
+        "pre_swap_tick_ms": 160135
+      },
+      {
+        "sequence": 8664,
+        "guest_frame": 9267,
+        "path": "vram",
+        "pre_swap_tick_ms": 160152
+      },
+      {
+        "sequence": 8665,
+        "guest_frame": 9268,
+        "path": "vram",
+        "pre_swap_tick_ms": 160168
+      },
+      {
+        "sequence": 8666,
+        "guest_frame": 9269,
+        "path": "vram",
+        "pre_swap_tick_ms": 160185
+      },
+      {
+        "sequence": 8667,
+        "guest_frame": 9270,
+        "path": "vram",
+        "pre_swap_tick_ms": 160202
+      },
+      {
+        "sequence": 8668,
+        "guest_frame": 9271,
+        "path": "vram",
+        "pre_swap_tick_ms": 160219
+      },
+      {
+        "sequence": 8669,
+        "guest_frame": 9272,
+        "path": "vram",
+        "pre_swap_tick_ms": 160235
+      },
+      {
+        "sequence": 8670,
+        "guest_frame": 9273,
+        "path": "vram",
+        "pre_swap_tick_ms": 160251
+      },
+      {
+        "sequence": 8671,
+        "guest_frame": 9274,
+        "path": "vram",
+        "pre_swap_tick_ms": 160268
+      },
+      {
+        "sequence": 8672,
+        "guest_frame": 9275,
+        "path": "vram",
+        "pre_swap_tick_ms": 160285
+      },
+      {
+        "sequence": 8673,
+        "guest_frame": 9276,
+        "path": "vram",
+        "pre_swap_tick_ms": 160301
+      },
+      {
+        "sequence": 8674,
+        "guest_frame": 9277,
+        "path": "vram",
+        "pre_swap_tick_ms": 160318
+      },
+      {
+        "sequence": 8675,
+        "guest_frame": 9278,
+        "path": "vram",
+        "pre_swap_tick_ms": 160335
+      },
+      {
+        "sequence": 8676,
+        "guest_frame": 9279,
+        "path": "vram",
+        "pre_swap_tick_ms": 160351
+      },
+      {
+        "sequence": 8677,
+        "guest_frame": 9280,
+        "path": "vram",
+        "pre_swap_tick_ms": 160368
+      },
+      {
+        "sequence": 8678,
+        "guest_frame": 9281,
+        "path": "vram",
+        "pre_swap_tick_ms": 160385
+      },
+      {
+        "sequence": 8679,
+        "guest_frame": 9282,
+        "path": "vram",
+        "pre_swap_tick_ms": 160401
+      },
+      {
+        "sequence": 8680,
+        "guest_frame": 9283,
+        "path": "vram",
+        "pre_swap_tick_ms": 160418
+      },
+      {
+        "sequence": 8681,
+        "guest_frame": 9284,
+        "path": "vram",
+        "pre_swap_tick_ms": 160435
+      },
+      {
+        "sequence": 8682,
+        "guest_frame": 9285,
+        "path": "vram",
+        "pre_swap_tick_ms": 160451
+      },
+      {
+        "sequence": 8683,
+        "guest_frame": 9286,
+        "path": "vram",
+        "pre_swap_tick_ms": 160468
+      },
+      {
+        "sequence": 8684,
+        "guest_frame": 9287,
+        "path": "vram",
+        "pre_swap_tick_ms": 160485
+      },
+      {
+        "sequence": 8685,
+        "guest_frame": 9288,
+        "path": "vram",
+        "pre_swap_tick_ms": 160501
+      },
+      {
+        "sequence": 8686,
+        "guest_frame": 9289,
+        "path": "vram",
+        "pre_swap_tick_ms": 160518
+      },
+      {
+        "sequence": 8687,
+        "guest_frame": 9290,
+        "path": "vram",
+        "pre_swap_tick_ms": 160535
+      },
+      {
+        "sequence": 8688,
+        "guest_frame": 9291,
+        "path": "vram",
+        "pre_swap_tick_ms": 160551
+      },
+      {
+        "sequence": 8689,
+        "guest_frame": 9292,
+        "path": "vram",
+        "pre_swap_tick_ms": 160568
+      },
+      {
+        "sequence": 8690,
+        "guest_frame": 9293,
+        "path": "vram",
+        "pre_swap_tick_ms": 160585
+      },
+      {
+        "sequence": 8691,
+        "guest_frame": 9294,
+        "path": "vram",
+        "pre_swap_tick_ms": 160601
+      },
+      {
+        "sequence": 8692,
+        "guest_frame": 9295,
+        "path": "vram",
+        "pre_swap_tick_ms": 160618
+      },
+      {
+        "sequence": 8693,
+        "guest_frame": 9296,
+        "path": "vram",
+        "pre_swap_tick_ms": 160635
+      },
+      {
+        "sequence": 8694,
+        "guest_frame": 9297,
+        "path": "vram",
+        "pre_swap_tick_ms": 160651
+      },
+      {
+        "sequence": 8695,
+        "guest_frame": 9298,
+        "path": "vram",
+        "pre_swap_tick_ms": 160668
+      },
+      {
+        "sequence": 8696,
+        "guest_frame": 9299,
+        "path": "vram",
+        "pre_swap_tick_ms": 160685
+      },
+      {
+        "sequence": 8697,
+        "guest_frame": 9300,
+        "path": "vram",
+        "pre_swap_tick_ms": 160701
+      },
+      {
+        "sequence": 8698,
+        "guest_frame": 9301,
+        "path": "vram",
+        "pre_swap_tick_ms": 160718
+      },
+      {
+        "sequence": 8699,
+        "guest_frame": 9302,
+        "path": "vram",
+        "pre_swap_tick_ms": 160735
+      },
+      {
+        "sequence": 8700,
+        "guest_frame": 9303,
+        "path": "vram",
+        "pre_swap_tick_ms": 160751
+      },
+      {
+        "sequence": 8701,
+        "guest_frame": 9304,
+        "path": "vram",
+        "pre_swap_tick_ms": 160768
+      },
+      {
+        "sequence": 8702,
+        "guest_frame": 9305,
+        "path": "vram",
+        "pre_swap_tick_ms": 160785
+      },
+      {
+        "sequence": 8703,
+        "guest_frame": 9306,
+        "path": "vram",
+        "pre_swap_tick_ms": 160801
+      },
+      {
+        "sequence": 8704,
+        "guest_frame": 9307,
+        "path": "vram",
+        "pre_swap_tick_ms": 160818
+      },
+      {
+        "sequence": 8705,
+        "guest_frame": 9308,
+        "path": "vram",
+        "pre_swap_tick_ms": 160835
+      },
+      {
+        "sequence": 8706,
+        "guest_frame": 9309,
+        "path": "vram",
+        "pre_swap_tick_ms": 160851
+      },
+      {
+        "sequence": 8707,
+        "guest_frame": 9310,
+        "path": "vram",
+        "pre_swap_tick_ms": 160868
+      },
+      {
+        "sequence": 8708,
+        "guest_frame": 9311,
+        "path": "vram",
+        "pre_swap_tick_ms": 160885
+      },
+      {
+        "sequence": 8709,
+        "guest_frame": 9312,
+        "path": "vram",
+        "pre_swap_tick_ms": 160901
+      },
+      {
+        "sequence": 8710,
+        "guest_frame": 9313,
+        "path": "vram",
+        "pre_swap_tick_ms": 160918
+      },
+      {
+        "sequence": 8711,
+        "guest_frame": 9314,
+        "path": "vram",
+        "pre_swap_tick_ms": 160935
+      },
+      {
+        "sequence": 8712,
+        "guest_frame": 9315,
+        "path": "vram",
+        "pre_swap_tick_ms": 160951
+      },
+      {
+        "sequence": 8713,
+        "guest_frame": 9316,
+        "path": "vram",
+        "pre_swap_tick_ms": 160968
+      },
+      {
+        "sequence": 8714,
+        "guest_frame": 9317,
+        "path": "vram",
+        "pre_swap_tick_ms": 160985
+      },
+      {
+        "sequence": 8715,
+        "guest_frame": 9318,
+        "path": "vram",
+        "pre_swap_tick_ms": 161001
+      },
+      {
+        "sequence": 8716,
+        "guest_frame": 9319,
+        "path": "vram",
+        "pre_swap_tick_ms": 161018
+      },
+      {
+        "sequence": 8717,
+        "guest_frame": 9320,
+        "path": "vram",
+        "pre_swap_tick_ms": 161035
+      },
+      {
+        "sequence": 8718,
+        "guest_frame": 9321,
+        "path": "vram",
+        "pre_swap_tick_ms": 161051
+      },
+      {
+        "sequence": 8719,
+        "guest_frame": 9322,
+        "path": "vram",
+        "pre_swap_tick_ms": 161068
+      },
+      {
+        "sequence": 8720,
+        "guest_frame": 9323,
+        "path": "vram",
+        "pre_swap_tick_ms": 161085
+      },
+      {
+        "sequence": 8721,
+        "guest_frame": 9324,
+        "path": "vram",
+        "pre_swap_tick_ms": 161101
+      },
+      {
+        "sequence": 8722,
+        "guest_frame": 9325,
+        "path": "vram",
+        "pre_swap_tick_ms": 161118
+      },
+      {
+        "sequence": 8723,
+        "guest_frame": 9326,
+        "path": "vram",
+        "pre_swap_tick_ms": 161135
+      },
+      {
+        "sequence": 8724,
+        "guest_frame": 9327,
+        "path": "vram",
+        "pre_swap_tick_ms": 161152
+      },
+      {
+        "sequence": 8725,
+        "guest_frame": 9328,
+        "path": "vram",
+        "pre_swap_tick_ms": 161168
+      },
+      {
+        "sequence": 8726,
+        "guest_frame": 9329,
+        "path": "vram",
+        "pre_swap_tick_ms": 161185
+      },
+      {
+        "sequence": 8727,
+        "guest_frame": 9330,
+        "path": "vram",
+        "pre_swap_tick_ms": 161202
+      },
+      {
+        "sequence": 8728,
+        "guest_frame": 9331,
+        "path": "vram",
+        "pre_swap_tick_ms": 161218
+      },
+      {
+        "sequence": 8729,
+        "guest_frame": 9332,
+        "path": "vram",
+        "pre_swap_tick_ms": 161235
+      },
+      {
+        "sequence": 8730,
+        "guest_frame": 9333,
+        "path": "vram",
+        "pre_swap_tick_ms": 161252
+      },
+      {
+        "sequence": 8731,
+        "guest_frame": 9334,
+        "path": "vram",
+        "pre_swap_tick_ms": 161268
+      },
+      {
+        "sequence": 8732,
+        "guest_frame": 9335,
+        "path": "vram",
+        "pre_swap_tick_ms": 161285
+      },
+      {
+        "sequence": 8733,
+        "guest_frame": 9336,
+        "path": "vram",
+        "pre_swap_tick_ms": 161302
+      },
+      {
+        "sequence": 8734,
+        "guest_frame": 9337,
+        "path": "vram",
+        "pre_swap_tick_ms": 161318
+      },
+      {
+        "sequence": 8735,
+        "guest_frame": 9338,
+        "path": "vram",
+        "pre_swap_tick_ms": 161335
+      },
+      {
+        "sequence": 8736,
+        "guest_frame": 9339,
+        "path": "vram",
+        "pre_swap_tick_ms": 161351
+      },
+      {
+        "sequence": 8737,
+        "guest_frame": 9340,
+        "path": "vram",
+        "pre_swap_tick_ms": 161375
+      },
+      {
+        "sequence": 8738,
+        "guest_frame": 9341,
+        "path": "vram",
+        "pre_swap_tick_ms": 161385
+      },
+      {
+        "sequence": 8739,
+        "guest_frame": 9342,
+        "path": "vram",
+        "pre_swap_tick_ms": 161402
+      },
+      {
+        "sequence": 8740,
+        "guest_frame": 9343,
+        "path": "vram",
+        "pre_swap_tick_ms": 161445
+      },
+      {
+        "sequence": 8741,
+        "guest_frame": 9344,
+        "path": "vram",
+        "pre_swap_tick_ms": 161454
+      },
+      {
+        "sequence": 8742,
+        "guest_frame": 9345,
+        "path": "vram",
+        "pre_swap_tick_ms": 161464
+      },
+      {
+        "sequence": 8743,
+        "guest_frame": 9346,
+        "path": "vram",
+        "pre_swap_tick_ms": 161474
+      },
+      {
+        "sequence": 8744,
+        "guest_frame": 9347,
+        "path": "vram",
+        "pre_swap_tick_ms": 161485
+      },
+      {
+        "sequence": 8745,
+        "guest_frame": 9348,
+        "path": "vram",
+        "pre_swap_tick_ms": 161501
+      },
+      {
+        "sequence": 8746,
+        "guest_frame": 9349,
+        "path": "vram",
+        "pre_swap_tick_ms": 161518
+      },
+      {
+        "sequence": 8747,
+        "guest_frame": 9350,
+        "path": "vram",
+        "pre_swap_tick_ms": 161535
+      },
+      {
+        "sequence": 8748,
+        "guest_frame": 9351,
+        "path": "vram",
+        "pre_swap_tick_ms": 161552
+      },
+      {
+        "sequence": 8749,
+        "guest_frame": 9352,
+        "path": "vram",
+        "pre_swap_tick_ms": 161568
+      },
+      {
+        "sequence": 8750,
+        "guest_frame": 9353,
+        "path": "vram",
+        "pre_swap_tick_ms": 161585
+      },
+      {
+        "sequence": 8751,
+        "guest_frame": 9354,
+        "path": "vram",
+        "pre_swap_tick_ms": 161613
+      },
+      {
+        "sequence": 8752,
+        "guest_frame": 9355,
+        "path": "vram",
+        "pre_swap_tick_ms": 161623
+      },
+      {
+        "sequence": 8753,
+        "guest_frame": 9356,
+        "path": "vram",
+        "pre_swap_tick_ms": 161645
+      },
+      {
+        "sequence": 8754,
+        "guest_frame": 9357,
+        "path": "vram",
+        "pre_swap_tick_ms": 161655
+      },
+      {
+        "sequence": 8755,
+        "guest_frame": 9358,
+        "path": "vram",
+        "pre_swap_tick_ms": 161668
+      },
+      {
+        "sequence": 8756,
+        "guest_frame": 9359,
+        "path": "vram",
+        "pre_swap_tick_ms": 161701
+      },
+      {
+        "sequence": 8757,
+        "guest_frame": 9360,
+        "path": "vram",
+        "pre_swap_tick_ms": 161710
+      },
+      {
+        "sequence": 8758,
+        "guest_frame": 9361,
+        "path": "vram",
+        "pre_swap_tick_ms": 161720
+      },
+      {
+        "sequence": 8759,
+        "guest_frame": 9362,
+        "path": "vram",
+        "pre_swap_tick_ms": 161735
+      },
+      {
+        "sequence": 8760,
+        "guest_frame": 9363,
+        "path": "vram",
+        "pre_swap_tick_ms": 161753
+      },
+      {
+        "sequence": 8761,
+        "guest_frame": 9364,
+        "path": "vram",
+        "pre_swap_tick_ms": 161768
+      },
+      {
+        "sequence": 8762,
+        "guest_frame": 9365,
+        "path": "vram",
+        "pre_swap_tick_ms": 161789
+      },
+      {
+        "sequence": 8763,
+        "guest_frame": 9366,
+        "path": "vram",
+        "pre_swap_tick_ms": 161801
+      },
+      {
+        "sequence": 8764,
+        "guest_frame": 9367,
+        "path": "vram",
+        "pre_swap_tick_ms": 161818
+      },
+      {
+        "sequence": 8765,
+        "guest_frame": 9368,
+        "path": "vram",
+        "pre_swap_tick_ms": 161850
+      },
+      {
+        "sequence": 8766,
+        "guest_frame": 9369,
+        "path": "vram",
+        "pre_swap_tick_ms": 161860
+      },
+      {
+        "sequence": 8767,
+        "guest_frame": 9370,
+        "path": "vram",
+        "pre_swap_tick_ms": 161870
+      },
+      {
+        "sequence": 8768,
+        "guest_frame": 9371,
+        "path": "vram",
+        "pre_swap_tick_ms": 161886
+      },
+      {
+        "sequence": 8769,
+        "guest_frame": 9372,
+        "path": "vram",
+        "pre_swap_tick_ms": 161902
+      },
+      {
+        "sequence": 8770,
+        "guest_frame": 9373,
+        "path": "vram",
+        "pre_swap_tick_ms": 161918
+      },
+      {
+        "sequence": 8771,
+        "guest_frame": 9374,
+        "path": "vram",
+        "pre_swap_tick_ms": 161935
+      },
+      {
+        "sequence": 8772,
+        "guest_frame": 9375,
+        "path": "vram",
+        "pre_swap_tick_ms": 161957
+      },
+      {
+        "sequence": 8773,
+        "guest_frame": 9376,
+        "path": "vram",
+        "pre_swap_tick_ms": 161968
+      },
+      {
+        "sequence": 8774,
+        "guest_frame": 9377,
+        "path": "vram",
+        "pre_swap_tick_ms": 161985
+      },
+      {
+        "sequence": 8775,
+        "guest_frame": 9378,
+        "path": "vram",
+        "pre_swap_tick_ms": 162015
+      },
+      {
+        "sequence": 8776,
+        "guest_frame": 9379,
+        "path": "vram",
+        "pre_swap_tick_ms": 162027
+      },
+      {
+        "sequence": 8777,
+        "guest_frame": 9380,
+        "path": "vram",
+        "pre_swap_tick_ms": 162039
+      },
+      {
+        "sequence": 8778,
+        "guest_frame": 9381,
+        "path": "vram",
+        "pre_swap_tick_ms": 162051
+      },
+      {
+        "sequence": 8779,
+        "guest_frame": 9382,
+        "path": "vram",
+        "pre_swap_tick_ms": 162074
+      },
+      {
+        "sequence": 8780,
+        "guest_frame": 9383,
+        "path": "vram",
+        "pre_swap_tick_ms": 162085
+      },
+      {
+        "sequence": 8781,
+        "guest_frame": 9384,
+        "path": "vram",
+        "pre_swap_tick_ms": 162101
+      },
+      {
+        "sequence": 8782,
+        "guest_frame": 9385,
+        "path": "vram",
+        "pre_swap_tick_ms": 162125
+      },
+      {
+        "sequence": 8783,
+        "guest_frame": 9386,
+        "path": "vram",
+        "pre_swap_tick_ms": 162135
+      },
+      {
+        "sequence": 8784,
+        "guest_frame": 9387,
+        "path": "vram",
+        "pre_swap_tick_ms": 162152
+      },
+      {
+        "sequence": 8785,
+        "guest_frame": 9388,
+        "path": "vram",
+        "pre_swap_tick_ms": 162168
+      },
+      {
+        "sequence": 8786,
+        "guest_frame": 9389,
+        "path": "vram",
+        "pre_swap_tick_ms": 162185
+      },
+      {
+        "sequence": 8787,
+        "guest_frame": 9390,
+        "path": "vram",
+        "pre_swap_tick_ms": 162202
+      },
+      {
+        "sequence": 8788,
+        "guest_frame": 9391,
+        "path": "vram",
+        "pre_swap_tick_ms": 162220
+      },
+      {
+        "sequence": 8789,
+        "guest_frame": 9392,
+        "path": "vram",
+        "pre_swap_tick_ms": 162235
+      },
+      {
+        "sequence": 8790,
+        "guest_frame": 9393,
+        "path": "vram",
+        "pre_swap_tick_ms": 162251
+      },
+      {
+        "sequence": 8791,
+        "guest_frame": 9394,
+        "path": "vram",
+        "pre_swap_tick_ms": 162275
+      },
+      {
+        "sequence": 8792,
+        "guest_frame": 9395,
+        "path": "vram",
+        "pre_swap_tick_ms": 162285
+      },
+      {
+        "sequence": 8793,
+        "guest_frame": 9396,
+        "path": "vram",
+        "pre_swap_tick_ms": 162301
+      },
+      {
+        "sequence": 8794,
+        "guest_frame": 9397,
+        "path": "vram",
+        "pre_swap_tick_ms": 162318
+      },
+      {
+        "sequence": 8795,
+        "guest_frame": 9398,
+        "path": "vram",
+        "pre_swap_tick_ms": 162335
+      },
+      {
+        "sequence": 8796,
+        "guest_frame": 9399,
+        "path": "vram",
+        "pre_swap_tick_ms": 162352
+      },
+      {
+        "sequence": 8797,
+        "guest_frame": 9400,
+        "path": "vram",
+        "pre_swap_tick_ms": 162370
+      },
+      {
+        "sequence": 8798,
+        "guest_frame": 9401,
+        "path": "vram",
+        "pre_swap_tick_ms": 162385
+      },
+      {
+        "sequence": 8799,
+        "guest_frame": 9402,
+        "path": "vram",
+        "pre_swap_tick_ms": 162401
+      },
+      {
+        "sequence": 8800,
+        "guest_frame": 9403,
+        "path": "vram",
+        "pre_swap_tick_ms": 162427
+      },
+      {
+        "sequence": 8801,
+        "guest_frame": 9404,
+        "path": "vram",
+        "pre_swap_tick_ms": 162435
+      },
+      {
+        "sequence": 8802,
+        "guest_frame": 9405,
+        "path": "vram",
+        "pre_swap_tick_ms": 162451
+      },
+      {
+        "sequence": 8803,
+        "guest_frame": 9406,
+        "path": "vram",
+        "pre_swap_tick_ms": 162468
+      },
+      {
+        "sequence": 8804,
+        "guest_frame": 9407,
+        "path": "vram",
+        "pre_swap_tick_ms": 162492
+      },
+      {
+        "sequence": 8805,
+        "guest_frame": 9408,
+        "path": "vram",
+        "pre_swap_tick_ms": 162501
+      },
+      {
+        "sequence": 8806,
+        "guest_frame": 9409,
+        "path": "vram",
+        "pre_swap_tick_ms": 162518
+      },
+      {
+        "sequence": 8807,
+        "guest_frame": 9410,
+        "path": "vram",
+        "pre_swap_tick_ms": 162545
+      },
+      {
+        "sequence": 8808,
+        "guest_frame": 9411,
+        "path": "vram",
+        "pre_swap_tick_ms": 162555
+      },
+      {
+        "sequence": 8809,
+        "guest_frame": 9412,
+        "path": "vram",
+        "pre_swap_tick_ms": 162568
+      },
+      {
+        "sequence": 8810,
+        "guest_frame": 9413,
+        "path": "vram",
+        "pre_swap_tick_ms": 162585
+      },
+      {
+        "sequence": 8811,
+        "guest_frame": 9414,
+        "path": "vram",
+        "pre_swap_tick_ms": 162602
+      },
+      {
+        "sequence": 8812,
+        "guest_frame": 9415,
+        "path": "vram",
+        "pre_swap_tick_ms": 162618
+      },
+      {
+        "sequence": 8813,
+        "guest_frame": 9416,
+        "path": "vram",
+        "pre_swap_tick_ms": 162636
+      },
+      {
+        "sequence": 8814,
+        "guest_frame": 9417,
+        "path": "vram",
+        "pre_swap_tick_ms": 162651
+      },
+      {
+        "sequence": 8815,
+        "guest_frame": 9418,
+        "path": "vram",
+        "pre_swap_tick_ms": 162668
+      },
+      {
+        "sequence": 8816,
+        "guest_frame": 9419,
+        "path": "vram",
+        "pre_swap_tick_ms": 162691
+      },
+      {
+        "sequence": 8817,
+        "guest_frame": 9420,
+        "path": "vram",
+        "pre_swap_tick_ms": 162701
+      },
+      {
+        "sequence": 8818,
+        "guest_frame": 9421,
+        "path": "vram",
+        "pre_swap_tick_ms": 162718
+      },
+      {
+        "sequence": 8819,
+        "guest_frame": 9422,
+        "path": "vram",
+        "pre_swap_tick_ms": 162735
+      },
+      {
+        "sequence": 8820,
+        "guest_frame": 9423,
+        "path": "vram",
+        "pre_swap_tick_ms": 162751
+      },
+      {
+        "sequence": 8821,
+        "guest_frame": 9424,
+        "path": "vram",
+        "pre_swap_tick_ms": 162768
+      },
+      {
+        "sequence": 8822,
+        "guest_frame": 9425,
+        "path": "vram",
+        "pre_swap_tick_ms": 162785
+      },
+      {
+        "sequence": 8823,
+        "guest_frame": 9426,
+        "path": "vram",
+        "pre_swap_tick_ms": 162801
+      },
+      {
+        "sequence": 8824,
+        "guest_frame": 9427,
+        "path": "vram",
+        "pre_swap_tick_ms": 162818
+      },
+      {
+        "sequence": 8825,
+        "guest_frame": 9428,
+        "path": "vram",
+        "pre_swap_tick_ms": 162835
+      },
+      {
+        "sequence": 8826,
+        "guest_frame": 9429,
+        "path": "vram",
+        "pre_swap_tick_ms": 162851
+      },
+      {
+        "sequence": 8827,
+        "guest_frame": 9430,
+        "path": "vram",
+        "pre_swap_tick_ms": 162868
+      },
+      {
+        "sequence": 8828,
+        "guest_frame": 9431,
+        "path": "vram",
+        "pre_swap_tick_ms": 162885
+      },
+      {
+        "sequence": 8829,
+        "guest_frame": 9432,
+        "path": "vram",
+        "pre_swap_tick_ms": 162901
+      },
+      {
+        "sequence": 8830,
+        "guest_frame": 9433,
+        "path": "vram",
+        "pre_swap_tick_ms": 162918
+      },
+      {
+        "sequence": 8831,
+        "guest_frame": 9434,
+        "path": "vram",
+        "pre_swap_tick_ms": 162935
+      },
+      {
+        "sequence": 8832,
+        "guest_frame": 9435,
+        "path": "vram",
+        "pre_swap_tick_ms": 162951
+      },
+      {
+        "sequence": 8833,
+        "guest_frame": 9436,
+        "path": "vram",
+        "pre_swap_tick_ms": 162968
+      },
+      {
+        "sequence": 8834,
+        "guest_frame": 9437,
+        "path": "vram",
+        "pre_swap_tick_ms": 162985
+      },
+      {
+        "sequence": 8835,
+        "guest_frame": 9438,
+        "path": "vram",
+        "pre_swap_tick_ms": 163001
+      },
+      {
+        "sequence": 8836,
+        "guest_frame": 9439,
+        "path": "vram",
+        "pre_swap_tick_ms": 163018
+      },
+      {
+        "sequence": 8837,
+        "guest_frame": 9440,
+        "path": "vram",
+        "pre_swap_tick_ms": 163035
+      },
+      {
+        "sequence": 8838,
+        "guest_frame": 9441,
+        "path": "vram",
+        "pre_swap_tick_ms": 163051
+      },
+      {
+        "sequence": 8839,
+        "guest_frame": 9442,
+        "path": "vram",
+        "pre_swap_tick_ms": 163068
+      },
+      {
+        "sequence": 8840,
+        "guest_frame": 9443,
+        "path": "vram",
+        "pre_swap_tick_ms": 163085
+      },
+      {
+        "sequence": 8841,
+        "guest_frame": 9444,
+        "path": "vram",
+        "pre_swap_tick_ms": 163101
+      },
+      {
+        "sequence": 8842,
+        "guest_frame": 9445,
+        "path": "vram",
+        "pre_swap_tick_ms": 163118
+      },
+      {
+        "sequence": 8843,
+        "guest_frame": 9446,
+        "path": "vram",
+        "pre_swap_tick_ms": 163135
+      },
+      {
+        "sequence": 8844,
+        "guest_frame": 9447,
+        "path": "vram",
+        "pre_swap_tick_ms": 163151
+      },
+      {
+        "sequence": 8845,
+        "guest_frame": 9448,
+        "path": "vram",
+        "pre_swap_tick_ms": 163168
+      },
+      {
+        "sequence": 8846,
+        "guest_frame": 9449,
+        "path": "vram",
+        "pre_swap_tick_ms": 163185
+      },
+      {
+        "sequence": 8847,
+        "guest_frame": 9450,
+        "path": "vram",
+        "pre_swap_tick_ms": 163201
+      },
+      {
+        "sequence": 8848,
+        "guest_frame": 9451,
+        "path": "vram",
+        "pre_swap_tick_ms": 163218
+      },
+      {
+        "sequence": 8849,
+        "guest_frame": 9452,
+        "path": "vram",
+        "pre_swap_tick_ms": 163235
+      },
+      {
+        "sequence": 8850,
+        "guest_frame": 9453,
+        "path": "vram",
+        "pre_swap_tick_ms": 163251
+      },
+      {
+        "sequence": 8851,
+        "guest_frame": 9454,
+        "path": "vram",
+        "pre_swap_tick_ms": 163268
+      },
+      {
+        "sequence": 8852,
+        "guest_frame": 9455,
+        "path": "vram",
+        "pre_swap_tick_ms": 163285
+      },
+      {
+        "sequence": 8853,
+        "guest_frame": 9456,
+        "path": "vram",
+        "pre_swap_tick_ms": 163301
+      },
+      {
+        "sequence": 8854,
+        "guest_frame": 9457,
+        "path": "vram",
+        "pre_swap_tick_ms": 163318
+      },
+      {
+        "sequence": 8855,
+        "guest_frame": 9458,
+        "path": "vram",
+        "pre_swap_tick_ms": 163335
+      },
+      {
+        "sequence": 8856,
+        "guest_frame": 9459,
+        "path": "vram",
+        "pre_swap_tick_ms": 163351
+      },
+      {
+        "sequence": 8857,
+        "guest_frame": 9460,
+        "path": "vram",
+        "pre_swap_tick_ms": 163368
+      },
+      {
+        "sequence": 8858,
+        "guest_frame": 9461,
+        "path": "vram",
+        "pre_swap_tick_ms": 163385
+      },
+      {
+        "sequence": 8859,
+        "guest_frame": 9462,
+        "path": "vram",
+        "pre_swap_tick_ms": 163401
+      },
+      {
+        "sequence": 8860,
+        "guest_frame": 9463,
+        "path": "vram",
+        "pre_swap_tick_ms": 163418
+      },
+      {
+        "sequence": 8861,
+        "guest_frame": 9464,
+        "path": "vram",
+        "pre_swap_tick_ms": 163435
+      },
+      {
+        "sequence": 8862,
+        "guest_frame": 9465,
+        "path": "vram",
+        "pre_swap_tick_ms": 163452
+      },
+      {
+        "sequence": 8863,
+        "guest_frame": 9466,
+        "path": "vram",
+        "pre_swap_tick_ms": 163468
+      },
+      {
+        "sequence": 8864,
+        "guest_frame": 9467,
+        "path": "vram",
+        "pre_swap_tick_ms": 163485
+      },
+      {
+        "sequence": 8865,
+        "guest_frame": 9468,
+        "path": "vram",
+        "pre_swap_tick_ms": 163502
+      },
+      {
+        "sequence": 8866,
+        "guest_frame": 9469,
+        "path": "vram",
+        "pre_swap_tick_ms": 163518
+      },
+      {
+        "sequence": 8867,
+        "guest_frame": 9470,
+        "path": "vram",
+        "pre_swap_tick_ms": 163535
+      },
+      {
+        "sequence": 8868,
+        "guest_frame": 9471,
+        "path": "vram",
+        "pre_swap_tick_ms": 163551
+      },
+      {
+        "sequence": 8869,
+        "guest_frame": 9472,
+        "path": "vram",
+        "pre_swap_tick_ms": 163568
+      },
+      {
+        "sequence": 8870,
+        "guest_frame": 9473,
+        "path": "vram",
+        "pre_swap_tick_ms": 163585
+      },
+      {
+        "sequence": 8871,
+        "guest_frame": 9474,
+        "path": "vram",
+        "pre_swap_tick_ms": 163602
+      },
+      {
+        "sequence": 8872,
+        "guest_frame": 9475,
+        "path": "vram",
+        "pre_swap_tick_ms": 163618
+      },
+      {
+        "sequence": 8873,
+        "guest_frame": 9476,
+        "path": "vram",
+        "pre_swap_tick_ms": 163635
+      },
+      {
+        "sequence": 8874,
+        "guest_frame": 9477,
+        "path": "vram",
+        "pre_swap_tick_ms": 163651
+      },
+      {
+        "sequence": 8875,
+        "guest_frame": 9478,
+        "path": "vram",
+        "pre_swap_tick_ms": 163668
+      },
+      {
+        "sequence": 8876,
+        "guest_frame": 9479,
+        "path": "vram",
+        "pre_swap_tick_ms": 163685
+      },
+      {
+        "sequence": 8877,
+        "guest_frame": 9480,
+        "path": "vram",
+        "pre_swap_tick_ms": 163701
+      },
+      {
+        "sequence": 8878,
+        "guest_frame": 9481,
+        "path": "vram",
+        "pre_swap_tick_ms": 163718
+      },
+      {
+        "sequence": 8879,
+        "guest_frame": 9482,
+        "path": "vram",
+        "pre_swap_tick_ms": 163735
+      },
+      {
+        "sequence": 8880,
+        "guest_frame": 9483,
+        "path": "vram",
+        "pre_swap_tick_ms": 163751
+      },
+      {
+        "sequence": 8881,
+        "guest_frame": 9484,
+        "path": "vram",
+        "pre_swap_tick_ms": 163768
+      },
+      {
+        "sequence": 8882,
+        "guest_frame": 9485,
+        "path": "vram",
+        "pre_swap_tick_ms": 163785
+      },
+      {
+        "sequence": 8883,
+        "guest_frame": 9486,
+        "path": "vram",
+        "pre_swap_tick_ms": 163801
+      },
+      {
+        "sequence": 8884,
+        "guest_frame": 9487,
+        "path": "vram",
+        "pre_swap_tick_ms": 163818
+      },
+      {
+        "sequence": 8885,
+        "guest_frame": 9488,
+        "path": "vram",
+        "pre_swap_tick_ms": 163835
+      },
+      {
+        "sequence": 8886,
+        "guest_frame": 9489,
+        "path": "vram",
+        "pre_swap_tick_ms": 163851
+      },
+      {
+        "sequence": 8887,
+        "guest_frame": 9490,
+        "path": "vram",
+        "pre_swap_tick_ms": 163868
+      },
+      {
+        "sequence": 8888,
+        "guest_frame": 9491,
+        "path": "vram",
+        "pre_swap_tick_ms": 163885
+      },
+      {
+        "sequence": 8889,
+        "guest_frame": 9492,
+        "path": "vram",
+        "pre_swap_tick_ms": 163901
+      },
+      {
+        "sequence": 8890,
+        "guest_frame": 9493,
+        "path": "vram",
+        "pre_swap_tick_ms": 163918
+      },
+      {
+        "sequence": 8891,
+        "guest_frame": 9494,
+        "path": "vram",
+        "pre_swap_tick_ms": 163935
+      },
+      {
+        "sequence": 8892,
+        "guest_frame": 9495,
+        "path": "vram",
+        "pre_swap_tick_ms": 163951
+      },
+      {
+        "sequence": 8893,
+        "guest_frame": 9496,
+        "path": "vram",
+        "pre_swap_tick_ms": 163968
+      },
+      {
+        "sequence": 8894,
+        "guest_frame": 9497,
+        "path": "vram",
+        "pre_swap_tick_ms": 163985
+      },
+      {
+        "sequence": 8895,
+        "guest_frame": 9498,
+        "path": "vram",
+        "pre_swap_tick_ms": 164001
+      },
+      {
+        "sequence": 8896,
+        "guest_frame": 9499,
+        "path": "vram",
+        "pre_swap_tick_ms": 164018
+      },
+      {
+        "sequence": 8897,
+        "guest_frame": 9500,
+        "path": "vram",
+        "pre_swap_tick_ms": 164035
+      },
+      {
+        "sequence": 8898,
+        "guest_frame": 9501,
+        "path": "vram",
+        "pre_swap_tick_ms": 164051
+      },
+      {
+        "sequence": 8899,
+        "guest_frame": 9502,
+        "path": "vram",
+        "pre_swap_tick_ms": 164068
+      },
+      {
+        "sequence": 8900,
+        "guest_frame": 9503,
+        "path": "vram",
+        "pre_swap_tick_ms": 164085
+      },
+      {
+        "sequence": 8901,
+        "guest_frame": 9504,
+        "path": "vram",
+        "pre_swap_tick_ms": 164102
+      },
+      {
+        "sequence": 8902,
+        "guest_frame": 9505,
+        "path": "vram",
+        "pre_swap_tick_ms": 164118
+      },
+      {
+        "sequence": 8903,
+        "guest_frame": 9506,
+        "path": "vram",
+        "pre_swap_tick_ms": 164135
+      },
+      {
+        "sequence": 8904,
+        "guest_frame": 9507,
+        "path": "vram",
+        "pre_swap_tick_ms": 164151
+      },
+      {
+        "sequence": 8905,
+        "guest_frame": 9508,
+        "path": "vram",
+        "pre_swap_tick_ms": 164168
+      },
+      {
+        "sequence": 8906,
+        "guest_frame": 9509,
+        "path": "vram",
+        "pre_swap_tick_ms": 164185
+      },
+      {
+        "sequence": 8907,
+        "guest_frame": 9510,
+        "path": "vram",
+        "pre_swap_tick_ms": 164201
+      },
+      {
+        "sequence": 8908,
+        "guest_frame": 9511,
+        "path": "vram",
+        "pre_swap_tick_ms": 164218
+      },
+      {
+        "sequence": 8909,
+        "guest_frame": 9512,
+        "path": "vram",
+        "pre_swap_tick_ms": 164235
+      },
+      {
+        "sequence": 8910,
+        "guest_frame": 9513,
+        "path": "vram",
+        "pre_swap_tick_ms": 164251
+      },
+      {
+        "sequence": 8911,
+        "guest_frame": 9514,
+        "path": "vram",
+        "pre_swap_tick_ms": 164268
+      },
+      {
+        "sequence": 8912,
+        "guest_frame": 9515,
+        "path": "vram",
+        "pre_swap_tick_ms": 164285
+      },
+      {
+        "sequence": 8913,
+        "guest_frame": 9516,
+        "path": "vram",
+        "pre_swap_tick_ms": 164302
+      },
+      {
+        "sequence": 8914,
+        "guest_frame": 9517,
+        "path": "vram",
+        "pre_swap_tick_ms": 164318
+      },
+      {
+        "sequence": 8915,
+        "guest_frame": 9518,
+        "path": "vram",
+        "pre_swap_tick_ms": 164335
+      },
+      {
+        "sequence": 8916,
+        "guest_frame": 9519,
+        "path": "vram",
+        "pre_swap_tick_ms": 164351
+      },
+      {
+        "sequence": 8917,
+        "guest_frame": 9520,
+        "path": "vram",
+        "pre_swap_tick_ms": 164368
+      },
+      {
+        "sequence": 8918,
+        "guest_frame": 9521,
+        "path": "vram",
+        "pre_swap_tick_ms": 164385
+      },
+      {
+        "sequence": 8919,
+        "guest_frame": 9522,
+        "path": "vram",
+        "pre_swap_tick_ms": 164401
+      },
+      {
+        "sequence": 8920,
+        "guest_frame": 9523,
+        "path": "vram",
+        "pre_swap_tick_ms": 164418
+      },
+      {
+        "sequence": 8921,
+        "guest_frame": 9524,
+        "path": "vram",
+        "pre_swap_tick_ms": 164435
+      },
+      {
+        "sequence": 8922,
+        "guest_frame": 9525,
+        "path": "vram",
+        "pre_swap_tick_ms": 164452
+      },
+      {
+        "sequence": 8923,
+        "guest_frame": 9526,
+        "path": "vram",
+        "pre_swap_tick_ms": 164468
+      },
+      {
+        "sequence": 8924,
+        "guest_frame": 9527,
+        "path": "vram",
+        "pre_swap_tick_ms": 164485
+      },
+      {
+        "sequence": 8925,
+        "guest_frame": 9528,
+        "path": "vram",
+        "pre_swap_tick_ms": 164502
+      },
+      {
+        "sequence": 8926,
+        "guest_frame": 9529,
+        "path": "vram",
+        "pre_swap_tick_ms": 164518
+      },
+      {
+        "sequence": 8927,
+        "guest_frame": 9530,
+        "path": "vram",
+        "pre_swap_tick_ms": 164535
+      },
+      {
+        "sequence": 8928,
+        "guest_frame": 9531,
+        "path": "vram",
+        "pre_swap_tick_ms": 164552
+      },
+      {
+        "sequence": 8929,
+        "guest_frame": 9532,
+        "path": "vram",
+        "pre_swap_tick_ms": 164568
+      },
+      {
+        "sequence": 8930,
+        "guest_frame": 9533,
+        "path": "vram",
+        "pre_swap_tick_ms": 164585
+      },
+      {
+        "sequence": 8931,
+        "guest_frame": 9534,
+        "path": "vram",
+        "pre_swap_tick_ms": 164601
+      },
+      {
+        "sequence": 8932,
+        "guest_frame": 9535,
+        "path": "vram",
+        "pre_swap_tick_ms": 164618
+      },
+      {
+        "sequence": 8933,
+        "guest_frame": 9536,
+        "path": "vram",
+        "pre_swap_tick_ms": 164635
+      },
+      {
+        "sequence": 8934,
+        "guest_frame": 9537,
+        "path": "vram",
+        "pre_swap_tick_ms": 164652
+      },
+      {
+        "sequence": 8935,
+        "guest_frame": 9538,
+        "path": "vram",
+        "pre_swap_tick_ms": 164668
+      },
+      {
+        "sequence": 8936,
+        "guest_frame": 9539,
+        "path": "vram",
+        "pre_swap_tick_ms": 164685
+      },
+      {
+        "sequence": 8937,
+        "guest_frame": 9540,
+        "path": "vram",
+        "pre_swap_tick_ms": 164701
+      },
+      {
+        "sequence": 8938,
+        "guest_frame": 9541,
+        "path": "vram",
+        "pre_swap_tick_ms": 164718
+      },
+      {
+        "sequence": 8939,
+        "guest_frame": 9542,
+        "path": "vram",
+        "pre_swap_tick_ms": 164735
+      },
+      {
+        "sequence": 8940,
+        "guest_frame": 9543,
+        "path": "vram",
+        "pre_swap_tick_ms": 164751
+      },
+      {
+        "sequence": 8941,
+        "guest_frame": 9544,
+        "path": "vram",
+        "pre_swap_tick_ms": 164768
+      },
+      {
+        "sequence": 8942,
+        "guest_frame": 9545,
+        "path": "vram",
+        "pre_swap_tick_ms": 164785
+      },
+      {
+        "sequence": 8943,
+        "guest_frame": 9546,
+        "path": "vram",
+        "pre_swap_tick_ms": 164801
+      },
+      {
+        "sequence": 8944,
+        "guest_frame": 9547,
+        "path": "vram",
+        "pre_swap_tick_ms": 164818
+      },
+      {
+        "sequence": 8945,
+        "guest_frame": 9548,
+        "path": "vram",
+        "pre_swap_tick_ms": 164835
+      },
+      {
+        "sequence": 8946,
+        "guest_frame": 9549,
+        "path": "vram",
+        "pre_swap_tick_ms": 164852
+      },
+      {
+        "sequence": 8947,
+        "guest_frame": 9550,
+        "path": "vram",
+        "pre_swap_tick_ms": 164868
+      },
+      {
+        "sequence": 8948,
+        "guest_frame": 9551,
+        "path": "vram",
+        "pre_swap_tick_ms": 164885
+      },
+      {
+        "sequence": 8949,
+        "guest_frame": 9552,
+        "path": "vram",
+        "pre_swap_tick_ms": 164902
+      },
+      {
+        "sequence": 8950,
+        "guest_frame": 9553,
+        "path": "vram",
+        "pre_swap_tick_ms": 164918
+      },
+      {
+        "sequence": 8951,
+        "guest_frame": 9554,
+        "path": "vram",
+        "pre_swap_tick_ms": 164935
+      },
+      {
+        "sequence": 8952,
+        "guest_frame": 9555,
+        "path": "vram",
+        "pre_swap_tick_ms": 164951
+      },
+      {
+        "sequence": 8953,
+        "guest_frame": 9556,
+        "path": "vram",
+        "pre_swap_tick_ms": 164968
+      },
+      {
+        "sequence": 8954,
+        "guest_frame": 9557,
+        "path": "vram",
+        "pre_swap_tick_ms": 164985
+      },
+      {
+        "sequence": 8955,
+        "guest_frame": 9558,
+        "path": "vram",
+        "pre_swap_tick_ms": 165001
+      },
+      {
+        "sequence": 8956,
+        "guest_frame": 9559,
+        "path": "vram",
+        "pre_swap_tick_ms": 165018
+      },
+      {
+        "sequence": 8957,
+        "guest_frame": 9560,
+        "path": "vram",
+        "pre_swap_tick_ms": 165035
+      },
+      {
+        "sequence": 8958,
+        "guest_frame": 9561,
+        "path": "vram",
+        "pre_swap_tick_ms": 165051
+      },
+      {
+        "sequence": 8959,
+        "guest_frame": 9562,
+        "path": "vram",
+        "pre_swap_tick_ms": 165068
+      },
+      {
+        "sequence": 8960,
+        "guest_frame": 9563,
+        "path": "vram",
+        "pre_swap_tick_ms": 165085
+      },
+      {
+        "sequence": 8961,
+        "guest_frame": 9564,
+        "path": "vram",
+        "pre_swap_tick_ms": 165101
+      },
+      {
+        "sequence": 8962,
+        "guest_frame": 9565,
+        "path": "vram",
+        "pre_swap_tick_ms": 165118
+      },
+      {
+        "sequence": 8963,
+        "guest_frame": 9566,
+        "path": "vram",
+        "pre_swap_tick_ms": 165135
+      },
+      {
+        "sequence": 8964,
+        "guest_frame": 9567,
+        "path": "vram",
+        "pre_swap_tick_ms": 165152
+      },
+      {
+        "sequence": 8965,
+        "guest_frame": 9568,
+        "path": "vram",
+        "pre_swap_tick_ms": 165168
+      },
+      {
+        "sequence": 8966,
+        "guest_frame": 9569,
+        "path": "vram",
+        "pre_swap_tick_ms": 165185
+      },
+      {
+        "sequence": 8967,
+        "guest_frame": 9570,
+        "path": "vram",
+        "pre_swap_tick_ms": 165201
+      },
+      {
+        "sequence": 8968,
+        "guest_frame": 9571,
+        "path": "vram",
+        "pre_swap_tick_ms": 165218
+      },
+      {
+        "sequence": 8969,
+        "guest_frame": 9572,
+        "path": "vram",
+        "pre_swap_tick_ms": 165235
+      },
+      {
+        "sequence": 8970,
+        "guest_frame": 9573,
+        "path": "vram",
+        "pre_swap_tick_ms": 165251
+      },
+      {
+        "sequence": 8971,
+        "guest_frame": 9574,
+        "path": "vram",
+        "pre_swap_tick_ms": 165268
+      },
+      {
+        "sequence": 8972,
+        "guest_frame": 9575,
+        "path": "vram",
+        "pre_swap_tick_ms": 165285
+      },
+      {
+        "sequence": 8973,
+        "guest_frame": 9576,
+        "path": "vram",
+        "pre_swap_tick_ms": 165301
+      },
+      {
+        "sequence": 8974,
+        "guest_frame": 9577,
+        "path": "vram",
+        "pre_swap_tick_ms": 165318
+      },
+      {
+        "sequence": 8975,
+        "guest_frame": 9578,
+        "path": "vram",
+        "pre_swap_tick_ms": 165335
+      },
+      {
+        "sequence": 8976,
+        "guest_frame": 9579,
+        "path": "vram",
+        "pre_swap_tick_ms": 165351
+      },
+      {
+        "sequence": 8977,
+        "guest_frame": 9580,
+        "path": "vram",
+        "pre_swap_tick_ms": 165368
+      },
+      {
+        "sequence": 8978,
+        "guest_frame": 9581,
+        "path": "vram",
+        "pre_swap_tick_ms": 165385
+      },
+      {
+        "sequence": 8979,
+        "guest_frame": 9582,
+        "path": "vram",
+        "pre_swap_tick_ms": 165401
+      },
+      {
+        "sequence": 8980,
+        "guest_frame": 9583,
+        "path": "vram",
+        "pre_swap_tick_ms": 165418
+      },
+      {
+        "sequence": 8981,
+        "guest_frame": 9584,
+        "path": "vram",
+        "pre_swap_tick_ms": 165435
+      },
+      {
+        "sequence": 8982,
+        "guest_frame": 9585,
+        "path": "vram",
+        "pre_swap_tick_ms": 165451
+      },
+      {
+        "sequence": 8983,
+        "guest_frame": 9586,
+        "path": "vram",
+        "pre_swap_tick_ms": 165468
+      },
+      {
+        "sequence": 8984,
+        "guest_frame": 9587,
+        "path": "vram",
+        "pre_swap_tick_ms": 165485
+      },
+      {
+        "sequence": 8985,
+        "guest_frame": 9588,
+        "path": "vram",
+        "pre_swap_tick_ms": 165501
+      },
+      {
+        "sequence": 8986,
+        "guest_frame": 9589,
+        "path": "vram",
+        "pre_swap_tick_ms": 165519
+      },
+      {
+        "sequence": 8987,
+        "guest_frame": 9590,
+        "path": "vram",
+        "pre_swap_tick_ms": 165535
+      },
+      {
+        "sequence": 8988,
+        "guest_frame": 9591,
+        "path": "vram",
+        "pre_swap_tick_ms": 165552
+      },
+      {
+        "sequence": 8989,
+        "guest_frame": 9592,
+        "path": "vram",
+        "pre_swap_tick_ms": 165569
+      },
+      {
+        "sequence": 8990,
+        "guest_frame": 9593,
+        "path": "vram",
+        "pre_swap_tick_ms": 165585
+      },
+      {
+        "sequence": 8991,
+        "guest_frame": 9594,
+        "path": "vram",
+        "pre_swap_tick_ms": 165602
+      },
+      {
+        "sequence": 8992,
+        "guest_frame": 9595,
+        "path": "vram",
+        "pre_swap_tick_ms": 165618
+      },
+      {
+        "sequence": 8993,
+        "guest_frame": 9596,
+        "path": "vram",
+        "pre_swap_tick_ms": 165635
+      },
+      {
+        "sequence": 8994,
+        "guest_frame": 9597,
+        "path": "vram",
+        "pre_swap_tick_ms": 165652
+      },
+      {
+        "sequence": 8995,
+        "guest_frame": 9598,
+        "path": "vram",
+        "pre_swap_tick_ms": 165668
+      },
+      {
+        "sequence": 8996,
+        "guest_frame": 9599,
+        "path": "vram",
+        "pre_swap_tick_ms": 165685
+      }
+    ],
+    "video": {
+      "stream": {
+        "width": 1280,
+        "height": 960,
+        "avg_frame_rate": "206760/3601",
+        "duration": "29.991992",
+        "nb_frames": "1723"
+      },
+      "capture_max_framerate": 120,
+      "frame_rate_mode": "passthrough",
+      "interpolation": false,
+      "retiming": false,
+      "scene_cuts": false,
+      "sha256": "b8563378ca4a367095685ff2279c341cdabf983ed2b6a8201733d6c184ceb248",
+      "bytes": 21011925,
+      "before_frame": 8814,
+      "after_frame": 10650,
+      "recorder_exit": 0,
+      "errors": [],
+      "public_clip": "Pending review/export; original private capture retained"
+    },
+    "history_before": {
+      "id": 1,
+      "ok": true,
+      "capacity": 64,
+      "enabled": 0,
+      "valid": 0,
+      "oldest_frame": 0,
+      "newest_frame": 0
+    },
+    "history_after": {
+      "id": 1,
+      "ok": true,
+      "capacity": 64,
+      "enabled": 0,
+      "valid": 0,
+      "oldest_frame": 0,
+      "newest_frame": 0
+    },
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "proof_sha256": "2497f89a0921ffc0caf3d86020751d0895f202346b022b58a132cc7fec0d6b5b",
+    "video_proof_sha256": "52bdf1014a0de8954ec37de075c9d8788b84ca62c546fc573bbed096dbeab32d",
+    "limitations": [
+      "Window recording adds CPU/GPU load; this is not recorder-free pacing acceptance.",
+      "Swap timestamps are recorded before SDL_GL_SwapWindow with1ms resolution, not physical monitor scanout.",
+      "All350 application frames were submitted once; seven intervals exceeded25ms, so average60fps does not establish even presentation.",
+      "Captured video contains fewer frames than a full60fps stream; capture gaps and application presentation gaps are separate."
+    ]
+  },
+  "recorder_free_final_source_run": {
+    "date_utc": "2026-11-14T02:38:51Z",
+    "runtime_sha256": "2704d0738e2e501ed6222bd562290563b753016c9fb76a27a1b244a5268a6519",
+    "manual_quiet_ack": "msg_644548d1b7beef33",
+    "recorder": false,
+    "source_collection": false,
+    "measurement_screenshots": false,
+    "settings": "Scale 2; rewind 50/15; held fire and disclosed invincibility-countdown aid; same frozen candidate and diagnostics as recorded v54; no new collision/CPS or lock-free audio objects",
+    "window": {
+      "frames": 350,
+      "start": 9250,
+      "end_exclusive": 9600,
+      "wall_ms": 5833.053,
+      "guest_work_ms": 3742.682,
+      "pacer_ms": 1752.666,
+      "fps": 60.00288356714743,
+      "dirty_instructions": 39890154
+    },
+    "presentation": {
+      "scope": "Application pre-SwapWindow metadata, 1ms SDL tick resolution; not physical monitor scanout",
+      "range": [
+        9250,
+        9600
+      ],
+      "events": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 20,
+      "p99_ms": 27,
+      "max_ms": 40,
+      "gaps_over25ms": [
+        {
+          "frame": 9465,
+          "ms": 26
+        },
+        {
+          "frame": 9468,
+          "ms": 40
+        },
+        {
+          "frame": 9476,
+          "ms": 39
+        },
+        {
+          "frame": 9486,
+          "ms": 27
+        },
+        {
+          "frame": 9509,
+          "ms": 26
+        },
+        {
+          "frame": 9521,
+          "ms": 32
+        },
+        {
+          "frame": 9575,
+          "ms": 26
+        },
+        {
+          "frame": 9580,
+          "ms": 26
+        }
+      ],
+      "first": [
+        8650,
+        9250,
+        "vram",
+        161244
+      ],
+      "last": [
+        8999,
+        9599,
+        "vram",
+        167061
+      ],
+      "measured_gameplay_starved": 310
+    },
+    "audio": {
+      "boot_starved": 21389,
+      "measured_gameplay_starved": 310,
+      "boss_starved": 0,
+      "note": "310 additional sample frames starved at gameplay elapsed26.1155s, guest frame4631, outside the boss; cumulative21699 then stayed flat through boss and end. Boot starvation21389 is separate."
+    },
+    "uploads": {
+      "note": "First-use GPU upload calls correlate with remaining late burst; per-upload timing not yet measured.",
+      "frame9433": {
+        "new_texture_draws": 983,
+        "draw_ms": 1944.5015,
+        "readback_ms": 580.4623
+      },
+      "frame9552": {
+        "new_texture_draws": 1011,
+        "draw_ms": 2046.1842,
+        "readback_ms": 580.4623
+      }
+    },
+    "owned_process_exit": 0,
+    "port_closed": true,
+    "errors": [],
+    "proof_sha256": "999b40f21e23e0b6346df313c89b27c9394baa7e4719686957124d3058ae6bb1",
+    "limitations": [
+      "Not the normal installed runtime/pack; normal player tests remain pending.",
+      "Application pre-swap submission timestamps are not monitor scanout.",
+      "All350 frames submitted once does not establish visually smooth presentation.",
+      "One live-input run; not an identical replay or causal effect estimate."
+    ]
+  },
+  "actual_callback_excerpts": [
+    {
+      "leg": "off",
+      "file": "stage1-display-history-off-boss.wav",
+      "source_sha256": "87474421052b6fb223d24797f2c8ddaba4b2beff1993dee7304812eb41ca829f",
+      "source_start_sample_frame": 5388000,
+      "source_offset_sample_frames": 1921440,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9476,
+      "center_observation_elapsed": 107.00032400000055,
+      "pcm_sha256": "7a5ac0d40c04dde0436c2bfec573bd932103a1c7583e95d4761a55f784ce9d03",
+      "sha256": "ad95ca705ad71597308a3775b685e883db45ec930fef214b036a5fdf2188aa06",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    },
+    {
+      "leg": "on",
+      "file": "stage1-display-history-on-boss.wav",
+      "source_sha256": "190e5f4fe24dec6ed85b935a0473b4f424c3d26b013b2d6e46317560bd9a2a68",
+      "source_start_sample_frame": 5392800,
+      "source_offset_sample_frames": 1871040,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9420,
+      "center_observation_elapsed": 106.00011350000023,
+      "pcm_sha256": "04d6c23e48847b11cf4cadcc4a897f6f72d87b0578dc2b54ee7cb75e4a55566d",
+      "sha256": "eef21fc244bb4edc00badd74a10a76b9d46c0631e34fc871f348b39fa7f63e7c",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    },
+    {
+      "leg": "v54",
+      "file": "stage1-display-history-v54-boss.wav",
+      "source_sha256": "41626d5b768bc2b903a1aa375698380d88fc6fa1f7bf14ca7b9d0e794e996d2a",
+      "source_start_sample_frame": 5402880,
+      "source_offset_sample_frames": 1872000,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9433,
+      "center_observation_elapsed": 106.0002514000007,
+      "pcm_sha256": "58755a444873ad5dc096cb96e33ad8f7437880956d0e7e26cd0cb1e509bdc637",
+      "sha256": "f2ce8f3354bfc9d9f38a0f34c93358e74024f0cf2fdd9905cb747ad226a9ad63",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    },
+    {
+      "leg": "normal-play-hd",
+      "file": "stage1-display-history-normal-playhd-boss.wav",
+      "source_sha256": "989ec05b8ca8bbab9235298e16f5178f3a09d8a3def4373340124cfef5716a7d",
+      "source_start_sample_frame": 5378880,
+      "source_offset_sample_frames": 1872000,
+      "frames": 576000,
+      "rate": 48000,
+      "channels": 2,
+      "sample_width_bytes": 2,
+      "center_observation_guest_frame": 9423,
+      "center_observation_elapsed": 106.0005044999998,
+      "pcm_sha256": "7e76724c20e647fa93e03cc152ac26d83052b720c0071a05e42f98fe72c6e3d7",
+      "sha256": "23c8015404c067b800de30aef987517fdc2e542ad3e81641e6ea03c9327ecd7e",
+      "bytes": 2304044,
+      "seconds": 12,
+      "transformations": "Contiguous exact PCM slice; WAV header only. No resampling, normalization, fade, time stretch, repair or added audio.",
+      "audible_acceptance": false
+    }
+  ],
+  "normal_player_runs": {
+    "play_hd": {
+      "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+      "installed_pack_tree_sha256": "a2c0f14349878d6c60425d64a477cf30dd16514e962f0cacb82040a318201866",
+      "installed_png_files": 964,
+      "decode_budget_mb": 256,
+      "scale": 2,
+      "rewind_depth": 50,
+      "rewind_interval": 15,
+      "only_performance_override": {
+        "PSX_DISPLAY_RING": "0"
+      },
+      "diagnostics": {
+        "recorder": false,
+        "hd_cpu_profile": false,
+        "runtime_perf": false
+      },
+      "route": "Private copy, native-stock menus, held fire and authorized invincibility-countdown hold, no stage jumps/state loads",
+      "summary": {
+        "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+        "events": 350,
+        "unique": 350,
+        "sequence_gaps": 0,
+        "frame_gaps": 0,
+        "p50": 17,
+        "p95": 17,
+        "p99": 18,
+        "max": 21,
+        "late": [],
+        "starved": 0,
+        "observed_fps": 60.002622307183515
+      },
+      "presentation_scope": "SDL millisecond pre-SwapWindow application submissions; physical monitor scanout not measured",
+      "startup_audio": {
+        "starved_before_first_gameplay_observation": 10372,
+        "overflow_drops_before_first_gameplay_observation": 23498
+      },
+      "measured_gameplay_audio": {
+        "starved": 0,
+        "overflow_drops": 0,
+        "start_fill_ms": 180.3,
+        "end_fill_ms": 183.6
+      },
+      "errors": [],
+      "exit": 0,
+      "port_closed": true,
+      "originals_verified_unchanged": true,
+      "user_cards_mounted": false,
+      "proof_sha256": "5aa35b3a7c15c876024f088d8d568458dcc7eed6c8e93c6ba9f8a911a039e1a1",
+      "candidate_sha256": "de531299c8eb16e66c96efe144cc6af1b91b871ead7363d8aa1449dd46ee453f",
+      "manual_quiet_ack": "msg_a2bdb1d929d1e474",
+      "external_load_caveat": "WSL VM85% of one core at manual quiet check; total CPU12%; unrelated workload untouched.",
+      "bounded_acceptance": "No boss interval exceeded25ms and zero measured starvation over120 seconds. One assisted run; full unassisted stage/monitor-scanout/audio-listening acceptance remains open.",
+      "boss_submissions": [
+        [
+          8647,
+          9250,
+          "vram",
+          157467
+        ],
+        [
+          8648,
+          9251,
+          "vram",
+          157483
+        ],
+        [
+          8649,
+          9252,
+          "vram",
+          157500
+        ],
+        [
+          8650,
+          9253,
+          "vram",
+          157516
+        ],
+        [
+          8651,
+          9254,
+          "vram",
+          157533
+        ],
+        [
+          8652,
+          9255,
+          "vram",
+          157550
+        ],
+        [
+          8653,
+          9256,
+          "vram",
+          157566
+        ],
+        [
+          8654,
+          9257,
+          "vram",
+          157583
+        ],
+        [
+          8655,
+          9258,
+          "vram",
+          157600
+        ],
+        [
+          8656,
+          9259,
+          "vram",
+          157617
+        ],
+        [
+          8657,
+          9260,
+          "vram",
+          157633
+        ],
+        [
+          8658,
+          9261,
+          "vram",
+          157650
+        ],
+        [
+          8659,
+          9262,
+          "vram",
+          157667
+        ],
+        [
+          8660,
+          9263,
+          "vram",
+          157683
+        ],
+        [
+          8661,
+          9264,
+          "vram",
+          157700
+        ],
+        [
+          8662,
+          9265,
+          "vram",
+          157716
+        ],
+        [
+          8663,
+          9266,
+          "vram",
+          157733
+        ],
+        [
+          8664,
+          9267,
+          "vram",
+          157750
+        ],
+        [
+          8665,
+          9268,
+          "vram",
+          157766
+        ],
+        [
+          8666,
+          9269,
+          "vram",
+          157783
+        ],
+        [
+          8667,
+          9270,
+          "vram",
+          157800
+        ],
+        [
+          8668,
+          9271,
+          "vram",
+          157816
+        ],
+        [
+          8669,
+          9272,
+          "vram",
+          157833
+        ],
+        [
+          8670,
+          9273,
+          "vram",
+          157850
+        ],
+        [
+          8671,
+          9274,
+          "vram",
+          157866
+        ],
+        [
+          8672,
+          9275,
+          "vram",
+          157883
+        ],
+        [
+          8673,
+          9276,
+          "vram",
+          157899
+        ],
+        [
+          8674,
+          9277,
+          "vram",
+          157916
+        ],
+        [
+          8675,
+          9278,
+          "vram",
+          157933
+        ],
+        [
+          8676,
+          9279,
+          "vram",
+          157950
+        ],
+        [
+          8677,
+          9280,
+          "vram",
+          157966
+        ],
+        [
+          8678,
+          9281,
+          "vram",
+          157983
+        ],
+        [
+          8679,
+          9282,
+          "vram",
+          157999
+        ],
+        [
+          8680,
+          9283,
+          "vram",
+          158016
+        ],
+        [
+          8681,
+          9284,
+          "vram",
+          158033
+        ],
+        [
+          8682,
+          9285,
+          "vram",
+          158049
+        ],
+        [
+          8683,
+          9286,
+          "vram",
+          158066
+        ],
+        [
+          8684,
+          9287,
+          "vram",
+          158083
+        ],
+        [
+          8685,
+          9288,
+          "vram",
+          158100
+        ],
+        [
+          8686,
+          9289,
+          "vram",
+          158116
+        ],
+        [
+          8687,
+          9290,
+          "vram",
+          158133
+        ],
+        [
+          8688,
+          9291,
+          "vram",
+          158150
+        ],
+        [
+          8689,
+          9292,
+          "vram",
+          158166
+        ],
+        [
+          8690,
+          9293,
+          "vram",
+          158183
+        ],
+        [
+          8691,
+          9294,
+          "vram",
+          158200
+        ],
+        [
+          8692,
+          9295,
+          "vram",
+          158216
+        ],
+        [
+          8693,
+          9296,
+          "vram",
+          158233
+        ],
+        [
+          8694,
+          9297,
+          "vram",
+          158250
+        ],
+        [
+          8695,
+          9298,
+          "vram",
+          158266
+        ],
+        [
+          8696,
+          9299,
+          "vram",
+          158283
+        ],
+        [
+          8697,
+          9300,
+          "vram",
+          158300
+        ],
+        [
+          8698,
+          9301,
+          "vram",
+          158316
+        ],
+        [
+          8699,
+          9302,
+          "vram",
+          158333
+        ],
+        [
+          8700,
+          9303,
+          "vram",
+          158349
+        ],
+        [
+          8701,
+          9304,
+          "vram",
+          158366
+        ],
+        [
+          8702,
+          9305,
+          "vram",
+          158383
+        ],
+        [
+          8703,
+          9306,
+          "vram",
+          158400
+        ],
+        [
+          8704,
+          9307,
+          "vram",
+          158416
+        ],
+        [
+          8705,
+          9308,
+          "vram",
+          158433
+        ],
+        [
+          8706,
+          9309,
+          "vram",
+          158450
+        ],
+        [
+          8707,
+          9310,
+          "vram",
+          158466
+        ],
+        [
+          8708,
+          9311,
+          "vram",
+          158483
+        ],
+        [
+          8709,
+          9312,
+          "vram",
+          158500
+        ],
+        [
+          8710,
+          9313,
+          "vram",
+          158516
+        ],
+        [
+          8711,
+          9314,
+          "vram",
+          158533
+        ],
+        [
+          8712,
+          9315,
+          "vram",
+          158550
+        ],
+        [
+          8713,
+          9316,
+          "vram",
+          158566
+        ],
+        [
+          8714,
+          9317,
+          "vram",
+          158583
+        ],
+        [
+          8715,
+          9318,
+          "vram",
+          158600
+        ],
+        [
+          8716,
+          9319,
+          "vram",
+          158617
+        ],
+        [
+          8717,
+          9320,
+          "vram",
+          158633
+        ],
+        [
+          8718,
+          9321,
+          "vram",
+          158649
+        ],
+        [
+          8719,
+          9322,
+          "vram",
+          158667
+        ],
+        [
+          8720,
+          9323,
+          "vram",
+          158683
+        ],
+        [
+          8721,
+          9324,
+          "vram",
+          158700
+        ],
+        [
+          8722,
+          9325,
+          "vram",
+          158716
+        ],
+        [
+          8723,
+          9326,
+          "vram",
+          158733
+        ],
+        [
+          8724,
+          9327,
+          "vram",
+          158750
+        ],
+        [
+          8725,
+          9328,
+          "vram",
+          158767
+        ],
+        [
+          8726,
+          9329,
+          "vram",
+          158783
+        ],
+        [
+          8727,
+          9330,
+          "vram",
+          158800
+        ],
+        [
+          8728,
+          9331,
+          "vram",
+          158816
+        ],
+        [
+          8729,
+          9332,
+          "vram",
+          158833
+        ],
+        [
+          8730,
+          9333,
+          "vram",
+          158849
+        ],
+        [
+          8731,
+          9334,
+          "vram",
+          158866
+        ],
+        [
+          8732,
+          9335,
+          "vram",
+          158883
+        ],
+        [
+          8733,
+          9336,
+          "vram",
+          158900
+        ],
+        [
+          8734,
+          9337,
+          "vram",
+          158916
+        ],
+        [
+          8735,
+          9338,
+          "vram",
+          158933
+        ],
+        [
+          8736,
+          9339,
+          "vram",
+          158950
+        ],
+        [
+          8737,
+          9340,
+          "vram",
+          158967
+        ],
+        [
+          8738,
+          9341,
+          "vram",
+          158983
+        ],
+        [
+          8739,
+          9342,
+          "vram",
+          158999
+        ],
+        [
+          8740,
+          9343,
+          "vram",
+          159016
+        ],
+        [
+          8741,
+          9344,
+          "vram",
+          159033
+        ],
+        [
+          8742,
+          9345,
+          "vram",
+          159050
+        ],
+        [
+          8743,
+          9346,
+          "vram",
+          159066
+        ],
+        [
+          8744,
+          9347,
+          "vram",
+          159083
+        ],
+        [
+          8745,
+          9348,
+          "vram",
+          159100
+        ],
+        [
+          8746,
+          9349,
+          "vram",
+          159117
+        ],
+        [
+          8747,
+          9350,
+          "vram",
+          159133
+        ],
+        [
+          8748,
+          9351,
+          "vram",
+          159150
+        ],
+        [
+          8749,
+          9352,
+          "vram",
+          159166
+        ],
+        [
+          8750,
+          9353,
+          "vram",
+          159183
+        ],
+        [
+          8751,
+          9354,
+          "vram",
+          159200
+        ],
+        [
+          8752,
+          9355,
+          "vram",
+          159217
+        ],
+        [
+          8753,
+          9356,
+          "vram",
+          159233
+        ],
+        [
+          8754,
+          9357,
+          "vram",
+          159250
+        ],
+        [
+          8755,
+          9358,
+          "vram",
+          159267
+        ],
+        [
+          8756,
+          9359,
+          "vram",
+          159283
+        ],
+        [
+          8757,
+          9360,
+          "vram",
+          159299
+        ],
+        [
+          8758,
+          9361,
+          "vram",
+          159317
+        ],
+        [
+          8759,
+          9362,
+          "vram",
+          159333
+        ],
+        [
+          8760,
+          9363,
+          "vram",
+          159350
+        ],
+        [
+          8761,
+          9364,
+          "vram",
+          159367
+        ],
+        [
+          8762,
+          9365,
+          "vram",
+          159383
+        ],
+        [
+          8763,
+          9366,
+          "vram",
+          159400
+        ],
+        [
+          8764,
+          9367,
+          "vram",
+          159416
+        ],
+        [
+          8765,
+          9368,
+          "vram",
+          159433
+        ],
+        [
+          8766,
+          9369,
+          "vram",
+          159449
+        ],
+        [
+          8767,
+          9370,
+          "vram",
+          159466
+        ],
+        [
+          8768,
+          9371,
+          "vram",
+          159483
+        ],
+        [
+          8769,
+          9372,
+          "vram",
+          159500
+        ],
+        [
+          8770,
+          9373,
+          "vram",
+          159516
+        ],
+        [
+          8771,
+          9374,
+          "vram",
+          159533
+        ],
+        [
+          8772,
+          9375,
+          "vram",
+          159550
+        ],
+        [
+          8773,
+          9376,
+          "vram",
+          159566
+        ],
+        [
+          8774,
+          9377,
+          "vram",
+          159583
+        ],
+        [
+          8775,
+          9378,
+          "vram",
+          159600
+        ],
+        [
+          8776,
+          9379,
+          "vram",
+          159616
+        ],
+        [
+          8777,
+          9380,
+          "vram",
+          159633
+        ],
+        [
+          8778,
+          9381,
+          "vram",
+          159649
+        ],
+        [
+          8779,
+          9382,
+          "vram",
+          159666
+        ],
+        [
+          8780,
+          9383,
+          "vram",
+          159683
+        ],
+        [
+          8781,
+          9384,
+          "vram",
+          159699
+        ],
+        [
+          8782,
+          9385,
+          "vram",
+          159716
+        ],
+        [
+          8783,
+          9386,
+          "vram",
+          159733
+        ],
+        [
+          8784,
+          9387,
+          "vram",
+          159750
+        ],
+        [
+          8785,
+          9388,
+          "vram",
+          159767
+        ],
+        [
+          8786,
+          9389,
+          "vram",
+          159783
+        ],
+        [
+          8787,
+          9390,
+          "vram",
+          159799
+        ],
+        [
+          8788,
+          9391,
+          "vram",
+          159816
+        ],
+        [
+          8789,
+          9392,
+          "vram",
+          159837
+        ],
+        [
+          8790,
+          9393,
+          "vram",
+          159850
+        ],
+        [
+          8791,
+          9394,
+          "vram",
+          159866
+        ],
+        [
+          8792,
+          9395,
+          "vram",
+          159883
+        ],
+        [
+          8793,
+          9396,
+          "vram",
+          159900
+        ],
+        [
+          8794,
+          9397,
+          "vram",
+          159916
+        ],
+        [
+          8795,
+          9398,
+          "vram",
+          159933
+        ],
+        [
+          8796,
+          9399,
+          "vram",
+          159950
+        ],
+        [
+          8797,
+          9400,
+          "vram",
+          159966
+        ],
+        [
+          8798,
+          9401,
+          "vram",
+          159983
+        ],
+        [
+          8799,
+          9402,
+          "vram",
+          159999
+        ],
+        [
+          8800,
+          9403,
+          "vram",
+          160017
+        ],
+        [
+          8801,
+          9404,
+          "vram",
+          160033
+        ],
+        [
+          8802,
+          9405,
+          "vram",
+          160050
+        ],
+        [
+          8803,
+          9406,
+          "vram",
+          160066
+        ],
+        [
+          8804,
+          9407,
+          "vram",
+          160083
+        ],
+        [
+          8805,
+          9408,
+          "vram",
+          160099
+        ],
+        [
+          8806,
+          9409,
+          "vram",
+          160116
+        ],
+        [
+          8807,
+          9410,
+          "vram",
+          160133
+        ],
+        [
+          8808,
+          9411,
+          "vram",
+          160150
+        ],
+        [
+          8809,
+          9412,
+          "vram",
+          160166
+        ],
+        [
+          8810,
+          9413,
+          "vram",
+          160183
+        ],
+        [
+          8811,
+          9414,
+          "vram",
+          160200
+        ],
+        [
+          8812,
+          9415,
+          "vram",
+          160216
+        ],
+        [
+          8813,
+          9416,
+          "vram",
+          160233
+        ],
+        [
+          8814,
+          9417,
+          "vram",
+          160250
+        ],
+        [
+          8815,
+          9418,
+          "vram",
+          160266
+        ],
+        [
+          8816,
+          9419,
+          "vram",
+          160283
+        ],
+        [
+          8817,
+          9420,
+          "vram",
+          160299
+        ],
+        [
+          8818,
+          9421,
+          "vram",
+          160316
+        ],
+        [
+          8819,
+          9422,
+          "vram",
+          160333
+        ],
+        [
+          8820,
+          9423,
+          "vram",
+          160349
+        ],
+        [
+          8821,
+          9424,
+          "vram",
+          160366
+        ],
+        [
+          8822,
+          9425,
+          "vram",
+          160383
+        ],
+        [
+          8823,
+          9426,
+          "vram",
+          160400
+        ],
+        [
+          8824,
+          9427,
+          "vram",
+          160416
+        ],
+        [
+          8825,
+          9428,
+          "vram",
+          160433
+        ],
+        [
+          8826,
+          9429,
+          "vram",
+          160450
+        ],
+        [
+          8827,
+          9430,
+          "vram",
+          160466
+        ],
+        [
+          8828,
+          9431,
+          "vram",
+          160483
+        ],
+        [
+          8829,
+          9432,
+          "vram",
+          160500
+        ],
+        [
+          8830,
+          9433,
+          "vram",
+          160516
+        ],
+        [
+          8831,
+          9434,
+          "vram",
+          160533
+        ],
+        [
+          8832,
+          9435,
+          "vram",
+          160550
+        ],
+        [
+          8833,
+          9436,
+          "vram",
+          160566
+        ],
+        [
+          8834,
+          9437,
+          "vram",
+          160583
+        ],
+        [
+          8835,
+          9438,
+          "vram",
+          160600
+        ],
+        [
+          8836,
+          9439,
+          "vram",
+          160616
+        ],
+        [
+          8837,
+          9440,
+          "vram",
+          160633
+        ],
+        [
+          8838,
+          9441,
+          "vram",
+          160650
+        ],
+        [
+          8839,
+          9442,
+          "vram",
+          160666
+        ],
+        [
+          8840,
+          9443,
+          "vram",
+          160683
+        ],
+        [
+          8841,
+          9444,
+          "vram",
+          160699
+        ],
+        [
+          8842,
+          9445,
+          "vram",
+          160717
+        ],
+        [
+          8843,
+          9446,
+          "vram",
+          160733
+        ],
+        [
+          8844,
+          9447,
+          "vram",
+          160750
+        ],
+        [
+          8845,
+          9448,
+          "vram",
+          160766
+        ],
+        [
+          8846,
+          9449,
+          "vram",
+          160783
+        ],
+        [
+          8847,
+          9450,
+          "vram",
+          160800
+        ],
+        [
+          8848,
+          9451,
+          "vram",
+          160816
+        ],
+        [
+          8849,
+          9452,
+          "vram",
+          160833
+        ],
+        [
+          8850,
+          9453,
+          "vram",
+          160849
+        ],
+        [
+          8851,
+          9454,
+          "vram",
+          160866
+        ],
+        [
+          8852,
+          9455,
+          "vram",
+          160883
+        ],
+        [
+          8853,
+          9456,
+          "vram",
+          160900
+        ],
+        [
+          8854,
+          9457,
+          "vram",
+          160917
+        ],
+        [
+          8855,
+          9458,
+          "vram",
+          160933
+        ],
+        [
+          8856,
+          9459,
+          "vram",
+          160950
+        ],
+        [
+          8857,
+          9460,
+          "vram",
+          160966
+        ],
+        [
+          8858,
+          9461,
+          "vram",
+          160983
+        ],
+        [
+          8859,
+          9462,
+          "vram",
+          161000
+        ],
+        [
+          8860,
+          9463,
+          "vram",
+          161016
+        ],
+        [
+          8861,
+          9464,
+          "vram",
+          161033
+        ],
+        [
+          8862,
+          9465,
+          "vram",
+          161050
+        ],
+        [
+          8863,
+          9466,
+          "vram",
+          161066
+        ],
+        [
+          8864,
+          9467,
+          "vram",
+          161083
+        ],
+        [
+          8865,
+          9468,
+          "vram",
+          161100
+        ],
+        [
+          8866,
+          9469,
+          "vram",
+          161116
+        ],
+        [
+          8867,
+          9470,
+          "vram",
+          161133
+        ],
+        [
+          8868,
+          9471,
+          "vram",
+          161149
+        ],
+        [
+          8869,
+          9472,
+          "vram",
+          161167
+        ],
+        [
+          8870,
+          9473,
+          "vram",
+          161183
+        ],
+        [
+          8871,
+          9474,
+          "vram",
+          161200
+        ],
+        [
+          8872,
+          9475,
+          "vram",
+          161216
+        ],
+        [
+          8873,
+          9476,
+          "vram",
+          161233
+        ],
+        [
+          8874,
+          9477,
+          "vram",
+          161249
+        ],
+        [
+          8875,
+          9478,
+          "vram",
+          161266
+        ],
+        [
+          8876,
+          9479,
+          "vram",
+          161283
+        ],
+        [
+          8877,
+          9480,
+          "vram",
+          161300
+        ],
+        [
+          8878,
+          9481,
+          "vram",
+          161316
+        ],
+        [
+          8879,
+          9482,
+          "vram",
+          161333
+        ],
+        [
+          8880,
+          9483,
+          "vram",
+          161349
+        ],
+        [
+          8881,
+          9484,
+          "vram",
+          161366
+        ],
+        [
+          8882,
+          9485,
+          "vram",
+          161383
+        ],
+        [
+          8883,
+          9486,
+          "vram",
+          161400
+        ],
+        [
+          8884,
+          9487,
+          "vram",
+          161416
+        ],
+        [
+          8885,
+          9488,
+          "vram",
+          161433
+        ],
+        [
+          8886,
+          9489,
+          "vram",
+          161450
+        ],
+        [
+          8887,
+          9490,
+          "vram",
+          161466
+        ],
+        [
+          8888,
+          9491,
+          "vram",
+          161483
+        ],
+        [
+          8889,
+          9492,
+          "vram",
+          161499
+        ],
+        [
+          8890,
+          9493,
+          "vram",
+          161516
+        ],
+        [
+          8891,
+          9494,
+          "vram",
+          161533
+        ],
+        [
+          8892,
+          9495,
+          "vram",
+          161550
+        ],
+        [
+          8893,
+          9496,
+          "vram",
+          161566
+        ],
+        [
+          8894,
+          9497,
+          "vram",
+          161583
+        ],
+        [
+          8895,
+          9498,
+          "vram",
+          161600
+        ],
+        [
+          8896,
+          9499,
+          "vram",
+          161616
+        ],
+        [
+          8897,
+          9500,
+          "vram",
+          161633
+        ],
+        [
+          8898,
+          9501,
+          "vram",
+          161649
+        ],
+        [
+          8899,
+          9502,
+          "vram",
+          161666
+        ],
+        [
+          8900,
+          9503,
+          "vram",
+          161683
+        ],
+        [
+          8901,
+          9504,
+          "vram",
+          161699
+        ],
+        [
+          8902,
+          9505,
+          "vram",
+          161716
+        ],
+        [
+          8903,
+          9506,
+          "vram",
+          161733
+        ],
+        [
+          8904,
+          9507,
+          "vram",
+          161750
+        ],
+        [
+          8905,
+          9508,
+          "vram",
+          161766
+        ],
+        [
+          8906,
+          9509,
+          "vram",
+          161783
+        ],
+        [
+          8907,
+          9510,
+          "vram",
+          161799
+        ],
+        [
+          8908,
+          9511,
+          "vram",
+          161816
+        ],
+        [
+          8909,
+          9512,
+          "vram",
+          161833
+        ],
+        [
+          8910,
+          9513,
+          "vram",
+          161849
+        ],
+        [
+          8911,
+          9514,
+          "vram",
+          161866
+        ],
+        [
+          8912,
+          9515,
+          "vram",
+          161883
+        ],
+        [
+          8913,
+          9516,
+          "vram",
+          161900
+        ],
+        [
+          8914,
+          9517,
+          "vram",
+          161916
+        ],
+        [
+          8915,
+          9518,
+          "vram",
+          161933
+        ],
+        [
+          8916,
+          9519,
+          "vram",
+          161950
+        ],
+        [
+          8917,
+          9520,
+          "vram",
+          161966
+        ],
+        [
+          8918,
+          9521,
+          "vram",
+          161983
+        ],
+        [
+          8919,
+          9522,
+          "vram",
+          162000
+        ],
+        [
+          8920,
+          9523,
+          "vram",
+          162016
+        ],
+        [
+          8921,
+          9524,
+          "vram",
+          162033
+        ],
+        [
+          8922,
+          9525,
+          "vram",
+          162051
+        ],
+        [
+          8923,
+          9526,
+          "vram",
+          162066
+        ],
+        [
+          8924,
+          9527,
+          "vram",
+          162083
+        ],
+        [
+          8925,
+          9528,
+          "vram",
+          162100
+        ],
+        [
+          8926,
+          9529,
+          "vram",
+          162117
+        ],
+        [
+          8927,
+          9530,
+          "vram",
+          162133
+        ],
+        [
+          8928,
+          9531,
+          "vram",
+          162150
+        ],
+        [
+          8929,
+          9532,
+          "vram",
+          162166
+        ],
+        [
+          8930,
+          9533,
+          "vram",
+          162183
+        ],
+        [
+          8931,
+          9534,
+          "vram",
+          162200
+        ],
+        [
+          8932,
+          9535,
+          "vram",
+          162216
+        ],
+        [
+          8933,
+          9536,
+          "vram",
+          162233
+        ],
+        [
+          8934,
+          9537,
+          "vram",
+          162250
+        ],
+        [
+          8935,
+          9538,
+          "vram",
+          162266
+        ],
+        [
+          8936,
+          9539,
+          "vram",
+          162283
+        ],
+        [
+          8937,
+          9540,
+          "vram",
+          162300
+        ],
+        [
+          8938,
+          9541,
+          "vram",
+          162316
+        ],
+        [
+          8939,
+          9542,
+          "vram",
+          162333
+        ],
+        [
+          8940,
+          9543,
+          "vram",
+          162350
+        ],
+        [
+          8941,
+          9544,
+          "vram",
+          162366
+        ],
+        [
+          8942,
+          9545,
+          "vram",
+          162383
+        ],
+        [
+          8943,
+          9546,
+          "vram",
+          162400
+        ],
+        [
+          8944,
+          9547,
+          "vram",
+          162417
+        ],
+        [
+          8945,
+          9548,
+          "vram",
+          162434
+        ],
+        [
+          8946,
+          9549,
+          "vram",
+          162449
+        ],
+        [
+          8947,
+          9550,
+          "vram",
+          162466
+        ],
+        [
+          8948,
+          9551,
+          "vram",
+          162483
+        ],
+        [
+          8949,
+          9552,
+          "vram",
+          162500
+        ],
+        [
+          8950,
+          9553,
+          "vram",
+          162517
+        ],
+        [
+          8951,
+          9554,
+          "vram",
+          162533
+        ],
+        [
+          8952,
+          9555,
+          "vram",
+          162550
+        ],
+        [
+          8953,
+          9556,
+          "vram",
+          162566
+        ],
+        [
+          8954,
+          9557,
+          "vram",
+          162583
+        ],
+        [
+          8955,
+          9558,
+          "vram",
+          162600
+        ],
+        [
+          8956,
+          9559,
+          "vram",
+          162616
+        ],
+        [
+          8957,
+          9560,
+          "vram",
+          162633
+        ],
+        [
+          8958,
+          9561,
+          "vram",
+          162650
+        ],
+        [
+          8959,
+          9562,
+          "vram",
+          162666
+        ],
+        [
+          8960,
+          9563,
+          "vram",
+          162683
+        ],
+        [
+          8961,
+          9564,
+          "vram",
+          162700
+        ],
+        [
+          8962,
+          9565,
+          "vram",
+          162716
+        ],
+        [
+          8963,
+          9566,
+          "vram",
+          162733
+        ],
+        [
+          8964,
+          9567,
+          "vram",
+          162750
+        ],
+        [
+          8965,
+          9568,
+          "vram",
+          162766
+        ],
+        [
+          8966,
+          9569,
+          "vram",
+          162783
+        ],
+        [
+          8967,
+          9570,
+          "vram",
+          162800
+        ],
+        [
+          8968,
+          9571,
+          "vram",
+          162816
+        ],
+        [
+          8969,
+          9572,
+          "vram",
+          162833
+        ],
+        [
+          8970,
+          9573,
+          "vram",
+          162849
+        ],
+        [
+          8971,
+          9574,
+          "vram",
+          162867
+        ],
+        [
+          8972,
+          9575,
+          "vram",
+          162883
+        ],
+        [
+          8973,
+          9576,
+          "vram",
+          162900
+        ],
+        [
+          8974,
+          9577,
+          "vram",
+          162916
+        ],
+        [
+          8975,
+          9578,
+          "vram",
+          162934
+        ],
+        [
+          8976,
+          9579,
+          "vram",
+          162950
+        ],
+        [
+          8977,
+          9580,
+          "vram",
+          162967
+        ],
+        [
+          8978,
+          9581,
+          "vram",
+          162983
+        ],
+        [
+          8979,
+          9582,
+          "vram",
+          163000
+        ],
+        [
+          8980,
+          9583,
+          "vram",
+          163017
+        ],
+        [
+          8981,
+          9584,
+          "vram",
+          163033
+        ],
+        [
+          8982,
+          9585,
+          "vram",
+          163050
+        ],
+        [
+          8983,
+          9586,
+          "vram",
+          163067
+        ],
+        [
+          8984,
+          9587,
+          "vram",
+          163083
+        ],
+        [
+          8985,
+          9588,
+          "vram",
+          163099
+        ],
+        [
+          8986,
+          9589,
+          "vram",
+          163116
+        ],
+        [
+          8987,
+          9590,
+          "vram",
+          163133
+        ],
+        [
+          8988,
+          9591,
+          "vram",
+          163150
+        ],
+        [
+          8989,
+          9592,
+          "vram",
+          163166
+        ],
+        [
+          8990,
+          9593,
+          "vram",
+          163183
+        ],
+        [
+          8991,
+          9594,
+          "vram",
+          163200
+        ],
+        [
+          8992,
+          9595,
+          "vram",
+          163217
+        ],
+        [
+          8993,
+          9596,
+          "vram",
+          163233
+        ],
+        [
+          8994,
+          9597,
+          "vram",
+          163250
+        ],
+        [
+          8995,
+          9598,
+          "vram",
+          163266
+        ],
+        [
+          8996,
+          9599,
+          "vram",
+          163283
+        ]
+      ]
+    },
+    "material": {
+      "runtime_sha256": "f018c9be2454f22d7f23a954403bf024557ea239be23f0140784b20b311b3c72",
+      "installed_pack_tree_sha256": "a2c0f14349878d6c60425d64a477cf30dd16514e962f0cacb82040a318201866",
+      "decode_budget_mb": 256,
+      "scale": 2,
+      "rewind_depth": 50,
+      "rewind_interval": 15,
+      "cache": "Normal source cache empty; private copy started empty; no bundled overlay_toolchain or overlay_codegen.exe present in original executable directory",
+      "disclosed_differences": [
+        "PSX_DISPLAY_RING=0 is the only performance override",
+        "debug port 4376 via --debug-port and EIN_DEBUG_PORT (normal Play-HD uses the build default; material uses 4370)",
+        "private --memcard-dir and private settings card paths; card1 is the closed private PILOT seed; user cards never mounted",
+        "--window-title added for the runner's identity checks and the recorder",
+        "PSXRECOMP_HD_PROOF_CONTROL: native-stock menus during the controlled route, then the installed pack enabled for gameplay",
+        "the runner's controlled native-stock route and countdown-only timer aid",
+        "ordinary fire held (pad 0x7FFF) after positioning, which the shooting boss symptom needs",
+        "no recorder: passive gl_present_ring is read after measurement",
+        "material leg: --launcher replaced by --no-launcher (frontend bypassed for the controlled route)",
+        "material leg: EIN_DEV_URL=http://127.0.0.1:8094 kept exactly as the normal material launcher sets it",
+        "material leg: the normal native cache is used as-is (it may be empty); it was not warmed from another binary",
+        "material leg: devtools-build has no settings.toml; used the user's build-release settings (disclosed)"
+      ],
+      "summary": {
+        "events": 350,
+        "unique": 350,
+        "frame_gaps": 0,
+        "seq_gaps": 0,
+        "p50": 17,
+        "p95": 21,
+        "p99": 24,
+        "max": 28,
+        "late": [
+          {
+            "frame": 9372,
+            "ms": 26
+          },
+          {
+            "frame": 9428,
+            "ms": 28
+          }
+        ],
+        "starved": 15378,
+        "observed_fps": 59.72473379500422,
+        "exit": 0,
+        "port_closed": true,
+        "errors": []
+      },
+      "measurement_starvation_events": [
+        {
+          "elapsed_seconds": 1.0002803999996104,
+          "frame": 3106,
+          "cumulative_starved": 5313
+        },
+        {
+          "elapsed_seconds": 4.000663099999656,
+          "frame": 3280,
+          "cumulative_starved": 7655
+        },
+        {
+          "elapsed_seconds": 42.00056859999859,
+          "frame": 5552,
+          "cumulative_starved": 10300
+        },
+        {
+          "elapsed_seconds": 43.00038409999979,
+          "frame": 5612,
+          "cumulative_starved": 11150
+        },
+        {
+          "elapsed_seconds": 53.000343199999406,
+          "frame": 6213,
+          "cumulative_starved": 12423
+        },
+        {
+          "elapsed_seconds": 85.00061939999978,
+          "frame": 8120,
+          "cumulative_starved": 15378
+        }
+      ],
+      "boss_starved": 0,
+      "originals_verified_unchanged": true,
+      "user_cards_mounted": false,
+      "proof_sha256": "8ecdfa086473e2785702b1447b93fb6958e7d2767de4e29c44e04957ae9d2f05",
+      "candidate_sha256": "7d79f8849e8ff27b7c17302dec99f0bac6261851d2264e5cb868521435e5e411",
+      "manual_quiet_ack": "msg_5edf4a0f9148a13f",
+      "external_load_caveat": "Visual Studio BackgroundDownload updater56% of one core; totalCPU9.8%; unrelated workload untouched.",
+      "acceptance": "FAIL: gameplay starvation persists; two boss intervals over25ms. Not an OFF/ON material pair and does not establish cause of remaining pauses.",
+      "largest_retained_intervals": [
+        {
+          "frame": 8642,
+          "ms": 83
+        },
+        {
+          "frame": 8085,
+          "ms": 37
+        },
+        {
+          "frame": 8102,
+          "ms": 36
+        },
+        {
+          "frame": 8083,
+          "ms": 33
+        },
+        {
+          "frame": 8086,
+          "ms": 33
+        },
+        {
+          "frame": 8082,
+          "ms": 31
+        },
+        {
+          "frame": 8087,
+          "ms": 30
+        },
+        {
+          "frame": 7659,
+          "ms": 29
+        },
+        {
+          "frame": 8681,
+          "ms": 29
+        },
+        {
+          "frame": 6159,
+          "ms": 28
+        },
+        {
+          "frame": 6315,
+          "ms": 28
+        },
+        {
+          "frame": 7678,
+          "ms": 28
+        },
+        {
+          "frame": 7687,
+          "ms": 28
+        },
+        {
+          "frame": 7694,
+          "ms": 28
+        }
+      ]
+    },
+    "material_b287": {
+      "summary": {
+        "runtime_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+        "events": 350,
+        "unique": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50": 17,
+        "p95": 17,
+        "p99": 18,
+        "max": 20,
+        "late": [],
+        "starved": 0,
+        "observed_fps": 60.0072233288618,
+        "exit": 0,
+        "errors": [],
+        "port_closed": true
+      },
+      "installed_pack_tree_sha256": "a2c0f14349878d6c60425d64a477cf30dd16514e962f0cacb82040a318201866",
+      "settings": {
+        "supersampling": 2,
+        "rewind_depth": 50,
+        "rewind_interval": 15
+      },
+      "native_cache": {
+        "source": "Existing matching build-release cache, copied with its own executable",
+        "tree_sha256": "c2f1b870f2ab5fafe6d9efe6060f60c6a38e073529e7cf21c51df96ef594c456",
+        "all_shards_requalified": false
+      },
+      "material_before": {
+        "id": 1,
+        "ok": true,
+        "contract": "ein-material-v3",
+        "live_palette": true,
+        "ready": true,
+        "opengl_ready": true,
+        "hd_ready": true,
+        "renderer": "opengl",
+        "applied": false,
+        "generation": 0,
+        "frame": 3075,
+        "apply_scope": "color_only_next_draw",
+        "detail_changes": "next_launch_only",
+        "diagnostic_scope_supported": true,
+        "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+        "player": {
+          "profile": "aurora-teal",
+          "strength_percent": 75,
+          "key_count": 4,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+        },
+        "enemy": {
+          "profile": "crimson-red",
+          "strength_percent": 75,
+          "key_count": 6,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+        },
+        "supported_profiles": [
+          "stock",
+          "aurora-teal",
+          "solar-orange",
+          "ultraviolet-violet",
+          "glacier-blue",
+          "crimson-red",
+          "toxic-lime",
+          "gold-obsidian",
+          "pearl-magenta",
+          "aurora-gilt",
+          "crimson-regalia",
+          "glacier-gilt",
+          "neon-circuit",
+          "ultraviolet-grid",
+          "reactor-lime"
+        ]
+      },
+      "material_after": {
+        "id": 1,
+        "ok": true,
+        "contract": "ein-material-v3",
+        "live_palette": true,
+        "ready": true,
+        "opengl_ready": true,
+        "hd_ready": true,
+        "renderer": "opengl",
+        "applied": false,
+        "generation": 0,
+        "frame": 10286,
+        "apply_scope": "color_only_next_draw",
+        "detail_changes": "next_launch_only",
+        "diagnostic_scope_supported": true,
+        "diagnostic_scope_status": "temporary_candidate_not_actor_binding",
+        "player": {
+          "profile": "aurora-teal",
+          "strength_percent": 75,
+          "key_count": 4,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "724E77DA-21FDE894,7E3ADD56-21FDE894,B16492B1-21FDE894,E2F3477C-21FDE894"
+        },
+        "enemy": {
+          "profile": "crimson-red",
+          "strength_percent": 75,
+          "key_count": 6,
+          "detail_active": true,
+          "diagnostic_scope": false,
+          "preserve_accents": false,
+          "keys": "3594C110-527B28B9,3FE0776D-527B28B9,6BB2A2A3-527B28B9,784BFD39-527B28B9,DEA9D15C-527B28B9,05C32A1E-527B28B9"
+        },
+        "supported_profiles": [
+          "stock",
+          "aurora-teal",
+          "solar-orange",
+          "ultraviolet-violet",
+          "glacier-blue",
+          "crimson-red",
+          "toxic-lime",
+          "gold-obsidian",
+          "pearl-magenta",
+          "aurora-gilt",
+          "crimson-regalia",
+          "glacier-gilt",
+          "neon-circuit",
+          "ultraviolet-grid",
+          "reactor-lime"
+        ]
+      },
+      "originals_verified_unchanged_before_rebind": true,
+      "user_cards_mounted": false,
+      "proof_sha256": "f7eda15901ea2646995626e19706b3d6381486e0a050755fef7c84c66d0c012b",
+      "candidate_sha256": "04b940773ab2d3f6690ac3e21f3828bd399aa7ad2472d9fcea8c9235d5002322",
+      "post_measurement_image": {
+        "sha256": "62937622ff60fe238be38b2ddcac2cafcd5fa2514f2ae059bfd63b240602417b",
+        "frame_before": 10287,
+        "frame_after": 10292,
+        "review": "Reduced preview inspected: teal craft, enemies, city and HUD appear intact; one frame only, not full-stage appearance acceptance."
+      },
+      "limitations": [
+        "One live-input assisted120-second Stage1 run, not a matched replay or full-stage acceptance.",
+        "Frontend bypassed during timing; normal --launcher path still pending.",
+        "Other profile shortcut checks are receipt validation only, not live appearance acceptance.",
+        "Boot starvation11363 precedes first measured gameplay observation; zero is the measured gameplay delta.",
+        "Source cache is pre-existing; not all cached shards or later stages requalified."
+      ]
+    }
+  },
+  "local_launcher_hotfix": {
+    "applied_at_utc": "2026-11-14T02:51:06.302Z",
+    "path": "C:/github/Einhander/windows-x64/Play-HD.cmd",
+    "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/Play-HD.before.cmd",
+    "before_sha256": "779921a4d7993657a957aa4daea42768608c062ae0d396510a9e5e3fbfb4d2c5",
+    "after_sha256": "70c8cf1ed895f4782b07a6cbd6aefb22768efc779a5448e99fbaee9799b9277d",
+    "behavior": "Default PSX_DISPLAY_RING=0 only when unset/empty, preserve explicit diagnostic choice. Local ignored launcher change only; no executable/settings/cache/card changes.",
+    "basis": "normal-playhd-ring0-r2: existing runtime, installed pack, normal scale2/rewind50/15, 350 contiguous boss frames, max21ms, zero measured starvation; originals verified unchanged before launcher edit.",
+    "applied": true,
+    "additional_launch_sources": [
+      {
+        "path": "windows-x64/tools/material_profiles.py",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material_profiles.py.before",
+        "before_sha256": "d70b7b7293bc6e7ce8bca01c599f0f3bee1ae1ccf6f41f36828a76e4b162f3e6",
+        "after_sha256": "540584cf0ab49dd561eb4f751aea71aa9d93e4f585e45c8d75d811ba7d6641b4"
+      },
+      {
+        "path": "windows-x64/tools/Start-Development.ps1",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/Start-Development.ps1.before",
+        "before_sha256": "291b138eb659079879294fa44b6fec2e0f9aba8e1dc7e4cace38c0dcd97dbde1",
+        "after_sha256": "bfdffa7647a551f0b1084efbbd1c9197053bd4e7532852ca8e0bf85eefab0ac5"
+      }
+    ],
+    "scope": "Normal Play-HD, material environment and Development game start disable continuous forensic GPU readback; binaries/assets/settings/cards unchanged. Material gameplay audio remains unresolved.",
+    "forensic_and_pacing_sources": [
+      {
+        "path": "remaster-audit/launch_ui_candidate.py",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/launch_ui_candidate.py.before",
+        "before_sha256": "025751689293ccad86e80c49b85f8a8602180b7527ba5d7127ede6ad63d81fb6",
+        "after_sha256": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752"
+      },
+      {
+        "path": "remaster-audit/run_stage1_pacing_ab.py",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/run_stage1_pacing_ab.py.before",
+        "before_sha256": "ef9f493ed3a4b0ef353db9d5fef260ae2da4622d0d3a7abdc042894f83830502",
+        "after_sha256": "98864c9400913bd1a18b395c575c55894929e0a92da1d3e35569387386cc1484"
+      }
+    ],
+    "material_runtime_binding": {
+      "path": "C:/github/Einhander/windows-x64/tools/material-runtime.json",
+      "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before.json",
+      "before_sha256": "9d80a09e38ddc4089cf803482fc3026e37a5842dbdbf2e2060da278e54c39b69",
+      "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+      "from_executable": "C:\\github\\REMASTER_STAGING\\full-remaster\\devtools-build\\Einhander_Recompiled.exe",
+      "to_executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+      "to_executable_sha256": "b287ddfa4dfc0fc80dcbf16f8809da12122078b31b6a0c8f0c9e19914d030134",
+      "reason": "Use runtime/cache combination that passed exact saved-profile live state and boss timing. Existing binaries/cache/assets/settings not replaced.",
+      "shared_settings": {
+        "path": "C:/github/Einhander/windows-x64/build-release/settings.toml",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/settings.shared-before.toml",
+        "sha256": "68f831cda591f1b5649714f9b8895ed2962f66436d3452906a7019f950d75f20",
+        "behavior": "Material and Play-HD now use the existing build-release settings. Future frontend preference edits apply to both; current settings unchanged."
+      },
+      "lifecycle": "Existing runtime hash is checked at every material launch; replacing that executable requires a new verified receipt.",
+      "shortcut_validation": [
+        {
+          "config": "aurora-teal-20261112-144639-5807813a",
+          "ok": true,
+          "profile": "aurora-teal",
+          "enemy_profile": "crimson-red",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        },
+        {
+          "config": "aurora-teal-20261112-144639-a5d808a5",
+          "ok": true,
+          "profile": "aurora-teal",
+          "enemy_profile": "gold-obsidian",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        },
+        {
+          "config": "neon-circuit-20261112-144639-8852b8b8",
+          "ok": true,
+          "profile": "neon-circuit",
+          "enemy_profile": "ultraviolet-grid",
+          "executable": "C:\\github\\Einhander\\windows-x64\\build-release\\Einhander_Recompiled.exe",
+          "ring": "0"
+        }
+      ],
+      "other_profile_live_verification": "Title+5second functionalsmokes only; fullstagefalse",
+      "functional_evidence_update": {
+        "before_sha256": "3335962504f38e2ab37a6f6152d298c1d711449e710e408dd2dc5ff211a85bf1",
+        "backup": "C:/github/Einhander/remaster-audit/dev-center-evidence/stage1-completion-20261112/normal-launch-readback-hotfix/material-runtime.before-functional-evidence.json",
+        "after_sha256": "8c2a0376fea9618cf5194df499a3c5d23edbe7addf0b13269f70217ebab50b2c",
+        "scope": "Attach completed frontend/shortcut checks; executable binding unchanged"
+      }
+    }
+  },
+  "upload_timing_diagnostic": {
+    "runtime_sha256": "208809397fc229ce9be30ff25cf85add606532ada5dcd76d22851b6259754f32",
+    "events": 1030,
+    "unique_keys": 778,
+    "reuploads": 252,
+    "boss_uploads": 39,
+    "boss_reuploads": 29,
+    "boss_upload_MiB": 800.625,
+    "boss_full_setup_CPU_ms": 174.1336,
+    "boss_TexImage_CPU_ms": 95.4636,
+    "slow_setup_calls": [
+      {
+        "frame": 9357,
+        "key": "FB235F0C-BB1845F6",
+        "MiB": 4,
+        "full_setup_ms": 24.2466,
+        "TexImage_ms": 0.4103,
+        "next_frame_present_gap_ms": 33
+      },
+      {
+        "frame": 9365,
+        "key": "1FDD7FBD-050B3C19",
+        "MiB": 4,
+        "full_setup_ms": 23.6914,
+        "TexImage_ms": 0.3445,
+        "next_frame_present_gap_ms": 33
+      },
+      {
+        "frame": 9373,
+        "key": "10932164-0386F43A",
+        "MiB": 4,
+        "full_setup_ms": 20.3814,
+        "TexImage_ms": 0.3395,
+        "next_frame_present_gap_ms": 30
+      }
+    ],
+    "proof_sha256": "03d44fbd584c4f315dc7216954f6322a7270306704fc9753e8b3a5b7fb604c70",
+    "scope": "Private frozen1669-PNG candidate, CPU time only; deferred GPU work is not measured."
+  },
+  "bounded_GPU_cache_experiment": {
+    "runtime_sha256": "9b5ff8275faeeef8c06d14d574b279eaf6ba61e37f9004feed9ec2f9535ed479",
+    "production_installed": false,
+    "explicit_base_budget_MiB": 5120,
+    "max_slots": 1024,
+    "default_slots_unchanged": 256,
+    "actual_C_helper_cases_passed": 12,
+    "replacements_per_enabled_stress_case": 5000,
+    "first_run": {
+      "events": 350,
+      "unique_frames": 350,
+      "frame_gaps": 0,
+      "sequence_gaps": 0,
+      "p50_ms": 17,
+      "p95_ms": 17,
+      "p99_ms": 20,
+      "max_ms": 169,
+      "late": [
+        {
+          "frame": 9275,
+          "ms": 169
+        }
+      ],
+      "total_uploads": 836,
+      "unique_texture_keys": 836,
+      "total_reuploads": 0,
+      "boss_uploads": 10,
+      "boss_reuploads": 0,
+      "boss_upload_MiB": 88.375,
+      "boss_TexImage_CPU_ms": 15.0932,
+      "boss_full_call_CPU_ms": 19.0495,
+      "starved_gameplay": 996,
+      "cache_state": {
+        "slots": 1024,
+        "base_budget_bytes": 5368709120,
+        "base_resident_bytes": 4994236416
+      },
+      "errors": [],
+      "exit": 0,
+      "port_closed": true
+    },
+    "first_run_proof_sha256": "8cc7958a15dee8fc1687405f85de48e93eb34e5e816e13c7f0eb1ab53cfb7247",
+    "repeat_with_additional_passive_diagnostics": {
+      "boss_max_ms": 94,
+      "boss_late": [
+        {
+          "frame": 9296,
+          "ms": 94
+        },
+        {
+          "frame": 9572,
+          "ms": 28
+        }
+      ],
+      "starved_gameplay": 9898,
+      "raw_timing_chunks": 121,
+      "exit": 0,
+      "errors": [],
+      "proof_sha256": "0ddf222a0db8d011a594047b337f985a340039e806b5ce8fa70d24edd8c48cb8",
+      "scope": "Same binary/settings plus an existing120-record passive latency dump and counter query eachsecond; observer overhead and live-input timing differ."
+    },
+    "verdict": "FAIL smoothness: texture reuploads removed in measured run, but native VRAM upload-block stalls remain. No candidate installed.",
+    "native_upload_block_evidence": {
+      "first_run_frame": 9275,
+      "present_gap_ms": 169,
+      "runtime_upload_block_ms_per_second": 151.9,
+      "includes": "Texture binding, pixel-store state and two native VRAM glTexSubImage2D calls; exact call responsible not yet isolated.",
+      "not_a_qualifying_cause": "No claim that pacing or texture data volume alone caused it. Native-call timing and gated buffered-upload experiment are next."
+    }
+  },
+  "normal_frontend": {
+    "batch": "normal-material-frontend-r3",
+    "passed": true,
+    "exit": 0,
+    "port_closed": true,
+    "settings_semantic_change": "private disc.path cue to bin canonicalization only; CLI cue applied last",
+    "originals_unchanged": true,
+    "prior_failed_attempts": [
+      "r1 nonexistent UI helper",
+      "r2 private directory ownership guard rejected close; preserved and force-cleaned owned process"
+    ],
+    "performance_acceptance": false,
+    "full_stage_acceptance": false
+  },
+  "material_profile_smokes": [
+    {
+      "batch": "material-title-crimson-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "aurora-teal",
+      "enemy": "crimson-red",
+      "capture": {
+        "at_utc": "2026-11-14T04:02:52.585802+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-crimson-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "01cd8d4ae1ded3ced9f6127045e9b7b43ff13023ec79d270ded10accb49ff76f",
+        "frame_before": 3356,
+        "frame_after": 3361,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-gold-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "aurora-teal",
+      "enemy": "gold-obsidian",
+      "capture": {
+        "at_utc": "2026-11-14T04:03:56.105382+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-gold-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "fb68ed5aa0c2d0a0774aa0a8672e94d50c993191523696c4fa1e77c66b006e0f",
+        "frame_before": 3364,
+        "frame_after": 3369,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    },
+    {
+      "batch": "material-title-neon-r1",
+      "errors": [],
+      "exit": 0,
+      "closed": true,
+      "forbidden": [],
+      "player": "neon-circuit",
+      "enemy": "ultraviolet-grid",
+      "capture": {
+        "at_utc": "2026-11-14T04:04:59.601776+00:00",
+        "label": "profile-early-gameplay",
+        "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\material-title-neon-r1\\hd-on_rewind-on\\captures\\profile-early-gameplay.png",
+        "width": 1920,
+        "height": 1440,
+        "sha256": "18e5938d268ee2624c87e32181698296bd92e76533a828d9b52d40431601914c",
+        "frame_before": 3340,
+        "frame_after": 3348,
+        "scope": "Sequential next-present composed frame; not atomic with hires/telemetry"
+      },
+      "scope": "title plus 5 seconds early gameplay; configured getters checked; no RAM writes/state loads; no performance acceptance",
+      "originals_unchanged": true
+    }
+  ],
+  "native_upload_stream_experiment": {
+    "runtime_sha256": "efde4724c391bed59393e16573e5831999848fb261e9dad5ca88061f3d75656d",
+    "default": "client-memory; buffered path opt-in only",
+    "same_binary": true,
+    "off": {
+      "batch": "display57-pbo-off-r3",
+      "gameplay": {
+        "from_frame": 3798,
+        "to_frame": 10996,
+        "count": 7199,
+        "unique_frames": 7199,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 19,
+        "max_ms": 85,
+        "late_over25": [
+          {
+            "seq": 3381,
+            "frame": 3982,
+            "ms": 51
+          },
+          {
+            "seq": 3392,
+            "frame": 3993,
+            "ms": 71
+          },
+          {
+            "seq": 3963,
+            "frame": 4564,
+            "ms": 33
+          },
+          {
+            "seq": 3988,
+            "frame": 4589,
+            "ms": 26
+          },
+          {
+            "seq": 4066,
+            "frame": 4667,
+            "ms": 26
+          },
+          {
+            "seq": 4103,
+            "frame": 4704,
+            "ms": 85
+          },
+          {
+            "seq": 4160,
+            "frame": 4761,
+            "ms": 27
+          },
+          {
+            "seq": 4163,
+            "frame": 4764,
+            "ms": 29
+          },
+          {
+            "seq": 4289,
+            "frame": 4890,
+            "ms": 27
+          },
+          {
+            "seq": 4292,
+            "frame": 4893,
+            "ms": 30
+          },
+          {
+            "seq": 4393,
+            "frame": 4994,
+            "ms": 28
+          },
+          {
+            "seq": 5498,
+            "frame": 6099,
+            "ms": 28
+          },
+          {
+            "seq": 5992,
+            "frame": 6593,
+            "ms": 27
+          },
+          {
+            "seq": 5995,
+            "frame": 6596,
+            "ms": 75
+          },
+          {
+            "seq": 6105,
+            "frame": 6706,
+            "ms": 31
+          },
+          {
+            "seq": 6842,
+            "frame": 7443,
+            "ms": 28
+          },
+          {
+            "seq": 7561,
+            "frame": 8162,
+            "ms": 32
+          },
+          {
+            "seq": 7564,
+            "frame": 8165,
+            "ms": 27
+          },
+          {
+            "seq": 9102,
+            "frame": 9703,
+            "ms": 27
+          },
+          {
+            "seq": 9103,
+            "frame": 9704,
+            "ms": 41
+          },
+          {
+            "seq": 9640,
+            "frame": 10241,
+            "ms": 33
+          }
+        ]
+      },
+      "common_window": {
+        "from_frame": 4355,
+        "to_frame": 10996,
+        "count": 6642,
+        "unique_frames": 6642,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 19,
+        "max_ms": 85,
+        "late_over25": [
+          {
+            "seq": 3963,
+            "frame": 4564,
+            "ms": 33
+          },
+          {
+            "seq": 3988,
+            "frame": 4589,
+            "ms": 26
+          },
+          {
+            "seq": 4066,
+            "frame": 4667,
+            "ms": 26
+          },
+          {
+            "seq": 4103,
+            "frame": 4704,
+            "ms": 85
+          },
+          {
+            "seq": 4160,
+            "frame": 4761,
+            "ms": 27
+          },
+          {
+            "seq": 4163,
+            "frame": 4764,
+            "ms": 29
+          },
+          {
+            "seq": 4289,
+            "frame": 4890,
+            "ms": 27
+          },
+          {
+            "seq": 4292,
+            "frame": 4893,
+            "ms": 30
+          },
+          {
+            "seq": 4393,
+            "frame": 4994,
+            "ms": 28
+          },
+          {
+            "seq": 5498,
+            "frame": 6099,
+            "ms": 28
+          },
+          {
+            "seq": 5992,
+            "frame": 6593,
+            "ms": 27
+          },
+          {
+            "seq": 5995,
+            "frame": 6596,
+            "ms": 75
+          },
+          {
+            "seq": 6105,
+            "frame": 6706,
+            "ms": 31
+          },
+          {
+            "seq": 6842,
+            "frame": 7443,
+            "ms": 28
+          },
+          {
+            "seq": 7561,
+            "frame": 8162,
+            "ms": 32
+          },
+          {
+            "seq": 7564,
+            "frame": 8165,
+            "ms": 27
+          },
+          {
+            "seq": 9102,
+            "frame": 9703,
+            "ms": 27
+          },
+          {
+            "seq": 9103,
+            "frame": 9704,
+            "ms": 41
+          },
+          {
+            "seq": 9640,
+            "frame": 10241,
+            "ms": 33
+          }
+        ]
+      },
+      "boss": {
+        "from_frame": 9250,
+        "to_frame": 9599,
+        "count": 350,
+        "unique_frames": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 17,
+        "max_ms": 17,
+        "late_over25": []
+      },
+      "audio": {
+        "new_starved_sample_frames": 0,
+        "increments": []
+      },
+      "focus_all": true,
+      "exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "selftest": {
+        "passed": true,
+        "cases": 8,
+        "texels": 2048,
+        "all_mismatch_counts_zero": true,
+        "gl_error_test": 0,
+        "gl_error_restore": 0
+      },
+      "native_counter_delta": {
+        "rects": 45351,
+        "pbo_rects": 0,
+        "fallback_rects": 0,
+        "slow_events": 43,
+        "staging_ticks": 0,
+        "state_ticks": 176327,
+        "rgba_upload_ticks": 154918,
+        "raw_upload_ticks": 27280891,
+        "total_ticks": 27635022
+      },
+      "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+      "ring": {
+        "id": 1,
+        "ok": true,
+        "total": 10402,
+        "now_ms": 189154,
+        "requested": 16384,
+        "returned": 10402,
+        "missing": 0,
+        "truncated": 0,
+        "capacity": 16384
+      },
+      "command_audit": {
+        "timer_write_requests": 608,
+        "successful_timer_writes": 608,
+        "forbidden_mutations": []
+      }
+    },
+    "on": {
+      "batch": "display57-pbo-on-r1",
+      "gameplay": {
+        "from_frame": 4355,
+        "to_frame": 11552,
+        "count": 7198,
+        "unique_frames": 7198,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 20,
+        "max_ms": 184,
+        "late_over25": [
+          {
+            "seq": 5287,
+            "frame": 5888,
+            "ms": 35
+          },
+          {
+            "seq": 5981,
+            "frame": 6582,
+            "ms": 40
+          },
+          {
+            "seq": 5985,
+            "frame": 6586,
+            "ms": 184
+          },
+          {
+            "seq": 5989,
+            "frame": 6590,
+            "ms": 49
+          },
+          {
+            "seq": 6093,
+            "frame": 6694,
+            "ms": 26
+          },
+          {
+            "seq": 6830,
+            "frame": 7431,
+            "ms": 33
+          },
+          {
+            "seq": 6846,
+            "frame": 7447,
+            "ms": 28
+          },
+          {
+            "seq": 7550,
+            "frame": 8151,
+            "ms": 33
+          },
+          {
+            "seq": 7691,
+            "frame": 8292,
+            "ms": 27
+          },
+          {
+            "seq": 7695,
+            "frame": 8296,
+            "ms": 86
+          },
+          {
+            "seq": 8271,
+            "frame": 8872,
+            "ms": 26
+          },
+          {
+            "seq": 8306,
+            "frame": 8907,
+            "ms": 26
+          },
+          {
+            "seq": 9091,
+            "frame": 9692,
+            "ms": 41
+          },
+          {
+            "seq": 9638,
+            "frame": 10239,
+            "ms": 33
+          },
+          {
+            "seq": 9774,
+            "frame": 10375,
+            "ms": 32
+          },
+          {
+            "seq": 10144,
+            "frame": 10745,
+            "ms": 29
+          }
+        ]
+      },
+      "common_window": {
+        "from_frame": 4355,
+        "to_frame": 10996,
+        "count": 6642,
+        "unique_frames": 6642,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 20,
+        "max_ms": 184,
+        "late_over25": [
+          {
+            "seq": 5287,
+            "frame": 5888,
+            "ms": 35
+          },
+          {
+            "seq": 5981,
+            "frame": 6582,
+            "ms": 40
+          },
+          {
+            "seq": 5985,
+            "frame": 6586,
+            "ms": 184
+          },
+          {
+            "seq": 5989,
+            "frame": 6590,
+            "ms": 49
+          },
+          {
+            "seq": 6093,
+            "frame": 6694,
+            "ms": 26
+          },
+          {
+            "seq": 6830,
+            "frame": 7431,
+            "ms": 33
+          },
+          {
+            "seq": 6846,
+            "frame": 7447,
+            "ms": 28
+          },
+          {
+            "seq": 7550,
+            "frame": 8151,
+            "ms": 33
+          },
+          {
+            "seq": 7691,
+            "frame": 8292,
+            "ms": 27
+          },
+          {
+            "seq": 7695,
+            "frame": 8296,
+            "ms": 86
+          },
+          {
+            "seq": 8271,
+            "frame": 8872,
+            "ms": 26
+          },
+          {
+            "seq": 8306,
+            "frame": 8907,
+            "ms": 26
+          },
+          {
+            "seq": 9091,
+            "frame": 9692,
+            "ms": 41
+          },
+          {
+            "seq": 9638,
+            "frame": 10239,
+            "ms": 33
+          },
+          {
+            "seq": 9774,
+            "frame": 10375,
+            "ms": 32
+          },
+          {
+            "seq": 10144,
+            "frame": 10745,
+            "ms": 29
+          }
+        ]
+      },
+      "boss": {
+        "from_frame": 9250,
+        "to_frame": 9599,
+        "count": 350,
+        "unique_frames": 350,
+        "frame_gaps": 0,
+        "sequence_gaps": 0,
+        "p50_ms": 17,
+        "p95_ms": 17,
+        "p99_ms": 17,
+        "max_ms": 17,
+        "late_over25": []
+      },
+      "audio": {
+        "new_starved_sample_frames": 703,
+        "increments": [
+          {
+            "elapsed": 38.00040330000047,
+            "frame": 6633,
+            "delta": 703
+          }
+        ]
+      },
+      "focus_all": true,
+      "exit": 0,
+      "port_closed": true,
+      "errors": [],
+      "selftest": {
+        "passed": true,
+        "cases": 8,
+        "texels": 2048,
+        "all_mismatch_counts_zero": true,
+        "gl_error_test": 0,
+        "gl_error_restore": 0
+      },
+      "native_counter_delta": {
+        "rects": 48504,
+        "pbo_rects": 48504,
+        "fallback_rects": 0,
+        "slow_events": 0,
+        "staging_ticks": 304940,
+        "state_ticks": 133803,
+        "rgba_upload_ticks": 58126,
+        "raw_upload_ticks": 20540,
+        "total_ticks": 544772
+      },
+      "native_totals_scope": "title-start to query after timing, includes route/handoff; not exact measured endpoints",
+      "ring": {
+        "id": 1,
+        "ok": true,
+        "total": 10959,
+        "now_ms": 199743,
+        "requested": 16384,
+        "returned": 10959,
+        "missing": 0,
+        "truncated": 0,
+        "capacity": 16384
+      },
+      "command_audit": {
+        "timer_write_requests": 598,
+        "successful_timer_writes": 598,
+        "forbidden_mutations": []
+      }
+    },
+    "exact_attributed_stall": {
+      "off_frame": 6596,
+      "presentation_interval_ms": 75,
+      "raw_TexSubImage2D_ms": 58.2742,
+      "rgba_TexSubImage2D_ms": 0.0008,
+      "state_calls_ms": 0.0393
+    },
+    "result": "FAIL full smoothness and ON zero-starvation; native helper waits removed in observed pair, overall waits persist",
+    "installed": false,
+    "limits": [
+      "one ordered pair; handoff delay and live input timing differ",
+      "120 seconds each, timer-only assistance, scale2, rewind50/15, frozen1669PNGpack,5120MiBHDcache",
+      "no recorder, source capture, screenshot, GPU probe or profiler during timing; endpoint getters and1HzCPUcounters still have observer cost",
+      "GPU selftest before timing can warm driver state",
+      "pre-swap intervals include guest work and pacing; no physical display visibility claim",
+      "native delta counters include title/route/handoff; frame-filtered slow events give exact stall brackets",
+      "no claim that focus caused earlier stalls; full7stage and listening acceptance open"
+    ],
+    "qpc_frequency": 10000000,
+    "display_page_sequence": {
+      "off_boss": {
+        "frames": 350,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "on_boss": {
+        "frames": 350,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "on_stall": {
+        "frames": 16,
+        "display_rects": [
+          "0,0,320,240",
+          "0,240,320,240"
+        ],
+        "same_rect_as_previous": 0,
+        "scope": "Display-page coordinates only; no framebuffer pixel equality test"
+      },
+      "finding": "Display pages alternate every retained submission in both boss windows and across the184ms pause. This supports continued game buffer flipping; it does not prove pixel uniqueness or physical scanout of every frame."
+    }
+  },
+  "phase_diagnostic_v58": {
+    "runtime_sha256": "c2c386bd1f0ea59d84f8e95f1a1103cb777904f3eacaacad0c8e4013448145a6",
+    "source_checks_passed": true,
+    "integration_build_passed": true,
+    "source_package": "remaster-audit/runtime-diagnostics-v58",
+    "first_live_attempt": {
+      "batch": "display58-phases-pbo-on-r1",
+      "title_gpu_selftest_passed": true,
+      "phase_api_passed": true,
+      "retained_samples": 3,
+      "rejected": "focus loss at next sample",
+      "exit": 0,
+      "port_closed": true,
+      "performance_accepted": false
+    },
+    "next_observed_focus_run": {
+      "batch": "display58-phases-observed-r2",
+      "prepared": true,
+      "executed": false
+    },
+    "active_run": false,
+    "e2e_complete": false
+  }
+}

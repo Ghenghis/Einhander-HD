@@ -1,0 +1,110 @@
+{
+  "at_utc": "2026-11-14T22:45:45.110067+00:00",
+  "metadata_readback_pass": true,
+  "tests_replayed": false,
+  "game_launched": false,
+  "gpu_used": false,
+  "A": {
+    "result_sha256": "764c42c03ec9b4aff49d581bfec78887e9cacb7ffd712967102be728ddd84fec",
+    "envelope_sha256": "1609122d86dd6fd16701d58912eb4a8fae41b4c22f0b92d458e27334bfcb0843",
+    "exit": 0,
+    "elapsed_s": 2.336,
+    "peak_job_memory_bytes": 21639168,
+    "verdict": "PASS",
+    "pure_controls": 41,
+    "actual_sockets_tested": false
+  },
+  "B": {
+    "result_sha256": "a21b1dc921f34d461509628c9d75df30c9cba8cc71480f2cba79aaedd8caf86b",
+    "envelope_sha256": "84b91fd7e73e10f62c8fd9f022b5380ccb2819e6febd9b74009abc3113f341cd",
+    "exit": 5,
+    "elapsed_s": 13.912,
+    "peak_job_memory_bytes": 51249152,
+    "verdict": "INCONCLUSIVE",
+    "summary": {
+      "pre_invisible_events": 0,
+      "clock_consistent": true,
+      "v_measure_valid": true,
+      "v_pre_visible": true,
+      "v_post_visible": true,
+      "v_real_kinds": [
+        "passed_pre_accept_proven",
+        "passed_pre_accept_proven"
+      ],
+      "v_real_passed": true,
+      "v_real_valid": true,
+      "order_unproven_events": 0,
+      "v_single_listener": true,
+      "f_negative_exercised": false,
+      "f_listener_ambiguous_seen": true,
+      "f_listener_rejected_without_connect": true,
+      "f_measure_valid": true,
+      "f_owner_distribution": {
+        "owned": 4
+      },
+      "f_real_peer_kinds": [
+        "owned_pass",
+        "owned_pass",
+        "owned_pass",
+        "owned_pass",
+        "owned_pass",
+        "owned_pass"
+      ],
+      "f_measure_foreign_seen": false,
+      "f_real_peer_consistent": true,
+      "f_ok": true,
+      "cleanup_proven": true,
+      "inconclusive_reasons": [
+        "foreign_negative_not_exercised"
+      ]
+    },
+    "real_game_qualified": false
+  },
+  "known_identities": [
+    {
+      "run": "A",
+      "label": "wrapper",
+      "pid": 34924,
+      "creation_unix": 1794696106.1530747,
+      "identity_absent": true
+    },
+    {
+      "run": "A",
+      "label": "driver",
+      "pid": 40592,
+      "creation_unix": 1794696107.438452,
+      "identity_absent": true
+    },
+    {
+      "run": "B",
+      "label": "wrapper",
+      "pid": 43032,
+      "creation_unix": 1794696152.464651,
+      "identity_absent": true
+    },
+    {
+      "run": "B",
+      "label": "driver",
+      "pid": 23888,
+      "creation_unix": 1794696153.5985472,
+      "identity_absent": true
+    },
+    {
+      "run": "B",
+      "label": "stub1",
+      "pid": 46108,
+      "creation_unix": 1794696153.7846038,
+      "identity_absent": true
+    },
+    {
+      "run": "B",
+      "label": "stub2",
+      "pid": 37232,
+      "creation_unix": 1794696158.0655787,
+      "identity_absent": true
+    }
+  ],
+  "prelaunch_A_failure": "Owner reports first PowerShell launcher failed before spawn because H resolved to alias h/Get-History; preserved prelaunch directory and owner receipt retained separately, not a second fixture Job.",
+  "canonical_collector_installed": false,
+  "foreign_peer_no_send_qualified": false
+}

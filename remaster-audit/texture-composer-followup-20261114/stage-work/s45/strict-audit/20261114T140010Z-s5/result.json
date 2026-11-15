@@ -1,0 +1,1453 @@
+{
+ "run": "20261114T140010Z-s5",
+ "owner": "claude-einhander-s45",
+ "stage": 5,
+ "readiness_sha256": "07cd9358083107da96bc209dc1bfa8685820c1316f1455c146c31ac6fc2283b8",
+ "compile": {
+  "returncode": 0,
+  "stderr": "",
+  "seconds": 0.36,
+  "class_mip_c_sha256": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+  "class_mip_h_sha256": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3"
+ },
+ "rule": "frozen proto-v2b cm_validate strict s/2 + cm_flags_ex(0.5, Euclidean) connectivity-only R1|R2|R4 (root policy: R1 + connectivity primary; s/2 strict and R3 diagnostic; R5 fringe separate)",
+ "summary": {
+  "s5-world-3-1-v2": {
+   "files": 10,
+   "errors": 0,
+   "sha_ok": 10,
+   "strict_pass": 10,
+   "primary_pass": 10,
+   "r5_files": 0,
+   "keys": [
+    "1A2ACF78-6A8B1A18",
+    "452F3CC3-793A3662",
+    "503474BD-1A80CA9D",
+    "7E088757-51E8E21E",
+    "9F3D98EF-51E8E21E"
+   ],
+   "worst": [
+    [
+     "9F3D98EF-51E8E21E",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "9F3D98EF-51E8E21E",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "7E088757-51E8E21E",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "7E088757-51E8E21E",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "452F3CC3-793A3662",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "452F3CC3-793A3662",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "1A2ACF78-6A8B1A18",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "1A2ACF78-6A8B1A18",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "503474BD-1A80CA9D",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "503474BD-1A80CA9D",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  "s5-duerer-armour-v2": {
+   "files": 10,
+   "errors": 0,
+   "sha_ok": 10,
+   "strict_pass": 8,
+   "primary_pass": 8,
+   "r5_files": 0,
+   "keys": [
+    "1168CC84-51E8E21E",
+    "1F11EE57-DEECFC4B",
+    "2B4626A3-3FF2DBD5",
+    "3D108041-51E8E21E",
+    "BFC445B0-A132B3B3"
+   ],
+   "worst": [
+    [
+     "BFC445B0-A132B3B3",
+     "png_2048",
+     0,
+     386,
+     61,
+     0
+    ],
+    [
+     "BFC445B0-A132B3B3",
+     "png_1024",
+     0,
+     89,
+     47,
+     0
+    ],
+    [
+     "1F11EE57-DEECFC4B",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "1F11EE57-DEECFC4B",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "2B4626A3-3FF2DBD5",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "2B4626A3-3FF2DBD5",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "1168CC84-51E8E21E",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "1168CC84-51E8E21E",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "3D108041-51E8E21E",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "3D108041-51E8E21E",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ]
+   ]
+  },
+  "s5-effects-3-6-v1": {
+   "files": 4,
+   "errors": 0,
+   "sha_ok": 4,
+   "strict_pass": 4,
+   "primary_pass": 4,
+   "r5_files": 0,
+   "keys": [
+    "5C04E373-3FF2DBD5",
+    "BD968A3C-A132B3B3"
+   ],
+   "worst": [
+    [
+     "5C04E373-3FF2DBD5",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "5C04E373-3FF2DBD5",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "BD968A3C-A132B3B3",
+     "png_2048",
+     0,
+     0,
+     0,
+     0
+    ],
+    [
+     "BD968A3C-A132B3B3",
+     "png_1024",
+     0,
+     0,
+     0,
+     0
+    ]
+   ]
+  }
+ },
+ "rows": [
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "9F3D98EF",
+   "key": "9F3D98EF-51E8E21E",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-2048\\9F3D98EF-51E8E21E.png",
+   "sha256": "7406726eb2b0dc9477dc0a12c99bf10b69e391f33ce8232a20a31d303ccd6584",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "9F3D98EF",
+   "key": "9F3D98EF-51E8E21E",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-1024\\9F3D98EF-51E8E21E.png",
+   "sha256": "6cf2fd0b2f8687bdca55bfcf1d203c5815c579f7bc515827956d37e37033beb1",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "7E088757",
+   "key": "7E088757-51E8E21E",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-2048\\7E088757-51E8E21E.png",
+   "sha256": "2496da16cbb5f402946d0a9b16a7ee732c024b744bd7d4c574ff53d230d240e8",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "7E088757",
+   "key": "7E088757-51E8E21E",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-1024\\7E088757-51E8E21E.png",
+   "sha256": "8df64897940313bd210d5bb89a6ec964070c8d4db893b3191df1642a11234e93",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "452F3CC3",
+   "key": "452F3CC3-793A3662",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-2048\\452F3CC3-793A3662.png",
+   "sha256": "670cb15fbf5d0aa6243379e89549ed29892112c7b7b7987f70c49726ed3110a0",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "452F3CC3",
+   "key": "452F3CC3-793A3662",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-1024\\452F3CC3-793A3662.png",
+   "sha256": "6abd8c887296eff5480dbb4aaaf3e0c68fc5839539551a1ea5c0e8d4b3b446e7",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "1A2ACF78",
+   "key": "1A2ACF78-6A8B1A18",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-2048\\1A2ACF78-6A8B1A18.png",
+   "sha256": "f83d0496edc058005a3850d426e85f2a37c79fee41722e3d857565696ba3fe27",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 16384,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#1": {
+     "texels": 7680,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "1A2ACF78",
+   "key": "1A2ACF78-6A8B1A18",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-1024\\1A2ACF78-6A8B1A18.png",
+   "sha256": "f2b09a4a2b5bc0b4bf34d565990f3ebb7a3211e3124ca0cbf58611ca223b824e",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 16384,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#1": {
+     "texels": 7680,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "503474BD",
+   "key": "503474BD-1A80CA9D",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-2048\\503474BD-1A80CA9D.png",
+   "sha256": "31c8c87172b3bf84a2d10fed725e87fb41f8667cbe0272b3ab751badf9cbf227",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-world-3-1-v2",
+   "tex": "503474BD",
+   "key": "503474BD-1A80CA9D",
+   "mode": "world",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-world-3-1-v2\\runtime-1024\\503474BD-1A80CA9D.png",
+   "sha256": "b29d8da637390bb6ff8b897a2cfe64bbbfc901dccf04d13a6b9945c113ae1fec",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "1F11EE57",
+   "key": "1F11EE57-DEECFC4B",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-2048\\1F11EE57-DEECFC4B.png",
+   "sha256": "c8ec75340b85115fa48c795d1c5f2c7d7c6f70eecd424d487b18bcc0c52ca7ac",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "native-8bpp-pending#0": {
+     "texels": 33088,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "1F11EE57",
+   "key": "1F11EE57-DEECFC4B",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-1024\\1F11EE57-DEECFC4B.png",
+   "sha256": "17049ec351479ac5d57f8780728ef7c57a23c5863be5c1c47b82f26e9d4c4edf",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "native-8bpp-pending#0": {
+     "texels": 33088,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "2B4626A3",
+   "key": "2B4626A3-3FF2DBD5",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-2048\\2B4626A3-3FF2DBD5.png",
+   "sha256": "218abafe1507dfee11b4e12ffa0d46986d041f5168acecac22db0a8d7468a736",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "2B4626A3",
+   "key": "2B4626A3-3FF2DBD5",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-1024\\2B4626A3-3FF2DBD5.png",
+   "sha256": "48e1548b4a62b0da5cb85002bfcb7f073c821384c8575e591a88bc291ea4ee4c",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "BFC445B0",
+   "key": "BFC445B0-A132B3B3",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 19155,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-2048\\BFC445B0-A132B3B3.png",
+   "sha256": "b9ee193e2d056866b42ee7c2171c6ab0f33c84cf0cdfd051cf4f1c1e1b425b67",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 386,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 61,
+    "pinhole_cells": 61,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 386,
+   "deviant_px": 11890,
+   "conn_bad_cells": 61,
+   "bad_cell_examples": [
+    [
+     233,
+     1
+    ],
+    [
+     244,
+     56
+    ],
+    [
+     197,
+     76
+    ],
+    [
+     196,
+     78
+    ],
+    [
+     197,
+     91
+    ],
+    [
+     198,
+     92
+    ],
+    [
+     206,
+     105
+    ],
+    [
+     209,
+     105
+    ],
+    [
+     206,
+     106
+    ],
+    [
+     215,
+     106
+    ],
+    [
+     216,
+     106
+    ],
+    [
+     218,
+     107
+    ]
+   ],
+   "alpha_values": [
+    127,
+    255
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 8192,
+     "conn_viol_px": 386,
+     "bad_cells": 61
+    },
+    "native-8bpp-pending#1": {
+     "texels": 10432,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "glyph-destair#2": {
+     "texels": 1280,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": false,
+   "primary_pass": false,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "BFC445B0",
+   "key": "BFC445B0-A132B3B3",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 19155,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-1024\\BFC445B0-A132B3B3.png",
+   "sha256": "e6d728b91da33845b04039f8d70bc2e7592e263bd378681457b43925f4124d57",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 89,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 47,
+    "pinhole_cells": 47,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 89,
+   "deviant_px": 2633,
+   "conn_bad_cells": 47,
+   "bad_cell_examples": [
+    [
+     244,
+     56
+    ],
+    [
+     197,
+     91
+    ],
+    [
+     198,
+     92
+    ],
+    [
+     206,
+     105
+    ],
+    [
+     209,
+     105
+    ],
+    [
+     216,
+     106
+    ],
+    [
+     218,
+     107
+    ],
+    [
+     219,
+     107
+    ],
+    [
+     220,
+     108
+    ],
+    [
+     221,
+     109
+    ],
+    [
+     222,
+     109
+    ],
+    [
+     223,
+     110
+    ]
+   ],
+   "alpha_values": [
+    127,
+    255
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 8192,
+     "conn_viol_px": 89,
+     "bad_cells": 47
+    },
+    "native-8bpp-pending#1": {
+     "texels": 10432,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "glyph-destair#2": {
+     "texels": 1280,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": false,
+   "primary_pass": false,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "1168CC84",
+   "key": "1168CC84-51E8E21E",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-2048\\1168CC84-51E8E21E.png",
+   "sha256": "97403660ffee8b23846035807fc21ae5ba3f4962581a6024451622409a6dc525",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 3328,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "1168CC84",
+   "key": "1168CC84-51E8E21E",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-1024\\1168CC84-51E8E21E.png",
+   "sha256": "9454cb64c8f2ccb5494e21f7f875913f2434fc2a12638683af7086bf4c64c3f5",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 3328,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "3D108041",
+   "key": "3D108041-51E8E21E",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-2048\\3D108041-51E8E21E.png",
+   "sha256": "89c0642881d599e4c63d44ce1a46a3a9ee38d4ce6bc19c02420ff67c92d9e242",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 14080,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#1": {
+     "texels": 7680,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#2": {
+     "texels": 8960,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "native-8bpp-pending#3": {
+     "texels": 9792,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "glyph-destair#4": {
+     "texels": 1974,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-duerer-armour-v2",
+   "tex": "3D108041",
+   "key": "3D108041-51E8E21E",
+   "mode": "armour",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-duerer-armour-v2\\runtime-1024\\3D108041-51E8E21E.png",
+   "sha256": "a74dfc0e830eb988060571eb092b4e820bf21044f2adb4930c2b5389ff3a3b26",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {
+    "fx#0": {
+     "texels": 14080,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#1": {
+     "texels": 7680,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "fx#2": {
+     "texels": 8960,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "native-8bpp-pending#3": {
+     "texels": 9792,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    },
+    "glyph-destair#4": {
+     "texels": 1974,
+     "conn_viol_px": 0,
+     "bad_cells": 0
+    }
+   },
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-effects-3-6-v1",
+   "tex": "5C04E373",
+   "key": "5C04E373-3FF2DBD5",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1\\runtime-2048\\5C04E373-3FF2DBD5.png",
+   "sha256": "37a2d194a640d4d12980b24835a7c7d204f718d27416904b413058202219080a",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-effects-3-6-v1",
+   "tex": "5C04E373",
+   "key": "5C04E373-3FF2DBD5",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 0,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1\\runtime-1024\\5C04E373-3FF2DBD5.png",
+   "sha256": "e73d0733c1133159ac447314a78c41f364c8a82ee6e0d0a0ec759dc990062316",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 0,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-effects-3-6-v1",
+   "tex": "BD968A3C",
+   "key": "BD968A3C-A132B3B3",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 18101,
+   "file": "png_2048",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1\\runtime-2048\\BD968A3C-A132B3B3.png",
+   "sha256": "a7c0caf5a95fe553eff1d6ce314f7a4785c18d3f367c2b265dd041ce4d2e5b16",
+   "sha_ok": true,
+   "scale": 8,
+   "v2": {
+    "pixels": 4194304,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 17373,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127,
+    255
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  },
+  {
+   "stage": 5,
+   "set": "s5-effects-3-6-v1",
+   "tex": "BD968A3C",
+   "key": "BD968A3C-A132B3B3",
+   "mode": "effect",
+   "words_sha_ok": true,
+   "tex_crc_proven": true,
+   "clut_crc_proven": true,
+   "cutout_texels": 0,
+   "stp_texels": 18101,
+   "file": "png_1024",
+   "path": "C:\\github\\Einhander\\remaster-audit\\comfy-authoring\\w7-stage5\\frozen\\s5-effects-3-6-v1\\runtime-1024\\BD968A3C-A132B3B3.png",
+   "sha256": "4d57db7baf0e2cb69b5552a2c8fa3fdb6c93798e7b619e4ec9383c7f053fe83b",
+   "sha_ok": true,
+   "scale": 4,
+   "v2": {
+    "pixels": 1048576,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0
+   },
+   "conn_viol_px": 0,
+   "deviant_px": 4247,
+   "conn_bad_cells": 0,
+   "bad_cell_examples": [],
+   "alpha_values": [
+    127,
+    255
+   ],
+   "regions": {},
+   "strict_pass": true,
+   "primary_pass": true,
+   "lane_centre_class_mismatch": 0
+  }
+ ],
+ "skipped": [],
+ "seconds": 4.4,
+ "status": "DATA ONLY; read-only on the stage lanes; no art edits; not visual or live acceptance"
+}

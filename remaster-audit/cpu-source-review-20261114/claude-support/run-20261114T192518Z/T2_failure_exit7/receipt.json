@@ -1,0 +1,93 @@
+{
+ "tool": "run_rc2_envelope_r1.py",
+ "revision": "envelope-r1",
+ "base": "run_rc2.r1.py cd3988af06cd348c",
+ "cmd": [
+  "C:\\Python314\\python.exe",
+  "-I",
+  "-c",
+  "import sys; sys.exit(7)"
+ ],
+ "cwd": "C:\\github\\Einhander\\.claude\\worktrees\\goofy-babbage-872e5d\\remaster-audit\\claude-einhander-support\\watchdog",
+ "wrapper_pid": 13304,
+ "wrapper_create_time": 1794684320.0225747,
+ "cpu": 15,
+ "affinity": [
+  15
+ ],
+ "priority": 16384,
+ "timeout_s": 30.0,
+ "rc": 7,
+ "created_utc": "2026-11-14T19:25:20.166488+00:00",
+ "allowed_before_pin": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12,
+  13,
+  14,
+  15
+ ],
+ "child_affinity_mode": "cpu",
+ "job_affinity_mask_hex": "8000",
+ "max_job_mib": null,
+ "no_window": false,
+ "job_limits_requested": {
+  "limit_flags": 8240,
+  "affinity_mask": 32768,
+  "priority_class": 16384,
+  "job_memory_limit": 0
+ },
+ "job_limits_readback": {
+  "limit_flags": 8240,
+  "affinity_mask": 32768,
+  "priority_class": 16384,
+  "job_memory_limit": 0,
+  "peak_job_memory": 0,
+  "peak_process_memory": 0
+ },
+ "child_pid": 44464,
+ "child_create_time": 1794684320.1677604,
+ "job_assigned_before_resume": true,
+ "child_affinity_before_set": [
+  15
+ ],
+ "child_affinity_set_to": [
+  15
+ ],
+ "child_readback_before_resume": {
+  "cpu_affinity": [
+   15
+  ],
+  "priority": 16384
+ },
+ "start_utc": "2026-11-14T19:25:20.172770+00:00",
+ "child_exit_code": 7,
+ "timeout_killed": false,
+ "elapsed_s": 0.075,
+ "end_utc": "2026-11-14T19:25:20.249997+00:00",
+ "job": {
+  "active": 0,
+  "total": 1,
+  "terminated": 0,
+  "user_s": 0.03125,
+  "kernel_s": 0.015625
+ },
+ "peak_job_memory_bytes": 9629696,
+ "peak_process_memory_bytes": 9629696,
+ "descendants_seen": [],
+ "descendants_left": [],
+ "child_absent": true,
+ "job_empty": true,
+ "tree_absent": true,
+ "wrapper_exit": 7
+}

@@ -1,0 +1,178 @@
+--- r4/validate_timeout_leg.py	2026-11-14 07:29:14.790596100 -0700
++++ validate_timeout_leg.py	2026-11-14 09:35:12.149698800 -0700
+@@ -47,7 +47,8 @@
+                        'C:/github/Einhander/remaster-audit/fullgame-prep/acquisition/validate_acquisition.py')
+ SCHEMA_ID = 'ein-stage6-timeout-leg-v1'
+ RS_TOLERANCE = 60          # frames: draw rows are sampled (recorder default repeat_sample_frames 60)
+-REVISION = ("r4 (2026-11-14): marked_vram_snapshot bound to the native EINRC01 format (hd_research_event.h): magic, version, "
++REVISION = ("r5 (2026-11-14, claude-einhander-support review msg_317d33e3): marked_vram_snapshot evidence must DECLARE its key rect (native_page at 704,256 with depth 0/1/2 and width 64<<depth or an explicitly narrowed multiple of 64; or an upload rect overlapping the 704,256 page) and the snapshot CRC is computed over exactly that rect; the claimed TEX must be drawn in the run with the same kind/depth/size; the mark row is taken ONLY from the capture.jsonl in the event file's own directory (research sessions restart event numbering); header ms@24 == row host_mono_ms, header flags @48/52/56/60 == row gpu_dirty/pending_cpu_upload_rects/pack_dirty/cpu_authority_dual, reserved header bytes 88..95 == 0; an upload/exact_region draw row must recover the declared origin (page + u_first/ppw - source_word_xy, mod VRAM). Includes "
++            "r4 (2026-11-14): marked_vram_snapshot bound to the native EINRC01 format (hd_research_event.h): magic, version, "
+             "header/offset/size fields, label, header event index == file name, header frame == claimed frame, exactly one matching "
+             "mark row (event_file, index, label, frame, bytes), VRAM rect CRC == TEX, RAM/VRAM FNV-1a payload checksums. Includes "
+             "r3 (2026-11-14): residency bases bound to evidence: upload_event UNSUPPORTED until its schema exists; "
+@@ -92,10 +93,97 @@
+                 if isinstance(e, dict) and e.get('event') == 'mark':
+                     out.append(dict(log=lg['path'], line=i, event_file=e.get('event_file'), event_index=e.get('event_index'),
+                                     label=e.get('label'), frame=e.get('frame'), bytes=e.get('bytes'),
+-                                    stale=e.get('cpu_vram_may_be_stale')))
++                                    stale=e.get('cpu_vram_may_be_stale'), host_mono_ms=e.get('host_mono_ms'),
++                                    gpu_dirty=e.get('gpu_dirty'), pending_cpu_upload_rects=e.get('pending_cpu_upload_rects'),
++                                    pack_dirty=e.get('pack_dirty'), cpu_authority_dual=e.get('cpu_authority_dual')))
+     return out
+ 
+ 
++RESIDENCY_PAGE = (704, 256)
++
++
++def declared_rect(ev):
++    """(spec, problems) for evidence.rect. native_page: x,y = 704,256, depth 0/1/2, width_words = 64<<depth unless narrowed (then a
++    smaller multiple of 64, >= 64), height 256 (hd_native_page.h hd_page_hash_width). upload: x, y, width_words, height of the upload's
++    own rect (hd_texture_pack.cpp), which must overlap the 4bpp footprint of the 704,256 page. Nothing is assumed by default."""
++    r = ev.get('rect')
++    if not isinstance(r, dict):
++        return None, ['evidence.rect is required: {kind: native_page, x, y, depth, width_words[, narrowed]} or '
++                      '{kind: upload, x, y, width_words, height} (r5: no default rect is assumed)']
++    ints = lambda *ks: all(type(r.get(k)) is int for k in ks)
++    if r.get('kind') == 'native_page':
++        if not ints('x', 'y', 'depth', 'width_words'):
++            return None, ['evidence.rect native_page needs integer x, y, depth, width_words']
++        probs = []
++        if (r['x'], r['y']) != RESIDENCY_PAGE:
++            probs.append(f'evidence.rect page ({r["x"]},{r["y"]}) is not the residency page {RESIDENCY_PAGE}')
++        if r['depth'] not in (0, 1, 2):
++            probs.append(f'evidence.rect depth {r["depth"]} not in 0/1/2')
++        else:
++            full_w = 64 << r['depth']
++            w = r['width_words']
++            if r.get('narrowed') is True:
++                if not (64 <= w < full_w and w % 64 == 0):
++                    probs.append(f'narrowed width_words {w} must be a multiple of 64 in [64, {full_w})')
++            elif w != full_w:
++                probs.append(f'width_words {w} != 64<<depth = {full_w} (declare narrowed: true for an admission-narrowed page)')
++        return (dict(kind='native_page', x=r['x'], y=r['y'], w=r['width_words'], h=256, depth=r['depth']) if not probs else None), probs
++    if r.get('kind') == 'upload':
++        if not ints('x', 'y', 'width_words', 'height'):
++            return None, ['evidence.rect upload needs integer x, y, width_words, height']
++        probs = []
++        if not (0 <= r['x'] < 1024 and 0 <= r['y'] < 512 and 1 <= r['width_words'] <= 1024 and 1 <= r['height'] <= 512):
++            probs.append(f'evidence.rect upload {r} is outside VRAM')
++        px, py = RESIDENCY_PAGE
++        if not (r['x'] < px + 64 and px < r['x'] + r['width_words'] and r['y'] < py + 256 and py < r['y'] + r['height']):
++            probs.append(f'evidence.rect upload {r} does not overlap the 704,256 page footprint')
++        return (dict(kind='upload', x=r['x'], y=r['y'], w=r['width_words'], h=r['height'], depth=None) if not probs else None), probs
++    return None, [f'evidence.rect kind {r.get("kind")!r} must be native_page or upload']
++
++
++def rect_crc(vram, spec, C):
++    """CRC32 of the declared rect's LE words, row-major, wrapping like the runtime ((y+row)&511, (x+col)&1023)."""
++    out = bytearray()
++    for row in range(spec['h']):
++        yy = (spec['y'] + row) & 511
++        for col in range(spec['w']):
++            o = (yy * 1024 + ((spec['x'] + col) & 1023)) * 2
++            out += vram[o:o + 2]
++    return C.crc32_hex(bytes(out))
++
++
++def drawn_rows(run, logs, tex, spec):
++    """Draw rows of this TEX whose kind/size (and page/depth for native pages) match the declared rect."""
++    hits = []
++    for lg in logs:
++        with open(os.path.join(run, lg['path']), encoding='utf-8') as f:
++            for i, line in enumerate(f, 1):
++                try:
++                    e = json.loads(line)
++                except ValueError:
++                    continue
++                if not isinstance(e, dict) or e.get('event') not in ('source_draw_query_matched', 'replacement_gl_draw_submitted'):
++                    continue
++                if str(e.get('key', ''))[:8] != tex:
++                    continue
++                if spec['kind'] == 'native_page':
++                    ok = (e.get('source_kind') == 'native_page' and e.get('page_xy') == [spec['x'], spec['y']]
++                          and e.get('depth') == spec['depth'] and e.get('native_words') == [spec['w'], 256])
++                else:
++                    ok = e.get('source_kind') in ('upload', 'exact_region') and e.get('native_words') == [spec['w'], spec['h']]
++                    # r5 item a (support msg_d0c1c456; hd_texture_pack.cpp:883-886, 1548-1561): source_word_xy is the first texel's
++                    # offset inside the upload, so the upload origin is page + u_first/ppw - source_word (mod VRAM)
++                    pg, uvb, swx, dp = e.get('page_xy'), e.get('uv_bounds'), e.get('source_word_xy'), e.get('depth')
++                    ppw = {0: 4, 1: 2, 2: 1}.get(dp)
++                    if ok and ppw and all(isinstance(x, list) and len(x) >= 2 and all(type(c) is int for c in x[:2]) for x in (pg, uvb, swx)):
++                        ok = ((pg[0] + uvb[0] // ppw - swx[0]) % 1024, (pg[1] + uvb[1] - swx[1]) % 512) == (spec['x'], spec['y'])
++                    else:
++                        ok = False
++                if ok:
++                    hits.append(dict(log=lg['path'], line=i, frame=e.get('frame')))
++    return hits
++
++
+ def snapshot_problems(run, m, rs, logs, C, info):
+     """marked_vram_snapshot residency bound to the NATIVE event format and to its own mark row; returns problems (empty = bound).
+     Order: pin/size, native header, identity (filename index, header frame == claimed frame, label), matching mark row,
+@@ -129,6 +217,8 @@
+     for off, (name, val) in want.items():
+         if u32(off) != val:
+             probs.append(f'native header: {name} @{off} = {u32(off)} != {val}')
++    if any(blob[88:96]):
++        probs.append('native header: reserved bytes 88..95 are not zero')
+     n = u32(80)
+     label = blob[96:96 + n] if 0 < n <= 63 else b''
+     if not label or not _re.fullmatch(rb'[A-Za-z0-9_-]{1,63}', label) or any(blob[96 + n:160]):
+@@ -145,30 +235,47 @@
+         probs.append(f'header frame {frame} != claimed residency frame {rs.get("frame")!r}')
+     if ev.get('label') is not None and ev.get('label') != label:
+         probs.append(f'evidence.label {ev.get("label")!r} != header label {label!r}')
+-    rows = [r for r in mark_rows(run, logs) if r['event_file'] == os.path.basename(full)]
+-    if len(rows) != 1:
+-        probs.append(f'expected exactly one mark row for {os.path.basename(full)} in the capture logs, found {len(rows)} '
++    own_dir = os.path.dirname(full)
++    own_logs = [lg for lg in logs if os.path.dirname(os.path.abspath(os.path.join(run, lg['path']))) == own_dir]
++    if not own_logs:
++        probs.append(f'no capture log is listed in the event file\'s own directory {os.path.relpath(own_dir, run)} '
++                     '(research sessions restart event numbering, so a mark row is bound only within its own session)')
++    rows = [r for r in mark_rows(run, own_logs) if r['event_file'] == os.path.basename(full)]
++    if own_logs and len(rows) != 1:
++        probs.append(f'expected exactly one mark row for {os.path.basename(full)} in its own session log, found {len(rows)} '
+                      '(an unlogged or duplicated mark cannot be bound)')
+-    else:
++    elif len(rows) == 1:
+         r = rows[0]
+-        for k_, v_ in (('event_index', index), ('label', label), ('frame', frame), ('bytes', SNAPSHOT_BYTES)):
++        for k_, v_ in (('event_index', index), ('label', label), ('frame', frame), ('bytes', SNAPSHOT_BYTES),
++                       ('host_mono_ms', u64(24)), ('gpu_dirty', u32(48)), ('pending_cpu_upload_rects', u32(52)),
++                       ('pack_dirty', u32(56)), ('cpu_authority_dual', u32(60))):
+             if r[k_] != v_:
+                 probs.append(f'mark row {r["log"]}:{r["line"]} {k_}={r[k_]!r} != header {v_!r}')
+         info['mark_row'] = r
+     if probs:
+         return probs
++    spec, rprobs = declared_rect(ev)
++    if rprobs:
++        return rprobs
+     vram = blob[2097312:2097312 + 1048576]
+-    rect = b''.join(vram[(y * 1024 + 704) * 2:(y * 1024 + 704 + 64) * 2] for y in range(256, 512))
+-    tex = C.crc32_hex(rect)
++    tex = rect_crc(vram, spec, C)
++    info['declared_rect'] = spec
+     if tex != str(rs.get('tex', '')).upper():
+-        return [f'snapshot VRAM rect (704,256,64,256) CRC32 {tex} != claimed TEX {rs.get("tex")}']
++        return [f'snapshot VRAM rect {spec["kind"]} ({spec["x"]},{spec["y"]},{spec["w"]}x{spec["h"]}) CRC32 {tex} != claimed TEX {rs.get("tex")}']
++    hits = drawn_rows(run, logs, tex, spec)
++    info['drawn_rows'] = hits[:5]
++    if not hits:
++        return [f'claimed TEX {tex} is never drawn in this run as a {spec["kind"]} key of the declared size'
++                + (f' on page {RESIDENCY_PAGE} depth {spec["depth"]}' if spec['kind'] == 'native_page' else '')
++                + ' (a rect CRC alone is not a runtime key)']
+     if hdr_fnv(blob[160:160 + 2097152]) != u32(68):
+         probs.append('native RAM payload FNV-1a != header checksum @68 (corrupt or edited snapshot)')
+     if hdr_fnv(vram) != u32(72):
+         probs.append('native VRAM payload FNV-1a != header checksum @72 (corrupt or edited snapshot)')
+     if not probs and (u32(48) or u32(52)):
+-        info['warning'] = ('CPU-VRAM mirror may be stale (gpu_dirty/pending set); accepted only because the 704,256 rect CRC '
+-                           'matches the claimed TEX exactly (checklist rule: a CPU-mirror read counts only on an exact CRC match)')
++        info['warning'] = ('CPU-VRAM mirror may be stale (gpu_dirty/pending set); accepted only because the declared rect CRC '
++                           'matches the claimed TEX exactly and that TEX is drawn in the run (checklist rule: a CPU-mirror read counts '
++                           'only on an exact CRC match)')
+     return probs
+ 
+ 

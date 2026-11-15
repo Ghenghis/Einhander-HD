@@ -1,0 +1,42 @@
+{
+ "kind": "private source candidate v3 (not built into a game, not live-tested)",
+ "default": "OFF",
+ "canonical_untouched": true,
+ "v1_v2_untouched": true,
+ "host_tests": {
+  "verdict": "pass",
+  "v3_checks": "74/74",
+  "v1_on_v3": "137/137",
+  "mutants": "19/19"
+ },
+ "files": {
+  "HANDOFF.md": "cbdea8360a29d74a2be582780a551e3a83056f23e97a67d302d1a36ac41b179e",
+  "make_view_provenance_v3_patch.py": "64e2b7fcb35bb68d84f57e9f723ca3c3190b3db7c9a78a3944bde090cf32fcb8",
+  "run_host_test_v3.py": "82650fe49f57e11eec4c2e8352fec73d4709818746368ea5b94dcaa42c66eca7",
+  "tests/test_pgxp_view_v3.cpp": "6f64bf423eefcf9db01f2546518c7d033f19f3b264037dfe983314626839d95a",
+  "tests/gpu_census_harness.c": "008c0ea3cd4bd6f0d102d76f9036d2db86ba90c04846bf0181b0d10914dd468f",
+  "src/gte.cpp": "139d2e49c6a77b68a1d96a4325f9c244db4f9ed1b2277187be068454304c1849",
+  "src/pgxp.cpp": "c46cbe4f25a9e39404a90140d022803762f407d2d64e8931cf95f3c906fc087b",
+  "src/pgxp_view_census.cpp": "9dbfcf1c8a5fead056fcd366a7f98b9a15bb5518233f64a836e94a45f49deb88",
+  "src/gpu.c": "0175da5b631d64900218406f75fb3767779e71a8f25d50c6ab1e55258eb7215c",
+  "src/debug_server.c": "cb156ca0c511450a4cf2a628f83f57cea66a3f204d7596945a4c85e6e29a475b",
+  "include/pgxp.h": "1f50599f51a53fdc989d1d0bb9c7aea46f0f6cc53b303048367c0f05b18c4c47",
+  "include/gpu.h": "2403a6bab465e2f2c5e2830d8cb8efcd61066dfc55092256f1e5a9068b3df405",
+  "diffs/debug_server.c.diff": "144828a51db8e541ce56ce0b13a1bdb781dff19cf7d6680c189e5df3c216d7de",
+  "diffs/gpu.c.diff": "1ecaad399db1c8a869790a2ba212faabfc9a7e049ff7859ace2b438f15776dc3",
+  "diffs/gpu.h.diff": "151cb201f69614ee1bf766614fb350cfd2db06bcaef2a1ff52f5409596f699a0",
+  "diffs/gte.cpp.diff": "5078833eb8fc9ad446629bb1c692a67f2eb7e585fa9abc6777df67435bf3c693",
+  "diffs/pgxp.cpp.diff": "4ebaa4c9a10782e27bac93f0054da75351337c7d9a0d0a8402c607d351d70020",
+  "diffs/pgxp.h.diff": "e40f9ad323a8a1bdfcc4a7501ad4e319777a57686650f524b70d0588ede1aad9",
+  "diffs/pgxp_view_census.cpp.diff": "2c1ecd00cb483890f0d49f91721da791ec520b527e251db267e3371f88de14dd",
+  "patch-receipt.json": "50ac64913b4f2983a4dc6b1d02c6e0cb32ba2785ef7b97d7b627c11008c2e058",
+  "host-test-v3.json": "4b22794b1cd1670fff408f4d8affe81af9e4801a65fef0df45d6219570593098",
+  "tcp-replies.json": "bb8fe296fd4c002c7ef1e67122cc8e719685d5ff2ea752d38a6f3fc8e68f770f"
+ },
+ "not_claimed": [
+  "live lag/flag distribution",
+  "ray tracing",
+  "Remix backend",
+  "policy change in the adapter"
+ ]
+}

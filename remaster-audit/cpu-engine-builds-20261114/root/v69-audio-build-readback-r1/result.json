@@ -1,0 +1,69 @@
+{
+  "at_utc": "2026-11-14T22:08:47.310653+00:00",
+  "readback_pass": true,
+  "actual_private_build_pass": true,
+  "manifest_sha256": "e6ab30e9c9c03697b3c4dcd64a253d232cd0de1d1fbc9bc73d5c7880748de8b4",
+  "envelope_sha256": "ebc0b8118730f2cab5e9d54769dd7786d5379205e8884659b6ce481d5b2193d6",
+  "executable_sha256": "f1ccb34dc0d06ba945fd822c9e807fe14b452b0d61584b731dcd4163f27759e5",
+  "executable_bytes": 21468672,
+  "copied_wrapper_sha256": "fa5e42fa7b7dd08c75f97ece9bf82ad749f9bf66346fce955c9b8e23b85b3e36",
+  "closure_comparisons": [
+    {
+      "label": "main",
+      "closure_count": 1142,
+      "unchanged_dependencies": 1140,
+      "obj_sha256": "286af211733afe820d221f6bcc5fa56f4bc0f563a2c626e0de446f6e167f77c9"
+    },
+    {
+      "label": "debug",
+      "closure_count": 403,
+      "unchanged_dependencies": 402,
+      "obj_sha256": "dc75afc26f599ac93d20d877122312c0054900e85d9c3a9569a61d9c3c87a37f"
+    }
+  ],
+  "known_identities": [
+    {
+      "label": "wrapper",
+      "pid": 43784,
+      "creation_unix": 1794694038.3602352,
+      "identity_absent": true
+    },
+    {
+      "label": "driver",
+      "pid": 8180,
+      "creation_unix": 1794694039.4815824,
+      "identity_absent": true
+    },
+    {
+      "label": "build:main",
+      "pid": 35856,
+      "creation_unix": 1794694039.776132,
+      "identity_absent": true
+    },
+    {
+      "label": "build:debug",
+      "pid": 38544,
+      "creation_unix": 1794694046.044772,
+      "identity_absent": true
+    },
+    {
+      "label": "build:link",
+      "pid": 14756,
+      "creation_unix": 1794694048.978242,
+      "identity_absent": true
+    }
+  ],
+  "elapsed_s": 9.884,
+  "peak_job_memory_bytes": 199749632,
+  "retained_link_inputs": 153,
+  "original_reproduction_deviation_preserved": true,
+  "all_dependency_files_rehashed_by_root": false,
+  "full_source_rebuild": false,
+  "compiler_or_fixture_replayed": false,
+  "game_run": false,
+  "gpu_run": false,
+  "real_sdl_device_tested": false,
+  "listening": false,
+  "performance_gain_proved": false,
+  "installed": false
+}

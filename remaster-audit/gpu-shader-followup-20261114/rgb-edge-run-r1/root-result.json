@@ -1,0 +1,166 @@
+{
+  "at_utc": "2026-11-14T11:18:18.985525+00:00",
+  "build_sha256": "719cd651f53c7aa111abceb71fb2711dc15c193a9ba161650a51eaa35a4d99c0",
+  "all_build_files_verified": true,
+  "original_build_files": {
+    "gl_selftest_classmips.c": "69abc6a4e04068afee941a5be15a5fa0b6f53bd999c13eafa5367a3fedeb93e9",
+    "hd_class_mips.inc": "75b40306bd7176bac6fa7d394b6c26918f0fb6d126cc8e092815f603c3b67403",
+    "HD_FS.frag": "f3a279bef48337fdf032034e6c914c37c4622745b22899fdb43251d88ba786a8",
+    "TEX_VS.vert": "b2649aee06a3fe7a9008c2f39c38e0f653053ead7b6ee53e45f6fd398bb6ea04",
+    "gl_selftest_classmips.exe": "a338ba8469ac2faa3ab6b8c8796c49498901199e65173a6367a5685badbc4ec6"
+  },
+  "gpu_fixture_only": true,
+  "gameplay": false,
+  "renderer_version": "Separate RGB-only shader experiment. Original m12/LOD0 identity criteria retained and not relabeled.",
+  "passed": true,
+  "preflight": {
+    "checked_at_utc": "2026-11-14T11:18:20.115156+00:00",
+    "reservation_sha256": "a83a26f084bf905b82dce6772f8c112488ed40bef53c293c5af2c0dac007ce6f",
+    "active_holder": false,
+    "comfy_server_reachable": false,
+    "queue_running": 0,
+    "queue_pending": 0
+  },
+  "pid": 36684,
+  "arguments": [
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r1\\gl_selftest_classmips.exe",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r1\\TEX_VS.vert",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r1\\HD_FS.frag",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\rgb-edge-run-r1\\selftest-result.json"
+  ],
+  "exit": 1,
+  "seconds": 0.715,
+  "test_result": {
+    "gl_renderer": "NVIDIA GeForce RTX 3090 Ti/PCIe/SSE2",
+    "gl_version": "3.3.0 NVIDIA 621.14",
+    "rgb_edge_experiment": {
+      "support_and_stp_unchanged": true,
+      "opaque_lod0_max_delta": 1,
+      "opaque_stp_unchanged": true
+    },
+    "link": true,
+    "uniforms": true,
+    "fbo": true,
+    "gl_error": 0,
+    "authored_min_luma": 122.52,
+    "minify": [
+      {
+        "m": 1,
+        "A_level0": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "B_generate_mipmap": [
+          448,
+          448,
+          448.0,
+          30.71
+        ],
+        "C_class_levels": [
+          448,
+          448,
+          448.0,
+          122.52
+        ]
+      },
+      {
+        "m": 2,
+        "A_level0": [
+          112,
+          112,
+          112.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          112,
+          112,
+          112.0,
+          30.71
+        ],
+        "C_class_levels": [
+          112,
+          112,
+          112.0,
+          122.52
+        ]
+      },
+      {
+        "m": 4,
+        "A_level0": [
+          0,
+          56,
+          28.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          55,
+          27.5,
+          15.35
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 8,
+        "A_level0": [
+          0,
+          28,
+          7.0,
+          46.01
+        ],
+        "B_generate_mipmap": [
+          0,
+          28,
+          3.5,
+          23.68
+        ],
+        "C_class_levels": [
+          28,
+          28,
+          28.0,
+          122.52
+        ]
+      },
+      {
+        "m": 12,
+        "A_level0": [
+          0,
+          19,
+          4.62,
+          61.94
+        ],
+        "B_generate_mipmap": [
+          0,
+          0,
+          0.0,
+          9.86
+        ],
+        "C_class_levels": [
+          0,
+          19,
+          13.88,
+          122.52
+        ]
+      }
+    ],
+    "stat_fields": "stroke pixels min, max, mean over 8 phases; darkest visible luma",
+    "checks": {
+      "stroke_never_vanishes_m8_m12": false,
+      "no_cutout_bleed": true,
+      "point_path_unchanged": true,
+      "lod0_identical": false
+    },
+    "pass": false
+  },
+  "original_suite_passed": false,
+  "rgb_edge_goal_passed": true,
+  "process_gone": true,
+  "reservation_released": true
+}

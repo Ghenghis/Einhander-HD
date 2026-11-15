@@ -1,0 +1,10 @@
+TIMING preload_total_ms 5.525 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 1 bytes 5570672
+TIMING draw_admit_ms 3.116 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 2.945 min 2.920 max 3.270 (21 fresh slots, warm)
+checks 31 failures 5
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g00\glue_harness.c:534: (int)slot.rgb_edges == EXPECT_RGB
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g00\glue_harness.c:535: s_hdcm_diag.rgb_edge_slots == (uint64_t)EXPECT_RGB && s_hdcm_diag.rgb_opaque_skipped == (uint64_t)!EXPECT_RGB
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g00\glue_harness.c:552: (int)slot.rgb_edges == (want_rgb ? EXPECT_RGB : 0)
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g00\glue_harness.c:560: g_u[LOC_CLASS] == cl && g_u[LOC_RGB] == rg
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g00\glue_harness.c:564: g_min == -7 && g_u[LOC_CLASS] == cl && g_u[LOC_RGB] == rg

@@ -1,0 +1,260 @@
+{
+  "started_utc": "2026-11-14T15:54:03.433656+00:00",
+  "pid": 34516,
+  "creation_unix": 1794671642.797721,
+  "affinity": [
+    15
+  ],
+  "below_normal": true,
+  "precheck_cpu": 54.5,
+  "free_gib": 76.49755859375,
+  "source_pins": {
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\hd_texture_pack_test.cpp": "fe90ccb8321beaa5f121ef3db7465b2dcb35044d9dd43753946309c2ee034350",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\tests\\test_hd_texture_pack.cpp": "6a65225ff19efb2068d820da9903ad3c851d83ecfbd9f5db7b03fe03512f4475",
+    "C:\\github\\Einhander\\windows-x64\\psxrecomp\\runtime\\src\\png_write.h": "4ac63e7ea052284ab9d2bfa2aa8c77518d79ee9190be522e2684235ae1966578",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\third_party\\stb_image.h": "866095d4107665b4f2ac84e5aa25c7b4bd2f89c5408348c87fdec8891661cace",
+    "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\include\\hd_texture_pack.h": "78234dfdbe4b574b6054b27a65d4cb64877420fa9e67488355542d547969c794"
+  },
+  "actual_game_pack_object_sha256": "71eedf1f4bf32578e17f6e52714bbe23053594ccbee393ac6b65408b4e994fcc",
+  "commands": [
+    {
+      "label": "compile-hd_texture_pack_test.cpp",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\tests\\hd_texture_pack_test.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\hd_texture_pack.cpp.obj",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 36428,
+      "creation_unix": 1794671643.4364712,
+      "exit": 0,
+      "seconds": 1.9398945000011736,
+      "original_child_absent": true,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-baseline-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 32820,
+      "creation_unix": 1794671645.404717,
+      "exit": 0,
+      "seconds": 0.12972199999967415,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-region-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 16812,
+      "creation_unix": 1794671645.5333478,
+      "exit": 0,
+      "seconds": 0.08574059999955352,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-incremental-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 25824,
+      "creation_unix": 1794671645.5982857,
+      "exit": 0,
+      "seconds": 0.07832760000019334,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-both-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 35604,
+      "creation_unix": 1794671645.67872,
+      "exit": 0,
+      "seconds": 0.06030569999893487,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-baseline-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 17164,
+      "creation_unix": 1794671645.740774,
+      "exit": 0,
+      "seconds": 0.06279729999914707,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-region-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 8180,
+      "creation_unix": 1794671645.8057888,
+      "exit": 0,
+      "seconds": 0.07519439999850874,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-incremental-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 8436,
+      "creation_unix": 1794671645.8859746,
+      "exit": 0,
+      "seconds": 0.07649259999925562,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "hd_texture_pack_test.cpp-both-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\hd_texture_pack_test.cpp.exe"
+      ],
+      "pid": 30640,
+      "creation_unix": 1794671645.96029,
+      "exit": 0,
+      "seconds": 0.06522909999875992,
+      "original_child_absent": true,
+      "log_sha256": "112906aa2bb0698ba7cb142f04eca526c045b11338e5e628f41f5d0c9c257645"
+    },
+    {
+      "label": "compile-test_hd_texture_pack.cpp",
+      "args": [
+        "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+        "-std=c++17",
+        "-O1",
+        "-IC:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\include",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test-sources\\tests\\test_hd_texture_pack.cpp",
+        "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\stage1-completion-20261112\\sampling-build-v67-decode-identity-r3\\hd_texture_pack.cpp.obj",
+        "-o",
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 34656,
+      "creation_unix": 1794671646.0285125,
+      "exit": 0,
+      "seconds": 2.933348800001113,
+      "original_child_absent": true,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-baseline-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 9960,
+      "creation_unix": 1794671648.9874935,
+      "exit": 0,
+      "seconds": 0.11365559999831021,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-region-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 37824,
+      "creation_unix": 1794671649.1078556,
+      "exit": 0,
+      "seconds": 0.07393279999996594,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-incremental-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 34564,
+      "creation_unix": 1794671649.1559737,
+      "exit": 0,
+      "seconds": 0.048035499999969034,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-both-id0",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 35552,
+      "creation_unix": 1794671649.2056625,
+      "exit": 0,
+      "seconds": 0.06449979999888455,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-baseline-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 25608,
+      "creation_unix": 1794671649.2726572,
+      "exit": 0,
+      "seconds": 0.053880599998592515,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-region-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 14400,
+      "creation_unix": 1794671649.3284557,
+      "exit": 0,
+      "seconds": 0.045729500001471024,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-incremental-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 37544,
+      "creation_unix": 1794671649.3756661,
+      "exit": 0,
+      "seconds": 0.04473180000059074,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    },
+    {
+      "label": "test_hd_texture_pack.cpp-both-id1",
+      "args": [
+        "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\v67-pack-regressions-r1\\test_hd_texture_pack.cpp.exe"
+      ],
+      "pid": 16404,
+      "creation_unix": 1794671649.4221451,
+      "exit": 0,
+      "seconds": 0.04621190000034403,
+      "original_child_absent": true,
+      "log_sha256": "5617f6dfecf0ed5ee052a64cab465c0ddf66460dfe97ed3decce9d21de20c364"
+    }
+  ],
+  "passed": true,
+  "gpu_run": false,
+  "game_run": false,
+  "scope": "Existing small native fixture tests. Synthetic source tracking, invalidation, wrap, save-state serialization and bounded async decode; no user card/game state. Does not prove real gameplay latency.",
+  "fixture_processes": 16,
+  "compile_processes": 2,
+  "ended_utc": "2026-11-14T15:54:09.470844+00:00",
+  "elapsed_seconds": 6.037204700000075,
+  "remaining_temp_entries": []
+}

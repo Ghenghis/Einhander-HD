@@ -1,0 +1,32 @@
+--- a/windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c
++++ b/windows-x64/psxrecomp/runtime/src/gpu_gl_renderer.c
+@@ -94,6 +94,7 @@
+ #include "hd_skin_live.h"
+ #include "hd_upload_ledger.h"
+ #include "native_upload_ledger.h"
++#include "frame_phase_ring.h"
+ #include "../third_party/stb_image.h" /* shared implementation in psx_window_icon.cpp */
+ #ifdef _WIN32
+ #include <direct.h>
+@@ -6558,6 +6559,11 @@
+ }
+ 
+ /* Composite host toast + volume bar into the default framebuffer, then swap. */
++/* Private v58 frame phase ring: exact SDL_GL_SwapWindow stamps through a hook set by main (NULL = nothing), so
++ * this renderer stays independent of the ring and of the debug server. */
++static void (*s_swap_phase_hook)(int) = NULL;
++void gl_renderer_set_swap_phase_hook(void (*hook)(int phase)) { s_swap_phase_hook = hook; }
++
+ static void gl_swap_with_osd(void) {
+     if(s_hd_research.active)hdrc_tick(&s_hd_research,s_frame_count,psx_host_mono_ms());
+     if (s_present_prog && s_ctx) {
+@@ -6631,7 +6637,9 @@
+             present_shot_done(wrote);
+         }
+     }
++    if (s_swap_phase_hook) s_swap_phase_hook(FP_SWAP_BEGIN);   /* exact swap, after OSD/capture work */
+     SDL_GL_SwapWindow(s_win);
++    if (s_swap_phase_hook) s_swap_phase_hook(FP_SWAP_END);
+ }
+ 
+ static void present_target_quad(GLuint tex, int tex_w, int tex_h,

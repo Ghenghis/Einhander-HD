@@ -1,0 +1,18 @@
+{
+ "files": {
+  "README.md": "36a8a95bae587b67f2417681be72c9001021502f41616f777eee525a2e13f061",
+  "verify_sources.json": "5aeee14e48c801e419505d5cc16734ea70eabf1a8aa608945791e6e396c16111",
+  "verify_sources.py": "9f91f43ef154bfcdbba2ba3f4b7909df900105cea1c7efc3bd226b94e890f059",
+  "zero_audit.json": "e877a1989f6b4ef1541fa0f58239904b43bed9eabb7606831cc49766954b8ab1",
+  "zero_audit.py": "519c69a85fed75c26e8813cb3e16fe2640d62c0ba22d815d4cd826edd10b8935"
+ },
+ "damaged_manifest": {
+  "path": "../../frozen/DAMAGED-renderer-v61-classmip-v5.json",
+  "sha256": "3eb8c3420bfc671176e91d69a162d1ab364662888e811a5092252c2547fc683f"
+ },
+ "new_freeze": {
+  "path": "../../frozen/renderer-v61-classmip-v5-r2/READY.json",
+  "sha256": "5f96e71566792816917afc39827e04a9227fe9e321617e4d554ff527e207a0be"
+ },
+ "note": "The first packaging attempt failed (wrong parent path) after copying + fsyncing the four reports and left a 0-byte MANIFEST.json; this manifest replaces it. README links fixed (../ -> ../../) before hashing."
+}

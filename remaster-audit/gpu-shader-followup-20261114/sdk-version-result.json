@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-11-14T11:14:15.793391+00:00",
+  "observed_stdout": {
+    "version": [
+      0,
+      16,
+      1
+    ],
+    "rc": 8,
+    "interface_bytes": 288,
+    "startup": false,
+    "submit": false,
+    "interop_info": false,
+    "memory_texture": false,
+    "gpu_started": false
+  },
+  "scope": "Read-only table initialization compatibility check, not GPU Startup. A successful older0.6.11 initialization does not establish0.16.1 support. No new runtime installed.",
+  "source_sha256": "a9a41e33cec566a122b69c49e4724d7c3da0589cdeff1beb37804e17be38b425",
+  "executable_sha256": "7cac288a94af4c9eaa22b213104a1d76d6d1cce5f84729fce336cb535b4e36fe",
+  "header_sha256": "0aece8a9b890ee7474cdaa5876c58fa81dfca858792b3a0ef47d42632e58bafb",
+  "compile_command": [
+    "C:/Users/Admin/.local/share/retcomm/toolchains/cmake-clang-v1/latest/bin/clang++.exe",
+    "-std=c++17",
+    "-O1",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk_version_probe.cpp",
+    "-o",
+    "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\sdk-version-probe.exe"
+  ]
+}

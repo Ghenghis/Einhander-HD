@@ -1,0 +1,285 @@
+{
+ "owner": "claude-einhander-ui",
+ "job": "J-H4 r2 region-scoped R1/connectivity MEASURE of 4 coherent-v4 HUD files",
+ "tool_sha256": "c5d0e375e1b69f4156a0828a8d8492e6423df5c0cd2e366a3ed1fc2fe8bf5f13",
+ "versions": {
+  "python": "3.14.5",
+  "numpy": "2.5.2",
+  "pillow": "12.3.0"
+ },
+ "controls": {
+  "clean_exact_class_is_pass": true,
+  "real_centre_flip_inside_is_fail_and_agrees": true,
+  "half_open_region_excludes_row_above": true,
+  "injected_flag_without_alpha_error_is_metric_disagree": true,
+  "alpha_error_without_flag_is_metric_disagree": true,
+  "nonclass_reported_not_gated": true
+ },
+ "policy": "region verdict: METRIC_DISAGREE overrides; R1_CONNECTIVITY_PASS iff r1_region == 0 and conn_region == 0 (conn = cm_flags_ex bound 1e9, flags & (2|4|16)); nonclass_region reported only; NOT a full native-class gate; whole-page primary fields reported, not judged",
+ "class_mip_pins": {
+  "class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+  "class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+  "clang.exe": "a8b7a614eeadd9105f814be3701a7f312cda4cea51751b75b408c16100c94e85"
+ },
+ "executed_artifacts": {
+  "class_mip.c": "c84efa609fde17b906e6755074fece074bced8d5c03a0f2c3ea2cb41d6f5193d",
+  "class_mip.h": "90e68bddd2004890654cc7b366ddc4980f8fce1c5f71313c6a60c4a3e2cf90e3",
+  "class_mip.dll": "6052a430f1e87798736c48930d3d472970f6fd4b3985e88ae3ba1a5a8aa40e22"
+ },
+ "compile": {
+  "argv": [
+   "C:\\Users\\Admin\\.local\\share\\retcomm\\toolchains\\cmake-clang-v1\\latest\\bin\\clang.exe",
+   "-shared",
+   "-O2",
+   "-std=c11",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\hud4-v4-audit\\runs\\20261115T001900Z\\class_mip.c",
+   "-o",
+   "C:\\github\\Einhander\\.claude\\worktrees\\xenodochial-snyder-093665\\remaster-audit\\claude-einhander-ui\\hud4-v4-audit\\runs\\20261115T001900Z\\class_mip.dll"
+  ],
+  "rc": 0,
+  "stdout": "",
+  "stderr": ""
+ },
+ "rows": {
+  "44C16454-72FBA1C5": {
+   "r1_region": 0,
+   "conn_region": 2028,
+   "s2_region": 2031,
+   "nonclass_region": 0,
+   "r1_outside": 0,
+   "conn_outside": 0,
+   "centre_alpha_mismatch_region": 0,
+   "region_cells": 2048,
+   "region_px": 524288,
+   "metric_agree": true,
+   "region_verdict": "R1_CONNECTIVITY_FAIL",
+   "key": "44C16454-72FBA1C5",
+   "role": "small numeral strip (whole)",
+   "scale": 16,
+   "png_mode": "RGBA",
+   "region_texels": [
+    0,
+    0,
+    256,
+    8
+   ],
+   "whole_page_report_not_judged": {
+    "pixels": 524288,
+    "cells": 2048,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 2031,
+    "r3_uniform_bad_px": 2028,
+    "r4_island_px": 2028,
+    "r5_fringe_px": 4818,
+    "cells_bad": 139,
+    "pinhole_cells": 139,
+    "nonclass_px": 0,
+    "primary_pass_whole_page": false
+   },
+   "pins": {
+    "v4": [
+     "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\44C16454-72FBA1C5.png",
+     "f9d459b45d3a6ae1c191b9a2a455da34107081c9077512264c84a0a50ea380d7"
+    ],
+    "words": [
+     "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-capture-v2\\stock\\einhander-texture-replacements\\44C16454-72FBA1C5.words.bin",
+     "267b142a89914066bd3cc4a149365116f6a9429b56677940f6d7bce9fe085198"
+    ],
+    "clut": [
+     "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-capture-v2\\stock\\einhander-texture-replacements\\44C16454-72FBA1C5.clut.bin",
+     "bdb1cab4dc8f0e34c5a3b9382c06bc742a5e05cf9b0a45afbb4cca5e6687cbe3"
+    ],
+    "meta": [
+     "C:\\github\\REMASTER_STAGING\\full-remaster\\ui-capture-v2\\stock\\einhander-texture-replacements\\44C16454-72FBA1C5.source.json",
+     "b546dfef524558407239a38270c7fd90a5aa3307612d69387794a7bd187d91f4"
+    ]
+   },
+   "review_1x": {
+    "path": "review_44C16454-72FBA1C5_region_1x.png",
+    "sha256": "7cb2f95295be970a9cac0681bc2608ef67b2feaf49ed935cd25616e28f86be1d"
+   }
+  },
+  "8BA3BB4D-190A55AD": {
+   "r1_region": 0,
+   "conn_region": 0,
+   "s2_region": 0,
+   "nonclass_region": 0,
+   "r1_outside": 0,
+   "conn_outside": 0,
+   "centre_alpha_mismatch_region": 0,
+   "region_cells": 2048,
+   "region_px": 524288,
+   "metric_agree": true,
+   "region_verdict": "R1_CONNECTIVITY_PASS",
+   "key": "8BA3BB4D-190A55AD",
+   "role": "Hit Gauge rect on mixed page",
+   "scale": 16,
+   "png_mode": "RGBA",
+   "region_texels": [
+    0,
+    64,
+    64,
+    96
+   ],
+   "whole_page_report_not_judged": {
+    "pixels": 16777216,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 0,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 0,
+    "cells_bad": 0,
+    "pinhole_cells": 0,
+    "nonclass_px": 0,
+    "primary_pass_whole_page": true
+   },
+   "pins": {
+    "v4": [
+     "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-190A55AD.png",
+     "9511a22f75360eab0bda10888422b7ff8c6ac825fa270c63f885e8f56afea0b5"
+    ],
+    "words": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-190A55AD.words.bin",
+     "ecf45868d413de845c7a9ddc002ea935bd1b6f8dd2d0137476a39ca7fe601c0f"
+    ],
+    "clut": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-190A55AD.clut.bin",
+     "66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925"
+    ],
+    "meta": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-190A55AD.source.json",
+     "5e2bfe4c7c4000f120b85cfe704ab215545c231eada0276249087d39a4957a62"
+    ]
+   },
+   "review_1x": {
+    "path": "review_8BA3BB4D-190A55AD_region_1x.png",
+    "sha256": "40b525c644acbe7f5ba87e5fb68c62b028069dd77cefa08441156c17739b476b"
+   }
+  },
+  "8BA3BB4D-36D62A31": {
+   "r1_region": 0,
+   "conn_region": 0,
+   "s2_region": 1,
+   "nonclass_region": 0,
+   "r1_outside": 0,
+   "conn_outside": 0,
+   "centre_alpha_mismatch_region": 0,
+   "region_cells": 2048,
+   "region_px": 524288,
+   "metric_agree": true,
+   "region_verdict": "R1_CONNECTIVITY_PASS",
+   "key": "8BA3BB4D-36D62A31",
+   "role": "Hit Gauge rect on mixed page",
+   "scale": 16,
+   "png_mode": "RGBA",
+   "region_texels": [
+    0,
+    64,
+    64,
+    96
+   ],
+   "whole_page_report_not_judged": {
+    "pixels": 16777216,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 1,
+    "r3_uniform_bad_px": 0,
+    "r4_island_px": 0,
+    "r5_fringe_px": 213330,
+    "cells_bad": 1,
+    "pinhole_cells": 1,
+    "nonclass_px": 0,
+    "primary_pass_whole_page": true
+   },
+   "pins": {
+    "v4": [
+     "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-36D62A31.png",
+     "4255b3e5102cb78b26c06c6618b9fdff9203a23f57fde6e8bca67f6f6bbef3c1"
+    ],
+    "words": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-190A55AD.words.bin",
+     "ecf45868d413de845c7a9ddc002ea935bd1b6f8dd2d0137476a39ca7fe601c0f"
+    ],
+    "clut": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-36D62A31.clut.bin",
+     "1e8ea3c6cd7ef8939bebb39dc90af3a304318740c518f692f22fc1d0b3d8acd9"
+    ],
+    "meta": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-36D62A31.source.json",
+     "5a194ff7ea7ad64eea9f89b4de6acca905ac52dacf566195c48a3cdb3788ff2b"
+    ]
+   },
+   "review_1x": {
+    "path": "review_8BA3BB4D-36D62A31_region_1x.png",
+    "sha256": "2f67e8ec128531a724092ab8ca6eb4387d365c11d189881c97a28e359bee5671"
+   }
+  },
+  "8BA3BB4D-E0AE221F": {
+   "r1_region": 0,
+   "conn_region": 932,
+   "s2_region": 933,
+   "nonclass_region": 0,
+   "r1_outside": 0,
+   "conn_outside": 0,
+   "centre_alpha_mismatch_region": 0,
+   "region_cells": 2048,
+   "region_px": 524288,
+   "metric_agree": true,
+   "region_verdict": "R1_CONNECTIVITY_FAIL",
+   "key": "8BA3BB4D-E0AE221F",
+   "role": "Hit Gauge rect on mixed page",
+   "scale": 16,
+   "png_mode": "RGBA",
+   "region_texels": [
+    0,
+    64,
+    64,
+    96
+   ],
+   "whole_page_report_not_judged": {
+    "pixels": 16777216,
+    "cells": 65536,
+    "r1_centre_bad": 0,
+    "r2_displaced_px": 933,
+    "r3_uniform_bad_px": 932,
+    "r4_island_px": 932,
+    "r5_fringe_px": 0,
+    "cells_bad": 60,
+    "pinhole_cells": 60,
+    "nonclass_px": 0,
+    "primary_pass_whole_page": false
+   },
+   "pins": {
+    "v4": [
+     "C:\\github\\Einhander\\remaster-audit\\hud-restoration\\candidate-20261112-coherent-v4\\pack\\einhander-texture-replacements\\8BA3BB4D-E0AE221F.png",
+     "c82058bfb3a14257d46a39355692560f8cede710f1163b7d3c565fe4bf04afb9"
+    ],
+    "words": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-190A55AD.words.bin",
+     "ecf45868d413de845c7a9ddc002ea935bd1b6f8dd2d0137476a39ca7fe601c0f"
+    ],
+    "clut": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-E0AE221F.clut.bin",
+     "2c2370edf6f6dc6a9835ca94b43cd54b17e55ee9496bcc47d400eb718f9db501"
+    ],
+    "meta": [
+     "C:\\github\\REMASTER_STAGING\\stage1_remaster\\page-source\\stock\\einhander-texture-replacements\\8BA3BB4D-E0AE221F.source.json",
+     "f47cd89c124a7f3ce9faf5d72247486f6d509cb132f5f602312c21dd873f39bf"
+    ]
+   },
+   "review_1x": {
+    "path": "review_8BA3BB4D-E0AE221F_region_1x.png",
+    "sha256": "6db81b66da7a260823c51c302cc4224fedafaa1d0206a7712cefae2948b8565c"
+   }
+  }
+ },
+ "summary": {
+  "44C16454-72FBA1C5": "R1_CONNECTIVITY_FAIL",
+  "8BA3BB4D-190A55AD": "R1_CONNECTIVITY_PASS",
+  "8BA3BB4D-36D62A31": "R1_CONNECTIVITY_PASS",
+  "8BA3BB4D-E0AE221F": "R1_CONNECTIVITY_FAIL"
+ },
+ "not_claimed": "no art written; no install, admission, readability, composed or live acceptance",
+ "seconds": 4.3
+}

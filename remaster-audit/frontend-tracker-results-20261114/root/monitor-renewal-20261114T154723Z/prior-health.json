@@ -1,0 +1,89 @@
+{
+  "observed_utc": "2026-11-14T15:47:09.639Z",
+  "watcher_pid": 36052,
+  "watcher_only": true,
+  "proves_model_activity": false,
+  "observations": 56,
+  "bound_end_utc": "2026-11-14T15:49:33.939Z",
+  "roster_sha256": "4c5de3caa98137386f5d71188237dfef4402a32d0e0c4d2ab5085d1903a37119",
+  "sessions": [
+    {
+      "owner": "claude-einhander",
+      "session_id": "43668750-1a3c-49e9-8775-c31ee3df3847",
+      "roster_state": "actual_replacement_hook_inbox_checkpoint_verified",
+      "presence_updated_utc": "2026-11-13T15:40:45.089Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "82ea12a0206043f7d128c25359875cc9363b4845be449211a0f7e37cfe6d1772",
+      "checkpoint_utc": "2026-11-14T15:44:00.020Z",
+      "checkpoint_age_seconds": 190,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S1-95A3-O-FREEZE-20261114"
+      ],
+      "next_action": "On coordinator CPU13 grant (after S67 return): run selftest_run_rc2.py (4 controls) in O/tools; only if all pass, run region-O freeze via run_rc2.py r1 (cd3988af) into O/95a3-o-city/frozen/95A3BCF8-O-city-v1, 240s cap; report PID/start/end/rc/tree absence + READY hashes.",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s23",
+      "session_id": "8b3fb857-d4f4-42f1-b81a-a9e9927871bd",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T14:19:09.094Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "f657969e6ee96e5af33589389d08989ed3a93d1c7599745b68bdd59c4f59ec11",
+      "checkpoint_utc": "2026-11-14T15:40:31.000Z",
+      "checkpoint_age_seconds": 399,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S2-WHOLE-CELL-20261114",
+        "EIN-S3-WHOLE-CELL-20261114"
+      ],
+      "next_action": "On grant: python -I tools/run_granted.py --cpu <n> --cap 240 --receipt runs/j5-<UTC>/receipt.json -- python -I tools/j5_s3_scale2x.py proposals/s3-scale2x-<UTC> 230 s3",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s45",
+      "session_id": "23875684-e1a4-4e97-971e-d9abd3f77f52",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T15:36:44.428Z",
+      "presence_stale": false,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "3f46e43916c8d8f336ca8c5becbebaa557f664ee6d54a17d434225fbaa65094b",
+      "checkpoint_utc": "2026-11-14T15:44:04Z",
+      "checkpoint_age_seconds": 186,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S4-WHOLE-CELL-20261114",
+        "EIN-S5-WHOLE-CELL-20261114",
+        "EIN-MENU-HUD-20261114"
+      ],
+      "next_action": "On grant: PowerShell precheck (CPU<60%, free>16GiB, tool sha) then Start-Process cmd /c start \"\" /b /wait /belownormal /affinity 2000 python -I -B <tool> -WorkingDirectory s45, threads env 1, poll peak WS (kill >cap), WaitForExit(30000) else taskkill /T /F; report cmd/python PID, creation, wall, numerical exit, children absent, result sha. Tools: J-K menu-hud/tools/s45_gauge_b24.py 3519ac34; J-L menu-hud/tools/s45_menu_primary_audit.py 48ec9939 (--folders menu-class-exact-v1 hud-prompts-BDAE4156-v4 hud-prompts-BDAE4156-v5 results-footer-8E1A509D-v4 results-footer-8E1A509D-v5 title-menu-323B5FB0-v5 prompt-sheet-BDAE4156-DD0B6963-w5-v1 selection-headers-D0365088-v3 selection-labels-1AD90FC9-v4 story-font-AEE859DC-v1 spec-text-1AD90FC9-w5-v2 --budget-seconds 25). Log files: menu-hud/J-M.log, J-K.log, J-L1.log (new).",
+      "status": "checkpoint_available"
+    },
+    {
+      "owner": "claude-einhander-s67",
+      "session_id": "4ea66aaa-8822-4352-9314-bc95cc950d9e",
+      "roster_state": "actual_model_work_and_checkpoint_verified",
+      "presence_updated_utc": "2026-11-14T15:40:55.795Z",
+      "presence_stale": true,
+      "model_liveness": "not established by this monitor",
+      "attention": [],
+      "checkpoint_sha256": "9951e659caa61d174b012dfcebfc8007ab9d288fc40cb858cb51e66864ddd891",
+      "checkpoint_utc": "2026-11-14T15:40:44Z",
+      "checkpoint_age_seconds": 386,
+      "phase": "waiting",
+      "pending_task_ids": [
+        "EIN-S6-WHOLE-CELL-20261114",
+        "EIN-S7-WHOLE-CELL-20261114",
+        "EIN-S6-TIMEOUT-PROFILE-20261114",
+        "EIN-SKINS-WIRING-20261114"
+      ],
+      "next_action": "On a dedither or burst grant: precheck CPU<60/free>16, run within the window, report PID/creation/exit/children/hashes/strict. Otherwise light source work only.",
+      "status": "checkpoint_available"
+    }
+  ]
+}

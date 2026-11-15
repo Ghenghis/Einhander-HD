@@ -1,0 +1,2049 @@
+{
+ "name": "stage2-sky-ground-v2",
+ "title": "F2 Stage 2 sky and ground (65560E82 girder strip, 6AE78470 ground page, 1/26 version)",
+ "track": "w7-stage2",
+ "status": "candidate",
+ "state": "predicted-static; import only after live capture confirms the key (validate_predicted.py confirm + gate on the AQ-01/AQ-03 Stage 2 capture)",
+ "created_at_utc": "2026-11-13T16:06:07.605366+00:00",
+ "method": "W7-STAGE2 index masters: one CLUT-free master per 4bpp page, rendered through any CLUT.\n\nMaster (8 px/texel = the 2048 export grid; CPU only, deterministic, no AI, nothing added):\n  categorical layer  top-3 (label, weight u8) per pixel: for every native index i the one-hot mask is upsampled\n                     texel-centred (bilinear), gaussian-smoothed (sigma_cat texels) and raised to power_cat, then\n                     normalised (w7-stage7 build_s7 / w4-world catsoft method). It carries the class (alpha) of ANY\n                     CLUT: class = class of the strongest visible label where visible weight >= 0.5, else 0, so every\n                     CLUT gets its own native class map with smooth contours.\n  continuous layer   t (float16, NaN elsewhere) inside regions whose drawn CLUTs are monotone luminance ramps over the\n                     indices used there (palette-cycling lights, smoke and flame ramps): normalised convolution of the\n                     native index over the texels that are visible in that region (bilinear texel-centred upsample,\n                     gaussian sigma_t texels); render = lerp(P[floor t], P[ceil t]) (index_pipeline convention), t\n                     clamped to the CLUT's visible run.\nRender(CLUT) -> RGBA at 8 px/texel; the native class is then forced at every native texel centre floor((i+0.5)*s)\n(one pixel each, w6/w7 rule) and every export is re-read and validated (0 mismatches required).\nRegions come from the Stage 2 draw records (work/draws-s2.json): every drawn uv rect of every key of the page whose CLUT\nwords are known (static export CLUT or CRC-validated recovered phase).",
+ "builder_doc": "W7-STAGE2 builder: Stage 2 art on exact-static TEX from the shared static export.\n\n    python -I build_s2.py <family> [freeze]      family = prep | sky | train | fx\n    -> staging/<name>/ (default) or frozen/<name>/ (freeze: immutable, refuses to overwrite)\n\nState of every key: predicted-static; import only after live capture confirms the key (validate_predicted.py confirm +\ngate on the AQ-01/AQ-03 Stage 2 capture).  Words come from static-extraction/stages/stage2/textures/<TEX>.words.bin\n(crc32 == TEX re-checked); CLUT words from the export's cluts.json or, for palette-cycling phases, from\nwork/recovered-cluts.json (CRC-validated marked CPU-VRAM snapshots of runs 153406/155355); crc32 == PAL re-checked.\nExports only for keys actually drawn in the Stage 2 window (work/draws-s2.json) whose CLUT words are known.\nMethod: s2master.py (CLUT-free index master; categorical + continuous layers; class forced and validated at every\nnative texel centre).  CPU only, deterministic; no generated imagery; nothing invented (no new text, colours or pixels\noutside the native index layout).  The Japanese mission-text page 9E88006F (1/40) is not touched.",
+ "static_export": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2",
+  "build": {
+   "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/BUILD.json",
+   "sha256": "9f2fb74ca437f19db57f7433c199111bb5453392bf4419570c38916d1ecdb974"
+  }
+ },
+ "readiness": {
+  "path": "C:/github/Einhander/remaster-audit/fullgame-prep/stage-review/stage2/readiness.json",
+  "sha256": "f97539a35b410af2db4e6ea60aef77adac7c5a9cee10907619b9b0b3e652b4fd"
+ },
+ "draw_records": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/draws-s2.json",
+  "sha256": "6a693c707c6c08444dff96c133198198d152a2f8579d67b7a4f5e2eafc2684d7",
+  "runs": [
+   "C:/github/Einhander/windows-x64/tools/research-runs/research-20261112-153406-11eebc24 (frames >= 39883)",
+   "C:/github/Einhander/windows-x64/tools/research-runs/research-20261112-155355-aefc8556"
+  ]
+ },
+ "recovered_cluts": {
+  "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage2/work/recovered-cluts.json",
+  "sha256": "8186554ee2589e9dbffdbdeb38edd355c2f9953460f415819085818095858fdf"
+ },
+ "pages": {
+  "65560E82": {
+   "member": "1/26",
+   "writers": [
+    "1/26"
+   ],
+   "vram_rect_words": [
+    640,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "exact-static",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures/65560E82.words.bin",
+    "sha256": "efd292d659d657e8733feb0184c972c19a780f027fc81f8b69414e05677a0c00",
+    "crc32": "65560E82"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0
+   },
+   "master": {
+    "path": "master/65560E82-index-master-8x.npz",
+    "sha256": "3f19fcd39af7a9f1ef15b894aa6e515317213f1f8bb7cd39d42cd55b41fec31d"
+   },
+   "regions": [
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      128,
+      128,
+      190,
+      191
+     ],
+     "draws": 58,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      0,
+      0,
+      30,
+      63
+     ],
+     "draws": 42,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      128,
+      128,
+      191,
+      191
+     ],
+     "draws": 11,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      0,
+      0,
+      63,
+      63
+     ],
+     "draws": 9,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      0,
+      0,
+      31,
+      63
+     ],
+     "draws": 6,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      0,
+      0,
+      62,
+      63
+     ],
+     "draws": 6,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      0,
+      1,
+      63,
+      63
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-0677FB7C",
+     "uv": [
+      1,
+      0,
+      63,
+      63
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "65560E82-2F05FF2B",
+     "uv": [
+      192,
+      0,
+      206,
+      14
+     ],
+     "draws": 69,
+     "clut": "static",
+     "ramp_score": 0.0,
+     "continuous": false,
+     "visible_indices": [
+      1
+     ]
+    },
+    {
+     "key": "65560E82-2F05FF2B",
+     "uv": [
+      64,
+      32,
+      190,
+      62
+     ],
+     "draws": 60,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    },
+    {
+     "key": "65560E82-2F05FF2B",
+     "uv": [
+      64,
+      0,
+      190,
+      30
+     ],
+     "draws": 9,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      3,
+      4,
+      5,
+      6,
+      7
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      216,
+      77,
+      224,
+      91
+     ],
+     "draws": 41,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      216,
+      77,
+      224,
+      90
+     ],
+     "draws": 13,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      128,
+      112,
+      253,
+      124
+     ],
+     "draws": 10,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      216,
+      78,
+      224,
+      91
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      161,
+      66,
+      172,
+      84
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-83E366BC",
+     "uv": [
+      208,
+      73,
+      222,
+      91
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "65560E82-F4C335D5",
+     "uv": [
+      64,
+      112,
+      127,
+      254
+     ],
+     "draws": 52,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "key": "65560E82-F4C335D5",
+     "uv": [
+      0,
+      112,
+      63,
+      254
+     ],
+     "draws": 16,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "key": "65560E82-F4C335D5",
+     "uv": [
+      0,
+      64,
+      63,
+      111
+     ],
+     "draws": 4,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "key": "65560E82-F4C335D5",
+     "uv": [
+      64,
+      64,
+      127,
+      111
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    },
+    {
+     "key": "65560E82-F4C335D5",
+     "uv": [
+      64,
+      112,
+      126,
+      254
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+     ]
+    }
+   ],
+   "continuous_texels": 0
+  },
+  "6AE78470": {
+   "member": "1/26",
+   "writers": [
+    "1/26",
+    "1/37"
+   ],
+   "vram_rect_words": [
+    704,
+    0,
+    64,
+    256
+   ],
+   "tex_confidence": "likely",
+   "words": {
+    "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures/6AE78470.words.bin",
+    "sha256": "bb29ead3f7218de3a6039d5481cb43777641b4e92a32ce71877160c961f68bd9",
+    "crc32": "6AE78470"
+   },
+   "params": {
+    "px_per_texel": 8,
+    "sigma_cat_texel": 0.3,
+    "power_cat": 4.0,
+    "sigma_t_texel": 0.55,
+    "ramp_threshold": 9.0
+   },
+   "master": {
+    "path": "master/6AE78470-index-master-8x.npz",
+    "sha256": "c6717ca6499260780e86e64fce75a23096f78736e0f8bddc58f17b4ce8e045a9"
+   },
+   "regions": [
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      129,
+      160,
+      191,
+      191
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13
+     ]
+    },
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      128,
+      160,
+      191,
+      191
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      13
+     ]
+    },
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      192,
+      164,
+      223,
+      191
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      5,
+      8
+     ]
+    },
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      192,
+      165,
+      223,
+      180
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      5,
+      8
+     ]
+    },
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      192,
+      164,
+      223,
+      180
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      5,
+      8
+     ]
+    },
+    {
+     "key": "6AE78470-95905651",
+     "uv": [
+      129,
+      128,
+      191,
+      158
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12
+     ]
+    },
+    {
+     "key": "6AE78470-BE14F28C",
+     "uv": [
+      192,
+      192,
+      255,
+      223
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 0.0,
+     "continuous": false,
+     "visible_indices": [
+      1
+     ]
+    },
+    {
+     "key": "6AE78470-BE14F28C",
+     "uv": [
+      193,
+      192,
+      255,
+      223
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 0.0,
+     "continuous": false,
+     "visible_indices": [
+      1
+     ]
+    },
+    {
+     "key": "6AE78470-BE14F28C",
+     "uv": [
+      193,
+      192,
+      255,
+      222
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 0.0,
+     "continuous": false,
+     "visible_indices": [
+      1
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      48,
+      16,
+      58,
+      24
+     ],
+     "draws": 12,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      25,
+      16,
+      34,
+      25
+     ],
+     "draws": 11,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      0,
+      12,
+      62,
+      26
+     ],
+     "draws": 4,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      0,
+      48,
+      76,
+      59
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      17,
+      15,
+      26,
+      25
+     ],
+     "draws": 3,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      10,
+      22,
+      20,
+      31
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      24,
+      14,
+      62,
+      18
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      13
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      51,
+      12,
+      57,
+      17
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      37,
+      47,
+      78,
+      61
+     ],
+     "draws": 2,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      25,
+      20,
+      47,
+      32
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      32,
+      12,
+      43,
+      19
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      35,
+      18,
+      45,
+      25
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      4,
+      27,
+      59,
+      46
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      40,
+      18,
+      55,
+      29
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      0,
+      19,
+      9,
+      26
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      44,
+      19,
+      61,
+      44
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      23,
+      12,
+      62,
+      25
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      19,
+      12,
+      46,
+      44
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      3,
+      20,
+      38,
+      30
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      43,
+      16,
+      51,
+      24
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+     ]
+    },
+    {
+     "key": "6AE78470-D4D43BA5",
+     "uv": [
+      25,
+      17,
+      43,
+      26
+     ],
+     "draws": 1,
+     "clut": "static",
+     "ramp_score": 1.0,
+     "continuous": false,
+     "visible_indices": [
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    }
+   ],
+   "continuous_texels": 0
+  }
+ },
+ "keys": {
+  "65560E82-83E366BC": {
+   "tex": "65560E82",
+   "clut": {
+    "crc32": "83E366BC",
+    "words_hex": "ce398c316b2d4a2929250821e71cc618a5148410630c420c2204210821040000",
+    "kind": "static",
+    "vram_xy": [
+     128,
+     492
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 69,
+    "frames": [
+     39886,
+     98380
+    ],
+    "runs": [
+     "11eebc24",
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      128,
+      492
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       216,
+       77,
+       224,
+       91
+      ],
+      41
+     ],
+     [
+      [
+       216,
+       77,
+       224,
+       90
+      ],
+      13
+     ],
+     [
+      [
+       128,
+       112,
+       253,
+       124
+      ],
+      10
+     ],
+     [
+      [
+       216,
+       78,
+       224,
+       91
+      ],
+      3
+     ],
+     [
+      [
+       161,
+       66,
+       172,
+       84
+      ],
+      1
+     ],
+     [
+      [
+       208,
+       73,
+       222,
+       91
+      ],
+      1
+     ]
+    ]
+   },
+   "listed_in_export": false,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/65560E82-83E366BC.png",
+     "sha256": "aee7bf1c0cac61109904541d05824c191a5fd90edd19fa526e6cc17271a60c62",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/65560E82-83E366BC.png",
+     "sha256": "9979583a0c9564e3d604fc483c0245896abe2095e840b5cebcfdd4ce6e69df79",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "energy": null,
+   "rgb_method": "page render from the index master, then every drawn cell re-rendered from its own texels (cell isolation); categorical layer (continuous layer where region_map == 1)",
+   "cells_isolated": [
+    {
+     "rect": [
+      208,
+      73,
+      225,
+      92
+     ],
+     "px_changed_vs_page_render": 2220,
+     "max_abs_diff": 63
+    },
+    {
+     "rect": [
+      128,
+      112,
+      254,
+      125
+     ],
+     "px_changed_vs_page_render": 8041,
+     "max_abs_diff": 127
+    },
+    {
+     "rect": [
+      161,
+      66,
+      173,
+      85
+     ],
+     "px_changed_vs_page_render": 1542,
+     "max_abs_diff": 26
+    }
+   ]
+  },
+  "6AE78470-95905651": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "95905651",
+    "words_hex": "21044208630c8410a514c618e71c082129254a296b2d8c31ad35ce391f000000",
+    "kind": "static",
+    "vram_xy": [
+     0,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 10,
+    "frames": [
+     97592,
+     98132
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      0,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       129,
+       160,
+       191,
+       191
+      ],
+      3
+     ],
+     [
+      [
+       128,
+       160,
+       191,
+       191
+      ],
+      2
+     ],
+     [
+      [
+       192,
+       164,
+       223,
+       191
+      ],
+      2
+     ],
+     [
+      [
+       192,
+       165,
+       223,
+       180
+      ],
+      1
+     ],
+     [
+      [
+       192,
+       164,
+       223,
+       180
+      ],
+      1
+     ],
+     [
+      [
+       129,
+       128,
+       191,
+       158
+      ],
+      1
+     ]
+    ]
+   },
+   "listed_in_export": true,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-95905651.png",
+     "sha256": "abd1402c9a308bc4e0d76c988a80a7fd044e7f6e1d071f52f4d41f128583a45f",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-95905651.png",
+     "sha256": "7c4e5e0713395e3044d5a53d8d5646c8fd828ff54bd477168d97389065cb6ec4",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "energy": null,
+   "rgb_method": "page render from the index master, then every drawn cell re-rendered from its own texels (cell isolation); categorical layer (continuous layer where region_map == 1)",
+   "cells_isolated": [
+    {
+     "rect": [
+      128,
+      160,
+      192,
+      192
+     ],
+     "px_changed_vs_page_render": 2581,
+     "max_abs_diff": 40
+    },
+    {
+     "rect": [
+      192,
+      164,
+      224,
+      192
+     ],
+     "px_changed_vs_page_render": 1666,
+     "max_abs_diff": 40
+    },
+    {
+     "rect": [
+      129,
+      128,
+      192,
+      159
+     ],
+     "px_changed_vs_page_render": 4302,
+     "max_abs_diff": 57
+    }
+   ]
+  },
+  "6AE78470-BE14F28C": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "BE14F28C",
+    "words_hex": "ff7f1f0000000000000000000000000000000000000000000000000000000000",
+    "kind": "static",
+    "vram_xy": [
+     64,
+     480
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 5,
+    "frames": [
+     97893,
+     98133
+    ],
+    "runs": [
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      64,
+      480
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       192,
+       192,
+       255,
+       223
+      ],
+      3
+     ],
+     [
+      [
+       193,
+       192,
+       255,
+       223
+      ],
+      1
+     ],
+     [
+      [
+       193,
+       192,
+       255,
+       222
+      ],
+      1
+     ]
+    ]
+   },
+   "listed_in_export": true,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-BE14F28C.png",
+     "sha256": "2b2e9de5012e363eb7ce488565d1dee02d513d5736cd59eaea420900b28b131b",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-BE14F28C.png",
+     "sha256": "e7bbfa235d0bc93cd4ee614eb5b50855b4be16260323d3006a225a6e0f828897",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "energy": null,
+   "rgb_method": "page render from the index master, then every drawn cell re-rendered from its own texels (cell isolation); categorical layer (continuous layer where region_map == 1)",
+   "cells_isolated": [
+    {
+     "rect": [
+      192,
+      192,
+      256,
+      224
+     ],
+     "px_changed_vs_page_render": 0,
+     "max_abs_diff": 0
+    }
+   ]
+  },
+  "6AE78470-D4D43BA5": {
+   "tex": "6AE78470",
+   "clut": {
+    "crc32": "D4D43BA5",
+    "words_hex": "ef3dce39ad358c316b2d4a29292529250821e71cc618a5148410630c630c0000",
+    "kind": "static",
+    "vram_xy": [
+     144,
+     488
+    ],
+    "owner": "(1, 26)",
+    "record": [
+     0,
+     480,
+     256,
+     20
+    ]
+   },
+   "state": "predicted-static",
+   "live": {
+    "draws": 53,
+    "frames": [
+     40739,
+     98393
+    ],
+    "runs": [
+     "11eebc24",
+     "aefc8556"
+    ],
+    "clut_xy": [
+     [
+      144,
+      488
+     ]
+    ],
+    "semi": [
+     -1
+    ],
+    "uv_top": [
+     [
+      [
+       48,
+       16,
+       58,
+       24
+      ],
+      12
+     ],
+     [
+      [
+       25,
+       16,
+       34,
+       25
+      ],
+      11
+     ],
+     [
+      [
+       0,
+       12,
+       62,
+       26
+      ],
+      4
+     ],
+     [
+      [
+       0,
+       48,
+       76,
+       59
+      ],
+      3
+     ],
+     [
+      [
+       17,
+       15,
+       26,
+       25
+      ],
+      3
+     ],
+     [
+      [
+       10,
+       22,
+       20,
+       31
+      ],
+      2
+     ],
+     [
+      [
+       24,
+       14,
+       62,
+       18
+      ],
+      2
+     ],
+     [
+      [
+       51,
+       12,
+       57,
+       17
+      ],
+      2
+     ]
+    ]
+   },
+   "listed_in_export": true,
+   "files": {
+    "page2048": {
+     "path": "keys/page2048/6AE78470-D4D43BA5.png",
+     "sha256": "c66e87dc2048a9d30fb60f6328e320bb906bf3c649506b3d0cadb95fa4a8f800",
+     "dims": [
+      2048,
+      2048
+     ],
+     "px_per_texel": 8,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    },
+    "page1024": {
+     "path": "keys/page1024/6AE78470-D4D43BA5.png",
+     "sha256": "3d4119e4aaa9f7575e501603b41b0e0521c4994a61282cfeadf5e0d07be7e5ae",
+     "dims": [
+      1024,
+      1024
+     ],
+     "px_per_texel": 4,
+     "forced_texel_centres": 0,
+     "class_mismatches": 0,
+     "alpha_values": [
+      0,
+      127
+     ]
+    }
+   },
+   "energy": null,
+   "rgb_method": "page render from the index master, then every drawn cell re-rendered from its own texels (cell isolation); categorical layer (continuous layer where region_map == 1)",
+   "cells_isolated": [
+    {
+     "rect": [
+      0,
+      12,
+      63,
+      47
+     ],
+     "px_changed_vs_page_render": 1807,
+     "max_abs_diff": 16
+    },
+    {
+     "rect": [
+      0,
+      47,
+      79,
+      62
+     ],
+     "px_changed_vs_page_render": 4976,
+     "max_abs_diff": 127
+    }
+   ]
+  }
+ },
+ "generated_imagery": null,
+ "comfyui": null,
+ "gpu": null,
+ "supersedes": "stage2-sky-ground-v1: same masters and keys; v2 adds cell isolation (every drawn cell re-rendered from its own texels) so no colour or class of a neighbouring atlas cell bleeds into the edge pixels a quad samples (seam lines in v1)",
+ "review": {
+  "sheets": [
+   "review/native-vs-hd-01.png",
+   "review/native-vs-hd-02.png"
+  ],
+  "note": "native | HD: full page at 2 px/texel, a 16x crop, and the busiest drawn rect at 9 screen px per texel (2160-line in-game size) labelled SIMULATION (bilinear RGB, nearest class, no mips; semi-1 keys composited additively on dark navy)."
+ },
+ "builder": {
+  "build_s2.py": "a751d42a7cde0e28e856cd4dbbbcfddc72660549d2c94c25487fef08eddafea7",
+  "s2master.py": "811db0119bcca384bcb776a9c59fc2cee346591da6a201a93a9eac484348e428",
+  "s2lib.py": "bd6a99cde59d18c011528362c2d9d7bbe15ae195428f006131ccdb59df617fd3",
+  "recover_phases.py": "3e7017bddadf1f273befd59c2dbf511e785277e4f82a8123da97a2d4aa158b50",
+  "draws_s2.py": "519516eda747e35bec40bbf9ff83582b5027365105197fd230f38de0736f089e"
+ },
+ "class_validation": {
+  "rule": "class at every native texel centre floor((i+0.5)*scale) == classes(CLUT)[words] (0 = 0x0000, 255 = STP, 127 = opaque); every export re-read from disk",
+  "files": 8,
+  "mismatches": 0
+ },
+ "covered_by_stage1": {
+  "65560E82-0677FB7C": "Stage 1 deliverable in the pack candidate; drawn unchanged (SAME_KEY) in the Stage 2 window",
+  "65560E82-2F05FF2B": "Stage 1 deliverable in the pack candidate; drawn unchanged (SAME_KEY) in the Stage 2 window",
+  "65560E82-F4C335D5": "Stage 1 deliverable in the pack candidate; drawn unchanged (SAME_KEY) in the Stage 2 window"
+ },
+ "known_limits": [
+  "categorical master (exact native colours, smooth contours); no generated photographic detail: the girder strip and ground textures read as clean, motion-safe versions of the native art, not as new photographic material",
+  "65560E82 keys 0677FB7C / 2F05FF2B / F4C335D5 are Stage 1 deliverables drawn unchanged in Stage 2 and are not re-authored here",
+  "6AE78470 is the 1/26 version of an area-versioned page (1/37 writes 68AA2284 later); the exports bind only to TEX 6AE78470"
+ ],
+ "honest_read": "Girder strip (83E366BC): the X truss reads as clean straight diagonals with crisp edges instead of pixel stairs; good. 6AE78470 panels: flat plateaus keep the exact native greys, edges are straight and clean, but single-texel specks and noise inside the panels become small rounded blobs (a slightly \"melted\" look at 16x; invisible at in-game size). No new material detail: this is a clean motion-safe base, not photographic realism. A first continuous-index try blurred the truss and panels (soft CG) and was discarded before freezing. v2: cell-isolated (the v1 exports had neighbour-cell bleed at drawn-cell edges)."
+}

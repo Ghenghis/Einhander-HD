@@ -1,0 +1,186 @@
+--- r4/test_timeout_leg.py	2026-11-14 07:29:14.799679700 -0700
++++ test_timeout_leg.py	2026-11-14 09:43:49.646209700 -0700
+@@ -2,6 +2,13 @@
+ """Synthetic self-test for validate_timeout_leg.py (s67 proposal). Tiny fixtures only; writes ONLY under the given work dir
+ (default: a fresh folder in the system temp dir). No game, no capture, no RAM/state access, no GPU.
+ 
++r5 exact-gate rule (support msg_ef793120): every snapshot negative must fail ONLY RS, with its intended RS reason.
++r5 run-1 fix: positive snapshot fixtures failed canonical K (drawn key had no native source); each drawn key now gets a
++CRC-consistent source quad (words = the snapshot rect). Validator unchanged.
++r5 (support review F1/F2/F4): snapshot evidence declares its key rect; the claimed TEX must be drawn with that kind/size;
++mark rows come only from the event file's own session log; ms/flags/reserved bytes are bound. New controls: 8bpp page,
++narrowed page, upload rect, two sessions each with event-0001, a mark row in another session only, ms and flag mismatches,
++nonzero reserved bytes, a TEX that is never drawn, a missing/undeclared rect. Fixture events now live next to their capture log.
+ r4 replaces the r3 snapshot fixtures with native EINRC01 events (hd_research_event.h layout) and adds header, identity,
+ mark-row binding and payload-checksum negatives; the r3 headerless fixture is now an expected rejection.
+ r3 adds residency-evidence controls (upload_event unsupported; marked_vram_snapshot needs a pinned receipt with matching
+@@ -233,55 +240,139 @@
+     fnv_ram0, fnv_vram0 = fnv(ram0), fnv(bytes(vram0))
+     tex0 = crc(bytes(rect0))
+ 
+-    def native_event(frame, index, label, magic=b'EINRC01\x00', version=1, ram=ram0, vram=bytes(vram0), fr=None, fv=None):
++    def native_event(frame, index, label, magic=b'EINRC01\x00', version=1, ram=ram0, vram=bytes(vram0), fr=None, fv=None, reserved=0):
+         hdr = bytearray(160)
+         hdr[0:8] = magic
+         struct.pack_into('<IIQQIIIIIIIIIIIIII', hdr, 8, version, 160, frame, frame * 17, 160, 2097152, 2097312, 1048576,
+                          1, 0, 1, 0, 1, fnv_ram0 if fr is None else fr, fnv_vram0 if fv is None else fv, index, len(label), 1)
+         hdr[96:96 + len(label)] = label.encode('ascii')
++        if reserved:
++            hdr[90] = reserved
++        fv_actual = fnv(vram) if fv is None else fv
++        struct.pack_into('<I', hdr, 72, fv_actual)
+         return bytes(hdr) + ram + vram
+ 
++    def vram_with(x, y, w, h, seed):
++        """copy of vram0 with a random rect written at x,y (w words x h rows); returns (bytes, crc of that rect, rect bytes)."""
++        v = bytearray(vram0)
++        rr = random.Random(seed)
++        rect = bytearray(rr.randrange(256) for _ in range(w * h * 2))
++        for row in range(h):
++            o = (((y + row) & 511) * 1024 + x) * 2
++            v[o:o + w * 2] = rect[row * w * 2:(row + 1) * w * 2]
++        return bytes(v), crc(bytes(rect)), bytes(rect)
++
++    HDR_MS = lambda fr: fr * 17          # native_event writes ms = frame * 17 and flags 1,0,1,0 at @48/52/56/60
++
++    def mark(fname, label='timeout_residency', index=7, frame=5300, **over):
++        d = dict(event='mark', label=label, event_file=fname, event_index=index, frame=frame, bytes=3145888, host_mono_ms=HDR_MS(frame),
++                 gpu_dirty=1, pending_cpu_upload_rects=0, pack_dirty=1, cpu_authority_dual=0, cpu_vram_may_be_stale=True)
++        d.update(over)
++        return d
++
++    def draw(tex, kind='native_page', depth=0, words=(64, 256), page=(704, 256), frame=5300, uv=(0, 0, 63, 7), sw=(0, 0), key=None):
++        return dict(event='source_draw_query_matched', key=key or f'{tex}-12345678', frame=frame, source_kind=kind, depth=depth, semi=-1,
++                    native_words=list(words), page_xy=list(page), source_word_xy=list(sw), clut_xy=[0, 480], uv_bounds=list(uv),
++                    uv_vertices=[[0, 0], [64, 0], [0, 8]], xy=[[10, 10], [74, 10], [10, 18]])
++
+     def snap_run(label, expect, header=True, tex_mode='match', sha_mode='ok', pin=True, mark_row='ok', file_index=7,
+-                 hdr_kw=None, claim_frame=5300):
++                 hdr_kw=None, claim_frame=5300, rect='page0', drawn=True, second_session=False, row_over=None, draw_kind=None,
++                 origin_shift=0, why=None):
+         vr = os.path.join(work, 'run-' + re.sub(r'[^A-Za-z0-9._-]+', '-', label))
+         fname = f'event-{file_index:04d}.bin'
+-        rows = {'ok': [dict(event='mark', label='timeout_residency', event_file=fname, event_index=7, frame=5300, bytes=3145888)],
+-                'none': [dict(event='mark', label='other', event_file='event-0099.bin', event_index=99, frame=5300, bytes=3145888)],
+-                'badlabel': [dict(event='mark', label='other_label', event_file=fname, event_index=7, frame=5300, bytes=3145888)],
+-                'dup': [dict(event='mark', label='timeout_residency', event_file=fname, event_index=7, frame=5300, bytes=3145888)] * 2}[mark_row]
+-        vm = build(vr, extra_lines=rows)
+-        os.makedirs(os.path.join(vr, 'research'), exist_ok=True)
+-        sp = os.path.join(vr, 'research', fname)
++        geo = {'page0': (dict(kind='native_page', x=704, y=256, depth=0, width_words=64), (704, 256, 64, 256), ('native_page', 0, (64, 256))),
++               'page1': (dict(kind='native_page', x=704, y=256, depth=1, width_words=128), (704, 256, 128, 256), ('native_page', 1, (128, 256))),
++               'narrow': (dict(kind='native_page', x=704, y=256, depth=1, width_words=64, narrowed=True), (704, 256, 64, 256), ('native_page', 1, (64, 256))),
++               'upload': (dict(kind='upload', x=704, y=300, width_words=32, height=40), (704, 300, 32, 40), ('upload', 2, (32, 40))),
++               'page1_as_4bpp': (dict(kind='native_page', x=704, y=256, depth=1, width_words=64), (704, 256, 128, 256), ('native_page', 1, (128, 256))),
++               'upload_far': (dict(kind='upload', x=100, y=0, width_words=32, height=40), (100, 0, 32, 40), ('upload', 2, (32, 40))),
++               'none': (None, (704, 256, 64, 256), ('native_page', 0, (64, 256)))}[rect]
++        ev_rect, (rx, ry, rw, rh), (kind, depth, words) = geo
++        vram_b, tex_r, rect_b = vram_with(rx, ry, rw, rh, 9)
++        clut_b = bytes(random.Random(13).randrange(256) for _ in range(32))
++        drawn_key = tex_r + '-' + crc(clut_b)     # run-1 fix: a real key whose native source is written below (canonical K)
++        tex_claim = tex_r if tex_mode == 'match' else 'DEADBEEF'
++        own = {'ok': [mark(fname, **(row_over or {}))], 'none': [mark('event-0099.bin', label='other', index=99)],
++               'badlabel': [mark(fname, label='other_label')], 'dup': [mark(fname)] * 2}[mark_row]
++        # upload rows: first texel at page (704,256) + u_first/ppw, v_first; source_word_xy = that texel's offset in the upload
++        uv, sw = (0, 0, 63, 7), (0, 0)
++        if kind == 'upload':
++            ppw = {0: 4, 1: 2, 2: 1}[depth]
++            u_first, v_first = 8 * ppw, 50                       # first texel at VRAM (712, 306), inside the upload (704,300,32,40)
++            uv = (u_first, v_first, u_first + 15, v_first + 15)
++            sw = (704 + u_first // ppw - rx, 256 + v_first - ry + origin_shift)
++        extra = [draw(tex_r, kind=draw_kind or kind, depth=depth, words=words, uv=uv, sw=sw, key=drawn_key)] if drawn else []
++        vm = build(vr, extra_lines=own + extra)
++        if drawn:   # complete native source for the drawn key: words = the snapshot rect, CRC-consistent with the key
++            assert write_key(os.path.join(vr, 'native-source-0'), rect_b, clut_b, 5300, [704, 256]) == drawn_key
+         if header:
+-            blob = native_event(5300, 7, 'timeout_residency', **(hdr_kw or {}))
++            blob = native_event(5300, 7, 'timeout_residency', vram=vram_b, **(hdr_kw or {}))
+         else:   # r3-style headerless blob of the right size (relabelling attack)
+-            blob = bytes(160) + ram0 + bytes(vram0)
++            blob = bytes(160) + ram0 + vram_b
++        sp = os.path.join(vr, 'native-source-0', fname)          # r5: the event sits next to its own session log
+         open(sp, 'wb').write(blob)
+         ssha = sha(sp)
+-        vm['residency_704_256'] = dict(tex=tex0 if tex_mode == 'match' else 'DEADBEEF', frame=claim_frame, basis='marked_vram_snapshot',
+-                                       evidence=dict(path='research/' + fname, sha256=ssha if sha_mode == 'ok' else '0' * 64))
++        if second_session:     # another research session with its own event-0007 + mark row (numbering restarts per session)
++            s2 = os.path.join(vr, 'native-source-1')
++            os.makedirs(s2)
++            other = native_event(5310, 7, 'timeout_residency', vram=vram_b)
++            open(os.path.join(s2, fname), 'wb').write(other)
++            with open(os.path.join(s2, 'capture.jsonl'), 'w') as f:
++                f.write(json.dumps(dict(event='capture_start', contract='ein-research-v1', frame=5305)) + '\n')
++                f.write(json.dumps(mark(fname, frame=5310)) + '\n')
++                f.write(json.dumps(dict(event='frame_tick', frame=6400)) + '\n')
++            vm['capture_logs'].append(dict(path='native-source-1/capture.jsonl', frame_span=[5305, 6400]))
++            vm['source_dirs'].append('native-source-1')
++            for rel_ in ('native-source-1/capture.jsonl', 'native-source-1/' + fname):
++                vm['files_sha256'][rel_] = sha(os.path.join(vr, rel_))
++        evd = dict(path='native-source-0/' + fname, sha256=ssha if sha_mode == 'ok' else '0' * 64)
++        if ev_rect is not None:
++            evd['rect'] = ev_rect
++        vm['residency_704_256'] = dict(tex=tex_claim, frame=claim_frame, basis='marked_vram_snapshot', evidence=evd)
+         if pin:
+-            vm['files_sha256']['research/' + fname] = ssha
++            vm['files_sha256']['native-source-0/' + fname] = ssha
+         rc_v, rep_v = run_tool(vr, vm)
+         failing = sorted(g['id'] for g in rep_v.get('gates', []) if not g['passed'])
+-        ok = (rc_v == 0 and rep_v.get('pass') is True) if expect == 'pass' else (rc_v == 1 and expect in failing)
+-        results.append(dict(case=label, expect=expect, rc=rc_v, failing=failing, ok=ok,
+-                            rs_failures=[f for g in rep_v.get('gates', []) if g['id'] == 'RS' for f in g['failures']][:3]))
++        rs_all = [f for g in rep_v.get('gates', []) if g['id'] == 'RS' for f in g['failures']]
++        # exact-gate rule (support msg_ef793120): a snapshot negative must fail ONLY the expected gate, for the intended reason
++        ok = (rc_v == 0 and rep_v.get('pass') is True) if expect == 'pass' else (
++            rc_v == 1 and failing == [expect] and (why is None or any(why in f for f in rs_all)))
++        results.append(dict(case=label, expect=expect, rc=rc_v, failing=failing, ok=ok, why=why, rs_failures=rs_all[:3]))
+ 
+     snap_run('r4 positive: native EINRC01 snapshot bound to its mark row', 'pass')
+-    snap_run('r4 headerless same-size blob (r3 fixture style) rejected', 'RS', header=False)
+-    snap_run('r4 bad magic', 'RS', hdr_kw=dict(magic=b'EINRC02\x00'))
+-    snap_run('r4 bad version', 'RS', hdr_kw=dict(version=2))
+-    snap_run('r4 header frame != claimed frame (wrong-frame relabel)', 'RS', claim_frame=5250)
+-    snap_run('r4 file name index != header index', 'RS', file_index=8)
+-    snap_run('r4 no mark row for this event file', 'RS', mark_row='none')
+-    snap_run('r4 mark row label != header label', 'RS', mark_row='badlabel')
+-    snap_run('r4 duplicated mark rows', 'RS', mark_row='dup')
+-    snap_run('r4 RAM payload checksum mismatch', 'RS', hdr_kw=dict(fr=1234))
+-    snap_run('r4 VRAM payload checksum mismatch', 'RS', hdr_kw=dict(fv=5678))
+-    snap_run('r4 VRAM CRC != claimed TEX', 'RS', tex_mode='bad')
+-    snap_run('r4 evidence sha mismatch', 'RS', sha_mode='bad')
+-    snap_run('r4 not pinned in files_sha256', 'RS', pin=False)
++    snap_run('r4 headerless same-size blob (r3 fixture style) rejected', 'RS', why='magic is not EINRC01', header=False)
++    snap_run('r4 bad magic', 'RS', why='magic is not EINRC01', hdr_kw=dict(magic=b'EINRC02\x00'))
++    snap_run('r4 bad version', 'RS', why='version @8', hdr_kw=dict(version=2))
++    snap_run('r4 header frame != claimed frame (wrong-frame relabel)', 'RS', why='header frame 5300 != claimed residency frame', claim_frame=5250)
++    snap_run('r4 file name index != header index', 'RS', why='does not carry the header event index', file_index=8)
++    snap_run('r4 no mark row for this event file', 'RS', why='found 0', mark_row='none')
++    snap_run('r4 mark row label != header label', 'RS', why="label='other_label'", mark_row='badlabel')
++    snap_run('r4 duplicated mark rows', 'RS', why='found 2', mark_row='dup')
++    snap_run('r4 RAM payload checksum mismatch', 'RS', why='RAM payload FNV-1a', hdr_kw=dict(fr=1234))
++    snap_run('r4 VRAM payload checksum mismatch', 'RS', why='VRAM payload FNV-1a', hdr_kw=dict(fv=5678))
++    snap_run('r4 VRAM CRC != claimed TEX', 'RS', why='!= claimed TEX DEADBEEF', tex_mode='bad')
++    snap_run('r4 evidence sha mismatch', 'RS', why='!= evidence.sha256', sha_mode='bad')
++    snap_run('r4 not pinned in files_sha256', 'RS', why='not pinned in files_sha256', pin=False)
++    # ---- r5 (support review msg_317d33e3: F1 rect/depth + drawn key, F2 own-session mark row, F4 ms/flags/reserved)
++    snap_run('r5 positive: 8bpp native page 128x256 declared and drawn', 'pass', rect='page1')
++    snap_run('r5 positive: admission-narrowed 8bpp page (64 words) declared narrowed', 'pass', rect='narrow')
++    snap_run('r5 positive: upload rect overlapping the page, drawn as an upload key', 'pass', rect='upload')
++    snap_run('r5 8bpp page mis-declared as 64 words (not narrowed)', 'RS', why='width_words 64 != 64<<depth', rect='page1_as_4bpp')
++    snap_run('r5 no rect declared (no default assumed)', 'RS', why='evidence.rect is required', rect='none')
++    snap_run('r5 claimed TEX never drawn in the run', 'RS', why='is never drawn', drawn=False)
++    snap_run('r5 positive: two sessions, each with its own event-0007 and mark row', 'pass', second_session=True)
++    snap_run('r5 own session has no mark row; only another session does', 'RS', why='in its own session log, found 0', mark_row='none', second_session=True)
++    snap_run('r5 mark row host_mono_ms != header ms', 'RS', why='host_mono_ms=1 != header', row_over=dict(host_mono_ms=1))
++    snap_run('r5 mark row gpu_dirty != header flag', 'RS', why='gpu_dirty=0 != header 1', row_over=dict(gpu_dirty=0))
++    snap_run('r5 mark row pack_dirty != header flag', 'RS', why='pack_dirty=0 != header 1', row_over=dict(pack_dirty=0))
++    snap_run('r5 nonzero reserved header byte', 'RS', why='reserved bytes 88..95', hdr_kw=dict(reserved=7))
++    # r5 additions from claude-einhander-support re-review (msg_be013f86, item b)
++    snap_run('r5 mark row pending_cpu_upload_rects != header flag', 'RS', why='pending_cpu_upload_rects=3 != header 0', row_over=dict(pending_cpu_upload_rects=3))
++    snap_run('r5 mark row cpu_authority_dual != header flag', 'RS', why='cpu_authority_dual=1 != header 0', row_over=dict(cpu_authority_dual=1))
++    snap_run('r5 upload rect that does not overlap the 704,256 page', 'RS', why='does not overlap', rect='upload_far')
++    snap_run('r5 upload declared but drawn only as a native page', 'RS', why='never drawn in this run as a upload key', rect='upload', draw_kind='native_page')
++    # r5 item a (support msg_d0c1c456): the upload draw row must recover the declared origin from page/uv/source_word_xy
++    snap_run('r5 upload draw row whose recovered origin != declared rect', 'RS', why='never drawn in this run as a upload key', rect='upload', origin_shift=5)
+     variant('r2 non-object JSON rows', 'K', raw=['[1, 2, 3]', '42'])
+     # the canonical validator must keep FAILING a timeout leg on its normal gates (never a clear by accident)
+     canon_m = copy.deepcopy(base)

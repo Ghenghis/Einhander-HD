@@ -1,0 +1,5 @@
+TIMING preload_total_ms 5.210 (index + file reads + full verification of every listed sidecar, at init)
+PRELOAD ok 1 bytes 5570672
+TIMING draw_admit_ms 3.086 (cache lookup + level-0 hash + R1)
+TIMING draw_admit_ms_median 3.034 min 2.958 max 3.476 (21 fresh slots, warm)
+checks 31 failures 0

@@ -1,0 +1,474 @@
+{
+ "tool": "fake_transport_default_path.r0.py",
+ "revision": "r0",
+ "started_utc": "2026-11-14T18:17:04.721610+00:00",
+ "pid": 40660,
+ "pins": {
+  "harness": "6c147a284db6f209f48139cc2341c99e26a1f5035cf198f54b275f8da84a08a6",
+  "runner": "c47b10929c318280b471cc60dc84a89f3b8fe4db59f325e7630dee482d1939a5",
+  "guard": "9e6ca8159a2f471fcbbde996464a6ba2eb6a51846c44567eefdb6e5cceaa2240",
+  "native_ui_facade_route.py": "851d1a7bd70488d8f47f24641f9531040586bf756df09616e078ca532c07935b",
+  "ui_candidate_probe.py": "5cf1986cd2df68164a149e75b4b3f6a8f921fc7634d512537013d0b0562f80a3",
+  "launch_ui_candidate.py": "b825eff79c7cc1577fc5dadf0f86cdc64446216e8e6db20477b951a39926a752",
+  "run_facade_ab_probe.py": "0c049a7a1ebfc5dab66bc114db3e80dfe4f6a91b129041d6f910651f1c9aacc8",
+  "run_stage1_pacing_ab.py": "98864c9400913bd1a18b395c575c55894929e0a92da1d3e35569387386cc1484",
+  "build_facade_ab_candidates.py": "09736514fe63f9611daf786c69e862423f5baf782637ff6aabf905f205d59d8e",
+  "run_h24_facade_review.py": "0320a6fafbd27a788938f80559194c9ef9c209315dcdc8746fcb4d32262d1ce2"
+ },
+ "cases": {
+  "C1": {
+   "case": "C1",
+   "exit_code": 0,
+   "exception": null,
+   "proof_errors": [],
+   "port_closed": true,
+   "owned_process_exit": 0,
+   "route_ok": true,
+   "route_final": "city",
+   "route_gates": [
+    "title-game-start:title",
+    "fighter-mk2:fighter",
+    "after-fighter:arm",
+    "city-hud:city"
+   ],
+   "observations": 61,
+   "focus_samples_ok": 61,
+   "focus_rejected": false,
+   "runtime_calls": 362,
+   "intents": 362,
+   "transport_receipts": 362,
+   "command_audit": {
+    "checked_records": 724,
+    "forbidden_or_malformed": [],
+    "timer_write_requests": 0
+   },
+   "commands_by_phase": {
+    "native_upload_selftest": {
+     "gameplay": 1
+    },
+    "native_upload_ledger": {
+     "gameplay": 4
+    },
+    "frame_phase_ring": {
+     "gameplay": 2
+    },
+    "clear_input": {
+     "native-menu-route": 5,
+     "gameplay": 2
+    },
+    "screenshot": {
+     "native-menu-route": 12
+    },
+    "get_registers": {
+     "native-menu-route": 12,
+     "gameplay": 63
+    },
+    "set_input {\"buttons\": \"0xBFFF\"}": {
+     "native-menu-route": 3
+    },
+    "hd_cpu_profile": {
+     "gameplay": 62
+    },
+    "turbo {\"enabled\": 0}": {
+     "gameplay": 1
+    },
+    "turbo_state": {
+     "gameplay": 2
+    },
+    "press {\"buttons\": 65343, \"frames\": 72}": {
+     "gameplay": 1
+    },
+    "read_ram": {
+     "gameplay": 122
+    },
+    "audio_stats": {
+     "gameplay": 61
+    },
+    "display_ring_stats": {
+     "gameplay": 3
+    },
+    "gl_present_ring": {
+     "gameplay": 1
+    },
+    "hd_upload_ledger": {
+     "gameplay": 1
+    },
+    "present_shot_seq": {
+     "gameplay": 2
+    },
+    "present_shot": {
+     "gameplay": 1
+    },
+    "quit": {
+     "gameplay": 1
+    }
+   },
+   "savestate_reached_runtime": false,
+   "fenced_launch_calls": 1,
+   "identity_calls": 1,
+   "refused_port_probes": 1,
+   "tripwire_hits": [],
+   "patches": [
+    "run_stage1_pacing_ab.ROOT",
+    "review.fenced_launch",
+    "review.time",
+    "review.enter_city(_clock,_sleep)",
+    "ui_candidate_probe.time",
+    "ui_candidate_probe.capture(injection wrapper)",
+    "run_facade_ab_probe.time",
+    "run_facade_ab_probe.identity",
+    "run_facade_ab_probe.socket",
+    "launch_ui_candidate.command",
+    "ui_candidate_probe.command",
+    "tripwire socket.socket",
+    "tripwire socket.create_connection",
+    "tripwire subprocess.Popen",
+    "tripwire subprocess.run"
+   ],
+   "virtual_seconds_slept": 62.65,
+   "evidence": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\fake-transport-ft1-r1\\runs\\20261114T181704Z\\C1\\fake-batch\\hd-on_rewind-off",
+   "checks": {
+    "exit_0": true,
+    "no_exception": true,
+    "no_errors": true,
+    "port_closed": true,
+    "process_exit_0": true,
+    "route_city": true,
+    "route_gates_4": true,
+    "samples_61": true,
+    "focus_every_sample": true,
+    "every_call_has_intent": true,
+    "audit_clean": true,
+    "route_inputs_only_in_route_phase": true,
+    "launched_once": true,
+    "closed_once": true,
+    "no_tripwires": true
+   },
+   "passed": true
+  },
+  "C2": {
+   "case": "C2",
+   "exit_code": 1,
+   "exception": null,
+   "proof_errors": [
+    "Owned game lost keyboard focus; timing rejected"
+   ],
+   "port_closed": true,
+   "owned_process_exit": 0,
+   "route_ok": true,
+   "route_final": "city",
+   "route_gates": [
+    "title-game-start:title",
+    "fighter-mk2:fighter",
+    "after-fighter:arm",
+    "city-hud:city"
+   ],
+   "observations": 7,
+   "focus_samples_ok": 7,
+   "focus_rejected": true,
+   "runtime_calls": 89,
+   "intents": 89,
+   "transport_receipts": 89,
+   "command_audit": {
+    "checked_records": 178,
+    "forbidden_or_malformed": [],
+    "timer_write_requests": 0
+   },
+   "commands_by_phase": {
+    "native_upload_selftest": {
+     "gameplay": 1
+    },
+    "native_upload_ledger": {
+     "gameplay": 3
+    },
+    "frame_phase_ring": {
+     "gameplay": 2
+    },
+    "clear_input": {
+     "native-menu-route": 5,
+     "gameplay": 2
+    },
+    "screenshot": {
+     "native-menu-route": 12
+    },
+    "get_registers": {
+     "native-menu-route": 12,
+     "gameplay": 9
+    },
+    "set_input {\"buttons\": \"0xBFFF\"}": {
+     "native-menu-route": 3
+    },
+    "hd_cpu_profile": {
+     "gameplay": 9
+    },
+    "turbo {\"enabled\": 0}": {
+     "gameplay": 1
+    },
+    "turbo_state": {
+     "gameplay": 2
+    },
+    "press {\"buttons\": 65343, \"frames\": 72}": {
+     "gameplay": 1
+    },
+    "read_ram": {
+     "gameplay": 16
+    },
+    "audio_stats": {
+     "gameplay": 8
+    },
+    "display_ring_stats": {
+     "gameplay": 1
+    },
+    "gl_present_ring": {
+     "gameplay": 1
+    },
+    "quit": {
+     "gameplay": 1
+    }
+   },
+   "savestate_reached_runtime": false,
+   "fenced_launch_calls": 1,
+   "identity_calls": 1,
+   "refused_port_probes": 1,
+   "tripwire_hits": [],
+   "patches": [
+    "run_stage1_pacing_ab.ROOT",
+    "review.fenced_launch",
+    "review.time",
+    "review.enter_city(_clock,_sleep)",
+    "ui_candidate_probe.time",
+    "ui_candidate_probe.capture(injection wrapper)",
+    "run_facade_ab_probe.time",
+    "run_facade_ab_probe.identity",
+    "run_facade_ab_probe.socket",
+    "launch_ui_candidate.command",
+    "ui_candidate_probe.command",
+    "tripwire socket.socket",
+    "tripwire socket.create_connection",
+    "tripwire subprocess.Popen",
+    "tripwire subprocess.run"
+   ],
+   "virtual_seconds_slept": 9.65,
+   "evidence": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\fake-transport-ft1-r1\\runs\\20261114T181704Z\\C2\\fake-batch\\hd-on_rewind-off",
+   "checks": {
+    "exit_1": true,
+    "focus_error": true,
+    "focus_rejected_sample": true,
+    "still_closed": true,
+    "process_exit_recorded": true,
+    "audit_clean": true,
+    "no_tripwires": true
+   },
+   "passed": true
+  },
+  "C3": {
+   "case": "C3",
+   "exit_code": 1,
+   "exception": null,
+   "proof_errors": [
+    "Unassisted command refused before send: savestate"
+   ],
+   "port_closed": true,
+   "owned_process_exit": 0,
+   "route_ok": true,
+   "route_final": "city",
+   "route_gates": [
+    "title-game-start:title",
+    "fighter-mk2:fighter",
+    "after-fighter:arm",
+    "city-hud:city"
+   ],
+   "observations": 61,
+   "focus_samples_ok": 61,
+   "focus_rejected": false,
+   "runtime_calls": 360,
+   "intents": 360,
+   "transport_receipts": 360,
+   "command_audit": {
+    "checked_records": 720,
+    "forbidden_or_malformed": [],
+    "timer_write_requests": 0
+   },
+   "commands_by_phase": {
+    "native_upload_selftest": {
+     "gameplay": 1
+    },
+    "native_upload_ledger": {
+     "gameplay": 5
+    },
+    "frame_phase_ring": {
+     "gameplay": 3
+    },
+    "clear_input": {
+     "native-menu-route": 5,
+     "gameplay": 2
+    },
+    "screenshot": {
+     "native-menu-route": 12
+    },
+    "get_registers": {
+     "native-menu-route": 12,
+     "gameplay": 62
+    },
+    "set_input {\"buttons\": \"0xBFFF\"}": {
+     "native-menu-route": 3
+    },
+    "hd_cpu_profile": {
+     "gameplay": 62
+    },
+    "turbo {\"enabled\": 0}": {
+     "gameplay": 1
+    },
+    "turbo_state": {
+     "gameplay": 2
+    },
+    "press {\"buttons\": 65343, \"frames\": 72}": {
+     "gameplay": 1
+    },
+    "read_ram": {
+     "gameplay": 122
+    },
+    "audio_stats": {
+     "gameplay": 61
+    },
+    "display_ring_stats": {
+     "gameplay": 2
+    },
+    "gl_present_ring": {
+     "gameplay": 2
+    },
+    "hd_upload_ledger": {
+     "gameplay": 1
+    },
+    "quit": {
+     "gameplay": 1
+    }
+   },
+   "savestate_reached_runtime": false,
+   "fenced_launch_calls": 1,
+   "identity_calls": 1,
+   "refused_port_probes": 1,
+   "tripwire_hits": [],
+   "patches": [
+    "run_stage1_pacing_ab.ROOT",
+    "review.fenced_launch",
+    "review.time",
+    "review.enter_city(_clock,_sleep)",
+    "ui_candidate_probe.time",
+    "ui_candidate_probe.capture(injection wrapper)",
+    "run_facade_ab_probe.time",
+    "run_facade_ab_probe.identity",
+    "run_facade_ab_probe.socket",
+    "launch_ui_candidate.command",
+    "ui_candidate_probe.command",
+    "tripwire socket.socket",
+    "tripwire socket.create_connection",
+    "tripwire subprocess.Popen",
+    "tripwire subprocess.run"
+   ],
+   "virtual_seconds_slept": 62.65,
+   "evidence": "C:\\github\\Einhander\\remaster-audit\\runtime-review\\gpu-texture-remix-20261114\\fake-transport-ft1-r1\\runs\\20261114T181704Z\\C3\\fake-batch\\hd-on_rewind-off",
+   "checks": {
+    "exit_1": true,
+    "refused_before_send": true,
+    "runtime_never_saw_savestate": true,
+    "no_savestate_intent": true,
+    "still_closed": true,
+    "audit_clean": true,
+    "no_tripwires": true
+   },
+   "passed": true
+  },
+  "C4": {
+   "case": "C4",
+   "checks": {
+    "route_confirm_in_gameplay_refused": {
+     "passed": true,
+     "accepted": false,
+     "transported": false,
+     "intent_written": false
+    },
+    "route_down_in_gameplay_refused": {
+     "passed": true,
+     "accepted": false,
+     "transported": false,
+     "intent_written": false
+    },
+    "savestate_load_refused": {
+     "passed": true,
+     "accepted": false,
+     "transported": false,
+     "intent_written": false
+    },
+    "savestate_in_route_refused": {
+     "passed": true,
+     "accepted": false,
+     "transported": false,
+     "intent_written": false
+    },
+    "route_confirm_in_route_accepted": {
+     "passed": true,
+     "accepted": true,
+     "transported": true,
+     "intent_written": true
+    }
+   },
+   "passed": true
+  }
+ },
+ "module_files": {
+  "review": "C:\\github\\Einhander\\remaster-audit\\run_stage1_unassisted_review.py",
+  "guard": "C:\\github\\Einhander\\remaster-audit\\unassisted_command_guard.py",
+  "route": "C:\\github\\Einhander\\remaster-audit\\native_ui_facade_route.py",
+  "ui": "C:\\github\\Einhander\\remaster-audit\\launch_ui_candidate.py",
+  "probe": "C:\\github\\Einhander\\remaster-audit\\ui_candidate_probe.py",
+  "close": "C:\\github\\Einhander\\remaster-audit\\run_facade_ab_probe.py",
+  "pacing": "C:\\github\\Einhander\\remaster-audit\\run_stage1_pacing_ab.py"
+ },
+ "modules_are_canonical": true,
+ "fixtures": {
+  "receipts": {
+   "title": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\facade-ab-20261112\\architecture\\scene-native-03.png",
+    "sha256": "c744d01261785bd633c24287de3c488de32780c1950c274a1bda5763c8e020c6",
+    "dimensions": [
+     320,
+     240
+    ]
+   },
+   "fighter": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\facade-ab-20261112\\dark-optics\\approach-state-01.png",
+    "sha256": "a0978a3bfa85e10e8e601062ccf9634dc8fc9934d176513ed480288a203717f7",
+    "dimensions": [
+     320,
+     240
+    ]
+   },
+   "arm": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\typography-repair-20261112-v11\\arm-native-gate.png",
+    "sha256": "cbd5aa5f25118d3ff9ac5a2c83811cfddb817dd772f0ed9447adaa9c88fb74e6",
+    "dimensions": [
+     320,
+     240
+    ]
+   },
+   "city": {
+    "path": "C:\\github\\Einhander\\remaster-audit\\dev-center-evidence\\facade-ab-20261112\\dark-optics\\after-fighter-confirm.png",
+    "sha256": "44b4c9b05583426fce7f9e99d638aba017d07b6e74a06703458f48a269c5f06d",
+    "dimensions": [
+     320,
+     240
+    ]
+   }
+  },
+  "classified": {
+   "title": "title",
+   "fighter": "fighter",
+   "arm": "arm",
+   "city": "city"
+  },
+  "valid": true
+ },
+ "passed": true,
+ "ended_utc": "2026-11-14T18:17:14.870318+00:00"
+}

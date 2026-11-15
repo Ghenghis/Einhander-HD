@@ -1,5 +1,7 @@
 # Einhander project continuity
 
+> Current reboot/runtime/E2E handoff: [verified state and all seven-stage continuation](docs/RUNTIME-CONTINUATION-20261113.md). Work from C:/github/Einhander. Full gameplay/audio E2E is incomplete; the dated detail below may describe earlier experiments. Read the linked current scope before resuming.
+
 The user requires autonomous follow-through until the authorized project is
 complete. Keep working without repeated permission questions. A component
 handoff, successful test or message acknowledgement is not project completion.

@@ -1,0 +1,14 @@
+TIMING draw_admit_ms_median 0.000 min 0.000 max 0.000 (21 fresh slots, warm)
+TIMING note: identity admission reads no pixel (sentinel rgba)
+checks 20 failures 11
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:421: s_hdcm_diag.rgbonly_admitted == 1 && (int)slot.rgb_edges == EXPECT_CUT && g_teximage == 0 && g_texparam == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:422: g_id_calls == 1 && g_id_last == &px && s_hdcm_diag.rgbonly_identity_used == 1
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:429: s_hdcm_diag.rgbonly_rejected[HDCM_E_IDENTITY] == (uint64_t)(i + 1) && s2.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:429: s_hdcm_diag.rgbonly_rejected[HDCM_E_IDENTITY] == (uint64_t)(i + 1) && s2.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:433: s_hdcm_diag.rgbonly_rejected[HDCM_E_IDENTITY] == 3 && s2.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:438: s_hdcm_diag.rgbonly_rejected[HDCM_E_LEVEL0] == 1 && s3.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:441: s_hdcm_diag.rgbonly_rejected[HDCM_E_CUTOUT] == 1 && s4.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:444: s_hdcm_diag.rgbonly_rejected[HDCM_E_HD_DIMS] == 1 && s5.rgb_edges == 0
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:455: s_hdcm_diag.rgbonly_admitted == 2 && (int)slot.rgb_edges == EXPECT_CUT
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:458: g_u[LOC_CLASS] == 0 && g_u[LOC_RGB] == EXPECT_CUT && g_min == -7
+FAIL C:\github\Einhander\remaster-audit\claude-backlog\class-mip\renderer-v61-classmip\runs\20261114T142204Z\glue\mutants\g20\glue_harness.c:467: out[14 + 3 * HDCM_REASONS + HDCM_E_IDENTITY] == 3

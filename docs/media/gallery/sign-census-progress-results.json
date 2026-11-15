@@ -1,0 +1,67 @@
+{
+  "as_of_utc": "2026-11-14T08:00:11.595740+00:00",
+  "status": "incomplete_world_and_sign_census",
+  "total_remaining_distinct_signs": null,
+  "full_world_coverage_established": false,
+  "known_register": {
+    "rows": 37,
+    "numbered_board_rows": 29,
+    "indicator_and_backing_rows": [
+      25,
+      27
+    ],
+    "named_sign_or_poster_rows": 30,
+    "explicit_phase_records": 43,
+    "phase_limit": "Does not expand the32RISElitregions; rows are not placements or full-game denominator.",
+    "historical_request_rows": 5,
+    "request_limit": "LaterW4work resolves someofthese historical requests; notfivecurrentmissing signs."
+  },
+  "five_revised_designs": [
+    4,
+    9,
+    10,
+    12,
+    26
+  ],
+  "revised_candidate_accepted": false,
+  "known_unfinished_texture_cells": [
+    "73BF9877-803A474F",
+    "73BF9877-CA7DE0E0",
+    "73BF9877-7AA4A0DF",
+    "73BF9877-3FA85320"
+  ],
+  "late_city_source_phase_rows": 11,
+  "late_city_source_phase_limit": "Different units from signs: sevenFDrows, threeE360C964rows and oneuploadstrip; onehazardCLUT has a retained candidate withstaleCPU-VRAM caveat. This is a historical audit, not fresh source capture.",
+  "distant_green_and_pink_signs": "User-reported open defects; separate scene placement/source mapping and visual acceptance remain incomplete.",
+  "sources": [
+    {
+      "path": "remaster-audit/comfy-authoring/w3-signs/INDEX.json",
+      "sha256": "9c0603f229115362ec12e0d995bfcf4d899c7835477dc479b4e9b65dcd43780a",
+      "bytes": 35331,
+      "published_raw": false
+    },
+    {
+      "path": "remaster-audit/comfy-authoring/w4-signs-hud/LEDGER.md",
+      "sha256": "4700076a68153cd1544607f4f1486728693e45826dce2be52050c779a3b8369f",
+      "bytes": 8307,
+      "published_raw": false
+    },
+    {
+      "path": "remaster-audit/comfy-authoring/w4-signs-hud/MISSING-SIGN-PHASES.md",
+      "sha256": "c34a551bc10398818d8e37f268094465bddec0c5f2b1b1df0304a1f2813f2641",
+      "bytes": 6020,
+      "published_raw": false
+    },
+    {
+      "path": "remaster-audit/claude-backlog/sign-washout-audit/pack-frozen-w3-lit-signs-crisp-v2/verification.json",
+      "sha256": "5b6f79b63afdb5a5abb655f3e128b5bc622051a65179269900a75280830facc3",
+      "bytes": 1705,
+      "published_raw": false
+    }
+  ],
+  "count_rules": [
+    "Do not subtract five revisions from42authoredrecords or37registerrows to obtain signsremaining.",
+    "Do not sum cells,palettephases,designs,placements or posters.",
+    "AHD replacement key or classpass does not establish4K visualacceptance."
+  ]
+}

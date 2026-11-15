@@ -1,0 +1,228 @@
+{
+ "owner": "claude-einhander-s23",
+ "created_utc": "2026-11-14T22:22:38.601828+00:00",
+ "status": "PACKET (source/config/staging PROPOSAL only): nothing staged, copied or launched; no full-pack copy; no gameplay until staged inputs are qualified and a GPU slot exists",
+ "basis": "codex-einhander-crash-check msg_00c814c0dbf569a2; J10 corner method provisional (root msg_2a9971b2) until a composed in-game view",
+ "source_run": {
+  "preview": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/PREVIEW.json",
+  "preview_sha256": "b6eae470d2357a4781c2826564e0d074c6231d476ddc7e6b01a4e628686d0745",
+  "envelope": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/runs/j10p-2152-envelope.json",
+  "envelope_sha256": "18cd0cfcfe3912efd62924ce548b6680173e037ff8f47455f75ffd80a6b976b7",
+  "compare_png": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/compare.png",
+   "sha256": "6b886b4802728d84f4e8814d5efc14e469f9136f3981513ac87ea36a34f335ef"
+  },
+  "plan": {
+   "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/plan-preview-2keys.json",
+   "sha256": "69600db8157df0071af92eca224a1e920b634b91014acb6a2ba6cfdb16de0e1c"
+  }
+ },
+ "loader": {
+  "code": "windows-x64/psxrecomp/runtime/src/hd_texture_pack.cpp",
+  "root": "ONE root: explicit/settings [video] hd_texture_root, else env PSXRECOMP_HD_TEXTURE_ROOT (hd_texture_pack.cpp:1083-1090); settings values take precedence over env and hd_textures=false masks it (gpu_gl_renderer.c ~2643-2647)",
+  "files": "<TEX>-<CLUT>.png directly in the root (parse_png_filename :150-155) or in one *-texture-replacements dir beside Hashes.ini (:1101-1121); Hashes.ini optional",
+  "sidecars": "<key>.words.bin/.clut.bin/.valid.bin are read ONLY for ExactRegions.tsv sub-rectangles (:777-830); these two keys are full-upload page entries: PNG only, no sidecars, no ExactRegions.tsv",
+  "fallback": "a key with no PNG takes the native path (lookup NONE -> return 0, gpu_gl_renderer.c ~3870-3897): everything not in the pilot root renders native",
+  "proof_log": "PSXRECOMP_HD_PROOF_LOG=<file> writes one JSON line per first-seen key: replacement_size, native_words, source_kind, uv bounds (gpu_gl_renderer.c:3005-3040); proves whether each pilot key actually matched"
+ },
+ "keys": {
+  "28127931-7C2D834A": {
+   "candidate": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s2-28127931-7C2D834A/keys/page2048/28127931-7C2D834A.png",
+    "sha256": "40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a",
+    "dims": [
+     2048,
+     2048
+    ],
+    "scale": 8,
+    "strict_pass": true,
+    "r5_zero": true
+   },
+   "native": {
+    "tex": "28127931",
+    "clut": "7C2D834A",
+    "words": {
+     "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages/stage2/textures/28127931.words.bin",
+     "sha256": "0e110d9503fb351bd5848129120cb20af1b405fa7afc17726d579fdacdbf4358",
+     "rect": [
+      896,
+      0,
+      64,
+      256
+     ]
+    },
+    "clut_words_hex": "ffffe4a4a39c8294618c418c408c208820840084008400000000000000000000",
+    "tex_confidence": "likely (static export words; live key + CLUT confirm still required)"
+   },
+   "baseline": {
+    "runtime": "NATIVE: no HD file for this key exists in any pack or Stage-1 candidate (coverage 5555d17c authored = s23 J9 proposal only)",
+    "previous_proposal": {
+     "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/keys/page2048/28127931-7C2D834A.png",
+     "sha256": "a6801c466ebe0f3ba4b22cb617d481c146b0a05656bd96a20a1b81ba58f422b2",
+     "diff_vs_j10": {
+      "alpha_px": 6515,
+      "visible_rgb_px": 911,
+      "previous": {
+       "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s2-drawn-j9-20261114T171215Z/keys/page2048/28127931-7C2D834A.png",
+       "sha256": "a6801c466ebe0f3ba4b22cb617d481c146b0a05656bd96a20a1b81ba58f422b2"
+      }
+     }
+    }
+   },
+   "draw_role": {
+    "state": "PHYSICAL live draw (draw-proven)",
+    "family": "world/background",
+    "draws": 13,
+    "runs": [
+     "11eebc24"
+    ],
+    "frames_first_last": [
+     40717,
+     41099
+    ],
+    "page_xy": [
+     [
+      896,
+      0
+     ]
+    ],
+    "clut_xy": [
+     [
+      192,
+      483
+     ]
+    ],
+    "source_kind": "native_page (keys-live)",
+    "uv_rects_drawn": [
+     [
+      [
+       132,
+       185,
+       159,
+       198
+      ],
+      6
+     ],
+     [
+      [
+       62,
+       180,
+       77,
+       199
+      ],
+      5
+     ],
+     [
+      [
+       1,
+       152,
+       15,
+       161
+      ],
+      1
+     ],
+     [
+      [
+       111,
+       185,
+       131,
+       198
+      ],
+      1
+     ]
+    ]
+   },
+   "screenshot_targets": {
+    "route": "Stage 2 capture run A (11eebc24; codex AQ-01/AQ-03 Stage 2 capture), frames 40717..41099 (13 draws); no run-B draws for this CLUT",
+    "frames": [
+     40717,
+     40908,
+     41099
+    ],
+    "what": "the stepped black/white blocks at uv [132..159,185..198] and [62..77,180..199]: corners square (native) vs rounded (previous J9)"
+   }
+  },
+  "59B55BC8-89C297ED": {
+   "candidate": {
+    "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s3-59B55BC8-89C297ED/keys/page2048/59B55BC8-89C297ED.png",
+    "sha256": "dc22491756ddebdfad2ff3fae65f7181b1046818d428f524450b2d144233b218",
+    "dims": [
+     2048,
+     2048
+    ],
+    "scale": 8,
+    "strict_pass": true,
+    "r5_zero": true
+   },
+   "native": {
+    "tex": "59B55BC8",
+    "clut": "89C297ED",
+    "words": {
+     "path": "C:/github/Einhander/remaster-audit/fullgame-prep/static-extraction/stages-v4/stage3/textures/59B55BC8.words.bin",
+     "sha256": "4562f9978b4c551dc7fbb476374df24c8564c9086ebb3b56fef09c247f04306a",
+     "rect": [
+      704,
+      0,
+      64,
+      256
+     ]
+    },
+    "clut_words_hex": "ce3dad396b314a2d29290825e720c61ca51884146310ee16e7150025c01c8014",
+    "tex_confidence": "likely (stages-v4 static export)"
+   },
+   "baseline": {
+    "runtime": "NATIVE: not in any pack or Stage-1 candidate",
+    "frozen_lane": {
+     "path": "C:/github/Einhander/remaster-audit/comfy-authoring/w7-stage3/frozen/stage3-machinery-walls-v1/keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "b09808812aba4854fe734acc2def83fde34b064428e54e2a6cf126f4728cfff5",
+     "set": "w7-stage3/stage3-machinery-walls-v1 (frozen)"
+    },
+    "previous_proposal": {
+     "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z/keys/page2048/59B55BC8-89C297ED.png",
+     "sha256": "68326064de4fde1150c2bb26af4417653a6df299cc7d938111813bc397ce42ae",
+     "diff_vs_j10": {
+      "alpha_px": 0,
+      "visible_rgb_px": 24988,
+      "previous": {
+       "path": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/s3-scale2x-20261114T154534Z/keys/page2048/59B55BC8-89C297ED.png",
+       "sha256": "68326064de4fde1150c2bb26af4417653a6df299cc7d938111813bc397ce42ae"
+      }
+     }
+    }
+   },
+   "draw_role": {
+    "state": "PREDICTED-STATIC ONLY: Stage 3 has no draw records; no physical draw is proven",
+    "family": "world/background (machinery wall)"
+   },
+   "screenshot_targets": {
+    "route": null,
+    "note": "no Stage 3 route or frame exists (S3-1/S3-2 capture missing); in a runtime pilot this key can only be load-checked; stage it ONLY if a Stage 3 route is run, else omit it"
+   }
+  }
+ },
+ "staging_proposal": {
+  "pilot_root": "C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/pilot/j10-2key-root-<UTC> (NEW, exclusive, private; not a pack copy)",
+  "steps": [
+   "mkdir the new pilot root (must not exist)",
+   "copy C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s2-28127931-7C2D834A/keys/page2048/28127931-7C2D834A.png -> <pilot_root>/28127931-7C2D834A.png and verify sha256 40434c40285348142b15c2609e572c0aa640eca9d886e3021e50d6c7fb5ff70a",
+   "OPTIONAL only with a Stage 3 route: copy C:/github/Einhander/remaster-audit/parallel-stages-20261114/s23/proposals/j10-preview-2152/s3-59B55BC8-89C297ED/keys/page2048/59B55BC8-89C297ED.png -> <pilot_root>/59B55BC8-89C297ED.png and verify sha256 dc22491756ddebdfad2ff3fae65f7181b1046818d428f524450b2d144233b218",
+   "no Hashes.ini, no sidecars, no ExactRegions.tsv; nothing else in the root"
+  ],
+  "launches": {
+   "baseline": "same route/frames with HD textures disabled (or an HD root without these keys): native rendering of the pilot keys",
+   "pilot": "PSXRECOMP_HD_TEXTURE_ROOT=<pilot_root> (no settings hd_texture_root override), PSXRECOMP_HD_PROOF_LOG=<private log>; same route/frames"
+  },
+  "acceptance": [
+   "proof log has key 28127931-7C2D834A with replacement_size [2048,2048] and native_words [64,256] (key matched live; otherwise fallback is native and the pilot is inconclusive)",
+   "screenshots at the target frames: the pilot differs from the baseline only on this key's draws; block corners square",
+   "no other draw changes (all other keys native in both runs)"
+  ]
+ },
+ "missing_dependencies": [
+  "GPU/game slot and a launch owner (codex): none granted",
+  "exact reproduction of capture run A route to frames 40717-41099 (codex AQ-01/AQ-03 Stage 2 capture harness; not owned by S23)",
+  "launcher settings: confirm no settings.toml hd_texture_root/hd_textures override of PSXRECOMP_HD_TEXTURE_ROOT",
+  "live key/CLUT confirmation of 28127931-7C2D834A (TEX likely): the pilot proof log itself provides it",
+  "Stage 3 route (S3-1/S3-2) for any physical test of 59B55BC8-89C297ED"
+ ]
+}
